@@ -42,6 +42,14 @@ class ResultsController extends Controller
     {
         $Project = $this->loadActiveProject();
 
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
+        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/flot/jquery.flot.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.categoryAxisRenderer.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.highlighter.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.cursor.min.js');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.css', 'text/css');
+
         $this->render('display',array(
             'Project' => $Project,
             'evaluation' => $Project->getEvaluationArray(),
