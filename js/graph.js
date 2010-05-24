@@ -67,19 +67,34 @@ function plotGraph(anchor, data, title, legend)
     });
 }
 
+/**
+ * On document load
+ */
 $(document).ready(function(){
+    /**
+     * Replot the graph on checkbox selection
+     */
     $('input:checkbox').click(function()
     {
+        // grab data
         data = new Array();
+
+        // ajax request for plotting data
         $.get(document.location, function(result){
+            // traverse checkboxes, check if checked
             $('input:checkbox').each(function($checkbox){
+                // checked!
                 if($(this).attr('checked'))
                 {
                     name = $(this).attr('name');
                     seriesNr = name.substr(name.length-1,name.length);
+
+                    // add data to this array
                     data.push(result['data'][seriesNr]);
                 }
             });
+
+            // plot the graph
             plotGraph('chartdiv', data, 'ABACON', result['legend']);
         });
     });
