@@ -232,21 +232,3 @@ div.search-form
 {
     background: #80CFFF;
 }
-td.selected
-{
-    background-color: #aaa;
-}
-td.last
-{
-    border-right: 1px solid #ccc;
-    width:38px;
-}
-table
-{
-width: 100%;
-}
-td
-{
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}

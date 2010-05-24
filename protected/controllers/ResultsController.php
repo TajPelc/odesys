@@ -6,7 +6,7 @@ class ResultsController extends Controller
      * @var string the default layout for the views. Defaults to 'column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout='column2';
+    public $layout='checkboxes';
 
     /**
      * @return array action filters
@@ -40,19 +40,45 @@ class ResultsController extends Controller
      */
     public function actionDisplay()
     {
+        // load active project
         $Project = $this->loadActiveProject();
 
+        // ajax request for graph data?
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            $eval = $Project->getEvaluationArray();
+            $rv = array();
+
+            foreach($eval as $Alternative)
+            {
+                $val = array();
+                $rv['nrCriteria'] = count($Alternative['Criteria']);
+
+                foreach($Alternative['Criteria'] as $Criteria)
+                {
+                    $val[] = array((int)$Criteria['Evaluation']->grade * 10, CHtml::encode($Criteria['Obj']->title));
+                }
+
+                $rv['legend'][] = CHtml::encode($Alternative['Obj']->title);
+                $rv['data'][] = $val;
+            }
+
+            header('Content-type: application/json');
+            echo json_encode($rv);
+            exit();
+        }
+
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
-        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/flot/jquery.flot.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.categoryAxisRenderer.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.highlighter.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.cursor.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.horizontalLegendRenderer.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/graph.js');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.css', 'text/css');
 
         $this->render('display',array(
             'Project' => $Project,
-            'evaluation' => $Project->getEvaluationArray(),
         ));
     }
 }
