@@ -9,6 +9,18 @@ class ResultsController extends Controller
     public $layout='checkboxes';
 
     /**
+     * Color pool for plotting graphs
+     *
+     * @var array
+     */
+    private static $colorPool = array(
+        "#ff5800",
+        "#ffaa00",
+        "#ff58ff",
+        "#005800",
+    );
+
+    /**
      * @return array action filters
      */
     public function filters()
@@ -62,6 +74,7 @@ class ResultsController extends Controller
                 $rv['data'][] = $val;
             }
 
+            $rv['colorPool'] = self::$colorPool;
             header('Content-type: application/json');
             echo json_encode($rv);
             exit();
@@ -78,6 +91,7 @@ class ResultsController extends Controller
 
         $this->render('display',array(
             'Project' => $Project,
+            'colorPool' => self::$colorPool,
         ));
     }
 }

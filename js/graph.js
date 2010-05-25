@@ -63,41 +63,58 @@ function plotGraph(anchor, data, title, colors)
 }
 
 /**
+ * Fetches data, handles checkboxes and plots the graph
+ */
+function buildGraph()
+{
+    // plotting variables
+    data    = new Array();
+    legend  = new Array();
+    colors  = new Array();
+
+    // get all checked boxes
+    checked = $('input[type=checkbox]:checked');
+
+    // disable or enable checkboxes
+    checked.each(function(){
+        if(checked.length == 1){
+            $(this).attr('disabled', 'disabled');
+        }
+        else{
+            $(this).removeAttr('disabled');
+        }
+    });
+
+    // ajax request for plotting data
+    $.get(document.location, function(result){
+        // build data for graph plotting
+        checked.each(function(){
+            // get the series number
+            name = $(this).attr('name');
+            seriesNr = name.substr(name.length-1,name.length);
+
+            // add data to this array
+            data.push(result['data'][seriesNr]);
+            colors.push(result['colorPool'][seriesNr]);
+        });
+
+        // plot the graph
+        $('#chartdiv').empty();
+        plotGraph('chartdiv', data, 'ABACON', colors);
+    });
+}
+/**
  * On document load
  */
 $(document).ready(function(){
+    // create graph on page load
+    buildGraph();
+
     /**
      * Replot the graph on checkbox selection
      */
     $('input:checkbox').click(function()
     {
-        // define the color pool
-        colorPool = [ "#ff5800", "#ffaa00", "#ff58ff","#005800" ];
-
-        // plotting variables
-        data    = new Array();
-        legend  = new Array();
-        colors  = new Array();
-
-        // ajax request for plotting data
-        $.get(document.location, function(result){
-            // traverse checkboxes, check if checked
-            $('input:checkbox').each(function($checkbox){
-                // checked!
-                if($(this).attr('checked'))
-                {
-                    name = $(this).attr('name');
-                    seriesNr = name.substr(name.length-1,name.length);
-
-                    // add data to this array
-                    data.push(result['data'][seriesNr]);
-                    colors.push(colorPool[seriesNr]);
-                }
-            });
-
-            // plot the graph
-            $('#chartdiv').empty();
-            plotGraph('chartdiv', data, 'ABACON', colors);
-        });
+        buildGraph();
     });
 });

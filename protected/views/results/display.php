@@ -6,9 +6,12 @@ $this->breadcrumbs=array(
     'Evaluation' => array('evaluation/evaluate'),
     'Results'
 );
+
+$i = 0;
 foreach($Project->alternatives as $A)
 {
-    $var[] = array('label'=> CHtml::encode($A->title));
+    $var[] = array('label'=> CHtml::encode($A->title), 'color'=>$colorPool[$i]);
+    $i++;
 }
 $this->menu = $var;
 ?>
