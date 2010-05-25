@@ -14,10 +14,15 @@ class ResultsController extends Controller
      * @var array
      */
     private static $colorPool = array(
-        "#ff5800",
-        "#ffaa00",
-        "#ff58ff",
-        "#005800",
+        "#5c0369",
+        "#6ac616",
+        "#e3fc0e",
+        "#eb8e94",
+        "#d4a460",
+        "#2da7b9",
+        "#b000b7",
+        "#18b3f7",
+        "#bd3439",
     );
 
     /**
