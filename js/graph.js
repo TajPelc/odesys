@@ -7,19 +7,19 @@
  * @param legend array
  * @return void
  */
-function plotGraph(anchor, data, title, legend)
+function plotGraph(anchor, data, title, colors)
 {
+    seriesArray = new Array();
+    for(i=0; i<colors.length; i++)
+    {
+        Series = new Object();
+        Series.label = legend[i];
+        Series.color = colors[i];
+        seriesArray.push(Series);
+    }
+
     $.jqplot(anchor, data, {
         sortData: false,
-
-        seriesColors: [ "#ff5800", "#ffaa00", "#ff58ff","#005800" ],
-
-        legend: {
-            show: true,
-            location: 'se',
-            xoffset: -510,
-            yoffset: 20,
-        },
 
         title: {
             text: title,
@@ -35,12 +35,7 @@ function plotGraph(anchor, data, title, legend)
             shadow: false,
         },
 
-        series:[
-            {title: legend[0]},
-            {title: legend[1]},
-            {title: legend[2]},
-            {title: legend[3]},
-        ],
+        series: seriesArray,
 
         axes:{
             xaxis:{
@@ -76,8 +71,13 @@ $(document).ready(function(){
      */
     $('input:checkbox').click(function()
     {
-        // grab data
-        data = new Array();
+        // define the color pool
+        colorPool = [ "#ff5800", "#ffaa00", "#ff58ff","#005800" ];
+
+        // plotting variables
+        data    = new Array();
+        legend  = new Array();
+        colors  = new Array();
 
         // ajax request for plotting data
         $.get(document.location, function(result){
@@ -91,11 +91,13 @@ $(document).ready(function(){
 
                     // add data to this array
                     data.push(result['data'][seriesNr]);
+                    colors.push(colorPool[seriesNr]);
                 }
             });
 
             // plot the graph
-            plotGraph('chartdiv', data, 'ABACON', result['legend']);
+            $('#chartdiv').empty();
+            plotGraph('chartdiv', data, 'ABACON', colors);
         });
     });
 });

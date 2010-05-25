@@ -59,7 +59,6 @@ class ResultsController extends Controller
                     $val[] = array((int)$Criteria['Evaluation']->grade * 10, CHtml::encode($Criteria['Obj']->title));
                 }
 
-                $rv['legend'][] = CHtml::encode($Alternative['Obj']->title);
                 $rv['data'][] = $val;
             }
 
