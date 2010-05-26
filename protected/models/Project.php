@@ -83,6 +83,32 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Delete all project related stuff
+     */
+    public function beforeDelete()
+    {
+        parent::beforeDelete();
+
+        // delete evaluations
+        foreach($this->evaluation as $e)
+        {
+            $e->delete();
+        }
+
+        // delete alternatives
+        foreach($this->alternatives as $a)
+        {
+            $a->delete();
+        }
+
+        // delete criteria
+        foreach($this->criteria as $c)
+        {
+            $c->delete();
+        }
+    }
+
+    /**
      * Make this project active
      */
     public function setAsActiveProject()

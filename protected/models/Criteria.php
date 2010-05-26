@@ -53,6 +53,20 @@ class Criteria extends CActiveRecord
     }
 
     /**
+     * Delete criteria related stuff
+     */
+    public function beforeDelete()
+    {
+        parent::beforeDelete();
+
+        // delete criteria
+        foreach($this->evaluations as $e)
+        {
+            $e->delete();
+        }
+    }
+
+    /**
      * @return array customized attribute labels (name=>label)
      */
     public function attributeLabels()
