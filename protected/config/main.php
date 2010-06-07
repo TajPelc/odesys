@@ -40,7 +40,7 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=hackslash',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => 'root',
+            'password' => 'kekbur',
             'charset' => 'utf8',
         ),
         'errorHandler'=>array(
