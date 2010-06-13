@@ -63,6 +63,37 @@ class CriteriaController extends Controller
         // load model
         $Criteria = $this->loadModel('criteria');
 
+        // ajax request for graph data?
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            $i = 0;
+            if(is_array(explode(',', $_GET['criteriaOrder'])) && count(explode(',', $_GET['criteriaOrder'])) > 1)
+            {
+                foreach(explode(',', $_GET['criteriaOrder']) as $id)
+                {
+                    $id = explode('_', $id);
+                    $id = isset($id[1]) ? $id[1] : '';
+                    $C = Criteria::model()->findByPk($id);
+                    if(!empty($C))
+                    {
+                        $C->position = $i;
+                        $C->save();
+                    }
+                    $i++;
+                }
+            }
+            else
+            {
+                header('Content-type: application/json');
+                echo json_encode(array('status' => false));
+                exit();
+            }
+
+            header('Content-type: application/json');
+            echo json_encode(array('status' => true));
+            exit();
+        }
+
         // posted?
         if(isset($_POST['Criteria']))
         {
@@ -83,18 +114,21 @@ class CriteriaController extends Controller
             }
         }
 
-        // create a data provider for the defined criterias partial
-        $dataProvider = new CActiveDataProvider('Criteria');
-        $dataCriteria = new CDbCriteria();
-        $dataCriteria->condition = 'rel_project_id=:id';
-        $dataCriteria->params = array(':id' => $Project->project_id);
-        $dataProvider->setCriteria($dataCriteria);
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.2.custom.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria.js');
+
+        // position
+        $criteriaCondition = new CDbCriteria();
+        $criteriaCondition->condition = 'rel_project_id=:rel_project_id';
+        $criteriaCondition->params = array(':rel_project_id' => $Project->project_id);
+        $criteriaCondition->order = 'position ASC';
 
         // render the view
         $this->render('create', array(
-            'dataProvider'=>$dataProvider,
-            'model' => $Criteria,
-            'Project' => $Project,
+            'model'     => $Criteria,
+            'Criteria'  => Criteria::model()->findAll($criteriaCondition),
+            'Project'   => $Project,
         ));
     }
 

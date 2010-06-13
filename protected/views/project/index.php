@@ -9,8 +9,8 @@ $this->menu=array(
 ?>
 
 <h1>Projects</h1>
-
-<?php $this->widget('zii.widgets.CListView', array(
-    'dataProvider'=>$dataProvider,
-    'itemView'=>'_view',
-)); ?>
+<ul class="projects">
+    <?php foreach($Projects as $P) {?>
+        <li><?php echo CHtml::link(CHtml::encode($P->title), array('view', 'project_id' => $P->project_id)); ?></li>
+    <?php }?>
+</ul>

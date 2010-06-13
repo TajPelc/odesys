@@ -232,3 +232,42 @@ div.search-form
 {
     background: #80CFFF;
 }
+
+#sortable
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#sortable li
+{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 0 3px 3px 3px;
+    padding: 0.6em;
+    position: relative;
+}
+#sortable li span
+{
+    position: absolute;
+    right: 5px;
+}
+#sortable li span.nr
+{
+    position: relative;
+    margin: 0 5px 0 5px;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+#sortable .ui-sortable-placeholder
+{
+    background-color: #ccc;
+}
+
+#sortable .ui-sortable-helper
+{
+    visibility: visible;
+    background-color: #80CFFF;
+}

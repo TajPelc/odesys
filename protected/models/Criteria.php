@@ -53,6 +53,25 @@ class Criteria extends CActiveRecord
     }
 
     /**
+     * Handle all the logic before saving
+     */
+    public function beforeSave()
+    {
+        if( parent::beforeSave() )
+        {
+            if( $this->isNewRecord )
+            {
+                $this->position = count(Criteria::model()->findAllByAttributes(array('rel_project_id' => $this->rel_project_id)));
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
      * Delete criteria related stuff
      */
     public function beforeDelete()
@@ -64,6 +83,8 @@ class Criteria extends CActiveRecord
         {
             $e->delete();
         }
+
+        return true;
     }
 
     /**
@@ -74,6 +95,7 @@ class Criteria extends CActiveRecord
         return array(
             'criteria_id' => 'Criteria',
             'rel_project_id' => 'Rel Project',
+            'position' => 'Position',
             'title' => 'Title',
             'best' => 'Best',
             'worst' => 'Worst',

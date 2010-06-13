@@ -32,17 +32,26 @@ class Controller extends CController
      *
      * @return CActiveRecord
      */
-    protected function loadActiveProject()
+    protected function loadActiveProject($redirect = true)
     {
         // project id given
         if($_GET['project_id'])
         {
             $Project = Project::model()->findByPk($_GET['project_id']);
-            // user is owner?
-            if($Project->rel_user_id == Yii::app()->user->id)
+
+            // project loaded
+            if(!is_null($Project))
             {
-                $Project->setAsActiveProject();
-                return $Project;
+                // user is owner?
+                if($Project->rel_user_id == Yii::app()->user->id)
+                {
+                    $Project->setAsActiveProject();
+                    return $Project;
+                }
+            }
+            else
+            {
+                throw new CException('Project does not exist', 404);
             }
         }
 
@@ -54,7 +63,14 @@ class Controller extends CController
         }
         else
         {
-            $this->redirect(array('project/index')); // redirect
+            if($redirect)
+            {
+                $this->redirect(array('project/index')); // redirect
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 

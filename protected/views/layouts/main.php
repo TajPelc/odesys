@@ -20,24 +20,21 @@
 <body>
 
 <div class="container" id="page">
-
     <div id="header">
         <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-    </div><!-- header -->
-
+    </div>
     <div id="mainmenu">
         <?php $this->widget('zii.widgets.CMenu',array(
             'items'=>array(
-                array('label'=>'Home',      'url'=>array('/site/index')),
-                array('label'=>'Projects',   'url'=>array('/project/index'), 'visible' => !Yii::app()->user->isGuest),
-                array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
-                array('label'=>'Login',     'url'=>array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+                array('label' => 'Home',                                'url'=>array('/site/index')),
+                array('label' => 'My Projects',                         'url'=>array('/project/index'), 'visible' => !Yii::app()->user->isGuest),
+                array('label' => 'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+                array('label' => 'Login',                               'url'=>array('/site/login'), 'visible' => Yii::app()->user->isGuest),
             ),
         )); ?>
-    </div><!-- mainmenu -->
-
+    </div>
     <?php $this->widget('zii.widgets.CBreadcrumbs', array(
-        'links'=>$this->breadcrumbs,
+        'links' => $this->breadcrumbs,
     )); ?><!-- breadcrumbs -->
 
     <?php echo $content; ?>
@@ -46,9 +43,8 @@
         Copyright &copy; <?php echo date('Y'); ?> by Taj Pelc.<br/>
         All Rights Reserved.<br/>
         <?php echo Yii::powered(); ?>
-    </div><!-- footer -->
-
-</div><!-- page -->
+    </div>
+</div>
 
 </body>
 </html>

@@ -106,6 +106,8 @@ class Project extends CActiveRecord
         {
             $c->delete();
         }
+
+        return true;
     }
 
     /**

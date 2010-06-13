@@ -62,6 +62,8 @@ class Alternative extends CActiveRecord
         {
             $e->delete();
         }
+
+        return true;
     }
 
     /**

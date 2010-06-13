@@ -45,7 +45,7 @@ class ProjectController extends Controller
      */
     public function actionView()
     {
-        $Project = $this->loadModel();
+        $Project = $this->loadActiveProject();
         $this->render('view',array(
             'model' => $Project,
             'evaluation' => $Project->getEvaluationArray(),
@@ -57,21 +57,14 @@ class ProjectController extends Controller
      */
     public function actionCreate()
     {
-        // try to load model
-        try
+        // load active project
+        if( isset($_GET['project_id']) )
         {
-            $Project = $this->loadModel();
+            $Project = $this->loadActiveProject();
         }
-        catch(CHttpException $e)
+        else
         {
-            if(isset($_GET['id'])) // loading requeted and failed
-            {
-                throw $e;
-            }
-            else // create new project
-            {
-                $Project = new Project;
-            }
+            $Project = new Project();
         }
 
         // save project
@@ -101,7 +94,7 @@ class ProjectController extends Controller
         if(Yii::app()->request->isPostRequest)
         {
             // we only allow deletion via POST request
-            $this->loadModel()->delete();
+            $this->loadActiveProject()->delete();
             $this->redirect(array('index'));
         }
         else
@@ -115,36 +108,9 @@ class ProjectController extends Controller
      */
     public function actionIndex()
     {
-        // create a data provider
-        $dataProvider = new CActiveDataProvider('Project');
-        $dataCriteria = new CDbCriteria();
-        $dataCriteria->condition = 'rel_user_id=:id';
-        $dataCriteria->params = array(':id' => Yii::app()->user->id);
-        $dataProvider->setCriteria($dataCriteria);
-
         // render index
         $this->render('index', array(
-            'dataProvider' => $dataProvider,
+            'Projects' => Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id)),
         ));
-    }
-
-    /**
-     * Returns the data model based on the primary key given in the GET variable.
-     * If the data model is not found, an HTTP exception will be raised.
-     */
-    public function loadModel()
-    {
-        if($this->_model === null)
-        {
-            if(isset($_GET['id']))
-            {
-                $this->_model = Project::model()->findbyPk($_GET['id']);
-            }
-            if($this->_model === null)
-            {
-                throw new CHttpException(404,'The requested page does not exist.');
-            }
-        }
-        return $this->_model;
     }
 }
