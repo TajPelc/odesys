@@ -120,9 +120,23 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Return all project's criteria ordered by priority
+     */
+    public function findCriteriaByPriority()
+    {
+        // set condition
+        $criteriaCondition = new CDbCriteria();
+        $criteriaCondition->condition = 'rel_project_id=:rel_project_id';
+        $criteriaCondition->params = array(':rel_project_id' => $this->project_id);
+        $criteriaCondition->order = 'position ASC';
+
+        return Criteria::model()->findAll($criteriaCondition);
+    }
+
+    /**
      * Build an array of grades by alternatives and criteria
      */
-    public function getEvaluationArray()
+    public function getEvaluationArray($reverse = false)
     {
         // build the array of evaluations
         $eval = array();
@@ -133,7 +147,15 @@ class Project extends CActiveRecord
                 'Criteria'      => array(),
             );
 
-            foreach($this->criteria as $Criteria)
+            $criteriaArray = $this->findCriteriaByPriority();
+
+            // reverse array for abacon display
+            if($reverse)
+            {
+                $criteriaArray = array_reverse($criteriaArray);
+            }
+
+            foreach($criteriaArray as $Criteria)
             {
                 $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['Obj'] = $Criteria;
 

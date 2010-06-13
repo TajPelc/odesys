@@ -61,9 +61,9 @@ class ResultsController extends Controller
         $Project = $this->loadActiveProject();
 
         // ajax request for graph data?
-        if(Yii::app()->request->isAjaxRequest)
+        if(Ajax::isAjax())
         {
-            $eval = $Project->getEvaluationArray();
+            $eval = $Project->getEvaluationArray(true);
             $rv = array();
 
             foreach($eval as $Alternative)
@@ -80,9 +80,8 @@ class ResultsController extends Controller
             }
 
             $rv['colorPool'] = self::$colorPool;
-            header('Content-type: application/json');
-            echo json_encode($rv);
-            exit();
+
+            Ajax::respondOk($rv);
         }
 
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');

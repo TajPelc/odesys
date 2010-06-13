@@ -242,14 +242,16 @@ div.search-form
 }
 #sortable li
 {
-    background-color: #fff;
+    font-weight: bold;
+    background-color: #eee;
     border: 1px solid #ccc;
     margin: 0 3px 3px 3px;
-    padding: 0.6em;
+    padding: 0.8em;
     position: relative;
 }
 #sortable li span
 {
+    font-weight: normal;
     position: absolute;
     right: 5px;
 }
@@ -260,14 +262,17 @@ div.search-form
     font-weight: bold;
     font-size: 11pt;
 }
-
-#sortable .ui-sortable-placeholder
-{
-    background-color: #ccc;
-}
-
 #sortable .ui-sortable-helper
 {
-    visibility: visible;
-    background-color: #80CFFF;
+    background-color: #ddd;
+}
+
+p.notice {
+    font-weight: bold;
+    color: #2877B0;
+    display: block;
+    width: 98%;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    background-color: #eee;
 }

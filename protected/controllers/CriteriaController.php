@@ -63,35 +63,10 @@ class CriteriaController extends Controller
         // load model
         $Criteria = $this->loadModel('criteria');
 
-        // ajax request for graph data?
-        if(Yii::app()->request->isAjaxRequest)
+        // change the order of criteria
+        if(Ajax::isAjax())
         {
-            $i = 0;
-            if(is_array(explode(',', $_GET['criteriaOrder'])) && count(explode(',', $_GET['criteriaOrder'])) > 1)
-            {
-                foreach(explode(',', $_GET['criteriaOrder']) as $id)
-                {
-                    $id = explode('_', $id);
-                    $id = isset($id[1]) ? $id[1] : '';
-                    $C = Criteria::model()->findByPk($id);
-                    if(!empty($C))
-                    {
-                        $C->position = $i;
-                        $C->save();
-                    }
-                    $i++;
-                }
-            }
-            else
-            {
-                header('Content-type: application/json');
-                echo json_encode(array('status' => false));
-                exit();
-            }
-
-            header('Content-type: application/json');
-            echo json_encode(array('status' => true));
-            exit();
+            $this->_reorderCriteria();
         }
 
         // posted?
@@ -118,16 +93,9 @@ class CriteriaController extends Controller
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria.js');
 
-        // position
-        $criteriaCondition = new CDbCriteria();
-        $criteriaCondition->condition = 'rel_project_id=:rel_project_id';
-        $criteriaCondition->params = array(':rel_project_id' => $Project->project_id);
-        $criteriaCondition->order = 'position ASC';
-
         // render the view
         $this->render('create', array(
             'model'     => $Criteria,
-            'Criteria'  => Criteria::model()->findAll($criteriaCondition),
             'Project'   => $Project,
         ));
     }
@@ -139,5 +107,40 @@ class CriteriaController extends Controller
     {
         $this->loadModel('criteria')->delete();
         $this->redirect(array('create'));
+    }
+
+    /**
+     * Reorder criteria
+     */
+    private function _reorderCriteria()
+    {
+        // params given?
+        if( isset($_GET['criteriaOrder']) )
+        {
+            $cArr = explode(',', $_GET['criteriaOrder']);
+            if(!Common::isArray($cArr))
+            {
+                Ajax::respondError();
+            }
+
+            // save new order of elements
+            $i = 0;
+            foreach($cArr as $id)
+            {
+                // load model and save new position
+                $id = explode('_', $id);
+                $id = isset($id[1]) ? $id[1] : '';
+                $C = Criteria::model()->findByPk($id);
+                if(!empty($C))
+                {
+                    $C->position = $i;
+                    $C->save();
+                }
+                $i++;
+            }
+
+            Ajax::respondOk();
+        }
+        Ajax::respondError();
     }
 }

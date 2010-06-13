@@ -4,6 +4,11 @@
     'id'=>'evaluation-form',
     'enableAjaxValidation'=>false,
 )); ?>
+<script type="text/javascript">
+$(function() {
+    $("#slider").slider();
+});
+</script>
 
 <?php foreach($eval as $alternativeId => $Alternative){ ?>
     <fieldset>
@@ -11,6 +16,7 @@
 
         <?php foreach($Alternative['Criteria'] as $criteriaId => $Criteria){ ?>
             <div class="row">
+                <div id="slider"></div>
                 <label for="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>"><?php echo CHtml::encode($Criteria['Obj']->title); ?></label>
                 <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
                     <?php for($i = 1; $i <= 10; $i++){?>

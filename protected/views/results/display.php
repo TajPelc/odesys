@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-    $Project->title => array('project/create', 'id' => $Project->project_id),
+    'Edit project details' => array('project/create', 'id' => $Project->project_id),
     'Define criteria' => array('criteria/create'),
     'Define alternatives' => array('alternative/create'),
     'Evaluation' => array('evaluation/evaluate'),
