@@ -57,6 +57,9 @@ class ProjectController extends Controller
      */
     public function actionCreate()
     {
+        // switch to 1 column layout
+        $this->layout = 'column1';
+
         // load active project
         if( isset($_GET['project_id']) )
         {

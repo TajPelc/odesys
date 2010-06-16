@@ -1,39 +1,27 @@
-<div class="form">
+<form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
+    <?php foreach($eval as $alternativeId => $Alternative){ ?>
+        <div class="alternative">
+            <h2><?php echo CHtml::encode($Alternative['Obj']->title); ?></h2>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-    'id'=>'evaluation-form',
-    'enableAjaxValidation'=>false,
-)); ?>
-<script type="text/javascript">
-$(function() {
-    $("#slider").slider();
-});
-</script>
-
-<?php foreach($eval as $alternativeId => $Alternative){ ?>
-    <fieldset>
-        <legend><?php echo CHtml::encode($Alternative['Obj']->title); ?></legend>
-
-        <?php foreach($Alternative['Criteria'] as $criteriaId => $Criteria){ ?>
-            <div class="row">
-                <div id="slider"></div>
-                <label for="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>"><?php echo CHtml::encode($Criteria['Obj']->title); ?></label>
-                <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
-                    <?php for($i = 1; $i <= 10; $i++){?>
-                        <option value="<?php echo $i;?>"<?php if($i == $Criteria['Evaluation']->grade){?> selected="selected"<?php }?>><?php echo $i;?></option>
-                    <?php }?>
-                </select>
-                <?php echo CHtml::encode($Criteria['Obj']->worst); ?> (1) -
-                <?php echo CHtml::encode($Criteria['Obj']->best); ?> (10)
-            </div>
-            <?php }?>
-    </fieldset>
-<?php }?>
-
-    <div class="row buttons">
-        <?php echo CHtml::submitButton('Save and show results'); ?>
-    </div>
-
-<?php $this->endWidget(); ?>
-
-</div><!-- form -->
+            <ul>
+                <?php foreach($Alternative['Criteria'] as $criteriaId => $Criteria){ ?>
+                    <li>
+                        <label for="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>"><?php echo CHtml::encode($Criteria['Obj']->title); ?></label>
+                        <div class="slider">
+                            <p>
+                                <span><?php echo CHtml::encode($Criteria['Obj']->worst); ?></span>
+                                <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
+                                    <?php for($i = 1; $i <= 10; $i++){?>
+                                        <option value="<?php echo $i;?>"<?php if($i == $Criteria['Evaluation']->grade){?> selected="selected"<?php }?>><?php echo $i;?></option>
+                                    <?php }?>
+                                </select>
+                                <span class="right"><?php echo CHtml::encode($Criteria['Obj']->best); ?></span>
+                            </p>
+                        </div>
+                    </li>
+                <?php }?>
+            </ul>
+        </div>
+    <?php }?>
+    <?php echo CHtml::submitButton('Save and show results'); ?>
+</form>

@@ -9,22 +9,23 @@ body
 h1
 {
     font-size: 18pt;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #596171;
     padding-bottom: 5px;
+    color: #596171;
 }
 #page
 {
     margin-top: 5px;
     margin-bottom: 5px;
     background: white;
-    border: 1px solid #C9E0ED;
 }
 
 #header
 {
     margin: 0;
     padding: 0;
-    border-top: 3px solid #C9E0ED;
+    background-color: #596171;
+    color: #eee;
 }
 
 #content
@@ -43,7 +44,7 @@ h1
     margin: 10px 20px;
     font-size: 0.8em;
     text-align: center;
-    border-top: 1px solid #C9E0ED;
+    border-top: 1px solid #596171;
 }
 
 #logo
@@ -54,7 +55,7 @@ h1
 
 #mainmenu
 {
-    background:white url(bg.gif) repeat-x left top;
+    background-color: #B3BCCC;
 }
 
 #mainmenu ul
@@ -77,11 +78,10 @@ h1
     text-decoration:none;
     padding:5px 8px;
 }
-
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
-    color: #6399cd;
-    background-color:#EFF4FA;
+    color: #596171;
+    background-color:#fff;
     text-decoration:none;
 }
 
@@ -233,6 +233,7 @@ div.search-form
     background: #80CFFF;
 }
 
+/* SORTABLE */
 #sortable
 {
     list-style-type: none;
@@ -243,11 +244,12 @@ div.search-form
 #sortable li
 {
     font-weight: bold;
-    background-color: #eee;
-    border: 1px solid #ccc;
+    border: 1px solid #596171;
     margin: 0 3px 3px 3px;
     padding: 0.8em;
     position: relative;
+    background-color: #DBE3F0;
+    -moz-border-radius:5px;
 }
 #sortable li span
 {
@@ -267,12 +269,74 @@ div.search-form
     background-color: #ddd;
 }
 
+/* NOTICE */
 p.notice {
     font-weight: bold;
-    color: #2877B0;
     display: block;
     width: 98%;
-    border: 1px solid #ccc;
+    border: 1px solid #596171;
     padding: 0.5em;
-    background-color: #eee;
+    background-color: #DBE3F0;
+    -moz-border-radius:5px;
+}
+
+/* EVALUATION PAGE */
+#evaluation div.alternative
+{
+    border: 1px solid #596171;
+    width: 360px;
+    float: left;
+    margin: 20px;
+    padding: 20px 20px 0 20px;
+    background-color: #B3BCCC;
+    -moz-border-radius:7px;
+}
+#evaluation h2
+{
+    color: #596171;
+    width: 100%;
+    text-align: center;
+    font-size: 1.6em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #596171;
+}
+#evaluation ul
+{
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+}
+#evaluation ul li
+{
+    margin-bottom: 20px;
+}
+#evaluation ul li div.slider
+{
+    margin: 5px;
+    padding: 5px 15px 10px 15px;
+    background-color: #DBE3F0;
+    -moz-border-radius:5px;
+}
+#evaluation ul li label
+{
+    padding-left: 5px;
+    color: #f8f8f8;
+    font-size: 1.2em;
+    display: block;
+    font-weight: bold;
+}
+#evaluation ul li p
+{
+    position: relative;
+    margin-bottom: 5px;
+}
+#evaluation ul li span.right
+{
+    position: absolute;
+    right: 0px;
+}
+#evaluation input
+{
+    float: left;
+    clear: left;
 }

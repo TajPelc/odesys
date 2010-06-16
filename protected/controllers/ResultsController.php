@@ -78,7 +78,6 @@ class ResultsController extends Controller
 
                 $rv['data'][] = $val;
             }
-
             $rv['colorPool'] = self::$colorPool;
 
             Ajax::respondOk($rv);
