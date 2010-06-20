@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
     <?php if(Common::isArray($Alternatives)) {?>
         <ul id="sortable">
             <?php foreach($Alternatives as $A) {?>
-                <li id="alternative_<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?> <span><a href="<?php echo $this->createUrl('create', array('alternative_id' => $A->alternative_id)); ?>">edit</a> | <a href="<?php echo $this->createUrl('delete', array('alternative_id' => $A->alternative_id)); ?>">delete</a></span></li>
+                <li id="alternative_<?php echo $A->alternative_id; ?>"><span><?php echo CHtml::encode($A->title); ?></span><a href="<?php echo $this->createUrl('delete', array('alternative_id' => $A->alternative_id)); ?>">delete</a><a href="<?php echo $this->createUrl('create', array('alternative_id' => $A->alternative_id)); ?>">edit</a></li>
             <?php }?>
         </ul>
     <?php } else { ?>

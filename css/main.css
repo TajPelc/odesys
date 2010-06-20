@@ -201,38 +201,10 @@ div.search-form
     padding: 2px 0 4px 0px;
 }
 
-.operations
+.movable
 {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    cursor: move;
 }
-
-.operations li
-{
-    padding-bottom: 2px;
-}
-
-.operations li a
-{
-    font: bold 12px Arial;
-    color: #0066A4;
-    display: block;
-    padding: 2px 0 2px 8px;
-    line-height: 15px;
-    text-decoration: none;
-}
-
-.operations li a:visited
-{
-    color: #0066A4;
-}
-
-.operations li a:hover
-{
-    background: #80CFFF;
-}
-
 /* SORTABLE */
 #sortable
 {
@@ -241,43 +213,51 @@ div.search-form
     padding: 0;
     width: 100%;
 }
-#sortable li
+#sortable li, p.notice
 {
-    font-weight: bold;
     border: 1px solid #596171;
     margin: 0 3px 3px 3px;
-    padding: 0.8em;
+    height: 34px;
     position: relative;
     background-color: #DBE3F0;
     -moz-border-radius:5px;
 }
+#sortable li span, p.notice
+{
+    padding-left: 10px;
+    line-height: 34px;
+    font-weight: bold;
+}
 #sortable li span
 {
-    font-weight: normal;
-    position: absolute;
-    right: 5px;
+    float: left;
 }
-#sortable li span.nr
+#sortable li a
 {
-    position: relative;
-    margin: 0 5px 0 5px;
-    font-weight: bold;
-    font-size: 11pt;
+    float: right;
+    display: block;
+    color: white;
+    text-decoration: none;
+    background-color: #596171;
+    height: 100%;
+    width: 50px;
+    text-align: center;
+    line-height: 34px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+}
+#sortable li a:last-child
+{
+    -moz-border-radius: 0px;
+}
+#sortable li a:hover
+{
+    background-color: #fff;
+    color: #596171;
 }
 #sortable .ui-sortable-helper
 {
     background-color: #ddd;
-}
-
-/* NOTICE */
-p.notice {
-    font-weight: bold;
-    display: block;
-    width: 98%;
-    border: 1px solid #596171;
-    padding: 0.5em;
-    background-color: #DBE3F0;
-    -moz-border-radius:5px;
 }
 
 /* EVALUATION PAGE */

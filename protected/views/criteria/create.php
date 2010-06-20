@@ -20,7 +20,7 @@ $this->breadcrumbs = array(
     <?php if(Common::isArray($Criteria)) {?>
         <ul id="sortable">
             <?php foreach($Criteria as $C) {?>
-                <li id="criteria_<?php echo $C->criteria_id; ?>"><?php echo CHtml::encode($C->title); ?> <span><a href="<?php echo $this->createUrl('create', array('criteria_id' => $C->criteria_id)); ?>">edit</a> | <a href="<?php echo $this->createUrl('delete', array('criteria_id' => $C->criteria_id)); ?>">delete</a></span></li>
+                <li id="criteria_<?php echo $C->criteria_id; ?>" class="movable"><span><?php echo CHtml::encode($C->title); ?></span><a href="<?php echo $this->createUrl('delete', array('criteria_id' => $C->criteria_id)); ?>">delete</a><a href="<?php echo $this->createUrl('create', array('criteria_id' => $C->criteria_id)); ?>">edit</a></li>
             <?php }?>
         </ul>
     <?php } else { ?>
