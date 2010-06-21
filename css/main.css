@@ -274,6 +274,7 @@ div.search-form
     background-color: #596171;
     float: left;
     width: 188px;
+    min-height: 160px;
     border: 1px solid #596171;
     -moz-border-radius: 10px;
 }
