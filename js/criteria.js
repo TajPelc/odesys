@@ -4,7 +4,7 @@
 $(document).ready(function(){
     $(function() {
         $("#sortable").sortable({
-            opacity: 0.9,
+            opacity: 0.90,
         });
         $("#sortable").disableSelection();
     });

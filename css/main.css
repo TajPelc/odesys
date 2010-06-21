@@ -18,18 +18,25 @@ h1
     margin-top: 5px;
     margin-bottom: 5px;
     background: white;
+    -moz-border-radius-topleft: 15px;
+    -moz-border-radius-topright: 15px;
 }
 
 #header
 {
     margin: 0;
     padding: 0;
+    font-size: 18px;
     background-color: #596171;
-    color: #eee;
+    color: #efefef;
+    -moz-border-radius-topleft: 15px;
+    -moz-border-radius-topright: 15px;
 }
 
 #content
 {
+    float: left;
+    width: 700px;
     padding: 20px;
 }
 
@@ -50,7 +57,6 @@ h1
 #logo
 {
     padding: 10px 20px;
-    font-size: 200%;
 }
 
 #mainmenu
@@ -160,7 +166,6 @@ div.search-form
 
 .portlet
 {
-
 }
 
 .portlet-decoration
@@ -224,9 +229,9 @@ div.search-form
 }
 #sortable li span, p.notice
 {
+    font-size: 17px;
     padding-left: 10px;
     line-height: 34px;
-    font-weight: bold;
 }
 #sortable li span
 {
@@ -240,15 +245,17 @@ div.search-form
     text-decoration: none;
     background-color: #596171;
     height: 100%;
-    width: 50px;
+    width: 60px;
     text-align: center;
     line-height: 34px;
     -moz-border-radius-topright: 3px;
     -moz-border-radius-bottomright: 3px;
+    border-left: 1px solid #ffd700;
 }
 #sortable li a:last-child
 {
     -moz-border-radius: 0px;
+    border: 0;
 }
 #sortable li a:hover
 {
@@ -257,27 +264,104 @@ div.search-form
 }
 #sortable .ui-sortable-helper
 {
-    background-color: #ddd;
+    color: #DBE3F0;
+    background-color: #666;
 }
-
+/* PROJECT */
+#project
+{
+    margin: 20px 0 0 20px;
+    background-color: #596171;
+    float: left;
+    width: 188px;
+    border: 1px solid #596171;
+    -moz-border-radius: 10px;
+}
+#project span a
+{
+    font-weight: bold;
+    font-size: 12px;
+    display: block;
+    color: #fff;
+    padding: 5px;
+    text-decoration: none;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+}
+#project ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+#project ul li
+{
+    width: 188px;
+    border-bottom: 1px solid #ffd700;
+}
+#project ul li:first-child
+{
+    border-top: 1px solid #ffd700;
+}
+#project ul li:last-child
+{
+    border: none;
+}
+#project ul li:last-child a
+{
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+}
+#project ul li:last-child a:hover
+{
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+}
+#project ul li a, #project ul li span
+{
+    margin: 0;
+    border: 0;
+    text-align: left;
+    display: block;
+    background-color: #596171;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 10px;
+    width: 173px;
+}
+#project ul li span
+{
+    color: #596171;
+    background-color: #ffd700;
+}
+#project ul li a:hover, #project span a:hover
+{
+    background-color: #fff;
+    color: #596171;
+}
 /* EVALUATION PAGE */
 #evaluation div.alternative
 {
     border: 1px solid #596171;
-    width: 360px;
+    width: 323px;
     float: left;
-    margin: 20px;
-    padding: 20px 20px 0 20px;
+    margin: 0 10px 10px 0;
+    padding: 5px 10px 0 10px;
     background-color: #B3BCCC;
     -moz-border-radius:7px;
+}
+#evaluation div.alternative:nth-child(even)
+{
+    margin-right: 0;
 }
 #evaluation h2
 {
     color: #596171;
     width: 100%;
     text-align: center;
-    font-size: 1.6em;
-    padding-bottom: 10px;
+    font-size: 18px;
+    padding-bottom: 5px;
     border-bottom: 1px solid #596171;
 }
 #evaluation ul
@@ -288,7 +372,7 @@ div.search-form
 }
 #evaluation ul li
 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 #evaluation ul li div.slider
 {

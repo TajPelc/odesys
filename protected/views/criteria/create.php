@@ -9,13 +9,12 @@ $this->breadcrumbs = array(
 ?>
 
 <h1>Define criteria</h1>
-<p>Click add to add a criteria, click next to finish adding and continue with the process.</p>
-
+<p>Add between 2 and 10 criteria for rating the alternatives. Provide best and worst case scenario values. Set the best and worst values low or high enough that no alternative that you are considering falls under or over this marign. (Example: Price range / High - 600€ / Low 350€)</p>
 <?php echo $this->renderPartial('_form', array('model' => $model)); ?>
 
 <?php $Criteria = $Project->findCriteriaByPriority(); ?>
 <h2>Criteria</h2>
-<p>You may drag each criteria up or down to rearrange the list by priority.</p>
+<p>You may drag each criteria up or down to rearrange the list by priority. The most important criteria to you is at the top. Criteria of lowest importance at the bottom.</p>
 <div id="criteria">
     <?php if(Common::isArray($Criteria)) {?>
         <ul id="sortable">
