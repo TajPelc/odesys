@@ -13,5 +13,5 @@
     <li>Add/remove criteria or alternatives, reevaluate alternatives or change the importance of different criteria</li>
     <li>Make a better decision armed with additional information provided by ODESYS</li>
 </ul>
-<p>ODESYS is highly flexible and is suitable for a wide variety of decision making problems.</p>
+<p>ODESYS is highly flexible and is suitable for a wide variety of decision problems.</p>
 <p><a href="<?php echo $this->createUrl('project/create'); ?>">Start here</a></p>

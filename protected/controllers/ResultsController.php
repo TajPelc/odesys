@@ -23,6 +23,7 @@ class ResultsController extends Controller
         "#b000b7",
         "#18b3f7",
         "#bd3439",
+        "#00953f"
     );
 
     /**
