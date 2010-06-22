@@ -1,5 +1,4 @@
 <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
-<?php $eval = array_merge($eval, $eval, $eval);?>
     <?php foreach($eval as $alternativeId => $Alternative){ ?>
         <div class="alternative">
             <h2><?php echo CHtml::encode($Alternative['Obj']->title); ?></h2>

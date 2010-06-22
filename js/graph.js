@@ -20,11 +20,10 @@ function plotGraph(anchor, data, title, colors)
 
     $.jqplot(anchor, data, {
         sortData: false,
-
         title: {
             text: title,
             show: true,
-            fontSize: '15pt',
+            fontSize: '16px',
             textColor: 'black',
         },
 
@@ -39,10 +38,10 @@ function plotGraph(anchor, data, title, colors)
 
         axes:{
             xaxis:{
-                ticks: [-5, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 105],
+                ticks: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
                 tickOptions:{
                     formatString:'%d',
-                    fontSize:'10pt',
+                    fontSize:'12px',
                 },
             },
             yaxis:{
@@ -84,7 +83,6 @@ function buildGraph()
             $(this).removeAttr('disabled');
         }
     });
-
     // ajax request for plotting data
     $.get(document.location, function(result){
         // build data for graph plotting
@@ -100,7 +98,7 @@ function buildGraph()
 
         // plot the graph
         $('#chartdiv').empty();
-        plotGraph('chartdiv', data, 'ABACON', colors);
+        plotGraph('chartdiv', data, '', colors);
     });
 }
 /**

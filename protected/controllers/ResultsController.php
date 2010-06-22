@@ -6,7 +6,7 @@ class ResultsController extends Controller
      * @var string the default layout for the views. Defaults to 'column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout='checkboxes';
+    public $layout='column1';
 
     /**
      * Color pool for plotting graphs
@@ -16,8 +16,8 @@ class ResultsController extends Controller
     private static $colorPool = array(
         "#5c0369",
         "#6ac616",
-        "#e3fc0e",
         "#eb8e94",
+        "#c6dc0c",
         "#d4a460",
         "#2da7b9",
         "#b000b7",

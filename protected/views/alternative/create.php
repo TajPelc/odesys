@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
     'Results' => array('results/display'),
 );
 ?>
-<h1>Define alternatives</h1>
+<h1>Alternatives</h1>
 <p>Add alternatives for evaluation. Minimum of 2 required. In the next step you will evaluate each alternative added here by the criteria you defined earlier.</p>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

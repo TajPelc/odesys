@@ -3,12 +3,6 @@
 class ProjectController extends Controller
 {
     /**
-     * @var string the default layout for the views. Defaults to 'column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout='column2';
-
-    /**
      * @var CActiveRecord the currently loaded data model instance.
      */
     private $_model;
@@ -57,18 +51,7 @@ class ProjectController extends Controller
      */
     public function actionCreate()
     {
-        // switch to 1 column layout
-        $this->layout = 'column1';
-
-        // load active project
-        if( isset($_GET['project_id']) )
-        {
-            $Project = $this->loadActiveProject();
-        }
-        else
-        {
-            $Project = new Project();
-        }
+        $Project = $this->loadActiveProject();
 
         // save project
         if(isset($_POST['Project']))

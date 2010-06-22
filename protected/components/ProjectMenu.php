@@ -12,7 +12,13 @@ class ProjectMenu extends CWidget
      *
      * @var unknown_type
      */
-    public $breadcrumbs = array();
+    public $pages = array(
+        'Project details' => array('project/create'),
+        'Criteria' => array('criteria/create'),
+        'Alternatives' => array('alternative/create'),
+        'Evaluation' => array('evaluation/evaluate'),
+        'Results' => array('results/display'),
+    );
 
     /**
      * Run
@@ -26,7 +32,6 @@ class ProjectMenu extends CWidget
         {
             $Project = Project::model()->findByPk($session['project_id']);
         }
-        $this->render('projectMenu', array('Project' => $Project));
+        $this->render('projectMenu', array('Project' => $Project, 'currentRoute' => $this->getOwner()->getRoute()));
     }
-
 }

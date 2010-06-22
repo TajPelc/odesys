@@ -8,10 +8,18 @@ body
 }
 h1
 {
-    font-size: 18pt;
-    border-bottom: 1px solid #596171;
-    padding-bottom: 5px;
+    font-size: 24px;
     color: #596171;
+    margin-bottom: 10px;
+}
+h2
+{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+p
+{
+    margin: 0 0 10px 0;
 }
 #page
 {
@@ -32,7 +40,6 @@ h1
     -moz-border-radius-topleft: 15px;
     -moz-border-radius-topright: 15px;
 }
-
 #content
 {
     float: left;
@@ -289,6 +296,10 @@ div.search-form
     -moz-border-radius-topleft: 8px;
     -moz-border-radius-topright: 8px;
 }
+#project span:hover
+{
+    cursor: default;
+}
 #project ul
 {
     margin: 0;
@@ -308,7 +319,7 @@ div.search-form
 {
     border: none;
 }
-#project ul li:last-child a
+#project ul li:last-child a, #project ul li:last-child span
 {
     -moz-border-radius-bottomleft: 8px;
     -moz-border-radius-bottomright: 8px;
@@ -344,12 +355,11 @@ div.search-form
 /* EVALUATION PAGE */
 #evaluation div.alternative
 {
-    border: 1px solid #596171;
-    width: 323px;
+    width: 320px;
     float: left;
-    margin: 0 10px 10px 0;
+    margin: 0 20px 20px 0;
     padding: 5px 10px 0 10px;
-    background-color: #B3BCCC;
+    background-color: #596171;
     -moz-border-radius:7px;
 }
 #evaluation div.alternative:nth-child(even)
@@ -358,12 +368,12 @@ div.search-form
 }
 #evaluation h2
 {
-    color: #596171;
+    color: #fff;
     width: 100%;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #596171;
+    border-bottom: 1px solid #fff;
 }
 #evaluation ul
 {
@@ -385,8 +395,8 @@ div.search-form
 #evaluation ul li label
 {
     padding-left: 5px;
-    color: #f8f8f8;
-    font-size: 1.2em;
+    color: #fff;
+    font-size: 12px;
     display: block;
     font-weight: bold;
 }
@@ -404,4 +414,36 @@ div.search-form
 {
     float: left;
     clear: left;
+}
+/* RESULTS PAGE */
+#legend ul
+{
+    margin: 0 0 20px 0;
+    padding: 0;
+    list-style-type: none;
+}
+#legend ul li:nth-child(odd)
+{
+    background-color: #f5f9ff;
+}
+#legend ul li:nth-child(even)
+{
+    background-color: #f8fbff;
+}
+#legend ul li
+{
+    line-height: 25px;
+    height: 25px;
+    width: 700px;
+    margin-bottom: 2px;
+}
+#legend ul li span
+{
+    float: left;
+    display: block;
+    height: 25px;
+    width: 10px;
+}
+#chartdiv
+{
 }

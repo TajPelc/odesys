@@ -5,12 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-    array('label'=>'Edit project',              'url' => array('create',                'project_id' => $model->project_id)),
-    array('label'=>'Define criteria',           'url' => array('criteria/create',       'project_id' => $model->project_id)),
-    array('label'=>'Define alternatives',       'url' => array('alternative/create',    'project_id' => $model->project_id)),
-    array('label'=>'Evaluation',                'url' => array('evaluation/evaluate',   'project_id' => $model->project_id)),
-    array('label'=>'Results',                   'url' => array('results/display',       'project_id' => $model->project_id)),
-    array('label'=>'Delete project',            'url' => '#', 'linkOptions' => array('submit' => array('delete', 'project_id' => $model->project_id), 'confirm' => 'Are you sure you want to delete this project? (cannot be undone)')),
+    array('label'=>'Make active', 'url' => array('view', 'make_active' => $model->project_id)),
 );
 ?>
 
