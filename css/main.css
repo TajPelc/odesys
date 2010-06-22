@@ -16,6 +16,7 @@ h2
 {
     font-size: 18px;
     margin-bottom: 10px;
+    color: #596171;
 }
 p
 {
@@ -280,21 +281,21 @@ div.search-form
     margin: 20px 0 0 20px;
     background-color: #596171;
     float: left;
-    width: 188px;
-    min-height: 160px;
-    border: 1px solid #596171;
+    padding: 10px;
+    width: 170px;
     -moz-border-radius: 10px;
 }
 #project span a
 {
+    text-align: center;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 16px;
     display: block;
     color: #fff;
     padding: 5px;
     text-decoration: none;
-    -moz-border-radius-topleft: 8px;
-    -moz-border-radius-topright: 8px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
 }
 #project span:hover
 {
@@ -308,7 +309,7 @@ div.search-form
 }
 #project ul li
 {
-    width: 188px;
+    width: 168px;
     border-bottom: 1px solid #ffd700;
 }
 #project ul li:first-child
@@ -321,13 +322,13 @@ div.search-form
 }
 #project ul li:last-child a, #project ul li:last-child span
 {
-    -moz-border-radius-bottomleft: 8px;
-    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
 }
 #project ul li:last-child a:hover
 {
-    -moz-border-radius-bottomleft: 8px;
-    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 3px;
+    -moz-border-radius-bottomright: 3px;
 }
 #project ul li a, #project ul li span
 {
@@ -340,7 +341,7 @@ div.search-form
     text-decoration: none;
     padding: 5px;
     padding-left: 10px;
-    width: 173px;
+    width: 153px;
 }
 #project ul li span
 {
@@ -349,8 +350,26 @@ div.search-form
 }
 #project ul li a:hover, #project span a:hover
 {
-    background-color: #fff;
+    background-color: #DBE3F0;
     color: #596171;
+}
+#project div
+{
+    color: #fff;
+    min-height: 165px;
+    text-align: center;
+    border: 1px solid #DBE3F0;
+    -moz-border-radius:5px;
+}
+#project div h1
+{
+    color: #fff;
+}
+#project div.padded
+{
+    border: 1px dashed #DBE3F0;
+    padding: 10px;
+    height:145px;
 }
 /* EVALUATION PAGE */
 #evaluation div.alternative
@@ -422,13 +441,17 @@ div.search-form
     padding: 0;
     list-style-type: none;
 }
-#legend ul li:nth-child(odd)
+#legend ul li
 {
     background-color: #f5f9ff;
 }
 #legend ul li:nth-child(even)
 {
     background-color: #f8fbff;
+}
+#legend ul li.favoured
+{
+    background-color: #e1ffed;
 }
 #legend ul li
 {
@@ -444,6 +467,15 @@ div.search-form
     height: 25px;
     width: 10px;
 }
+#legend ul li span.favoured
+{
+    color: #bbb;
+    float: right;
+    min-width: 100px;
+    text-align: right;
+    padding-right: 5px;
+}
 #chartdiv
 {
+    margin-bottom: 20px;
 }

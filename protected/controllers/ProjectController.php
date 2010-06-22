@@ -39,11 +39,15 @@ class ProjectController extends Controller
      */
     public function actionView()
     {
-        $Project = $this->loadActiveProject();
-        $this->render('view',array(
-            'model' => $Project,
-            'evaluation' => $Project->getEvaluationArray(),
-        ));
+        if(isset($_GET['unsetProject']))
+        {
+            Project::model()->unsetActiveProject();
+        }
+        else
+        {
+            $Project = $this->loadActiveProject();
+        }
+        $this->redirect(array('project/index'));
     }
 
     /**
@@ -51,7 +55,15 @@ class ProjectController extends Controller
      */
     public function actionCreate()
     {
-        $Project = $this->loadActiveProject();
+        if(isset($_GET['createNew']))
+        {
+            $Project = new Project();
+            $Project->unsetActiveProject();
+        }
+        else
+        {
+            $Project = $this->loadActiveProject();
+        }
 
         // save project
         if(isset($_POST['Project']))
@@ -96,6 +108,7 @@ class ProjectController extends Controller
     {
         // render index
         $this->render('index', array(
+            'Project' => $this->loadActiveProject(false),
             'Projects' => Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id)),
         ));
     }

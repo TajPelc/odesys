@@ -120,6 +120,15 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Unset the active project
+     */
+    public function unsetActiveProject()
+    {
+        $session = Yii::app()->session;
+        unset($session['project_id']);
+    }
+
+    /**
      * Return all project's criteria ordered by priority
      */
     public function findCriteriaByPriority()

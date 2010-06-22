@@ -1,7 +1,7 @@
 <div id="project">
+    <div<?php if(empty($Project)) { ?> class="padded"<?php }?>>
     <?php if(!empty($Project)) { ?>
-        <?php require_once(dirname(__FILE__).'../../../../../yii/framework/web/helpers/CHtml.php'); // FUCKING UGLY HACK - FIGURE IT OUT!!!?>
-        <span><?php echo CHTML::link(CHTML::encode($Project->title), array('project/view')); ?></span>
+        <span><?php echo CHtml::link(CHtml::encode($Project->title), array('project/view', 'unsetProject' => '1')); ?></span>
         <?php if(!empty($this->pages)){ ?>
             <ul>
                 <?php $i = 1;?>
@@ -17,5 +17,8 @@
             </ul>
         <?php }?>
     <?php } else {  ?>
+            <h1>Project placeholder</h1>
+            <p>To begin, create or activate a project.</p>
     <?php }?>
+    </div>
 </div>

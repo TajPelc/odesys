@@ -1,32 +1,17 @@
-<?php
-$this->breadcrumbs=array(
-    'Edit project details' => array('project/create', 'id' => $Project->project_id),
-    'Define criteria' => array('criteria/create'),
-    'Define alternatives' => array('alternative/create'),
-    'Evaluation' => array('evaluation/evaluate'),
-    'Results'
-);
-
-$i = 0;
-foreach($Project->alternatives as $A)
-{
-    $var[] = array('label'=> CHtml::encode($A->title), 'color'=>$colorPool[$i]);
-    $i++;
-}
-$this->menu = $var;
-?>
-
+<?php $Alternatives = $Project->alternatives; ?>
 <h1>Results</h1>
 <h2>Legend</h2>
 <p>Click on various alternatives to disable or enable them on ABACON. You must select at least one alternative.</p>
 <div id="legend">
     <form action="post" id="seriesPicker">
     <ul>
-        <?php for($i=0; $i < count($this->menu); $i++) { ?>
-        <li>
-            <span style="background-color: <?php echo $this->menu[$i]['color']; ?>;">&nbsp;</span>
-            <input type="checkbox" name="series<?php echo $i; ?>" id="series<?php echo $i; ?>" <?php if($i < 2){ ?>checked="checked"<?php }?> value="<?php echo $this->menu[$i-1]['label']; ?>">
-            <label for="series<?php echo $i; ?>"><?php echo $this->menu[$i]['label']; ?></label>
+        <?php for($i=0; $i < count($Alternatives); $i++) { ?>
+        <?php $favoured = $Alternatives[$i]->alternative_id == current(array_keys($max)); ?>
+        <li<?php if($favoured) {?> class="favoured"<?php }?>>
+            <span style="background-color: <?php echo $colorPool[$i]; ?>;">&nbsp;</span>
+            <input type="checkbox" name="series<?php echo $i; ?>" id="series<?php echo $i; ?>" <?php if($i < 2){ ?>checked="checked"<?php }?> value="<?php echo CHtml::encode($Alternatives[$i-1]->title); ?>">
+            <label for="series<?php echo $i; ?>"><?php echo CHtml::encode($Alternatives[$i]->title); ?></label>
+            <?php if($favoured) {?><span class="favoured">High Score</span><?php }?>
         </li>
         <?php }?>
     </ul>
@@ -35,3 +20,4 @@ $this->menu = $var;
 <h2>ABACON</h2>
 <p>Graphical representation of the evaluation of alternatives by the defined criteria. Points positioned to the right indicate a better score, while points positioned to the left indicate a lower score. From top to bottom of the graph, criteria priority is descending.</p>
 <div id="chartdiv"></div>
+<p><em>Note: High score is calculated by an ODESYS algorithm and should not be considered as a definitive answer to your decision problem. It is a piece of additional information for you to take into consideration when deciding.</em></p>

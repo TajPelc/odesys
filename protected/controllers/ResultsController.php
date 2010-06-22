@@ -83,6 +83,24 @@ class ResultsController extends Controller
             Ajax::respondOk($rv);
         }
 
+        // calculate scores for each alternative
+        $total = array();
+        $max = array(0);
+        foreach($Project->getEvaluationArray(true) as $A)
+        {
+            $i = 100;
+            $score = 0;
+            foreach($A['Criteria'] as $C)
+            {
+                $score = $score + $i * $C['Evaluation']->grade;
+                $i = (0.9 * $i)^2;
+            }
+            if($score > current($max))
+            {
+                $max = array($A['Obj']->alternative_id => $score);
+            }
+        }
+
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.categoryAxisRenderer.js');
@@ -94,6 +112,7 @@ class ResultsController extends Controller
 
         $this->render('display',array(
             'Project' => $Project,
+            'max'     => $max,
             'colorPool' => self::$colorPool,
         ));
     }
