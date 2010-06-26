@@ -22,4 +22,7 @@ $(document).ready(function(){
             $(this).remove();
         });
     });
+    $(function() {
+        $("input:submit").button();
+    });
 });

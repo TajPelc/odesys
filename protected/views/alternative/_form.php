@@ -22,7 +22,7 @@
 
     <div class="row buttons">
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Add' : 'Save'); ?>
-        <?php echo CHtml::submitButton('Next', array('name' => 'Finish')); ?>
+        <?php if(count($Project->alternatives) > 1){ echo CHtml::link('Continue', array('evaluation/evaluate'), array('class' => 'button')); } ?>
     </div>
 </fieldset>
 <?php $this->endWidget(); ?>

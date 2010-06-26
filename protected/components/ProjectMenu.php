@@ -32,6 +32,12 @@ class ProjectMenu extends CWidget
         {
             $Project = Project::model()->findByPk($session['project_id']);
         }
+
+        if(Ajax::isAjax())
+        {
+            return $this->render('projectMenu', array('Project' => $Project, 'currentRoute' => $this->getOwner()->getRoute()), true);
+        }
+
         $this->render('projectMenu', array('Project' => $Project, 'currentRoute' => $this->getOwner()->getRoute()));
     }
 }

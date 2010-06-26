@@ -74,10 +74,7 @@ class EvaluationController extends Controller
             $this->redirect(array('results/display'));
         }
 
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/ui-lightness/jquery-ui-1.8.2.custom.css');
 
         $this->render('evaluate',array(
             'Project'   => $Project,

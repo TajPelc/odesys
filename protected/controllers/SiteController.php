@@ -22,6 +22,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
         $this->render('index');
     }
 

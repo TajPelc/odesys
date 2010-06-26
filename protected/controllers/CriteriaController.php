@@ -78,19 +78,12 @@ class CriteriaController extends Controller
             $Criteria->description =  $_POST['Criteria']['description'];
             $save = $Criteria->save();
 
-            // go to the next step
-            if( $_POST['Finish'])
-            {
-                $this->redirect(array('alternative/create'));
-            }
-            elseif($save)
+            if($save)
             {
                 $this->redirect(array('criteria/create'));
             }
         }
 
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria.js');
 
         // render the view

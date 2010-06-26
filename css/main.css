@@ -213,10 +213,10 @@ div.search-form
 {
     padding: 2px 0 4px 0px;
 }
-
-.movable
+/* CRITERA */
+#criteria
 {
-    cursor: move;
+    margin-bottom: 10px;
 }
 /* SORTABLE */
 #sortable
@@ -228,16 +228,20 @@ div.search-form
 }
 #sortable li, p.notice
 {
-    border: 1px solid #596171;
+    cursor: default;
     margin: 0 3px 3px 3px;
     height: 34px;
     position: relative;
     background-color: #DBE3F0;
     -moz-border-radius:5px;
 }
+#sortable li.movable
+{
+    cursor: move;
+}
 #sortable li span, p.notice
 {
-    font-size: 17px;
+    font-size: 14px;
     padding-left: 10px;
     line-height: 34px;
 }
@@ -285,7 +289,41 @@ div.search-form
     width: 170px;
     -moz-border-radius: 10px;
 }
-#project span a
+#project span.title
+{
+    display: block;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding-bottom: 7px;
+}
+#project span:hover
+{
+    cursor: default;
+}
+#project div
+{
+    color: #fff;
+    min-height: 141px;
+    text-align: center;
+    border: 1px solid #DBE3F0;
+    -moz-border-radius:5px;
+}
+#project div h1
+{
+    margin: 20px 0 20px 0;
+    color: #fff;
+}
+#project div p
+{
+    padding: 0 10px 0 10px;
+    margin: 0;
+}
+#project div.dotted
+{
+    border: 1px dotted #DBE3F0;
+}
+#project a.title
 {
     text-align: center;
     font-weight: bold;
@@ -294,12 +332,13 @@ div.search-form
     color: #fff;
     padding: 5px;
     text-decoration: none;
+    border-bottom: 1px dotted #fff;
     -moz-border-radius-topleft: 3px;
     -moz-border-radius-topright: 3px;
 }
-#project span:hover
+#project a.title:hover
 {
-    cursor: default;
+    text-decoration: line-through;
 }
 #project ul
 {
@@ -310,11 +349,6 @@ div.search-form
 #project ul li
 {
     width: 168px;
-    border-bottom: 1px solid #ffd700;
-}
-#project ul li:first-child
-{
-    border-top: 1px solid #ffd700;
 }
 #project ul li:last-child
 {
@@ -348,33 +382,15 @@ div.search-form
     color: #596171;
     background-color: #ffd700;
 }
-#project ul li a:hover, #project span a:hover
+#project ul li a:hover
 {
     background-color: #DBE3F0;
     color: #596171;
 }
-#project div
-{
-    color: #fff;
-    min-height: 165px;
-    text-align: center;
-    border: 1px solid #DBE3F0;
-    -moz-border-radius:5px;
-}
-#project div h1
-{
-    color: #fff;
-}
-#project div.padded
-{
-    border: 1px dashed #DBE3F0;
-    padding: 10px;
-    height:145px;
-}
 /* EVALUATION PAGE */
 #evaluation div.alternative
 {
-    width: 320px;
+    width: 310px;
     float: left;
     margin: 0 20px 20px 0;
     padding: 5px 10px 0 10px;
@@ -478,4 +494,33 @@ div.search-form
 #chartdiv
 {
     margin-bottom: 20px;
+}
+/* PROJECTS */
+#content ul.projects
+{
+    list-style-type: none;
+    margin: 20px 0 20px 0;
+    padding: 0 20px 0 20px;
+}
+#content ul.projects li
+{
+    background-color: #B3BCCC;
+    display: block;
+    margin-bottom: 2px;
+    min-height: 26px;
+}
+#content ul.projects li a, #content ul.projects li span
+{
+    display: block;
+    padding: 5px;
+}
+#content ul.projects li span
+{
+    background-color: #ffd700;
+}
+#content ul.projects li a
+{
+    color: #fff;
+    text-decoration: none;
+    background-color: #596171;
 }

@@ -15,7 +15,7 @@ $this->menu=array(
     <?php foreach($Projects as $P) {?>
         <li>
             <?php if(false !== $Project && $P->project_id === $Project->project_id) { ?>
-                <?php echo CHtml::encode($P->title)?> (Active)
+                <span><?php echo CHtml::encode($P->title)?> (Active)</span><?php echo CHtml::link(CHtml::encode($P->title), array('view', 'project_id' => $P->project_id), array('style' => 'display: none;')); ?>
             <?php } else { ?>
                 <?php echo CHtml::link(CHtml::encode($P->title), array('view', 'project_id' => $P->project_id)); ?>
             <?php }?>
@@ -23,5 +23,4 @@ $this->menu=array(
     <?php }?>
 </ul>
 <?php }?>
-<h2>Create new project</h2>
-<p>Click <?php echo CHtml::link('here', array('create', 'createNew' => '1')); ?> to create a new project.</p>
+<p><?php echo CHtml::link('Create a new project', array('create', 'createNew' => '1'), array('class' => 'button')); ?></p>

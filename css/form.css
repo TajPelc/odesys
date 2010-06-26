@@ -37,18 +37,20 @@
 div.form
 {
 }
-
-div.form input,
+div.form textarea
+{
+    width: 670px;
+}
 div.form textarea,
 div.form select
 {
-    margin: 0.2em 0 0.5em 0;
+    margin: 5px 0 5px 0;
+    padding: 5px;
 }
 
 div.form fieldset
 {
-    background-color: #DBE3F0;
-    border: 1px solid #596171;
+    background-color: #B3BCCC;
     padding: 10px;
     margin: 0 0 10px 0;
     -moz-border-radius:7px;
@@ -64,6 +66,10 @@ div.form label
 div.form .row
 {
     margin: 5px 0;
+}
+div.form .buttons a
+{
+    float: right;
 }
 
 div.form .hint
@@ -87,7 +93,7 @@ div.form div.error label,
 div.form label.error,
 div.form span.error
 {
-    color: #C00;
+    color: #E90000;
 }
 
 div.form div.error input,
@@ -97,8 +103,8 @@ div.form input.error,
 div.form textarea.error,
 div.form select.error
 {
-    background: #FEE;
-    border-color: #C00;
+    color: #fff;
+    background-color: #914d4d;
 }
 
 div.form div.success input,
@@ -115,21 +121,20 @@ div.form select.success
 
 div.form .errorSummary
 {
-    border: 2px solid #C00;
-    padding: 7px 7px 12px 7px;
-    margin: 0 0 20px 0;
-    background: #FEE;
-    font-size: 0.9em;
+    padding: 5px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    background-color: #fff;
+    border: 2px solid #e90000;
+    -moz-border-radius: 5px;
 }
-
 div.form .errorMessage
 {
-    color: red;
-    font-size: 0.9em;
+    padding: 5px;
 }
-
 div.form .errorSummary p
 {
+    font-weight: bold;
     margin: 0;
     padding: 5px;
 }

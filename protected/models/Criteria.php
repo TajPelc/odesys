@@ -36,7 +36,7 @@ class Criteria extends CActiveRecord
     {
         return array(
             array('title, best, worst', 'required'),
-            array('title, best, worst', 'length', 'max' => 100),
+            array('title, best, worst', 'length', 'max' => 85),
             array('title, description', 'safe', 'on' => 'search'),
         );
     }

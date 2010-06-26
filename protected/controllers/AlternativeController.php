@@ -80,16 +80,10 @@ class AlternativeController extends Controller
             }
         }
 
-        // create a data provider for the defined alternatives partial
-        $dataProvider = new CActiveDataProvider('Alternative');
-        $dataCriteria = new CDbCriteria();
-        $dataCriteria->condition = 'rel_project_id=:id';
-        $dataCriteria->params = array(':id' => $Project->project_id);
-        $dataProvider->setCriteria($dataCriteria);
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/alternative.js');
 
         // render the view
         $this->render('create', array(
-            'dataProvider'  =>$dataProvider,
             'model'         => $Alternative,
             'Project'       => $Project,
         ));

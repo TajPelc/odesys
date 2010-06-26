@@ -28,6 +28,19 @@ class Controller extends CController
     protected $_Project;
 
     /**
+     * Construct
+     */
+    public function __construct($id,$module=null)
+    {
+        parent::__construct($id, $module);
+
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.2.custom.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/main.js');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/ui-lightness/jquery-ui-1.8.2.custom.css');
+    }
+
+    /**
      * Try to load the project from session or redirect to projects page
      *
      * @return CActiveRecord

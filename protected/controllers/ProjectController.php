@@ -76,6 +76,8 @@ class ProjectController extends Controller
             }
         }
 
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project.js');
+
         // render
         $this->render('create',array(
             'model' => $Project,
@@ -106,10 +108,25 @@ class ProjectController extends Controller
      */
     public function actionIndex()
     {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project.js');
+
         // render index
         $this->render('index', array(
             'Project' => $this->loadActiveProject(false),
             'Projects' => Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id)),
         ));
+    }
+
+    /**
+     * Generate the project menu for ajax
+     */
+    public function actionMenu()
+    {
+        if(Ajax::isAjax())
+        {
+            $PM = new ProjectMenu;
+            $rv['menu'] = $PM->run();
+            Ajax::respondOk($rv);
+        }
     }
 }

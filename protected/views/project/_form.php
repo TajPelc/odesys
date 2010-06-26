@@ -22,7 +22,7 @@
     </div>
 
     <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create and continue' : 'Save and continue'); ?>
     </div>
 </fieldset>
 <?php $this->endWidget(); ?>

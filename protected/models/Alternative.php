@@ -33,8 +33,8 @@ class Alternative extends CActiveRecord
     public function rules()
     {
         return array(
-            array('title, description', 'required'),
-            array('title', 'length', 'max' => 100),
+            array('title', 'required'),
+            array('title', 'length', 'max' => 85),
             array('title, description', 'safe', 'on' => 'search'),
         );
     }
