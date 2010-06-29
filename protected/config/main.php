@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'ODESYS Alpha',
+    'name'=>'ODESYS Alpha: The on-line decision support system',
 
     // preloading 'log' component
     'preload'=>array('log'),

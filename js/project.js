@@ -7,12 +7,12 @@ $(document).ready(function(){
         $("input:submit, a.button").button();
     });
 
-    runnable = true;
+    var allowedToBeRun = true;
     // handle the setting of projects as active
     $('ul.projects li a').click(function(event){
-        if(runnable)
+        if(allowedToBeRun)
         {
-            runnable = false;
+            allowedToBeRun = false;
             title = $(this).attr('title');
             link = $(this);
             li = $(this).parent();
@@ -61,22 +61,21 @@ $(document).ready(function(){
                     function() {
                         $(this).attr('style', 'display: none;');
                         $('html, body').animate({scrollTop:0}, 'slow');
-                        runnable = true;
+                        allowedToBeRun = true;
+                });
+
+                // request project menu HTML and replace the current menu
+                $.get('/index.php?r=project/menu', function(data){
+                    $('#project span.title:last').fadeOut(150, function() {
+                            $('#project').empty();
+                            $('#project').append(data['menu']);
+                            $('#project span.title:last').css({opacity: 0});
+                            $('#project span.title:last').animate({opacity: 1}, 300);
+                            // call unset method again
+                            unsetProject();
+                    });
                 });
             });
-
-            // request project menu HTML and replace the current menu
-            $.get('/index.php?r=project/menu', function(data){
-                projectMenu =  data['menu'];
-                $('#project div').fadeOut(150, function(){
-                    $(this).remove();
-                    $('#project').append(projectMenu);
-                    $('#project div').animate({ opacity: 1,}, 150, 'linear');
-                });
-            });
-
-            // call unset method again
-            unsetProject();
         }
         event.preventDefault();
     });

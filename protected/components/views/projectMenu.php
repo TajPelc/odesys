@@ -1,13 +1,14 @@
 <?php if(!Ajax::isAjax()) {?>
-<div id="project">
-    <span class="title">PROJECT</span>
+    <div id="project">
 <?php }?>
-    <div<?php if(empty($Project)) { ?> class="dotted"<?php }?><?php if(Ajax::isAjax()) {?> style="opacity: 0;"<?php }?>>
+    <?php  if(!empty($Project)) { echo CHtml::link('&times;', array('project/view', 'unsetProject' => '1'), array('class' => 'close', 'title' => 'Deactivate current project')); }?>
+    <span class="title">PROJECT</span>
+    <?php  if(!empty($Project)) { ?><span class="title"><?php echo CHtml::encode($Project->title) ?></span><?php }?>
+    <div<?php if(empty($Project)) { ?> class="dotted"<?php }?>>
         <h1<?php if(!empty($Project)) { ?> style="display: none;"<?php }?>>placeholder</h1>
         <p<?php if(!empty($Project)) { ?> style="display: none;"<?php }?>>Create or activate a project to begin</p>
 
         <?php if(!empty($Project)) { ?>
-            <?php echo CHtml::link(CHtml::encode($Project->title), array('project/view', 'unsetProject' => '1'), array('class' => 'title', 'title' => 'Deactivate current project')); ?>
             <?php if(!empty($this->pages)){ ?>
                 <ul>
                     <?php $i = 1;?>
@@ -25,5 +26,5 @@
         <?php }?>
     </div>
 <?php if(!Ajax::isAjax()) {?>
-</div>
+    </div>
 <?php }?>

@@ -36,8 +36,11 @@ p
     margin: 0;
     padding: 0;
     font-size: 18px;
-    background-color: #596171;
+    font-family: monospace;
+    text-shadow: #000 -2px 1px 5px;
     color: #efefef;
+    cursor: default;
+    background-color: #596171;
     -moz-border-radius-topleft: 15px;
     -moz-border-radius-topright: 15px;
 }
@@ -69,7 +72,7 @@ p
 
 #mainmenu
 {
-    background-color: #B3BCCC;
+    background-color: #596171;
 }
 
 #mainmenu ul
@@ -91,12 +94,22 @@ p
     font-weight:bold;
     text-decoration:none;
     padding:5px 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
 }
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
     color: #596171;
     background-color:#fff;
     text-decoration:none;
+}
+#mainmenu ul li a:hover
+{
+    padding-bottom: 3px;
+}
+#mainmenu ul li.active a:hover
+{
+    padding-bottom: 5px;
 }
 
 div.flash-error, div.flash-notice, div.flash-success
@@ -289,13 +302,17 @@ div.search-form
     width: 170px;
     -moz-border-radius: 10px;
 }
-#project span.title
+#project span
 {
     display: block;
     color: #fff;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
     padding-bottom: 7px;
+}
+#project span.title:last-child
+{
+    font-size: 12px;
 }
 #project span:hover
 {
@@ -304,7 +321,7 @@ div.search-form
 #project div
 {
     color: #fff;
-    min-height: 141px;
+    min-height: 130px;
     text-align: center;
     border: 1px solid #DBE3F0;
     -moz-border-radius:5px;
@@ -323,22 +340,27 @@ div.search-form
 {
     border: 1px dotted #DBE3F0;
 }
-#project a.title
+#project a.close
 {
-    text-align: center;
-    font-weight: bold;
+    float: right;
+    right: 10px;
+    top: 10px;
     font-size: 16px;
-    display: block;
-    color: #fff;
-    padding: 5px;
+    width: 12px;
+    height: 15px;
+    background-color: #ffd700;
+    padding-left: 3px;
+    line-height: 13px;
     text-decoration: none;
-    border-bottom: 1px dotted #fff;
-    -moz-border-radius-topleft: 3px;
-    -moz-border-radius-topright: 3px;
+    -moz-border-radius: 5px;
 }
-#project a.title:hover
+#project a.close:hover
 {
-    text-decoration: line-through;
+    background-color: white;
+}
+#project a.close:active
+{
+    background-color: red;
 }
 #project ul
 {
@@ -364,8 +386,20 @@ div.search-form
     -moz-border-radius-bottomleft: 3px;
     -moz-border-radius-bottomright: 3px;
 }
+#project ul li:first-child a, #project ul li:first-child span
+{
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+}
+#project ul li:first-child a:hover
+{
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-topright: 3px;
+}
 #project ul li a, #project ul li span
 {
+    font-size: 13px;
+    font-weight: normal;
     margin: 0;
     border: 0;
     text-align: left;
