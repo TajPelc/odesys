@@ -108,6 +108,8 @@ class ProjectController extends Controller
      */
     public function actionIndex()
     {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.color.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.scrollTo-min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project.js');
 
         // render index

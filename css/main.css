@@ -498,16 +498,23 @@ div.search-form
 /* PROJECTS */
 #content ul.projects
 {
-    list-style-type: none;
     margin: 20px 0 20px 0;
     padding: 0 20px 0 20px;
+    list-style: none;
 }
 #content ul.projects li
 {
-    background-color: #B3BCCC;
-    display: block;
-    margin-bottom: 2px;
+    border-right: 2px solid;
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    border-color: #596171;
+    background-color: #efefef;
+    margin-bottom: 5px;
     min-height: 26px;
+}
+#content ul.projects li.active
+{
+    border-color: #ffd700;
 }
 #content ul.projects li a, #content ul.projects li span
 {
@@ -523,4 +530,23 @@ div.search-form
     color: #fff;
     text-decoration: none;
     background-color: #596171;
+}
+#content ul.projects ul
+{
+    list-style-type: lower-alpha;
+    padding: 5px 0 5px 30px;
+}
+#content ul.projects ul li
+{
+    cursor: default;
+    margin: 0;
+    font-size: 11px;
+    min-height: 5px;
+    border: none;
+}
+#content ul.projects ul li span
+{
+    display: inline;
+    padding: 0;
+    margin: 0;
 }

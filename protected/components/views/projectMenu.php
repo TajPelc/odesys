@@ -2,7 +2,7 @@
 <div id="project">
     <span class="title">PROJECT</span>
 <?php }?>
-    <div<?php if(empty($Project)) { ?> class="dotted"<?php }?><?php if(Ajax::isAjax()) {?> style="display: none;"<?php }?>>
+    <div<?php if(empty($Project)) { ?> class="dotted"<?php }?><?php if(Ajax::isAjax()) {?> style="opacity: 0;"<?php }?>>
         <h1<?php if(!empty($Project)) { ?> style="display: none;"<?php }?>>placeholder</h1>
         <p<?php if(!empty($Project)) { ?> style="display: none;"<?php }?>>Create or activate a project to begin</p>
 
