@@ -1,7 +1,7 @@
 <?php if(!Ajax::isAjax()) {?>
     <div id="project">
 <?php }?>
-    <?php  if(!empty($Project)) { echo CHtml::link('&times;', array('project/view', 'unsetProject' => '1'), array('class' => 'close', 'title' => 'Deactivate current project')); }?>
+    <?php  if(!empty($Project)) { echo CHtml::link('', array('project/view', 'unsetProject' => '1'), array('class' => 'close', 'title' => 'Deactivate current project')); }?>
     <span class="title">PROJECT</span>
     <?php  if(!empty($Project)) { ?><span class="title"><?php echo CHtml::encode($Project->title) ?></span><?php }?>
     <div<?php if(empty($Project)) { ?> class="dotted"<?php }?>>

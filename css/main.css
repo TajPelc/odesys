@@ -289,8 +289,6 @@ div.search-form
 }
 #sortable .ui-sortable-helper
 {
-    color: #DBE3F0;
-    background-color: #666;
 }
 /* PROJECT */
 #project
@@ -352,15 +350,16 @@ div.search-form
     padding-left: 3px;
     line-height: 13px;
     text-decoration: none;
+    background: url('../images/sprite.png') no-repeat 0px 0px;
     -moz-border-radius: 5px;
 }
 #project a.close:hover
 {
-    background-color: white;
+    background-position: -16px 0px;
 }
 #project a.close:active
 {
-    background-color: red;
+    background-position: -32px 0px;
 }
 #project ul
 {
@@ -583,4 +582,18 @@ div.search-form
     display: inline;
     padding: 0;
     margin: 0;
+}
+/* Right button */
+.right
+{
+    float: right;
+}
+.hidden
+{
+    display: none;
+}
+.overlay-heading
+{
+    font-size: 20px;
+    color: #596171;
 }

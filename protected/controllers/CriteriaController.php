@@ -66,24 +66,37 @@ class CriteriaController extends Controller
         // change the order of criteria
         if(Ajax::isAjax())
         {
-            $this->_reorderCriteria();
-        }
-
-        // posted?
-        if(isset($_POST['Criteria']))
-        {
-            // set attributes
-            $Criteria->rel_project_id = $Project->project_id;
-            $Criteria->attributes = $_POST['Criteria'];
-            $Criteria->description =  $_POST['Criteria']['description'];
-            $save = $Criteria->save();
-
-            if($save)
+            if($_POST['requesting'] == 'formPost')
             {
-                $this->redirect(array('criteria/create'));
+                if($this->_saveCriteria($Criteria, $Project))
+                {
+                    Ajax::respondOk(array('title' => $Criteria->getAttribute('title'), 'id' => $Criteria->getAttribute('criteria_id')));
+                }
+                else
+                {
+                    $rv['form'] = $this->renderPartial('_form', array('model' => $Criteria, 'Project' => $Project), true);
+                    Ajax::respondError($rv);
+                }
+            }
+            elseif($_GET['requesting'] == 'form')
+            {
+                $rv['form'] = $this->renderPartial('_form', array('model' => $Criteria, 'Project' => $Project), true);
+                Ajax::respondOk($rv);
+            }
+            else
+            {
+                $this->_reorderCriteria();
             }
         }
 
+        // save criteria
+        if($this->_saveCriteria($Criteria, $Project))
+        {
+            $this->redirect(array('criteria/create'));
+        }
+
+        // javascript
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.form.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria.js');
 
         // render the view
@@ -98,8 +111,34 @@ class CriteriaController extends Controller
      */
     public function actionDelete()
     {
-        $this->loadModel('criteria')->delete();
+        $Criteria = $this->loadModel('criteria');
+        $id = $Criteria->criteria_id;
+        if($Criteria->delete())
+        {
+            Ajax::respondOk(array('id' => $id));
+        }
+        else
+        {
+            Ajax::respondError(array('id' => $id));
+        }
         $this->redirect(array('create'));
+    }
+
+    /**
+     * Save criteria
+     *
+     * @var Project $Project
+     */
+    private function _saveCriteria($Criteria, $Project)
+    {
+        if(isset($_POST['Criteria']))
+        {
+            // set attributes
+            $Criteria->rel_project_id = $Project->project_id;
+            $Criteria->attributes = $_POST['Criteria'];
+            $Criteria->description =  $_POST['Criteria']['description'];
+            return $Criteria->save();
+        }
     }
 
     /**
