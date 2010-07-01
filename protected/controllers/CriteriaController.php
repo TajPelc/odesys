@@ -97,6 +97,7 @@ class CriteriaController extends Controller
 
         // javascript
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.form.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/overlay.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria.js');
 
         // render the view

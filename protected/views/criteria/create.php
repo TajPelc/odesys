@@ -10,7 +10,7 @@
     <?php if(Common::isArray($Criteria)) {?>
         <ul id="sortable">
             <?php foreach($Criteria as $C) {?>
-                <li id="criteria_<?php echo $C->criteria_id; ?>" class="movable"><span>&uarr;&darr; <?php echo CHtml::encode($C->title); ?></span><?php echo CHtml::link('delete', array('delete', 'criteria_id' => $C->criteria_id), array('class' => 'delete')); ?><?php echo CHtml::link('edit', array('create', 'criteria_id' => $C->criteria_id), array('class' => 'edit')); ?></li>
+                <li id="criteria_<?php echo $C->criteria_id; ?>" class="movable"><span><?php echo CHtml::encode($C->title); ?></span><?php echo CHtml::link('delete', array('delete', 'criteria_id' => $C->criteria_id), array('class' => 'delete')); ?><?php echo CHtml::link('edit', array('create', 'criteria_id' => $C->criteria_id), array('class' => 'edit')); ?></li>
             <?php }?>
         </ul>
     <?php }?>

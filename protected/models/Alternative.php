@@ -34,7 +34,7 @@ class Alternative extends CActiveRecord
     {
         return array(
             array('title', 'required'),
-            array('title', 'length', 'max' => 85),
+            array('title', 'length', 'max' => 60),
             array('title, description', 'safe', 'on' => 'search'),
         );
     }

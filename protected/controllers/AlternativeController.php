@@ -61,25 +61,35 @@ class AlternativeController extends Controller
         // load alternative
         $Alternative = $this->loadModel('alternative');
 
-        // posted?
-        if(isset($_POST['Alternative']))
+        // ajax
+        if(Ajax::isAjax())
         {
-            // set attributes
-            $Alternative->rel_project_id    = $Project->project_id;
-            $Alternative->attributes        = $_POST['Alternative'];
-            $save = $Alternative->save();
-
-            // go to the next step
-            if( $_POST['Finish'])
+            if($_POST['requesting'] == 'formPost')
             {
-                $this->redirect(array('evaluation/evaluate'));
+                if($this->_saveAlternative($Alternative, $Project))
+                {
+                    Ajax::respondOk(array('title' => $Alternative->getAttribute('title'), 'id' => $Alternative->getAttribute('alternative_id')));
+                }
+                else
+                {
+                    $rv['form'] = $this->renderPartial('_form', array('model' => $Alternative, 'Project' => $Project), true);
+                    Ajax::respondError($rv);
+                }
             }
-            elseif($save)
+            elseif($_GET['requesting'] == 'form')
             {
-                $this->redirect(array('alternative/create'));
+                $rv['form'] = $this->renderPartial('_form', array('model' => $Alternative, 'Project' => $Project), true);
+                Ajax::respondOk($rv);
             }
         }
 
+        // save alternative
+        if($this->_saveAlternative($Alternative, $Project))
+        {
+            $this->redirect(array('alternative/create'));
+        }
+
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/overlay.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/alternative.js');
 
         // render the view
@@ -94,7 +104,34 @@ class AlternativeController extends Controller
      */
     public function actionDelete()
     {
-        $this->loadModel('alternative')->delete();
+        $Alternative = $this->loadModel('Alternative');
+        $id = $Alternative->alternative_id;
+        if($Alternative->delete())
+        {
+            Ajax::respondOk(array('id' => $id));
+        }
+        else
+        {
+            Ajax::respondError(array('id' => $id));
+        }
         $this->redirect(array('create'));
+    }
+
+    /**
+     * Save alternative
+     *
+     * @var Alternative Alternative
+     * @var Project $Project
+     */
+    private function _saveAlternative($Alternative, $Project)
+    {
+        if(isset($_POST['Alternative']))
+        {
+            // set attributes
+            $Alternative->rel_project_id    = $Project->project_id;
+            $Alternative->title             = $_POST['Alternative']['title'];
+            $Alternative->description       =  $_POST['Alternative']['description'];
+            return $Alternative->save();
+        }
     }
 }

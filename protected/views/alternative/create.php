@@ -5,15 +5,17 @@
 
 <h2>Alternatives</h2>
 <p>You may not change the order of criteria.</p>
-<div id="criteria">
+<?php  echo CHtml::link('Add alternative', array('#'), array('title' => 'Add alternative', 'id' => 'create-alternative', 'class' => 'button hidden')); ?>
+<div id="alternative">
     <?php $Alternatives = $Project->alternatives; ?>
     <ul id="sortable">
         <?php if(Common::isArray($Alternatives)) {?>
             <?php foreach($Alternatives as $A) {?>
-                <li id="alternative_<?php echo $A->alternative_id; ?>"><span>&times; <?php echo CHtml::encode($A->title); ?></span><a href="<?php echo $this->createUrl('delete', array('alternative_id' => $A->alternative_id)); ?>">delete</a><a href="<?php echo $this->createUrl('create', array('alternative_id' => $A->alternative_id)); ?>">edit</a></li>
+                <li id="alternative_<?php echo $A->alternative_id; ?>"><span><?php echo CHtml::encode($A->title); ?></span><?php echo CHtml::link('delete', array('delete', 'alternative_id' => $A->alternative_id), array('class' => 'delete')); ?><?php echo CHtml::link('edit', array('create', 'alternative_id' => $A->alternative_id), array('class' => 'edit')); ?></li>
             <?php }?>
         <?php } else { ?>
             <li><span>No alternatives yet defined.</span></li>
         <?php }?>
     </ul>
 </div>
+<?php echo CHtml::link('Continue', array('alternative/create'), array('class' => 'button right' . (count($Project->alternatives) > 1 ? '' : ' hide'))); ?>
