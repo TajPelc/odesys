@@ -8,26 +8,12 @@ $(document).ready(function(){
         $("input:submit, a.button").button();
     });
 
-    // make the criteria sortable
-    $(function() {
-        $("#sortable").sortable({
-            opacity: 0.90,
-        });
-        $("#sortable").disableSelection();
-    });
 
     // disable the non-ajax form
     $('div.form').remove();
 
-    // hide the continue link
-    if( $('#sortable').children().size() > 1)
-    {
-        $('a.right').show();
-    }
-    else
-    {
-        $('a.right').hide();
-    }
+    // handle the continue link
+    handleSortableList();
 
     // rearrange order on sort
     $('#sortable').bind( "sortupdate", function(event, ui) {
@@ -40,9 +26,25 @@ $(document).ready(function(){
 
     // bind create and edit events
     bindCreateOverlay('#create-criteria');
-    bindEditOverlay('#sortable li a:odd');
-    bindDeleteOverlay('#sortable li a:even');
+    bindEditOverlay('#sortable li a.edit');
+    bindDeleteOverlay('#sortable li a.delete');
+
+    // make the ul sortable
+    makeSortable();
 });
+
+/**
+ * Make the criteria list sortable
+ *
+ * @return void
+ */
+function makeSortable() {
+    //
+    $("#sortable").sortable({
+            opacity: 0.90,
+    });
+    $("#sortable").disableSelection();
+}
 
 /**
  * Binds click event on edit link
@@ -52,7 +54,7 @@ $(document).ready(function(){
  * @return void
  */
 function bindEditOverlay(selector) {
-    $(selector).click(function(event) {
+    $(selector).live('click', function(event) {
         createDialog($(this).attr('href'));
         event.preventDefault();
     });
@@ -80,7 +82,7 @@ function bindCreateOverlay(selector) {
  * @return
  */
 function bindDeleteOverlay(selector) {
-    $(selector).click(function(event) {
+    $(selector).live('click', function(event) {
         div = $('<div></div>').attr({
             id: 'dialog-confirm',
             title: 'Delete criteria?',
@@ -108,7 +110,7 @@ function bindDeleteOverlay(selector) {
                         url: url,
                         success: function(data) {
                             // errors
-                            if(data['status'] === false)
+                            if(data['status'] == false)
                             {
                                 alert('Delete failed.');
                                 // close the dialog
@@ -118,23 +120,15 @@ function bindDeleteOverlay(selector) {
                             {
                                 $('#criteria_' + data['id']).fadeOut(1000, function(){
                                     $(this).remove();
-                                    if( $('#sortable').children().size() < 2)
-                                    {
-                                        if( $('#sortable').children().size() == 0)
-                                        {
-                                            $('#sortable').remove();
-                                        }
-                                        $('a.right').hide();
-                                    }
+                                    handleSortableList();
                                 });
 
                                 // close the dialog
                                 div.dialog('close');
+                                div.remove();
                             }
                         }
                     });
-
-                    div.remove();
               },
               Cancel: function() {
                   $(this).dialog('close');
@@ -200,7 +194,7 @@ function createDialog(url) {
                         data: $('#criteria-overlay-form').serialize(), // serialize values from the form
                         success: function(data) {
                         // errors
-                        if(data['status'] === false)
+                        if(data['status'] == false)
                         {
                             // form returned
                             if(data.hasOwnProperty('form'))
@@ -208,6 +202,10 @@ function createDialog(url) {
                                 // replace the contents of the form
                                 form.html(data['form']);
                                 form.find('input').removeClass('text ui-widget-content ui-corner-all');
+
+                                // reenable buttons
+                                $('button').removeAttr('disabled');
+                                $('button').removeClass('ui-state-focus');
                             }
                         }
                         else
@@ -215,14 +213,18 @@ function createDialog(url) {
                             // close the dialog
                             form.dialog('close');
 
+                            // remove form
+                            form.remove();
+
                             // create the ul if it doesn't exist
                             if( $('#sortable').length == 0 )
                             {
-                                $('#criteria').append($('<ul id="sortable"></ul>'));
+                                $('#criteria').append($('<ul></ul>').attr('id', 'sortable'));
+                                makeSortable();
                             }
 
                             // create the list element and html
-                            liHtml = '<span>&uarr;&darr; ' + data['title'] + '</span><a href="/index.php?r=criteria/delete&criteria_id=' + data['id'] + '">delete</a><a href="/index.php?r=criteria/create&criteria_id=' + data['id'] + '">edit</a>';
+                            liHtml = '<span>&uarr;&darr; ' + data['title'] + '</span><a class="delete" href="/index.php?r=criteria/delete&criteria_id=' + data['id'] + '">delete</a><a class="edit" href="/index.php?r=criteria/create&criteria_id=' + data['id'] + '">edit</a>';
 
                             // edit mode, replace the edited item
                             if(editing)
@@ -233,25 +235,13 @@ function createDialog(url) {
                             {
                                 li = $('<li id="criteria_' + data['id'] + '" class="movable"></li>');
                                 $('#sortable').append(li.html(liHtml));
-                                if( $('#sortable').children().size() > 1)
-                                {
-                                    $('a.right').show();
-                                }
+                                handleSortableList();
                                 animateByColorChange($('#sortable li:last'), 1000, 1000);
                             }
-
-                            // rebind the event to the changed dom element
-                            bindEditOverlay('#criteria_' + data['id'] + ' a:odd');
-                            bindDeleteOverlay('#criteria_' + data['id'] + 'a:even');
-
-                            // enable buttons
-                            $('button').removeAttr('disabled');
-                            $('#create-criteria').removeClass('ui-state-focus');
                         }
                     }
                 });
 
-                form.remove();
             },
             Cancel: function() {
                 $(this).dialog('close');
@@ -259,6 +249,8 @@ function createDialog(url) {
             }
             },
             close: function() {
+                // remove focus from add button
+                $('#create-criteria').removeClass('ui-state-focus');
             }
             });
 
@@ -266,6 +258,25 @@ function createDialog(url) {
             $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
         }
     });
+}
+
+/**
+ * Remove ul / handle continue link
+ */
+function handleSortableList() {
+    size = $('#sortable').children().size();
+    if(size  < 2)
+    {
+        if( size == 0)
+        {
+            $('#sortable').remove();
+        }
+        $('a.right').hide();
+    }
+    else
+    {
+        $('a.right').show();
+    }
 }
 
 /**

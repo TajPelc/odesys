@@ -239,7 +239,7 @@ div.search-form
     padding: 0;
     width: 100%;
 }
-#sortable li, p.notice
+#sortable li
 {
     cursor: default;
     margin: 0 3px 3px 3px;
@@ -252,7 +252,7 @@ div.search-form
 {
     cursor: move;
 }
-#sortable li span, p.notice
+#sortable li span
 {
     font-size: 14px;
     padding-left: 10px;
