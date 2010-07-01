@@ -192,7 +192,7 @@ div.search-form
 .portlet-decoration
 {
     padding: 3px 8px;
-    background: #B7D6E7;
+    background: #b7d6e7;
     border-left: 5px solid #6FACCF;
 }
 
@@ -245,7 +245,7 @@ div.search-form
     margin: 0 3px 3px 3px;
     height: 34px;
     position: relative;
-    background-color: #DBE3F0;
+    background-color: #dbe3f0;
     -moz-border-radius:5px;
 }
 #sortable li.movable
@@ -321,7 +321,7 @@ div.search-form
     color: #fff;
     min-height: 130px;
     text-align: center;
-    border: 1px solid #DBE3F0;
+    border: 1px solid #dbe3f0;
     -moz-border-radius:5px;
 }
 #project div h1
@@ -336,7 +336,7 @@ div.search-form
 }
 #project div.dotted
 {
-    border: 1px dotted #DBE3F0;
+    border: 1px dotted #dbe3f0;
 }
 #project a.close
 {
@@ -417,7 +417,7 @@ div.search-form
 }
 #project ul li a:hover
 {
-    background-color: #DBE3F0;
+    background-color: #dbe3f0;
     color: #596171;
 }
 /* EVALUATION PAGE */
@@ -457,7 +457,7 @@ div.search-form
 {
     margin: 5px;
     padding: 5px 15px 10px 15px;
-    background-color: #DBE3F0;
+    background-color: #dbe3f0;
     -moz-border-radius:5px;
 }
 #evaluation ul li label
