@@ -60,28 +60,25 @@ class ResultsController extends Controller
         // load active project
         $Project = $this->loadActiveProject();
 
-        // ajax request for graph data?
-        if(Ajax::isAjax())
+        // graph data
+        $eval = $Project->getEvaluationArray(true);
+        $rv = array();
+        foreach($eval as $Alternative)
         {
-            $eval = $Project->getEvaluationArray(true);
-            $rv = array();
+            $val = array();
+            $rv['nrCriteria'] = count($Alternative['Criteria']);
+            $rv['legend'][] = CHtml::encode(Common::truncate($Alternative['Obj']->title, 25));
 
-            foreach($eval as $Alternative)
+            $i = count($Alternative['Criteria']);
+            foreach($Alternative['Criteria'] as $Criteria)
             {
-                $val = array();
-                $rv['nrCriteria'] = count($Alternative['Criteria']);
-
-                foreach($Alternative['Criteria'] as $Criteria)
-                {
-                    $val[] = array((int)$Criteria['Evaluation']->grade * 10, CHtml::encode($Criteria['Obj']->title));
-                }
-
-                $rv['data'][] = $val;
+                $val[] = array((int)$Criteria['Evaluation']->grade * 10, CHtml::encode($Criteria['Obj']->title));
+                $i--;
             }
-            $rv['colorPool'] = self::$colorPool;
 
-            Ajax::respondOk($rv);
+            $rv['data'][] = $val;
         }
+        $rv['colorPool'] = self::$colorPool;
 
         // calculate scores for each alternative
         $total = array();
@@ -105,11 +102,13 @@ class ResultsController extends Controller
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.categoryAxisRenderer.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.highlighter.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.cursor.min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.horizontalLegendRenderer.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.canvasTextRenderer.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/graph.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.css', 'text/css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.css');
 
         $this->render('display',array(
+            'rv'      => $rv,
             'Project' => $Project,
             'max'     => $max,
             'colorPool' => self::$colorPool,

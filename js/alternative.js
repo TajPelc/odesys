@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
     $(function() {
-        $("input:submit, a.button").button();
+        $("input:button, a.button").button();
     });
 
     // disable the non-ajax form
@@ -13,7 +13,7 @@ $(document).ready(function(){
     handleSortableList();
 
     // bind create and edit events
-    bindCreateOverlay('#create-alternative', '#alternative');
+    bindCreateOverlay('#create', '#alternative');
     bindEditOverlay('#sortable li a.edit', '#alternative');
     bindDeleteOverlay('#sortable li a.delete', '#alternative');
 });

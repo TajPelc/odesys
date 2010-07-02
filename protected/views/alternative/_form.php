@@ -10,7 +10,7 @@
 
         <div class="row">
             <?php echo $form->labelEx($model,'title'); ?>
-            <?php echo $form->textField($model,'title',array('size'=>63,'maxlength'=>60)); ?>
+            <?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>60)); ?>
             <?php echo $form->error($model,'title'); ?>
         </div>
 

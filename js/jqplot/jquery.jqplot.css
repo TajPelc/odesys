@@ -10,7 +10,7 @@
 
 /*rules applied to all axes*/
 .jqplot-axis {
-    font-size: 0.75em;
+    font-size: 1em;
 }
 
 .jqplot-xaxis {
@@ -22,7 +22,8 @@
 }
 
 .jqplot-yaxis {
-    margin-right: 10px;
+    margin-right: 20px;
+    padding-left: 20px;
 }
 
 .jqplot-y2axis, .jqplot-y3axis, .jqplot-y4axis, .jqplot-y5axis, .jqplot-y6axis, .jqplot-y7axis, .jqplot-y8axis, .jqplot-y9axis {
@@ -82,7 +83,7 @@
 }
 
 .jqplot-yaxis-label {
-    margin-right: 10px;
+    margin-right: 200px;
 /*    text-align: center;*/
     font-size: 11pt;
     position: absolute;
@@ -155,7 +156,7 @@ table.jqplot-cursor-tooltip {
 .jqplot-point-label {
     font-size: 0.75em;
 }
-      
+
 td.jqplot-cursor-legend-swatch {
 vertical-align:middle;
 text-align:center;

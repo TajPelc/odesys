@@ -10,19 +10,19 @@
 
             <div class="row">
                 <?php echo $form->labelEx($model,'title'); ?>
-                <?php echo $form->textField($model,'title',array('size'=>63,'maxlength'=>60, 'class' => 'text ui-widget-content ui-corner-all')); ?>
+                <?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>60, 'class' => 'text ui-widget-content ui-corner-all')); ?>
                 <?php // echo $form->error($model,'title'); ?>
             </div>
 
             <div class="row">
                 <?php echo $form->labelEx($model,'worst'); ?>
-                <?php echo $form->textField($model,'worst',array('size'=>31,'maxlength'=>30, 'class' => 'text ui-widget-content ui-corner-all')); ?>
+                <?php echo $form->textField($model,'worst',array('size'=>30,'maxlength'=>30, 'class' => 'text ui-widget-content ui-corner-all')); ?>
                 <?php // echo $form->error($model,'worst'); ?>
             </div>
 
             <div class="row">
                 <?php echo $form->labelEx($model,'best'); ?>
-                <?php echo $form->textField($model,'best',array('size'=>31,'maxlength'=>30, 'class' => 'text ui-widget-content ui-corner-all')); ?>
+                <?php echo $form->textField($model,'best',array('size'=>30,'maxlength'=>30, 'class' => 'text ui-widget-content ui-corner-all')); ?>
                 <?php // echo $form->error($model,'best'); ?>
             </div>
             <div class="row">

@@ -239,10 +239,15 @@ div.search-form
     padding: 0;
     width: 100%;
 }
+#soratble ul
+{
+    margin: 0;
+    padding: 0;
+}
 #sortable li
 {
     cursor: default;
-    margin: 0 3px 3px 3px;
+    margin: 0 0 5px 0;
     height: 34px;
     position: relative;
     background-color: #dbe3f0;
@@ -523,6 +528,7 @@ div.search-form
 }
 #legend ul li
 {
+    position: relative;
     line-height: 25px;
     height: 25px;
     width: 700px;
@@ -537,15 +543,28 @@ div.search-form
 }
 #legend ul li span.favoured
 {
+    position: absolute;
+    right: 10px;
+    display: block;
     color: #bbb;
-    float: right;
-    min-width: 100px;
     text-align: right;
-    padding-right: 5px;
+    width: 100px;
+}
+#legend ul li input
+{
+    float: left;
+    margin-top: 6px;
+}
+#legend ul li label
+{
+    display: block;
+    float: left;
+    width: 660px;
+    cursor: pointer;
 }
 #chartdiv
 {
-    margin-bottom: 20px;
+    margin: 40px 0 20px 0;
 }
 /* PROJECTS */
 #content ul.projects
@@ -615,4 +634,13 @@ div.search-form
 {
     font-size: 20px;
     color: #596171;
+}
+a.margins
+{
+    margin: 0 10px 10px 0;
+}
+input.disabled
+{
+    color: #a56f6f;
+    cursor: default;
 }

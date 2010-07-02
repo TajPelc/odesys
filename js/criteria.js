@@ -5,7 +5,7 @@ $(document).ready(function(){
 
     // change the submit buttons
     $(function() {
-        $("input:submit, a.button").button();
+        $("input:button, a.button").button();
     });
 
     // disable the non-ajax form
@@ -24,7 +24,7 @@ $(document).ready(function(){
     });
 
     // bind create and edit events
-    bindCreateOverlay('#create-criteria', '#criteria');
+    bindCreateOverlay('#create', '#criteria');
     bindEditOverlay('#sortable li a.edit', '#criteria');
     bindDeleteOverlay('#sortable li a.delete', '#criteria');
 

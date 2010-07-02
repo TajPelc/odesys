@@ -59,9 +59,14 @@ class Alternative extends CActiveRecord
      */
     public function isProjectUnique($attribute, $params)
     {
-        if(null !== $this->findByAttributes(array('rel_project_id' => $this->rel_project_id, $attribute => $this->{$attribute})))
+        // only for new records
+        if($this->getIsNewRecord())
         {
-            $this->addError($attribute, ucfirst($attribute).' must be unique.');
+            // record exists!
+            if(null !== $this->findByAttributes(array('rel_project_id' => $this->rel_project_id, $attribute => $this->{$attribute})))
+            {
+                $this->addError($attribute, ucfirst($attribute).' must be unique.');
+            }
         }
     }
 

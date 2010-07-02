@@ -114,6 +114,11 @@ class AlternativeController extends Controller
      */
     private function _saveAlternative($Alternative, $Project)
     {
+        // only allow up to 10 alternatives
+        if($Alternative->getIsNewRecord() && count($Project->alternatives) >= 10)
+        {
+            return false;
+        }
         if(isset($_POST['Alternative']))
         {
             // set attributes

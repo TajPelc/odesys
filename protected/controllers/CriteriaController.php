@@ -121,6 +121,12 @@ class CriteriaController extends Controller
      */
     private function _saveCriteria($Criteria, $Project)
     {
+        // only allow up to 10 criteria
+        if($Criteria->getIsNewRecord() && count($Project->criteria) >= 10)
+        {
+            return false;
+        }
+
         if(isset($_POST['Criteria']))
         {
             // set attributes

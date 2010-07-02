@@ -7,7 +7,7 @@
  * @param legend array
  * @return void
  */
-function plotGraph(anchor, data, title, colors)
+function plotGraph(anchor, data, title, colors, legend)
 {
     seriesArray = new Array();
     for(i=0; i<colors.length; i++)
@@ -18,17 +18,21 @@ function plotGraph(anchor, data, title, colors)
         seriesArray.push(Series);
     }
 
+    graphHeight = 80 * chartData.legend.length;
+
     $.jqplot(anchor, data, {
+        height: graphHeight,
         sortData: false,
+        legend:{show:false},
         title: {
             text: title,
-            show: true,
+            show: false,
             fontSize: '16px',
             textColor: 'black',
         },
 
         grid:{
-            background:'#EBF0FA',
+            background:'#F5F9FF',
             gridLineColor:'#ccc',
             borderColor:'#ccc',
             shadow: false,
@@ -38,13 +42,17 @@ function plotGraph(anchor, data, title, colors)
 
         axes:{
             xaxis:{
-                ticks: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+                ticks: [-5, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 105],
                 tickOptions:{
                     formatString:'%d',
                     fontSize:'12px',
                 },
+                label: '=> score =>',
+                labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
             },
             yaxis:{
+                label: '<= importance <=',
+                labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
                 renderer: $.jqplot.CategoryAxisRenderer,
             }
         },
@@ -76,30 +84,31 @@ function buildGraph()
 
     // disable or enable checkboxes
     checked.each(function(){
-        if(checked.length == 1){
-            $(this).attr('disabled', 'disabled');
+        if(checked.length == 0){
+            $('#chartdiv').empty();
+            return;
         }
         else{
             $(this).removeAttr('disabled');
         }
     });
-    // ajax request for plotting data
-    $.get(document.location, function(result){
-        // build data for graph plotting
-        checked.each(function(){
-            // get the series number
-            name = $(this).attr('name');
-            seriesNr = name.substr(name.length-1,name.length);
 
-            // add data to this array
-            data.push(result['data'][seriesNr]);
-            colors.push(result['colorPool'][seriesNr]);
-        });
+    // build data for graph plotting
+    checked.each(function(){
+        // get the series number
+        name = $(this).attr('name');
+        seriesNr = name.substr(name.length-1,name.length);
 
-        // plot the graph
-        $('#chartdiv').empty();
-        plotGraph('chartdiv', data, '', colors);
+        // add data to this array
+        data.push(chartData['data'][seriesNr]);
+        colors.push(chartData['colorPool'][seriesNr]);
+        legend.push(chartData['legend'][seriesNr]);
     });
+
+    // plot the graph
+    $('#chartdiv').empty();
+    plotGraph('chartdiv', data, '', colors, legend);
+    $('div.jqplot-xaxis-tick:first, div.jqplot-xaxis-tick:last').hide();
 }
 /**
  * On document load
@@ -107,6 +116,28 @@ function buildGraph()
 $(document).ready(function(){
     // create graph on page load
     buildGraph();
+
+    // change the submit buttons
+    $(function() {
+        $("a.button").button();
+    });
+
+    // select all
+    $('#select').click(function(event){
+        $('input[type=checkbox]').attr('checked', 'checked');
+        buildGraph();
+        $(this).removeClass('ui-state-focus');
+        event.preventDefault();
+    });
+
+    // deselect all
+    $('#deselect').click(function(event){
+        $('input[type=checkbox]').removeAttr('checked');
+        $('#chartdiv').empty();
+        $(this).removeClass('ui-state-focus');
+        event.preventDefault();
+    });
+
 
     /**
      * Replot the graph on checkbox selection

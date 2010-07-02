@@ -214,7 +214,7 @@ function createDialog(url, anchor) {
             },
             close: function() {
                 // remove focus from add button
-                $('#create-' + anchor.substr(1)).removeClass('ui-state-focus');
+                $('#create').removeClass('ui-state-focus');
             }
             });
 
@@ -240,6 +240,17 @@ function handleSortableList() {
     else
     {
         $('a.right').show();
+    }
+
+    if(size >= 10)
+    {
+        $('#create').attr('disabled', 'disabled');
+        $('#create').addClass('disabled');
+    }
+    else
+    {
+        $('#create').removeAttr('disabled');
+        $('#create').removeClass('disabled');
     }
 }
 

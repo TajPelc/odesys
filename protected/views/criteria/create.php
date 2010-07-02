@@ -3,10 +3,9 @@
 <p>Add between 2 and 10 criteria for rating the alternatives. Provide best and worst case scenario values. Set the best and worst values low or high enough that no alternative that you are considering falls under or over this marign. (Example: Price range / High - 600€ / Low 350€)</p>
 <?php echo $this->renderPartial('_form', array('model' => $model, 'Project' => $Project)); ?>
 
-<?php $Criteria = $Project->findCriteriaByPriority(); ?>
-<h2>Criteria</h2>
 <p>You may drag each criteria up or down to rearrange the list by priority. The most important criteria to you is at the top. Criteria of lowest importance at the bottom.</p>
-<?php  echo CHtml::link('Add criteria', array('#'), array('title' => 'Add criteria', 'id' => 'create-criteria', 'class' => 'button hidden')); ?>
+<?php echo Chtml::button('Add criteria', array('id' => 'create', 'class' => 'hidden')); ?>
+<?php $Criteria = $Project->findCriteriaByPriority(); ?>
 <div id="criteria">
     <?php if(Common::isArray($Criteria)) {?>
         <ul id="sortable">
