@@ -33,6 +33,7 @@ class Alternative extends CActiveRecord
     public function rules()
     {
         return array(
+            array('title', 'isProjectUnique'),
             array('title', 'required'),
             array('title', 'length', 'max' => 60),
             array('title, description', 'safe', 'on' => 'search'),
@@ -48,6 +49,20 @@ class Alternative extends CActiveRecord
             'project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
             'evaluations' => array(self::HAS_MANY, 'Evaluation', 'rel_alternative_id'),
         );
+    }
+
+    /**
+     * Check if title is unique for this project
+     *
+     * @param $attribute
+     * @param $params
+     */
+    public function isProjectUnique($attribute, $params)
+    {
+        if(null !== $this->findByAttributes(array('rel_project_id' => $this->rel_project_id, $attribute => $this->{$attribute})))
+        {
+            $this->addError($attribute, ucfirst($attribute).' must be unique.');
+        }
     }
 
     /**

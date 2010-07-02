@@ -172,7 +172,12 @@ function createDialog(url, anchor) {
                             if( $('#sortable').length == 0 )
                             {
                                 $(anchor).append($('<ul></ul>').attr('id', 'sortable'));
-                                makeSortable();
+
+                                // make the list sortable
+                                if(anchor == '#criteria')
+                                {
+                                    makeSortable();
+                                }
                             }
 
                             // create the list element and html

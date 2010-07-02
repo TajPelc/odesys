@@ -227,7 +227,7 @@ div.search-form
     padding: 2px 0 4px 0px;
 }
 /* CRITERA */
-#criteria
+#criteria, #alternative
 {
     margin-bottom: 10px;
 }
@@ -421,14 +421,23 @@ div.search-form
     color: #596171;
 }
 /* EVALUATION PAGE */
+#evaluation div.row
+{
+    float: left;
+    width: 100%;
+}
 #evaluation div.alternative
 {
-    width: 310px;
     float: left;
+    width: 320px;
     margin: 0 20px 20px 0;
     padding: 5px 10px 0 10px;
     background-color: #596171;
     -moz-border-radius:7px;
+}
+#evaluation div.first
+{
+    clear: left;
 }
 #evaluation div.alternative:nth-child(even)
 {
@@ -460,6 +469,10 @@ div.search-form
     background-color: #dbe3f0;
     -moz-border-radius:5px;
 }
+#evaluation ul li div.slider div
+{
+    clear: left;
+}
 #evaluation ul li label
 {
     padding-left: 5px;
@@ -473,10 +486,16 @@ div.search-form
     position: relative;
     margin-bottom: 5px;
 }
-#evaluation ul li span.right
+#evaluation ul li span
 {
-    position: absolute;
-    right: 0px;
+    float: left;
+    display: block;
+    width: 140px;
+    margin-bottom: 10px;
+}
+#evaluation ul li span:nth-child(even)
+{
+    text-align: right;
 }
 #evaluation input
 {
