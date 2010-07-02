@@ -1,3 +1,4 @@
+<?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Criteria'; ?>
 <h1>Criteria</h1>
 <p>Add between 2 and 10 criteria for rating the alternatives. Provide best and worst case scenario values. Set the best and worst values low or high enough that no alternative that you are considering falls under or over this marign. (Example: Price range / High - 600€ / Low 350€)</p>
 <?php echo $this->renderPartial('_form', array('model' => $model, 'Project' => $Project)); ?>

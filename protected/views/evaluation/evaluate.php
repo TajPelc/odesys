@@ -1,3 +1,4 @@
+<?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <h1>Evaluation</h1>
 <?php if(count($Project->alternatives) > 1 && count($Project->criteria) > 1) { ?>
 <p>Evaluate each alternative by defined criteria. Just move the sliders to the positions that best describe the actual value. You may return here at any time to modify these values.</p>

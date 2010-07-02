@@ -1,3 +1,4 @@
+<?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Alternatives'; ?>
 <h1>Alternatives</h1>
 <p>Add alternatives for evaluation. Minimum of 2 required. In the next step you will evaluate each alternative added here by the criteria you defined earlier.</p>
 

@@ -1,13 +1,4 @@
-<?php
-$this->breadcrumbs=array(
-    'Projects',
-);
-
-$this->menu=array(
-    array('label'=>'Start a new project', 'url'=>array('create')),
-);
-?>
-
+<?php $this->pageTitle = Yii::app()->name . ' / ' . ' My Projects'; ?>
 <h1>My Projects</h1>
 <?php if(!empty($Projects)) { ?>
 <p>Click on an existing project to make it active (appear in the left sidebar).</p>

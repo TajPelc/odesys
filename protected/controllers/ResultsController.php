@@ -1,13 +1,12 @@
 <?php
-
+/**
+ * Results Controller
+ *
+ * @author Taj
+ *
+ */
 class ResultsController extends Controller
 {
-    /**
-     * @var string the default layout for the views. Defaults to 'column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout='column1';
-
     /**
      * Color pool for plotting graphs
      *

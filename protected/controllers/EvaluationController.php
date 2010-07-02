@@ -1,13 +1,12 @@
 <?php
-
+/**
+ * Evaluation controller
+ *
+ * @author Taj
+ *
+ */
 class EvaluationController extends Controller
 {
-    /**
-     * @var string the default layout for the views. Defaults to 'column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout='column1';
-
     /**
      * @var CActiveRecord the currently loaded data model instance.
      */
@@ -80,14 +79,5 @@ class EvaluationController extends Controller
             'Project'   => $Project,
             'eval'      => $eval,
         ));
-    }
-
-    /**
-     * Deletes an evaluation
-     */
-    public function actionDelete()
-    {
-        $this->loadModel('criteria')->delete();
-        $this->redirect(array('create'));
     }
 }

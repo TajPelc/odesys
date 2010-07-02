@@ -1,13 +1,12 @@
 <?php
-
+/**
+ * Alternative controller
+ *
+ * @author Taj
+ *
+ */
 class AlternativeController extends Controller
 {
-    /**
-     * @var string the default layout for the views. Defaults to 'column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
-    public $layout='column1';
-
     /**
      * @var CActiveRecord the currently loaded data model instance.
      */
@@ -38,16 +37,6 @@ class AlternativeController extends Controller
                 'users'=>array('*'),
             ),
         );
-    }
-
-    /**
-     * Displays a particular model.
-     */
-    public function actionView()
-    {
-        $this->render('view',array(
-            'model'=>$this->loadModel(),
-        ));
     }
 
     /**

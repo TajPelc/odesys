@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Project controller
+ *
+ * @author Taj
+ *
+ */
 class ProjectController extends Controller
 {
     /**
@@ -47,6 +52,8 @@ class ProjectController extends Controller
         {
             $Project = $this->loadActiveProject();
         }
+
+        // redirect back to project index
         $this->redirect(array('project/index'));
     }
 

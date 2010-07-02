@@ -1,3 +1,4 @@
+<?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Results'; ?>
 <?php $Alternatives = $Project->alternatives; ?>
 <h1>Results</h1>
 <?php $evalCount = count($Project->evaluation); ?>
