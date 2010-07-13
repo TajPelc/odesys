@@ -27,7 +27,7 @@ class UserIdentity extends CUserIdentity
         $User = User::model()->find('username=?', array($this->username));
 
         // check if user has loaded
-        if($User === null)
+        if($User === null || $User->user_id == User::ANONYMOUS)
         {
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         }

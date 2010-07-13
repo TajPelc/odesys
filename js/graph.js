@@ -1,10 +1,14 @@
 /**
  * Function plots a graph with the given data to a given container.
  *
- * @param anchor string
- * @param data array
- * @param title string
- * @param legend array
+ * @param anchor
+ *            string
+ * @param data
+ *            array
+ * @param title
+ *            string
+ * @param legend
+ *            array
  * @return void
  */
 function plotGraph(anchor, data, title, colors, legend)
@@ -67,6 +71,90 @@ function plotGraph(anchor, data, title, colors, legend)
             show: false,
         }
     });
+
+    // hack the ticks
+    $('div.jqplot-yaxis-tick').each(function(){
+        position = $(this).position();
+        $(this).css({
+            'z-index': '1',
+            'cursor': 'pointer',
+            'background-color': '#eee',
+            'height': '88px',
+            'width': '250px',
+            'top': (position['top'] - 35) + 'px',
+            'line-height': '85px',
+            'padding-right': '5px',
+            'overflow': 'hidden',
+        });
+    });
+
+    // add the labels
+    $('div.jqplot-target').prepend($('<span>Criteria</span>').css({
+        'position': 'absolute',
+        'top': -15,
+        'left': '32px',
+        'font-size': '14px',
+    }));
+    $('div.jqplot-target').prepend($('<span>Bad</span>').css({
+        'position': 'absolute',
+        'top': -15,
+        'left': '314px',
+        'font-size': '14px',
+    }));
+    $('div.jqplot-target').prepend($('<span>Good</span>').css({
+        'position': 'absolute',
+        'top': -15,
+        'left': '655px',
+        'font-size': '14px',
+    }));
+
+    /**
+     * Tooltip on mouse over
+     */
+    $('div.jqplot-yaxis-tick').hover(function(e){
+        // get positions
+        canvasPosition = $('.jqplot-event-canvas').position();
+        tickPosition = $(this).position();
+        graphPosition = $('#chartdiv').position();
+
+        // get title
+        title = $(this).html();
+        width = $('.jqplot-event-canvas').width();
+
+        // calculate widths
+        leftWidth = parseInt(width / 2) - 10;
+        rightWidth = parseInt(width / 2) - 10;
+        if(width % 2 == 1)
+        {
+            rightWidth = rightWidth + 1;
+        }
+
+        // append the tooltip
+        $('body').append('<div id="graphtooltip" class="white-background"><span>' + criteriaWorst[title] + '</span><span class="best">' + criteriaBest[title] + '</span></div>');
+
+        // calculate padding
+        padding = parseInt((99 - $('#graphtooltip').height()) / 2);
+
+        // style the tooltip
+        $('#graphtooltip')
+            .css('width', width)
+            .css('height', 88 + 'px')
+            .css('top', (graphPosition['top'] + tickPosition['top'] + 40) + 'px')
+            .css('left', (graphPosition['left'] + canvasPosition['left']) + 'px')
+            .fadeIn('fast');
+        $('#graphtooltip span').css({'width': leftWidth, 'padding-top': padding + 'px', 'padding-bottom': padding + 'px'});
+        $('#graphtooltip span.right').css('width', rightWidth);
+
+        if($.browser.msie)
+        {
+            $('#graphtooltip').removeClass('white-background');
+        }
+    },
+    function(){
+        // remove on mouse away
+        $('#graphtooltip').fadeOut('fast').remove();
+    });
+
 }
 
 /**
@@ -76,7 +164,7 @@ function buildGraph()
 {
     // plotting variables
     data    = new Array();
-    legend  = new Array();
+    dataLegend  = new Array();
     colors  = new Array();
 
     // get all checked boxes
@@ -102,14 +190,15 @@ function buildGraph()
         // add data to this array
         data.push(chartData['data'][seriesNr]);
         colors.push(chartData['colorPool'][seriesNr]);
-        legend.push(chartData['legend'][seriesNr]);
+        dataLegend.push(chartData['legend'][seriesNr]);
     });
 
     // plot the graph
     $('#chartdiv').empty();
-    plotGraph('chartdiv', data, '', colors, legend);
+    plotGraph('chartdiv', data, '', colors, dataLegend);
     $('div.jqplot-xaxis-tick:first, div.jqplot-xaxis-tick:last').hide();
 }
+
 /**
  * On document load
  */
@@ -137,7 +226,6 @@ $(document).ready(function(){
         $(this).removeClass('ui-state-focus');
         event.preventDefault();
     });
-
 
     /**
      * Replot the graph on checkbox selection

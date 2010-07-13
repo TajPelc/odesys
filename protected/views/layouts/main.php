@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
     <!-- JavaScript -->
-    <?php if('results/display' == $this->getRoute() ) { ?><!--[if lt IE 8]><script language="javascript" type="text/javascript" src="/js/jqplot/excanvas.js"></script><![endif]--><?php } ?>
+    <?php if('results/display' == $this->getRoute() ) { ?><!--[if IE]><script language="javascript" type="text/javascript" src="/js/jqplot/excanvas.js"></script><![endif]--><?php } ?>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>

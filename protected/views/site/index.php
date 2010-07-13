@@ -14,4 +14,4 @@
     <li>Make a better decision armed with additional information provided by ODESYS</li>
 </ul>
 <p>ODESYS is highly flexible and is suitable for a wide variety of decision problems.</p>
-<p><a class="button" href="<?php echo $this->createUrl('project/index'); ?>">Start here</a></p>
+<p><a class="button" href="<?php echo $this->createUrl('project/create'); ?>">Start here</a></p>

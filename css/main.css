@@ -644,3 +644,29 @@ input.disabled
     color: #a56f6f;
     cursor: default;
 }
+#graphtooltip
+{
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    opacity:0.6;
+}
+#graphtooltip span
+{
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+    padding: 5px;
+    color: #da0000;
+}
+#graphtooltip span.best
+{
+    text-align: right;
+    color: #008713;
+}
+.white-background
+{
+    background-color: #fff;
+}

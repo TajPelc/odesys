@@ -13,8 +13,6 @@
             <?php foreach($Alternatives as $A) {?>
                 <li id="alternative_<?php echo $A->alternative_id; ?>"><span><?php echo CHtml::encode($A->title); ?></span><?php echo CHtml::link('delete', array('delete', 'alternative_id' => $A->alternative_id), array('class' => 'delete')); ?><?php echo CHtml::link('edit', array('create', 'alternative_id' => $A->alternative_id), array('class' => 'edit')); ?></li>
             <?php }?>
-        <?php } else { ?>
-            <li><span>No alternatives yet defined.</span></li>
         <?php }?>
     </ul>
 </div>
