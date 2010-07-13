@@ -80,7 +80,7 @@ function plotGraph(anchor, data, title, colors, legend)
             'cursor': 'pointer',
             'background-color': '#eee',
             'height': '88px',
-            'width': '250px',
+            'width': (700 - $('.jqplot-event-canvas').width() - 60) + 'px',
             'top': (position['top'] - 35) + 'px',
             'line-height': '85px',
             'padding-right': '5px',
@@ -92,19 +92,19 @@ function plotGraph(anchor, data, title, colors, legend)
     $('div.jqplot-target').prepend($('<span>Criteria</span>').css({
         'position': 'absolute',
         'top': -15,
-        'left': '32px',
+        'left': '25px',
         'font-size': '14px',
     }));
     $('div.jqplot-target').prepend($('<span>Bad</span>').css({
         'position': 'absolute',
         'top': -15,
-        'left': '314px',
+        'left': (700 - $('.jqplot-event-canvas').width() - 4 ) + 'px',
         'font-size': '14px',
     }));
     $('div.jqplot-target').prepend($('<span>Good</span>').css({
         'position': 'absolute',
         'top': -15,
-        'left': '655px',
+        'right': '12px',
         'font-size': '14px',
     }));
 
