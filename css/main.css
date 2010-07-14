@@ -553,7 +553,7 @@ div.search-form
     height: 25px;
     width: 10px;
 }
-#legend ul li span.favoured
+#legend ul li span.score
 {
     position: absolute;
     right: 10px;
@@ -681,4 +681,38 @@ input.disabled
 .white-background
 {
     background-color: #fff;
+}
+#options
+{
+    float: right;
+    background-color: #dbe3f0;
+    padding-right: 10px;
+    -moz-border-radius: 5px;
+}
+#options:hover
+{
+    background-color: #ffd700;
+}
+#options label
+{
+    float: left;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px 0 10px;
+    cursor: pointer;
+}
+#options input
+{
+    margin-top: 10px;
+}
+#weights{
+    position:absolute;
+    background:#fff;
+    padding: 5px;
+    color:#333;
+    z-index: 1;
+    display:none;
+    opacity: 0.6;
+    -moz-border-radius: 5px;
 }

@@ -7,19 +7,23 @@
 <?php $evalCount = count($Project->evaluation); ?>
 <?php if(count($Alternatives) * count($Criteria) === $evalCount && $evalCount >= 4) { ?>
 <p>Click on various alternatives to see which one would help you reach your goals best.</p>
+<p><em>Note: If you choose to disable the use of fixed weights, all criteria is of equal importance (weight) and the scores are recalculated.</em></p>
 <hr />
 <h2>Graphical analysis: Compare alternatives</h2>
+<form id="options">
+    <label for="display_weighted">Use fixed weights</label>
+    <input type="checkbox" name="display_weighted" id="display_weighted" value="1" checked="checked">
+</form>
 <?php echo Chtml::link('Select all', array('#'), array('class' => 'button margins', 'id' => 'select'));?>
 <?php echo Chtml::link('Deselect all', array('#'), array('class' => 'button margins', 'id' => 'deselect'));?>
 <div id="legend">
     <form action="post" id="seriesPicker">
     <ul>
         <?php for($i=0; $i < count($Alternatives); $i++) { ?>
-        <?php $favoured = $Alternatives[$i]->alternative_id == current(array_keys($max)); ?>
-        <li<?php if($favoured) {?> class="favoured"<?php }?>>
-            <?php if($favoured) {?><span class="favoured">High Score</span><?php }?>
+        <?php $favoured = false ?>
+        <li>
             <span style="background-color: <?php echo $colorPool[$i]; ?>;">&nbsp;</span>
-            <input type="checkbox" name="series<?php echo $i; ?>" id="series<?php echo $i; ?>" <?php if($i < 2){ ?>checked="checked"<?php }?> value="<?php echo CHtml::encode($Alternatives[$i-1]->title); ?>">
+            <input type="checkbox" name="series<?php echo $i; ?>" id="series<?php echo $i; ?>" value="<?php echo CHtml::encode($Alternatives[$i-1]->title); ?>">
             <label for="series<?php echo $i; ?>"><?php echo CHtml::encode($Alternatives[$i]->title); ?></label>
         </li>
         <?php }?>

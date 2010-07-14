@@ -145,37 +145,65 @@ class Project extends CActiveRecord
     /**
      * Build an array of grades by alternatives and criteria
      */
-    public function getEvaluationArray($reverse = false)
+    public function getEvaluationArray($quotient = 0.9, $sortBy = 'total')
     {
         // build the array of evaluations
         $eval = array();
         foreach($this->alternatives as $Alternative)
         {
             $eval[$Alternative->alternative_id] = array(
-                'Obj'           => $Alternative,
-                'Criteria'      => array(),
+                'Obj'                     => $Alternative,
+                'Criteria'                => array(),
+                'totalPercentage'         => null,
+                'weightedTotalPercentage' => null,
             );
 
+            // find criteria by priority
             $criteriaArray = $this->findCriteriaByPriority();
 
-            // reverse array for abacon display
-            if($reverse)
-            {
-                $criteriaArray = array_reverse($criteriaArray);
-            }
-
+            // init score
+            $total = 0;
+            $weightedTotal = 0;
+            $i = 1;
+            // loop through criteria
             foreach($criteriaArray as $Criteria)
             {
+                // save criteria
                 $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['Obj'] = $Criteria;
 
+                // get all evaluations for this model
                 $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' =>$Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
+
+                // evaluation does not exist yet
                 if(false === $Evaluation instanceof Evaluation)
                 {
                     $Evaluation = new Evaluation();
                 }
 
+                // calcualte weight
+                $weight = pow($quotient, $i - 1);
+
+                // calculate the score and total
+                $score = $Evaluation->grade * 10;
+                $total = $total + $Evaluation->grade * 10;
+
+                // calculate weighted score and total
+                $weightedScore = $score * $weight;
+                $weightedTotal = $weightedTotal + $weightedScore;
+
+                // add evaluation
                 $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['Evaluation'] = $Evaluation;
+                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['weight'] = $weight;
+                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['score'] = $score;
+                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['weightedScore'] = $weightedScore;
+
+                // increase counter
+                $i++;
             }
+
+            // addd totals
+            $eval[$Alternative->alternative_id]['total'] = $total;
+            $eval[$Alternative->alternative_id]['weightedTotal'] = (int)$weightedTotal;
         }
 
         return $eval;

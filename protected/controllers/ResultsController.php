@@ -61,41 +61,29 @@ class ResultsController extends Controller
         $Project = $this->loadActiveProject();
 
         // graph data
-        $eval = $Project->getEvaluationArray(true);
-        $rv = array();
+        $eval = $Project->getEvaluationArray();
+        $rv = array('colorPool' => self::$colorPool);
         foreach($eval as $Alternative)
         {
-            $val = array();
+            $scores = array();
+            $weightedScores = array();
+            $weights = array();
             $rv['nrCriteria'] = count($Alternative['Criteria']);
             $rv['legend'][] = CHtml::encode(Common::truncate($Alternative['Obj']->title, 25));
 
-            $i = count($Alternative['Criteria']);
+            $Alternative['Criteria'] = array_reverse($Alternative['Criteria'], true);
             foreach($Alternative['Criteria'] as $Criteria)
             {
-                $val[] = array((int)$Criteria['Evaluation']->grade * 10, CHtml::encode($Criteria['Obj']->title));
-                $i--;
+                $scores[]           = array((int)$Criteria['score'],            CHtml::encode($Criteria['Obj']->title));
+                $weightedScores[]   = array((int)$Criteria['weightedScore'],   CHtml::encode($Criteria['Obj']->title));
+                $weights[CHtml::encode($Criteria['Obj']->title)] = $Criteria['weight'];
             }
 
-            $rv['data'][] = $val;
-        }
-        $rv['colorPool'] = self::$colorPool;
-
-        // calculate scores for each alternative
-        $total = array();
-        $max = array(0);
-        foreach($Project->getEvaluationArray(true) as $A)
-        {
-            $i = 100;
-            $score = 0;
-            foreach($A['Criteria'] as $C)
-            {
-                $score = $score + ( $i * $C['Evaluation']->grade );
-                $i = 0.85 * $i;
-            }
-            if($score > current($max))
-            {
-                $max = array($A['Obj']->alternative_id => $score);
-            }
+            $rv['scores'][] = $scores;
+            $rv['weightedScores'][] = $weightedScores;
+            $rv['weights'][] = $weights;
+            $rv['total'][] = $Alternative['total'];
+            $rv['weightedTotal'][] = $Alternative['weightedTotal'];
         }
 
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.min.js');
@@ -110,7 +98,6 @@ class ResultsController extends Controller
         $this->render('display',array(
             'rv'      => $rv,
             'Project' => $Project,
-            'max'     => $max,
             'colorPool' => self::$colorPool,
         ));
     }

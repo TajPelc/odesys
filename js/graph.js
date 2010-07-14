@@ -22,7 +22,7 @@ function plotGraph(anchor, data, title, colors, legend)
         seriesArray.push(Series);
     }
 
-    graphHeight = ( 80 * chartData.data[0].length ) + 62;
+    graphHeight = ( 80 * chartData.nrCriteria ) + 62;
 
     $.jqplot(anchor, data, {
         height: graphHeight,
@@ -109,7 +109,7 @@ function plotGraph(anchor, data, title, colors, legend)
     }));
 
     /**
-     * Tooltip on mouse over
+     * Tooltip on mouse over for criteria values
      */
     $('div.jqplot-yaxis-tick').hover(function(e){
         // get positions
@@ -155,40 +155,97 @@ function plotGraph(anchor, data, title, colors, legend)
         $('#graphtooltip').fadeOut('fast').remove();
     });
 
+    /**
+     * Tooltip for weights
+     */
+    if($('#display_weighted').attr('checked'))
+    {
+        /* CONFIG */
+        xOffset = 10;
+        yOffset = 110;
+        /* END CONFIG */
+        $("div.jqplot-yaxis-tick").hover(function(e){
+            $("body").append("<p id='weights'>Weight: "+ chartData['weights'][0][$(this).html()].toFixed(2)*100 +"%</p>");
+            $("#weights")
+                .css("top",(e.pageY - xOffset) + "px")
+                .css("left",(e.pageX - yOffset) + "px")
+                .fadeIn('fast');
+        },
+        function(){
+            $("#weights").fadeOut('fast').remove();
+        });
+        $("div.jqplot-yaxis-tick").mousemove(function(e){
+            $("#weights")
+                .css("top",(e.pageY - xOffset) + "px")
+                .css("left",(e.pageX - yOffset) + "px");
+        });
+    }
+
 }
 
 /**
  * Fetches data, handles checkboxes and plots the graph
  */
-function buildGraph()
+function buildGraph(force)
 {
+    // build weighted graph
+    if( $('#display_weighted').attr('checked') )
+    {
+        scores = 'weightedScores';
+        total = 'weightedTotal';
+    }
+    else
+    {
+        scores = 'scores';
+        total = 'total';
+    }
+
     // plotting variables
     data    = new Array();
     dataLegend  = new Array();
     colors  = new Array();
 
-    // get all checked boxes
-    checked = $('input[type=checkbox]:checked');
+    // sort the list item by scores
+    var mylist = $('#seriesPicker ul');
+    var listitems = mylist.children('li').get();
+    listitems.sort(function(a, b) {
+       nameA = $(a).find('label').attr('for');
+       nameB = $(b).find('label').attr('for');
+       nrA = nameA.substr(nameA.length-1,nameA.length);
+       nrB = nameB.substr(nameB.length-1,nameB.length);
+       compA = chartData[total][nrA];
+       compB = chartData[total][nrB];
 
-    // disable or enable checkboxes
-    checked.each(function(){
-        if(checked.length == 0){
+       return (compA > compB) ? -1 : (compA < compB) ? 1 : 0;
+    })
+    $.each(listitems, function(idx, itm) {
+        mylist.append(itm);
+        name = $(itm).find('label').attr('for');
+        nr = name.substr(name.length-1,name.length);
+        $(itm).find('span.score').remove();
+        $(itm).append('<span class="score">' + chartData[total][nr] + '</span>');
+    });
+
+    // select checkboxes?
+    if($('#seriesPicker input[type=checkbox]:checked').length == 0)
+    {
+        if(force == null)
+        {
             $('#chartdiv').empty();
             return;
         }
-        else{
-            $(this).removeAttr('disabled');
-        }
-    });
-
+        $('#seriesPicker ul li:lt(2)').each(function(){
+            $(this).find('input[type=checkbox]').attr('checked', 'checked');
+        });
+    }
     // build data for graph plotting
-    checked.each(function(){
+    $('#seriesPicker input[type=checkbox]:checked').each(function(){
         // get the series number
         name = $(this).attr('name');
         seriesNr = name.substr(name.length-1,name.length);
 
         // add data to this array
-        data.push(chartData['data'][seriesNr]);
+        data.push(chartData[scores][seriesNr]);
         colors.push(chartData['colorPool'][seriesNr]);
         dataLegend.push(chartData['legend'][seriesNr]);
     });
@@ -204,7 +261,7 @@ function buildGraph()
  */
 $(document).ready(function(){
     // create graph on page load
-    buildGraph();
+    buildGraph(true);
 
     // change the submit buttons
     $(function() {
@@ -213,7 +270,7 @@ $(document).ready(function(){
 
     // select all
     $('#select').click(function(event){
-        $('input[type=checkbox]').attr('checked', 'checked');
+        $('#seriesPicker input[type=checkbox]').attr('checked', 'checked');
         buildGraph();
         $(this).removeClass('ui-state-focus');
         event.preventDefault();
@@ -221,7 +278,7 @@ $(document).ready(function(){
 
     // deselect all
     $('#deselect').click(function(event){
-        $('input[type=checkbox]').removeAttr('checked');
+        $('#seriesPicker input[type=checkbox]').removeAttr('checked');
         $('#chartdiv').empty();
         $(this).removeClass('ui-state-focus');
         event.preventDefault();
