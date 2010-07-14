@@ -89,8 +89,8 @@ class ResultsController extends Controller
             $score = 0;
             foreach($A['Criteria'] as $C)
             {
-                $score = $score + $i * $C['Evaluation']->grade;
-                $i = (0.9 * $i)^2;
+                $score = $score + ( $i * $C['Evaluation']->grade );
+                $i = 0.85 * $i;
             }
             if($score > current($max))
             {

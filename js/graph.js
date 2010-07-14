@@ -22,7 +22,7 @@ function plotGraph(anchor, data, title, colors, legend)
         seriesArray.push(Series);
     }
 
-    graphHeight = 80 * chartData.legend.length;
+    graphHeight = ( 80 * chartData.data[0].length ) + 62;
 
     $.jqplot(anchor, data, {
         height: graphHeight,
@@ -36,9 +36,9 @@ function plotGraph(anchor, data, title, colors, legend)
         },
 
         grid:{
-            background:'#F5F9FF',
-            gridLineColor:'#ccc',
-            borderColor:'#ccc',
+            background:'#fff',
+            gridLineColor:'#dbe3f0',
+            borderColor:'#dbe3f0',
             shadow: false,
         },
 
@@ -78,11 +78,11 @@ function plotGraph(anchor, data, title, colors, legend)
         $(this).css({
             'z-index': '1',
             'cursor': 'pointer',
-            'background-color': '#eee',
-            'height': '88px',
+            'background-color': '#dbe3f0',
+            'height': '79px',
             'width': (700 - $('.jqplot-event-canvas').width() - 60) + 'px',
-            'top': (position['top'] - 35) + 'px',
-            'line-height': '85px',
+            'top': (position['top'] - 30) + 'px',
+            'line-height': '80px',
             'padding-right': '5px',
             'overflow': 'hidden',
         });
@@ -95,13 +95,13 @@ function plotGraph(anchor, data, title, colors, legend)
         'left': '25px',
         'font-size': '14px',
     }));
-    $('div.jqplot-target').prepend($('<span>Bad</span>').css({
+    $('div.jqplot-target').prepend($('<span>Worst</span>').css({
         'position': 'absolute',
         'top': -15,
         'left': (700 - $('.jqplot-event-canvas').width() - 4 ) + 'px',
         'font-size': '14px',
     }));
-    $('div.jqplot-target').prepend($('<span>Good</span>').css({
+    $('div.jqplot-target').prepend($('<span>Best</span>').css({
         'position': 'absolute',
         'top': -15,
         'right': '12px',
@@ -132,17 +132,17 @@ function plotGraph(anchor, data, title, colors, legend)
         // append the tooltip
         $('body').append('<div id="graphtooltip" class="white-background"><span>' + criteriaWorst[title] + '</span><span class="best">' + criteriaBest[title] + '</span></div>');
 
-        // calculate padding
-        padding = parseInt((99 - $('#graphtooltip').height()) / 2);
+        // calculate margin
+        margin = parseInt((80 - $('#graphtooltip').height()) / 2);
 
         // style the tooltip
         $('#graphtooltip')
             .css('width', width)
-            .css('height', 88 + 'px')
+            .css('height', 79 + 'px')
             .css('top', (graphPosition['top'] + tickPosition['top'] + 40) + 'px')
             .css('left', (graphPosition['left'] + canvasPosition['left']) + 'px')
             .fadeIn('fast');
-        $('#graphtooltip span').css({'width': leftWidth, 'padding-top': padding + 'px', 'padding-bottom': padding + 'px'});
+        $('#graphtooltip span').css({'width': leftWidth, 'margin-top': margin + 'px'});
         $('#graphtooltip span.right').css('width', rightWidth);
 
         if($.browser.msie)
