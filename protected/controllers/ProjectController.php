@@ -30,11 +30,8 @@ class ProjectController extends Controller
     public function accessRules()
     {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'users'=>array('@'),
-            ),
-            array('deny',  // deny all users
-                'users'=>array('*'),
+            array('allow',
+                'users'     => array('*'),
             ),
         );
     }
@@ -115,6 +112,13 @@ class ProjectController extends Controller
      */
     public function actionIndex()
     {
+        // redirect unauthenticated users
+        if(Yii::app()->user->isGuest)
+        {
+            $this->redirect('site/index');
+        }
+
+        // add script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.color.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project.js');
 
@@ -125,6 +129,24 @@ class ProjectController extends Controller
         ));
     }
 
+    /**
+     * Set a project as active by the unique ID given
+     */
+    public function actionSet()
+    {
+        if(isset($_GET['i']))
+        {
+            $Project = new Project();
+            $Project->unsetActiveProject();
+            $Project = $Project->findByAttributes(array('url' => $_GET['i']));
+            if($Project instanceof Project && $Project->rel_user_id == User::ANONYMOUS)
+            {
+                $Project->setAsActiveProject();
+            }
+        }
+
+        $this->redirect(array('results/display'));
+    }
     /**
      * Generate the project menu for ajax
      */

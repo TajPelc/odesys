@@ -32,10 +32,7 @@ class CriteriaController extends Controller
     public function accessRules()
     {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'users'=>array('@'),
-            ),
-            array('deny',  // deny all users
+            array('allow',
                 'users'=>array('*'),
             ),
         );

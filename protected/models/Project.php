@@ -62,8 +62,16 @@ class Project extends CActiveRecord
         {
             if( $this->isNewRecord )
             {
+                // set created
                 $this->created = date('Y-m-d H:i:s', time());
-                $this->rel_user_id = Yii::app()->user->id;
+                $this->rel_user_id = (Yii::app()->user->isGuest ? User::ANONYMOUS : Yii::app()->user->id);
+
+                // set url until until it's unique
+                $this->url = Common::randomString(10);
+                while(!$this->isUniqueUrl($this->url))
+                {
+                    $this->url = Common::randomString(10);
+                }
             }
             return true;
         }
@@ -249,5 +257,18 @@ class Project extends CActiveRecord
         return new CActiveDataProvider('Project', array(
           'criteria'=>$criteria,
         ));
+    }
+
+    /**
+     * Checks if url is unique
+     * @return boolean
+     */
+    public function isUniqueUrl($url)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'url=:url';
+        $criteria->params = array(':url' => $url);
+
+        return !self::model()->exists($criteria);
     }
 }

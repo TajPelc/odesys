@@ -43,10 +43,7 @@ class ResultsController extends Controller
     public function accessRules()
     {
         return array(
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'users'=>array('@'),
-            ),
-            array('deny',  // deny all users
+            array('allow',
                 'users'=>array('*'),
             ),
         );
@@ -96,8 +93,8 @@ class ResultsController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/js/jqplot/jquery.jqplot.css');
 
         $this->render('display',array(
-            'rv'      => $rv,
-            'Project' => $Project,
+            'rv'        => $rv,
+            'Project'   => $Project,
             'colorPool' => self::$colorPool,
         ));
     }

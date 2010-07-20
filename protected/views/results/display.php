@@ -2,6 +2,9 @@
 <?php $Alternatives = $Project->alternatives; ?>
 <?php $Criteria = $Project->criteria; ?>
 <h1>Results</h1>
+<?php if(Yii::app()->user->isGuest){ ?>
+<p>Use this <?php echo Chtml::link('this link', array('project/set', 'i' => $Project->url)) ?> to reactivate your project or give access to it to other people. Warning! Anyone with this URL may change your project data!</p>
+<?php }?>
 <p>This is the main step of the process to solve your decision problem.</p>
 <p>Below is a graphical representation of the evaluation of alternatives by the defined criteria. Points positioned to the right indicate a better score, while points positioned to the left indicate a lower score. From top to bottom of the graph, criteria priority is descending. The most important criteria for your decision problem are listed higher.</p>
 <?php $evalCount = count($Project->evaluation); ?>
@@ -36,7 +39,7 @@ var criteriaWorst = <?php echo json_encode(CHtml::listData($Criteria, 'title', '
 var criteriaBest =  <?php echo json_encode(CHtml::listData($Criteria, 'title', 'best')); ?>;
 </script>
 <div id="chartdiv"></div>
-<p><em>Note: High score is calculated by an ODESYS algorithm using fixed weights and should not be considered as a definitive answer to your decision problem. It is a piece of additional information for you to take into consideration when deciding.</em></p>
+<p><em>Note: Scores for alternatives are calculated by an ODESYS algorithm and alternatives are sorted by their score from best to worst. Use this as a piece of aditional information when comparing alternatives.</em></p>
 <hr />
 <h2>Project details</h2>
 <dl>
@@ -44,17 +47,24 @@ var criteriaBest =  <?php echo json_encode(CHtml::listData($Criteria, 'title', '
     <dd><?php echo nl2br(CHtml::encode($Project->description));?></dd>
 </dl>
 <h3>Criteria</h3>
-<ul>
+<ol>
     <?php foreach($Criteria as $C) { ?>
         <li>
             <dl>
                 <dt><?php echo CHtml::encode($C->title)?></dt>
-                <dd><?php echo nl2br(CHtml::encode($C->description)) ?></dd>
+                <dd>
+                    <ul>
+                        <li><em>Worst:</em> <?php echo CHtml::encode($C->worst)?></li>
+                        <li><em>Best:</em> <?php echo CHtml::encode($C->best)?></li>
+                    </ul>
+                    <?php if((bool)$C->description){ ?><p><em>Description:</em> <?php echo nl2br(CHtml::encode($C->description)) ?></p><?php }?>
+                </dd>
             </dl>
         </li>
     <?php }?>
-</ul>
+</ol>
 <h3>Alternatives</h3>
+<p><em>Note: in order as entered</em></p>
 <ul>
     <?php foreach($Alternatives as $A) { ?>
         <li>

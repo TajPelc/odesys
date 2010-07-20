@@ -30,7 +30,8 @@
         <?php $this->widget('zii.widgets.CMenu',array(
             'items'=>array(
                 array('label' => 'Home',                                'url'=>array('/site/index')),
-                array('label' => 'My Projects',                         'url'=>array('/project/index'), 'visible' => !Yii::app()->user->isGuest),
+                array('label' => 'Create a new project',                'url'=>array('/project/create', 'createNew' => 1)),
+                array('label' => 'My projects',                         'url'=>array('/project/index'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => 'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => 'Login',                               'url'=>array('/site/login'), 'visible' => Yii::app()->user->isGuest),
             ),

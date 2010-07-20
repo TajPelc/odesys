@@ -97,6 +97,10 @@ p
 {
     display: inline;
 }
+#mainmenu ul li:last-child
+{
+    float: right;
+}
 
 #mainmenu ul li a
 {
