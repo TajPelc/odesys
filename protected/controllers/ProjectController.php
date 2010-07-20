@@ -115,7 +115,7 @@ class ProjectController extends Controller
         // redirect unauthenticated users
         if(Yii::app()->user->isGuest)
         {
-            $this->redirect('site/index');
+            $this->redirect(array('site/index'));
         }
 
         // add script files
@@ -142,10 +142,10 @@ class ProjectController extends Controller
             if($Project instanceof Project && $Project->rel_user_id == User::ANONYMOUS)
             {
                 $Project->setAsActiveProject();
+                $this->redirect(array('results/display'));
             }
         }
-
-        $this->redirect(array('results/display'));
+        $this->redirect(array('site/index'));
     }
     /**
      * Generate the project menu for ajax
