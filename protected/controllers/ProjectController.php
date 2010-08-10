@@ -154,6 +154,7 @@ class ProjectController extends Controller
     {
         if(Ajax::isAjax())
         {
+            $this->loadActiveProject();
             $PM = new ProjectMenu;
             $rv['menu'] = $PM->run();
             Ajax::respondOk($rv);

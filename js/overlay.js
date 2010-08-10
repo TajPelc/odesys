@@ -110,6 +110,7 @@ function createDialog(url, anchor) {
         url = location.href;
     }
 
+    startLoading(true);
     $.ajax({
         url: url,
         data: {requesting: 'form'},
@@ -117,7 +118,7 @@ function createDialog(url, anchor) {
 
             // create form element from the returned html
             form = $('<div></div>').attr('class', 'form').attr('title', title).attr('id', 'dialog-form').html(data['form']);
-
+            stopLoading();
             // add dialog functionality to the form element
             form.dialog({
                 autoOpen: false,
@@ -139,12 +140,14 @@ function createDialog(url, anchor) {
                         value: 'formPost',
                     }));
 
+                    startLoading();
                     // post the form
                     $.ajax({
                         type: 'POST',
                         url: url,
                         data: $(anchor + '-overlay-form').serialize(), // serialize values from the form
                         success: function(data) {
+                        stopLoading();
                         // errors
                         if(data['status'] == false)
                         {

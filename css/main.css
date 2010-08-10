@@ -589,13 +589,20 @@ div.search-form
     padding: 0 20px 0 20px;
     list-style: none;
 }
+#content ul.projects p
+{
+    cursor: pointer;
+    font-size: 11px;
+    padding: 10px 0 0 5px;
+}
 #content ul.projects li
 {
+    cursor: pointer;
     border-right: 2px solid;
     border-left: 2px solid;
     border-bottom: 2px solid;
     border-color: #596171;
-    background-color: #efefef;
+    background-color: #dbe3f0;
     margin-bottom: 5px;
     min-height: 26px;
 }
@@ -620,12 +627,13 @@ div.search-form
 }
 #content ul.projects ul
 {
+    cursor: pointer;
     list-style-type: lower-alpha;
     padding: 5px 0 5px 30px;
 }
 #content ul.projects ul li
 {
-    cursor: default;
+    cursor: pointer;
     margin: 0;
     font-size: 11px;
     min-height: 5px;
@@ -710,7 +718,8 @@ input.disabled
 {
     margin-top: 10px;
 }
-#weights{
+#weights
+{
     position:absolute;
     background:#fff;
     padding: 5px;
@@ -719,4 +728,28 @@ input.disabled
     display:none;
     opacity: 0.6;
     -moz-border-radius: 5px;
+}
+
+
+.overlay_bg
+{
+    background: #000 none repeat scroll 0 0;
+    display: none;
+    height: 100%;
+    left: 0;
+    filter: alpha(opacity=10);
+    opacity: 0.2;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+    display: none;
+    position: fixed;
+}
+.loadingImage
+{
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    display: none;
+    z-index: 2001;
 }

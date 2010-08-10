@@ -13,15 +13,15 @@
             <?php } else { ?>
                 <?php echo CHtml::link(CHtml::encode($P->title), array('view', 'project_id' => $P->project_id), array('title' => CHtml::encode($P->title))); ?>
             <?php }?>
-            <ul>
-                <?php if(empty($Alternatives)){ ?>
-                    <li>No defined alternatives</li>
-                <?php } else { ?>
+            <?php if(empty($Alternatives)){ ?>
+                <p>No alternatives defined</p>
+            <?php } else { ?>
+                <ul>
                     <?php foreach($Alternatives as $A) {?>
                         <li><?php echo CHtml::encode($A->title);?></li>
                     <?php }?>
-                <?php }?>
-            </ul>
+                </ul>
+            <?php }?>
         </li>
     <?php }?>
 </ul>
