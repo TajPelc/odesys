@@ -139,7 +139,7 @@ class ProjectController extends Controller
             $Project = new Project();
             $Project->unsetActiveProject();
             $Project = $Project->findByAttributes(array('url' => $_GET['i']));
-            if($Project instanceof Project && $Project->rel_user_id == User::ANONYMOUS)
+            if($Project instanceof Project /*&& $Project->rel_user_id == User::ANONYMOUS*/) // @TODO SET PUBLIC/PRIVATE FLAG
             {
                 $Project->setAsActiveProject();
                 $this->redirect(array('results/display'));

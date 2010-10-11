@@ -41,6 +41,8 @@ p
     background: white;
     -moz-border-radius-topleft: 15px;
     -moz-border-radius-topright: 15px;
+    -webkit-border-radius-topleft: 15px;
+    -webkit-border-radius-topright: 15px;
 }
 
 #header
@@ -55,6 +57,8 @@ p
     background-color: #596171;
     -moz-border-radius-topleft: 15px;
     -moz-border-radius-topright: 15px;
+    -webkit-border-radius-topleft: 15px;
+    -webkit-border-radius-topright: 15px;
 }
 #content
 {
@@ -112,6 +116,8 @@ p
     padding:5px 8px;
     -moz-border-radius-topleft: 8px;
     -moz-border-radius-topright: 8px;
+    -webkit-border-radius-topleft: 8px;
+    -webkit-border-radius-topright: 8px;
 }
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
@@ -268,6 +274,7 @@ div.search-form
     position: relative;
     background-color: #dbe3f0;
     -moz-border-radius:5px;
+    -webkit-border-radius: 5px;
 }
 #sortable li.movable
 {
@@ -296,11 +303,14 @@ div.search-form
     line-height: 34px;
     -moz-border-radius-topright: 3px;
     -moz-border-radius-bottomright: 3px;
+    -webkit-border-radius-topright: 3px;
+    -webkit-border-radius-bottomright: 3px;
     border-left: 1px solid #ffd700;
 }
 #sortable li a:last-child
 {
     -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
     border: 0;
 }
 #sortable li a:hover
@@ -320,6 +330,7 @@ div.search-form
     padding: 10px;
     width: 170px;
     -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
 }
 #project span
 {
@@ -344,6 +355,7 @@ div.search-form
     text-align: center;
     border: 1px solid #dbe3f0;
     -moz-border-radius:5px;
+    -webkit-border-radius: 5px;
 }
 #project div h1
 {
@@ -373,6 +385,7 @@ div.search-form
     text-decoration: none;
     background: url('../images/sprite.png') no-repeat 0px 0px;
     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 #project a.close:hover
 {
@@ -400,21 +413,29 @@ div.search-form
 {
     -moz-border-radius-bottomleft: 3px;
     -moz-border-radius-bottomright: 3px;
+    -webkit-border-radius-bottomleft: 3px;
+    -webkit-border-radius-bottomright: 3px;
 }
 #project ul li:last-child a:hover
 {
     -moz-border-radius-bottomleft: 3px;
     -moz-border-radius-bottomright: 3px;
+    -webkit-border-radius-bottomleft: 3px;
+    -webkit-border-radius-bottomright: 3px;
 }
 #project ul li:first-child a, #project ul li:first-child span
 {
     -moz-border-radius-topleft: 3px;
     -moz-border-radius-topright: 3px;
+    -webkit-border-radius-bottomleft: 3px;
+    -webkit-border-radius-bottomright: 3px;
 }
 #project ul li:first-child a:hover
 {
     -moz-border-radius-topleft: 3px;
     -moz-border-radius-topright: 3px;
+    -webkit-border-radius-bottomleft: 3px;
+    -webkit-border-radius-bottomright: 3px;
 }
 #project ul li a, #project ul li span
 {
@@ -455,6 +476,7 @@ div.search-form
     padding: 5px 10px 0 10px;
     background-color: #596171;
     -moz-border-radius:7px;
+    -webkit-border-radius: 7px;
 }
 #evaluation div.first
 {
@@ -489,6 +511,7 @@ div.search-form
     padding: 5px 15px 10px 15px;
     background-color: #dbe3f0;
     -moz-border-radius:5px;
+    -webkit-border-radius: 5px;
 }
 #evaluation ul li div.slider div
 {
@@ -700,6 +723,7 @@ input.disabled
     background-color: #dbe3f0;
     padding-right: 10px;
     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 #options:hover
 {
@@ -728,6 +752,7 @@ input.disabled
     display:none;
     opacity: 0.6;
     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 
 
