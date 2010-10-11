@@ -48,7 +48,7 @@ class Controller extends CController
     protected function loadActiveProject($redirect = true)
     {
         // project id given
-        if($_GET['project_id'])
+        if(isset($_GET['project_id']))
         {
             $Project = Project::model()->findByPk($_GET['project_id']);
 
