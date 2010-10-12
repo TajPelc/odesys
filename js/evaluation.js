@@ -10,7 +10,7 @@ $(document).ready(function(){
             $(this).parent().parent().append($('<input type="hidden"></input>').attr('value', val).attr('name', name));
             $(this).parent().parent().append($('<div></div>').slider({
                 value: val,
-                min: 1,
+                min: 0,
                 max:10,
                 step: 1,
                 range: "min",
