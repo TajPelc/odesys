@@ -39,32 +39,38 @@ p
     margin-top: 5px;
     margin-bottom: 5px;
     background: white;
-    -moz-border-radius-topleft: 15px;
-    -moz-border-radius-topright: 15px;
-    -webkit-border-radius-topleft: 15px;
-    -webkit-border-radius-topright: 15px;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
 }
 
 #header
 {
     margin: 0;
     padding: 0;
-    font-size: 18px;
+    font-size: 20px;
     font-family: monospace;
     text-shadow: #000 -2px 1px 5px;
     color: #efefef;
     cursor: default;
     background-color: #596171;
+    -webkit-border-top-left-radius: 15px;
+    -webkit-border-top-right-radius: 15px;
     -moz-border-radius-topleft: 15px;
     -moz-border-radius-topright: 15px;
-    -webkit-border-radius-topleft: 15px;
-    -webkit-border-radius-topright: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+#logo
+{
+    padding: 10px 15px 20px 15px;
 }
 #content
 {
     float: left;
     width: 700px;
     padding: 20px;
+    min-height: 300px;
 }
 
 #sidebar
@@ -81,11 +87,6 @@ p
     border-top: 1px solid #596171;
 }
 
-#logo
-{
-    padding: 10px 20px;
-}
-
 #mainmenu
 {
     background-color: #596171;
@@ -100,6 +101,7 @@ p
 #mainmenu ul li
 {
     display: inline;
+    margin-right: 5px;
 }
 #mainmenu ul li:last-child
 {
@@ -108,12 +110,14 @@ p
 
 #mainmenu ul li a
 {
-    color:#ffffff;
-    background-color:transparent;
-    font-size:12px;
+    color:#fff;
+    background-color: #505866;
+    font-size:11px;
     font-weight:bold;
     text-decoration:none;
-    padding:5px 8px;
+    padding:5px 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
     -moz-border-radius-topleft: 8px;
     -moz-border-radius-topright: 8px;
     -webkit-border-radius-topleft: 8px;
@@ -127,7 +131,6 @@ p
 }
 #mainmenu ul li a:hover
 {
-    padding-bottom: 3px;
 }
 #mainmenu ul li.active a:hover
 {
@@ -273,6 +276,7 @@ div.search-form
     height: 34px;
     position: relative;
     background-color: #dbe3f0;
+    border-radius: 5px;
     -moz-border-radius:5px;
     -webkit-border-radius: 5px;
 }
@@ -301,6 +305,8 @@ div.search-form
     width: 60px;
     text-align: center;
     line-height: 34px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
     -moz-border-radius-topright: 3px;
     -moz-border-radius-bottomright: 3px;
     -webkit-border-radius-topright: 3px;
@@ -309,6 +315,7 @@ div.search-form
 }
 #sortable li a:last-child
 {
+    border-radius: 0px;
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
     border: 0;
@@ -329,47 +336,27 @@ div.search-form
     float: left;
     padding: 10px;
     width: 170px;
+    border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
 }
-#project span
+#project h1
 {
+    padding: 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid white;
     display: block;
     color: #fff;
-    font-size: 11px;
+    font-style: italic;
+    font-size: 12px;
     font-weight: bold;
     padding-bottom: 7px;
-}
-#project span.title:last-child
-{
-    font-size: 12px;
-}
-#project span:hover
-{
-    cursor: default;
 }
 #project div
 {
     color: #fff;
     min-height: 130px;
     text-align: center;
-    border: 1px solid #dbe3f0;
-    -moz-border-radius:5px;
-    -webkit-border-radius: 5px;
-}
-#project div h1
-{
-    margin: 20px 0 20px 0;
-    color: #fff;
-}
-#project div p
-{
-    padding: 0 10px 0 10px;
-    margin: 0;
-}
-#project div.dotted
-{
-    border: 1px dotted #dbe3f0;
 }
 #project a.close
 {
@@ -384,6 +371,7 @@ div.search-form
     line-height: 13px;
     text-decoration: none;
     background: url('../images/sprite.png') no-repeat 0px 0px;
+    border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
@@ -405,56 +393,27 @@ div.search-form
 {
     width: 168px;
 }
-#project ul li:last-child
-{
-    border: none;
-}
-#project ul li:last-child a, #project ul li:last-child span
-{
-    -moz-border-radius-bottomleft: 3px;
-    -moz-border-radius-bottomright: 3px;
-    -webkit-border-radius-bottomleft: 3px;
-    -webkit-border-radius-bottomright: 3px;
-}
-#project ul li:last-child a:hover
-{
-    -moz-border-radius-bottomleft: 3px;
-    -moz-border-radius-bottomright: 3px;
-    -webkit-border-radius-bottomleft: 3px;
-    -webkit-border-radius-bottomright: 3px;
-}
-#project ul li:first-child a, #project ul li:first-child span
-{
-    -moz-border-radius-topleft: 3px;
-    -moz-border-radius-topright: 3px;
-    -webkit-border-radius-bottomleft: 3px;
-    -webkit-border-radius-bottomright: 3px;
-}
-#project ul li:first-child a:hover
-{
-    -moz-border-radius-topleft: 3px;
-    -moz-border-radius-topright: 3px;
-    -webkit-border-radius-bottomleft: 3px;
-    -webkit-border-radius-bottomright: 3px;
-}
 #project ul li a, #project ul li span
 {
     font-size: 13px;
     font-weight: normal;
-    margin: 0;
+    margin: 0 0 4px 0;
     border: 0;
     text-align: left;
     display: block;
-    background-color: #596171;
-    color: white;
+    background-color: #505866;
+    color: #fff;
     text-decoration: none;
     padding: 5px;
     padding-left: 10px;
     width: 153px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 #project ul li span
 {
-    color: #596171;
+    color: #505866;
     background-color: #ffd700;
 }
 #project ul li a:hover
@@ -475,6 +434,7 @@ div.search-form
     margin: 0 20px 20px 0;
     padding: 5px 10px 0 10px;
     background-color: #596171;
+    border-radius: 7px;
     -moz-border-radius:7px;
     -webkit-border-radius: 7px;
 }
@@ -510,6 +470,7 @@ div.search-form
     margin: 5px;
     padding: 5px 15px 10px 15px;
     background-color: #dbe3f0;
+    border-radius: 5px;
     -moz-border-radius:5px;
     -webkit-border-radius: 5px;
 }
@@ -722,6 +683,7 @@ input.disabled
     float: right;
     background-color: #dbe3f0;
     padding-right: 10px;
+    border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
@@ -751,6 +713,7 @@ input.disabled
     z-index: 1;
     display:none;
     opacity: 0.6;
+    border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
