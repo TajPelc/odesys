@@ -50,7 +50,7 @@ class AlternativeController extends Controller
         // ajax
         if(Ajax::isAjax())
         {
-            if($_POST['requesting'] == 'formPost')
+            if($this->post('requesting') == 'formPost')
             {
                 if($this->_saveAlternative($Alternative, $Project))
                 {
@@ -62,7 +62,7 @@ class AlternativeController extends Controller
                     Ajax::respondError($rv);
                 }
             }
-            elseif($_GET['requesting'] == 'form')
+            elseif($this->get('requesting') == 'form')
             {
                 $rv['form'] = $this->renderPartial('_form', array('model' => $Alternative, 'Project' => $Project), true);
                 Ajax::respondOk($rv);

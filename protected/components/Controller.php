@@ -41,6 +41,28 @@ class Controller extends CController
     }
 
     /**
+     * Check if post parameter is set and return the value or false
+     *
+     * @param  string $key
+     * @return mixed
+     */
+    protected function post($key)
+    {
+        return isset($_POST[$key]) ? $_POST[$key] : false;
+    }
+    
+    /**
+     * Check if post parameter is set and return the value or false
+     *
+     * @param  string $key
+     * @return mixed
+     */
+    protected function get($key)
+    {
+        return isset($_GET[$key]) ? $_GET[$key] : false;
+    }
+    
+    /**
      * Try to load the project from session or redirect to projects page
      *
      * @return CActiveRecord
