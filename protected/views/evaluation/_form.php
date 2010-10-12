@@ -12,7 +12,7 @@
                                 <p>
                                     <span><?php echo CHtml::encode($Criteria['Obj']->worst); ?></span>
                                     <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
-                                        <?php for($j = 1; $j <= 10; $j++){?>
+                                        <?php for($j = 0; $j <= 10; $j++){?>
                                             <option value="<?php echo $j;?>"<?php if($j == $Criteria['Evaluation']->grade){?> selected="selected"<?php }?>><?php echo $j;?></option>
                                         <?php }?>
                                     </select>
