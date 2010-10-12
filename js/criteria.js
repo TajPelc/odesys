@@ -15,7 +15,7 @@ $(document).ready(function(){
     handleSortableList();
 
     // rearrange order on sort
-    $('#sortable').bind( "sortupdate", function(event, ui) {
+    $('#sortable').live( "sortupdate", function(event, ui) {
         $(this).sortable('disable');
         animateByColorChange(ui.item, 200,200, '$("#sortable").sortable("enable");');
         $.get(location.href, {
