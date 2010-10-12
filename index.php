@@ -1,8 +1,15 @@
 <?php
-function dump($data = null)
+function dump($data = null, $var_dump = true, $escape = false)
 {
     echo '<pre style="display: block; border: 2px solid gray; background-color:#fff; padding: 0px 10px 0px 10px; margin: 10px;">';
-    var_dump($data);
+    if($var_dump)
+    {
+        var_dump($escape ? htmlspecialchars($data) : $data);
+    }
+    else
+    {
+        print_r($escape ? htmlspecialchars($data) : $data);
+    }
     echo '</pre>';
 }
 
