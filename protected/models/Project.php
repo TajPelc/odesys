@@ -119,6 +119,15 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Is a project active?
+     */
+    public function isProjectActive()
+    {
+        $session = Yii::app()->session;
+        return isset($session['project_id']);
+    }
+
+    /**
      * Make this project active
      */
     public function setAsActiveProject()

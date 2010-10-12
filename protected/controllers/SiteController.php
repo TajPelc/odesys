@@ -2,6 +2,9 @@
 
 class SiteController extends Controller
 {
+    // use the one column layout
+    public $layout='application.views.layouts.column1';
+
     /**
      * Declares class-based actions.
      */
