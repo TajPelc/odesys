@@ -52,7 +52,7 @@ class CriteriaController extends Controller
         // change the order of criteria
         if(Ajax::isAjax())
         {
-            if($_POST['requesting'] == 'formPost')
+            if(isset($_POST['requesting']) && $_POST['requesting'] == 'formPost')
             {
                 if($this->_saveCriteria($Criteria, $Project))
                 {
@@ -64,7 +64,7 @@ class CriteriaController extends Controller
                     Ajax::respondError($rv);
                 }
             }
-            elseif($_GET['requesting'] == 'form')
+            elseif(isset($_GET['requesting']) && $_GET['requesting'] == 'form')
             {
                 $rv['form'] = $this->renderPartial('_form', array('model' => $Criteria, 'Project' => $Project), true);
                 Ajax::respondOk($rv);
