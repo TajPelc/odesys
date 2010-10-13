@@ -12,13 +12,13 @@
     <div class="row">
         <?php echo $form->labelEx($model,'title'); ?>
         <?php echo $form->textField($model,'title',array('size'=>60,'maxlength'=>200, 'class' => 'ui-corner-all')); ?>
-        <?php echo $form->error($model,'title'); ?>
+        <?php //echo $form->error($model,'title'); ?>
     </div>
 
     <div class="row">
         <?php echo $form->labelEx($model,'description'); ?>
         <?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50, 'class' => 'ui-corner-all')); ?>
-        <?php echo $form->error($model,'description'); ?>
+        <?php //echo $form->error($model,'description'); ?>
     </div>
 
     <div class="row buttons">
