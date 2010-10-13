@@ -122,7 +122,6 @@ function createDialog(url, anchor) {
             // add dialog functionality to the form element
             form.dialog({
                 autoOpen: false,
-                height: 530,
                 width: 750,
                 modal: true,
                 resizable: false,
