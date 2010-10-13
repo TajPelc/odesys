@@ -88,7 +88,7 @@ div.form .note
 
 div.form span.required
 {
-    color: red;
+    color: #E90000;
 }
 
 div.form div.error label,
@@ -105,8 +105,10 @@ div.form input.error,
 div.form textarea.error,
 div.form select.error
 {
-    color: #fff;
-    background-color: #914d4d;
+    color: #333333;
+    background-color: #FAFFE2;
+    border: 1px solid #E90000;
+    -moz-border-radius:4px 4px 4px 4px;
 }
 
 div.form div.success input,
