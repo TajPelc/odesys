@@ -63,44 +63,22 @@ class Controller extends CController
     }
 
     /**
-     * Try to load the project from session or redirect to projects page
+     * Try to load the project from session or redirect to index page
      *
      * @return CActiveRecord
      */
     protected function loadActiveProject($redirect = true)
     {
-        // project id given
-        if(isset($_GET['project_id']))
+        // get active project
+        if( $project = Project::getActive() )
         {
-            $Project = Project::model()->findByPk($_GET['project_id']);
-
-            // project loaded
-            if(!is_null($Project))
-            {
-                // user is owner?
-                if($Project->rel_user_id == Yii::app()->user->id)
-                {
-                    $Project->setAsActiveProject();
-                    return $Project;
-                }
-            }
-            else
-            {
-                throw new CException('Project does not exist', 404);
-            }
-        }
-
-        // try to load from session
-        $session = Yii::app()->session;
-        if( isset($session['project_id']) )
-        {
-            return Project::model()->findByPk($session['project_id']);
+            return $project;
         }
         else
         {
             if($redirect)
             {
-                $this->redirect(array('project/index')); // redirect
+                $this->redirect(array('site/index')); // redirect
             }
             else
             {

@@ -37,13 +37,17 @@ class EvaluationController extends Controller
     }
 
     /**
-     * Creates a new model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Evaluate each alternative - criteria pair
      */
     public function actionEvaluate()
     {
+        // set sort type
         $sortType = 'criteria';
-        
+        if($this->post('sortType'))
+        {
+            $sortType = $this->post('sortType');
+        }
+
         // load active project
         $Project = $this->loadActiveProject();
 
@@ -66,20 +70,33 @@ class EvaluationController extends Controller
                 // criteria loop
                 foreach($evals as $criteriaId => $grade)
                 {
-                    // get eval object
+                    $Evaluation = null;
+
+                    // get eval object by sort type
                     if('criteria' == $sortType)
                     {
-                        $Evaluation = $eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation'];
+                        if(isset($eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation']))
+                        {
+                            $Evaluation = $eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation'];
+                        }
                     }
                     else
                     {
-                        $Evaluation = $eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation'];   
+                        if(isset($eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation']))
+                        {
+                            $Evaluation = $eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation'];
+                        }
                     }
-                    $Evaluation->rel_project_id = $Project->project_id;
-                    $Evaluation->rel_alternative_id = $alternativeId;
-                    $Evaluation->rel_criteria_id = $criteriaId;
-                    $Evaluation->grade = $grade;
-                    $Evaluation->save();
+
+                    // evaluation object is found
+                    if(!empty($Evaluation))
+                    {
+                        $Evaluation->rel_project_id = $Project->project_id;
+                        $Evaluation->rel_alternative_id = $alternativeId;
+                        $Evaluation->rel_criteria_id = $criteriaId;
+                        $Evaluation->grade = $grade;
+                        $Evaluation->save();
+                    }
                 }
             }
 
@@ -93,5 +110,49 @@ class EvaluationController extends Controller
             'eval'      => $eval,
             'sortType'  => $sortType,
         ));
+    }
+
+    /**
+     * Update an individual evaluation
+     */
+    public function actionUpdate()
+    {
+        if( !Ajax::isAjax() )
+        {
+            return;
+        }
+
+        // get project
+        $Project = Project::getActive();
+        $user_id = Yii::app()->user->isGuest ? 1 : Yii::app()->user->user_id;
+
+        // only for ajax calls
+        if(!$Project && $user_id != $Project->rel_user_id)
+        {
+            exit();
+        }
+
+        $params = $this->post('params');
+        $grade = $this->post('grade');
+
+        // update evaluation
+        if(is_array($this->post('params')) && count($this->post('params')) == 2)
+        {
+            // load existing evaluation
+            $Evaluation = Evaluation::model()->findByAttributes(array('rel_alternative_id' => $params[0], 'rel_criteria_id' => $params[1]));
+
+            // create new evaluation
+            if(empty($Evaluation))
+            {
+                $Evaluation = new Evaluation();
+                $Evaluation->rel_project_id = $Project->project_id;
+                $Evaluation->rel_alternative_id = $params[0];
+                $Evaluation->rel_criteria_id = $params[1];
+            }
+
+            $Evaluation->grade = $grade;
+            $Evaluation->save();
+            Ajax::respondOk();
+        }
     }
 }

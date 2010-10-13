@@ -2,6 +2,15 @@
 var loadingImage = $('<img>').attr('src', '/images/ajax-loader.gif');
 
 /**
+ * Extract numbers from a string
+ * @param string
+ */
+function extractNumbers(str)
+{
+    return str.match(/\d+(,\d{3})*(\.\d{1,2})?/g);
+}
+
+/**
  * Unset Project
  */
 function unsetProject() {
