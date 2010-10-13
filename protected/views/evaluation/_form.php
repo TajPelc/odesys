@@ -1,6 +1,6 @@
 <?php if(!empty($eval)){ ?>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
-    <?php if('criteria' == $sortType) { ?>
+    <?php if('criteria' != $sortType) { ?>
             <?php foreach($eval as $alternativeId => $Alternative){ ?>
             <?php $i = 0;?>
                 <div class="alternative<?php if($i % 2 == 0){ ?> first<?php } ?>">
@@ -40,7 +40,7 @@
                                         <span><?php echo CHtml::encode($Criteria['Obj']->worst); ?></span>
                                         <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
                                             <?php for($j = 0; $j <= 10; $j++){?>
-                                                <option value="<?php echo $j;?>"<?php if($j == $Criteria['Evaluation']->grade){?> selected="selected"<?php }?>><?php echo $j;?></option>
+                                                <option value="<?php echo $j;?>"<?php if($j == $Alternative['Evaluation']->grade){?> selected="selected"<?php }?>><?php echo $j;?></option>
                                             <?php }?>
                                         </select>
                                         <span class="right"><?php echo CHtml::encode($Criteria['Obj']->best); ?></span>

@@ -233,7 +233,6 @@ class Project extends CActiveRecord
 
                 // get all evaluations for this model
                 $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' =>$Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
-
                 // evaluation does not exist yet
                 if(false === $Evaluation instanceof Evaluation)
                 {

@@ -66,8 +66,15 @@ class EvaluationController extends Controller
                 // criteria loop
                 foreach($evals as $criteriaId => $grade)
                 {
-                    // check if the evaluation already exists and update it
-                    $Evaluation = $eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation'];
+                    // get eval object
+                    if('criteria' == $sortType)
+                    {
+                        $Evaluation = $eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation'];
+                    }
+                    else
+                    {
+                        $Evaluation = $eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation'];   
+                    }
                     $Evaluation->rel_project_id = $Project->project_id;
                     $Evaluation->rel_alternative_id = $alternativeId;
                     $Evaluation->rel_criteria_id = $criteriaId;
