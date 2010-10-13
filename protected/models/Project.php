@@ -149,7 +149,47 @@ class Project extends CActiveRecord
 
         return Criteria::model()->findAll($criteriaCondition);
     }
+    
+    /**
+     * Build an array of grades by alternatives and criteria
+     */
+    public function getEvaluationArrayByCriteria($quotient = 0.9, $sortBy = 'total')
+    {
+        // find criteria by priority
+        $criteriaArray = $this->findCriteriaByPriority();
+        
+        // build the array of evaluations
+        $eval = array();
+        foreach($criteriaArray as $Criteria)
+        {
+            $eval[$Criteria->criteria_id] = array(
+                'Obj'                      => $Criteria,
+                'Alternatives'             => array(),
+            );
 
+            // loop through alternatives
+            foreach($this->alternatives as $Alternative)
+            {
+                // save criteria
+                $eval[$Criteria->criteria_id]['Alternatives'][$Alternative->alternative_id]['Obj'] = $Alternative;
+
+                // get all evaluations for this model
+                $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' =>$Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
+
+                // evaluation does not exist yet
+                if(false === $Evaluation instanceof Evaluation)
+                {
+                    $Evaluation = new Evaluation();
+                }
+
+                // add evaluation
+                $eval[$Criteria->criteria_id]['Alternatives'][$Alternative->alternative_id]['Evaluation'] = $Evaluation;
+            }
+        }
+
+        return $eval;
+    }
+    
     /**
      * Build an array of grades by alternatives and criteria
      */
