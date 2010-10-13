@@ -53,6 +53,6 @@
             <?php $i++; ?>
         <?php }?>
     <?php }?>
-    <?php echo CHtml::submitButton('Save and continue'); ?>
+    <?php echo CHtml::submitButton('Save'); ?>
     </form>
 <?php } ?>

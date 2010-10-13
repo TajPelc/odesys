@@ -2,6 +2,7 @@
  * On document load
  */
 $(document).ready(function(){
+    $('#evaluation input[type=submit]').remove();
     $(function() {
         $('#evaluation ul li p > select').each(function() {
             val = $(this).find('option:selected').val();
@@ -15,14 +16,32 @@ $(document).ready(function(){
                 step: 1,
                 range: "min",
                 animate: true,
-                slide: function(event, ui) {
+                stop: function(event, ui) {
                     $(this).parent().parent().find('input').attr('value', ui.value);
+                    params = extractNumbers($(this).parent().find('input').attr('name'));
+
+                    $.post(
+                        'index.php?r=evaluation/update', {
+                            grade: ui.value,
+                            params: params,
+                        },
+                        function(data) {
+                    });
                 }
             }));
             $(this).remove();
         });
     });
     $(function() {
-        $("input:submit").button();
+        $("input:submit, a.button").button();
+    });
+
+    $('#sort-type').click(function(){
+        $.post(
+            window.location.toString(), {
+                sortType: 'kek',
+            },
+            function(data) {
+        });
     });
 });

@@ -3,15 +3,6 @@
 class Project extends CActiveRecord
 {
     /**
-     * The followings are the available columns in table 'project':
-     * @var bigint $project_id
-     * @var bigint $rel_user_id
-     * @var string $title
-     * @var string $description
-     * @var string $created
-     */
-
-    /**
      * Returns the static model of the specified AR class.
      * @return CActiveRecord the static model class
      */
@@ -119,15 +110,6 @@ class Project extends CActiveRecord
     }
 
     /**
-     * Is a project active?
-     */
-    public function isProjectActive()
-    {
-        $session = Yii::app()->session;
-        return isset($session['project_id']);
-    }
-
-    /**
      * Make this project active
      */
     public function setAsActiveProject()
@@ -146,6 +128,32 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Is a project active?
+     */
+    public static function isProjectActive()
+    {
+        $session = Yii::app()->session;
+        return isset($session['project_id']);
+    }
+
+    /**
+     * Get the active project
+     */
+    public static function getActive()
+    {
+        // is a project active?
+        if(self::isProjectActive())
+        {
+            $session = Yii::app()->session;
+            return Project::model()->findByPk($session['project_id']);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /**
      * Return all project's criteria ordered by priority
      */
     public function findCriteriaByPriority()
@@ -158,7 +166,7 @@ class Project extends CActiveRecord
 
         return Criteria::model()->findAll($criteriaCondition);
     }
-    
+
     /**
      * Build an array of grades by alternatives and criteria
      */
@@ -166,7 +174,7 @@ class Project extends CActiveRecord
     {
         // find criteria by priority
         $criteriaArray = $this->findCriteriaByPriority();
-        
+
         // build the array of evaluations
         $eval = array();
         foreach($criteriaArray as $Criteria)
@@ -198,10 +206,10 @@ class Project extends CActiveRecord
 
         return $eval;
     }
-    
+
     /**
      * Build an array of grades by alternatives and criteria
-     * 
+     *
      * @param double $quotient
      * @param string $sortBy
      */
