@@ -36,12 +36,15 @@ p
 }
 #page
 {
+	width: 960px;
+	margin: 0 auto;
     margin-top: 5px;
     margin-bottom: 5px;
     background: white;
     border-radius: 15px;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
+    float: none !important;
 }
 
 #header
@@ -68,21 +71,25 @@ p
 #content
 {
     float: left;
-    width: 700px;
-    padding: 20px;
+    width: 490px;
     min-height: 300px;
 }
 
 #sidebar
 {
-    width: 200px;
-    padding: 20px 20px 20px 0;
+    width: 150px;
+    padding: 20px 20px 20px 20px;
+    float: right;
+    border: 3px solid #B3BCCC;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
 }
 
 #footer
 {
     padding: 10px;
     margin: 10px 20px;
+    clear: both;
     font-size: 0.8em;
     text-align: center;
     border-top: 1px solid #596171;
