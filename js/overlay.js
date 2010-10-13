@@ -125,6 +125,7 @@ function createDialog(url, anchor) {
                 width: 750,
                 modal: true,
                 resizable: false,
+                position:['center', 50],
                 buttons: {
                 // what goes on on create / edit
                 'Save': function() {
@@ -155,7 +156,7 @@ function createDialog(url, anchor) {
                             {
                                 // replace the contents of the form
                                 form.html(data['form']);
-                                form.find('input').removeClass('text ui-widget-content ui-corner-all');
+                                //form.find('input').removeClass('text ui-widget-content ui-corner-all');
 
                                 // reenable buttons
                                 $('button').removeAttr('disabled');
