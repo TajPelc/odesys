@@ -42,10 +42,13 @@ class EvaluationController extends Controller
     public function actionEvaluate()
     {
         // set sort type
-        $sortType = 'criteria';
-        if($this->post('sortType'))
+        switch ($this->post('sortType'))
         {
-            $sortType = $this->post('sortType');
+            case 'sortByAlternatives':
+                $sortType = 'alternative';
+                break;
+            default:
+                $sortType = 'criteria';
         }
 
         // load active project
@@ -99,12 +102,28 @@ class EvaluationController extends Controller
                     }
                 }
             }
-
+            if(Ajax::isAjax())
+            {
+                Ajax::respondOk(array('redirect' => 'results/display'));
+            }
             $this->redirect(array('results/display'));
         }
 
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation.js');
 
+        // render partial for ajax
+        if(Ajax::isAjax())
+        {
+            $rv['html'] = $this->renderPartial('evaluate', array(
+                'Project'   => $Project,
+                'eval'      => $eval,
+                'sortType'  => $sortType,
+            ), true);
+
+            Ajax::respondOk($rv);
+        }
+
+        // normal render
         $this->render('evaluate',array(
             'Project'   => $Project,
             'eval'      => $eval,
