@@ -9,7 +9,7 @@ class Controller extends CController
      * @var string the default layout for the controller view. Defaults to 'application.views.layouts.column1',
      * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
      */
-    public $layout='application.views.layouts.column1';
+    public $layout='application.views.layouts.column2';
     /**
      * @var array context menu items. This property will be assigned to {@link CMenu::items}.
      */
@@ -50,7 +50,7 @@ class Controller extends CController
     {
         return isset($_POST[$key]) ? $_POST[$key] : false;
     }
-    
+
     /**
      * Check if post parameter is set and return the value or false
      *
@@ -61,7 +61,7 @@ class Controller extends CController
     {
         return isset($_GET[$key]) ? $_GET[$key] : false;
     }
-    
+
     /**
      * Try to load the project from session or redirect to projects page
      *
