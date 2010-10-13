@@ -3,4 +3,4 @@
 .settings/
 assets/
 protected/config/main.php
-protected/runtime/application*
+protected/runtime/

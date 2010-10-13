@@ -42,11 +42,20 @@ class EvaluationController extends Controller
      */
     public function actionEvaluate()
     {
+        $sortType = 'criteria';
+        
         // load active project
         $Project = $this->loadActiveProject();
 
-        // get eval array
-        $eval = $Project->getEvaluationArray();
+        // get evaluation array
+        if('criteria' == $sortType)
+        {
+            $eval = $Project->getEvaluationArrayByCriteria();
+        }
+        else
+        {
+            $eval = $Project->getEvaluationArray();
+        }
 
         // evaluate!
         if(isset($_POST['eval']))
@@ -75,6 +84,7 @@ class EvaluationController extends Controller
         $this->render('evaluate',array(
             'Project'   => $Project,
             'eval'      => $eval,
+            'sortType'  => $sortType,
         ));
     }
 }

@@ -162,7 +162,7 @@ class Project extends CActiveRecord
     /**
      * Build an array of grades by alternatives and criteria
      */
-    public function getEvaluationArrayByCriteria($quotient = 0.9, $sortBy = 'total')
+    public function getEvaluationArrayByCriteria()
     {
         // find criteria by priority
         $criteriaArray = $this->findCriteriaByPriority();
@@ -201,6 +201,9 @@ class Project extends CActiveRecord
     
     /**
      * Build an array of grades by alternatives and criteria
+     * 
+     * @param double $quotient
+     * @param string $sortBy
      */
     public function getEvaluationArray($quotient = 0.9, $sortBy = 'total')
     {
