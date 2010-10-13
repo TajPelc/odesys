@@ -1,8 +1,6 @@
 <?php $this->beginContent('application.views.layouts.main'); ?>
+<?php $this->widget('application.components.ProjectMenu'); ?>
 <div class="container">
-    <?php $this->widget('application.components.ProjectMenu'); ?>
-    <div id="content">
-        <?php echo $content; ?>
-    </div><!-- content -->
+    <?php echo $content; ?>
 </div>
 <?php $this->endContent(); ?>

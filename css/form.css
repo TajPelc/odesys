@@ -36,11 +36,29 @@
 
 div.form
 {
+    float: left;
 }
+
+div.form#dialog-form, div.form#dialog-form form{
+    float: none !important;
+}
+
+div.form form {
+    float: left;
+}
+
+div.form #project-form input[type="text"] {
+    width: 462px;
+}
+
 div.form textarea
 {
-    width: 670px;
 }
+
+div.form #Project_description {
+    width: 462px;
+}
+
 div.form textarea,
 div.form select
 {
@@ -53,9 +71,14 @@ div.form fieldset
     background-color: #B3BCCC;
     padding: 10px;
     margin: 0 0 10px 0;
-    boredr-radius:7px;
+    float: left;
+    border-radius:7px;
     -moz-border-radius:7px;
     -webkit-border-radius:7px;
+}
+
+div.form#dialog-form fieldset {
+    float: none !important;
 }
 
 div.form label
