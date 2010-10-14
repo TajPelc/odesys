@@ -90,4 +90,7 @@ $(document).ready(function(){
     $("#projectUrl_input").click(function(){
     	$(this).select();
     });
+    
+    // make Add to bookmarks real deal
+    $('#addToBookMarks').jFav();
 });
