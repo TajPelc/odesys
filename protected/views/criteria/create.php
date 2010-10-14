@@ -1,4 +1,3 @@
-<h1>Criteria</h1>
 <div id="content">
     <?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Criteria'; ?>
     <?php echo $this->renderPartial('_form', array('model' => $model, 'Project' => $Project)); ?>

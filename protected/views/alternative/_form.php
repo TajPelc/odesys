@@ -4,8 +4,6 @@
         'enableAjaxValidation'=>false,
     )); ?>
     <fieldset>
-        <p class="note">Fields with <span class="required">*</span> are required.</p>
-
         <?php echo $form->errorSummary($model); ?>
 
         <div class="row">
@@ -19,6 +17,7 @@
             <?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>35)); ?>
             <?php echo $form->error($model,'description'); ?>
         </div>
+        <p class="note">Fields with <span class="required">*</span> are required.</p>
     </fieldset>
 <?php $this->endWidget(); ?>
 <?php } else { ?>

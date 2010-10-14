@@ -2,27 +2,29 @@ body
 {
     margin: 0;
     padding: 0;
-    color: #555;
+    color: #5A6071;
     font: normal 10pt Arial,Helvetica,sans-serif;
-    background: #EFEFEF;
+    /*background: #EFEFEF;*/
+    background: url(../images/ferlauf.png) repeat-x;
 }
 h1
 {
+    width: 100%;
     font-size: 24px;
-    color: #596171;
+    color: #31353E;
     margin-bottom: 10px;
 }
 h2
 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #596171;
+    color: #31353E;
 }
 h3
 {
     font-size: 16px;
     margin-bottom: 10px;
-    color: #596171;
+    color: #31353E;
 }
 hr
 {
@@ -75,14 +77,46 @@ p
     min-height: 300px;
 }
 
+#projectUrl {
+    width: 920px;
+    padding: 20px;
+    float: left;
+}
+
+    #projectUrl h1 {
+        float: left;
+    }
+
+    #projectUrl form {
+        width: 100%;
+        margin: 0 auto;
+        float: left;
+    }
+    
+        #projectUrl form input[type="text"] {
+            width: 681px;
+            padding: 0 10px;
+            height: 32px;
+            line-height: 32px;
+            margin-right: 20px;
+            float: left;
+            position: relative;
+        }
+
+        #projectUrl form input[type="button"] {
+            width: 194px;
+            float: right;
+        }
+
 #sidebar
 {
     width: 150px;
     padding: 20px 20px 20px 20px;
     float: right;
-    border: 3px solid #B3BCCC;
+    border: 3px solid #AFBD8E;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
+    color: #32353E;
 }
 
 #footer
@@ -339,9 +373,10 @@ div.search-form
 /* PROJECT */
 #project
 {
-    margin: 20px 0 0 20px;
+    margin: 0 0 0 20px;
     background-color: #596171;
     float: left;
+    clear: both;
     padding: 10px;
     width: 170px;
     border-radius: 10px;
@@ -409,7 +444,7 @@ div.search-form
     border: 0;
     text-align: left;
     display: block;
-    background-color: #505866;
+    background-color: #464B57;
     color: #fff;
     text-decoration: none;
     padding: 5px;
@@ -421,13 +456,13 @@ div.search-form
 }
 #project ul li span
 {
-    color: #505866;
-    background-color: #ffd700;
+    color: #32353E;
+    background-color: #FFD700;
 }
 #project ul li a:hover
 {
-    background-color: #dbe3f0;
-    color: #596171;
+    background-color: #97A3BD;
+    color: #31353E;
 }
 /* EVALUATION PAGE */
 #evaluation

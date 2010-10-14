@@ -2,8 +2,8 @@
     <div id="project">
 <?php }?>
     <?php if(!empty($Project)) { ?>
-        <?php  echo CHtml::link('', array('project/view', 'unsetProject' => '1'), array('class' => 'close', 'title' => 'Deactivate current project'));?>
-        <h1><?php echo CHtml::encode($Project->title) ?></h1>
+        <?php  //echo CHtml::link('', array('project/view', 'unsetProject' => '1'), array('class' => 'close', 'title' => 'Deactivate current project'));?>
+        <?php //echo CHtml::encode($Project->title) ?>
         <div>
             <?php if(!empty($this->pages)){ ?>
                 <ul>

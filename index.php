@@ -14,7 +14,7 @@ function dump($data = null, $var_dump = true, $escape = false)
 }
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../yii/framework/yii.php';
+$yii=dirname(__FILE__).'/../yiiframework/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
 
 // remove the following lines when in production mode

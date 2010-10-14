@@ -62,13 +62,13 @@ div.form #Project_description {
 div.form textarea,
 div.form select
 {
-    margin: 5px 0 5px 0;
+    margin: 0 0 5px 0;
     padding: 5px;
 }
 
 div.form fieldset
 {
-    background-color: #B3BCCC;
+    background-color: #C0C9D0;
     padding: 10px;
     margin: 0 0 10px 0;
     float: left;
@@ -79,6 +79,8 @@ div.form fieldset
 
 div.form#dialog-form fieldset {
     float: none !important;
+    position: relative;
+    left: -6px;
 }
 
 div.form label
@@ -90,8 +92,39 @@ div.form label
 
 div.form .row
 {
+    width: 100%;
     margin: 5px 0;
+    float: left;
 }
+
+    div.form .row.tit input {
+        width: 701px;
+    }
+
+    div.form .row.inp {
+        width: 350px;
+        float: left;
+        margin-right: 20px;
+    }
+
+        div.form .row.inp input {
+            width: 340px;
+        }
+
+        div.form .row.inp #Criteria_worst {
+            margin-bottom: 7px;
+        }
+
+    div.form .row.txt {
+        width: 340px;
+        margin-bottom: 7px;
+        float: left;
+    }
+
+        div.form .row.txt textarea {
+            width: 330px;
+        }
+
 div.form .buttons a
 {
     float: right;
@@ -106,19 +139,27 @@ div.form .hint
 
 div.form .note
 {
+    width: 703px;
+    padding: 3px 5px; 
+    float: left;
+    clear: both;
     font-style: italic;
+    background: #CDD6DD;
+    -moz-border-radius: 5px;
+    color: #596171;
+    font-size: 12px;
 }
 
 div.form span.required
 {
-    color: #E90000;
+    color: #ca1b03;
 }
 
 div.form div.error label,
 div.form label.error,
 div.form span.error
 {
-    color: #E90000;
+    color: #ca1b03;
 }
 
 div.form div.error input,
@@ -129,8 +170,8 @@ div.form textarea.error,
 div.form select.error
 {
     color: #333333;
-    background-color: #FAFFE2;
-    border: 1px solid #E90000;
+    background-color: #EEEEEE;
+    border: 1px solid #ca1b03;
     -moz-border-radius:4px 4px 4px 4px;
 }
 
@@ -152,8 +193,9 @@ div.form .errorSummary
     padding-bottom: 10px;
     font-size: 12px;
     background-color: #fff;
-    border: 2px solid #e90000;
+    border: 2px solid #ca1b03;
     -moz-border-radius: 5px;
+    color: #ca1b03;
 }
 div.form .errorMessage
 {
