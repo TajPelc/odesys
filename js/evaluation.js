@@ -47,11 +47,6 @@ function handleSlider()
         $(this).remove();
     });
 
-    // linkify
-    $('#continue').click(function(event){
-        saveAndContinue();
-        event.preventDefault();
-    });
 }
 
 /**
@@ -74,6 +69,13 @@ $(document).ready(function(){
             },
             function(data) {
                 $('#content').html(data['html']);
+
+                // linkify
+                $('#continue').click(function(event){
+                    saveAndContinue();
+                    event.preventDefault();
+                });
+
                 handleSlider();
                 stopLoading();
         });
