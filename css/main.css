@@ -340,32 +340,29 @@ div.search-form
 {
     float: right;
     display: block;
-    color: white;
     text-decoration: none;
-    background-color: #596171;
-    height: 100%;
+    background-color: #E7EFFD;
+    background-image:url("../images/ui-bg_glass_100_f6f6f6_1x400.png");
     width: 60px;
+    height: 24px;
+    padding: 0;
+    line-height: 24px;
     text-align: center;
-    line-height: 34px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    -moz-border-radius-topright: 3px;
-    -moz-border-radius-bottomright: 3px;
-    -webkit-border-radius-topright: 3px;
-    -webkit-border-radius-bottomright: 3px;
-    border-left: 1px solid #ffd700;
-}
-#sortable li a:last-child
-{
-    border-radius: 0px;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border: 0;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 1px solid #97A3BD;
+    color: #646C7D;
+    font-weight: bold;
+    margin-right: 10px;
+    position: relative;
+    top: 4px;
+    
 }
 #sortable li a:hover
 {
-    background-color: #fff;
-    color: #596171;
+    background-color: #F6F6F6;
+    color: #646C7D;
 }
 #sortable .ui-sortable-helper
 {
