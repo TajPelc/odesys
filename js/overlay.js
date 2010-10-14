@@ -222,7 +222,7 @@ function createDialog(url, anchor) {
             });
 
             form.dialog('open');
-            $('input[type=text],textarea').attr('class', 'text ui-widget-content ui-corner-all');
+            $('#dialog-form input[type=text],#dialog-form textarea').attr('class', 'text ui-widget-content ui-corner-all');
             $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
         }
     });
