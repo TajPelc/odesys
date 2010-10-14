@@ -85,4 +85,9 @@ function stopLoading(){
  */
 $(document).ready(function(){
     unsetProject();
+
+    // make projectUrl selectable
+    $("#projectUrl_input").click(function(){
+    	$(this).select();
+    });
 });
