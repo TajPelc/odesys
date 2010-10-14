@@ -1,9 +1,8 @@
-<h1>Alternatives</h1>
 <div id="content">
     <?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Alternatives'; ?>
-    
+
     <?php echo $this->renderPartial('_form', array('model'=>$model, 'Project' => $Project)); ?>
-    
+
     <p>You may not change the order of criteria.</p>
     <?php echo Chtml::button('Add alternative', array('id' => 'create', 'class' => 'hidden')); ?>
     <div id="alternative">
