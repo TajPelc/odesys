@@ -296,10 +296,6 @@ div.search-form
 /* CRITERA */
 #criteria, #alternative
 {
-    margin-bottom: 10px;
-}
-
-#criteria {
 	padding-bottom: 10px;
 	margin-bottom: 15px;
     border-bottom: 1px solid #eee;
@@ -330,8 +326,8 @@ div.search-form
     -webkit-border-radius: 5px;
 }
 #sortable li.movable {
-    cursor: move;
     border: 2px solid #fff;
+    cursor: move;
 }
 
     #sortable li:hover {
@@ -370,7 +366,6 @@ div.search-form
     -webkit-border-radius: 5px;
     border: 1px solid #97A3BD;
     color: #646C7D;
-    font-weight: bold;
     margin-right: 10px;
     position: relative;
     top: 4px;
@@ -381,9 +376,13 @@ div.search-form
     background-color: #F6F6F6;
     color: #646C7D;
 }
-#sortable .ui-sortable-helper
-{
+
+#alternative #sortable li {
+    border: none;
+    background: #fff;
+    border: 1px solid #DBE3F0;
 }
+
 /* PROJECT */
 #project
 {
