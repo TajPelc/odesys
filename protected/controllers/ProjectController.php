@@ -142,7 +142,7 @@ class ProjectController extends Controller
             if($Project instanceof Project /*&& $Project->rel_user_id == User::ANONYMOUS*/) // @TODO SET PUBLIC/PRIVATE FLAG
             {
                 $Project->setAsActiveProject();
-                $this->redirect(array('results/display'));
+                $this->redirect(array('project/create'));
             }
         }
         $this->redirect(array('site/index'));
