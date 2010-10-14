@@ -17,7 +17,7 @@ class ProjectMenu extends CWidget
         'Criteria' => array('criteria/create'),
         'Alternatives' => array('alternative/create'),
         'Evaluation' => array('evaluation/evaluate'),
-        'Results' => array('results/display'),
+        'Graphical analysis' => array('results/display'),
     );
 
     /**
