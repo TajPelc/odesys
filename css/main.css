@@ -64,7 +64,8 @@ p
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background: #596171 url(../images/logo.png) no-repeat 0 10px;
-    padding-top: 80px;
+    padding-top: 90px;
+    margin-bottom: 10px;
     position: relative;
 }
 #logo
