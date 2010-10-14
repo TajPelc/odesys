@@ -26,7 +26,7 @@
         <?php $favoured = false ?>
         <li>
             <span style="background-color: <?php echo $colorPool[$i]; ?>;">&nbsp;</span>
-            <input type="checkbox" name="series<?php echo $i; ?>" id="series<?php echo $i; ?>" value="<?php echo CHtml::encode($Alternatives[$i-1]->title); ?>">
+            <input type="checkbox" name="series<?php echo $i; ?>" id="series<?php echo $i; ?>" value="<?php echo CHtml::encode($Alternatives[$i]->title); ?>">
             <label for="series<?php echo $i; ?>"><?php echo CHtml::encode($Alternatives[$i]->title); ?></label>
         </li>
         <?php }?>
