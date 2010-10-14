@@ -41,6 +41,7 @@ function makeSortable() {
     //
     $("#sortable").sortable({
             opacity: 0.90,
+            placeholder: 'placeholder',
     });
     $("#sortable").disableSelection();
 }

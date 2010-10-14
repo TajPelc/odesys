@@ -298,6 +298,13 @@ div.search-form
 {
     margin-bottom: 10px;
 }
+
+#criteria {
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
 /* SORTABLE */
 #sortable
 {
@@ -322,10 +329,20 @@ div.search-form
     -moz-border-radius:5px;
     -webkit-border-radius: 5px;
 }
-#sortable li.movable
-{
+#sortable li.movable {
     cursor: move;
+    border: 2px solid #fff;
 }
+
+    #sortable li:hover {
+        border: 2px solid #97A3BD;
+    }
+
+#sortable li.placeholder {
+    border: 2px dashed #eee;
+    background: #fff;
+}
+
 #sortable li span
 {
     font-size: 14px;
@@ -441,7 +458,6 @@ div.search-form
     border: 0;
     text-align: left;
     display: block;
-    background-color: #464B57;
     color: #fff;
     text-decoration: none;
     padding: 5px;
@@ -458,7 +474,7 @@ div.search-form
 }
 #project ul li a:hover
 {
-    background-color: #97A3BD;
+    background-color: #DBE3F0;
     color: #31353E;
 }
 /* EVALUATION PAGE */
