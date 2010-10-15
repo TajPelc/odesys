@@ -112,11 +112,13 @@ $(document).ready(function(){
  * @return
  */
 function projectOverlay(url, rdr) {
+    startLoading();
     $.post(
         url, {
         requesting: 'form'
         },
         function(data){
+            stopLoading();
             // set parameters
             title = 'Create a new project';
             if(data['edit'])
@@ -183,6 +185,7 @@ function projectOverlay(url, rdr) {
                              // redirect to details page
                              if(undefined !== rdr)
                              {
+                                 stopLoading();
                                  redirectUser('project/details');
                              }
                          }
