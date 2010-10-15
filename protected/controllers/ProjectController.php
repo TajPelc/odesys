@@ -59,24 +59,38 @@ class ProjectController extends Controller
      */
     public function actionCreate()
     {
-        if(isset($_GET['createNew']))
+        // create   
+        if(false === $Project = Project::getActive())
         {
             $Project = new Project();
-            $Project->unsetActiveProject();
         }
-        else
+        // ajax
+        if(Ajax::isAjax())
         {
-            $Project = $this->loadActiveProject();
-        }
-
-        // save project
-        if(isset($_POST['Project']))
-        {
-            $Project->attributes = $_POST['Project'];
-
-            if( $Project->save() )
+            if(isset($_POST['requesting']) && $_POST['requesting'] == 'formPost')
             {
-                $this->redirect(array('criteria/create'));
+                // save project
+                if(isset($_POST['Project']))
+                {
+                    $Project->attributes = $_POST['Project'];
+                }
+                
+                // save or return errrors
+                if($Project->save())
+                {
+                    Ajax::respondOk(array('this is redirect url'));
+                }
+                else
+                {
+                    $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
+                    Ajax::respondError($rv);
+                }
+            }
+            elseif(isset($_POST['requesting']) && $_POST['requesting'] == 'form')
+            {
+                $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
+                $rv['edit'] = !$Project->getIsNewRecord();
+                Ajax::respondOk($rv);
             }
         }
 

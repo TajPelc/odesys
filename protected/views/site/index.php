@@ -14,4 +14,4 @@
     <li>Make a better decision armed with additional information provided by ODESYS</li>
 </ul>
 <p>ODESYS is highly flexible and is suitable for a wide variety of decision problems.</p>
-<p><?php echo CHtml::link('Start by creating a new project', array('project/create', 'createNew' => '1'), array('class' => 'button')); ?></p>
+<p><?php echo CHtml::link('Start by creating a new project', array('project/create'), array('class' => 'button', 'id' => 'create')); ?></p>
