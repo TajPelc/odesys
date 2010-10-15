@@ -110,6 +110,7 @@ class EvaluationController extends Controller
         }
 
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation.js');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/evaluation.css');
 
         // render partial for ajax
         if(Ajax::isAjax())
