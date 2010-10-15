@@ -21,26 +21,25 @@
     -moz-border-radius: 4px;
     color: #31353E;
     background-color: #AFBD8E;
-    opacity: 0.6;
 }
 
 	#hint span {
 	    position: absolute;
-	    top: 10px;
-	    left: -6px;
+	    top: 8px;
+	    left: -5px;
 	    width: 6px;
 	    height: 11px;
 	    background: url(../images/arrowLeft2.png) no-repeat;
-	    
+
 	}
-	
+
 	#hint p {
         font-weight: bold;
 	    margin: 0;
 	    text-align: center;
 	}
-	
-	
+
+
 #yw0 li {
     position: relative;
 }
