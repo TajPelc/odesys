@@ -113,6 +113,7 @@ p
             margin-right: 19px;
             float: left;
             position: relative;
+            cursor: copy;
         }
 
         #projectUrl form #addToBookMarks {
