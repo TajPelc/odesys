@@ -95,8 +95,17 @@ p
         width: 100%;
         margin: 0 auto;
         float: left;
+        position: relative;
     }
-    
+
+        #projectUrl form span {
+            display: block;
+            position: absolute;
+            top: 11px;
+            left: 630px;
+            font-size: 10px;
+        }
+
         #projectUrl form input[type="text"] {
             width: 681px;
             padding: 0 10px;
