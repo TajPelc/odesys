@@ -23,23 +23,27 @@
     background-color: #AFBD8E;
 }
 
-	#hint span {
-	    position: absolute;
-	    top: 8px;
-	    left: -5px;
-	    width: 6px;
-	    height: 11px;
-	    background: url(../images/arrowLeft2.png) no-repeat;
+    #hint span {
+        position: absolute;
+        top: 8px;
+        left: -5px;
+        width: 6px;
+        height: 11px;
+        background: url(../images/arrowLeft2.png) no-repeat;
+    }
 
-	}
-
-	#hint p {
+    #hint p {
         font-weight: bold;
-	    margin: 0;
-	    text-align: center;
-	}
+        margin: 0;
+        text-align: center;
+    }
 
 
 #yw0 li {
     position: relative;
+}
+
+#create.glow {
+    border-color: #FFD700;
+    color: #FFD700;
 }
