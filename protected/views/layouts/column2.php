@@ -1,5 +1,6 @@
 <?php $this->beginContent('application.views.layouts.main'); ?>
 <?php $Project = Project::getActive(); ?>
+<?php if((bool)$Project){ ?>
 <div id="projectUrl">
     <h1><?php echo CHTML::encode($Project->title);?></h1>
     <form action="">
@@ -9,6 +10,7 @@
         </fieldset>
     </form>
 </div>
+<?php } ?>
 <?php $this->widget('application.components.ProjectMenu'); ?>
 <div class="container">
     <?php echo $content; ?>
