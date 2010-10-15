@@ -3,7 +3,6 @@
 
     <?php echo $this->renderPartial('_form', array('model'=>$model, 'Project' => $Project)); ?>
 
-    <p>You may not change the order of criteria.</p>
     <?php echo Chtml::button('Add alternative', array('id' => 'create', 'class' => 'hidden')); ?>
     <div id="alternative">
         <?php $Alternatives = $Project->alternatives; ?>
@@ -18,5 +17,8 @@
     <?php echo CHtml::link('Continue', array('evaluation/evaluate'), array('class' => 'button right' . (count($Project->alternatives) > 1 ? '' : ' hide'))); ?>
 </div>
 <div id="sidebar">
-    <p>Add alternatives for evaluation. Minimum of 2 required, maximum of 10 alternatives. In the next step you will evaluate each alternative added here by the criteria you defined earlier.</p>
+    <p><em>You may not change the order of alternatives.</em></p>
+    <p>Consider all possible alternatives.</p>
+    <p>Add a minimum of 2 alternatives, but no more than 10.</p>
+    <p>On the next step you will evaluate each alternative by the criteria you defined.</p>
 </div>
