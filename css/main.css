@@ -541,7 +541,7 @@ div.search-form
     -moz-border-radius-topright: 7px;
     position: relative;
     left: -10px;
-    top:-1px;
+    top:-2px;
 }
 #evaluation ul
 {
