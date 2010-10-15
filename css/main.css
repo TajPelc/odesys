@@ -38,8 +38,8 @@ p
 }
 #page
 {
-	width: 960px;
-	margin: 0 auto;
+    width: 960px;
+    margin: 0 auto;
     margin-top: 5px;
     margin-bottom: 5px;
     background: white;
@@ -314,8 +314,8 @@ div.search-form
 /* CRITERA */
 #criteria, #alternative
 {
-	padding-bottom: 10px;
-	margin-bottom: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
     border-bottom: 1px solid #eee;
 }
 
@@ -387,7 +387,7 @@ div.search-form
     margin-right: 10px;
     position: relative;
     top: 4px;
-    
+
 }
 #sortable li a:hover
 {
@@ -509,10 +509,11 @@ div.search-form
 #evaluation div.alternative
 {
     float: left;
-    width: 324px;
+    width: 322px;
     margin: 0 20px 20px 0;
     padding: 5px 10px 0 10px;
-    background-color: #596171;
+    border: 1px solid #596171;
+    background-color: #fafafa;
     border-radius: 7px;
     -moz-border-radius:7px;
     -webkit-border-radius: 7px;
@@ -527,11 +528,11 @@ div.search-form
 }
 #evaluation h2
 {
-    color: #fff;
+    color: #596171;
     width: 319px;
     font-size: 20px;
-    padding: 0 0 10px 5px;
-    border-bottom: 1px solid #DBE3F0;
+    padding: 5px 0 5px 5px;
+    border-bottom: 1px solid #596171;
 }
 #evaluation ul
 {
@@ -559,7 +560,7 @@ div.search-form
 #evaluation ul li label
 {
     padding-left: 5px;
-    color: #fff;
+    color: #596171;
     font-size: 12px;
     display: block;
     font-weight: bold;
