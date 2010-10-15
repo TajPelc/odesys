@@ -8,4 +8,26 @@
     background: url(../images/index.jpg) no-repeat 5px 50px;
     width: 920px;
     margin-right: 0;
+    position: relative;
+}
+
+#sidebar {
+    position: absolute;
+    left: 46px;
+    top: 10px;
+    padding: 5px;
+    background: none;
+}
+
+#sidebar span {
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 15px;
+    height: 8px;
+    background: url(../images/arrowUp.png) no-repeat;
+    
+}
+#sidebar p {
+    margin: 0;
 }

@@ -1,5 +1,10 @@
 <?php $this->pageTitle=Yii::app()->name; ?>
-
+<?php if(Project::isProjectActive()) { ?>
+<div id="sidebar">
+    <p>Your project is still active!</p>
+    <span>&nbsp;</span>
+</div>
+<?php } ?>
 <h1>Welcome to ODESYS</h1>
 <h2>The on-line decision support system.</h2>
 <p>ODESYS helps you reach a better decision.</p>

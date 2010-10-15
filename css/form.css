@@ -47,16 +47,9 @@ div.form form {
     float: left;
 }
 
-div.form #project-form input[type="text"] {
-    width: 462px;
-}
-
-div.form textarea
-{
-}
-
+div.form #project-form input[type="text"],
 div.form #Project_description {
-    width: 462px;
+    width: 701px;
 }
 
 div.form textarea,
