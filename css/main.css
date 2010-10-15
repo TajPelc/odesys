@@ -107,7 +107,7 @@ p
         }
 
         #projectUrl form input[type="text"] {
-            width: 681px;
+            width: 679px;
             padding: 0 10px;
             height: 32px;
             line-height: 32px;
@@ -119,6 +119,7 @@ p
         #projectUrl form #addToBookMarks {
             width: 194px;
             float: right;
+            margin: 0;
         }
 
 #sidebar

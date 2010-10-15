@@ -1,0 +1,11 @@
+#content {
+    padding-top: 20px;
+    padding-left: 340px;
+    width: 560px;
+}
+
+.container {
+    background: url(../images/index.jpg) no-repeat 5px 50px;
+    width: 920px;
+    margin-right: 0;
+}
