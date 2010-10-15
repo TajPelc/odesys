@@ -217,10 +217,6 @@ p
     display: block;
     float: left;
 }
-#mainmenu ul li:last-child
-{
-    float: right;
-}
 
 #mainmenu ul li a
 {

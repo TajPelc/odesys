@@ -92,6 +92,7 @@ class ProjectController extends Controller
     public function actionDetails()
     {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project-details.js');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/project-details.css');
 
         // get project
         $Project = $this->loadActiveProject();

@@ -11,23 +11,36 @@
     position: relative;
 }
 
-#sidebar {
-    position: absolute;
-    left: 46px;
-    top: 10px;
+#hint {
+    width: 170px;
     padding: 5px;
-    background: none;
+    position: absolute;
+    z-index: 100;
+    margin-bottom: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    color: #31353E;
+    background-color: #AFBD8E;
+    opacity: 0.6;
 }
 
-#sidebar span {
-    position: absolute;
-    top: -8px;
-    left: 20px;
-    width: 15px;
-    height: 8px;
-    background: url(../images/arrowUp.png) no-repeat;
-    
-}
-#sidebar p {
-    margin: 0;
+	#hint span {
+	    position: absolute;
+	    top: 10px;
+	    left: -6px;
+	    width: 6px;
+	    height: 11px;
+	    background: url(../images/arrowLeft2.png) no-repeat;
+	    
+	}
+	
+	#hint p {
+        font-weight: bold;
+	    margin: 0;
+	    text-align: center;
+	}
+	
+	
+#yw0 li {
+    position: relative;
 }

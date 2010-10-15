@@ -90,20 +90,7 @@ function startLoading(showOverlayBg, overlayElement) {
 function stopLoading(){
     $('#overlay_bg, #loading').fadeOut('slow').remove();
 }
-/**
- * On document load
- */
-$(document).ready(function(){
-    unsetProject();
 
-    // make projectUrl selectable
-    $("#projectUrl_input").click(function(){
-        $(this).select();
-    });
-
-    // make Add to bookmarks real deal
-    $('#addToBookMarks').jFav();
-});
 
 /**
  * Open project create/edit overlay
@@ -209,25 +196,35 @@ function projectOverlay(url, rdr) {
              $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
      });
 }
+
+
 /**
  * On document load
  */
 $(document).ready(function(){
+    unsetProject();
 
-    /**
-     * Display active project floating warning
-     */
-    if($('#display-project-warning').length == 1)
-    {
-        // get position
-        position = $('#display-project-warning').position();
+    // make projectUrl selectable
+    $("#projectUrl_input").click(function(){
+        $(this).select();
+    });
 
-        // append to page and calculate position
-        $('#page').append($('<div id="sidebar"><p>Your project is still active!</p><span>&nbsp;</span></div>').css({
-            top: (position['top'] + 15) +'px',
-            left: (position['left']) + 'px',
-            opacity: 0.6,
-            backgroundColor: '#ffffff',
-        }));
-    }
+    // make Add to bookmarks real deal
+    $('#addToBookMarks').jFav();
+    
+	/**
+	 * Display active project floating warning
+	 */
+	if($('#display-project-warning').length == 1)
+	{
+		// get position
+		position = $('#display-project-warning').position();
+		
+		// append to page and calculate position
+		$('#page').append($('<div id="hint"><p>Your project is still active!</p><span>&nbsp;</span></div>').css({
+			top: (position['top'] + 52) +'px',
+			left: (position['left'] + 153) +'px',
+		}).fadeIn(500));
+		setTimeout("$('#hint').animate({opacity: 0}, 1000, function() {$('#hint').remove()});", 5000);
+	}
 });

@@ -1,12 +1,16 @@
 <div id="content">
     <?php echo CHtml::link('Edit project details', array('project/create'), array('class' => 'button', 'id' => 'create')); ?>
-    <p><?php echo nl2br(CHtml::encode($Project->description));?></p>
+    
     <?php if(is_array($eval) && count($eval) > 0) {?>
     <?php $first = array_slice($eval, 0, 1, true); ?>
     <?php $first = current($first); ?>
-    <dl>
+    <dl id="highestScore">
         <dt>Highest scoring alternative:</dt>
-        <dd><?php echo CHtml::encode($first['Obj']->title);?></dd>
+        <dd><span><?php echo CHtml::encode($first['Obj']->title);?></span></dd>
+    </dl>
+    <dl id="showProjectDescription">
+        <dt>Project description:</dt>
+        <dd><?php echo nl2br(CHtml::encode($Project->description));?></dd>
     </dl>
     <?php }?>
     <h2>Criteria details</h2>
@@ -75,4 +79,5 @@
         <li><p>Share the URL to enable other people to acces your project.</p></li>
         <li><p>Important! Save the URL or add it to the bookmarks or you won't be able to access the project at a later time.</p></li>
     </ul>
+    <span class="left">&nbsp;</span>
 </div>
