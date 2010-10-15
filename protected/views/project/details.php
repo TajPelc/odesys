@@ -41,8 +41,8 @@
         <?php $i = 1;?>
         <?php foreach($eval as $A) { ?>
             <tr>
-                <td><?php echo $i; ?>.</td>
-                <td><?php echo CHtml::encode($A['Obj']->title); ?></td>
+                <td class="c"><?php echo $i; ?>.</td>
+                <td class="f"><?php echo CHtml::encode($A['Obj']->title); ?></td>
                 <td><?php echo $A['weightedTotal']; ?></td>
                 <td><?php echo $A['total']; ?></td>
             </tr>
@@ -62,7 +62,7 @@
         <?php }?>
         <?php foreach($eval as $A) { ?>
         <tr>
-            <th><?php echo CHtml::encode($A['Obj']->title) ?></th>
+            <th class="f"><?php echo CHtml::encode($A['Obj']->title) ?></th>
             <?php foreach($A['Criteria'] as $C) { ?>
                 <td><?php echo (string)$C['Evaluation']->grade; ?></td>
             <?php }?>
