@@ -189,7 +189,7 @@ function createDialog(url, anchor) {
                             // edit mode, replace the edited item
                             if(editing)
                             {
-                                animateByColorChange($(anchor + '_' + data['id']).html(liHtml), 1000, 1000, anchor);
+                                animateByColorChange($(anchor + '_' + data['id']).html(liHtml), 1000, 1000, false, anchor);
                             }
                             else // create mode, append the new element
                             {
@@ -203,7 +203,7 @@ function createDialog(url, anchor) {
 
                                 $('#sortable').append(li.html(liHtml));
                                 handleSortableList();
-                                animateByColorChange($('#sortable li:last'), 1000, 1000, anchor);
+                                animateByColorChange($('#sortable li:last'), 1000, 1000, false, anchor);
                             }
                         }
                     }
@@ -268,7 +268,7 @@ function handleSortableList() {
  * @param anchor
  * @return void
  */
-function animateByColorChange(element, speed1, speed2, anchor)
+function animateByColorChange(element, speed1, speed2, codeOnFinish, anchor)
 {
     changeToColor = '#DBE3F0';
     if(anchor == '#alternative')
@@ -287,6 +287,12 @@ function animateByColorChange(element, speed1, speed2, anchor)
                 backgroundColor: changeToColor,
                 },
                 speed2,
-                'linear');
+                'linear',
+                function(){
+                    if(typeof codeOnFinish == 'string')
+                    {
+                        eval(codeOnFinish);
+                    }
+                });
     });
 }
