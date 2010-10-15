@@ -125,6 +125,11 @@ div.form .row
             width: 330px;
         }
 
+    #alternative-overlay-form input,
+    #alternative-overlay-form textarea {
+        width: 701px;
+    }
+
 div.form .buttons a
 {
     float: right;

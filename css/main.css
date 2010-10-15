@@ -134,6 +134,12 @@ p
     background: url(../images/sidebar.png) no-repeat center center;
 }
 
+    #sidebar em {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #AFBD8E;
+        display: block;
+    }
+
     #sidebar ul {
         width: 100%;
         padding: 0 0 0 5px;
@@ -156,8 +162,9 @@ p
         }
 
         #sidebar ul em {
-            display: block;
             font-size: 14px;
+            border: none;
+            padding: 0;
         }
 
 #footer

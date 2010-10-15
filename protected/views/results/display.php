@@ -30,12 +30,12 @@ var criteriaBest =  <?php echo json_encode(CHtml::listData($Criteria, 'title', '
 
 <div id="sidebar" style="width:664px;">
 	<p><em>Note: Scores for alternatives are calculated by an ODESYS algorithm and alternatives are sorted by their score from best to worst. Use this as a piece of aditional information when comparing alternatives.</em></p>
+	<p><em>Note: If you choose to disable the use of fixed weights, all criteria is of equal importance (weight) and the scores are recalculated.</em></p>
 	<p>This is the main step of the process to solve your decision problem.</p>
-	<p>Below is a graphical representation of the evaluation of alternatives by the defined criteria. Points positioned to the right indicate a better score, while points positioned to the left indicate a lower score. From top to bottom of the graph, criteria priority is descending. The most important criteria for your decision problem are listed higher.</p>
+	<p>It is a graphical representation of the evaluation of alternatives by the defined criteria. Points positioned to the right indicate a better score, while points positioned to the left indicate a lower score. From top to bottom of the graph, criteria priority is descending. The most important criteria for your decision problem are listed higher.</p>
 	<?php $evalCount = count($Project->evaluation); ?>
 	<?php if(count($Alternatives) * count($Criteria) === $evalCount && $evalCount >= 4) { ?>
 	<p>Compare various alternatives to see which one would help you reach your goals best.</p>
-	<p><em>Note: If you choose to disable the use of fixed weights, all criteria is of equal importance (weight) and the scores are recalculated.</em></p>
 </div>
 <?php } else { ?>
 <h2>Evaluation not completed</h2>
