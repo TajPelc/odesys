@@ -186,7 +186,7 @@ function projectOverlay(url, rdr) {
                              if(undefined !== rdr)
                              {
                                  stopLoading();
-                                 redirectUser('project/details');
+                                 redirectUser('criteria/create');
                              }
                          }
                      }
