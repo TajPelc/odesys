@@ -6,7 +6,8 @@
     <form action="">
         <fieldset>
             <input id="projectUrl_input" class="ui-widget input ui-corner-all ui-widget-content" type="text" name="dummy" value="<?php echo Yii::app()->createAbsoluteUrl('project/set',array('i'=>$Project->url));?>" />
-            <input type="button" value="Add to bookmarks!" name="addToBookMarks" id="addToBookMarks" class="hidden ui-button ui-widget ui-state-default ui-corner-all" title="ODESYS: <?php echo CHtml::encode($Project->title);?>" href="<?php echo Yii::app()->createAbsoluteUrl('project/set',array('i'=>$Project->url));?>">
+            <input type="button" value="Add to bookmarks!" name="addToBookMarks" id="addToBookMarks" class="hidden ui-button ui-widget ui-state-default ui-corner-all" title="ODESYS: <?php echo CHtml::encode($Project->title);?>" href="">
+            <?php echo CHtml::link('Add to bookmarks!', Yii::app()->createAbsoluteUrl('project/set',array('i'=>$Project->url)), array('class' => 'button', 'id' => 'addToBookMarks')); ?>
             <span>Copy url or -></span>
         </fieldset>
     </form>
