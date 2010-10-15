@@ -169,6 +169,7 @@ p
 
         #sidebar ul li {
             margin-bottom: 10px;
+            float: left;
         }
         
         #sidebar ul li:last-child {
@@ -179,7 +180,25 @@ p
             color: #32353E;
             font-size: 12px;
             margin-bottom: 0;
+            float: left;
+            clear: left;
         }
+
+            #sidebar ul p i {
+                float: left;
+                margin-right: 10px;
+            }
+            
+            #sidebar ul p span {
+                font-weight: bold;
+                -moz-border-radius: 8px;
+                background: #ebeee3;
+                width: 16px;
+                height: 16px;
+                display: block;
+                float: left;
+                text-align: center;
+            }
 
         #sidebar ul em {
             font-size: 14px;
