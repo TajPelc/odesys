@@ -209,3 +209,25 @@ function projectOverlay(url, rdr) {
              $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
      });
 }
+/**
+ * On document load
+ */
+$(document).ready(function(){
+
+    /**
+     * Display active project floating warning
+     */
+    if($('#display-project-warning').length == 1)
+    {
+        // get position
+        position = $('#display-project-warning').position();
+
+        // append to page and calculate position
+        $('#page').append($('<div id="sidebar"><p>Your project is still active!</p><span>&nbsp;</span></div>').css({
+            top: (position['top'] + 15) +'px',
+            left: (position['left']) + 'px',
+            opacity: 0.6,
+            backgroundColor: '#ffffff',
+        }));
+    }
+});
