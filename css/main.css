@@ -126,10 +126,11 @@ p
     width: 150px;
     padding: 20px 20px 20px 20px;
     float: right;
-    border: 3px solid #AFBD8E;
+    border: 3px dashed #AFBD8E;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     color: #32353E;
+    background: url(../images/sidebar.png) no-repeat 5px 5px;
 }
 
 #footer
