@@ -121,8 +121,7 @@ p
             margin: 0;
         }
 
-#sidebar
-{
+#sidebar {
     width: 154px;
     padding: 20px 20px 20px 20px;
     margin-bottom: 20px;
@@ -132,7 +131,27 @@ p
     -moz-border-radius: 4px;
     color: #32353E;
     background: url(../images/sidebar.png) no-repeat center center;
+    position: relative;
 }
+
+    #sidebar > span {
+        position: absolute;
+        top: 54px;;
+        left: -8px;
+        height: 15px;
+        width: 8px;
+        background: url(../images/arrowLeft.png) no-repeat;
+        text-indent: -9999px;
+        display: block;
+    }
+
+        #sidebar > span.up {
+            background: url(../images/arrowUp.png) no-repeat;
+            width: 15px;
+            height: 8px;
+            top: -8px;
+            left:500px;
+        }
 
     #sidebar em {
         padding-bottom: 10px;

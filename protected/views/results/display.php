@@ -36,6 +36,7 @@ var criteriaBest =  <?php echo json_encode(CHtml::listData($Criteria, 'title', '
 	<?php $evalCount = count($Project->evaluation); ?>
 	<?php if(count($Alternatives) * count($Criteria) === $evalCount && $evalCount >= 4) { ?>
 	<p>Compare various alternatives to see which one would help you reach your goals best.</p>
+	<span class="up">&nbsp;</span>
 </div>
 <?php } else { ?>
 <h2>Evaluation not completed</h2>

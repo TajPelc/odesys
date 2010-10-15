@@ -23,4 +23,5 @@
         <li><p>Add a minimum of 2 alternatives, but no more than 10.</p></li>
         <li><p>On the next step you will evaluate each alternative by the criteria you defined.</p></li>
     </ul>
+    <span>&npsp;</span>
 </div>

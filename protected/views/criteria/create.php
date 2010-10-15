@@ -23,4 +23,5 @@
 	    <li><p>Think twice about most and least desired values.</p></li>
 	    <li><p>Set the best and worst values low or high enough that no alternative that you are considering falls under or over this margin.</p></li>
     </ul>
+    <span>&npsp;</span>
 </div>
