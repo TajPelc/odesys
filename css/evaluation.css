@@ -7,7 +7,7 @@
 }
 
 #sortByAlternatives, #sortByCriteria {
-    width: 702px;
+    width: 706px;
     display: block;
     margin: 0 auto;
 }
@@ -22,6 +22,10 @@
     -moz-border-radius:3px;
     display: block;
     float: right;
+    position: absolute;
+    top: 3px;
+    right: 10px;
+    z-index: 1;
 }
 
     .alternative > p span {

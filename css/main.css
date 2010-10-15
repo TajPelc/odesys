@@ -397,6 +397,7 @@ div.search-form
 
 #alternative #sortable li {
     border: none;
+    background: #fff;
     margin-bottom: 11px;
     border: 1px solid #DBE3F0;
 }
@@ -511,12 +512,13 @@ div.search-form
     float: left;
     width: 322px;
     margin: 0 20px 20px 0;
-    padding: 5px 10px 0 10px;
+    padding: 0 10px 0 10px;
     border: 1px solid #596171;
     background-color: #fafafa;
     border-radius: 7px;
     -moz-border-radius:7px;
     -webkit-border-radius: 7px;
+    position: relative;
 }
 #evaluation div.first
 {
@@ -528,11 +530,17 @@ div.search-form
 }
 #evaluation h2
 {
-    color: #596171;
-    width: 319px;
+    color: #fff;
+    width: 330px;
     font-size: 20px;
-    padding: 5px 0 5px 5px;
+    padding: 5px 0 5px 13px;
     border-bottom: 1px solid #596171;
+    background: #596171;
+    -moz-border-radius-topleft: 7px;
+    -moz-border-radius-topright: 7px;
+    position: relative;
+    left: -10px;
+    top:-1px;
 }
 #evaluation ul
 {
