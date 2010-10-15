@@ -1,3 +1,7 @@
+.container {
+    position: relative;
+}
+
 #content {
     position: relative;
     min-height: 0;
@@ -57,19 +61,23 @@
             }
 
 .container > h2 {
-    width: 100%;
+    width: 700px;
     padding-bottom: 10px;
     margin-bottom: 10px;
     float: left;
     clear: both;
     border-bottom: 1px solid #DBE3F0;
+    position: relative;
+    left: -210px;
 }
 
 .container > table {
-    width: 100%;
+    width: 702px;
     margin-bottom: 20px;
     float: left;
     clear: both;
+    position: relative;
+    left: -210px;
 }
 
     .container > table th {
@@ -104,4 +112,7 @@
 
 #sidebar {
     margin-bottom: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
