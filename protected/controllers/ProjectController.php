@@ -93,9 +93,15 @@ class ProjectController extends Controller
     {
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project-details.js');
 
+        // get project
+        $Project = $this->loadActiveProject();
+
         // render details
         $this->render('details', array(
-            'Project' => $this->loadActiveProject(),
+            'Project' => $Project,
+            'Alternatives' => $Project->alternatives,
+            'Criteria' => $Project->criteria,
+            'eval' => $Project->getEvaluationArray(),
         ));
     }
 

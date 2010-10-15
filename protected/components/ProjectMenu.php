@@ -13,11 +13,11 @@ class ProjectMenu extends CWidget
      * @var unknown_type
      */
     public $pages = array(
-        'Project details' => array('project/details'),
         'Criteria' => array('criteria/create'),
         'Alternatives' => array('alternative/create'),
         'Evaluation' => array('evaluation/evaluate'),
         'Graphical analysis' => array('results/display'),
+        'Overview' => array('project/details'),
     );
 
     /**
