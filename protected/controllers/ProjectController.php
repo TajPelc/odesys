@@ -59,46 +59,61 @@ class ProjectController extends Controller
      */
     public function actionCreate()
     {
-        // create   
+        // ajax only
+        if(!Ajax::isAjax())
+        {
+            $this->redirect(array('site/index'));
+        }
+
+        // create or edit
         if(false === $Project = Project::getActive())
         {
             $Project = new Project();
         }
-        // ajax
-        if(Ajax::isAjax())
+
+        // what to do
+        if($request = $this->post('requesting'))
         {
-            if(isset($_POST['requesting']) && $_POST['requesting'] == 'formPost')
+            switch($request)
             {
-                // save project
-                if(isset($_POST['Project']))
-                {
-                    $Project->attributes = $_POST['Project'];
-                }
-                
-                // save or return errrors
-                if($Project->save())
-                {
-                    Ajax::respondOk(array('this is redirect url'));
-                }
-                else
-                {
+                // post the form
+                case 'formPost':
+                    // save project
+                    if(isset($_POST['Project']))
+                    {
+                        $Project->attributes = $_POST['Project'];
+                    }
+
+                    // save or return errrors
+                    if($Project->save())
+                    {
+                        Ajax::respondOk(array('project/details'));
+                    }
+                    else
+                    {
+                        $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
+                        Ajax::respondError($rv);
+                    }
+                    break;
+                // render the form
+                case 'form':
                     $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
-                    Ajax::respondError($rv);
-                }
-            }
-            elseif(isset($_POST['requesting']) && $_POST['requesting'] == 'form')
-            {
-                $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
-                $rv['edit'] = !$Project->getIsNewRecord();
-                Ajax::respondOk($rv);
+                    $rv['edit'] = !$Project->getIsNewRecord();
+                    Ajax::respondOk($rv);
             }
         }
+    }
 
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project.js');
+    /**
+     * Project details
+     */
+    public function actionDetails()
+    {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project-details.js');
 
-        // render
-        $this->render('create',array(
-            'model' => $Project,
+        // render details
+        $this->render('details', array(
+            'Project' => $this->loadActiveProject(),
         ));
     }
 

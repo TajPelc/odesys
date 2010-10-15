@@ -2,7 +2,7 @@
 <?php $Project = Project::getActive(); ?>
 <?php if((bool)$Project){ ?>
 <div id="projectUrl">
-    <h1><?php echo CHTML::encode($Project->title);?></h1>
+    <h1><?php echo CHtml::encode($Project->title);?></h1>
     <form action="">
         <fieldset>
             <input id="projectUrl_input" class="ui-widget input ui-corner-all ui-widget-content" type="text" name="dummy" value="<?php echo Yii::app()->createAbsoluteUrl('project/set',array('i'=>$Project->url));?>" />

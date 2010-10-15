@@ -189,7 +189,7 @@ function createDialog(url, anchor) {
                             // edit mode, replace the edited item
                             if(editing)
                             {
-                                animateByColorChange($(anchor + '_' + data['id']).html(liHtml), 1000, 1000);
+                                animateByColorChange($(anchor + '_' + data['id']).html(liHtml), 1000, 1000, anchor);
                             }
                             else // create mode, append the new element
                             {
@@ -203,7 +203,7 @@ function createDialog(url, anchor) {
 
                                 $('#sortable').append(li.html(liHtml));
                                 handleSortableList();
-                                animateByColorChange($('#sortable li:last'), 1000, 1000);
+                                animateByColorChange($('#sortable li:last'), 1000, 1000, anchor);
                             }
                         }
                     }
@@ -265,10 +265,18 @@ function handleSortableList() {
  * @param speed1
  * @param speed2
  * @param codeOnFinish
+ * @param anchor
  * @return void
  */
-function animateByColorChange(element, speed1, speed2, codeOnFinish)
+function animateByColorChange(element, speed1, speed2, anchor)
 {
+    changeToColor = '#DBE3F0';
+    if(anchor == '#alternative')
+    {
+        changeToColor = '#FFFFFF';
+    }
+
+    // animate the emenent to the specified color and back
     element.animate({
             backgroundColor: '#ffd700;',
         },
@@ -276,12 +284,9 @@ function animateByColorChange(element, speed1, speed2, codeOnFinish)
         'linear',
         function() {
             element.animate({
-                backgroundColor: '#DBE3F0;',
+                backgroundColor: changeToColor,
                 },
                 speed2,
-                'linear',
-                function(){
-                    eval(codeOnFinish);
-                });
+                'linear');
     });
 }

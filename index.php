@@ -1,4 +1,5 @@
 <?php
+
 function dump($data = null, $var_dump = true, $escape = false)
 {
     echo '<pre style="display: block; border: 2px solid gray; background-color:#fff; padding: 0px 10px 0px 10px; margin: 10px;">';
