@@ -121,7 +121,7 @@ class Project extends CActiveRecord
     /**
      * Unset the active project
      */
-    public function unsetActiveProject()
+    public static function unsetActiveProject()
     {
         $session = Yii::app()->session;
         unset($session['project_id']);

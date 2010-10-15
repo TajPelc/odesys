@@ -37,24 +37,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Project view
-     */
-    public function actionView()
-    {
-        if(isset($_GET['unsetProject']))
-        {
-            Project::model()->unsetActiveProject();
-        }
-        else
-        {
-            $Project = $this->loadActiveProject();
-        }
-
-        // redirect back to project index
-        $this->redirect(array('project/index'));
-    }
-
-    /**
      * Create or update project
      */
     public function actionCreate()
@@ -141,6 +123,11 @@ class ProjectController extends Controller
      */
     public function actionIndex()
     {
+        if($_GET['unset'])
+        {
+            Project::unsetActiveProject();
+        }
+
         // redirect unauthenticated users
         if(Yii::app()->user->isGuest)
         {
