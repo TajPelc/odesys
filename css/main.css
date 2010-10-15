@@ -125,13 +125,40 @@ p
 {
     width: 154px;
     padding: 20px 20px 20px 20px;
+    margin-bottom: 20px;
     float: right;
     border: 1px solid #AFBD8E;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     color: #32353E;
-    background: url(../images/sidebar.png) no-repeat 5px 5px;
+    background: url(../images/sidebar.png) no-repeat center center;
 }
+
+    #sidebar ul {
+        width: 100%;
+        padding: 0 0 0 5px;
+        margin: 0;
+        color: #ebeee3;
+    }
+
+        #sidebar ul li {
+            margin-bottom: 10px;
+        }
+        
+        #sidebar ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        #sidebar ul em, #sidebar ul p {
+            color: #32353E;
+            font-size: 12px;
+            margin-bottom: 0;
+        }
+
+        #sidebar ul em {
+            display: block;
+            font-size: 14px;
+        }
 
 #footer
 {

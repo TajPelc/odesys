@@ -17,8 +17,10 @@
     <?php echo CHtml::link('Continue', array('evaluation/evaluate'), array('class' => 'button right' . (count($Project->alternatives) > 1 ? '' : ' hide'))); ?>
 </div>
 <div id="sidebar">
-    <p><em>You may not change the order of alternatives.</em></p>
-    <p>Consider all possible alternatives.</p>
-    <p>Add a minimum of 2 alternatives, but no more than 10.</p>
-    <p>On the next step you will evaluate each alternative by the criteria you defined.</p>
+    <ul>
+        <li><p><em>You may not change the order of alternatives.</em></p></li>
+        <li><p>Consider all possible alternatives.</p></li>
+        <li><p>Add a minimum of 2 alternatives, but no more than 10.</p></li>
+        <li><p>On the next step you will evaluate each alternative by the criteria you defined.</p></li>
+    </ul>
 </div>
