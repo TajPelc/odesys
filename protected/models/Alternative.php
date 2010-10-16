@@ -6,7 +6,7 @@ class Alternative extends CActiveRecord
      *  Old title for uniqueness comparison
      */
     private $oldTitle;
-    
+
     /**
      * The followings are the available columns in table 'alternative':
      * @var double $alternative_id
@@ -64,9 +64,15 @@ class Alternative extends CActiveRecord
      */
     public function isProjectUnique($attribute, $params)
     {
-        // only for new records
-        if($this->getIsNewRecord() || ($this->oldTitle !== $this->title))
+        // check for new records or if the title has been changed
+        if($this->getIsNewRecord() || $this->oldTitle !== $this->title)
         {
+            // editing
+            if(!$this->getIsNewRecord() && mb_strtolower($this->title, mb_detect_encoding($this->title)) == mb_strtolower($this->oldTitle, mb_detect_encoding($this->oldTitle)) )
+            {
+                return true;
+            }
+
             // record exists!
             if(null !== $this->findByAttributes(array('rel_project_id' => $this->rel_project_id, $attribute => $this->{$attribute})))
             {
@@ -81,13 +87,13 @@ class Alternative extends CActiveRecord
     public function afterFind()
     {
         parent::afterFind();
-        
+
         // save old title
         $this->oldTitle = $this->title;
-        
+
         return true;
     }
-    
+
     /**
      * Delete alternative related stuff
      */
