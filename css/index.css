@@ -43,6 +43,14 @@
     position: relative;
 }
 
+#content ol li {
+    font-weight: bold;
+}
+
+    #content ol li p {
+        font-weight: normal;
+    }
+
 #create.glow {
     border-color: #FFD700;
     color: #FFD700;
