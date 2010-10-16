@@ -209,22 +209,41 @@ $(document).ready(function(){
         $(this).select();
     });
 
+    // show projectMenu hint if conditions are not met
+    var projectLi = $('#project li');
+    projectLiWidth = projectLi.width();
+    projectLi.children('span').hover(function(){
+        $(this).parent().append('<div id="hint"><p>You cannot continue until all conditions are met!</p><em><i>Note: You need at least 2 criterias and 2 alternatives.</i></em><span></span></div>');
+        $('#project li #hint').css({
+            top: (0) +'px',
+            left: (projectLiWidth) +'px',
+        })
+    }, function(){
+        $('#project li #hint').remove();
+    });
+
+
+    $('#project li').each(function(){
+
+    })
+
     // make Add to bookmarks real deal
     $('#addToBookMarks').jFav();
-    
-	/**
-	 * Display active project floating warning
-	 */
-	if($('#display-project-warning').length == 1)
-	{
-		// get position
-		position = $('#display-project-warning').position();
-		
-		// append to page and calculate position
-		$('#page').append($('<div id="hint"><p>Your project is still active!</p><span>&nbsp;</span></div>').css({
-			top: (position['top'] + 52) +'px',
-			left: (position['left'] + 153) +'px',
-		}).fadeIn(500));
-		setTimeout("$('#hint').animate({opacity: 0}, 1000, function() {$('#hint').remove()});", 5000);
-	}
+
+    /**
+     * Display active project floating warning
+     */
+    if($('#display-project-warning').length == 1)
+    {
+        // get position
+        position = $('#display-project-warning').position();
+
+        // append to page and calculate position
+        $('#page').append($('<div id="hint"><p>Your project is still active!</p><span>&nbsp;</span></div>').css({
+            top: (position['top'] + 52) +'px',
+            left: (position['left'] + 153) +'px',
+        }).fadeIn(500));
+        setTimeout("$('#hint').animate({opacity: 0}, 1000, function() {$('#hint').remove()});", 5000);
+    }
+
 });
