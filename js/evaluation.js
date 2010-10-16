@@ -34,7 +34,11 @@ function handleSlider()
             stop: function(event, ui) {
                 $(this).parent().parent().find('input').attr('value', ui.value);
                 params = extractNumbers($(this).parent().find('input').attr('name'));
-
+                sliderSlider = $(this).parent();
+                if (sliderSlider.hasClass('new')){
+                    sliderSlider.removeClass('new');
+                    animateByColorChange(sliderSlider, '#FFD700', 500, 500);
+                }
                 $.post(
                     'index.php?r=evaluation/update', {
                         grade: ui.value,

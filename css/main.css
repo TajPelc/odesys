@@ -682,6 +682,12 @@ div.search-form
     -moz-border-radius:5px;
     -webkit-border-radius: 5px;
 }
+
+    #evaluation ul li div.slider.new {
+        background-color: #eee;
+    }
+
+
 #evaluation ul li div.slider div
 {
     clear: left;

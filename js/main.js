@@ -288,6 +288,44 @@ function handleProjectMenu(menu) {
     });
 }
 
+
+/**
+ * Animate the element by chaing it's backgrond color
+ *
+ * @param element
+ * @param blinkTo
+ * @param speed1
+ * @param speed2
+ * @param codeOnFinish
+ * @param anchor
+ * @return void
+ */
+function animateByColorChange(element, blinkTo, speed1, speed2, codeOnFinish)
+{
+    /// get background color
+    var originalBgColor = element.css('background-color');
+
+    // animate the emenent to the specified color and back
+    element.animate({
+            backgroundColor: blinkTo,
+        },
+        speed1,
+        'linear',
+        function() {
+            element.animate({
+                backgroundColor: originalBgColor,
+                },
+                speed2,
+                'linear',
+                function(){
+                    if(typeof codeOnFinish == 'string')
+                    {
+                        eval(codeOnFinish);
+                    }
+                });
+    });
+}
+
 /**
  * On document load
  */
