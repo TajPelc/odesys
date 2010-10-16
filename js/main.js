@@ -188,6 +188,7 @@ function projectOverlay(url, rdr) {
              // open dialog
              form.dialog('open');
              $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
+             $('#dialog-form input:eq(0)').focus();
      });
 }
 

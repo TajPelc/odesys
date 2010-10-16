@@ -30,6 +30,7 @@
     <?php echo $content; ?>
 
     <div id="footer">
+        <hr />
         Copyright &copy; <?php echo date('Y'); ?> by Taj Pelc.<br/>
         All Rights Reserved.<br/>
         <?php echo Yii::powered(); ?>

@@ -126,6 +126,7 @@ function createDialog(url, anchor) {
             // create form element from the returned html
             form = $('<div></div>').attr('class', 'form').attr('title', title).attr('id', 'dialog-form').html(data['form']);
             stopLoading();
+
             // add dialog functionality to the form element
             form.dialog({
                 autoOpen: false,
@@ -233,6 +234,7 @@ function createDialog(url, anchor) {
             form.dialog('open');
             $('#dialog-form input[type=text],#dialog-form textarea').attr('class', 'text ui-widget-content ui-corner-all');
             $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
+            $('#dialog-form input:eq(0)').focus();
         }
     });
 }
