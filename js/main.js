@@ -197,6 +197,67 @@ function projectOverlay(url, rdr) {
      });
 }
 
+/**
+ * Enable a link in the menu
+ * @param id
+ * @return void
+ */
+function enableLink(id) {
+    span = $('#' + id);
+
+    // not a span
+    if(!span.is('span'))
+    {
+        return;
+    }
+
+    var menu = new Array;
+    url = window.location.protocol + '//' + window.location.hostname;
+    menu['menu-evaluation'] = '/index.php?r=evaluation/evaluate';
+    menu['menu-analysis']   = '/index.php?r=results/display';
+    menu['menu-overview']   = '/index.php?r=project/details';
+
+    // get the element to enable
+    span.fadeOut('slow', function(){
+        link = $('<a></a>')
+            .attr('href', menu[span.attr('id')])
+            .attr('title', span.html())
+            .attr('id', span.attr('id'))
+            .html(span.html())
+            .hide();
+
+        span.after(link);
+        span.remove();
+        link.fadeIn('slow');
+    });
+}
+
+/**
+ * Disable a link in the menu
+ * @param id
+ * @return
+ */
+function disableLink(id)
+{
+    link = $('#' + id);
+
+    // not a link
+    if(!link.is('a'))
+    {
+        return;
+    }
+
+    link.fadeOut('slow', function(){
+        span = $('<span></span>')
+            .attr('id', link.attr('id'))
+            .attr('class', 'restricted')
+            .html(link.html())
+            .hide();
+        link.after(span);
+        link.remove();
+        span.fadeIn('slow');
+    });
+}
 
 /**
  * On document load
@@ -210,10 +271,14 @@ $(document).ready(function(){
     });
 
     // show projectMenu hint if conditions are not met
+    var menuHintText = new Array();
+    menuHintText['menu-evaluation'] = 'Define at least 2 criteria and 2 alternatives.';
+    menuHintText['menu-analysis'] = 'Complete the evaluation!';
+    menuHintText['menu-overview'] = 'Complete the evaluation!';
     var projectLi = $('#project li');
     projectLiWidth = projectLi.width();
     projectLi.children('span.restricted').hover(function(){
-        $(this).parent().append('<div id="hint"><p>You cannot continue until all conditions are met!</p><em><i>Note: You need at least 2 criterias and 2 alternatives.</i></em><span></span></div>');
+        $(this).parent().append('<div id="hint"><p>Conditions not met!</p><em><i>' + menuHintText[$(this).attr('id')] + '</i></em><span></span></div>');
         $('#project li #hint').css({
             top: (0) +'px',
             left: (projectLiWidth) +'px',
@@ -221,11 +286,6 @@ $(document).ready(function(){
     }, function(){
         $('#project li #hint').remove();
     });
-
-
-    $('#project li').each(function(){
-
-    })
 
     // make Add to bookmarks real deal
     $('#addToBookMarks').jFav();

@@ -2,18 +2,16 @@
     <div id="project">
 <?php }?>
     <?php if(!empty($Project)) { ?>
-        <?php  //echo CHtml::link('', array('project/view', 'unsetProject' => '1'), array('class' => 'close', 'title' => 'Deactivate current project'));?>
-        <?php //echo CHtml::encode($Project->title) ?>
         <div>
             <?php if(!empty($this->pages)){ ?>
                 <ul>
                     <?php $i = 1;?>
-                    <?php foreach($this->pages as $label => $route) {?>
-                        <?php $nrLabel = $i . '. ' . $label; ?>
-                        <?php if(current($route) === $currentRoute) { ?>
-                            <li><span><?php echo CHtml::encode($nrLabel); ?></span></li>
+                    <?php foreach($this->pages as $id => $menuItem) {?>
+                        <?php $label = $i . '. ' . $menuItem['label']; ?>
+                        <?php if($menuItem['route'][0] === $currentRoute || !$menuItem['enabled']) { ?>
+                            <li><span id="<?php echo $id; ?>" class="<?php if($menuItem['enabled']) {?>selected<?php } else { ?>restricted<?php }?>"><?php echo CHtml::encode($label); ?></span></li>
                         <?php } else { ?>
-                            <li><?php echo CHtml::link(CHtml::encode($nrLabel), $route, array('title' => CHtml::encode($label))); ?></li>
+                            <li><?php echo CHtml::link(CHtml::encode($label), $menuItem['route'], array('title' => CHtml::encode($label), 'id' => $id)); ?></li>
                         <?php } ?>
                         <?php $i++;?>
                     <?php } ?>

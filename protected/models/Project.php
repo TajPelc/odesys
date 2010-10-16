@@ -277,6 +277,23 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Check if evaluation is enabled
+     */
+    public function checkEvaluateConditions()
+    {
+        return (count($this->alternatives) >= 2 && count($this->criteria) >= 2);
+    }
+
+    /**
+     * Check if evaluation is complete
+     */
+    public function checkEvaluationComplete()
+    {
+        $evalCount = count($this->evaluation);
+        return (count($this->alternatives) * count($this->criteria) === $evalCount && $evalCount >= 4);
+    }
+
+    /**
      * Create a url to view this project
      *
      * @return string
