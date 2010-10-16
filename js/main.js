@@ -31,12 +31,25 @@ function startLoading(showOverlayBg, overlayElement) {
     {
         overlayBg = 'ui-widget-overlay';
     }
-    overlay = $('<div />').attr('id', 'overlay_bg').addClass(overlayBg).appendTo('body');
-    loadingBar = $('<div />').attr('id', 'loading').html(loadingImage).addClass('loadingImage').appendTo('body');
+    if(overlayElement){
+        overlay = $('<div />').attr('id', 'overlay_bg').addClass(overlayBg).appendTo(overlayElement);
+        loadingBar = $('<div />').attr('id', 'loading').html(loadingImage).addClass('loadingImage').appendTo(overlayElement);
+    }
+    else{
+        overlay = $('<div />').attr('id', 'overlay_bg').addClass(overlayBg).appendTo('body');
+        loadingBar = $('<div />').attr('id', 'loading').html(loadingImage).addClass('loadingImage').appendTo('body');
+    }
 
     if(undefined !== overlayElement)
     {
-        element = $(overlayElement);
+        if(!overlayElement instanceof Object)
+        {
+            element = $(overlayElement);
+        }
+        else
+        {
+            element = overlayElement;
+        }
         position = element.position();
         position['left'] += parseInt(element.css('margin-left'), 10);
         position['top']  += parseInt(element.css('margin-top'), 10);
