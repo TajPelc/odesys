@@ -212,7 +212,7 @@ $(document).ready(function(){
     // show projectMenu hint if conditions are not met
     var projectLi = $('#project li');
     projectLiWidth = projectLi.width();
-    projectLi.children('span').hover(function(){
+    projectLi.children('span.restricted').hover(function(){
         $(this).parent().append('<div id="hint"><p>You cannot continue until all conditions are met!</p><em><i>Note: You need at least 2 criterias and 2 alternatives.</i></em><span></span></div>');
         $('#project li #hint').css({
             top: (0) +'px',
