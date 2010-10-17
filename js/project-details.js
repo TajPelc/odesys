@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     // open project overlay
     $('#create').click(function(event){
-        projectOverlay($(this).attr('href'));
+        projectOverlay($(this).attr('href'), undefined, undefined, true);
         event.preventDefault();
     });
 });

@@ -9,7 +9,17 @@ function extractNumbers(str)
 {
     return str.match(/\d+(,\d{3})*(\.\d{1,2})?/g);
 }
-
+/**
+ * Escape HTML characters
+ * @param str
+ * @return str
+ */
+function escapeString(str) {
+    var div = document.createElement('div');
+    var text = document.createTextNode(str);
+    div.appendChild(text);
+    return div.innerHTML;
+}
 /**
  * Redirect
  *
@@ -92,11 +102,17 @@ function stopLoading(){
  * @param url
  * @return
  */
-function projectOverlay(url, rdr) {
-    startLoading();
+function projectOverlay(url, rdr, forceNew, replaceWithData) {
+    forceCreateNew = 'no';
+    if(undefined != forceNew)
+    {
+        forceCreateNew = 'yes';
+    }
+    startLoading(true);
     $.post(
         url, {
-        requesting: 'form'
+            requesting: 'form',
+            forceNew: forceCreateNew,
         },
         function(data){
             stopLoading();
@@ -157,17 +173,29 @@ function projectOverlay(url, rdr) {
                          }
                          else
                          {
+                             stopLoading();
+
                              // close the dialog
                              form.dialog('close');
-
                              // remove form
                              form.remove();
 
                              // redirect to details page
                              if(undefined !== rdr)
                              {
-                                 stopLoading();
                                  redirectUser('criteria/create');
+                             }
+
+                             if(replaceWithData)
+                             {
+                                 // replace title
+                                 $('#projectUrl h1').fadeOut('slow', function(){
+                                     $(this).html(escapeString(data['title'])).fadeIn('slow');
+                                 });
+
+                                 $('#showProjectDescription dd').fadeOut('slow', function(){
+                                     $(this).html(escapeString(data['description']).replace(/\n/g,'<br />')).fadeIn('slow');
+                                 });
                              }
                          }
                      }
@@ -175,6 +203,10 @@ function projectOverlay(url, rdr) {
 
              },
              Cancel: function() {
+                 if(forceNew)
+                 {
+                     redirectUser('site/index');
+                 }
                  $(this).dialog('close');
                  form.remove();
              }
@@ -261,7 +293,6 @@ function handleProjectMenu(menu) {
     // not a valid menu
     if(!menu instanceof Object)
     {
-        alert('ni array')
         return;
     }
 
@@ -353,56 +384,51 @@ $(document).ready(function(){
     $('#addToBookMarks').jFav();
 
     // create new project
-    $('#create, #createNewProject').click(function(event){
-        if($(this).attr('id') == 'createNewProject'){
+    $('#createNewProject').click(function(event){
 
-            $($(this)).live('click', function(event) {
-                div = $('<div></div>').attr({
-                    id: 'dialog-confirm',
-                    title: 'Delete criteria?',
-                }).html('<p style="color: #596171"><span class="ui-icon ui-icon-alert" style="float:left; margin:3px 7px 20px 4px;"></span>Are you sure you want to continue opening a new project? Your current project will die!"' + $(this).parent().find('span').html()  + '"?</p>');
+        // create dialog
+        div = $('<div></div>').attr({
+                id: 'dialog-confirm',
+                title: 'Create a new project?',
+            }).html('<p style="color: #596171"><span class="ui-icon ui-icon-alert" style="float:left; margin:3px 7px 20px 4px;"></span>Are you sure you want to continue opening a new project? Your current project will be lost unless you have saved the URL or added it to your bookmarks!</p>');
 
-                // url
-                url = $(this).attr('href');
+            // url
+            url = $(this).attr('href');
 
-                // add dialog functionality to the form element
-                div.dialog({
-                  autoOpen: false,
-                  height: 200,
-                  width: 750,
-                  modal: true,
-                  resizable: false,
-                  buttons: {
-                      'Yes, continue': function() {
+            // add dialog functionality to the form element
+            div.dialog({
+              autoOpen: false,
+              height: 200,
+              width: 750,
+              modal: true,
+              resizable: false,
+              buttons: {
+                  'Yes, continue': function() {
 
-                        // disable buttons
-                        $('button').attr('disabled', 'disabled');
+                    // disable buttons
+                    $('button').attr('disabled', 'disabled');
 
-                        // call project overlay
-                        projectOverlay(url, true);
+                    // call project overlay
+                    projectOverlay(url, 'criteria/create', true);
 
-                        // close the dialog
-                        div.dialog('close');
-                        div.remove();
-                      },
-                      Cancel: function() {
-                          $(this).dialog('close');
-                          $(this).remove();
-                      }
+                    // close the dialog
+                    div.dialog('close');
+                    div.remove();
                   },
-                  close: function() {
+                  Cancel: function() {
+                      $(this).dialog('close');
+                      $(this).remove();
                   }
-              });
+              },
+              close: function() {
+              }
+          });
 
-                div.dialog('open');
-                $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
-                event.preventDefault();
-            });
-
-        } else {
-            projectOverlay($(this).attr('href'), true);
+            div.dialog('open');
+            $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
             event.preventDefault();
-        }
+
+        event.preventDefault();
     });
 
     addRestrictedHintText();

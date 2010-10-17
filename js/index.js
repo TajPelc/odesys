@@ -6,6 +6,12 @@ $(document).ready(function(){
         $("a.button").button();
     });
 
+    // open project overlay
+    $('#create').click(function(event){
+        projectOverlay($(this).attr('href'), 'criteria/create');
+        event.preventDefault();
+    });
+
     var olHeight = $('#content ol').height();
 
     $('#content li').hide().parent().height(olHeight);

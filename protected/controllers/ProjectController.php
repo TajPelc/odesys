@@ -47,6 +47,12 @@ class ProjectController extends Controller
             $this->redirect(array('site/index'));
         }
 
+        // unset active project
+        if($this->post('forceNew') && $this->post('forceNew') == 'yes')
+        {
+            Project::unsetActiveProject();
+        }
+
         // create or edit
         if(false === $Project = Project::getActive())
         {
@@ -69,7 +75,7 @@ class ProjectController extends Controller
                     // save or return errrors
                     if($Project->save())
                     {
-                        Ajax::respondOk(array('project/details'));
+                        Ajax::respondOk($Project->getAttributes());
                     }
                     else
                     {
