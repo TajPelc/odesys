@@ -195,7 +195,7 @@ function createDialog(url, anchor) {
                             // edit mode, replace the edited item
                             if(editing)
                             {
-                                animateByColorChange($(anchor + '_' + data['id']).html(liHtml), 1000, 1000, false, anchor);
+                                animateByColorChange($(anchor + '_' + data['id']).html(liHtml), '#ffd700', 1000, 1000);
                             }
                             else // create mode, append the new element
                             {
@@ -209,7 +209,7 @@ function createDialog(url, anchor) {
 
                                 $('#sortable').append(li.html(liHtml));
                                 handleSortableList(true);
-                                animateByColorChange($('#sortable li:last'), 1000, 1000, false, anchor);
+                                animateByColorChange($('#sortable li:last'), '#ffd700', 1000, 1000);
                             }
 
                             // handle the menu items
@@ -280,29 +280,27 @@ function handleSortableList(animate) {
  * Animate the element by chaing it's backgrond color
  *
  * @param element
+ * @param blinkTo
  * @param speed1
  * @param speed2
  * @param codeOnFinish
  * @param anchor
  * @return void
  */
-function animateByColorChange(element, speed1, speed2, codeOnFinish, anchor)
+function animateByColorChange(element, blinkTo, speed1, speed2, codeOnFinish)
 {
-    changeToColor = '#DBE3F0';
-    if(anchor == '#alternative')
-    {
-        changeToColor = '#FFFFFF';
-    }
+    /// get background color
+    var originalBgColor = element.css('background-color');
 
     // animate the emenent to the specified color and back
     element.animate({
-            backgroundColor: '#ffd700;',
+            backgroundColor: blinkTo,
         },
         speed1,
         'linear',
         function() {
             element.animate({
-                backgroundColor: changeToColor,
+                backgroundColor: originalBgColor,
                 },
                 speed2,
                 'linear',
