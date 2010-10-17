@@ -193,8 +193,8 @@ function addActiveProjectNotice()
         position = $('#display-project-warning').position();
 
         // append to page and calculate position
-        $('#page').append($('<div id="hint"><p>Your project is still active!</p><span>&nbsp;</span></div>').css({
-            top: (position['top'] + 52) +'px',
+        $('#page').append($('<div id="hint"><p><em>Your project is still active!</em></p><p><i>Don\'t forget to add it to your bookmarks or save the link.</i></p><span>&nbsp;</span></div>').css({
+            top: (position['top'] + 54) +'px',
             left: (position['left'] + 153) +'px',
         }).fadeIn(500));
         setTimeout("$('#hint').animate({opacity: 0}, 1000, function() {$('#hint').remove()});", 5000);
@@ -211,7 +211,7 @@ function addRestrictedHintText()
     // hint text for buble
     var menuHintText = new Array();
     menuHintText['menu-alternatives'] = 'Define at least 2 criteria.';
-    menuHintText['menu-evaluation'] = 'Define at least 2 criteria and 2 alternatives.';
+    menuHintText['menu-evaluation'] = 'Define at 2 alternatives.';
     menuHintText['menu-analysis'] = 'Complete the evaluation!';
     menuHintText['menu-overview'] = 'Complete the evaluation!';
 
@@ -223,7 +223,7 @@ function addRestrictedHintText()
         mouseenter:
             function()
             {
-                $(this).parent().append('<div id="hint"><p>Conditions not met!</p><em><i>' + menuHintText[$(this).attr('id')] + '</i></em><span></span></div>');
+                $(this).parent().append('<div id="hint"><p><em>To enable this step:</em></p><p><i>' + menuHintText[$(this).attr('id')] + '</i></p><span>&nbsp;</span></div>');
                 $('#project li #hint').css({
                     top: (0) +'px',
                     left: (projectLiWidth) +'px',

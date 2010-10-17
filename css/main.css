@@ -601,9 +601,15 @@ div.search-form
     }
 
     #project #hint p {
-        font-weight: bold;
         margin: 0;
         text-align: center;
+    }
+    #project #hint p:first-child{
+        margin-bottom: 5px;
+    }
+    #project #hint p em
+    {
+        font-weight: bold;
     }
 
 /* EVALUATION PAGE */

@@ -13,29 +13,37 @@
 
 #hint {
     width: 170px;
-    padding: 5px;
+    padding: 8px;
     position: absolute;
     z-index: 100;
     margin-bottom: 20px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     color: #31353E;
-    background-color: #AFBD8E;
+    border: 1px solid #AFBD8E;
+    background-color: #fff;
+    opacity: 0.9;
 }
 
     #hint span {
         position: absolute;
-        top: 8px;
-        left: -5px;
+        top: 9px;
+        left: -6px;
         width: 6px;
         height: 11px;
         background: url(../images/arrowLeft2.png) no-repeat;
     }
 
     #hint p {
-        font-weight: bold;
         margin: 0;
         text-align: center;
+    }
+    #hint p:first-child{
+        margin-bottom: 5px;
+    }
+    #hint p em
+    {
+        font-weight: bold;
     }
 
 
