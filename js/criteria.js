@@ -17,7 +17,7 @@ $(document).ready(function(){
     // rearrange order on sort
     $('#sortable').live( "sortupdate", function(event, ui) {
         $(this).sortable('disable');
-        animateByColorChange(ui.item, 200,200, '$("#sortable").sortable("enable");');
+        animateByColorChange(ui.item, '#FFD700', 200, 200, '$("#sortable").sortable("enable");');
         $.get(location.href, {
             criteriaOrder: $(this).sortable('toArray').toString(),
         });
