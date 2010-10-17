@@ -211,7 +211,7 @@ function addRestrictedHintText()
     // hint text for buble
     var menuHintText = new Array();
     menuHintText['menu-alternatives'] = 'Define at least 2 criteria.';
-    menuHintText['menu-evaluation'] = 'Define at 2 alternatives.';
+    menuHintText['menu-evaluation'] = 'Define at least 2 alternatives.';
     menuHintText['menu-analysis'] = 'Complete the evaluation!';
     menuHintText['menu-overview'] = 'Complete the evaluation!';
 
