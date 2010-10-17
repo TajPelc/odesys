@@ -10,7 +10,7 @@
                     <?php foreach($Alternative['Criteria'] as $criteriaId => $Criteria){ ?>
                         <li>
                             <label for="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>"><?php echo CHtml::encode($Criteria['Obj']->title); ?></label>
-                            <div class="slider<?php if(empty($Criteria['Evaluation']->grade)) { ?> new<?php }?>">
+                            <div class="slider<?php if(!is_numeric($Criteria['Evaluation']->grade)) { ?> new<?php }?>">
                                 <p>
                                     <span><?php echo CHtml::encode($Criteria['Obj']->worst); ?></span>
                                     <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
@@ -37,7 +37,7 @@
                     <?php foreach($Criteria['Alternatives'] as $alternativeId => $Alternative){ ?>
                         <li>
                             <label for="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>"><?php echo CHtml::encode($Alternative['Obj']->title); ?></label>
-                            <div class="slider<?php if(empty($Alternative['Evaluation']->grade)) { ?> new<?php }?>">
+                            <div class="slider<?php if(!is_numeric($Alternative['Evaluation']->grade)) { ?> new<?php }?>">
                                 <p>
                                     <span><?php echo CHtml::encode($Criteria['Obj']->worst); ?></span>
                                     <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">

@@ -43,8 +43,16 @@ function handleSlider()
                         fetchMenu: true,
                     },
                     function(data) {
-                        handleProjectMenu(data['menu']);
                         stopLoading();
+
+                        // check menu items
+                        handleProjectMenu(data['menu']);
+
+                        // show continue link
+                        if(data['menu']['menu-analysis']['enabled'])
+                        {
+                            $('#continue').fadeIn(2000);
+                        }
                         if (sliderSlider.hasClass('new')){
                             sliderSlider.removeClass('new');
                             animateByColorChange(sliderSlider, '#FFD700', 500, 500);
@@ -54,7 +62,6 @@ function handleSlider()
         }));
         $(this).remove();
     });
-
 }
 
 /**
@@ -63,11 +70,11 @@ function handleSlider()
 $(document).ready(function(){
     handleSlider();
 
-    // linkify
-    $('#menu-analysis, #continue').click(function(event){
-        saveAndContinue();
-        event.preventDefault();
-    });
+    // disable continue link
+    if(!$('#menu-analysis').is('a'))
+    {
+        $('#continue').hide();
+    }
 
     $('#sortByCriteria, #sortByAlternatives').live('click', function(event){
         startLoading(true);
