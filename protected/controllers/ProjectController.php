@@ -108,7 +108,7 @@ class ProjectController extends Controller
             'Project' => $Project,
             'Alternatives' => $Project->alternatives,
             'Criteria' => $Project->criteria,
-            'eval' => $Project->getEvaluationArray(),
+            'eval' => $Project->getEvaluationArray(0.9, true),
         ));
     }
 

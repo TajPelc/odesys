@@ -40,6 +40,13 @@ class ExportController extends Controller
 
         /// get project's evaluation
         $Project = Project::getActive();
+
+        // evaluation not complete
+        if(false == $Project || $Project->checkEvaluationComplete() )
+        {
+            $this->redirect(array('project/overview'));
+        }
+
         $eval = $Project->getEvaluationArray(0.9, true);
 
         // get php excel
@@ -116,7 +123,7 @@ class ExportController extends Controller
 
         // Redirect output to a client’s web browser (Excel5)
         header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="01simple.xls"');
+        header('Content-Disposition: attachment;filename="odesys_export.xls"');
         header('Cache-Control: max-age=0');
 
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');

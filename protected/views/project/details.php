@@ -1,12 +1,13 @@
 <div id="content">
     <?php echo CHtml::link('Edit project details', array('project/create'), array('class' => 'button', 'id' => 'create')); ?>
+    <?php echo CHtml::link('Export data to Microsoft Excel', array('export/index'), array('class' => 'button', 'id' => 'export')); ?>
 
     <?php if(is_array($eval) && count($eval) > 0) {?>
     <?php $first = array_slice($eval, 0, 1, true); ?>
     <?php $first = current($first); ?>
     <dl id="highestScore">
         <dt>Highest scoring alternative:</dt>
-        <dd><span><?php echo CHtml::encode($first['Obj']->title);?></span></dd>
+        <dd><span><?php echo CHtml::encode($first['Obj']->title);?></span><span><?php echo $first['weightedTotal'];?> points</span></dd>
     </dl>
     <dl id="showProjectDescription">
         <dt>Project description:</dt>
