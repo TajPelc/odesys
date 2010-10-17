@@ -97,6 +97,12 @@ class ProjectController extends Controller
         // get project
         $Project = $this->loadActiveProject();
 
+        // redirect to evaluation if not yet complete
+        if(!$Project->checkEvaluationComplete())
+        {
+            $this->redirect(array('evaluation/evaluate'));
+        }
+
         // render details
         $this->render('details', array(
             'Project' => $Project,

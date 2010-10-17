@@ -54,6 +54,19 @@ class EvaluationController extends Controller
         // load active project
         $Project = $this->loadActiveProject();
 
+        // redirect to criteria create if evaluation conditions not set
+        if(!$Project->checkEvaluateConditions())
+        {
+            if(count($Project->alternatives) < 2)
+            {
+                $this->redirect(array('alternative/create'));
+            }
+            else
+            {
+                $this->redirect(array('criteria/create'));
+            }
+        }
+
         // get evaluation array
         if('criteria' == $sortType)
         {

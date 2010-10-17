@@ -69,6 +69,12 @@ class AlternativeController extends Controller
             }
         }
 
+        // redirect to criteria create if not enough criteria have been entered
+        if(count($Project->criteria) < 2)
+        {
+            $this->redirect(array('criteria/create'));
+        }
+
         // save alternative
         if($this->_saveAlternative($Alternative, $Project))
         {

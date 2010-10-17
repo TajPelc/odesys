@@ -57,6 +57,12 @@ class ResultsController extends Controller
         // load active project
         $Project = $this->loadActiveProject();
 
+        // redirect to evaluation if it's not yet complete
+        if(!$Project->checkEvaluationComplete())
+        {
+            $this->redirect(array('evaluation/evaluate'));
+        }
+
         // graph data
         $eval = $Project->getEvaluationArray();
         $rv = array('colorPool' => self::$colorPool);
