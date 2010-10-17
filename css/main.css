@@ -255,6 +255,10 @@ p
         margin-right: 0;
     }
 
+    #mainmenu ul li:first-child {
+        float: left;
+    }
+
 #mainmenu ul li a
 {
     color:#fff;
