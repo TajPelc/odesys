@@ -562,10 +562,12 @@ div.search-form
 
 #project ul li span.restricted {
     color: #7a818d;
+    cursor: help;
 }
 
 #project ul li span.selected
 {
+    cursor: default;
     color: #32353E;
     background-color: #FFD700;
 }
@@ -584,13 +586,15 @@ div.search-form
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     color: #31353E;
-    background-color: #AFBD8E;
+    opacity: 0.9;
+    background-color: #fff;
+    border: 1px solid #AFBD8E;
 }
 
     #project #hint span {
         position: absolute;
         top: 9px;
-        left: -5px;
+        left: -6px;
         width: 6px;
         height: 11px;
         background: url(../images/arrowLeft2.png) no-repeat;
