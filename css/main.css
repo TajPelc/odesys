@@ -250,6 +250,11 @@ p
     float: left;
 }
 
+    #mainmenu ul li:last-child {
+        float: right;
+        margin-right: 0;
+    }
+
 #mainmenu ul li a
 {
     color:#fff;

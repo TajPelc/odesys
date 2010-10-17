@@ -352,6 +352,59 @@ $(document).ready(function(){
     // make Add to bookmarks real deal
     $('#addToBookMarks').jFav();
 
+    // create new project
+    $('#create, #createNewProject').click(function(event){
+        if($(this).attr('id') == 'createNewProject'){
+
+            $($(this)).live('click', function(event) {
+                div = $('<div></div>').attr({
+                    id: 'dialog-confirm',
+                    title: 'Delete criteria?',
+                }).html('<p style="color: #596171"><span class="ui-icon ui-icon-alert" style="float:left; margin:3px 7px 20px 4px;"></span>Are you sure you want to continue opening a new project? Your current project will die!"' + $(this).parent().find('span').html()  + '"?</p>');
+
+                // url
+                url = $(this).attr('href');
+
+                // add dialog functionality to the form element
+                div.dialog({
+                  autoOpen: false,
+                  height: 200,
+                  width: 750,
+                  modal: true,
+                  resizable: false,
+                  buttons: {
+                      'Yes, continue': function() {
+
+                        // disable buttons
+                        $('button').attr('disabled', 'disabled');
+
+                        // call project overlay
+                        projectOverlay(url, true);
+
+                        // close the dialog
+                        div.dialog('close');
+                        div.remove();
+                      },
+                      Cancel: function() {
+                          $(this).dialog('close');
+                          $(this).remove();
+                      }
+                  },
+                  close: function() {
+                  }
+              });
+
+                div.dialog('open');
+                $('div.ui-widget-header').removeClass('ui-widget-header').addClass('overlay-heading');
+                event.preventDefault();
+            });
+
+        } else {
+            projectOverlay($(this).attr('href'), true);
+            event.preventDefault();
+        }
+    });
+
     addRestrictedHintText();
     addActiveProjectNotice();
 });

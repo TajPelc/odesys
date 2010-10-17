@@ -22,6 +22,6 @@ class Tabs extends CWidget
 
     public function run()
     {
-        $this->render('tabs', array('checkUrl' => (in_array(Yii::app()->controller->id . '/' . Yii::app()->controller->action->id, $this->pagesForSetProject)) ? true : false));
+        $this->render('tabs', array('checkUrl' => (in_array(Yii::app()->controller->id . '/' . Yii::app()->controller->action->id, $this->pagesForSetProject)) ? true : false, 'project' => Project::getActive()));
     }
 }
