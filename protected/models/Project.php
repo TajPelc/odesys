@@ -290,7 +290,10 @@ class Project extends CActiveRecord
     public function checkEvaluationComplete()
     {
         $evalCount = count($this->evaluation);
-        return (count($this->alternatives) * count($this->criteria) === $evalCount && $evalCount >= 4);
+        $criteriaNr = count($this->criteria);
+        $alternativeNr = count($this->alternatives);
+
+        return ($criteriaNr >= 2 && $alternativeNr >= 2 && $evalCount == $criteriaNr * $alternativeNr);
     }
 
     /**
