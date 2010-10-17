@@ -71,8 +71,13 @@ function bindDeleteOverlay(selector, anchor) {
                             {
                                 $(anchor + '_' + data['id']).fadeOut(1000, function(){
                                     $(this).remove();
-                                    handleSortableList();
                                 });
+
+                                // just deleted the second list element
+                                if($('#sortable').children().size() == 2)
+                                {
+                                    $('a.right').fadeOut(1000);
+                                }
 
                                 // close the dialog
                                 div.dialog('close');
@@ -203,7 +208,7 @@ function createDialog(url, anchor) {
                                 }
 
                                 $('#sortable').append(li.html(liHtml));
-                                handleSortableList();
+                                handleSortableList(true);
                                 animateByColorChange($('#sortable li:last'), 1000, 1000, false, anchor);
                             }
 
@@ -235,8 +240,9 @@ function createDialog(url, anchor) {
 /**
  * Remove ul / handle continue link
  */
-function handleSortableList() {
+function handleSortableList(animate) {
     size = $('#sortable').children().size();
+
     if(size  < 2)
     {
         if( size == 0)
@@ -247,7 +253,15 @@ function handleSortableList() {
     }
     else
     {
-        $('a.right').show();
+        element = $('a.right');
+        if(animate)
+        {
+            element.fadeIn(2000);
+        }
+        else
+        {
+            element.show();
+        }
     }
 
     if(size >= 10)
