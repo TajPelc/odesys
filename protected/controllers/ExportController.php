@@ -42,7 +42,7 @@ class ExportController extends Controller
         $Project = Project::getActive();
 
         // evaluation not complete
-        if(false == $Project || $Project->checkEvaluationComplete() )
+        if(false == $Project || false === $Project->checkEvaluationComplete() )
         {
             $this->redirect(array('project/overview'));
         }
