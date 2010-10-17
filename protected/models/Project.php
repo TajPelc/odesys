@@ -273,7 +273,25 @@ class Project extends CActiveRecord
             $eval[$Alternative->alternative_id]['weightedTotal'] = (int)$weightedTotal;
         }
 
+        // sort the array
+        uasort($eval, array('Project', 'compareAlternative'));
         return $eval;
+    }
+
+    /**
+     * Compare two alternatives by weighted score
+     *
+     * @param array $a
+     * @param array $b
+     */
+    public static function compareAlternative($a, $b)
+    {
+        if($a['weightedTotal'] == $b['weightedTotal'])
+        {
+            return 0;
+        }
+
+        return ($a['weightedTotal'] < $b['weightedTotal'] ? +1 : -1);
     }
 
     /**
