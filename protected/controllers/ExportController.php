@@ -44,7 +44,7 @@ class ExportController extends Controller
         // evaluation not complete
         if(false == $Project || false === $Project->checkEvaluationComplete() )
         {
-            $this->redirect(array('project/overview'));
+            $this->redirect(array('project/details'));
         }
 
         $eval = $Project->getEvaluationArray(0.9, true);
