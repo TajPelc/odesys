@@ -213,7 +213,7 @@ class Project extends CActiveRecord
      * @param double $quotient
      * @param string $sortBy
      */
-    public function getEvaluationArray($quotient = 0.9, $sortBy = 'total')
+    public function getEvaluationArray($quotient = 0.9, $sort = false)
     {
         // build the array of evaluations
         $eval = array();
@@ -274,7 +274,11 @@ class Project extends CActiveRecord
         }
 
         // sort the array
-        uasort($eval, array('Project', 'compareAlternative'));
+        if($sort)
+        {
+            uasort($eval, array('Project', 'compareAlternative'));
+        }
+
         return $eval;
     }
 
