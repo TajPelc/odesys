@@ -3,10 +3,10 @@
 <?php }?>
     <?php if(!empty($Project)) { ?>
         <div>
-            <?php if(!empty($this->pages)){ ?>
+            <?php if(!empty($menu)){ ?>
                 <ul>
                     <?php $i = 1;?>
-                    <?php foreach($this->pages as $id => $menuItem) {?>
+                    <?php foreach($menu as $id => $menuItem) {?>
                         <?php $label = $i . '. ' . $menuItem['label']; ?>
                         <?php if($menuItem['route'][0] === $currentRoute || !$menuItem['enabled']) { ?>
                             <li><span id="<?php echo $id; ?>" class="<?php if($menuItem['enabled']) {?>selected<?php } else { ?>restricted<?php }?>"><?php echo CHtml::encode($label); ?></span></li>

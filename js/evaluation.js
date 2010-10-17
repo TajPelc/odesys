@@ -39,8 +39,10 @@ function handleSlider()
                     'index.php?r=evaluation/update', {
                         grade: ui.value,
                         params: params,
+                        fetchMenu: true,
                     },
                     function(data) {
+                        handleProjectMenu(data['menu']);
                 });
             }
         }));
@@ -56,7 +58,7 @@ $(document).ready(function(){
     handleSlider();
 
     // linkify
-    $('#project div a:last, #continue').click(function(event){
+    $('#menu-analysis, #continue').click(function(event){
         saveAndContinue();
         event.preventDefault();
     });

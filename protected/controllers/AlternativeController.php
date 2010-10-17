@@ -54,7 +54,7 @@ class AlternativeController extends Controller
             {
                 if($this->_saveAlternative($Alternative, $Project))
                 {
-                    Ajax::respondOk(array('title' => $Alternative->getAttribute('title'), 'id' => $Alternative->getAttribute('alternative_id')));
+                    Ajax::respondOk(array('title' => $Alternative->getAttribute('title'), 'id' => $Alternative->getAttribute('alternative_id'), 'menu' => ProjectMenu::getMenuItems()));
                 }
                 else
                 {
@@ -94,7 +94,7 @@ class AlternativeController extends Controller
         $id = $Alternative->alternative_id;
         if($Alternative->delete())
         {
-            Ajax::respondOk(array('id' => $id));
+            Ajax::respondOk(array('id' => $id, 'menu' => ProjectMenu::getMenuItems()));
         }
         else
         {

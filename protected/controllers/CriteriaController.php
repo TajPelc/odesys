@@ -56,7 +56,7 @@ class CriteriaController extends Controller
             {
                 if($this->_saveCriteria($Criteria, $Project))
                 {
-                    Ajax::respondOk(array('title' => $Criteria->getAttribute('title'), 'id' => $Criteria->getAttribute('criteria_id')));
+                    Ajax::respondOk(array('title' => $Criteria->getAttribute('title'), 'id' => $Criteria->getAttribute('criteria_id'), 'menu' => ProjectMenu::getMenuItems()));
                 }
                 else
                 {
@@ -101,7 +101,7 @@ class CriteriaController extends Controller
         $id = $Criteria->criteria_id;
         if($Criteria->delete())
         {
-            Ajax::respondOk(array('id' => $id));
+            Ajax::respondOk(array('id' => $id, 'menu' => ProjectMenu::getMenuItems()));
         }
         else
         {

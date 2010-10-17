@@ -154,6 +154,7 @@ class EvaluationController extends Controller
 
         $params = $this->post('params');
         $grade = $this->post('grade');
+        $rv = array();
 
         // update evaluation
         if(is_array($this->post('params')) && count($this->post('params')) == 2)
@@ -172,7 +173,12 @@ class EvaluationController extends Controller
 
             $Evaluation->grade = $grade;
             $Evaluation->save();
-            Ajax::respondOk();
+
+            if($this->post('fetchMenu'))
+            {
+                $rv = array('menu' => ProjectMenu::getMenuItems());
+            }
+            Ajax::respondOk($rv);
         }
     }
 }

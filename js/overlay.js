@@ -64,7 +64,6 @@ function bindDeleteOverlay(selector, anchor) {
                             // errors
                             if(data['status'] == false)
                             {
-                                alert('Delete failed.');
                                 // close the dialog
                                 div.dialog('close');
                             }
@@ -78,6 +77,9 @@ function bindDeleteOverlay(selector, anchor) {
                                 // close the dialog
                                 div.dialog('close');
                                 div.remove();
+
+                                // handle the menu items
+                                handleProjectMenu(data['menu']);
                             }
                         }
                     });
@@ -156,7 +158,6 @@ function createDialog(url, anchor) {
                             {
                                 // replace the contents of the form
                                 form.html(data['form']);
-                                //form.find('input').removeClass('text ui-widget-content ui-corner-all');
 
                                 // reenable buttons
                                 $('button').removeAttr('disabled');
@@ -205,6 +206,9 @@ function createDialog(url, anchor) {
                                 handleSortableList();
                                 animateByColorChange($('#sortable li:last'), 1000, 1000, false, anchor);
                             }
+
+                            // handle the menu items
+                            handleProjectMenu(data['menu']);
                         }
                     }
                 });

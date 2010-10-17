@@ -21,25 +21,6 @@ function redirectUser(url) {
 }
 
 /**
- * Unset Project
- */
-function unsetProject() {
-    $('#project a.close').live('click', function(event){
-        div = $(this).parent();
-        link = $(this);
-
-        // fadeout
-        div.fadeOut(500, function(){
-            $.get(link.attr('href'), function(data){
-                window.location.replace(location.protocol + '//'+ location.hostname + location.pathname + '?r=site/index');
-            });
-        });
-
-        event.preventDefault();
-    });
-}
-
-/**
  * Show the loading image
  *
  * @return void
@@ -198,98 +179,11 @@ function projectOverlay(url, rdr) {
 }
 
 /**
- * Enable a link in the menu
- * @param id
- * @return void
- */
-function enableLink(id) {
-    span = $('#' + id);
-
-    // not a span
-    if(!span.is('span'))
-    {
-        return;
-    }
-
-    var menu = new Array;
-    url = window.location.protocol + '//' + window.location.hostname;
-    menu['menu-evaluation'] = '/index.php?r=evaluation/evaluate';
-    menu['menu-analysis']   = '/index.php?r=results/display';
-    menu['menu-overview']   = '/index.php?r=project/details';
-
-    // get the element to enable
-    span.fadeOut('slow', function(){
-        link = $('<a></a>')
-            .attr('href', menu[span.attr('id')])
-            .attr('title', span.html())
-            .attr('id', span.attr('id'))
-            .html(span.html())
-            .hide();
-
-        span.after(link);
-        span.remove();
-        link.fadeIn('slow');
-    });
-}
-
-/**
- * Disable a link in the menu
- * @param id
+ * Add a notice that the project is still active
  * @return
  */
-function disableLink(id)
+function addActiveProjectNotice()
 {
-    link = $('#' + id);
-
-    // not a link
-    if(!link.is('a'))
-    {
-        return;
-    }
-
-    link.fadeOut('slow', function(){
-        span = $('<span></span>')
-            .attr('id', link.attr('id'))
-            .attr('class', 'restricted')
-            .html(link.html())
-            .hide();
-        link.after(span);
-        link.remove();
-        span.fadeIn('slow');
-    });
-}
-
-/**
- * On document load
- */
-$(document).ready(function(){
-    unsetProject();
-
-    // make projectUrl selectable
-    $("#projectUrl_input").click(function(){
-        $(this).select();
-    });
-
-    // show projectMenu hint if conditions are not met
-    var menuHintText = new Array();
-    menuHintText['menu-evaluation'] = 'Define at least 2 criteria and 2 alternatives.';
-    menuHintText['menu-analysis'] = 'Complete the evaluation!';
-    menuHintText['menu-overview'] = 'Complete the evaluation!';
-    var projectLi = $('#project li');
-    projectLiWidth = projectLi.width();
-    projectLi.children('span.restricted').hover(function(){
-        $(this).parent().append('<div id="hint"><p>Conditions not met!</p><em><i>' + menuHintText[$(this).attr('id')] + '</i></em><span></span></div>');
-        $('#project li #hint').css({
-            top: (0) +'px',
-            left: (projectLiWidth) +'px',
-        })
-    }, function(){
-        $('#project li #hint').remove();
-    });
-
-    // make Add to bookmarks real deal
-    $('#addToBookMarks').jFav();
-
     /**
      * Display active project floating warning
      */
@@ -305,5 +199,107 @@ $(document).ready(function(){
         }).fadeIn(500));
         setTimeout("$('#hint').animate({opacity: 0}, 1000, function() {$('#hint').remove()});", 5000);
     }
+}
 
+/**
+ * Add hint text to project menu
+ *
+ * @return
+ */
+function addRestrictedHintText()
+{
+    // hint text for buble
+    var menuHintText = new Array();
+    menuHintText['menu-alternatives'] = 'Define at least 2 criteria.';
+    menuHintText['menu-evaluation'] = 'Define at least 2 criteria and 2 alternatives.';
+    menuHintText['menu-analysis'] = 'Complete the evaluation!';
+    menuHintText['menu-overview'] = 'Complete the evaluation!';
+
+    // get list element width
+    projectLiWidth = $('#project li').width();
+
+    // bind the hint buble to all restricted spans
+    $('#project li span.restricted').live({
+        mouseenter:
+            function()
+            {
+                $(this).parent().append('<div id="hint"><p>Conditions not met!</p><em><i>' + menuHintText[$(this).attr('id')] + '</i></em><span></span></div>');
+                $('#project li #hint').css({
+                    top: (0) +'px',
+                    left: (projectLiWidth) +'px',
+                })
+            },
+         mouseleave:
+            function()
+            {
+                $('#project li #hint').remove();
+            }
+        }
+     );
+}
+
+/**
+ * Enable a link in the menu
+ * @param id
+ * @return void
+ */
+function handleProjectMenu(menu) {
+    // not a valid menu
+    if(!menu instanceof Object)
+    {
+        alert('ni array')
+        return;
+    }
+
+    // loop through the menu items
+    $('#project div ul li span, #project div ul li a').each(function(){
+        newItem = menu[$(this).attr('id')];
+
+        // disable item
+        if($(this).is('a') && newItem['enabled'] == false)
+        {
+            $(this).fadeOut('slow', function(){
+                span = $('<span></span>')
+                    .attr('id', $(this).attr('id'))
+                    .attr('class', 'restricted')
+                    .html($(this).html())
+                    .hide();
+                $(this).after(span).remove();
+                span.fadeIn('slow');
+            });
+        }
+
+        // enable item
+        if($(this).is('span') && $(this).attr('class') == 'restricted' && newItem['enabled'])
+        {
+            var url = 'index.php?r=' + newItem['route'][0];
+            $(this).fadeOut('slow', function(){
+                link = $('<a></a>')
+                .attr('href', url)
+                .attr('title', $(this).html())
+                .attr('id', $(this).attr('id'))
+                .html($(this).html())
+                .hide();
+
+                $(this).after(link).remove();
+                link.fadeIn('slow');
+            });
+        }
+    });
+}
+
+/**
+ * On document load
+ */
+$(document).ready(function(){
+    // make projectUrl selectable
+    $("#projectUrl_input").click(function(){
+        $(this).select();
+    });
+
+    // make Add to bookmarks real deal
+    $('#addToBookMarks').jFav();
+
+    addRestrictedHintText();
+    addActiveProjectNotice();
 });

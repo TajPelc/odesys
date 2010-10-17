@@ -34,7 +34,8 @@ class Controller extends CController
     {
         parent::__construct($id, $module);
 
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
+        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.2.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-1.4.3.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jFav_v1.0.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/main.js');
