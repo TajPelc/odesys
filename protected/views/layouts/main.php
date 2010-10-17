@@ -7,12 +7,13 @@
     <!-- blueprint CSS framework -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-    <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+    <![endif]-->
 
     <!-- JavaScript -->
     <?php if('results/display' == $this->getRoute() ) { ?><!--[if IE]><script language="javascript" type="text/javascript" src="/js/jqplot/excanvas.js"></script><![endif]--><?php } ?>
@@ -31,7 +32,7 @@
 
     <div id="footer">
         <hr />
-        Copyright &copy; <?php echo date('Y'); ?> by Taj Pelc.<br/>
+        Copyright &copy; <?php echo date('Y'); ?> by David Pevc.<br/>
         All Rights Reserved.<br/>
         <?php echo Yii::powered(); ?>
     </div>
