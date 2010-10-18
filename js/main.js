@@ -309,6 +309,7 @@ function handleProjectMenu(menu) {
                     .attr('id', $(this).attr('id'))
                     .attr('class', 'restricted')
                     .html($(this).html())
+                    .css({display: 'block'}) // IE hack
                     .hide();
                 $(this).after(span).remove();
                 span.fadeIn('slow');
@@ -325,6 +326,7 @@ function handleProjectMenu(menu) {
                 .attr('title', $(this).html())
                 .attr('id', $(this).attr('id'))
                 .html($(this).html())
+                .css({display: 'block'}) // IE hack
                 .hide();
 
                 $(this).after(link).remove();
