@@ -28,23 +28,6 @@
     <span class="left">&nbsp;</span>
 </div>
 
-<h2>Criteria details</h2>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Least desired value</th>
-        <th>Most desired value</th>
-        <th>Weight</th>
-    </tr>
-    <?php foreach($Criteria as $C) { ?>
-        <tr>
-            <td><?php echo CHtml::encode($C->title)?></td>
-            <td><?php echo CHtml::encode($C->worst)?></td>
-            <td><?php echo CHtml::encode($C->best)?></td>
-            <td>&nbsp;</td>
-        </tr>
-    <?php }?>
-</table>
 <h2>Alternatives by rank</h2>
 <table>
     <tr>
@@ -82,5 +65,22 @@
             <td><?php echo (string)$C['Evaluation']->grade; ?></td>
         <?php }?>
     </tr>
+    <?php }?>
+</table>
+<h2>Criteria details</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Least desired value</th>
+        <th>Most desired value</th>
+        <th>Weight</th>
+    </tr>
+    <?php foreach($Criteria as $C) { ?>
+        <tr>
+            <td><?php echo CHtml::encode($C->title)?></td>
+            <td><?php echo CHtml::encode($C->worst)?></td>
+            <td><?php echo CHtml::encode($C->best)?></td>
+            <td>&nbsp;</td>
+        </tr>
     <?php }?>
 </table>

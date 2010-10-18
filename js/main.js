@@ -191,6 +191,7 @@ function projectOverlay(url, rdr, forceNew, replaceWithData) {
                                  // replace title
                                  $('#projectUrl h1').fadeOut('slow', function(){
                                      $(this).html(escapeString(data['title'])).fadeIn('slow');
+                                     $('#project-disabled').html(escapeString(data['title'])).fadeIn('slow');
                                  });
 
                                  $('#showProjectDescription dd').fadeOut('slow', function(){
