@@ -193,6 +193,7 @@ p
             #sidebar ul p span {
                 font-weight: bold;
                 -moz-border-radius: 8px;
+                -webkit-border-radius: 8px;
                 background: #ebeee3;
                 width: 16px;
                 height: 16px;
