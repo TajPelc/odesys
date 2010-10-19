@@ -1,11 +1,16 @@
 #content {
     padding-top: 20px;
-    padding-left: 340px;
+    padding-right: 340px;
     width: 560px;
+    background: url(../images/index.jpg) no-repeat center right;
+    text-align: justify;
 }
 
+    #content h1 {
+        margin-bottom: 20px;
+    }
+
 .container {
-    background: url(../images/index.jpg) no-repeat center left;
     width: 940px;
     margin-right: 0;
     position: relative;
@@ -59,6 +64,11 @@
     #content ol li p {
         font-weight: normal;
     }
+
+#content #create {
+    float: right;
+    margin-top: 10px;
+}
 
 #create.glow {
     border-color: #FFD700;

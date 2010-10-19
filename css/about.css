@@ -1,11 +1,12 @@
 #content {
     padding-top: 20px;
-    padding-left: 340px;
+    padding-right: 340px;
     width: 560px;
+    background: url(../images/developer.png) no-repeat center right;
+    text-align: justify;
 }
 
 .container {
-    background: url(../images/developer.png) no-repeat center left;
     width: 940px;
     margin-right: 0;
     position: relative;
