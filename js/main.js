@@ -240,9 +240,9 @@ function addActiveProjectNotice()
         position = $('#display-project-warning').position();
 
         // append to page and calculate position
-        $('#page').append($('<div id="hint"><p><em>Your project is still active!</em></p><p><i>Don\'t forget to add it to your bookmarks or save the link.</i></p><span>&nbsp;</span></div>').css({
-            top: (position['top'] + 54) +'px',
-            left: (position['left'] + 153) +'px',
+        $('#display-project-warning').after($('<div id="hint"><p><em>Your project is still active!</em></p><p><i>Don\'t forget to add it to your bookmarks or save the link.</i></p><span>&nbsp;</span></div>').css({
+            top: (0) +'px',
+            left: ($('#hint').width()+$('#display-project-warning').parent().width()+10) +'px',
         }).fadeIn(500));
         setTimeout("$('#hint').animate({opacity: 0}, 1000, function() {$('#hint').remove()});", 5000);
     }

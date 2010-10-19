@@ -78,4 +78,14 @@ class SiteController extends Controller
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
     }
+
+    /**
+     * About page
+     */
+    public function actionAbout()
+    {
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about.css');
+        $this->render('about');
+    }
 }

@@ -244,8 +244,7 @@ p
     margin:0px;
 }
 
-#mainmenu ul li
-{
+#mainmenu ul li {
     margin-right: 10px;
     display: block;
     float: left;
@@ -257,6 +256,10 @@ p
     }
 
     #mainmenu ul li:first-child {
+        float: left;
+    }
+
+    #mainmenu ul li.normal {
         float: left;
     }
 
