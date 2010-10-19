@@ -77,3 +77,16 @@
     border-color: #FFD700;
     color: #FFD700;
 }
+
+#content dl {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+#content dl dt {
+    margin-bottom: 5px;
+}
+
+#content dl dd {
+    margin-bottom: 10px;
+}
