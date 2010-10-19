@@ -1,13 +1,16 @@
 #content {
     padding-top: 20px;
     padding-right: 340px;
-    width: 560px;
+    padding-left: 10px;
+    width: 550px;
     background: url(../images/index.jpg) no-repeat center right;
     text-align: justify;
 }
 
     #content h1 {
         margin-bottom: 20px;
+        position: relative;
+        left: -10px;
     }
 
 .container {
