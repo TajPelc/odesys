@@ -138,12 +138,13 @@ div.form .hint
 div.form .note
 {
     width: 703px;
-    padding: 3px 5px; 
+    padding: 3px 5px;
     float: left;
     clear: both;
     font-style: italic;
     background: #CDD6DD;
     -moz-border-radius: 5px;
+    -webkit-border-radius:5px;
     color: #596171;
     font-size: 12px;
 }
@@ -171,6 +172,7 @@ div.form select.error
     background-color: #EEEEEE;
     border: 1px solid #ca1b03;
     -moz-border-radius:4px 4px 4px 4px;
+    -webkit-border-radius:4px;
 }
 
 div.form div.success input,
@@ -193,6 +195,7 @@ div.form .errorSummary
     background-color: #fff;
     border: 2px solid #ca1b03;
     -moz-border-radius: 5px;
+    -webkit-border-radius:5px;
     color: #ca1b03;
 }
 div.form .errorMessage

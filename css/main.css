@@ -186,19 +186,19 @@ p
         }
 
             #sidebar ul p i {
-                float: left;
                 margin-right: 10px;
+                display: inline;
             }
 
             #sidebar ul p span {
                 font-weight: bold;
                 -moz-border-radius: 8px;
                 -webkit-border-radius: 8px;
+                padding: 0 5px;
                 background: #ebeee3;
-                width: 16px;
                 height: 16px;
                 display: block;
-                float: left;
+                float: right;
                 text-align: center;
             }
 
@@ -206,6 +206,7 @@ p
             font-size: 14px;
             border: none;
             padding: 0;
+            float: left;
         }
 
 #footer
