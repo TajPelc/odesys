@@ -5,7 +5,7 @@
 }
 
 .container {
-    background: url(../images/index.jpg) no-repeat 5px 50px;
+    background: url(../images/index.jpg) no-repeat center left;
     width: 940px;
     margin-right: 0;
     position: relative;
