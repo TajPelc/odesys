@@ -436,4 +436,7 @@ $(document).ready(function(){
 
     addRestrictedHintText();
     addActiveProjectNotice();
+
+    // hacked CMenu widget
+    $('#siteAbout').parent().addClass('normal');
 });
