@@ -21,5 +21,4 @@
     <li><p>Add/remove criteria or alternatives, reevaluate alternatives or change the order (importance) of criteria</p></li>
     <li><p>Make a better decision</p></li>
 </ol>
-<p></p>
 <?php if(!Project::isProjectActive()){ ?><p><?php echo CHtml::link('Start by creating a new project', array('project/create'), array('class' => 'button', 'id' => 'create')); ?></p><?php }?>
