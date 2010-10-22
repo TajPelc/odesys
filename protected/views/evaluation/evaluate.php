@@ -1,5 +1,5 @@
+<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
-    <?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
     <?php if(count($Project->alternatives) > 1 && count($Project->criteria) > 1) { ?>
         <?php echo CHtml::link((($sortType == 'criteria') ? 'Group by alternatives' : 'Group by criteria'), array('evaluation/evaluate'), array('class' => 'button', 'id' => (($sortType == 'criteria') ? 'sortByAlternatives' : 'sortByCriteria'))); ?>
         <?php echo $this->renderPartial('_form', array('eval' => $eval, 'sortType' => $sortType)); ?>

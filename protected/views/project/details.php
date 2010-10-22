@@ -1,3 +1,4 @@
+<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Overview'; ?>
 <div id="content">
     <?php echo CHtml::link('Edit project details', array('project/create'), array('class' => 'button', 'id' => 'create')); ?>
     <?php echo CHtml::link('Export data to Microsoft Excel', array('export/index'), array('class' => 'button', 'id' => 'export')); ?>

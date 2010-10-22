@@ -1,4 +1,4 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
+<?php $this->pageTitle=Yii::app()->name . 'ODESYS: Online Decision Support System'; ?>
 <?php if(Project::isProjectActive()) { ?>
 <?php } ?>
 <h1>Welcome to ODESYS</h1>
