@@ -1,6 +1,5 @@
+<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Alternatives'; ?>
 <div id="content">
-    <?php $this->pageTitle = Yii::app()->name . ' / ' . CHtml::encode($Project->title) . ' / ' . ' Alternatives'; ?>
-
     <?php echo $this->renderPartial('_form', array('model'=>$model, 'Project' => $Project)); ?>
 
     <?php echo Chtml::button('Add alternative', array('id' => 'create', 'class' => 'hidden')); ?>

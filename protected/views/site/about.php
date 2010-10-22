@@ -1,3 +1,4 @@
+<?php $this->pageTitle=Yii::app()->name . 'About ODESYS'; ?>
 <h1>About ODESYS</h1>
 
 <h2>A brief history</h2>
