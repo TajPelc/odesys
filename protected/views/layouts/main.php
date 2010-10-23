@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="language" content="en" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
     <!-- blueprint CSS framework -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
@@ -25,21 +26,18 @@
 </head>
 
 <body>
-<div class="container" id="page">
-    <div id="header">
-        <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-        <?php $this->widget('application.components.Tabs'); ?>
+    <div class="container" id="page">
+        <div id="header">
+            <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+            <?php $this->widget('application.components.Tabs'); ?>
+        </div>
+        <?php echo $content; ?>
+        <div id="footer">
+            <hr />
+            Copyright &copy; <?php echo date('Y'); ?> by Taj Pelc.<br/>
+            All Rights Reserved.<br/>
+            <?php echo Yii::powered(); ?>
+        </div>
     </div>
-
-    <?php echo $content; ?>
-
-    <div id="footer">
-        <hr />
-        Copyright &copy; <?php echo date('Y'); ?> by Taj Pelc.<br/>
-        All Rights Reserved.<br/>
-        <?php echo Yii::powered(); ?>
-    </div>
-</div>
-
 </body>
 </html>
