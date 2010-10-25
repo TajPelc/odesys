@@ -63,13 +63,15 @@
 #content ol {
     float: left;
     margin: 0;
+    padding-left: 30px;
+    width: 520px;
 }
 
 #content ol li {
     font-weight: bold;
     float: left;
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
     #content ol .bg {
@@ -84,11 +86,9 @@
 
     #content ol li p {
         font-weight: normal;
-        padding: 3px 10px;
-        float: left;
+        padding: 3px 6px;
         margin-bottom: 0;
-        position: relative;
-        top: -3px;
+        display: inline;
     }
 
 #content ol + p {
