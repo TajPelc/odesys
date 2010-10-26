@@ -55,7 +55,6 @@
         font-weight: bold;
     }
 
-
 #yw0 li {
     position: relative;
 }
@@ -105,15 +104,17 @@
     color: #FFD700;
 }
 
-#content dl {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #EEEEEE;
-}
-
 #content dl dt {
     margin-bottom: 5px;
 }
 
 #content dl dd {
     margin-bottom: 10px;
+}
+
+#Flike {
+    border-bottom: 1px solid #EEEEEE;
+    height: 80px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
