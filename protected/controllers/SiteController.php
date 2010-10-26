@@ -35,12 +35,29 @@ class SiteController extends Controller
      */
     public function actionError()
     {
-        if($error=Yii::app()->errorHandler->error)
+        if($error = Yii::app()->errorHandler->error)
         {
             if(Yii::app()->request->isAjaxRequest)
+            {
                 echo $error['message'];
+            }
             else
-                $this->render('error', $error);
+            {
+                $e = new stdClass();
+                switch($error['code'])
+                {
+                    case 404:
+                        $e->title = 'Are you lost?';
+                        $e->message = 'The requested page does not exist.';
+                        break;
+                    default:
+                        $e->title = 'Oops, we have a problem!';
+                        $e->message = 'An error occured while processing your request. Please try again or return in a while.';
+                        break;
+                }
+
+                $this->render('error', array('e' => $e));
+            }
         }
     }
 
