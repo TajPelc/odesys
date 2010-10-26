@@ -25,7 +25,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.atc.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index.css');
         $this->render('index');

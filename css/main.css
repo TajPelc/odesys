@@ -67,12 +67,13 @@ p
     padding-top: 80px;
     position: relative;
 }
-#logo
-{
-    padding: 10px 15px 20px 15px;
-    text-indent: -9999px;
-    display: none;
-}
+
+    #logo {
+        padding: 10px 15px 20px 15px;
+        text-indent: -9999px;
+        display: none;
+    }
+
 #content
 {
     float: left;
