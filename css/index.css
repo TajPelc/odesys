@@ -60,13 +60,40 @@
     position: relative;
 }
 
+#content ol {
+    float: left;
+    margin: 0;
+    padding-left: 30px;
+    width: 520px;
+}
+
 #content ol li {
     font-weight: bold;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
 }
+
+    #content ol .bg {
+        background: #DBE3F0;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+    }
+
+    #content ol .basic {
+        background: #fff;
+    }
 
     #content ol li p {
         font-weight: normal;
+        padding: 3px 6px;
+        margin-bottom: 0;
+        display: inline;
     }
+
+#content ol + p {
+    float: right;
+}
 
 #content #create {
     float: right;
