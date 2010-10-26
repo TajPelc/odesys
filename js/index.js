@@ -1,4 +1,45 @@
 /**
+ * Animate how to use odesys list
+ * @params: List items, animate from class, animate to class
+ * @return
+ */
+function animateListElements(lists, classFrom, classTo){
+    startTime = -1000;
+    $(lists).each(function(index, element){
+        startTime = startTime + 2000;
+        start2ndTime = startTime + 1500;
+        setTimeout(function(){
+            $(element).children('p').switchClass(classFrom, classTo, 500);
+        }, startTime);
+        setTimeout(function(){
+            $(element).children('p').switchClass(classTo, classFrom, 500);
+        }, start2ndTime);
+    });
+    setTimeout(function(){
+        $('#content #create').animate({
+            opacity: 0.2
+        }, 300).addClass('glow')
+    }, 15300);
+    setTimeout(function(){
+        $('#content #create').animate({
+            opacity: 1
+        }, 300).removeClass('glow')
+    }, 15600);
+}
+
+// iterate the animation "i" times
+function animateList(){
+    timer = -26000;
+    for (x = 0; x < 50; x++) {
+        timer = timer + 26000;
+        setTimeout(function(){
+            animateListElements('#content li', '', 'bg');
+        }, timer);
+        x++;
+    }
+}
+
+/**
  * On document load
  */
 $(document).ready(function(){
@@ -12,74 +53,6 @@ $(document).ready(function(){
         event.preventDefault();
     });
 
-    // animate the list
+    // animate list
     animateList();
 });
-
-/**
- * Animate how to use odesys list
- * @return
- */
-function animateList()
-{
-    setTimeout(function(){
-        $('#content li:eq(0) p').switchClass('','bg', 500);
-    }, 1000);
-
-    setTimeout(function(){
-        $('#content li:eq(0) p').switchClass('bg','basic', 500);
-    }, 2500);
-
-    setTimeout(function(){
-        $('#content li:eq(1) p').switchClass('','bg', 500);
-    }, 3000);
-    setTimeout(function(){
-        $('#content li:eq(1) p').switchClass('bg','basic', 500);
-    }, 4500);
-
-    setTimeout(function(){
-        $('#content li:eq(2) p').switchClass('','bg', 500);
-    }, 5000);
-    setTimeout(function(){
-        $('#content li:eq(2) p').switchClass('bg','basic', 500);
-    }, 6500);
-
-    setTimeout(function(){
-        $('#content li:eq(3) p').switchClass('','bg', 500);
-    }, 7000);
-    setTimeout(function(){
-        $('#content li:eq(3) p').switchClass('bg','basic', 500);
-    }, 8500);
-
-    setTimeout(function(){
-        $('#content li:eq(4) p').switchClass('','bg', 500);
-    }, 9000);
-    setTimeout(function(){
-        $('#content li:eq(4) p').switchClass('bg','basic', 500);
-    }, 10500);
-
-    setTimeout(function(){
-        $('#content li:eq(5) p').switchClass('','bg', 500);
-    }, 11000);
-    setTimeout(function(){
-        $('#content li:eq(5) p').switchClass('bg','basic', 500);
-    }, 12500);
-
-    setTimeout(function(){
-        $('#content li:eq(6) p').switchClass('','bg', 500);
-    }, 13000);
-    setTimeout(function(){
-        $('#content li:eq(6) p').switchClass('bg','basic', 500);
-    }, 14500);
-
-    setTimeout(function(){
-        $('#content #create').animate({
-        opacity: 0.2
-        }, 300).addClass('glow')
-    }, 15300);
-    setTimeout(function(){
-        $('#content #create').animate({
-        opacity: 1
-        }, 300).removeClass('glow')
-    }, 15600);
-}
