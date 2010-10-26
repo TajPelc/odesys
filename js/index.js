@@ -12,10 +12,16 @@ $(document).ready(function(){
         event.preventDefault();
     });
 
-    var olHeight = $('#content ol').height();
+    // animate the list
+    animateList();
+});
 
-    //$('#content li').hide().parent().height(olHeight);
-
+/**
+ * Animate how to use odesys list
+ * @return
+ */
+function animateList()
+{
     setTimeout(function(){
         $('#content li:eq(0) p').switchClass('','bg', 500);
     }, 1000);
@@ -76,4 +82,4 @@ $(document).ready(function(){
         opacity: 1
         }, 300).removeClass('glow')
     }, 15600);
-});
+}

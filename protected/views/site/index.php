@@ -1,7 +1,6 @@
 <?php $this->pageTitle=Yii::app()->name . 'ODESYS: Online Decision Support System'; ?>
 <?php if(Project::isProjectActive()) { ?>
 <?php } ?>
-<h1>Welcome to ODESYS</h1>
 <dl>
     <dt><em>What is it?</em></dt>
     <dd>ODESYS is a simple online decision support system (<a href="http://en.wikipedia.org/wiki/Decision_support_system" title="Decision Support System">DSS</a>) with a friendly graphical user interface.</dd>
@@ -20,8 +19,8 @@
     <li><p>Define criteria and order them from most to least important</p></li>
     <li><p>Define alternatives between which you are choosing</p></li>
     <li><p>Evalute each alternative by the defined criteria</p></li>
-    <li><p>Analyse the results using a graphical interpretation of results</p></li>
-    <li><p>Add/remove criteria or alternatives, reevaluate alternatives or change the order (importance) of criteria</p></li>
+    <li><p>Analyse the results using our graphical method</p></li>
+    <li><p>Tinker with your decision model until you are satisfied</p></li>
     <li><p>Make a better decision</p></li>
 </ol>
 <?php if(!Project::isProjectActive()){ ?><p><?php echo CHtml::link('Start by creating a new project', array('project/create'), array('class' => 'button', 'id' => 'create')); ?></p><?php }?>
