@@ -41,6 +41,14 @@ class EvaluationController extends Controller
      */
     public function actionEvaluate()
     {
+        // add style files
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/evaluation/index.css');
+
+        // add script files
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation/index.js');
+
         // set sort type
         switch ($this->post('sortType'))
         {
@@ -121,9 +129,6 @@ class EvaluationController extends Controller
             }
             $this->redirect(array('results/display'));
         }
-
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/evaluation.css');
 
         // render partial for ajax
         if(Ajax::isAjax())
