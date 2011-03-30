@@ -48,40 +48,18 @@ class CriteriaController extends Controller
 
         // load active project
         $Project = $this->loadActiveProject();
-
-        // load model
-        $Criteria = $this->loadModel('criteria');
-
-        // change the order of criteria
-        if(Ajax::isAjax())
-        {
-            if(isset($_POST['requesting']) && $_POST['requesting'] == 'formPost')
-            {
-                if($this->_saveCriteria($Criteria, $Project))
-                {
-                    Ajax::respondOk(array('title' => $Criteria->getAttribute('title'), 'id' => $Criteria->getAttribute('criteria_id'), 'menu' => ProjectMenu::getMenuItems()));
-                }
-                else
-                {
-                    $rv['form'] = $this->renderPartial('_form', array('model' => $Criteria, 'Project' => $Project), true);
-                    Ajax::respondError($rv);
-                }
-            }
-            elseif(isset($_GET['requesting']) && $_GET['requesting'] == 'form')
-            {
-                $rv['form'] = $this->renderPartial('_form', array('model' => $Criteria, 'Project' => $Project), true);
-                Ajax::respondOk($rv);
-            }
-            else
-            {
-                $this->_reorderCriteria();
-            }
-        }
-
         // save criteria
-        if($this->_saveCriteria($Criteria, $Project))
+        if(isset($_POST['newCriteria']))
         {
-            $this->redirect(array('criteria/create'));
+            // set attributes
+            $Criteria = new Criteria();
+            $Criteria->attributes = $_POST['newCriteria'];
+
+            // redirect
+            if( $Criteria->save())
+            {
+                $this->redirect(array('criteria/create'));
+            }
         }
 
         // javascript
@@ -90,7 +68,6 @@ class CriteriaController extends Controller
 
         // render the view
         $this->render('create', array(
-            'model'     => $Criteria,
             'Project'   => $Project,
         ));
     }
@@ -111,30 +88,6 @@ class CriteriaController extends Controller
             Ajax::respondError(array('id' => $id));
         }
         $this->redirect(array('create'));
-    }
-
-    /**
-     * Save criteria
-     *
-     * @var Project $Project
-     */
-    private function _saveCriteria($Criteria, $Project)
-    {
-        // only allow up to 10 criteria
-        if($Criteria->getIsNewRecord() && count($Project->criteria) >= 10)
-        {
-            return false;
-        }
-
-        if(isset($_POST['Criteria']))
-        {
-            dump($_POST);
-            die;
-            // set attributes
-            $Criteria->rel_project_id = $Project->project_id;
-            $Criteria->attributes = $_POST['Criteria'];
-            return $Criteria->save();
-        }
     }
 
     /**

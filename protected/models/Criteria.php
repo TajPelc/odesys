@@ -106,6 +106,7 @@ class Criteria extends CActiveRecord
         {
             if( $this->isNewRecord )
             {
+                $this->rel_project_id = Project::getActive()->project_id;
                 $this->position = count(Criteria::model()->findAllByAttributes(array('rel_project_id' => $this->rel_project_id)));
             }
             return true;
