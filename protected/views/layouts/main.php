@@ -5,24 +5,20 @@
     <meta name="language" content="en" />
     <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
-    <!-- blueprint CSS framework -->
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+    <!-- CSS framework -->
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/reset.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/layout.css" />
 
     <!--[if lt IE 8]>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-    <![endif]-->
-    <!--[if IE 8]>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie8.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/ie/layout.css" media="screen, projection" />
     <![endif]-->
 
-    <!-- JavaScript -->
+    <!-- JavaScript framework -->
     <?php if('results/display' == $this->getRoute() ) { ?><!--[if IE]><script language="javascript" type="text/javascript" src="/js/jqplot/excanvas.js"></script><![endif]--><?php } ?>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+
+    <!-- Google Analytics -->
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-19289535-1']);
@@ -37,17 +33,19 @@
 </head>
 
 <body>
-    <div class="container" id="page">
+    <div id="wrapper">
         <div id="header">
-            <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
-            <?php $this->widget('application.components.Tabs'); ?>
+            <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
+            <div id="login"><a href="#">Login with Facebook</a></div>
         </div>
         <?php echo $content; ?>
+        <?php $this->widget('application.components.Tabs'); ?>
         <div id="footer">
-            <hr />
-            Copyright &copy; <?php echo date('Y'); ?> by Taj Pelc.<br/>
-            All Rights Reserved.<br/>
-            <?php echo Yii::powered(); ?>
+            <ul>
+              <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
+              <li><a href="#">Terms of use</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
         </div>
     </div>
 </body>
