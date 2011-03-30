@@ -45,6 +45,11 @@
               <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
               <li><a href="#">Terms of use</a></li>
               <li><a href="#">Contact</a></li>
+              <li>
+                  <div>
+                      <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;font=arial&amp;colorscheme=dark&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>
+                  </div>
+              </li>
             </ul>
         </div>
     </div>
