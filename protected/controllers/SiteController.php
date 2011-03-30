@@ -25,8 +25,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index.css');
+        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
+        //Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index.css');
         $this->render('index');
     }
 
@@ -35,8 +35,8 @@ class SiteController extends Controller
      */
     public function actionError()
     {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/error.css');
+        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/error.css');
         if($error = Yii::app()->errorHandler->error)
         {
             if(Yii::app()->request->isAjaxRequest)

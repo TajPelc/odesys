@@ -1,0 +1,56 @@
+/*
+ --> Criteria css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.1
+*/
+
+#content > form {
+    width: 540px;;
+}
+
+    #content > form ol {
+        list-style: decimal inside;
+        float: left;
+    }
+
+        #content > form ol li {
+            margin-bottom: 16px;
+            float: left;
+        }
+
+        #content > form ol li:last-child {
+            position: relative;
+        }
+
+    #content > form input[type="text"] {
+        width: 500px;
+        padding: 0 10px;
+        line-height: 26px;
+        height: 26px;
+        border: 1px solid #596171;
+    }
+
+    #content > form input[type="submit"] {
+        float: right;
+    }
+
+    #content > form input + span {
+        width: 16px;
+        height: 20px;
+        padding-left: 4px;
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: -25px;
+        font-size: 20px;
+        font-weight: bold;
+        background: #596171;
+        color: #DBE3F0;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+        #content > form input + span:hover {
+            cursor: pointer;
+        }

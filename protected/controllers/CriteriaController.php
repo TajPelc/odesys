@@ -45,6 +45,10 @@ class CriteriaController extends Controller
     {
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/criteria/index.css');
+
+        // javascript
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria/index.js');
 
         // load active project
         $Project = $this->loadActiveProject();
@@ -61,10 +65,6 @@ class CriteriaController extends Controller
                 $this->redirect(array('criteria/create'));
             }
         }
-
-        // javascript
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/overlay.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria.js');
 
         // render the view
         $this->render('create', array(

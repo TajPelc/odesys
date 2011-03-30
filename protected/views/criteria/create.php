@@ -1,13 +1,16 @@
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Criteria'; ?>
 <div id="content">
-    <?php echo CHtml::beginForm('', 'post', array('id' => 'criteria')); ?>
+    <h2>Enter criterias that are important for your decision:</h2>
+    <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Criteria = $Project->criteria; ?>
+        <ol>
         <?php for ($i = 0; $i < count($Criteria); $i++) { ?>
-            <label for="criteria_<?php echo $Criteria[$i]->criteria_id; ?>"><?php echo $i+1;?></label>
-            <input type="text" name="criteria[<?php echo $Criteria[$i]->criteria_id; ?>][title]" id="criteria_<?php echo $Criteria[$i]->criteria_id; ?>" value="<?php echo $Criteria[$i]->title; ?>" />
+                <li>
+                    <input type="text" name="criteria[<?php echo $Criteria[$i]->criteria_id; ?>][title]" id="criteria_<?php echo $Criteria[$i]->criteria_id; ?>" value="<?php echo $Criteria[$i]->title; ?>" />
+                </li>
         <?php } ?>
-        <label for="newCriteria">+</label>
-    	<input type="text" name="newCriteria[title]" id="newCriteria" />
+            <li><input type="text" name="newCriteria[title]" id="newCriteria" /></li>
+        </ol>
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
 </div>

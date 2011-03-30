@@ -5,139 +5,83 @@
 */
 
 /* PROJECT */
-#project {
-    width: 100%;
-    margin: 8px 0 0 0;
-    background-color: #596171;
-    float: left;
-    clear: both;
-}
 
 #projectBg {
     width: 100%;
     float: left;
-    margin-bottom: 16px;
     position: relative;
     top: -1px; /*hack for header*/
     background: #DBE3F0;
 }
 
-#project h1 {
-    padding: 0;
-    margin: 0 0 10px 0;
-    border-bottom: 1px solid white;
-    display: block;
-    color: #fff;
-    font-style: italic;
-    font-size: 12px;
-    font-weight: bold;
-    padding-bottom: 7px;
-}
-
-#project > div {
-    color: #fff;
-    text-align: center;
-}
-
-#project a.close {
-    float: right;
-    right: 10px;
-    top: 10px;
-    font-size: 16px;
-    width: 12px;
-    height: 15px;
-    background-color: #ffd700;
-    padding-left: 3px;
-    line-height: 13px;
-    text-decoration: none;
-    background: url('../images/sprite.png') no-repeat 0px 0px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
-
-#project a.close:hover {
-    background-position: -16px 0px;
-}
-
-#project a.close:active {
-    background-position: -32px 0px;
-}
-
-#project ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-#project ul li {
-    width: 192px;
-    position: relative;
-    float: left;
-    border-top: 3px solid #596171;
-}
-
-#project ul li a,#project ul li>span {
-    width: 100%;
-    font-size: 13px;
-    font-weight: normal;
-    border: 0;
-    text-align: left;
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 0;
-    text-align: center;
-}
-
-#project ul li span.restricted {
-    color: #7a818d;
-    cursor: help;
-}
-
-#project ul li span.selected {
-    width: 172px;
-    margin: 0 10px;
-    cursor: default;
-    color: #32353E;
-    background-color: #fff;
-    border-radius: 7px 7px 0 0;
-    -moz-border-radius: 7px 7px 0 0;
-    -webkit-border-radius: 7px 7px 0 0;
-}
-
-#project ul li a:hover {
-    width: 172px;
-    margin: 0 10px;
-    cursor: pointer;
-    color: #31353E;
-    background-color: #fff;
-    border-radius: 7px 7px 0 0;
-    -moz-border-radius: 7px 7px 0 0;
-    -webkit-border-radius: 7px 7px 0 0;
-}
-
-#project ul li .loadingBar {
-    width: 100%;
-    padding: 0;
-    height: 8px;
-    display: block;
-    background: #FFD700;
-    position: absolute;
-    left: 0;
-    top: -11px;
-    border: none;
-}
-
-    #project ul li .loadingBarEnd {
-        width: 0;
-        height: 0;
-        padding: 0;
-        position: absolute;
-        left: none;
-        right: -12px;
-        top: -11px;
-        border-top: 4px solid #DBE3F0;
-        border-left: 12px solid #FFD700;
-        border-bottom: 4px solid #DBE3F0;
+    #project {
+        width: 100%;
+        margin: 8px 0 0 0;
+        background-color: #596171;
+        float: left;
+        clear: both;
     }
+
+        #project ul li {
+            width: 192px;
+            position: relative;
+            float: left;
+            border-top: 5px solid #596171;
+        }
+
+        #project ul li a,
+        #project ul li > span {
+            width: 100%;
+            font-size: 13px;
+            display: block;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            padding: 7px 0;
+        }
+
+        #project ul li span.restricted {
+            color: #7a818d;
+            cursor: help;
+        }
+
+        #project ul li span.selected,
+        #project ul li a:hover {
+            width: 172px;
+            margin: 0 10px;
+            cursor: default;
+            color: #32353E;
+            background-color: #fff;
+            border-radius: 7px 7px 0 0;
+            -moz-border-radius: 7px 7px 0 0;
+            -webkit-border-radius: 7px 7px 0 0;
+        }
+
+        #project ul li a:hover {
+            cursor: pointer;
+        }
+
+        #project ul li .loadingBar {
+            width: 100%;
+            padding: 0;
+            height: 8px;
+            display: block;
+            background: #FFD700;
+            position: absolute;
+            left: 0;
+            top: -13px;
+            border: none;
+        }
+
+            #project ul li .loadingBarEnd {
+                width: 0;
+                height: 0;
+                padding: 0;
+                position: absolute;
+                left: none;
+                right: -12px;
+                top: -13px;
+                border-top: 4px solid #DBE3F0;
+                border-left: 12px solid #FFD700;
+                border-bottom: 4px solid #DBE3F0;
+            }

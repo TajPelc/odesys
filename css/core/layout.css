@@ -34,7 +34,7 @@ a:hover {
 
     #main {
         width: 920px;
-        padding: 0 20px;
+        padding: 16px 20px 16px 20px;
         float: left;
         position: relative;
         top: -1px; /*header hack*/
@@ -42,7 +42,6 @@ a:hover {
 
         #content {
             width: 706px;
-            padding-top: 16px;
             float: left;
         }
 
