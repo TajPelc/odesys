@@ -41,7 +41,7 @@ class Criteria extends CActiveRecord
     {
         return array(
             array('title', 'isProjectUnique'),
-            array('title, worst, best', 'required'),
+            array('title', 'required'),
             array('title', 'length', 'max' => 60),
             array('worst, best', 'length', 'max' => 30),
             array('title, description', 'safe', 'on' => 'search'),

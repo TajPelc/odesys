@@ -125,10 +125,11 @@ class CriteriaController extends Controller
 
         if(isset($_POST['Criteria']))
         {
+            dump($_POST);
+            die;
             // set attributes
             $Criteria->rel_project_id = $Project->project_id;
             $Criteria->attributes = $_POST['Criteria'];
-            $Criteria->description =  $_POST['Criteria']['description'];
             return $Criteria->save();
         }
     }

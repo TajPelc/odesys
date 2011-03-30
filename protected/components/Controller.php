@@ -71,6 +71,15 @@ class Controller extends CController
      */
     protected function loadActiveProject($redirect = true)
     {
+        /**
+         * TEMPORARY HACK-CODE
+         */
+        $Projects = Project::model()->findAll();
+        return end($Projects);
+        /**
+         * END TEMPORARY HACK-CODE
+         */
+
         // get active project
         if( $project = Project::getActive() )
         {
