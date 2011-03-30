@@ -43,6 +43,9 @@ class CriteriaController extends Controller
      */
     public function actionCreate()
     {
+        // add style files
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+
         // load active project
         $Project = $this->loadActiveProject();
 

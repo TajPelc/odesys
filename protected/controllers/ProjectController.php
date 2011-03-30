@@ -153,6 +153,9 @@ class ProjectController extends Controller
             $this->redirect(array('site/index'));
         }
 
+        // add style files
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+
         // add script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.color.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project.js');
