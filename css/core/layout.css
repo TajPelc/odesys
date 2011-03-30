@@ -1,6 +1,6 @@
 /*
  --> Layout css
- --> @author:     Frenk
+ --> @author:     Frenk T. Sedmak Nahtigal
  --> @version:    1.2
 */
 
@@ -19,7 +19,7 @@ a:hover {
     text-decoration: none;
 }
 
-/* CONTAINER
+/* CONTAINERS
 ********************************************************/
 #wrapper {
     width: 960px;
@@ -31,6 +31,25 @@ a:hover {
     -webkit-border-radius: 15px;
     border: 1px solid #596171;
 }
+
+    #main {
+        width: 920px;
+        padding: 0 20px;
+        float: left;
+        position: relative;
+        top: -1px; /*header hack*/
+    }
+
+        #content {
+            width: 706px;
+            padding-top: 16px;
+            float: left;
+        }
+
+        #sidebar {
+            width: 194px;
+            float: right;
+        }
 
 /* Header
 ********************************************************/
@@ -76,6 +95,22 @@ a:hover {
         #header #login a {
             color: #fff;
         }
+
+/* Content
+********************************************************/
+#content h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+#content h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+#content p {
+    line-height: 16px;
+}
 
 /* Footer
 ********************************************************/

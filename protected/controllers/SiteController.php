@@ -103,7 +103,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about/index.css');
         $this->render('about');
     }
 }

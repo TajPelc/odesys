@@ -1,0 +1,19 @@
+/*
+ --> About css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.1
+*/
+
+#content {
+    width: 580px;
+    padding-right: 340px;
+    background: url(../../images/developer.png) no-repeat right 70px;
+}
+
+    #content > h2 {
+        margin-top: 16px;
+    }
+
+    #content > p {
+        margin-bottom: 8px;
+    }

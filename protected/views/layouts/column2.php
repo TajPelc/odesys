@@ -13,7 +13,7 @@
 </div>
 <?php } ?>
 <?php $this->widget('application.components.ProjectMenu'); ?>
-<div class="container">
+<div id="main">
     <?php echo $content; ?>
 </div>
 <?php $this->endContent(); ?>

@@ -39,7 +39,6 @@
             <div id="login"><a href="#">Login with Facebook</a></div>
         </div>
         <?php echo $content; ?>
-        <?php $this->widget('application.components.Tabs'); ?>
         <div id="footer">
             <ul>
                 <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
