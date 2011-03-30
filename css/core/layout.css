@@ -98,7 +98,6 @@ a:hover {
         padding: 0;
         list-style: none;
         position: relative;
-        left: -21px; /*fb like hack*/
     }
 
         #footer ul li {
@@ -112,14 +111,16 @@ a:hover {
         }
 
         #footer ul li:last-child {
+            width: 450px;
             border: none;
             position: relative;
         }
 
-    #footer li div {
-        width: 90px;
-        height: 21px;
+    #footer > div {
+        width: 225px;
+        height: 28px;
+        margin: 0 auto;
         position: absolute;
-        top: -3px;
-        left: 2px;
+        top: 6px;
+        left: 20px;
     }
