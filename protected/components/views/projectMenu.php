@@ -14,7 +14,7 @@
                             <?php } elseif (!$menuItem['enabled']) { ?>
                                 <li><span id="<?php echo $id; ?>" class="<?php if($menuItem['enabled']) {?>selected<?php } else { ?>restricted<?php }?>"><?php echo CHtml::encode($label); ?></span></li>
                             <?php } else { ?>
-                                <li><?php echo CHtml::link(CHtml::encode($label), $menuItem['route'], array('title' => CHtml::encode($label), 'id' => $id)); ?><span class="loadingBarEnd">&nbsp;</span></li>
+                                <li><?php echo CHtml::link(CHtml::encode($label), $menuItem['route'], array('title' => CHtml::encode($label), 'id' => $id)); ?><span class="loadingBar">&nbsp;</span></li>
                             <?php } ?>
                             <?php $i++;?>
                         <?php } ?>
