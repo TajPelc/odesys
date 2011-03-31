@@ -21,4 +21,24 @@ $(document).ready(function(){
             }
         });
     });
+
+    // on submit, post form and get new one
+    $('#content form').submit(function(){
+        url = $(this).attr('action');
+        data = $(this).serialize();
+        // post the form
+        $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                success: function(data) {
+                    // errors
+                    if(data['status'] == true)
+                    {
+                        // here be returned shite
+                    }
+                }
+            });
+        return false;
+    });
 });
