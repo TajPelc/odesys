@@ -39,9 +39,13 @@
                 <?php if(Yii::app()->user->isGuest){ ?>
                     <?php echo CHtml::link(CHtml::image('http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif', 'Facbook Connect'), array('login/facebook')); ?>
                 <?php } else { ?>
-                    <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->id . '/picture');?>
-                    <p>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i></p>
-                    <p><?php echo CHtml::link('Start solving a problem!', array('criteria/create')); ?></p>
+                    <div id="login_image"><?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->id . '/picture');?></div>
+                    <h2>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i>!</h2>
+                    <ul>
+                        <li><?php echo CHtml::link('Dashboard', array('criteria/create')); ?></li>
+                        <li><?php echo CHtml::link('New decision!', array('criteria/create')); ?></li>
+                        <li><?php echo CHtml::link('Logout', array('criteria/create')); ?></li>
+                    </ul>
                 <?php }?>
             </div>
         </div>
