@@ -35,3 +35,28 @@
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+
+<?php if(Yii::app()->user->isGuest){ ?>
+    <div class="facebook-login">
+        <div class="login_sector_fb">
+            <h2>Login</h2>
+            <div class="login_prompt">Or <b>login</b> with Facebook:</div>
+            <fb:login-button></fb:login-button>
+        </div>
+        <div>
+            <h2>Logout</h2>
+            <?php // CHtml::link('Logout('.Yii::app()->user->name.')', Yii::app()->user->logoutUrl)?>
+        </div>
+    </div>
+<?php } ?>
+<div class="clear"></div>
+<?php
+$login_url = 'http://'.$_SERVER['HTTP_HOST'].Yii::app()->request->baseUrl.'/user/login/facebook/';
+Yii::app()->clientScript->registerScript(
+   'facebook_onligin_ready',
+   'function facebook_onlogin_ready() {
+        window.location = "'.$login_url.'";
+    }',
+   CClientScript::POS_END
+);
+?>

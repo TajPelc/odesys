@@ -12,6 +12,10 @@ class User extends CActiveRecord
 
     const ANONYMOUS = 1;
 
+    const STATUS_INACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const TYPE_FACEBOOK = 40;
+
     /**
      * Returns the static model of the specified AR class.
      * @return CActiveRecord the static model class

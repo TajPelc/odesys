@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="language" content="en" />
@@ -31,12 +31,19 @@
       })();
     </script>
 </head>
-
 <body>
     <div id="wrapper">
         <div id="header">
             <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
-            <div id="login"><a href="#">Login with Facebook</a></div>
+            <div id="login">
+                <?php if(Yii::app()->user->isGuest){ ?>
+                    <?php echo CHtml::link(CHtml::image('http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif', 'Facbook Connect'), array('login/facebook')); ?>
+                <?php } else { ?>
+                    <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->id . '/picture');?>
+                    <p>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i></p>
+                    <p><?php echo CHtml::link('Start solving a problem!', array('criteria/create')); ?></p>
+                <?php }?>
+            </div>
         </div>
         <?php echo $content; ?>
         <div id="footer">
