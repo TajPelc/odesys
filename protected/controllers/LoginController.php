@@ -8,13 +8,6 @@
 class LoginController extends Controller
 {
     /**
-     *
-     * Set default action
-     * @var string
-     */
-    public $defaultAction = 'login';
-
-    /**
      * Facebook action
      */
     public function actionFacebook()
