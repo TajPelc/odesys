@@ -35,6 +35,9 @@
     <div id="wrapper">
         <div id="header">
             <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
+            <div id="like">
+                <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=standard&amp;show_faces=false&amp;width=600&amp;action=like&amp;font=arial&amp;colorscheme=dark&amp;height=28" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:600px; height:28px;" allowTransparency="true"></iframe>
+            </div>
             <div id="login">
                 <?php if(Yii::app()->user->isGuest){ ?>
                     <?php echo CHtml::link(CHtml::image('http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif', 'Facbook Connect'), array('login/facebook')); ?>
@@ -56,9 +59,6 @@
                 <li><a href="#">Terms of use</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-            <div>
-                <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=standard&amp;show_faces=false&amp;width=225&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=28" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:225px; height:28px;" allowTransparency="true"></iframe>
-            </div>
         </div>
     </div>
 </body>

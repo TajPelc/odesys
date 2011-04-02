@@ -12,7 +12,7 @@ function ImagePreload(arrayOfImages) {
 $(document).ready(function(){
     // Preload images
     ImagePreload([
-             '/images/ferlauf.png',
+             '/images/bg/ferlauf.png',
              '/images/logo.png'
      ]);
 });
