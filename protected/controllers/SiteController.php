@@ -25,8 +25,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
-        //Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index.css');
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index/index.css');
+
+        // include scrips
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index/index.js');
+
         $this->render('index');
     }
 
