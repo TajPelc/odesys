@@ -73,32 +73,33 @@ class Fb extends Facebook
             $uid = $this->getUser();
             $User = User::model()->findByAttributes(array('facebook_id' => $uid));
 
-            if(!empty($User))
+            if(empty($User))
+            {
+                Yii::trace('Creating a new user for UID ' . $uid);
+
+                $User = new User();
+                $User->facebook_id = $uid;
+                $User->status = User::STATUS_ACTIVE;
+                $User->created = date('Y-m-d H:i:s');
+                $User->lastvisit = date('Y-m-d H:i:s');
+                $User->superuser = 0;
+
+                if($User->save(false))
+                {
+                    Yii::log('User sucessfully created. UID: ' . $uid, 'error');
+                }
+
+                Yii::log('Failed to save new FB user. UID: ' . $uid, 'error');
+            }
+            else
             {
                 Yii::trace('User with UID: ' . $uid . ' found!');
             }
-
-            Yii::trace('Creating a new user for UID ' . $uid);
-
-            $User = new User();
-            $User->facebook_id = $uid;
-            $User->status = User::STATUS_ACTIVE;
-            $User->created = date('Y-m-d H:i:s');
-            $User->lastvisit = date('Y-m-d H:i:s');
-            $User->superuser = 0;
-
-            if($User->save(false))
-            {
-                Yii::log('User sucessfully created. UID: ' . $uid, 'error');
-            }
-
-            Yii::log('Failed to save new FB user. UID: ' . $uid, 'error');
         }
         catch (FacebookApiException $e)
         {
             Yii::log('FB connect failed: ' . $e, 'error');
         }
-
 
 	    // get identity
 		if($this->_identity === null)
