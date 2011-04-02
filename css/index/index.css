@@ -1,0 +1,91 @@
+/*
+ --> Index css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.1
+*/
+
+/* Content
+********************************************************/
+#content {
+    width: 450px;
+    margin-right: 20px;
+}
+
+    #content dl {
+        line-height: 16px;
+    }
+
+        #content dt {
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #content dd {
+            margin-bottom: 8px;
+        }
+
+/* Sidebar
+********************************************************/
+#sidebar {
+    width: 450px;
+}
+
+    #sidebar ul {
+        height: 285px;
+        margin-bottom: 16px;
+        position: relative;
+
+    }
+
+        #sidebar ul li {
+            width: 450px;
+            float:left;
+            position:absolute;
+            list-style: none;
+        }
+
+        #sidebar ul li.show {
+            z-index:500;
+        }
+
+        #sidebar ul li img {
+            width: 442px;
+            border:1px solid #ccc;
+            padding: 4px;
+            background: #FFF;
+        }
+
+    #sidebar h2 {
+        margin-bottom: 16px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #sidebar h2 + p {
+        line-height: 16px;
+        margin-bottom: 16px;
+    }
+
+    #sidebar ol {
+        line-height: 16px;
+        padding-left: 16px;
+        margin-bottom: 16px;
+        list-style: decimal outside;
+    }
+
+        #sidebar ol li {
+            margin-bottom: 8px;
+        }
+
+        #sidebar ol li p {
+            padding: 2px 4px;
+            display: inline;
+        }
+
+        #sidebar ol li p.glow {
+            background: #DBE3F0;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+        }

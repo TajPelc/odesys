@@ -1,5 +1,5 @@
 /* Core javascript
- * @author        Frenk
+ * @author        Frenk T. Sedmak Nahtigal
  * @version       1.0
 */
 
