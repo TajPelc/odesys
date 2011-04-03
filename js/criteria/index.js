@@ -111,6 +111,7 @@ $(document).ready(function(){
                 if(data['status'] == true)
                 {
                     that.parents('li').remove();
+                    $('#content form li:last-child input[type="text"]').focus();
                 }
             }
         });
@@ -118,7 +119,7 @@ $(document).ready(function(){
 
     // clicking add button fakes blur event
     $('#content form li .add').live('click', function(){
-        $('#content form li:last-child input[type="text"]').blur();
+        Criteria.DREKSMRDI($(this));
     });
 
     $('#content form').submit(function(){
