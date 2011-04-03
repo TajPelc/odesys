@@ -46,7 +46,8 @@ a:hover {
         }
 
         #sidebar {
-            width: 194px;
+            width: 178px;
+            padding: 8px;
             float: right;
         }
 

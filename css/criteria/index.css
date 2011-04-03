@@ -5,7 +5,7 @@
 */
 
 #content > form {
-    width: 542px;
+    width: 100%;
     float: left;
 }
 
@@ -25,15 +25,15 @@
         }
 
     #content > form input[type="text"] {
-        width: 500px;
+        width: 640px;
         height: 26px;
         line-height: 26px;
         padding: 0 10px;
         background: #DBE3F0;
         border: none;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
     }
 
     #content > form input[type="submit"] {
@@ -59,4 +59,27 @@
 
         #content > form input + span:hover {
             cursor: pointer;
+        }
+
+/* Sidebar
+********************************************************/
+#sidebar {
+    line-height: 16px;
+    border: 3px solid #DBE3F0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+    #sidebar ul {
+        list-style: circle outside;
+        padding-left: 16px;
+    }
+
+        #sidebar ul li {
+            margin-bottom: 8px;
+        }
+
+        #sidebar ul li:last-child {
+            margin-bottom: 0;
         }
