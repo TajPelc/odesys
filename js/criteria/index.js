@@ -6,11 +6,17 @@
 Criteria = {};
 
 Criteria.FormAddButton = function(){
-    $('#content form li:last-child input').after('<span>+</span>');
+    $('#content form li:last-child input').after('<span class="add">+</span>');
+}
+
+Criteria.FormRemoveButton = function(){
+    $('#content form li input').not(':last').parent().append('<span class="remove">-</span>');
 }
 
 $(document).ready(function(){
     Criteria.FormAddButton();
+    Criteria.FormRemoveButton();
+    $('#content form input[type="submit"]').css('display', 'none');
 
     //if enter is pressed on input fields except last, jump to the next field
     $('#content form li input[type="text"]').not(':last').focus(function(){

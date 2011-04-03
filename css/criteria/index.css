@@ -18,10 +18,10 @@
         #content > form ol li {
             margin-bottom: 16px;
             float: left;
+            position: relative;
         }
 
         #content > form ol li:last-child {
-            position: relative;
         }
 
     #content > form input[type="text"] {
@@ -43,10 +43,11 @@
     #content > form input + span {
         width: 16px;
         height: 20px;
+        line-height: 20px;
         padding-left: 4px;
         display: block;
         position: absolute;
-        top: 4px;
+        top: 2px;
         right: -25px;
         font-size: 20px;
         font-weight: bold;
@@ -55,6 +56,13 @@
         -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
         border-radius: 10px;
+    }
+
+    #content > form input + .remove {
+        width: 15px;
+        padding-left: 5px;
+        line-height: 16px;
+        font-size: 24px;
     }
 
         #content > form input + span:hover {
