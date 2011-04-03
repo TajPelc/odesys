@@ -43,6 +43,7 @@ $(document).ready(function(){
                 if(data['status'] == true)
                 {
                     // here be returned shite
+                    that.attr('id', 'criteria_'+data['criteria_id']);
                 }
             }
         });
@@ -63,11 +64,7 @@ $(document).ready(function(){
                     if(data['status'] == true)
                     {
                         // here be returned shite
-                        that.siblings('.add').remove();
-                        that.parent().append('<span class="remove">-</span>');
                         that.attr('id', 'criteria_'+data['criteria_id']);
-                        that.parents('ol').append('<li><input type="text" id="newCriteria" name="" value="" /><span class="add">+</span></li>');
-                        that.parent().next().children().focus();
                     }
                     //errors
                     else {
@@ -78,16 +75,20 @@ $(document).ready(function(){
 
     }
 
-    $('#content form li:last-child input[type="text"]').live('blur', function(){
-        Criteria.DREKSMRDI($(this));
-    });
-
-    $('#content form li:last-child input[type="text"]').live('keypress', function(e){
-        if(e.which == '13'){
+    $('#content form li:last-child input[type="text"]').live('blur keypress', function(e){
+        var that = $(this);
+        if (e.type == 'blur'){
             Criteria.DREKSMRDI($(this));
         }
+        else if (e.type == 'keypress' && e.which == 13) {
+            if (!that.val() == ''){
+                that.parents('ol').append('<li><input type="text" id="newCriteria" name="" value="" /><span class="add">+</span></li>');
+                that.siblings('.add').remove();
+                that.parent().append('<span class="remove">-</span>');
+                that.parent().next().children().focus();
+            }
+        }
     });
-
 
     // if enter, fake blur
     $('#content form li:not(:last-child) input[type="text"]').live('keypress', function(e){
