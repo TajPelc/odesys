@@ -58,6 +58,8 @@ $(document).ready(function(){
                     that.attr('id', 'criteria_'+data['criteria_id']);
                 }
                 else {
+                    that.removeClass('error');
+                    that.siblings('div.error').remove();
                     that.addClass('error');
                     Criteria.FormErrorReporting(that, data['errors']['title']);
                 }
@@ -92,6 +94,8 @@ $(document).ready(function(){
                     }
                     //errors
                     else {
+                        that.removeClass('error');
+                        that.siblings('div.error').remove();
                         that.addClass('error');
                         Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
