@@ -13,6 +13,14 @@ Criteria.FormRemoveButton = function(){
     $('#content form li input').not(':last').parent().append('<span class="remove">-</span>');
 }
 
+Criteria.FormErrorReporting = function(that, text){
+    if(that.siblings('div.error').length == 0){
+        that.after('<div class="error"><p>'+text+'</p></div>');
+        $('#content form div.error').css({'top': -that.height()-5});
+        that.focus();
+    }
+}
+
 $(document).ready(function(){
     Criteria.FormAddButton();
     Criteria.FormRemoveButton();
@@ -64,6 +72,8 @@ $(document).ready(function(){
                     if(data['status'] == true)
                     {
                         // here be returned shite
+                        that.removeClass('error');
+                        that.siblings('div.error').remove();
                         that.attr('id', 'criteria_'+data['criteria_id']);
                         that.parents('ol').append('<li><input type="text" id="newCriteria" name="" value="" /><span class="add">+</span></li>');
                         that.siblings('.add').remove();
@@ -72,6 +82,8 @@ $(document).ready(function(){
                     }
                     //errors
                     else {
+                        that.addClass('error');
+                        Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
                 }
             });

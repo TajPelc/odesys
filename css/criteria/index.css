@@ -7,9 +7,11 @@
 #content > form {
     width: 100%;
     float: left;
+    position: relative;
 }
 
     #content > form ol {
+        width: 686px;
         padding-left: 20px;
         list-style: decimal outside;
         float: left;
@@ -35,13 +37,18 @@
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 6px;
+        border: 1px solid #fff;
     }
 
     #content > form input[type="submit"] {
         float: right;
     }
 
-    #content > form input + span {
+    #content > form input.error {
+        border: 1px solid #f00;
+    }
+
+    #content > form ol li span {
         width: 16px;
         height: 20px;
         line-height: 20px;
@@ -68,6 +75,26 @@
 
         #content > form input + span:hover {
             cursor: pointer;
+        }
+
+    #content > form div.error {
+        height: 24px;
+        line-height: 24px;
+        padding: 0 20px;
+        position: absolute;
+        top: 8px;
+        left: 0;
+        color: #000;
+        background: #FFD700;
+        -moz-border-radius: 6px;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        border: 1px solid #f00;
+        opacity: 0.8;
+    }
+
+        #content > form div.error p {
+            line-height: 24px;
         }
 
 /* Sidebar
