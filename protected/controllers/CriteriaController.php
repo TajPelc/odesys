@@ -52,6 +52,38 @@ class CriteriaController extends Controller
 
         // load active project
         $Project = $this->loadActiveProject();
+
+        if(Ajax::isAjax())
+        {
+            $Criteria = Criteria::model()->findByPk($this->post('criteria_id'));
+            switch ($this->post('action'))
+            {
+                case 'save':
+                    if(empty($Criteria))
+                    {
+                        $Criteria = new Criteria();
+                    }
+
+                    $Criteria->title = $this->post('value');
+                    if($Criteria->save())
+                    {
+                        Ajax::respondOk();
+                    }
+                    Ajax::respondError($Criteria->getErrors());
+                    break;
+                case 'delete':
+                    if(!empty($Criteria))
+                    {
+                        $Criteria->delete();
+                        Ajax::respondOk();
+                    }
+                    Ajax::respondError();
+                    break;
+                default:
+                    Ajax::respondError();
+            }
+        }
+
         // save criteria
         if(isset($_POST['newCriteria']))
         {
