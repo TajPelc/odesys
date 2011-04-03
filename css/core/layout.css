@@ -69,7 +69,7 @@ a:hover {
 }
 
     #header h1 {
-        width: 635px;
+        width: 405px;
         height: 44px;
         float: left;
     }
@@ -85,18 +85,17 @@ a:hover {
 
     #header #like {
         width: 600px;
-        height: 28px;
+        height: 20px;
         margin: 0 auto;
         position: absolute;
-        bottom: 4px;
+        bottom: 8px;
         left: 20px;
     }
 
     #header #login {
-        width: 305px;
         padding: 8px 20px 0 0;
         height: 64px;
-        float: left;
+        float: right;
         color: #fff;
     }
 
@@ -105,8 +104,8 @@ a:hover {
         }
 
         #header #login #login_image {
-            margin: 0 8px 8px 0;
-            float: left;
+            margin: 0 0 8px 16px;
+            float: right;
             padding: 4px;
             background: #DBE3F0;
             border-radius: 4px;
@@ -120,27 +119,36 @@ a:hover {
                 display: block;
             }
 
-        #header #login > h2 {
-            margin-bottom: 24px;
-            font-size: 16px;
-            font-weight: bold;
+        #header #login div {
+            padding-top: 4px;
+            float: right;
         }
 
-        #header #login > ul {
-            width: 239px;
-            float: left;
-        }
+            #header #login div h2 {
+                margin-bottom: 20px;
+                float: right;
+                clear: both;
+                font-size: 16px;
+                font-weight: bold;
+            }
 
-        #header #login > ul li {
-            padding-right: 4px;
-            margin-right: 4px;
-            float: left;
-            border-right: 1px solid #fff;
-        }
+            #header #login > div ul {
+                float: right;
+                clear: both;
+            }
 
-        #header #login > ul li:last-child {
-            border: none;
-        }
+                #header #login > div ul li {
+                    padding-right: 4px;
+                    margin-right: 4px;
+                    float: left;
+                    border-right: 1px solid #fff;
+                }
+
+                #header #login > div ul li:last-child {
+                    padding-right: 0;
+                    margin-right: 0;
+                    border-right: none;
+                }
 
 /* Content
 ********************************************************/

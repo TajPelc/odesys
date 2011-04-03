@@ -36,19 +36,21 @@
         <div id="header">
             <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
             <div id="like">
-                <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=standard&amp;show_faces=false&amp;width=600&amp;action=like&amp;font=arial&amp;colorscheme=dark&amp;height=28" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:600px; height:28px;" allowTransparency="true"></iframe>
+                <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:20px;" allowTransparency="true"></iframe>
             </div>
             <div id="login">
                 <?php if(Yii::app()->user->isGuest){ ?>
                     <?php echo CHtml::link(CHtml::image('http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif', 'Facbook Connect'), array('login/facebook')); ?>
                 <?php } else { ?>
                     <div id="login_image"><?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->id . '/picture');?></div>
-                    <h2>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i>!</h2>
-                    <ul>
-                        <li><?php echo CHtml::link('Dashboard', array('criteria/create')); ?></li>
-                        <li><?php echo CHtml::link('New decision!', array('criteria/create')); ?></li>
-                        <li><?php echo CHtml::link('Logout', array('criteria/create')); ?></li>
-                    </ul>
+                        <div>
+                            <h2>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i>!</h2>
+                            <ul>
+                                <li><?php echo CHtml::link('Dashboard', array('criteria/create')); ?></li>
+                                <li><?php echo CHtml::link('New decision!', array('criteria/create')); ?></li>
+                                <li><?php echo CHtml::link('Logout', array('criteria/create')); ?></li>
+                            </ul>
+                        </div>
                 <?php }?>
             </div>
         </div>
