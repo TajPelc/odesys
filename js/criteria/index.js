@@ -38,6 +38,8 @@ $(document).ready(function(){
     //if enter is pressed on input fields except last, jump to the next field
     $('#content form li:not(:last-child) input[type="text"]').live('blur', function(){
         var that = $(this);
+        var trimValue = $.trim(that.val());
+        that.val(trimValue);
         var data = {
                 'criteria_id': that.attr('id').split('_')[1],
                 'value'      : that.attr('value'),
@@ -51,13 +53,21 @@ $(document).ready(function(){
                 if(data['status'] == true)
                 {
                     // here be returned shite
+                    that.removeClass('error');
+                    that.siblings('div.error').remove();
                     that.attr('id', 'criteria_'+data['criteria_id']);
+                }
+                else {
+                    that.addClass('error');
+                    Criteria.FormErrorReporting(that, data['errors']['title']);
                 }
             }
         });
     });
 
     Criteria.DREKSMRDI = function(that) {
+        var trimValue = $.trim(that.val());
+        that.val(trimValue);
         if (!that.val() == ''){
             var data = {
                     'criteria_id': that.attr('id'),
@@ -104,7 +114,7 @@ $(document).ready(function(){
 
     // if enter, fake blur
     $('#content form li:not(:last-child) input[type="text"]').live('keypress', function(e){
-        if(e.which == '13'){
+        if(e.which == '13' && !$(this).hasClass('error')){
             $(this).parent().next().children().focus();
         }
     });

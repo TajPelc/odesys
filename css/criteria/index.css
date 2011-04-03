@@ -37,7 +37,11 @@
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 6px;
-        border: 1px solid #fff;
+        border: 1px solid #DBE3F0;
+    }
+
+    #content > form input[type="text"]:focus {
+        background: none;
     }
 
     #content > form input[type="submit"] {
