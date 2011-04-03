@@ -98,11 +98,11 @@ class Criteria extends CActiveRecord
     }
 
     /**
-     * Handle all the logic before saving
+     * Handle all the logic before validation
      */
-    public function beforeSave()
+    public function beforeValidate()
     {
-        if( parent::beforeSave() )
+        if( parent::beforeValidate() )
         {
             if( $this->isNewRecord )
             {
