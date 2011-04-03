@@ -40,9 +40,10 @@ class Criteria extends CActiveRecord
     public function rules()
     {
         return array(
-            array('title', 'isProjectUnique'),
+            array('title', 'filter', 'filter' => 'trim'),
             array('title', 'required'),
             array('title', 'length', 'max' => 60),
+            array('title', 'isProjectUnique'),
             array('worst, best', 'length', 'max' => 30),
             array('title, description', 'safe', 'on' => 'search'),
         );
