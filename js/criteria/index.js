@@ -13,38 +13,130 @@ Criteria.FormRemoveButton = function(){
     $('#content form li input').not(':last').parent().append('<span class="remove">-</span>');
 }
 
+Criteria.Block = function(id){
+    id.append('<div class="block"></div>')
+}
+
+Criteria.Unblock = function(id){
+    id.find('.block').remove();
+}
+
 $(document).ready(function(){
     Criteria.FormAddButton();
     Criteria.FormRemoveButton();
     $('#content form input[type="submit"]').css('display', 'none');
+    $('#content form li:last-child input[type="text"]').focus();
+
+    // prepare ajax
+    url = $('#content form').attr('action');
+    $.ajaxSetup({
+        type: 'POST',
+        url: url,
+        dataType: 'json',
+    });
 
     //if enter is pressed on input fields except last, jump to the next field
-    $('#content form li input[type="text"]').not(':last').focus(function(){
-        $(this).keypress(function(e){
-            if(e.which == '13') {
-                e.preventDefault();
-                $(this).parent().next().children().focus();
+    $('#content form li:not(:last-child) input[type="text"]').live('blur', function(){
+        var that = $(this);
+        Criteria.Block(that.parents('ol'));
+        var data = {
+                'criteria_id': that.attr('id').split('_')[1],
+                'value'      : that.attr('value'),
+                'action'     : 'save'
+        };
+        // post the form
+        $.ajax({
+            data: data,
+            success: function(data) {
+                // success
+                if(data['status'] == true)
+                {
+                    // here be returned shite
+                    Criteria.Unblock(that.parents('ol'));
+                }
             }
         });
     });
 
-    // on submit, post form and get new one
-    $('#content form').submit(function(){
-        url = $(this).attr('action');
-        data = $(this).serialize();
-        // post the form
-        $.ajax({
-                type: 'POST',
-                url: url,
+    Criteria.DREKSMRDI = function(that) {
+        if (!that.val() == ''){
+            Criteria.Block(that.parents('ol'));
+            var data = {
+                    'criteria_id': that.attr('id'),
+                    'value'      : that.attr('value'),
+                    'action'     : 'save'
+            };
+            // post the form
+            $.ajax({
                 data: data,
                 success: function(data) {
-                    // errors
+                    // success
                     if(data['status'] == true)
                     {
                         // here be returned shite
+                        that.siblings('.add').remove();
+                        that.parent().append('<span class="remove">-</span>');
+                        that.attr('id', 'criteria_'+data['criteria_id']);
+                        that.parents('ol').append('<li><input type="text" id="newCriteria" name="" value="" /><span class="add">+</span></li>');
+                        Criteria.Unblock(that.parents('ol'));
+                        that.parent().next().children().focus();
+                    }
+                    //errors
+                    else {
+                        Criteria.Unblock(that.parents('ol'));
                     }
                 }
             });
+        }
+
+    }
+
+    $('#content form li:last-child input[type="text"]').live('blur', function(){
+        Criteria.DREKSMRDI($(this));
+    });
+
+    $('#content form li(:last-child) input[type="text"]').live('keypress', function(e){
+        if(e.which == '13'){
+            Criteria.DREKSMRDI($(this));
+        }
+    });
+
+
+    // if enter, fake blur
+    $('#content form li:not(:last-child) input[type="text"]').live('keypress', function(e){
+        if(e.which == '13'){
+            $(this).parent().next().children().focus();
+        }
+    });
+
+    // clicking remove
+    $('#content form li .remove').live('click', function(){
+        var that = $(this);
+        Criteria.Block(that.parents('ol'));
+        data = {
+                'criteria_id': that.siblings('input').attr('id').split('_')[1],
+                'action'     : 'delete'
+        };
+        // post the form
+        $.ajax({
+            data: data,
+            success: function(data) {
+                // success
+                if(data['status'] == true)
+                {
+                    Criteria.Unblock(that.parents('ol'));
+                    that.parents('li').remove();
+                }
+            }
+        });
+    });
+
+    // clicking add button fakes blur event
+    $('#content form li .add').live('click', function(){
+        $('#content form li:last-child input[type="text"]').blur();
+    });
+
+    $('#content form').submit(function(){
         return false;
     });
 });
