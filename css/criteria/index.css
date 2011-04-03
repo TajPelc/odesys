@@ -26,10 +26,14 @@
 
     #content > form input[type="text"] {
         width: 500px;
-        padding: 0 10px;
-        line-height: 26px;
         height: 26px;
-        border: 1px solid #596171;
+        line-height: 26px;
+        padding: 0 10px;
+        background: #DBE3F0;
+        border: none;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
     }
 
     #content > form input[type="submit"] {

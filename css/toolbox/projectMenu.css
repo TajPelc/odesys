@@ -23,7 +23,8 @@
     }
 
         #project ul li {
-            width: 192px;
+            width: 172px;
+            margin-left: 20px;
             position: relative;
             float: left;
             border-top: 5px solid #596171;
@@ -47,8 +48,7 @@
 
         #project ul li span.selected,
         #project ul li a:hover {
-            width: 172px;
-            margin: 0 10px;
+            width: 100%;
             cursor: default;
             color: #32353E;
             background-color: #fff;
@@ -62,13 +62,13 @@
         }
 
         #project ul li .loadingBar {
-            width: 100%;
+            width: 192px;
             padding: 0;
             height: 8px;
             display: block;
             background: #FFD700;
             position: absolute;
-            left: 0;
+            left: -20px;
             top: -13px;
             border: none;
         }
