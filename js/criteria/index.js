@@ -95,7 +95,7 @@ $(document).ready(function(){
         Criteria.DREKSMRDI($(this));
     });
 
-    $('#content form li(:last-child) input[type="text"]').live('keypress', function(e){
+    $('#content form li:last-child input[type="text"]').live('keypress', function(e){
         if(e.which == '13'){
             Criteria.DREKSMRDI($(this));
         }
