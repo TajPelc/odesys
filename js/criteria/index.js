@@ -13,14 +13,6 @@ Criteria.FormRemoveButton = function(){
     $('#content form li input').not(':last').parent().append('<span class="remove">-</span>');
 }
 
-Criteria.Block = function(id){
-    id.append('<div class="block"></div>')
-}
-
-Criteria.Unblock = function(id){
-    id.find('.block').remove();
-}
-
 $(document).ready(function(){
     Criteria.FormAddButton();
     Criteria.FormRemoveButton();
@@ -38,7 +30,6 @@ $(document).ready(function(){
     //if enter is pressed on input fields except last, jump to the next field
     $('#content form li:not(:last-child) input[type="text"]').live('blur', function(){
         var that = $(this);
-        Criteria.Block(that.parents('ol'));
         var data = {
                 'criteria_id': that.attr('id').split('_')[1],
                 'value'      : that.attr('value'),
@@ -52,7 +43,6 @@ $(document).ready(function(){
                 if(data['status'] == true)
                 {
                     // here be returned shite
-                    Criteria.Unblock(that.parents('ol'));
                 }
             }
         });
@@ -60,7 +50,6 @@ $(document).ready(function(){
 
     Criteria.DREKSMRDI = function(that) {
         if (!that.val() == ''){
-            Criteria.Block(that.parents('ol'));
             var data = {
                     'criteria_id': that.attr('id'),
                     'value'      : that.attr('value'),
@@ -78,12 +67,10 @@ $(document).ready(function(){
                         that.parent().append('<span class="remove">-</span>');
                         that.attr('id', 'criteria_'+data['criteria_id']);
                         that.parents('ol').append('<li><input type="text" id="newCriteria" name="" value="" /><span class="add">+</span></li>');
-                        Criteria.Unblock(that.parents('ol'));
                         that.parent().next().children().focus();
                     }
                     //errors
                     else {
-                        Criteria.Unblock(that.parents('ol'));
                     }
                 }
             });
@@ -112,7 +99,6 @@ $(document).ready(function(){
     // clicking remove
     $('#content form li .remove').live('click', function(){
         var that = $(this);
-        Criteria.Block(that.parents('ol'));
         data = {
                 'criteria_id': that.siblings('input').attr('id').split('_')[1],
                 'action'     : 'delete'
@@ -124,7 +110,6 @@ $(document).ready(function(){
                 // success
                 if(data['status'] == true)
                 {
-                    Criteria.Unblock(that.parents('ol'));
                     that.parents('li').remove();
                 }
             }
