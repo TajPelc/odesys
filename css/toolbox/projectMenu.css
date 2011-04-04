@@ -73,15 +73,6 @@
             border: none;
         }
 
-            #project ul li .loadingBarEnd {
-                width: 0;
-                height: 0;
-                padding: 0;
-                position: absolute;
-                left: none;
-                right: -12px;
-                top: -13px;
-                border-top: 4px solid #DBE3F0;
-                border-left: 12px solid #FFD700;
-                border-bottom: 4px solid #DBE3F0;
+            #project ul li .loadingBar.end {
+                background: transparent url(../../images/bg/progress_bar.png) no-repeat;
             }
