@@ -11,7 +11,6 @@
 }
 
     #content > form ol {
-        width: 686px;
         padding-left: 20px;
         list-style: decimal outside;
         float: left;
@@ -19,69 +18,100 @@
     }
 
         #content > form ol li {
+            width: 646px;
+            height: 28px;
             margin-bottom: 16px;
             float: left;
             position: relative;
         }
 
         #content > form ol li:last-child {
+            margin-bottom: 0;
         }
 
+        #content > form ol li.placeholder {
+            line-height: 28px;
+            background-color: #efefef;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+        #content > form ol li.ui-sortable-helper {
+            list-style-type: none;
+        }
+
+            #content > form ol li.ui-sortable-helper input {
+                position: relative;
+            }
+
+    #content > form > div {
+        padding-left: 20px;
+        margin-bottom: 24px;
+        position: relative;
+        float: left;
+    }
+
     #content > form input[type="text"] {
-        width: 640px;
-        height: 26px;
-        line-height: 26px;
-        padding: 0 10px;
-        background: #DBE3F0;
+        width: 559px; /*646px*/
+        height: 28px;
+        line-height: 28px;
+        padding: 0 35px 0 52px;
+        background: url(../../images/form/input_big.png) no-repeat;
         border: none;
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
         border-radius: 6px;
-        border: 1px solid #DBE3F0;
+        border: none;
+    }
+
+    #content > form div input[type="text"]{
+        width: 603px; /*646px*/
+        padding: 0 35px 0 8px;
     }
 
     #content > form input[type="text"]:focus {
-        background: none;
-    }
-
-    #content > form input[type="submit"] {
-        float: right;
-    }
-
-    #content > form input.error {
-        border: 1px solid #f00;
-    }
-
-    #content > form ol li span {
-        width: 16px;
-        height: 20px;
-        line-height: 20px;
-        padding-left: 4px;
-        display: block;
-        position: absolute;
-        top: 2px;
-        right: -25px;
-        font-size: 20px;
         font-weight: bold;
-        background: #596171;
-        color: #DBE3F0;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
     }
 
-    #content > form input + .remove {
-        width: 15px;
-        padding-left: 5px;
-        line-height: 16px;
-        font-size: 24px;
-    }
+        #content > form span:hover,
+        #content > form span:active { cursor: pointer }
 
-        #content > form input + span:hover {
-            cursor: pointer;
+        #content > form span.add,
+        #content > form span.remove,
+        #content > form span.drag {
+            width: 27px;
+            height: 26px;
+            display: block;
+            position: absolute;
+            background: url(../../images/form/sprite_buttons.png) no-repeat;
+            text-indent: -9999px;
         }
 
-    #content > form div.error {
+        #content > form span.add,
+        #content > form span.remove {
+            top: 1px;
+            right: 1px;
+        }
+
+        #content > form span.remove        { background-position: 0 0 }
+        #content > form span.add           { background-position: 0 -100px }
+        #content > form span.remove:hover  { background-position: -100px 0 }
+        #content > form span.add:hover     { background-position: -100px -100px }
+        #content > form span.remove:active { background-position: -200px 0 }
+        #content > form span.add:active    { background-position: -200px -100px }
+
+        #content > form span.drag {
+            width: 44px;
+            height: 28px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-position: 0 -200px;
+        }
+
+
+#content > form div.error {
         height: 24px;
         line-height: 24px;
         padding: 0 20px;

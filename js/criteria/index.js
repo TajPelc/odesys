@@ -9,8 +9,9 @@ Criteria.FormAddButton = function(that){
     that.after('<span class="add">+</span>');
 }
 
-Criteria.FormRemoveButton = function(that){
+Criteria.FormListButtons = function(that){
     that.parent().append('<span class="remove">-</span>');
+    that.parent().append('<span class="drag">&nbsp;</span>');
 }
 
 Criteria.FormErrorReporting = function(that, text){
@@ -42,7 +43,7 @@ Criteria.SaveInput = function(that, add) {
                 if (add){
                     if(data['status'] == true){
                         // here be returned shite
-                        $('#content form ol').append('<li><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span></li>');
+                        $('#content form ol').append('<li><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span><span class="drag">&nbsp;</span></li>');
                         that.focus();
                         that.val('');
 
@@ -84,15 +85,22 @@ Criteria.DeleteInput = function(that) {
         }
     });
 }
+
+
 /*
  * Document Ready
  * */
 $(document).ready(function(){
     //add or remove necessary elements
     Criteria.FormAddButton($('#content form div input'));
-    Criteria.FormRemoveButton($('#content form li input'));
+    Criteria.FormListButtons($('#content form li input'));
     $('#content form input[type="submit"]').remove();
     $('#content form div input').focus();
+
+    //copy input ID's to list items
+    $('#content form li input').each(function(){
+        $(this).parents('li').attr('id', $(this).attr('id'));
+    });
 
     //prepare ajax
     url = $('#content form').attr('action');
@@ -103,15 +111,15 @@ $(document).ready(function(){
     });
 
     //add new field
-    $('#content form > div input').live('blur', function(){
-        var that = $(this);
-        Criteria.SaveInput($(this), true);
-    });
     $('#content form > div input').live('keypress', function(e){
         if (e.which == 13) {
             var that = $(this);
             Criteria.SaveInput($(this), true);
         }
+    });
+    $('#content form > div .add').live('click', function(){
+        var that = $(this);
+        Criteria.SaveInput(that.siblings('input'), true);
     });
 
     //update field
@@ -137,6 +145,20 @@ $(document).ready(function(){
     $('#content form li .remove').live('click', function(){
         var that = $(this);
         Criteria.DeleteInput(that);
+    });
+
+ // sortable elements
+    $("#content form ol").sortable({
+        opacity: 0.70,
+        placeholder: 'placeholder',
+        handle: '.drag'
+    });
+    $("#content form ol").disableSelection();
+
+    $('#content form ol').live( "sortupdate", function(event, ui) {
+        $.post(location.href, {
+            criteriaOrder: $(this).sortable('toArray').toString(),
+        });
     });
 
     //prevent form submission
