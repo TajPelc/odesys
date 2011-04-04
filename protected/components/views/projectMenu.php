@@ -8,7 +8,7 @@
                 <?php foreach($menu as $id => $menuItem) {?>
                     <?php $activeItem = ($menuItem['route'][0] === $currentRoute); ?>
                     <?php $lastEnabledItem = ($id === $lastEnabled); ?>
-                    <?php $lastItem = ($i === count($menuItem));?>
+                    <?php $lastItem = ($i === count($menu));?>
                     <?php $label = $i . '. ' . $menuItem['label']; ?>
                     <?php if($menuItem['enabled'] && !$activeItem) {?>
                         <li>
