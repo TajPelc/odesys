@@ -17,7 +17,7 @@
     #project {
         width: 100%;
         margin: 10px 0 0 0;
-        background-color: #596171;
+        background-color: #444a56;
         float: left;
         clear: both;
     }
@@ -27,7 +27,7 @@
             margin-left: 20px;
             position: relative;
             float: left;
-            border-top: 5px solid #596171;
+            border-top: 5px solid #444a56;
         }
 
         #project ul li a,

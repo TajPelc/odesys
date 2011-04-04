@@ -2,6 +2,9 @@
     <?php $this->pageTitle=Yii::app()->name . 'About ODESYS'; ?>
 
     <h1>About ODESYS</h1>
+    <div id="like">
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:20px;" allowTransparency="true"></iframe>
+    </div>
 
     <h2>A brief history</h2>
     <p>ODESYS was developed as a part of a diploma thesis by <em>Taj Pelc</em>, titled Web System For Multicriteria Decision Support (Spletni sistem za podporo odločanju) at the <a href="http://www.fov.uni-mb.si/en/" title="Faculty of organisational sciences">Faculty of organisational sciences</a> (FOV) in Kranj, Slovenia, under the mentorship of professor dr. Vladislav Rajkovič.</p>
