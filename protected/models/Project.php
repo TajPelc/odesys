@@ -141,15 +141,6 @@ class Project extends CActiveRecord
      */
     public static function getActive()
     {
-        /**
-         * TEMPORARY HACK-CODE
-         */
-        $Projects = Project::model()->findAll();
-        return end($Projects);
-        /**
-         * END TEMPORARY HACK-CODE
-         */
-
         // is a project active?
         if(self::isProjectActive())
         {

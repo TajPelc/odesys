@@ -8,6 +8,7 @@
                 <?php foreach($menu as $id => $menuItem) {?>
                     <?php $activeItem = ($menuItem['route'][0] === $currentRoute); ?>
                     <?php $lastEnabledItem = ($id === $lastEnabled); ?>
+                    <?php $lastItem = ($i === count($menuItem));?>
                     <?php $label = $i . '. ' . $menuItem['label']; ?>
                     <?php if($menuItem['enabled'] && !$activeItem) {?>
                         <li>
@@ -17,7 +18,7 @@
                     <?php } else { ?>
                         <li>
                             <span id="<?php echo $id; ?>" class="<?php echo (($activeItem) ? 'selected' : 'restricted'); ?>"><?php echo CHtml::encode($label); ?></span>
-                            <?php if($activeItem) { ?><span class="loadingBar<?php echo ($lastEnabledItem ? ' end' : ''); ?>">&nbsp;</span><?php } ?>
+                            <?php if($activeItem) { ?><span class="loadingBar<?php echo (($lastEnabledItem && !$lastItem) ? ' end' : ''); ?>">&nbsp;</span><?php } ?>
                         </li>
                     <?php } ?>
                     <?php $i++;?>
