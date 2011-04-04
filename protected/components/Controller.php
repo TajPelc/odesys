@@ -42,6 +42,7 @@ class Controller extends CController
          */
         if(!Project::isProjectActive())
         {
+
             $Projects = Project::model()->findAll();
             $Project =  end($Projects);
             $Project->setAsActiveProject();

@@ -82,7 +82,6 @@ class Fb extends Facebook
                 $User->status = User::STATUS_ACTIVE;
                 $User->created = date('Y-m-d H:i:s');
                 $User->lastvisit = date('Y-m-d H:i:s');
-                $User->superuser = 0;
 
                 if($User->save(false))
                 {

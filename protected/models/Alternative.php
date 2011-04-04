@@ -12,7 +12,6 @@ class Alternative extends CActiveRecord
      * @var double $alternative_id
      * @var double $rel_project_id
      * @var string $title
-     * @var string $description
      */
 
     /**
@@ -41,7 +40,6 @@ class Alternative extends CActiveRecord
             array('title', 'isProjectUnique'),
             array('title', 'required'),
             array('title', 'length', 'max' => 60),
-            array('title, description', 'safe', 'on' => 'search'),
         );
     }
 

@@ -11,10 +11,8 @@ class Criteria extends CActiveRecord
      * The followings are the available columns in table 'criteria':
      * @var double $criteria_id
      * @var double $rel_project_id
+     * @var string $position
      * @var string $title
-     * @var string $best
-     * @var string $worst
-     * @var string $description
      */
 
     /**
@@ -44,8 +42,6 @@ class Criteria extends CActiveRecord
             array('title', 'required'),
             array('title', 'length', 'max' => 60),
             array('title', 'isProjectUnique'),
-            array('worst, best', 'length', 'max' => 30),
-            array('title, description', 'safe', 'on' => 'search'),
         );
     }
 
