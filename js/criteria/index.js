@@ -17,7 +17,7 @@ Criteria.FormListButtons = function(that){
 Criteria.FormErrorReporting = function(that, text){
     that.addClass('error');
     that.after('<div class="error"><p>'+text+'</p></div>');
-    $('#content form div.error').css({'top': -that.height()-5});
+    $('#content form div.error').css({'top': -that.height()+2});
     that.focus();
 }
 
