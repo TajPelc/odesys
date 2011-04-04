@@ -45,6 +45,27 @@ class ProjectMenu extends CWidget
      */
     public function run()
     {
-        $this->render('projectMenu', array('Project' => Project::getActive(), 'menu' => self::getMenuItems(), 'currentRoute' => $this->getOwner()->getRoute()));
+        $menuItems = self::getMenuItems();
+
+        // get the last enabled tab
+        $lastEnabled = null;
+        foreach ($menuItems as $id => $Item)
+        {
+            if($Item['enabled'])
+            {
+                $lastEnabled = $id;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        $this->render('projectMenu', array(
+        	'Project' => Project::getActive(),
+        	'menu' => self::getMenuItems(),
+        	'currentRoute' => $this->getOwner()->getRoute(),
+            'lastEnabled' => $lastEnabled,
+        ));
     }
 }

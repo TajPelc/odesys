@@ -2,23 +2,27 @@
 <div id="projectBg">
     <div id="project">
     <?php }?>
-        <?php if(!empty($Project)) { ?>
-            <?php if(!empty($menu)){ ?>
-                <ul>
-                    <?php $i = 1;?>
-                    <?php foreach($menu as $id => $menuItem) {?>
-                        <?php $label = $i . '. ' . $menuItem['label']; ?>
-                        <?php if($menuItem['route'][0] === $currentRoute) { ?>
-                            <li><span id="<?php echo $id; ?>" class="<?php if($menuItem['enabled']) {?>selected<?php } else { ?>restricted<?php }?>"><?php echo CHtml::encode($label); ?></span><span class="loadingBar"></span></li>
-                        <?php } elseif (!$menuItem['enabled']) { ?>
-                            <li><span id="<?php echo $id; ?>" class="<?php if($menuItem['enabled']) {?>selected<?php } else { ?>restricted<?php }?>"><?php echo CHtml::encode($label); ?></span></li>
-                        <?php } else { ?>
-                            <li><?php echo CHtml::link(CHtml::encode($label), $menuItem['route'], array('title' => CHtml::encode($label), 'id' => $id)); ?><span class="loadingBar end">&nbsp;</span></li>
-                        <?php } ?>
-                        <?php $i++;?>
+        <?php if(!empty($Project) && !empty($menu)) { ?>
+            <ul>
+                <?php $i = 1;?>
+                <?php foreach($menu as $id => $menuItem) {?>
+                    <?php $activeItem = ($menuItem['route'][0] === $currentRoute); ?>
+                    <?php $lastEnabledItem = ($id === $lastEnabled); ?>
+                    <?php $label = $i . '. ' . $menuItem['label']; ?>
+                    <?php if($menuItem['enabled'] && !$activeItem) {?>
+                        <li>
+                            <?php echo CHtml::link(CHtml::encode($label), $menuItem['route'], array('title' => CHtml::encode($label), 'id' => $id)); ?>
+                            <span class="loadingBar<?php echo ( $lastEnabledItem ? ' end' : ''); ?>">&nbsp;</span>
+                        </li>
+                    <?php } else { ?>
+                        <li>
+                            <span id="<?php echo $id; ?>" class="<?php echo (($activeItem) ? 'selected' : 'restricted'); ?>"><?php echo CHtml::encode($label); ?></span>
+                            <?php if($activeItem) { ?><span class="loadingBar<?php echo ($lastEnabledItem ? ' end' : ''); ?>">&nbsp;</span><?php } ?>
+                        </li>
                     <?php } ?>
-                </ul>
-            <?php }?>
+                    <?php $i++;?>
+                <?php } ?>
+            </ul>
         <?php }?>
     <?php if(!Ajax::isAjax() && !empty($Project)){?>
     </div>
