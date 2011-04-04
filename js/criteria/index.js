@@ -5,43 +5,26 @@
 
 Criteria = {};
 
-Criteria.FormAddButton = function(){
-    $('#content form li:last-child input').after('<span class="add">+</span>');
+Criteria.FormAddButton = function(that){
+    that.after('<span class="add">+</span>');
 }
 
-Criteria.FormRemoveButton = function(){
-    $('#content form li input').not(':last').parent().append('<span class="remove">-</span>');
+Criteria.FormRemoveButton = function(that){
+    that.parent().append('<span class="remove">-</span>');
 }
 
 Criteria.FormErrorReporting = function(that, text){
-    if(that.siblings('div.error').length == 0){
-        that.after('<div class="error"><p>'+text+'</p></div>');
-        $('#content form div.error').css({'top': -that.height()-5});
-        that.focus();
-    }
+    that.addClass('error');
+    that.after('<div class="error"><p>'+text+'</p></div>');
+    $('#content form div.error').css({'top': -that.height()-5});
 }
 
-$(document).ready(function(){
-    Criteria.FormAddButton();
-    Criteria.FormRemoveButton();
-    $('#content form input[type="submit"]').css('display', 'none');
-    $('#content form li:last-child input[type="text"]').focus();
-
-    // prepare ajax
-    url = $('#content form').attr('action');
-    $.ajaxSetup({
-        type: 'POST',
-        url: url,
-        dataType: 'json',
-    });
-
-    //if enter is pressed on input fields except last, jump to the next field
-    $('#content form li:not(:last-child) input[type="text"]').live('blur', function(){
-        var that = $(this);
-        var trimValue = $.trim(that.val());
-        that.val(trimValue);
+Criteria.SaveInput = function(that, add) {
+    var trimValue = $.trim(that.val());
+    that.val(trimValue);
+    if (!that.val() == ''){
         var data = {
-                'criteria_id': that.attr('id').split('_')[1],
+                'criteria_id': that.attr('id'),
                 'value'      : that.attr('value'),
                 'action'     : 'save'
         };
@@ -49,106 +32,106 @@ $(document).ready(function(){
         $.ajax({
             data: data,
             success: function(data) {
-                // success
-                if(data['status'] == true)
-                {
-                    // here be returned shite
+                //if previous error exist, remove them
+                if (that.hasClass('error')){
                     that.removeClass('error');
                     that.siblings('div.error').remove();
-                    that.attr('id', 'criteria_'+data['criteria_id']);
                 }
-                else {
-                    that.removeClass('error');
-                    that.siblings('div.error').remove();
-                    that.addClass('error');
-                    Criteria.FormErrorReporting(that, data['errors']['title']);
-                }
-            }
-        });
-    });
-
-    Criteria.DREKSMRDI = function(that) {
-        var trimValue = $.trim(that.val());
-        that.val(trimValue);
-        if (!that.val() == ''){
-            var data = {
-                    'criteria_id': that.attr('id'),
-                    'value'      : that.attr('value'),
-                    'action'     : 'save'
-            };
-            // post the form
-            $.ajax({
-                data: data,
-                success: function(data) {
-                    // success
-                    if(data['status'] == true)
-                    {
+                //add new field
+                if (add){
+                    if(data['status'] == true){
                         // here be returned shite
-                        that.removeClass('error');
-                        that.siblings('div.error').remove();
-                        that.attr('id', 'criteria_'+data['criteria_id']);
-                        that.parents('ol').append('<li><input type="text" id="newCriteria" name="" value="" /><span class="add">+</span></li>');
-                        that.siblings('.add').remove();
-                        that.parent().append('<span class="remove">-</span>');
-                        that.parent().next().children().focus();
-                    }
-                    //errors
-                    else {
-                        that.removeClass('error');
-                        that.siblings('div.error').remove();
-                        that.addClass('error');
+                        $('#content form ol').append('<li><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span></li>');
+                        that.focus();
+                        that.val('');
+
+                        //errors
+                    } else {
                         Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
-                }
-            });
-        }
-    }
-    $('#content form li:last-child input[type="text"]').live('blur', function(){
-        var that = $(this);
-        if (!that.val() == '') {
-            Criteria.DREKSMRDI($(this));
-        }
-    });
-    $('#content form li:last-child input[type="text"]').live('keypress', function(e){
-        var that = $(this);
-        if (!that.val() == '' && e.which == 13) {
-            Criteria.DREKSMRDI($(this));
-        }
-    });
 
-    // if enter, fake blur
-    $('#content form li:not(:last-child) input[type="text"]').live('keypress', function(e){
-        if(e.which == '13' && !$(this).hasClass('error')){
-            $(this).parent().next().children().focus();
-        }
-    });
+                //update field
+                } else {
+                    if(data['status'] == true){
+                        // here be returned shite
 
-    // clicking remove
-    $('#content form li .remove').live('click', function(){
-        var that = $(this);
-        data = {
-                'criteria_id': that.siblings('input').attr('id').split('_')[1],
-                'action'     : 'delete'
-        };
-        // post the form
-        $.ajax({
-            data: data,
-            success: function(data) {
-                // success
-                if(data['status'] == true)
-                {
-                    that.parents('li').remove();
-                    $('#content form li:last-child input[type="text"]').focus();
+                        //errors
+                    } else {
+                        Criteria.FormErrorReporting(that, data['errors']['title']);
+                    }
+
                 }
             }
         });
+    }
+}
+
+Criteria.DeleteInput = function(that) {
+    data = {
+            'criteria_id': that.siblings('input').attr('id').split('_')[1],
+            'action'     : 'delete'
+    };
+    // post the form
+    $.ajax({
+        data: data,
+        success: function(data) {
+            // success
+            if(data['status'] == true)
+            {
+                that.parents('li').remove();
+            }
+        }
+    });
+}
+/*
+ * Document Ready
+ * */
+$(document).ready(function(){
+    //add or remove necessary elements
+    Criteria.FormAddButton($('#content form div input'));
+    Criteria.FormRemoveButton($('#content form li input'));
+    $('#content form input[type="submit"]').remove();
+    $('#content form div input').focus();
+
+    //prepare ajax
+    url = $('#content form').attr('action');
+    $.ajaxSetup({
+        type: 'POST',
+        url: url,
+        dataType: 'json',
     });
 
-    // clicking add button fakes blur event
-    $('#content form li .add').live('click', function(){
-        Criteria.DREKSMRDI($(this));
+    //add new field
+    $('#content form > div input').live('blur', function(){
+        var that = $(this);
+        Criteria.SaveInput($(this), true);
+    });
+    $('#content form > div input').live('keypress', function(e){
+        if (e.which == 13) {
+            var that = $(this);
+            Criteria.SaveInput($(this), true);
+        }
     });
 
+    //update field
+    $('#content form ol li input').live('focus', function(){
+        Criteria.tempInputValue = $(this).val();
+    });
+
+    $('#content form ol li input').live('blur', function(){
+        var that = $(this);
+        if (Criteria.tempInputValue !== that.val()){
+            Criteria.SaveInput($(this), false);
+        }
+    });
+
+    //remove field
+    $('#content form li .remove').live('click', function(){
+        var that = $(this);
+        Criteria.DeleteInput(that);
+    });
+
+    //prevent form submission
     $('#content form').submit(function(){
         return false;
     });

@@ -3,13 +3,13 @@
     <h2>Enter criterias that are important for your decision:</h2>
     <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Criteria = $Project->criteria; ?>
+        <div><input type="text" name="newCriteria[title]" id="newCriteria" /></div>
         <ol>
         <?php for ($i = 0; $i < count($Criteria); $i++) { ?>
                 <li>
                     <input type="text" name="criteria[<?php echo $Criteria[$i]->criteria_id; ?>][title]" id="criteria_<?php echo $Criteria[$i]->criteria_id; ?>" value="<?php echo $Criteria[$i]->title; ?>" />
                 </li>
         <?php } ?>
-            <li><input type="text" name="newCriteria[title]" id="newCriteria" /></li>
         </ol>
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
