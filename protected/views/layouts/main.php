@@ -34,9 +34,13 @@
 <body>
     <div id="wrapper">
         <div id="header">
-            <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
-            <div id="like">
-                <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:20px;" allowTransparency="true"></iframe>
+            <div id="headings">
+                <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
+                <?php if(Project::isProjectActive()){ ?>
+                    <h2>Now deciding on "<?php echo Project::getActive(); ?>"</h2>
+                <?php } else { ?>
+                    <h2>Helping you decide!</h2>
+                <?php }?>
             </div>
             <div id="login">
                 <?php if(Yii::app()->user->isGuest){ ?>
