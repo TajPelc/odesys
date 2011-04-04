@@ -43,7 +43,7 @@ Criteria.SaveInput = function(that, add) {
                 if (add){
                     if(data['status'] == true){
                         // here be returned shite
-                        $('#content form ol').append('<li><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span><span class="drag">&nbsp;</span></li>');
+                        $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span><span class="drag">&nbsp;</span></li>');
                         that.focus();
                         that.val('');
 
@@ -147,15 +147,32 @@ $(document).ready(function(){
         Criteria.DeleteInput(that);
     });
 
- // sortable elements
-    $("#content form ol").sortable({
+    // make criteria list sortable
+    $('#content form ol').sortable({
         opacity: 0.70,
         placeholder: 'placeholder',
-        handle: '.drag'
-    });
-    $("#content form ol").disableSelection();
+        handle: '.drag',
+        sort: function(){
+            var $lis = $(this).children('li');
+            $lis.each(function(){
+                var $li = $(this);
+                var hindex = $lis.filter('.ui-sortable-helper').index();
+                if( !$li.is('.ui-sortable-helper') ){
+                    var index = $li.index();
+                    index = index < hindex ? index + 1 : index;
 
-    $('#content form ol').live( "sortupdate", function(event, ui) {
+                    $li.val(index);
+
+                    if( $li.is('.placeholder') ){
+                        $lis.filter('.ui-sortable-helper').val(index);
+                    }
+                }
+            });
+        }
+    });
+
+    // update the position of criteria
+    $('#content form ol').live( 'sortupdate', function(event, ui) {
         $.post(location.href, {
             criteriaOrder: $(this).sortable('toArray').toString(),
         });

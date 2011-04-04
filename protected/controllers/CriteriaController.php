@@ -57,6 +57,8 @@ class CriteriaController extends Controller
         // ajax
         if(Ajax::isAjax())
         {
+            $this->_reorderCriteria();
+
             // find criteria
             $Criteria = Criteria::model()->findByPk($this->post('criteria_id'));
 
@@ -110,6 +112,7 @@ class CriteriaController extends Controller
             $Criteria = new Criteria();
             $Criteria->attributes = $_POST['newCriteria'];
 
+
             // redirect
             if( $Criteria->save())
             {
@@ -147,9 +150,9 @@ class CriteriaController extends Controller
     private function _reorderCriteria()
     {
         // params given?
-        if( isset($_GET['criteriaOrder']) )
+        if( $this->post('criteriaOrder') )
         {
-            $cArr = explode(',', $_GET['criteriaOrder']);
+            $cArr = explode(',', $this->post('criteriaOrder'));
             if(!Common::isArray($cArr))
             {
                 Ajax::respondError();
@@ -173,6 +176,5 @@ class CriteriaController extends Controller
 
             Ajax::respondOk();
         }
-        Ajax::respondError();
     }
 }

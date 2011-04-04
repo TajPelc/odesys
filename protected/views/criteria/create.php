@@ -2,7 +2,7 @@
 <div id="content">
     <h2>Enter criterias that are important for your decision:</h2>
     <?php echo CHtml::beginForm('', 'post'); ?>
-        <?php $Criteria = $Project->criteria; ?>
+        <?php $Criteria = $Project->findCriteriaByPriority(); ?>
         <div><input type="text" name="newCriteria[title]" id="newCriteria" /></div>
         <ol>
         <?php for ($i = 0; $i < count($Criteria); $i++) { ?>
