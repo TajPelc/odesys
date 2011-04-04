@@ -50,8 +50,8 @@
                         <div>
                             <h2>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i>!</h2>
                             <ul>
+                                <li><?php echo CHtml::link('Start helping me with a NEW decision!', array('criteria/create')); ?></li>
                                 <li><?php echo CHtml::link('Dashboard', array('criteria/create')); ?></li>
-                                <li><?php echo CHtml::link('New decision!', array('criteria/create')); ?></li>
                                 <li><?php echo CHtml::link('Logout', array('criteria/create')); ?></li>
                             </ul>
                         </div>

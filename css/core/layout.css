@@ -76,7 +76,6 @@ a:hover {
         #header h1 {
             width: 387px;
             height: 30px;
-            margin-bottom: 8px;
             float: left;
         }
 
@@ -129,7 +128,7 @@ a:hover {
         }
 
             #header #login div h2 {
-                margin-bottom: 20px;
+                margin-bottom: 16px;
                 float: right;
                 clear: both;
                 font-size: 16px;
@@ -142,8 +141,9 @@ a:hover {
             }
 
                 #header #login > div ul li {
-                    padding-right: 4px;
-                    margin-right: 4px;
+                    padding-right: 6px;
+                    margin-right: 6px;
+                    line-height: 13px;
                     float: left;
                     border-right: 1px solid #fff;
                 }
