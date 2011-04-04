@@ -11,12 +11,12 @@
     float: left;
     position: relative;
     top: -1px; /*hack for header*/
-    background: #DBE3F0;
+    background: #b7b6b6;
 }
 
     #project {
         width: 100%;
-        margin: 8px 0 0 0;
+        margin: 10px 0 0 0;
         background-color: #596171;
         float: left;
         clear: both;
@@ -33,12 +33,12 @@
         #project ul li a,
         #project ul li > span {
             width: 100%;
+            padding: 6px 0;
             font-size: 13px;
             display: block;
             color: #fff;
             text-align: center;
             text-decoration: none;
-            padding: 7px 0;
         }
 
         #project ul li span.restricted {
@@ -64,12 +64,12 @@
         #project ul li .loadingBar {
             width: 192px;
             padding: 0;
-            height: 8px;
+            height: 10px;
             display: block;
             background: #FFD700;
             position: absolute;
             left: -20px;
-            top: -13px;
+            top: -15px;
             border: none;
         }
 
