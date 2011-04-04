@@ -48,48 +48,30 @@ class ProjectController extends Controller
         }
 
         // unset active project
-        if($this->post('forceNew') && $this->post('forceNew') == 'yes')
+        if($this->post('action') == 'create')
         {
             Project::unsetActiveProject();
-        }
-
-        // create or edit
-        if(false === $Project = Project::getActive())
-        {
             $Project = new Project();
         }
-
-        // what to do
-        if($request = $this->post('requesting'))
+        else
         {
-            switch($request)
-            {
-                // post the form
-                case 'formPost':
-                    // save project
-                    if(isset($_POST['Project']))
-                    {
-                        $Project->attributes = $_POST['Project'];
-                    }
-
-                    // save or return errrors
-                    if($Project->save())
-                    {
-                        Ajax::respondOk($Project->getAttributes());
-                    }
-                    else
-                    {
-                        $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
-                        Ajax::respondError($rv);
-                    }
-                    break;
-                // render the form
-                case 'form':
-                    $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
-                    $rv['edit'] = !$Project->getIsNewRecord();
-                    Ajax::respondOk($rv);
-            }
+            $Project = Project::getActive();
         }
+
+        // save project
+        $Project->title = $this->post('title');
+
+        // save or return errrors
+        if($Project->save())
+        {
+            Ajax::respondOk();
+        }
+        else
+        {
+            Ajax::respondError($Project->getErrors());
+        }
+
+        Ajax::respondError(array('fail'));
     }
 
     /**

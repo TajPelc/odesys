@@ -47,22 +47,15 @@ class Project extends CActiveRecord
     /**
      * Handle all the logic before saving
      */
-    public function beforeSave()
+    public function beforeValidate()
     {
-        if( parent::beforeSave() )
+        if( parent::beforeValidate() )
         {
             if( $this->isNewRecord )
             {
                 // set created
                 $this->created = date('Y-m-d H:i:s', time());
-                $this->rel_user_id = (Yii::app()->user->isGuest ? User::ANONYMOUS : Yii::app()->user->id);
-
-                // set url until until it's unique
-                $this->url = Common::randomString(10);
-                while(!$this->isUniqueUrl($this->url))
-                {
-                    $this->url = Common::randomString(10);
-                }
+                $this->rel_user_id = Yii::app()->user->id;
             }
             return true;
         }
