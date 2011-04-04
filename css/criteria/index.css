@@ -119,12 +119,17 @@
     #content > form div.error {
         height: 39px;
         line-height: 24px;
-        padding: 0 20px;
+        padding: 0 0 0 21px;
         position: absolute;
         top: 8px;
         left: 0;
         color: #790e0e;
         background: url(../../images/form/sprite_error.png) 0 -39px no-repeat;
+        z-index: 10;
+    }
+
+    #content > form li div.error {
+        left: 28px;
     }
 
         #content > form div.error p {
