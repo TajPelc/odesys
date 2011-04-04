@@ -17,6 +17,7 @@ Criteria.FormErrorReporting = function(that, text){
     that.addClass('error');
     that.after('<div class="error"><p>'+text+'</p></div>');
     $('#content form div.error').css({'top': -that.height()-5});
+    that.focus();
 }
 
 Criteria.SaveInput = function(that, add) {
@@ -24,7 +25,7 @@ Criteria.SaveInput = function(that, add) {
     that.val(trimValue);
     if (!that.val() == ''){
         var data = {
-                'criteria_id': that.attr('id'),
+                'criteria_id': add ? that.attr('id') : that.attr('id').split('_')[1],
                 'value'      : that.attr('value'),
                 'action'     : 'save'
         };
@@ -122,6 +123,13 @@ $(document).ready(function(){
         var that = $(this);
         if (Criteria.tempInputValue !== that.val()){
             Criteria.SaveInput($(this), false);
+        }
+    });
+
+    $('#content form ol li input').live('keypress', function(e){
+        var that = $(this);
+        if (Criteria.tempInputValue !== that.val() && e.which == 13) {
+            that.blur();
         }
     });
 
