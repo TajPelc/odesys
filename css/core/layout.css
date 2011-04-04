@@ -110,8 +110,8 @@ a:hover {
         #header #login #login_image {
             margin: 0 0 8px 16px;
             float: right;
-            padding: 4px;
-            background: #DBE3F0;
+            padding: 1px 7px 8px 1px;
+            background: url(../../images/bg/user_img.png);
             border-radius: 4px;
             -moz-border-radius: 4px;
             -webkit-border-radius: 4px;
