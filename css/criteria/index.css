@@ -46,10 +46,11 @@
             }
 
     #content > form > div {
-        padding-left: 20px;
+        padding: 0 20px 24px 20px;
         margin-bottom: 24px;
         position: relative;
         float: left;
+        border-bottom: 1px solid #dedfe3;
     }
 
     #content > form input[type="text"] {
@@ -94,6 +95,10 @@
             right: 1px;
         }
 
+        #content > form span.add {
+            right: 21px;
+        }
+
         #content > form span.remove        { background-position: 0 0 }
         #content > form span.add           { background-position: 0 -100px }
         #content > form span.remove:hover  { background-position: -100px 0 }
@@ -134,7 +139,7 @@
 /* Sidebar
 ********************************************************/
 #sidebar {
-    width: 178px;
+    width: 192px;
     padding: 8px;
     line-height: 16px;
     border: 3px solid #DBE3F0;

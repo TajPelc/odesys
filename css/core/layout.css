@@ -45,12 +45,12 @@ a:hover {
     }
 
         #content {
-            width: 706px;
+            width: 686px;
             float: left;
         }
 
         #sidebar {
-            width: 194px;
+            width: 214px;
             float: right;
         }
 
@@ -174,7 +174,7 @@ a:hover {
     line-height: 16px;
 }
 
-/* Content
+/* Ajax Block
 ********************************************************/
 .block {
     width: 100%;
