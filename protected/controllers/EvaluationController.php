@@ -75,6 +75,7 @@ class EvaluationController extends Controller
         ));
 
         // order by alternatives
+        $eval = array();
         foreach($Evaluation as $E)
         {
             $eval[$E->rel_alternative_id] = $E;
