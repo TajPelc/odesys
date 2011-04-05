@@ -49,16 +49,6 @@ class EvaluationController extends Controller
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation/index.js');
 
-        // set sort type
-        switch ($this->post('sortType'))
-        {
-            case 'sortByAlternatives':
-                $sortType = 'alternative';
-                break;
-            default:
-                $sortType = 'criteria';
-        }
-
         // load active project
         $Project = $this->loadActiveProject();
 
@@ -75,78 +65,9 @@ class EvaluationController extends Controller
             }
         }
 
-        // get evaluation array
-        if('criteria' == $sortType)
-        {
-            $eval = $Project->getEvaluationArrayByCriteria();
-        }
-        else
-        {
-            $eval = $Project->getEvaluationArray();
-        }
-
-        // evaluate!
-        if(isset($_POST['eval']))
-        {
-            // alternatives loop
-            foreach($_POST['eval'] as $alternativeId => $evals)
-            {
-                // criteria loop
-                foreach($evals as $criteriaId => $grade)
-                {
-                    $Evaluation = null;
-
-                    // get eval object by sort type
-                    if('criteria' == $sortType)
-                    {
-                        if(isset($eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation']))
-                        {
-                            $Evaluation = $eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation'];
-                        }
-                    }
-                    else
-                    {
-                        if(isset($eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation']))
-                        {
-                            $Evaluation = $eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation'];
-                        }
-                    }
-
-                    // evaluation object is found
-                    if(!empty($Evaluation))
-                    {
-                        $Evaluation->rel_project_id = $Project->project_id;
-                        $Evaluation->rel_alternative_id = $alternativeId;
-                        $Evaluation->rel_criteria_id = $criteriaId;
-                        $Evaluation->grade = $grade;
-                        $Evaluation->save();
-                    }
-                }
-            }
-            if(Ajax::isAjax())
-            {
-                Ajax::respondOk(array('redirect' => 'results/display'));
-            }
-            $this->redirect(array('results/display'));
-        }
-
-        // render partial for ajax
-        if(Ajax::isAjax())
-        {
-            $rv['html'] = $this->renderPartial('evaluate', array(
-                'Project'   => $Project,
-                'eval'      => $eval,
-                'sortType'  => $sortType,
-            ), true);
-
-            Ajax::respondOk($rv);
-        }
-
         // normal render
         $this->render('evaluate',array(
             'Project'   => $Project,
-            'eval'      => $eval,
-            'sortType'  => $sortType,
         ));
     }
 
