@@ -65,9 +65,29 @@ class EvaluationController extends Controller
             }
         }
 
+        // get criteria by position
+        $Criteria = Criteria::getCriteriaByPosition(1);
+
+        // evaluation array
+        $Evaluation = Evaluation::model()->findAllByAttributes(array(
+        	'rel_project_id' => Project::getActive()->project_id,
+            'rel_criteria_id' => $Criteria->criteria_id,
+        ));
+
+        // order by alternatives
+        foreach($Evaluation as $E)
+        {
+            $eval[$E->rel_alternative_id] = $E;
+        }
+
+        // free mem
+        $Evaluation = null; unset($Evaluation);
+
         // normal render
         $this->render('evaluate',array(
-            'Project'   => $Project,
+            'Project'          => $Project,
+            'Criteria'         => $Criteria,
+            'eval'	           => $eval,
         ));
     }
 
@@ -83,14 +103,8 @@ class EvaluationController extends Controller
 
         // get project
         $Project = Project::getActive();
-        $user_id = Yii::app()->user->isGuest ? 1 : Yii::app()->user->user_id;
 
-        // only for ajax calls
-        if(!$Project && $user_id != $Project->rel_user_id)
-        {
-            exit();
-        }
-
+        // get params
         $params = $this->post('params');
         $grade = $this->post('grade');
         $rv = array();
@@ -111,13 +125,13 @@ class EvaluationController extends Controller
             }
 
             $Evaluation->grade = $grade;
-            $Evaluation->save();
-
-            if($this->post('fetchMenu'))
+            if($Evaluation->save())
             {
-                $rv = array('menu' => ProjectMenu::getMenuItems());
+                Ajax::respondOk();
             }
-            Ajax::respondOk($rv);
+            Ajax::respondError($Evaluation->getErrors());
         }
+
+        Ajax::respondError();
     }
 }

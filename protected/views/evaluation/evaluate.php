@@ -2,31 +2,24 @@
 <div id="content">
     <p>Fill out the statements by moving the sliders to the appropriate location.</p>
 
-    <h2><b>Horsepower</b> for</h2>
+    <h2><b><?php echo CHtml::encode($Criteria->title); ?></b> for</h2>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
         <ul>
-            <li>
-                <h3><b>Mazda MX-5 2.0i</b> is</h3>
+            <?php foreach($Project->alternatives as $Alternative) { ?>
+            <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
+            <li<?php echo ((bool)$Evaluation ? ' class="saved"' : ''); ?>>
+                <h3><b><?php echo CHtml::encode($Alternative->title)?></b> is</h3>
                 <div>
                     <span class="worst">the worst</span>
-                    <select id="eval220-447" name="eval[220][447]">
-                        <option selected="selected" value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
+                    <select id="<?php echo 'eval-'. $Alternative->alternative_id . '-' . $Criteria->criteria_id; ?>" name="<?php echo 'eval['. $Alternative->alternative_id . '][' . $Criteria->criteria_id . ']'; ?>">
+                    <?php for($i = 0; $i <= 100; $i++) { ?>
+                        <option value="<?php echo $i; ?>" <?php echo (((bool)$Evaluation && $Evaluation->grade == $i) ? 'selected="selected"' : ''); ?>><?php echo $i; ?></option>
+                    <?php }?>
                     </select>
                     <span class="best">the best</span>
                 </div>
             </li>
+            <?php } ?>
         </ul>
     </form>
-
-    <?php echo CHtml::link('Continue', array('results/display'), array('class' => 'button right', 'id' => 'continue')); ?>
 </div>

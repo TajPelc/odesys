@@ -34,8 +34,7 @@ class Evaluation extends CActiveRecord
     {
         return array(
             array('grade', 'required'),
-            array('grade', 'numerical', 'integerOnly' => true, 'min' => 0, 'max' => 10),
-            array('grade', 'safe', 'on'=>'search'),
+            array('grade', 'numerical', 'integerOnly' => true, 'min' => 0, 'max' => 100),
         );
     }
 
