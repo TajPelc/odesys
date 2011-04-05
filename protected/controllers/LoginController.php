@@ -8,7 +8,7 @@
 class LoginController extends Controller
 {
     /**
-     * Facebook action
+     * Facebook login
      */
     public function actionFacebook()
     {
@@ -28,5 +28,22 @@ class LoginController extends Controller
         }
 
         Yii::log('Facebook login failed!', 'error');
+    }
+
+    /**
+     * Logout from facebook
+     */
+    public function actionLogout()
+    {
+        if(Yii::app()->user->isGuest)
+        {
+            $this->redirect(array('site/index'));
+        }
+
+        // get user
+        $User = User::model()->findByPk(Yii::app()->user->id);
+        Yii::app()->user->logout();
+
+        $this->redirect(array('site/index'));
     }
 }

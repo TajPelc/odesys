@@ -50,9 +50,9 @@
                         <div>
                             <h2>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i>!</h2>
                             <ul>
-                                <li><?php echo CHtml::link('New decision', array('criteria/create'), array('title' => 'Start a new decision-making process!', 'class' => 'projectNew' . (Project::isProjectActive() ? ' active' : ''))); ?></li>
+                                <li><?php echo CHtml::link('New decision', array('project/create'), array('title' => 'Start a new decision-making process!', 'class' => 'projectNew' . (Project::isProjectActive() ? ' active' : ''))); ?></li>
                                 <li><?php echo CHtml::link('Dashboard', array('criteria/create'), array('title' => 'View your dashboard. See previous decisions.')); ?></li>
-                                <li><?php echo CHtml::link('Logout', array('criteria/create')); ?></li>
+                                <li><?php echo CHtml::link('Logout', array('login/logout')); ?></li>
                             </ul>
                         </div>
                 <?php }?>
