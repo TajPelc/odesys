@@ -43,6 +43,10 @@ class AlternativeController extends Controller
     {
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/alternatives/index.css');
+
+        // add style files
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/alternatives/index.js');
 
         // load active project
         $Project = $this->loadActiveProject();

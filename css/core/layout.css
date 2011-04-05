@@ -199,9 +199,9 @@ a:hover {
 }
 
     #overlay {
-        width: 485px;
+        width: 489px;
         height: 108px;
-        padding: 16px 20px;
+        padding: 16px 18px;
         position: absolute;
         background: url(../../images/bg/overlay_bg.png) no-repeat;
         z-index: 1001;
