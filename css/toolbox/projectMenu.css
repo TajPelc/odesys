@@ -23,7 +23,7 @@
     }
 
         #project ul li {
-            width: 172px;
+            width: 168px;
             margin-left: 20px;
             position: relative;
             float: left;
@@ -62,7 +62,7 @@
         }
 
         #project ul li .loadingBar {
-            width: 192px;
+            width: 208px;
             padding: 0;
             height: 10px;
             display: block;
@@ -74,5 +74,5 @@
         }
 
             #project ul li .loadingBar.end {
-                background: transparent url(../../images/bg/progress_bar.png) no-repeat;
+                background: transparent url(../../images/bg/progress_bar.png) top right no-repeat;
             }

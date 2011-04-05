@@ -81,6 +81,15 @@ Core.Overlay.Close = function() {
     $('#overlay_bg').remove();
 }
 
+
+Core.Block = function(that){
+    that.append('<div class="block"></div>');
+}
+
+Core.Unblock = function(that){
+    that.find('.block').remove();
+}
+
 /*
  * Document Ready
  * */
