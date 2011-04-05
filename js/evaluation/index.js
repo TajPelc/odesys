@@ -20,9 +20,6 @@ function handleSlider()
     // remove submit
     $('#evaluation input[type=submit]').remove();
 
-    // prettyfy links
-    $("input:submit, a.button").button();
-
     // slidify
     $('#evaluation div select').each(function() {
         val = $(this).find('option:selected').val();

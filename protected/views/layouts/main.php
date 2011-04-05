@@ -63,7 +63,7 @@
         <div id="footer">
             <ul>
                 <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
-                <li><a href="#">Terms of use</a></li>
+                <li><?php echo CHtml::link('Terms of use', array('/site/terms')); ?></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>

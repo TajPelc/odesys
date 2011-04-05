@@ -111,4 +111,13 @@ class SiteController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about/index.css');
         $this->render('about');
     }
+
+/**
+     * Terms of use page
+     */
+    public function actionTerms()
+    {
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/terms/index.css');
+        $this->render('terms');
+    }
 }
