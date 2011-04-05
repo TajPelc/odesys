@@ -57,7 +57,7 @@ function handleSlider()
                         {
                             $('#continue').fadeIn(2000);
                         }
-                        if (sliderSlider.attr('class') == ''{
+                        if (sliderSlider.attr('class') == ''){
                             sliderSlider.addClass('saved');
                             //animateByColorChange(sliderSlider, '#FFD700', 500, 500);
                         }
