@@ -1,3 +1,5 @@
+Evaluation = {};
+
 /**
  * Extract the numbers from a given string
  *
@@ -50,6 +52,24 @@ function handleSlider()
     });
 }
 
+Evaluation.NextCriteria = function(that) {
+    Evaluation.NextCriteria.Url = that.attr('href');
+    $.post(Evaluation.NextCriteria.Url, {
+        'action': 'get'
+    }, function(data){
+        if(data['status'] == true){
+
+            //make forms height fixed
+            var formHeight = $('#content form').height();
+            $('#content form').css('width', formHeight);
+
+            //insert new criteria
+            $('#content form').innerHtml().replaceWith('DREK');
+        }
+    });
+
+}
+
 /**
  * On document load
  */
@@ -59,4 +79,8 @@ $(document).ready(function(){
     // align navigation
     $('#content > ul').css('left', ($('#content').width()-$('#content > ul').width())/2);
 
+    // load next criteria for evaluation
+    $('#content .next, #content .previous').click(function(){
+        Evaluation.NextCriteria($(this));
+    });
 });
