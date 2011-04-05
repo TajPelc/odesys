@@ -34,6 +34,7 @@ function handleSlider()
             animate: true,
             stop: function(event, ui) {
                 sliderSlider = $(this).parents('li');
+                Core.Block(sliderSlider, true);
                 $(this).parent().find('input').attr('value', ui.value);
                 params = extractNumbers($(this).parent().find('input').attr('name'));
                 $.post(
@@ -42,8 +43,11 @@ function handleSlider()
                         params: params,
                     },
                     function(data) {
-                        if (sliderSlider.attr('class') == ''){
-                            sliderSlider.addClass('saved');
+                        if (data['status'] == true){
+                            if (sliderSlider.attr('class') == ''){
+                                sliderSlider.addClass('saved');
+                            }
+                            Core.Unblock(sliderSlider);
                         }
                 });
             }
@@ -53,6 +57,8 @@ function handleSlider()
 }
 
 Evaluation.NextCriteria = function(that) {
+    Core.Block($('#main'));
+
     Evaluation.NextCriteria.Url = that.attr('href');
     $.post(Evaluation.NextCriteria.Url, {
         'action': 'getContent'
@@ -61,14 +67,50 @@ Evaluation.NextCriteria = function(that) {
 
             //make forms height fixed
             var formHeight = $('#content form').height();
-            $('#content form').css('width', formHeight);
+            $('#content form').css('height', formHeight);
 
             //insert new criteria
-            $('#content h2, #content form').remove();
-            $('#content p').after(data['html']);
+            $('#content form ul').fadeOut(100, function(){$(this).remove()});
+            var html = function() {
+                $('#content form').append(data['html']);
+                $('#content form ul').hide().fadeIn(100);
+                handleSlider();
+            }
+            setTimeout(html, 120);
+            $('#content h2 b').text(data['title']);
+            Evaluation.Navigation(that, data['previous'], data['next'], data['pageNr'], data['criteriaNr']);
+            Core.Unblock($('#main'));
         }
     });
 
+}
+
+Evaluation.Navigation = function(that, prev, next, pageNr, criteriaNr) {
+    var prevButton = $('#content > ul li:eq(0)');
+    var pageNumber = $('#content > ul li:eq(1)');
+    var nextButton = $('#content > ul li:eq(2)');
+
+    pageNumber.text('Criteria '+pageNr+' of '+criteriaNr+'')
+
+    if (next == false){
+        nextButton.find('a').remove();
+    } else {
+        if (nextButton.find('a').length > 0){
+            nextButton.children('a').attr('href', next);
+        } else {
+            nextButton.append('<a href="'+next+'" class="next">Next</a>');
+        }
+    }
+
+    if (prev == false){
+        prevButton.find('a').remove();
+    } else {
+        if (prevButton.find('a').length > 0){
+            prevButton.children('a').attr('href', prev);
+        } else {
+            prevButton.append('<a href="'+prev+'" class="next">Next</a>');
+        }
+    }
 }
 
 /**
@@ -81,7 +123,7 @@ $(document).ready(function(){
     $('#content > ul').css('left', ($('#content').width()-$('#content > ul').width())/2);
 
     // load next criteria for evaluation
-    $('#content .next, #content .previous').click(function(){
+    $('#content .next, #content .previous').live('click', function(){
         Evaluation.NextCriteria($(this));
         return false;
     });
