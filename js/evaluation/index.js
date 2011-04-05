@@ -33,7 +33,6 @@ function handleSlider()
             animate: true,
             stop: function(event, ui) {
                 sliderSlider = $(this).parent();
-                startLoading(true, sliderSlider);
                 $(this).parent().parent().find('input').attr('value', ui.value);
                 params = extractNumbers($(this).parent().find('input').attr('name'));
                 $.post(
@@ -77,7 +76,6 @@ $(document).ready(function(){
     }
 
     $('#sortByCriteria, #sortByAlternatives').live('click', function(event){
-        startLoading(true);
         $.post(
             window.location.toString(), {
                 sortType: $(this).attr('id'),

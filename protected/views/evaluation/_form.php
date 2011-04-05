@@ -12,13 +12,13 @@
                             <label for="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>"><?php echo CHtml::encode($Criteria['Obj']->title); ?></label>
                             <div class="slider<?php if(!is_numeric($Criteria['Evaluation']->grade)) { ?> new<?php }?>">
                                 <p>
-                                    <span><?php echo CHtml::encode($Criteria['Obj']->worst); ?></span>
+                                    <span>the worst</span>
                                     <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
                                         <?php for($j = 0; $j <= 10; $j++){?>
                                             <option value="<?php echo $j;?>"<?php if($j == $Criteria['Evaluation']->grade){?> selected="selected"<?php }?>><?php echo $j;?></option>
                                         <?php }?>
                                     </select>
-                                    <span class="right"><?php echo CHtml::encode($Criteria['Obj']->best); ?></span>
+                                    <span class="right">the best</span>
                                 </p>
                             </div>
                         </li>
@@ -39,13 +39,13 @@
                             <label for="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>"><?php echo CHtml::encode($Alternative['Obj']->title); ?></label>
                             <div class="slider<?php if(!is_numeric($Alternative['Evaluation']->grade)) { ?> new<?php }?>">
                                 <p>
-                                    <span><?php echo CHtml::encode($Criteria['Obj']->worst); ?></span>
+                                    <span>the worst</span>
                                     <select name="eval[<?php echo $alternativeId; ?>][<?php echo $criteriaId; ?>]" id="eval<?php echo $alternativeId; ?>-<?php echo $criteriaId; ?>">
                                         <?php for($j = 0; $j <= 10; $j++){?>
                                             <option value="<?php echo $j;?>"<?php if($j == $Alternative['Evaluation']->grade){?> selected="selected"<?php }?>><?php echo $j;?></option>
                                         <?php }?>
                                     </select>
-                                    <span class="right"><?php echo CHtml::encode($Criteria['Obj']->best); ?></span>
+                                    <span class="right">the best</span>
                                 </p>
                             </div>
                         </li>
