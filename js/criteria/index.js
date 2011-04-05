@@ -152,7 +152,7 @@ $(document).ready(function(){
         opacity: 0.70,
         placeholder: 'placeholder',
         handle: '.drag',
-        sort: function(){
+        sort: function(){ // Ordered list fix by Bryan Blakey
             var $lis = $(this).children('li');
             $lis.each(function(){
                 var $li = $(this);
