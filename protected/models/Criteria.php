@@ -115,7 +115,7 @@ class Criteria extends CActiveRecord
     }
 
     /**
-     * Delete criteria related stuff
+     * Delete evaluations
      */
     public function beforeDelete()
     {
@@ -129,6 +129,31 @@ class Criteria extends CActiveRecord
 
         return true;
     }
+
+    /**
+     * Reorder criteria
+     */
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        // create query criteria
+        $dbCriteria= new CDbCriteria();
+        $dbCriteria->condition = 'rel_project_id = :rel_project_id';
+        $dbCriteria->order = 'position ASC';
+        $dbCriteria->params = array(':rel_project_id' => Project::getActive()->project_id);
+
+        // reorder and save
+        $i = 0;
+        foreach(self::model()->findAll($dbCriteria) as $C)
+        {
+            $C->position = $i;
+            $C->save();
+        }
+
+        return true;
+    }
+
 
     /**
      * Return criteria for the current project matching the position given
