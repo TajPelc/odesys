@@ -75,3 +75,7 @@
             #project ul li .loadingBar.end {
                 background: transparent url(../../images/bg/progress_bar.png) top right no-repeat;
             }
+
+            #project ul li:last-child .loadingBar.end {
+                background: #FFD700;
+            }
