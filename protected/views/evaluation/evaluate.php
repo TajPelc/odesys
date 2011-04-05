@@ -22,4 +22,9 @@
             <?php } ?>
         </ul>
     </form>
+    <ul>
+        <li><a href="#">Previous</a></li>
+        <li>Criteria 5 of 9</li>
+        <li><a href="#">Next</a></li>
+    </ul>
 </div>

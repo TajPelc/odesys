@@ -22,12 +22,16 @@
     font-size: 18px;
 }
 
-    #content ul {
+#content form {
+    margin-bottom: 32px;
+}
+
+    #content form ul {
         width: 100%;
         padding-left: 8px;
     }
 
-        #content ul li {
+        #content form ul li {
             width: 651px; /*671px*/
             height: 51px; /*63px*/
             padding: 6px 10px;
@@ -35,30 +39,30 @@
             background: url(../../images/form/sprite_slider.png) 0 -300px no-repeat;
         }
 
-        #content ul li:last-child {
+        #content form ul li:last-child {
             margin-bottom: 0;
         }
 
-        #content ul li.saved {
+        #content form ul li.saved {
             background-position: 0 -200px;
         }
 
-            #content ul li h3 {
+            #content form ul li h3 {
                 font-size: 18px;
                 margin-bottom: 12px;
             }
 
-                #content ul li h3 b {
+                #content form ul li h3 b {
                     font-weight: bold;
                 }
 
-            #content ul li > div {
+            #content form ul li > div {
                 width: 100%;
                 float: left;
             }
 
-                #content ul li .worst,
-                #content ul li .best {
+                #content form ul li .worst,
+                #content form ul li .best {
                     width: 83px;
                     display: block;
                     float: left;
@@ -67,10 +71,49 @@
                     font-style: italic;
                 }
 
-                #content ul li .best {
+                #content form ul li .best {
                     width: 75px;
                     text-align: right;
                 }
+
+/* Prev/Next navigation
+********************************************************/
+#content > ul {
+    width: 356px;
+    margin: 0 auto;
+}
+
+    #content > ul li {
+        width: 150px;
+        height: 34px;
+        line-height: 34px;
+        margin-bottom: 16px;
+        float: left;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #content > ul li:first-child,
+    #content > ul li:last-child {
+        width: 101px;
+    }
+
+        #content > ul li a {
+            width: 103px;
+            height: 34px;
+            display: block;
+            text-indent: -9999px;
+            background: transparent url(../../images/form/sprite_buttons.png) no-repeat;
+        }
+
+        #content > ul li:first-child a        { background-position: -300px -200px }
+        #content > ul li:last-child a         { background-position: -300px -100px }
+        #content > ul li:first-child a:hover  { background-position: -450px -200px }
+        #content > ul li:last-child a:hover   { background-position: -450px -100px }
+        #content > ul li:first-child a:active { background-position: -600px -200px }
+        #content > ul li:last-child a:active  { background-position: -600px -100px }
+
 /* Slider
 ********************************************************/
 #content .ui-slider {
