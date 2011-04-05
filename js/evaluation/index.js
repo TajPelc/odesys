@@ -34,6 +34,7 @@ function handleSlider()
             animate: true,
             stop: function(event, ui) {
                 sliderSlider = $(this).parents('li');
+                Core.Block(sliderSlider, true);
                 $(this).parent().find('input').attr('value', ui.value);
                 params = extractNumbers($(this).parent().find('input').attr('name'));
                 $.post(
@@ -42,8 +43,11 @@ function handleSlider()
                         params: params,
                     },
                     function(data) {
-                        if (sliderSlider.attr('class') == ''){
-                            sliderSlider.addClass('saved');
+                        if (data['status'] == true){
+                            if (sliderSlider.attr('class') == ''){
+                                sliderSlider.addClass('saved');
+                            }
+                            Core.Unblock(sliderSlider);
                         }
                 });
             }

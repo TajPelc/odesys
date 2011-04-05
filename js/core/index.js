@@ -82,9 +82,12 @@ Core.Overlay.Close = function() {
 }
 
 
-Core.Block = function(that){
+Core.Block = function(that, rounded){
     that.append('<div class="block"><img src="/images/ajax-loader.gif" /></div>');
     $('.block').each(function(index, element){
+        if (rounded){
+            $(element).addClass('rounded');
+        }
         $(element).width($(element).parent().outerWidth());
         $(element).height($(element).parent().outerHeight());
         $(element).find('img').css({
