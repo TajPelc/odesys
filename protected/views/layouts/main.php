@@ -68,5 +68,10 @@
             </ul>
         </div>
     </div>
+    <?php if(YII_DEBUG) { ?>
+        <?php if(0 !== $miliSleepTime = Yii::app()->params['miliSleepTime']) { ?>
+            <div class="debug"><b>Warning!</b> Slow loading enabled, script execution delayed by <em><?php echo $miliSleepTime; ?>ms</em>.</div>
+        <?php }?>
+    <?php }?>
 </body>
 </html>

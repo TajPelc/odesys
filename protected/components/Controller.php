@@ -34,6 +34,22 @@ class Controller extends CController
     {
         parent::__construct($id, $module);
 
+        /**
+         * DEBUG
+         */
+        if(YII_DEBUG)
+        {
+            // simulate slow loading times
+            if(0 < $sleepTime = Yii::app()->params['miliSleepTime'])
+            {
+                // convert mikro to mili and sleep
+                usleep($sleepTime * 1000);
+            }
+        }
+        /**
+         * END DEBUG
+         */
+
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-1.5.1.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/index.js');
 

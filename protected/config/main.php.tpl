@@ -54,5 +54,8 @@ return array(
         // facebook settings
         'fbAppId' => '165209310185741',
         'fbAppSecret' => '8625578e976c2e457236a5cd1c0d3c79',
+
+        // testing/debug params
+        'miliSleepTime' => 0,
     ),
 );
