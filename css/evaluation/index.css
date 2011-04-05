@@ -31,7 +31,12 @@
             width: 651px; /*671px*/
             height: 51px; /*63px*/
             padding: 6px 10px;
+            margin-bottom: 16px;
             background: url(../../images/form/sprite_slider.png) 0 -300px no-repeat;
+        }
+
+        #content ul li:last-child {
+            margin-bottom: 0;
         }
 
         #content ul li.saved {
