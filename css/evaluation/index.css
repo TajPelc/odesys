@@ -79,14 +79,14 @@
 /* Prev/Next navigation
 ********************************************************/
 #content > ul {
-    width: 356px;
-    margin: 0 auto;
+    float: left;
+    position: relative;
 }
 
     #content > ul li {
-        width: 150px;
         height: 34px;
         line-height: 34px;
+        padding: 0 20px;
         margin-bottom: 16px;
         float: left;
         font-weight: bold;
@@ -97,6 +97,7 @@
     #content > ul li:first-child,
     #content > ul li:last-child {
         width: 101px;
+        padding: 0;
     }
 
         #content > ul li a {

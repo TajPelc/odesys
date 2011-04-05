@@ -55,4 +55,7 @@ function handleSlider()
  */
 $(document).ready(function(){
     handleSlider();
+
+    // align navigation
+    $('#content > ul').css('left', ($('#content').width()-$('#content > ul').width())/2);
 });
