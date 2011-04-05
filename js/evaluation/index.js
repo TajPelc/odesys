@@ -58,4 +58,5 @@ $(document).ready(function(){
 
     // align navigation
     $('#content > ul').css('left', ($('#content').width()-$('#content > ul').width())/2);
+
 });

@@ -4,6 +4,10 @@
  --> @version:    1.1
 */
 
+#content {
+    overflow: hidden;
+}
+
 #content > h2 {
     width: 666px; /*686px*/
     padding: 8px 10px;
@@ -22,8 +26,14 @@
     font-size: 18px;
 }
 
+#content > div {
+    width: 2000px;
+}
+
 #content form {
     margin-bottom: 32px;
+    float: left;
+    position: relative;
 }
 
     #content form ul {
