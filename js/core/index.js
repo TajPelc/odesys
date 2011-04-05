@@ -11,8 +11,10 @@ function ImagePreload(arrayOfImages) {
 
 Core = {};
 
-Core.Overlay = function(){
-    $('body').append('<div id="overlay_bg"><div id="overlay"><h2>Name your decision:</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form></div></div>');
+Core.Overlay = function(html){
+    Core.Overlay.Close();
+
+    $('body').append('<div id="overlay_bg"><div id="overlay">'+html+'</div></div>');
     $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2, 'top': '150px'});
 
     //delay input focus hack
@@ -31,9 +33,11 @@ Core.Overlay = function(){
     $('#overlay form').submit(function(){
         Core.Overlay.Url = location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=project/create';
         Core.Overlay.Data = {
-            'title'   : $.trim($(this).serialize()),
+            'title'   : $.trim($(this).find('input[type="text"]').val()),
             'action'  : 'create'
         }
+
+        //post project title
         $.ajax({
             type: 'POST',
             url: Core.Overlay.Url,
@@ -43,28 +47,42 @@ Core.Overlay = function(){
                 // success
                 if(data['status'] == true)
                 {
-                    $('#overlay_bg').remove();
+                    Core.Overlay.Close();
                     $(location).attr('href', location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=criteria/create');
                 }
                 else {
-                    $('#overlay').remove();
-                    $('#overlay_bg').append('<div id="overlay"><h2>Error!</h2><p>'+data['errors'][0]+'</p></div>')
-                    $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2, 'top': '150px'});
+                    //$('#overlay form').insertAfter('<span>'+data['errors']['title']+'</span>');
+                    Core.Overlay.FormErrorReporting($('#overlay form'), data['errors']['title']);
                 }
             }
         });
         return false;
     });
-}
 
-Core.Overlay.Warning = function(){
-    $('body').append('<div id="overlay_bg"><div id="overlay"><h2>Make a new decision?</h2><p>Do not panic. Your project is saved safely in our database, no worries. With creating a new project you will deactivate your current one <i>'+$('#headings h2').text().split('"')[0]+'</i>.</p><a class="button" href="#">YES, continue!</a></div></div>');
-    $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2, 'top': '150px'});
-    $('#overlay .button').click(function(){
-        $('#overlay_bg').remove();
-        Core.Overlay();
+    $('body').live('keyup', function(e){
+        if(e.which == 27){
+            Core.Overlay.Close();
+        }
     });
 }
+
+
+Core.Overlay.FormErrorReporting = function(that, text){
+    if(!$('#overlay .error').length == 0){
+        $('#overlay .error').remove();
+    }
+    that.append('<div class="error"><p>'+text+'</p></div>');
+    that.find('input[type="text"]').focus();
+}
+
+Core.Overlay.Close = function() {
+    $('#overlay').remove();
+    $('#overlay_bg').remove();
+}
+
+/*
+ * Document Ready
+ * */
 
 $(document).ready(function(){
     // Preload images
@@ -75,9 +93,11 @@ $(document).ready(function(){
 
     $('#login .projectNew').click(function(){
         if($(this).hasClass('active')){
-            Core.Overlay.Warning();
+            Core.Overlay.Html = '<h2>Make a new decision?</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><input type="submit" name="project_save" id="project_save" value="Start" /><p>Do not panic. Your project is saved safely in our database. With creating a new project you will deactivate "<i>'+$('#headings h2').text().split('"')[1]+'</i>".</p></fieldset></form>'
+            Core.Overlay(Core.Overlay.Html);
         } else {
-            Core.Overlay();
+            Core.Overlay.Html = '<h2>Name your decision:</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>';
+            Core.Overlay(Core.Overlay.Html);
         }
         return false;
     });

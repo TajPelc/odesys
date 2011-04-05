@@ -195,7 +195,7 @@ a:hover {
     top: 0;
     right: 0;
     background: url(../../images/bg/overlay.png) repeat;
-    z-index: 100;
+    z-index: 1000;
 }
 
     #overlay {
@@ -203,7 +203,8 @@ a:hover {
         height: 108px;
         padding: 16px 20px;
         position: absolute;
-        background: url(../../images/bg/overlay_bg.png) no-repeat;;
+        background: url(../../images/bg/overlay_bg.png) no-repeat;
+        z-index: 1001;
     }
 
         #overlay h2 {
@@ -215,17 +216,25 @@ a:hover {
             color: #fff;
         }
 
-        #overlay h2 + p {
+        #overlay form fieldset p {
+            width: 370px;
             line-height: 16px;
             margin-bottom: 16px;
+            float: left;
             font-size: 13px;
             color: #fff;
         }
+
+            #overlay p i {
+                font-style: italic;
+                font-weight: bold;
+            }
 
         #overlay form,
         #overlay form fieldset {
             width: 100%;
             float: left;
+            position: relative;
         }
 
         #overlay input[type="text"] {
@@ -252,18 +261,26 @@ a:hover {
         #overlay input[type="submit"]:hover { cursor: pointer; background-position: -450px 0;}
         #overlay input[type="submit"]:active { cursor: pointer; background-position: -600px 0;}
 
-        #overlay .button {
-            width: 100px;
-            height: 26px;
-            line-height: 26px;
-            display: block;
-            float: right;
-            text-align: center;
-            background: #646d7f;
-            color: #fff;
-            border-radius: 4px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
+
+    #overlay form div.error {
+        height: 39px;
+        line-height: 24px;
+        padding: 0 0 0 21px;
+        position: absolute;
+        top: -26px;
+        left: -13px;
+        color: #790e0e;
+        background: url(../../images/form/sprite_error.png) 0 -39px no-repeat;
+        z-index: 10;
+    }
+
+        #overlay form div.error p {
+            width: auto;
+            height: 39px;
+            padding-right: 26px;
+            line-height: 24px;
+            color: #790e0e;
+            background: url(../../images/form/sprite_error.png) top right no-repeat;
         }
 
 /* Footer
