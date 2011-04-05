@@ -13,7 +13,7 @@
                     <?php if($menuItem['enabled'] && !$activeItem) {?>
                         <li>
                             <?php echo CHtml::link(CHtml::encode($label), $menuItem['route'], array('title' => CHtml::encode($label), 'id' => $id)); ?>
-                            <span class="loadingBar<?php echo ( $lastEnabledItem ? ' end' : ''); ?>">&nbsp;</span>
+                            <span class="loadingBar<?php echo ( $lastEnabledItem && !$lastItem ? ' end' : ''); ?>">&nbsp;</span>
                         </li>
                     <?php } else { ?>
                         <li>
