@@ -131,6 +131,16 @@ class Criteria extends CActiveRecord
     }
 
     /**
+     * Return criteria for the current project matching the position given
+     *
+     * @param int $position
+     */
+    public static function getCriteriaByPosition($position)
+    {
+        return self::model()->findByAttributes(array('rel_project_id' => Project::getActive()->project_id, 'position' => $position));
+    }
+
+    /**
      * @return array customized attribute labels (name=>label)
      */
     public function attributeLabels()

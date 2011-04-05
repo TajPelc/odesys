@@ -1,11 +1,25 @@
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
-    <?php if(count($Project->alternatives) > 1 && count($Project->criteria) > 1) { ?>
-        <p>Fill out the statements by moving the sliders to the appropriate location.</p>
-        <?php echo $this->renderPartial('_form', array('eval' => $eval, 'sortType' => $sortType)); ?>
-        <?php //echo CHtml::link('Continue', array('results/display'), array('class' => 'button right', 'id' => 'continue')); ?>
-    <?php } else { ?>
-        <h2>Criteria or alternatives missing</h2>
-        <p>In order to perform an evaluation you must define between two (2) and ten (10) criteria, and between two (2) and ten (10) alternatvies. Once you have done so, return to this page for evaluation.</p>
-    <?php }?>
+    <p>Fill out the statements by moving the sliders to the appropriate location.</p>
+
+    <h2><b><?php echo CHtml::encode($Criteria->title); ?></b> for</h2>
+    <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
+        <ul>
+            <?php foreach($Project->alternatives as $Alternative) { ?>
+            <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
+            <li<?php echo ((bool)$Evaluation ? ' class="saved"' : ''); ?>>
+                <h3><b><?php echo CHtml::encode($Alternative->title)?></b> is</h3>
+                <div>
+                    <span class="worst">the worst</span>
+                    <select id="<?php echo 'eval-'. $Alternative->alternative_id . '-' . $Criteria->criteria_id; ?>" name="<?php echo 'eval['. $Alternative->alternative_id . '][' . $Criteria->criteria_id . ']'; ?>">
+                    <?php for($i = 0; $i <= 100; $i++) { ?>
+                        <option value="<?php echo $i; ?>" <?php echo (((bool)$Evaluation && $Evaluation->grade == $i) ? 'selected="selected"' : ''); ?>><?php echo $i; ?></option>
+                    <?php }?>
+                    </select>
+                    <span class="best">the best</span>
+                </div>
+            </li>
+            <?php } ?>
+        </ul>
+    </form>
 </div>

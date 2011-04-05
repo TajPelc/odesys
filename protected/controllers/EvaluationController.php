@@ -49,16 +49,6 @@ class EvaluationController extends Controller
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation/index.js');
 
-        // set sort type
-        switch ($this->post('sortType'))
-        {
-            case 'sortByAlternatives':
-                $sortType = 'alternative';
-                break;
-            default:
-                $sortType = 'criteria';
-        }
-
         // load active project
         $Project = $this->loadActiveProject();
 
@@ -75,78 +65,29 @@ class EvaluationController extends Controller
             }
         }
 
-        // get evaluation array
-        if('criteria' == $sortType)
-        {
-            $eval = $Project->getEvaluationArrayByCriteria();
-        }
-        else
-        {
-            $eval = $Project->getEvaluationArray();
-        }
+        // get criteria by position
+        $Criteria = Criteria::getCriteriaByPosition(1);
 
-        // evaluate!
-        if(isset($_POST['eval']))
+        // evaluation array
+        $Evaluation = Evaluation::model()->findAllByAttributes(array(
+        	'rel_project_id' => Project::getActive()->project_id,
+            'rel_criteria_id' => $Criteria->criteria_id,
+        ));
+
+        // order by alternatives
+        foreach($Evaluation as $E)
         {
-            // alternatives loop
-            foreach($_POST['eval'] as $alternativeId => $evals)
-            {
-                // criteria loop
-                foreach($evals as $criteriaId => $grade)
-                {
-                    $Evaluation = null;
-
-                    // get eval object by sort type
-                    if('criteria' == $sortType)
-                    {
-                        if(isset($eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation']))
-                        {
-                            $Evaluation = $eval[$criteriaId]['Alternatives'][$alternativeId]['Evaluation'];
-                        }
-                    }
-                    else
-                    {
-                        if(isset($eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation']))
-                        {
-                            $Evaluation = $eval[$alternativeId]['Criteria'][$criteriaId]['Evaluation'];
-                        }
-                    }
-
-                    // evaluation object is found
-                    if(!empty($Evaluation))
-                    {
-                        $Evaluation->rel_project_id = $Project->project_id;
-                        $Evaluation->rel_alternative_id = $alternativeId;
-                        $Evaluation->rel_criteria_id = $criteriaId;
-                        $Evaluation->grade = $grade;
-                        $Evaluation->save();
-                    }
-                }
-            }
-            if(Ajax::isAjax())
-            {
-                Ajax::respondOk(array('redirect' => 'results/display'));
-            }
-            $this->redirect(array('results/display'));
+            $eval[$E->rel_alternative_id] = $E;
         }
 
-        // render partial for ajax
-        if(Ajax::isAjax())
-        {
-            $rv['html'] = $this->renderPartial('evaluate', array(
-                'Project'   => $Project,
-                'eval'      => $eval,
-                'sortType'  => $sortType,
-            ), true);
-
-            Ajax::respondOk($rv);
-        }
+        // free mem
+        $Evaluation = null; unset($Evaluation);
 
         // normal render
         $this->render('evaluate',array(
-            'Project'   => $Project,
-            'eval'      => $eval,
-            'sortType'  => $sortType,
+            'Project'          => $Project,
+            'Criteria'         => $Criteria,
+            'eval'	           => $eval,
         ));
     }
 
@@ -162,14 +103,8 @@ class EvaluationController extends Controller
 
         // get project
         $Project = Project::getActive();
-        $user_id = Yii::app()->user->isGuest ? 1 : Yii::app()->user->user_id;
 
-        // only for ajax calls
-        if(!$Project && $user_id != $Project->rel_user_id)
-        {
-            exit();
-        }
-
+        // get params
         $params = $this->post('params');
         $grade = $this->post('grade');
         $rv = array();
@@ -190,13 +125,13 @@ class EvaluationController extends Controller
             }
 
             $Evaluation->grade = $grade;
-            $Evaluation->save();
-
-            if($this->post('fetchMenu'))
+            if($Evaluation->save())
             {
-                $rv = array('menu' => ProjectMenu::getMenuItems());
+                Ajax::respondOk();
             }
-            Ajax::respondOk($rv);
+            Ajax::respondError($Evaluation->getErrors());
         }
+
+        Ajax::respondError();
     }
 }

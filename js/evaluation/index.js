@@ -1,12 +1,9 @@
-/*function saveAndContinue()
-{
-    startLoading();
-    $.post(window.location.toString(), $('#evaluation').serialize(), function(data){
-        window.location.replace(location.protocol + '//'+ location.hostname + location.pathname + '?r=' + data['redirect']);
-    });
-}*/
-
-
+/**
+ * Extract the numbers from a given string
+ *
+ * @param str
+ * @returns int
+ */
 function extractNumbers(str)
 {
     return str.match(/\d+(,\d{3})*(\.\d{1,2})?/g);
@@ -29,7 +26,7 @@ function handleSlider()
         $(this).parent().find('.worst').after($('<div></div>').slider({
             value: val,
             min: 0,
-            max:10,
+            max: 100,
             step: 1,
             range: "min",
             animate: true,
@@ -41,22 +38,10 @@ function handleSlider()
                     'index.php?r=evaluation/update', {
                         grade: ui.value,
                         params: params,
-                        fetchMenu: true,
                     },
                     function(data) {
-                        //stopLoading();
-
-                        // check menu items
-                        //handleProjectMenu(data['menu']);
-
-                        // show continue link
-                        if(data['menu']['menu-analysis']['enabled'])
-                        {
-                            $('#continue').fadeIn(2000);
-                        }
                         if (sliderSlider.attr('class') == ''){
                             sliderSlider.addClass('saved');
-                            //animateByColorChange(sliderSlider, '#FFD700', 500, 500);
                         }
                 });
             }
@@ -70,11 +55,4 @@ function handleSlider()
  */
 $(document).ready(function(){
     handleSlider();
-
-    // disable continue link
-    if(!$('#menu-analysis').is('a'))
-    {
-        $('#continue').hide();
-    }
-
 });
