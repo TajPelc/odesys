@@ -62,12 +62,6 @@ a:hover {
     left: -1px;
     float: left;
     background: url(../../images/bg/header.png) 1px 0 no-repeat;
-    -webkit-border-top-left-radius: 8px;
-    -webkit-border-top-right-radius: 8px;
-    -moz-border-radius-topleft: 8px;
-    -moz-border-radius-topright: 8px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
 }
 
     #header #headings {
@@ -335,3 +329,16 @@ a:hover {
             #footer ul li a {
                 color: #eeeeee;
             }
+
+/* DEBUG MODE
+********************************************************/
+.debug {
+    width: 100%;
+    padding: 4px 20px;
+    margin-top: 16px;
+    text-align: center;
+    background: #FFD700;
+    opacity: 0.5;
+    font-size: 16px;
+    font-weight: bold;
+}
