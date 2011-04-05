@@ -41,7 +41,6 @@ a:hover {
         padding: 16px 20px 16px 20px;
         float: left;
         position: relative;
-        top: -1px; /*header hack*/
     }
 
         #content {
@@ -58,12 +57,11 @@ a:hover {
 ********************************************************/
 #header {
     width: 962px;
-    height: 80px;
+    height: 79px;
     position: relative;
-    top: -1px;
     left: -1px;
     float: left;
-    background: url(../../images/bg/header.png) 1px 1px no-repeat;
+    background: url(../../images/bg/header.png) 1px 0 no-repeat;
     -webkit-border-top-left-radius: 8px;
     -webkit-border-top-right-radius: 8px;
     -moz-border-radius-topleft: 8px;
@@ -191,9 +189,14 @@ a:hover {
     position: absolute;
     top: 0;
     left: 0;
-    background: #596171;
-    opacity: 0.6;
+    background: url(../../images/bg/overlay.png) repeat;
+    border: none !important;
+    z-index: 100;
 }
+
+    .block img {
+        position: absolute;
+    }
 
 /* Overlay
 ********************************************************/

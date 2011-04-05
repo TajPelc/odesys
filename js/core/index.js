@@ -83,11 +83,21 @@ Core.Overlay.Close = function() {
 
 
 Core.Block = function(that){
-    that.append('<div class="block"></div>');
+    that.append('<div class="block"><img src="/images/ajax-loader.gif" /></div>');
+    $('.block').each(function(index, element){
+        $(element).width($(element).parent().outerWidth());
+        $(element).height($(element).parent().outerHeight());
+        $(element).find('img').css({
+            'top': ($(element).height()-$(element).children('img').height())/2,
+            'left': ($(element).width()-$(element).children('img').width())/2
+        });
+    });
 }
 
 Core.Unblock = function(that){
-    that.find('.block').remove();
+    Core.Unblock.Block = that.find('.block').fadeOut(200);
+
+    setTimeout('Core.Unblock.Block.remove()', 200);
 }
 
 /*

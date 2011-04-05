@@ -53,7 +53,7 @@ function handleSlider()
 }
 
 Evaluation.NextCriteria = function(that) {
-    Core.Block($('#content'));
+    Core.Block($('#main'));
 
     Evaluation.NextCriteria.Url = that.attr('href');
     $.post(Evaluation.NextCriteria.Url, {
@@ -75,7 +75,7 @@ Evaluation.NextCriteria = function(that) {
             setTimeout(html, 120);
             $('#content h2 b').text(data['title']);
             Evaluation.Navigation(that, data['previous'], data['next'], data['pageNr'], data['criteriaNr']);
-            Core.Unblock($('#content'));
+            Core.Unblock($('#main'));
         }
     });
 
