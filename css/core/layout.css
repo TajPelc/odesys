@@ -72,6 +72,7 @@ a:hover {
         #header h1 {
             width: 387px;
             height: 30px;
+            margin-bottom: 4px;
             float: left;
         }
 
@@ -92,7 +93,7 @@ a:hover {
         }
 
     #header #login {
-        padding: 8px 20px 0 0;
+        padding: 12px 20px 0 0;
         height: 64px;
         float: right;
         color: #fff;
