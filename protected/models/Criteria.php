@@ -143,12 +143,14 @@ class Criteria extends CActiveRecord
         $dbCriteria->order = 'position ASC';
         $dbCriteria->params = array(':rel_project_id' => Project::getActive()->project_id);
 
+        // query
+        $result = self::model()->findAll($dbCriteria);
+
         // reorder and save
-        $i = 0;
-        foreach(self::model()->findAll($dbCriteria) as $C)
+        for($i = 0; $i < count($result); $i++)
         {
-            $C->position = $i;
-            $C->save();
+            $result[$i]->position = $i;
+            $result[$i]->save();
         }
 
         return true;

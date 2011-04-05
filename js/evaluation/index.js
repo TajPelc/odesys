@@ -55,7 +55,7 @@ function handleSlider()
 Evaluation.NextCriteria = function(that) {
     Evaluation.NextCriteria.Url = that.attr('href');
     $.post(Evaluation.NextCriteria.Url, {
-        'action': 'get'
+        'action': 'getContent'
     }, function(data){
         if(data['status'] == true){
 
@@ -64,7 +64,8 @@ Evaluation.NextCriteria = function(that) {
             $('#content form').css('width', formHeight);
 
             //insert new criteria
-            $('#content form').innerHtml().replaceWith('DREK');
+            $('#content h2, #content form').remove();
+            $('#content p').after(data['html']);
         }
     });
 
@@ -82,5 +83,6 @@ $(document).ready(function(){
     // load next criteria for evaluation
     $('#content .next, #content .previous').click(function(){
         Evaluation.NextCriteria($(this));
+        return false;
     });
 });

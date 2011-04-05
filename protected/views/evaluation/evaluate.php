@@ -1,7 +1,8 @@
+<?php if(!Ajax::isAjax()) { ?>
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
     <p>Fill out the statements by moving the sliders to the appropriate location.</p>
-
+<?php }?>
     <h2><b><?php echo CHtml::encode($Criteria->title); ?></b> for</h2>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
         <ul>
@@ -22,9 +23,11 @@
             <?php } ?>
         </ul>
     </form>
+    <?php if(!Ajax::isAjax()) { ?>
     <ul>
         <li><?php echo ( $pageNr > 0 ? CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $pageNr - 1), array('class' => 'previous')) : '')?></li>
         <li>Criteria <?php echo $pageNr + 1; ?> of <?php echo $nrOfCriteria ?></li>
         <li><?php echo ( $pageNr < $nrOfCriteria - 1 ? CHtml::link('Next', array('evaluation/evaluate', 'pageNr' => $pageNr + 1), array('class' => 'next')) : '')?></li>
     </ul>
 </div>
+<?php } ?>

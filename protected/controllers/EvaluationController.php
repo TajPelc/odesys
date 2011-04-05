@@ -90,13 +90,40 @@ class EvaluationController extends Controller
         // free mem
         $Evaluation = null; unset($Evaluation);
 
+        // calculate the number of criteria
+        $criteriaNr = count($Project->criteria);
+
+        // ajax
+        if(Ajax::isAjax())
+        {
+            switch($this->post('action'))
+            {
+                case 'getContent':
+
+                    // render partial
+                    $html = $this->renderPartial('evaluate', array(
+                        'Project'          => $Project,
+                        'Criteria'         => $Criteria,
+                        'eval'	           => $eval,
+                    ), true);
+
+                    Ajax::respondOk(array(
+                        'html' => $html,
+                        'previous' => ($pageNr > 0 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1)) : false),
+                        'next' => ($pageNr < $criteriaNr - 1 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr + 1)) : false),
+                    ));
+                    break;
+                default:
+                    Ajax::respondError();
+            }
+        }
         // normal render
         $this->render('evaluate',array(
             'Project'          => $Project,
             'Criteria'         => $Criteria,
             'eval'	           => $eval,
             'pageNr'		   => $pageNr,
-            'nrOfCriteria'	   => count($Project->criteria),
+            'nrOfCriteria'	   => $criteriaNr,
         ));
     }
 
