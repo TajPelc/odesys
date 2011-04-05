@@ -55,14 +55,13 @@ class Project extends CActiveRecord
             {
                 // set created
                 $this->created = date('Y-m-d H:i:s', time());
+                $this->last_edit = date('Y-m-d H:i:s', time());
                 $this->rel_user_id = Yii::app()->user->id;
+
             }
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -70,8 +69,12 @@ class Project extends CActiveRecord
      */
     public function afterSave()
     {
-        parent::afterSave();
-        $this->setAsActiveProject();
+        if( parent::afterSave() )
+        {
+            $this->setAsActiveProject();
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -79,7 +82,10 @@ class Project extends CActiveRecord
      */
     public function beforeDelete()
     {
-        parent::beforeDelete();
+        if( !parent::beforeDelete() )
+        {
+            return false;
+        }
 
         // delete evaluations
         foreach($this->evaluation as $e)
@@ -127,6 +133,65 @@ class Project extends CActiveRecord
     {
         $session = Yii::app()->session;
         return isset($session['project_id']);
+    }
+
+    /**
+     * Increase the value of a count field by one
+	 *
+     * @param int $field
+     */
+    public function increase($field)
+    {
+        $this->{$field} = $this->{$field} + 1;
+        $this->save();
+
+        $this->evaluateConditions();
+    }
+
+    /**
+     * Decrease the value of a count field by one
+	 *
+     * @param int $field
+     */
+    public function decrease($field)
+    {
+        $this->{$field} = $this->{$field} - 1;
+        $this->save();
+
+        $this->evaluateConditions();
+    }
+
+    /**
+     * Evaluate the conditions for the different steps of the project
+     */
+    public function evaluateConditions()
+    {
+        // check conditions
+        $criteriaComplete         = (int)($this->no_criteria >= 2);
+        $alternativesComplete     = (int)($this->no_alternatives >= 2);
+
+
+
+        $nrOfExpectedEvaluations  = (int)$this->no_criteria * (int)$this->no_alternatives;
+        $evaluationComplete       = 0;
+        if($nrOfExpectedEvaluations > 0 && $nrOfExpectedEvaluations == (int)$this->no_evaluation )
+        {
+            $evaluationComplete = 1;
+            dump('trolotolotoatowtoawotawtoawtoawetoo');
+        }
+
+        // values changed, update
+        if($criteriaComplete !== (int)$this->criteria_complete
+            || $alternativesComplete !== (int)$this->alternatives_complete
+            || $evaluationComplete !== (int)$this->evaluation_complete
+        )
+        {
+            $this->criteria_complete = $criteriaComplete;
+            $this->alternatives_complete = $alternativesComplete;
+            $this->evaluation_complete = $evaluationComplete;
+            dump('wtf');
+            $this->save();
+        }
     }
 
     /**

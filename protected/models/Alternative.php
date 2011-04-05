@@ -89,8 +89,6 @@ class Alternative extends CActiveRecord
 
         // save old title
         $this->oldTitle = $this->title;
-
-        return true;
     }
 
     /**
@@ -106,10 +104,7 @@ class Alternative extends CActiveRecord
             }
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -117,15 +112,47 @@ class Alternative extends CActiveRecord
      */
     public function beforeDelete()
     {
-        parent::beforeDelete();
-
-        // delete criteria
-        foreach($this->evaluations as $e)
+        if( parent::beforeDelete() )
         {
-            $e->delete();
+            // delete criteria
+            foreach($this->evaluations as $e)
+            {
+                $e->delete();
+            }
+            return true;
         }
 
-        return true;
+        return false;
+    }
+
+
+    /**
+     * Reorder criteria
+     */
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        // decrease the number of criteria
+        Project::getActive()->decrease('no_alternatives');
+    }
+
+
+    /**
+     * Handle all the logic before save
+     */
+    public function beforeSave()
+    {
+        if( parent::beforeSave() )
+        {
+            if($this->isNewRecord)
+            {
+                // increase the number of criteria
+                Project::getActive()->increase('no_alternatives');
+            }
+            return true;
+        }
+        return false;
     }
 
     /**

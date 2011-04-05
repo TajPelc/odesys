@@ -90,8 +90,6 @@ class Criteria extends CActiveRecord
 
         // save old title
         $this->oldTitle = $this->title;
-
-        return true;
     }
 
     /**
@@ -104,14 +102,28 @@ class Criteria extends CActiveRecord
             if( $this->isNewRecord )
             {
                 $this->rel_project_id = Project::getActive()->project_id;
-                $this->position = count(Criteria::model()->findAllByAttributes(array('rel_project_id' => $this->rel_project_id)));
+                $this->position = Project::getActive()->no_criteria;
             }
             return true;
         }
-        else
+        return false;
+    }
+
+    /**
+     * Handle all the logic before save
+     */
+    public function beforeSave()
+    {
+        if( parent::beforeSave() )
         {
-            return false;
+            if($this->isNewRecord)
+            {
+                // increase the number of criteria
+                Project::getActive()->increase('no_criteria');
+            }
+            return true;
         }
+        return false;
     }
 
     /**
@@ -119,15 +131,17 @@ class Criteria extends CActiveRecord
      */
     public function beforeDelete()
     {
-        parent::beforeDelete();
-
-        // delete criteria
-        foreach($this->evaluations as $e)
+        if(parent::beforeDelete())
         {
-            $e->delete();
-        }
+            // delete criteria
+            foreach($this->evaluations as $e)
+            {
+                $e->delete();
+            }
 
-        return true;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -153,7 +167,8 @@ class Criteria extends CActiveRecord
             $result[$i]->save();
         }
 
-        return true;
+        // decrease the number of criteria
+        Project::getActive()->decrease('no_criteria');
     }
 
 

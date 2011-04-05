@@ -51,6 +51,34 @@ class Evaluation extends CActiveRecord
     }
 
     /**
+     * Handle all the logic before save
+     */
+    public function beforeSave()
+    {
+        if( parent::beforeSave() )
+        {
+            if($this->isNewRecord)
+            {
+                // increase the number of evaluations
+                Project::getActive()->increase('no_evaluation');
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Reorder criteria
+     */
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        // decrease the number of evaluations
+        Project::getActive()->decrease('no_evaluation');
+    }
+
+    /**
      * @return array customized attribute labels (name=>label)
      */
     public function attributeLabels()
