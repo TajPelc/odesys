@@ -25,9 +25,9 @@ class Project extends CActiveRecord
     public function rules()
     {
         return array(
-            array('title, description', 'required'),
-            array('title', 'length', 'max' => 100),
-            array('title, description', 'safe', 'on'=>'search'),
+            array('title', 'filter', 'filter' => 'trim'),
+            array('title', 'required'),
+            array('title', 'length', 'max' => 45),
         );
     }
 
