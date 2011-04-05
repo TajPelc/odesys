@@ -23,8 +23,8 @@
         </ul>
     </form>
     <ul>
-        <li><a class="previous" href="#">Previous</a></li>
-        <li>Criteria 5 of 9</li>
-        <li><a class="next" href="#">Next</a></li>
+        <li><?php echo ( $pageNr > 0 ? CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $pageNr - 1), array('class' => 'previous')) : '')?></li>
+        <li>Criteria <?php echo $pageNr + 1; ?> of <?php echo $nrOfCriteria ?></li>
+        <li><?php echo ( $pageNr < $nrOfCriteria - 1 ? CHtml::link('Next', array('evaluation/evaluate', 'pageNr' => $pageNr + 1), array('class' => 'next')) : '')?></li>
     </ul>
 </div>

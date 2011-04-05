@@ -65,8 +65,14 @@ class EvaluationController extends Controller
             }
         }
 
+        // get page number
+        if(false === $pageNr = $this->get('pageNr'))
+        {
+            $pageNr = 0;
+        }
+
         // get criteria by position
-        $Criteria = Criteria::getCriteriaByPosition(1);
+        $Criteria = Criteria::getCriteriaByPosition($pageNr);
 
         // evaluation array
         $Evaluation = Evaluation::model()->findAllByAttributes(array(
@@ -89,6 +95,8 @@ class EvaluationController extends Controller
             'Project'          => $Project,
             'Criteria'         => $Criteria,
             'eval'	           => $eval,
+            'pageNr'		   => $pageNr,
+            'nrOfCriteria'	   => count($Project->criteria),
         ));
     }
 
