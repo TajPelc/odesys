@@ -186,6 +186,86 @@ a:hover {
     opacity: 0.6;
 }
 
+/* Overlay
+********************************************************/
+#overlay_bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../../images/bg/overlay.png) repeat;
+    z-index: 100;
+}
+
+    #overlay {
+        width: 485px;
+        height: 108px;
+        padding: 16px 20px;
+        position: absolute;
+        background: url(../../images/bg/overlay_bg.png) no-repeat;;
+    }
+
+        #overlay h2 {
+            width: 100%;
+            margin-bottom: 16px;
+            float: left;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        #overlay h2 + p {
+            line-height: 16px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        #overlay form,
+        #overlay form fieldset {
+            width: 100%;
+            float: left;
+        }
+
+        #overlay input[type="text"] {
+            width: 470px; /*492px*/
+            height: 23px; /*29px*/
+            padding: 0 10px 6px 10px;
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #444a56;
+            background: url(../../images/form/overlay_input.png) no-repeat;
+            border: none;
+        }
+
+        #overlay input[type="submit"] {
+            width: 103px;
+            height: 34px;
+            padding: 0;
+            float: right;
+            text-indent: -9999px;
+            background: url(../../images/form/sprite_buttons.png) -300px 0 no-repeat;
+            border: none;
+        }
+
+        #overlay input[type="submit"]:hover { cursor: pointer; background-position: -450px 0;}
+        #overlay input[type="submit"]:active { cursor: pointer; background-position: -600px 0;}
+
+        #overlay .button {
+            width: 100px;
+            height: 26px;
+            line-height: 26px;
+            display: block;
+            float: right;
+            text-align: center;
+            background: #646d7f;
+            color: #fff;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+        }
+
 /* Footer
 ********************************************************/
 #footer {
@@ -195,7 +275,7 @@ a:hover {
     position: relative;
     text-align: center;
     color: #eeeeee;
-    background: url(../../images/bg/footer.png) no-repeat;;
+    background: url(../../images/bg/footer.png) no-repeat;
     border-top: 1px solid #596171;
 }
 
