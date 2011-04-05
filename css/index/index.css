@@ -39,10 +39,15 @@
     }
 
         #sidebar ul li {
-            width: 450px;
+            width: 442px;
+            padding: 4px;
             float:left;
             position:absolute;
             list-style: none;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+            border:1px solid #ccc;
         }
 
         #sidebar ul li.show {
@@ -51,9 +56,10 @@
 
         #sidebar ul li img {
             width: 442px;
-            border:1px solid #ccc;
-            padding: 4px;
             background: #FFF;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
         }
 
     #sidebar h2 {

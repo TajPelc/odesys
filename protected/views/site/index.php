@@ -14,22 +14,22 @@
 <div id="sidebar">
     <ul>
         <li class="show">
-            <img src="http://www.alohatechsupport.net/examples/image-rotator/images/image-1.jpg" title=""  alt="pic1" />
+            <img src="/images/pictures/introduction_1.png" title=""  alt="pic1" />
         </li>
             <li>
-            <img src="http://www.alohatechsupport.net/examples/image-rotator/images/image-3.jpg" title=""  alt="pic2" />
+            <img src="/images/pictures/introduction_2.png" title=""  alt="pic2" />
         </li>
         <li>
-            <img src="http://www.alohatechsupport.net/examples/image-rotator/images/image-2.jpg" title=""  alt="pic3" />
+            <img src="/images/pictures/introduction_3.png" title=""  alt="pic3" />
         </li>
         <li>
-            <img src="http://www.alohatechsupport.net/examples/image-rotator/images/image-1.jpg" title=""  alt="pic1" />
+            <img src="/images/pictures/introduction_1.png" title=""  alt="pic1" />
         </li>
             <li>
-            <img src="http://www.alohatechsupport.net/examples/image-rotator/images/image-3.jpg" title=""  alt="pic2" />
+            <img src="/images/pictures/introduction_2.png" title=""  alt="pic2" />
         </li>
         <li>
-            <img src="http://www.alohatechsupport.net/examples/image-rotator/images/image-2.jpg" title=""  alt="pic3" />
+            <img src="/images/pictures/introduction_3.png" title=""  alt="pic3" />
         </li>
     </ul>
     <h2>How to use odesys?</h2>

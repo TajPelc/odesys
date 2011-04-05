@@ -110,6 +110,15 @@ a:hover {
             color: #fff;
         }
 
+        #header #login > p {
+            padding-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        #header #login #facebookLogin {
+            float: right;
+        }
+
         #header #login #login_image {
             margin: 0 0 8px 16px;
             float: right;

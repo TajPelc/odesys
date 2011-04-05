@@ -15,7 +15,7 @@ Index.Rotation = function() {
     $('#sidebar ol li:first p').switchClass('', 'glow', 1000);
 
     //Call the rotator function to run the slideshow, 6000 = change to next image after 6 seconds
-    setInterval('Index.Rotate()',3000);
+    setInterval('Index.Rotate()',5000);
 
 }
 
