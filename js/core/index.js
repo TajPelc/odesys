@@ -59,7 +59,8 @@ Core.Overlay = function(html){
         return false;
     });
 
-    $('body').live('keyup', function(e){
+    // on escape, close overlay
+    $('html').live('keyup', function(e){
         if(e.which == 27){
             Core.Overlay.Close();
         }
