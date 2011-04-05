@@ -109,6 +109,9 @@ class EvaluationController extends Controller
 
                     Ajax::respondOk(array(
                         'html' => $html,
+                        'title' => $Criteria->title,
+                        'pageNr' => $pageNr + 1,
+                        'criteriaNr' => $criteriaNr,
                         'previous' => ($pageNr > 0 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1)) : false),
                         'next' => ($pageNr < $criteriaNr - 1 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr + 1)) : false),
                     ));
@@ -117,6 +120,7 @@ class EvaluationController extends Controller
                     Ajax::respondError();
             }
         }
+
         // normal render
         $this->render('evaluate',array(
             'Project'          => $Project,

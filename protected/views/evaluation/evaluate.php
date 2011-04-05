@@ -2,9 +2,9 @@
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
     <p>Fill out the statements by moving the sliders to the appropriate location.</p>
-<?php }?>
     <h2><b><?php echo CHtml::encode($Criteria->title); ?></b> for</h2>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
+<?php }?>
         <ul>
             <?php foreach($Project->alternatives as $Alternative) { ?>
             <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
@@ -22,8 +22,8 @@
             </li>
             <?php } ?>
         </ul>
-    </form>
     <?php if(!Ajax::isAjax()) { ?>
+    </form>
     <ul>
         <li><?php echo ( $pageNr > 0 ? CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $pageNr - 1), array('class' => 'previous')) : '')?></li>
         <li>Criteria <?php echo $pageNr + 1; ?> of <?php echo $nrOfCriteria ?></li>
