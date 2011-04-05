@@ -53,6 +53,26 @@ class Controller extends CController
     }
 
     /**
+     * Facebook checking before action
+     *
+     * @see CController::beforeAction()
+     */
+    function beforeAction($action) {
+        // is user is logged into our page but not facebook, redirect to FB in order to refresh session
+        if(!Yii::app()->user->isGuest && is_null(Fb::singleton()->getSession()))
+        {
+            $conact = $this->id . '/' . $this->getAction()->id;
+            if(!in_array($conact, array('login/logout', 'login/facebook')))
+            {
+                Yii::trace('Refresh facebook session for user '. Yii::app()->user->id);
+                $this->redirect(array('login/facebook', 'returnTo' => $conact));
+            }
+        }
+
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Check if post parameter is set and return the value or false
      *
      * @param  string $key

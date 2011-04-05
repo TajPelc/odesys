@@ -15,6 +15,7 @@ class LoginController extends Controller
         // logout just in case
         Yii::app()->user->logout();
 
+        // not yet returned from facebook
         if(!$this->get('session'))
         {
             // redirect to facebook
@@ -24,6 +25,10 @@ class LoginController extends Controller
         // login
         if( Fb::singleton()->login() )
         {
+            if($this->get('returnTo'))
+            {
+                $this->redirect(array($this->get('returnTo')));
+            }
             $this->redirect(array('site/index'));
         }
 
