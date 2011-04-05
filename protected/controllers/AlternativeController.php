@@ -47,28 +47,48 @@ class AlternativeController extends Controller
         // load active project
         $Project = $this->loadActiveProject();
 
-        // load alternative
-        $Alternative = $this->loadModel('alternative');
-
         // ajax
         if(Ajax::isAjax())
         {
-            if($this->post('requesting') == 'formPost')
+            // find alternative
+            $Alternative = Alternative::model()->findByPk($this->post('alternative_id'));
+
+            // switch
+            switch ($this->post('action'))
             {
-                if($this->_saveAlternative($Alternative, $Project))
-                {
-                    Ajax::respondOk(array('title' => $Alternative->getAttribute('title'), 'id' => $Alternative->getAttribute('alternative_id'), 'menu' => ProjectMenu::getMenuItems()));
-                }
-                else
-                {
-                    $rv['form'] = $this->renderPartial('_form', array('model' => $Alternative, 'Project' => $Project), true);
-                    Ajax::respondError($rv);
-                }
-            }
-            elseif($this->get('requesting') == 'form')
-            {
-                $rv['form'] = $this->renderPartial('_form', array('model' => $Alternative, 'Project' => $Project), true);
-                Ajax::respondOk($rv);
+                // create/edit alternative
+                case 'save':
+                    if(empty($Alternative))
+                    {
+                        $Alternative = new Alternative();
+                    }
+                    // set attributes
+                    $Alternative->title = $this->post('value');
+
+                    // save
+                    if($Alternative->save())
+                    {
+                        Ajax::respondOk(array('alternative_id' => $Alternative->alternative_id));
+                    }
+
+                    // save failed
+                    Ajax::respondError($Alternative->getErrors());
+                    break;
+                    // delete
+                case 'delete':
+                    if(!empty($Alternative))
+                    {
+                        // delete
+                        if($Alternative->delete())
+                        {
+                            Ajax::respondOk();
+                        }
+                    }
+                    // delete failed
+                    Ajax::respondError();
+                    break;
+                default:
+                    Ajax::respondError();
             }
         }
 
@@ -78,15 +98,23 @@ class AlternativeController extends Controller
             $this->redirect(array('criteria/create'));
         }
 
-        // save alternative
-        if($this->_saveAlternative($Alternative, $Project))
+        // save criteria
+        if(isset($_POST['newAlternative']))
         {
-            $this->redirect(array('alternative/create'));
+            // set attributes
+            $Alternative = new Alternative();
+            $Alternative->attributes = $_POST['newAlternative'];
+
+
+            // redirect
+            if( $Alternative->save())
+            {
+                $this->redirect(array('alternative/create'));
+            }
         }
 
         // render the view
         $this->render('create', array(
-            'model'         => $Alternative,
             'Project'       => $Project,
         ));
     }
@@ -107,28 +135,5 @@ class AlternativeController extends Controller
             Ajax::respondError(array('id' => $id));
         }
         $this->redirect(array('create'));
-    }
-
-    /**
-     * Save alternative
-     *
-     * @var Alternative Alternative
-     * @var Project $Project
-     */
-    private function _saveAlternative($Alternative, $Project)
-    {
-        // only allow up to 10 alternatives
-        if($Alternative->getIsNewRecord() && count($Project->alternatives) >= 10)
-        {
-            return false;
-        }
-        if(isset($_POST['Alternative']))
-        {
-            // set attributes
-            $Alternative->rel_project_id    = $Project->project_id;
-            $Alternative->title             = $_POST['Alternative']['title'];
-            $Alternative->description       =  $_POST['Alternative']['description'];
-            return $Alternative->save();
-        }
     }
 }

@@ -37,9 +37,10 @@ class Alternative extends CActiveRecord
     public function rules()
     {
         return array(
-            array('title', 'isProjectUnique'),
+            array('title', 'filter', 'filter' => 'trim'),
             array('title', 'required'),
             array('title', 'length', 'max' => 60),
+            array('title', 'isProjectUnique'),
         );
     }
 
@@ -90,6 +91,25 @@ class Alternative extends CActiveRecord
         $this->oldTitle = $this->title;
 
         return true;
+    }
+
+    /**
+     * Handle all the logic before validation
+     */
+    public function beforeValidate()
+    {
+        if( parent::beforeValidate() )
+        {
+            if( $this->isNewRecord )
+            {
+                $this->rel_project_id = Project::getActive()->project_id;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
