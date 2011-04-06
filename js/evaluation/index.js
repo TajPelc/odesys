@@ -46,6 +46,7 @@ function handleSlider()
                         if (data['status'] == true){
                             if (sliderSlider.attr('class') == ''){
                                 sliderSlider.addClass('saved');
+                                Core.ProjectMenu(data['projectMenu']);
                             }
                             Core.Unblock(sliderSlider);
                         }

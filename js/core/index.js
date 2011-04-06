@@ -140,8 +140,9 @@ Core.Unblock = function(that){
 Core.ProjectMenu = function(projectMenu){
     // select menu elements and loding bar
     var ListElements = $('#project li span[id*=menu-], #project li a[id*=menu-]');
-    var loadingBar = $('#project .loadingBar.end');
+    var loadingBar = $('#project span.loadingBar');
 
+    // init counters
     var i = 0;
     var j = 0;
     ListElements.each(function(index, element){
@@ -163,6 +164,25 @@ Core.ProjectMenu = function(projectMenu){
     // calculate widths
     var extendBy = loadingBar.outerWidth() + (loadingBar.parents('li').outerWidth(true) * i); // extend
     var shrinkBy = loadingBar.outerWidth() - (loadingBar.parents('li').outerWidth(true) * j); // shrink
+    (i > 0) ? newWidth = extendBy : newWidth = shrinkBy;
+
+
+    // add arrow
+    if(loadingBar.outerWidth() == 960 && newWidth < 960)
+    {
+        loadingBar.addClass('end');
+    }
+
+    // animate progress bar
+    loadingBar.animate({
+        'width': newWidth
+    }, 500, function(){
+        // remove arrow on last element
+        if(newWidth == 960)
+        {
+            loadingBar.removeClass('end');
+        }
+    });
 
     // iterate through the elements
     ListElements.each(function(index, element){
@@ -207,17 +227,9 @@ Core.ProjectMenu = function(projectMenu){
  * @param integer width
  * @returns void
  */
-Core.ProjectMenu.Animate = function(oldElement, newElement, width){
-    // loading bar
-    var loadingBar = $('#project .loadingBar.end');
-
+Core.ProjectMenu.Animate = function(oldElement, newElement){
     // insert new element
     oldElement.after(newElement);
-
-    // animate progress bar
-    loadingBar.animate({
-        'width': width
-    }, 500);
 
     // fade out and remove link, fade in span
     oldElement.fadeOut(200, function(){
