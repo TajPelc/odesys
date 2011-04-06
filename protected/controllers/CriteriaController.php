@@ -5,39 +5,8 @@
  * @author Taj
  *
  */
-class CriteriaController extends Controller
+class CriteriaController extends DecisionController
 {
-    /**
-     * @return array action filters
-     */
-    public function filters()
-    {
-        return array(
-            'accessControl', // perform access control for CRUD operations
-        );
-    }
-
-    /**
-     * Holds the criteria
-     *
-     * @var Criteria
-     */
-    protected $_Criteria;
-
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules()
-    {
-        return array(
-            array('allow',
-                'users'=>array('*'),
-            ),
-        );
-    }
-
     /**
      * Add / update / remove criteria.
      */

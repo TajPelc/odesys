@@ -5,7 +5,7 @@
  * @author Taj
  *
  */
-class ResultsController extends Controller
+class ResultsController extends DecisionController
 {
     /**
      * Color pool for plotting graphs
