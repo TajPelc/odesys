@@ -237,7 +237,7 @@ Core.ProjectMenu.initMenu = function()
     spans.remove();
     $('#project li:first-child').prepend(lastSpan);
 
-    lastSpan.css({'width': 0});
+    lastSpan.css({'width': 20});
     lastSpan.css({
         'width': lastSpan.outerWidth() + (lastSpan.parents('li').outerWidth(true) * spanCount)
     });
