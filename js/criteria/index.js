@@ -46,6 +46,7 @@ Criteria.SaveInput = function(that, add) {
                         $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span><span class="drag">&nbsp;</span></li>');
                         that.focus();
                         that.val('');
+                        Core.ProjectMenu(data['projectMenu']);
 
                         //errors
                     } else {

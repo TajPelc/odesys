@@ -81,7 +81,7 @@ class Controller extends CController
         $activeProject = Project::getActive();
         return array(
             'criteria'      => $this->createUrl('criteria/create'),
-            'alternatives'  => ((bool)$activeProject->criteria_complete ? $this->createUrl('alternatives/create') : false),
+            'alternatives'  => ((bool)$activeProject->criteria_complete ? $this->createUrl('alternative/create') : false),
             'evaluation'    => ((bool)$activeProject->criteria_complete && (bool)$activeProject->alternatives_complete ? $this->createUrl('evaluation/evaluate') : false),
             'analysis'      => ((bool)$activeProject->evaluation_complete ? $this->createUrl('results/display') : false),
             'overview'       => ((bool)$activeProject->analysis_complete ? $this->createUrl('project/details') : false),

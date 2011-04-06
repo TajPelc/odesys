@@ -1,7 +1,9 @@
 /* Core javascript
  * @author        Frenk T. Sedmak Nahtigal
- * @version       1.0
+ * @version       1.2
 */
+
+Core = {};
 
 function ImagePreload(arrayOfImages) {
     $(arrayOfImages).each(function(){
@@ -9,8 +11,12 @@ function ImagePreload(arrayOfImages) {
     });
 }
 
-Core = {};
-
+/**
+ * Overlay, currently create new project
+ *
+ * @param string
+ * @returns void
+ */
 Core.Overlay = function(html){
     Core.Overlay.Close();
 
@@ -67,7 +73,12 @@ Core.Overlay = function(html){
     });
 }
 
-
+/**
+ * Overlay errors
+ *
+ * @param object, str
+ * @returns void
+ */
 Core.Overlay.FormErrorReporting = function(that, text){
     if(!$('#overlay .error').length == 0){
         $('#overlay .error').remove();
@@ -76,12 +87,23 @@ Core.Overlay.FormErrorReporting = function(that, text){
     that.find('input[type="text"]').focus();
 }
 
+/**
+ * Overlay close
+ *
+ * @param void
+ * @returns void
+ */
 Core.Overlay.Close = function() {
     $('#overlay').remove();
     $('#overlay_bg').remove();
 }
 
-
+/**
+ * Blocker
+ *
+ * @param object
+ * @returns void
+ */
 Core.Block = function(that, rounded){
     that.append('<div class="block"><img src="/images/ajax-loader.gif" /></div>');
     $('.block').each(function(index, element){
@@ -97,20 +119,98 @@ Core.Block = function(that, rounded){
     });
 }
 
+/**
+ * Unblocker
+ *
+ * @param object
+ * @returns void
+ */
 Core.Unblock = function(that){
     Core.Unblock.Block = that.find('.block').fadeOut(200);
 
     setTimeout('Core.Unblock.Block.remove()', 200);
 }
 
+/**
+ * Animate Project Menu
+ *
+ * @param array
+ * @returns void
+ */
+Core.ProjectMenu = function(projectMenu){
+    //define
+    /*Core.ProjectMenu.Selected = $('#project .selected');
+    Core.ProjectMenu.Next = Core.ProjectMenu.Selected.parents('li').next();
+
+    if (url !== false) {
+        if (Core.ProjectMenu.Next.find('a').length == 0){
+            //animate progress bar - extend
+            Core.ProjectMenu.Selected.siblings('.loadingBar.end').animate({
+                'width': Core.ProjectMenu.Selected.siblings('.loadingBar.end').outerWidth() + Core.ProjectMenu.Selected.parents('li').outerWidth(true)
+            }, 500);
+            //remove span, add link
+            Core.ProjectMenu.Next.append('<a href="'+url+'" id="'+Core.ProjectMenu.Next.find('span').attr('id')+'" title="'+Core.ProjectMenu.Next.find('span').text()+'">'+Core.ProjectMenu.Next.find('span').text()+'</a>');
+            Core.ProjectMenu.Next.find('span').remove();
+        }
+    } else {
+        if (Core.ProjectMenu.Next.find('a').length > 0){
+            //animate progress bar - shrink
+            Core.ProjectMenu.Selected.siblings('.loadingBar.end').animate({
+                'width': Core.ProjectMenu.Selected.siblings('.loadingBar.end').outerWidth() - Core.ProjectMenu.Selected.parents('li').outerWidth(true)
+            }, 500);
+            //remove link, add span
+            Core.ProjectMenu.Next.append('<span id="'+Core.ProjectMenu.Next.find('a').attr('id')+'" title="'+Core.ProjectMenu.Next.find('a').text()+'">'+Core.ProjectMenu.Next.find('a').text()+'</span>');
+            Core.ProjectMenu.Next.find('a').remove();
+        }
+    }*/
+
+
+
+
+
+  //define
+    Core.ProjectMenu.Lists = $('#project li');
+    Core.ProjectMenu.LoadingBar = $('#project .loadingBar.end');
+
+    Core.ProjectMenu.Lists.each(function(index, element){
+        Core.ProjectMenu.Lists.Span = $(element).children('span').not('loadingBar');
+
+        if (!Core.ProjectMenu.Lists.Span.hasClass('loadingBar')){
+            Core.ProjectMenu.Lists.Span.Id = Core.ProjectMenu.Lists.Span.attr('id').split("-")[1];
+            if ($(element).children('span').not('.loadingBar').length > 0 && projectMenu[Core.ProjectMenu.Lists.Span.Id] !== false){
+                Core.ProjectMenu.Lists.A = $('<a></a>')
+                .attr('href', projectMenu[Core.ProjectMenu.Lists.Span.Id])
+                .attr('title', Core.ProjectMenu.Lists.Span.text())
+                .attr('id', Core.ProjectMenu.Lists.Span.attr('id'))
+                .html(Core.ProjectMenu.Lists.Span.text())
+                .css({display: 'block'}) // IE hack
+                .hide();
+
+                //animate progress bar - extend
+                Core.ProjectMenu.LoadingBar.animate({
+                    'width': Core.ProjectMenu.LoadingBar.outerWidth() + Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
+                }, 500);
+
+                Core.ProjectMenu.Lists.Span.fadeOut(200, function(){
+                    $(this).remove()
+                    Core.ProjectMenu.Lists.A.appendTo($(element)).fadeIn(500);
+                });
+            }
+
+        }
+
+
+    });
+}
+
 /*
  * Document Ready
  * */
-
 $(document).ready(function(){
     // Preload images
     ImagePreload([
              '/images/bg/ferlauf.png',
+             '/images/bg/overlay.png',
              '/images/logo.png'
      ]);
 
