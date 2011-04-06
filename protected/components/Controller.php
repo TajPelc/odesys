@@ -84,7 +84,7 @@ class Controller extends CController
             'alternatives'  => ((bool)$activeProject->criteria_complete ? $this->createUrl('alternatives/create') : false),
             'evaluation'    => ((bool)$activeProject->criteria_complete && (bool)$activeProject->alternatives_complete ? $this->createUrl('evaluation/evaluate') : false),
             'analysis'      => ((bool)$activeProject->evaluation_complete ? $this->createUrl('results/display') : false),
-            'results'       => ((bool)$activeProject->analysis_complete ? $this->createUrl('project/details') : false),
+            'overview'       => ((bool)$activeProject->analysis_complete ? $this->createUrl('project/details') : false),
         );
     }
 
