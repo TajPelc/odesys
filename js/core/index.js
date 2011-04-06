@@ -177,47 +177,36 @@ Core.ProjectMenu = function(projectMenu){
         Core.ProjectMenu.Lists.Anchor = $(element).children('a');
 
         if (!Core.ProjectMenu.Lists.Span.hasClass('loadingBar')){
-            if ($(element).children('span').not('.loadingBar').length > 0){
-                Core.ProjectMenu.Lists.Span.Id = Core.ProjectMenu.Lists.Span.attr('id').split("-")[1];
-                if (projectMenu[Core.ProjectMenu.Lists.Span.Id] !== false){
-                    Core.ProjectMenu.Lists.A = $('<a></a>')
-                    .attr('href', projectMenu[Core.ProjectMenu.Lists.Span.Id])
-                    .attr('title', Core.ProjectMenu.Lists.Span.text())
-                    .attr('id', Core.ProjectMenu.Lists.Span.attr('id'))
-                    .html(Core.ProjectMenu.Lists.Span.text())
-                    .css({display: 'block'}) // IE hack
-                    .hide();
+            Core.ProjectMenu.Lists.Span.Id = Core.ProjectMenu.Lists.Span.attr('id').split("-")[1];
+            if ($(element).children('span').not('.loadingBar').length > 0 && projectMenu[Core.ProjectMenu.Lists.Span.Id] !== false){
+                Core.ProjectMenu.Lists.A = $('<a></a>')
+                .attr('href', projectMenu[Core.ProjectMenu.Lists.Span.Id])
+                .attr('title', Core.ProjectMenu.Lists.Span.text())
+                .attr('id', Core.ProjectMenu.Lists.Span.attr('id'))
+                .html(Core.ProjectMenu.Lists.Span.text())
+                .css({display: 'block'}) // IE hack
+                .hide();
 
-                    //animate progress bar - extend
-                    Core.ProjectMenu.LoadingBar.animate({
-                        'width': Core.ProjectMenu.LoadingBar.outerWidth() + Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
-                    }, 500);
+                //animate progress bar - extend
+                Core.ProjectMenu.LoadingBar.animate({
+                    'width': Core.ProjectMenu.LoadingBar.outerWidth() + Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
+                }, 500);
 
-                    Core.ProjectMenu.Lists.Span.fadeOut(200, function(){
-                        $(this).remove()
-                        Core.ProjectMenu.Lists.A.appendTo($(element)).fadeIn(500);
-                    });
-                }
-            } else if (Core.ProjectMenu.Lists.Anchor.length > 0) {
-                Core.ProjectMenu.Lists.Anchor.Id = Core.ProjectMenu.Lists.Anchor.attr('id').split("-")[1];
-                if(projectMenu[Core.ProjectMenu.Lists.Anchor.Id] == false){
-                    Core.ProjectMenu.Lists.S = $('<span></span>')
-                    .attr('id', Core.ProjectMenu.Lists.Anchor.attr('id'))
-                    .html(Core.ProjectMenu.Lists.Anchor.text())
-                    .addClass('restricted')
-                    .css({display: 'block'}) // IE hack
-                    .hide();
+                Core.ProjectMenu.Lists.Span.fadeOut(200, function(){
+                    $(this).remove()
+                    Core.ProjectMenu.Lists.A.appendTo($(element)).fadeIn(500);
+                });
+            } else if (Core.ProjectMenu.Lists.Anchor.length > 0 && projectMenu[Core.ProjectMenu.Lists.Anchor.attr('id')] == false) {
+                Core.ProjectMenu.Lists.S = $('<span></span>')
+                .attr('id', Core.ProjectMenu.Lists.Anchor.attr('id'))
+                .html(Core.ProjectMenu.Lists.Anchor.text())
+                .css({display: 'block'}) // IE hack
+                .hide();
 
-                    //animate progress bar - shrink
-                    Core.ProjectMenu.LoadingBar.animate({
-                        'width': Core.ProjectMenu.LoadingBar.outerWidth() - Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
-                    }, 500);
-
-                    Core.ProjectMenu.Lists.Anchor.fadeOut(200, function(){
-                        $(this).remove()
-                        Core.ProjectMenu.Lists.S.appendTo($(element)).fadeIn(500);
-                    });
-                }
+              //animate progress bar - shrink
+                Core.ProjectMenu.LoadingBar.animate({
+                    'width': Core.ProjectMenu.LoadingBar.outerWidth() - Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
+                }, 500);
             }
 
         }

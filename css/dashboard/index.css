@@ -1,0 +1,73 @@
+/*
+ --> Criteria css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.1
+*/
+
+#content > h1 {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #dedfe3;
+}
+
+    #content dl dt {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 40px;
+        margin-bottom: 8px;
+        font-size: 18px;
+        background: url(../../images/form/sprite_buttons.png) 0 -300px no-repeat;
+    }
+
+    #content dl dd {
+        border-top: 1px solid #dedfe3;
+        margin-left: 40px;
+    }
+
+        #content dl dd a {
+            display: block;
+            float: right;
+        }
+
+/* Table
+********************************************************/
+#content table {
+    width: 100%;
+    margin-bottom: 8px;
+    text-align: right;
+    vertical-align: middle;
+    color: #444a56;
+}
+
+    #content table tr {
+        height: 31px;
+        padding: 0 8px;
+        line-height: 31px;
+        background: url(../../images/bg/dashboard_cell.png) top right no-repeat;
+    }
+
+    #content table tr:hover,
+    #content table tr:first-child {
+        background: #fff;
+    }
+
+    #content table th {
+        font-style: italic;
+        font-weight: bold;
+        border-bottom: 1px solid #596171;
+    }
+
+    #content table td {
+        border-bottom: 1px solid #dedfe3;
+    }
+
+    #content table th:first-child,
+    #content table td:first-child {
+        width: 300px;
+        padding-left: 10px;
+        text-align: left;
+    }
+
+    #content table th:last-child,
+    #content table td:last-child {
+        padding-right: 10px;
+    }
