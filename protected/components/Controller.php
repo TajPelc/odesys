@@ -52,20 +52,6 @@ class Controller extends CController
 
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-1.5.1.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/index.js');
-
-        /**
-         * TEMPORARY HACK-CODE TO ALWAYS LOAD A PROJECT
-         */
-        if(!Project::isProjectActive())
-        {
-
-            $Projects = Project::model()->findAll();
-            $Project =  end($Projects);
-            $Project->setAsActiveProject();
-        }
-        /**
-         * END TEMPORARY HACK-CODE
-         */
     }
 
     /**

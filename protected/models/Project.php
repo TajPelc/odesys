@@ -69,12 +69,7 @@ class Project extends CActiveRecord
      */
     public function afterSave()
     {
-        if( parent::afterSave() )
-        {
-            $this->setAsActiveProject();
-            return true;
-        }
-        return false;
+        $this->setAsActiveProject();
     }
 
     /**
@@ -82,30 +77,29 @@ class Project extends CActiveRecord
      */
     public function beforeDelete()
     {
-        if( !parent::beforeDelete() )
+        if(parent::beforeDelete())
         {
-            return false;
-        }
+            // delete evaluations
+            foreach($this->evaluation as $e)
+            {
+                $e->delete();
+            }
 
-        // delete evaluations
-        foreach($this->evaluation as $e)
-        {
-            $e->delete();
-        }
+            // delete alternatives
+            foreach($this->alternatives as $a)
+            {
+                $a->delete();
+            }
 
-        // delete alternatives
-        foreach($this->alternatives as $a)
-        {
-            $a->delete();
-        }
+            // delete criteria
+            foreach($this->criteria as $c)
+            {
+                $c->delete();
+            }
 
-        // delete criteria
-        foreach($this->criteria as $c)
-        {
-            $c->delete();
+            return true;
         }
-
-        return true;
+        return false;
     }
 
     /**
@@ -177,7 +171,6 @@ class Project extends CActiveRecord
         if($nrOfExpectedEvaluations > 0 && $nrOfExpectedEvaluations == (int)$this->no_evaluation )
         {
             $evaluationComplete = 1;
-            dump('trolotolotoatowtoawotawtoawtoawetoo');
         }
 
         // values changed, update
@@ -189,7 +182,6 @@ class Project extends CActiveRecord
             $this->criteria_complete = $criteriaComplete;
             $this->alternatives_complete = $alternativesComplete;
             $this->evaluation_complete = $evaluationComplete;
-            dump('wtf');
             $this->save();
         }
     }
@@ -203,12 +195,16 @@ class Project extends CActiveRecord
         if(self::isProjectActive())
         {
             $session = Yii::app()->session;
-            return Project::model()->findByPk($session['project_id']);
+            $model = Project::model()->findByPk($session['project_id']);
+            if(empty($model))
+            {
+                $this->unsetActiveProject();
+                return false;
+            }
+
+            return $model;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     /**
