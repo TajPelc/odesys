@@ -45,6 +45,7 @@ Alternatives.SaveInput = function(that, add) {
                         $('#content form ol').append('<li><input type="text" id="alternative_'+data['alternative_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span></li>');
                         that.focus();
                         that.val('');
+                        Core.ProjectMenu(data['projectMenu']);
 
                         //errors
                     } else {
@@ -80,6 +81,7 @@ Alternatives.DeleteInput = function(that) {
             if(data['status'] == true)
             {
                 that.parents('li').remove();
+                Core.ProjectMenu(data['projectMenu']);
             }
         }
     });
