@@ -174,6 +174,7 @@ Core.ProjectMenu = function(projectMenu){
 
     Core.ProjectMenu.Lists.each(function(index, element){
         Core.ProjectMenu.Lists.Span = $(element).children('span').not('loadingBar');
+        Core.ProjectMenu.Lists.Anchor = $(element).children('a');
 
         if (!Core.ProjectMenu.Lists.Span.hasClass('loadingBar')){
             Core.ProjectMenu.Lists.Span.Id = Core.ProjectMenu.Lists.Span.attr('id').split("-")[1];
@@ -195,6 +196,17 @@ Core.ProjectMenu = function(projectMenu){
                     $(this).remove()
                     Core.ProjectMenu.Lists.A.appendTo($(element)).fadeIn(500);
                 });
+            } else if (Core.ProjectMenu.Lists.Anchor.length > 0 && projectMenu[Core.ProjectMenu.Lists.Anchor.attr('id')] == false) {
+                Core.ProjectMenu.Lists.S = $('<span></span>')
+                .attr('id', Core.ProjectMenu.Lists.Anchor.attr('id'))
+                .html(Core.ProjectMenu.Lists.Anchor.text())
+                .css({display: 'block'}) // IE hack
+                .hide();
+
+              //animate progress bar - shrink
+                Core.ProjectMenu.LoadingBar.animate({
+                    'width': Core.ProjectMenu.LoadingBar.outerWidth() - Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
+                }, 500);
             }
 
         }

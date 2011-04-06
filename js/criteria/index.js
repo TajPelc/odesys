@@ -82,6 +82,7 @@ Criteria.DeleteInput = function(that) {
             if(data['status'] == true)
             {
                 that.parents('li').remove();
+                Core.ProjectMenu(data['projectMenu']);
             }
         }
     });
