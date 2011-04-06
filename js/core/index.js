@@ -138,91 +138,108 @@ Core.Unblock = function(that){
  * @returns void
  */
 Core.ProjectMenu = function(projectMenu){
-    //define
-    /*Core.ProjectMenu.Selected = $('#project .selected');
-    Core.ProjectMenu.Next = Core.ProjectMenu.Selected.parents('li').next();
+    // select menu elements and loding bar
+    var ListElements = $('#project li span[id*=menu-], #project li a[id*=menu-]');
+    var loadingBar = $('#project .loadingBar.end');
 
-    if (url !== false) {
-        if (Core.ProjectMenu.Next.find('a').length == 0){
-            //animate progress bar - extend
-            Core.ProjectMenu.Selected.siblings('.loadingBar.end').animate({
-                'width': Core.ProjectMenu.Selected.siblings('.loadingBar.end').outerWidth() + Core.ProjectMenu.Selected.parents('li').outerWidth(true)
-            }, 500);
-            //remove span, add link
-            Core.ProjectMenu.Next.append('<a href="'+url+'" id="'+Core.ProjectMenu.Next.find('span').attr('id')+'" title="'+Core.ProjectMenu.Next.find('span').text()+'">'+Core.ProjectMenu.Next.find('span').text()+'</a>');
-            Core.ProjectMenu.Next.find('span').remove();
+    var i = 0;
+    var j = 0;
+    ListElements.each(function(index, element){
+        // get new value for this element from the ajax supplied array
+        var newValue = projectMenu[$(this).attr('id').split("-")[1]];
+
+        // count how many need to be enabled
+        if($(this).is('span') && $(this).hasClass('selected') === false && newValue !== false )
+        {
+            i++;
         }
-    } else {
-        if (Core.ProjectMenu.Next.find('a').length > 0){
-            //animate progress bar - shrink
-            Core.ProjectMenu.Selected.siblings('.loadingBar.end').animate({
-                'width': Core.ProjectMenu.Selected.siblings('.loadingBar.end').outerWidth() - Core.ProjectMenu.Selected.parents('li').outerWidth(true)
-            }, 500);
-            //remove link, add span
-            Core.ProjectMenu.Next.append('<span id="'+Core.ProjectMenu.Next.find('a').attr('id')+'" title="'+Core.ProjectMenu.Next.find('a').text()+'">'+Core.ProjectMenu.Next.find('a').text()+'</span>');
-            Core.ProjectMenu.Next.find('a').remove();
+        // count how many need to be disabled
+        else if($(this).is('a') && newValue === false )
+        {
+            j++;
         }
-    }*/
+    });
 
+    // calculate widths
+    var extendBy = loadingBar.outerWidth() + (loadingBar.parents('li').outerWidth(true) * i); // extend
+    var shrinkBy = loadingBar.outerWidth() - (loadingBar.parents('li').outerWidth(true) * j); // shrink
 
+    // iterate through the elements
+    ListElements.each(function(index, element){
+        // get new value for this element from the ajax supplied array
+        var newValue = projectMenu[$(this).attr('id').split("-")[1]];
 
+        // enable element
+        if($(this).is('span') && $(this).hasClass('selected') === false && newValue !== false )
+        {
+            // create link
+            var link = $('<a></a>')
+                .attr('href', newValue)
+                .attr('title', $(this).text())
+                .attr('id', $(this).attr('id'))
+                .html($(this).text())
+                .css({display: 'block'}) // IE hack
+                .hide();
 
-
-  //define
-    Core.ProjectMenu.Lists = $('#project li');
-    Core.ProjectMenu.LoadingBar = $('#project .loadingBar.end');
-
-    Core.ProjectMenu.Lists.each(function(index, element){
-        Core.ProjectMenu.Lists.Span = $(element).children('span').not('loadingBar');
-        Core.ProjectMenu.Lists.Anchor = $(element).children('a');
-
-        if (!Core.ProjectMenu.Lists.Span.hasClass('loadingBar')){
-            if ($(element).children('span').not('.loadingBar').length > 0){
-                Core.ProjectMenu.Lists.Span.Id = Core.ProjectMenu.Lists.Span.attr('id').split("-")[1];
-                if (projectMenu[Core.ProjectMenu.Lists.Span.Id] !== false){
-                    Core.ProjectMenu.Lists.A = $('<a></a>')
-                    .attr('href', projectMenu[Core.ProjectMenu.Lists.Span.Id])
-                    .attr('title', Core.ProjectMenu.Lists.Span.text())
-                    .attr('id', Core.ProjectMenu.Lists.Span.attr('id'))
-                    .html(Core.ProjectMenu.Lists.Span.text())
-                    .css({display: 'block'}) // IE hack
-                    .hide();
-
-                    //animate progress bar - extend
-                    Core.ProjectMenu.LoadingBar.animate({
-                        'width': Core.ProjectMenu.LoadingBar.outerWidth() + Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
-                    }, 500);
-
-                    Core.ProjectMenu.Lists.Span.fadeOut(200, function(){
-                        $(this).remove()
-                        Core.ProjectMenu.Lists.A.appendTo($(element)).fadeIn(500);
-                    });
-                }
-            } else if (Core.ProjectMenu.Lists.Anchor.length > 0) {
-                Core.ProjectMenu.Lists.Anchor.Id = Core.ProjectMenu.Lists.Anchor.attr('id').split("-")[1];
-                if(projectMenu[Core.ProjectMenu.Lists.Anchor.Id] == false){
-                    Core.ProjectMenu.Lists.S = $('<span></span>')
-                    .attr('id', Core.ProjectMenu.Lists.Anchor.attr('id'))
-                    .html(Core.ProjectMenu.Lists.Anchor.text())
-                    .addClass('restricted')
-                    .css({display: 'block'}) // IE hack
-                    .hide();
-
-                    //animate progress bar - shrink
-                    Core.ProjectMenu.LoadingBar.animate({
-                        'width': Core.ProjectMenu.LoadingBar.outerWidth() - Core.ProjectMenu.LoadingBar.parents('li').outerWidth(true)
-                    }, 500);
-
-                    Core.ProjectMenu.Lists.Anchor.fadeOut(200, function(){
-                        $(this).remove()
-                        Core.ProjectMenu.Lists.S.appendTo($(element)).fadeIn(500);
-                    });
-                }
-            }
-
+            Core.ProjectMenu.Animate($(this), link, extendBy);
         }
+        // disable element
+        else if($(this).is('a') && newValue === false )
+        {
+            // create span
+            var span = $('<span></span>')
+                .attr('id', $(this).attr('id'))
+                .addClass('restricted')
+                .html($(this).text())
+                .css({display: 'block'}) // IE hack
+                .hide();
 
+            Core.ProjectMenu.Animate($(this), span, shrinkBy);
+        }
+    });
+}
 
+/**
+ * Animate Project Menu
+ *
+ * @param DOMelement oldElement
+ * @param DOMelement newElement
+ * @param integer width
+ * @returns void
+ */
+Core.ProjectMenu.Animate = function(oldElement, newElement, width){
+    // loading bar
+    var loadingBar = $('#project .loadingBar.end');
+
+    // insert new element
+    oldElement.after(newElement);
+
+    // animate progress bar
+    loadingBar.animate({
+        'width': width
+    }, 500);
+
+    // fade out and remove link, fade in span
+    oldElement.fadeOut(200, function(){
+        oldElement.remove()
+        newElement.fadeIn(500);
+    });
+}
+
+/**
+ * Replace multiple spans by just the last one and resize it to fit
+ */
+Core.ProjectMenu.initMenu = function()
+{
+    var spans = $('#project li').children('span.loadingBar');
+    var lastSpan = spans.last();
+    var spanCount = spans.length;
+    spans.remove();
+    $('#project li:first-child').prepend(lastSpan);
+
+    lastSpan.css({'width': 0});
+    lastSpan.css({
+        'width': lastSpan.outerWidth() + (lastSpan.parents('li').outerWidth(true) * spanCount)
     });
 }
 
@@ -236,6 +253,9 @@ $(document).ready(function(){
              '/images/bg/overlay.png',
              '/images/logo.png'
      ]);
+
+    // init menu
+    Core.ProjectMenu.initMenu();
 
     $('#login .projectNew').click(function(){
         if($(this).hasClass('active')){
