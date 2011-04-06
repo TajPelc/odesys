@@ -25,16 +25,12 @@ class ProjectMenu extends CWidget
      */
     public static function getMenuItems()
     {
-        if(false !== $Project = Project::getActive())
-        {
-            $evalReady = $Project->checkEvaluateConditions();
-            $evalComplete = $Project->checkEvaluationComplete();
-        }
+        $Project = Project::getActive();
 
-        self::$pages['menu-alternatives']['enabled'] = count($Project->criteria) >= 2;
-        self::$pages['menu-evaluation']['enabled']   = $evalReady;
-        self::$pages['menu-analysis']['enabled']     = $evalComplete;
-        self::$pages['menu-overview']['enabled']     = $evalComplete;
+        self::$pages['menu-alternatives']['enabled'] = $Project->checkCriteriaComplete();
+        self::$pages['menu-evaluation']['enabled']   = $Project->checkEvaluateConditions();
+        self::$pages['menu-analysis']['enabled']     = $Project->checkEvaluationComplete();
+        self::$pages['menu-overview']['enabled']     = $Project->checkAnalysisComplete();
 
         return self::$pages;
     }

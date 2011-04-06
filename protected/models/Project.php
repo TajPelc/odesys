@@ -166,7 +166,6 @@ class Project extends CActiveRecord
         // check alternative conditions
         $alternativesComplete     = (int)($this->no_alternatives >= 2);
 
-
         // check evaluation condition
         $nrOfExpectedEvaluations  = (int)$this->no_criteria * (int)$this->no_alternatives;
         $evaluationComplete       = 0;
@@ -359,11 +358,27 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Check if criteria are complete
+     */
+    public function checkCriteriaComplete()
+    {
+        return ((bool)$this->criteria_complete);
+    }
+
+    /**
+     * Check if alternatives are complete
+     */
+    public function checkAlternativesComplete()
+    {
+        return ((bool)$this->alternatives_complete);
+    }
+
+    /**
      * Check if evaluation is enabled
      */
     public function checkEvaluateConditions()
     {
-        return (count($this->alternatives) >= 2 && count($this->criteria) >= 2);
+        return ((bool)$this->criteria_complete && (bool)$this->alternatives_complete);
     }
 
     /**
@@ -371,12 +386,18 @@ class Project extends CActiveRecord
      */
     public function checkEvaluationComplete()
     {
-        $evalCount = count($this->evaluation);
-        $criteriaNr = count($this->criteria);
-        $alternativeNr = count($this->alternatives);
-
-        return ($criteriaNr >= 2 && $alternativeNr >= 2 && $evalCount == $criteriaNr * $alternativeNr);
+        return (bool)$this->evaluation_complete;
     }
+
+    /**
+     * Check if evaluation is complete
+     */
+    public function checkAnalysisComplete()
+    {
+        return (bool)$this->analysis_complete;
+    }
+
+
 
     /**
      * Create a url to view this project
