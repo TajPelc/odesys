@@ -9,24 +9,35 @@
     border-bottom: 1px solid #dedfe3;
 }
 
-    #content dl dt {
-        height: 30px;
-        line-height: 30px;
-        padding-left: 40px;
-        margin-bottom: 8px;
-        font-size: 18px;
-        background: url(../../images/form/sprite_buttons.png) 0 -300px no-repeat;
-    }
+/* Recent decisions
+********************************************************/
+#content .recentDecisions {
+    margin-bottom: 32px;
+    color: #444a56;
+}
 
-    #content dl dd {
-        border-top: 1px solid #dedfe3;
-        margin-left: 40px;
-    }
+#content .recentDecisions dt {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 40px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    background: url(../../images/sprite_icons.png) 0 -250px no-repeat;
+}
 
-        #content dl dd a {
-            display: block;
-            float: right;
-        }
+#content .recentDecisions dd {
+    border-top: 1px solid #dedfe3;
+    margin-left: 40px;
+}
+
+    #content .recentDecisions dd a {
+        line-height: 16px;
+        padding-left: 20px;
+        margin-right: 10px;
+        display: block;
+        float: right;
+        background: url(../../images/sprite_icons.png) 0 -300px no-repeat;
+    }
 
 /* Table
 ********************************************************/
@@ -35,7 +46,6 @@
     margin-bottom: 8px;
     text-align: right;
     vertical-align: middle;
-    color: #444a56;
 }
 
     #content table tr {
@@ -51,23 +61,74 @@
     }
 
     #content table th {
+        padding-right: 16px;
+        padding-left: 20px;
         font-style: italic;
         font-weight: bold;
+        text-align: center;
         border-bottom: 1px solid #596171;
+        background: url(../../images/sprite_icons.png) no-repeat;
     }
 
+    #content table th:nth-child(2){ background-position: 0 6px }
+    #content table th:nth-child(3){ background-position: 0 -42px }
+    #content table th:nth-child(4){ background-position: 0 -92px }
+
     #content table td {
+        padding-right: 20px;
         border-bottom: 1px solid #dedfe3;
     }
 
     #content table th:first-child,
     #content table td:first-child {
-        width: 300px;
+        width: 280px;
         padding-left: 10px;
         text-align: left;
+        background: none;
     }
 
     #content table th:last-child,
     #content table td:last-child {
         padding-right: 10px;
     }
+
+/* Statistics, Profile
+********************************************************/
+#content .statistics,
+#content .profile {
+    width: 333px;
+    margin-right: 20px;
+    float: left;
+    color: #444a56;
+}
+
+#content .profile {
+    margin-right: 0;
+}
+
+    #content .statistics dt,
+    #content .profile dt {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 40px;
+        margin-bottom: 8px;
+        font-size: 18px;
+        background: url(../../images/sprite_icons.png) 0 -200px no-repeat;
+    }
+
+    #content .profile dt { background-position: 0 -150px }
+
+    #content .statistics dd,
+    #content .profile dd {
+        margin: 0 0 8px 40px;
+    }
+
+    #content .statistics .first,
+    #content .profile .first {
+        border-top: 1px solid #dedfe3;
+        padding-top: 12px;
+    }
+
+        #content .statistics dd b {
+            font-weight: bold;
+        }
