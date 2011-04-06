@@ -39,7 +39,7 @@ class CriteriaController extends Controller
     }
 
     /**
-     * Add / remove / edit criteria.
+     * Add / update / remove criteria.
      */
     public function actionCreate()
     {
@@ -80,7 +80,10 @@ class CriteriaController extends Controller
                     if($Criteria->save())
                     {
                         // all good, reutrn new criteria id
-                        Ajax::respondOk(array('criteria_id' => $Criteria->criteria_id));
+                        Ajax::respondOk(array(
+                        	'criteria_id' => $Criteria->criteria_id,
+                            'projectMenu' => $this->getProjectMenu(),
+                        ));
                     }
 
                     // save failed
@@ -94,7 +97,9 @@ class CriteriaController extends Controller
                         // delete
                         if($Criteria->delete())
                         {
-                            Ajax::respondOk();
+                            Ajax::respondOk(array(
+                            	'projectMenu' => $this->getProjectMenu(),
+                            ));
                         }
                     }
                     Ajax::respondError();
@@ -124,24 +129,6 @@ class CriteriaController extends Controller
         $this->render('create', array(
             'Project'   => $Project,
         ));
-    }
-
-    /**
-     * Deletes a criteria
-     */
-    public function actionDelete()
-    {
-        $Criteria = $this->loadModel('criteria');
-        $id = $Criteria->criteria_id;
-        if($Criteria->delete())
-        {
-            Ajax::respondOk(array('id' => $id, 'menu' => ProjectMenu::getMenuItems()));
-        }
-        else
-        {
-            Ajax::respondError(array('id' => $id));
-        }
-        $this->redirect(array('create'));
     }
 
     /**

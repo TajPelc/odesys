@@ -49,7 +49,6 @@ class Controller extends CController
         /**
          * END DEBUG
          */
-
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-1.5.1.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/index.js');
     }
@@ -72,6 +71,21 @@ class Controller extends CController
         }
 
         return parent::beforeAction($action);
+    }
+
+    /**
+     * Get projectMenu
+     */
+    protected function getProjectMenu()
+    {
+        $activeProject = Project::getActive();
+        return array(
+            'criteria'      => $this->createUrl('criteria/create'),
+            'alternatives'  => ((bool)$activeProject->criteria_complete ? $this->createUrl('alternatives/create') : false),
+            'evaluation'    => ((bool)$activeProject->criteria_complete && (bool)$activeProject->alternatives_complete ? $this->createUrl('evaluation/evaluate') : false),
+            'analysis'      => ((bool)$activeProject->evaluation_complete ? $this->createUrl('results/display') : false),
+            'results'       => ((bool)$activeProject->analysis_complete ? $this->createUrl('project/details') : false),
+        );
     }
 
     /**

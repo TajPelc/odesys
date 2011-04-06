@@ -160,15 +160,21 @@ class Project extends CActiveRecord
      */
     public function evaluateConditions()
     {
-        // check conditions
+        // check criteria conditions
         $criteriaComplete         = (int)($this->no_criteria >= 2);
+
+        // check alternative conditions
         $alternativesComplete     = (int)($this->no_alternatives >= 2);
 
 
-
+        // check evaluation condition
         $nrOfExpectedEvaluations  = (int)$this->no_criteria * (int)$this->no_alternatives;
         $evaluationComplete       = 0;
-        if($nrOfExpectedEvaluations > 0 && $nrOfExpectedEvaluations == (int)$this->no_evaluation )
+        if((bool)$criteriaComplete
+            && (bool)$alternativesComplete
+            && $nrOfExpectedEvaluations > 0
+            && $nrOfExpectedEvaluations == (int)$this->no_evaluation
+        )
         {
             $evaluationComplete = 1;
         }

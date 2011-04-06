@@ -37,7 +37,7 @@ class AlternativeController extends Controller
     }
 
     /**
-     * Add / Edit / Update alternatives
+     * Add / Update / Delete alternatives
      */
     public function actionCreate()
     {
@@ -72,7 +72,10 @@ class AlternativeController extends Controller
                     // save
                     if($Alternative->save())
                     {
-                        Ajax::respondOk(array('alternative_id' => $Alternative->alternative_id));
+                        Ajax::respondOk(array(
+                        	'alternative_id' => $Alternative->alternative_id,
+                            'projectMenu' => $this->getProjectMenu(),
+                        ));
                     }
 
                     // save failed
@@ -85,7 +88,9 @@ class AlternativeController extends Controller
                         // delete
                         if($Alternative->delete())
                         {
-                            Ajax::respondOk();
+                            Ajax::respondOk(array(
+                            	'projectMenu' => $this->getProjectMenu(),
+                            ));
                         }
                     }
                     // delete failed
@@ -121,23 +126,5 @@ class AlternativeController extends Controller
         $this->render('create', array(
             'Project'       => $Project,
         ));
-    }
-
-    /**
-     * Deletes an alternative
-     */
-    public function actionDelete()
-    {
-        $Alternative = $this->loadModel('Alternative');
-        $id = $Alternative->alternative_id;
-        if($Alternative->delete())
-        {
-            Ajax::respondOk(array('id' => $id, 'menu' => ProjectMenu::getMenuItems()));
-        }
-        else
-        {
-            Ajax::respondError(array('id' => $id));
-        }
-        $this->redirect(array('create'));
     }
 }

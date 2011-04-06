@@ -114,6 +114,7 @@ class EvaluationController extends Controller
                         'criteriaNr' => $criteriaNr,
                         'previous' => ($pageNr > 0 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1)) : false),
                         'next' => ($pageNr < $criteriaNr - 1 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr + 1)) : false),
+                        'projectMenu' => $this->getProjectMenu(),
                     ));
                     break;
                 default:
@@ -167,7 +168,9 @@ class EvaluationController extends Controller
             $Evaluation->grade = $grade;
             if($Evaluation->save())
             {
-                Ajax::respondOk();
+                Ajax::respondOk(array(
+                    'projectMenu' => $this->getProjectMenu(),
+                ));
             }
             Ajax::respondError($Evaluation->getErrors());
         }
