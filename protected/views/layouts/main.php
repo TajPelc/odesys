@@ -37,7 +37,7 @@
             <div id="headings">
                 <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
                 <?php if(Project::isProjectActive()){ ?>
-                    <h2>Now deciding on "<?php echo CHtml::encode(Project::getActive()->title); ?>"</h2>
+                    <h2>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('criteria/create'));?>"</h2>
                 <?php } else { ?>
                     <h2>Helping you decide!</h2>
                 <?php }?>
