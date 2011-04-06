@@ -23,8 +23,8 @@
 </div>
 <script type="text/javascript">
 var chartData = <?php echo json_encode($rv); ?>;
-var criteriaWorst = <?php echo json_encode(CHtml::listData($Criteria, 'title', 'worst')); ?>;
-var criteriaBest =  <?php echo json_encode(CHtml::listData($Criteria, 'title', 'best')); ?>;
+var criteriaWorst = <?php // echo json_encode(CHtml::listData($Criteria, 'title', 'worst')); ?>;
+var criteriaBest =  <?php // echo json_encode(CHtml::listData($Criteria, 'title', 'best')); ?>;
 </script>
 <div id="chartdiv"></div>
 

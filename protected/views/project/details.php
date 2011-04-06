@@ -79,8 +79,6 @@
     <?php foreach($Criteria as $C) { ?>
         <tr>
             <td><?php echo CHtml::encode($C->title)?></td>
-            <td><?php echo CHtml::encode($C->worst)?></td>
-            <td><?php echo CHtml::encode($C->best)?></td>
             <td>&nbsp;</td>
         </tr>
     <?php }?>
