@@ -20,7 +20,7 @@
                 </tr>
                 <?php } ?>
             </table>
-            <?php echo CHtml::link('View all', array('project/view')); ?>
+            <?php echo CHtml::link('View all', array('project/list')); ?>
         </dd>
     </dl>
     <dl class="statistics">

@@ -68,4 +68,15 @@ class ProjectController extends Controller
 
         Ajax::respondError(array('fail'));
     }
+
+    /**
+     * Create or update project
+     */
+    public function actionList()
+    {
+        // find all user's projects
+        $Decisions = Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id));
+
+        $this->render('list', array('Decisions' => $Decisions));
+    }
 }
