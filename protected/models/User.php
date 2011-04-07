@@ -54,9 +54,8 @@ class User extends CActiveRecord
      */
     public function relations()
     {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
         return array(
+            'projects' => array(self::HAS_MANY, 'Project', 'rel_user_id'),
         );
     }
 

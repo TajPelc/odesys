@@ -55,10 +55,22 @@ class Project extends CActiveRecord
             {
                 // set created
                 $this->created = date('Y-m-d H:i:s', time());
-                $this->last_edit = date('Y-m-d H:i:s', time());
                 $this->rel_user_id = Yii::app()->user->id;
 
             }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Handle all the logic before saving
+     */
+    public function beforeSave()
+    {
+        if(parent::beforeSave())
+        {
+            $this->updateLastEdit(false);
             return true;
         }
         return false;
@@ -153,6 +165,20 @@ class Project extends CActiveRecord
         $this->save();
 
         $this->evaluateConditions();
+    }
+
+    /**
+     * Update last edit time
+     * @param bool $save
+     */
+    public function updateLastEdit($save = true)
+    {
+        $this->last_edit = date('Y-m-d H:i:s');
+
+        if($save)
+        {
+            $this->save();
+        }
     }
 
     /**
