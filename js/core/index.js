@@ -20,7 +20,7 @@ function ImagePreload(arrayOfImages) {
 Core.Overlay = function(html){
     Core.Overlay.Close();
 
-    $('body').append('<div id="overlay_bg"><div id="overlay">'+html+'<a href="#" class="close">close</a></div></div>');
+    $('body').append('<div id="overlay_bg"><div id="overlay">'+html+'<a href="#" class="close">close</a><div id="overlayBottom"></div></div></div>');
     $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2, 'top': '150px'});
 
     //delay input focus hack
@@ -54,7 +54,7 @@ Core.Overlay = function(html){
                 if(data['status'] == true)
                 {
                     Core.Overlay.Close();
-                    $(location).attr('href', location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=alternatives/create');
+                    $(location).attr('href', location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=alternative/create');
                 }
                 else {
                     //$('#overlay form').insertAfter('<span>'+data['errors']['title']+'</span>');
@@ -275,10 +275,10 @@ $(document).ready(function(){
 
     $('#login .projectNew').click(function(){
         if($(this).hasClass('active')){
-            Core.Overlay.Html = '<h2>Make a new decision?</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><input type="submit" name="project_save" id="project_save" value="Start" /><p>Do not panic. Your project is saved safely in our database. With creating a new project you will deactivate "<i>'+$('#headings h2').text().split('"')[1]+'</i>".</p></fieldset></form>'
+            Core.Overlay.Html = '<h2>Name your new decision?</h2><p>You are in the middle of a decision process! Are you sure you want to start a new one? Don’t worry, everything is safely saved in our database for you to continue at your convenience.</p><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><span>Example: buying a car</span><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>'
             Core.Overlay(Core.Overlay.Html);
         } else {
-            Core.Overlay.Html = '<h2>Name your decision:</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>';
+            Core.Overlay.Html = '<h2>Name your new decision:</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><span>Example: buying a car</span><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>';
             Core.Overlay(Core.Overlay.Html);
         }
         return false;

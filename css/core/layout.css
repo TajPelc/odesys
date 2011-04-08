@@ -211,17 +211,25 @@ a:hover {
     position: absolute;
     top: 0;
     right: 0;
-    background: url(../../images/bg/overlay.png) repeat;
+    background: url(../../images/bg/overlay_bg.png) repeat;
     z-index: 1000;
 }
 
     #overlay {
         width: 489px;
-        height: 108px;
-        padding: 16px 18px;
+        padding: 16px 18px 8px 18px;
         position: absolute;
-        background: url(../../images/bg/overlay_bg.png) no-repeat;
+        background: url(../../images/bg/overlay_top.png) no-repeat;
         z-index: 1001;
+    }
+
+    #overlayBottom {
+        width: 525px;
+        height: 8px;
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        background: url(../../images/bg/overlay_bottom.png) no-repeat;;
     }
 
         #overlay h2 {
@@ -233,6 +241,16 @@ a:hover {
             color: #fff;
         }
 
+        #overlay p {
+            padding: 0 10px 0 16px;
+            line-height: 16px;
+            margin-bottom: 16px;
+            float: left;
+            font-size: 11px;
+            font-style: italic;
+            color: #fff;
+            background: url(../../images/sprite_icons.png) -1px -400px no-repeat;
+        }
 
         #overlay form,
         #overlay form fieldset {
@@ -241,14 +259,6 @@ a:hover {
             position: relative;
         }
 
-            #overlay form fieldset p {
-                width: 370px;
-                line-height: 16px;
-                margin-bottom: 16px;
-                float: left;
-                font-size: 13px;
-                color: #fff;
-            }
 
                 #overlay form fieldset p i {
                     font-style: italic;
@@ -256,10 +266,10 @@ a:hover {
                 }
 
                 #overlay input[type="text"] {
-                    width: 470px; /*492px*/
+                    width: 472px; /*492px*/
                     height: 23px; /*29px*/
                     padding: 0 10px 6px 10px;
-                    margin-bottom: 8px;
+                    margin-bottom: 2px;
                     font-size: 18px;
                     color: #444a56;
                     background: url(../../images/form/overlay_input.png) no-repeat;
@@ -279,6 +289,14 @@ a:hover {
                 #overlay input[type="submit"]:hover { cursor: pointer; background-position: -450px 0;}
                 #overlay input[type="submit"]:active { cursor: pointer; background-position: -600px 0;}
 
+
+                #overlay form span {
+                    width: 100%;
+                    float: left;
+                    display: block;
+                    font-size: 11px;
+                    color: #717c90;
+                }
 
             #overlay form div.error {
                 height: 39px;
