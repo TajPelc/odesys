@@ -1,11 +1,11 @@
 <?php
 /**
- * Results Controller
+ * Analysis Controller
  *
  * @author Taj
  *
  */
-class ResultsController extends DecisionController
+class AnalysisController extends DecisionController
 {
     /**
      * Color pool for plotting graphs
@@ -91,11 +91,11 @@ class ResultsController extends DecisionController
 
         //include script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/raphael-min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/results/graph.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/graph.js');
 
         //include style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/results/index.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
         $this->render('display',array(
             'rv'        => $rv,
