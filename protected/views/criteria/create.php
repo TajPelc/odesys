@@ -1,6 +1,6 @@
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Criteria'; ?>
 <div id="content">
-    <h2>Enter criterias that are important for your decision:</h2>
+    <h2>What factors influence your decision the most?</h2>
     <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Criteria = $Project->findCriteriaByPriority(); ?>
         <div><input type="text" name="newCriteria[title]" id="newCriteria" /></div>
@@ -15,11 +15,25 @@
     <?php echo CHtml::endForm();?>
 </div>
 <div id="sidebar">
+    <h3>Need some help?</h3>
     <ul>
-        <li><em>Drag and drop the most important criteria to the top of the list.</em></li>
-        <li><p>Add between 2 and 10 criteria.</p></li>
-        <li><p>Criteria priority exponentially decends from top to bottom.</p></li>
-        <li><p>Think twice about most and least desired values.</p></li>
-        <li><p>Set the best and worst values low or high enough that no alternative that you are considering falls under or over this margin.</p></li>
+        <li>
+            <dl>
+                <dt>Think</dt>
+                <dd>What criteria must an alternative satisfy? What are important parameters of my alternatives?</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>Examples</dt>
+                <dd>When buying a car, it may be judged by it's Speed, Performance, Price, Safety, Running costs and so on.</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>Drag and drop</dt>
+                <dd>Criteria priority decends from top to bottom. Add some items to the list then move each criteria to the proper position by dragging it by the cross on the left. For example, if price is the most important factor, drag and drop it to the top of the list.</dd>
+            </dl>
+        </li>
     </ul>
 </div>

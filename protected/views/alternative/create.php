@@ -1,6 +1,6 @@
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Alternatives'; ?>
 <div id="content">
-    <h2>Enter alternatives between which you are choosing:</h2>
+    <h2>What alternatives are you considering?</h2>
     <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Alternatives = $Project->alternatives; ?>
         <div><input type="text" name="newAlternative[title]" id="newAlternative" /></div>
@@ -15,11 +15,19 @@
     <?php echo CHtml::endForm();?>
 </div>
 <div id="sidebar">
+    <h3>Need some help?</h3>
     <ul>
-        <li><em>Drag and drop the most important criteria to the top of the list.</em></li>
-        <li><p>Add between 2 and 10 criteria.</p></li>
-        <li><p>Criteria priority exponentially decends from top to bottom.</p></li>
-        <li><p>Think twice about most and least desired values.</p></li>
-        <li><p>Set the best and worst values low or high enough that no alternative that you are considering falls under or over this margin.</p></li>
+        <li>
+            <dl>
+                <dt>Think</dt>
+                <dd>Have you thought of all possible alternatives? Your decision will be complete by choosing one of these alternatives. What are you considering?</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>Examples</dt>
+                <dd>When choosing a career path one might create such a list of alternatives: Dentist, Physicist, Web application developer.</dd>
+            </dl>
+        </li>
     </ul>
 </div>
