@@ -95,6 +95,8 @@
             background: url(../../images/ajax-loader-circular.gif) no-repeat;
         }
 
+        #content form li .loading { right: 30px }
+
     #content > form div.error {
         height: 39px;
         line-height: 24px;

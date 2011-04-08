@@ -63,9 +63,11 @@ Alternatives.SaveInput = function(that, add) {
                 } else {
                     if(data['status'] == true){
                         // here be returned shite
+                        that.siblings('.loading').remove();
 
                         //errors
                     } else {
+                        that.siblings('.loading').remove();
                         Alternatives.FormErrorReporting(that, data['errors']['title']);
                     }
 
@@ -76,6 +78,9 @@ Alternatives.SaveInput = function(that, add) {
 }
 
 Alternatives.DeleteInput = function(that) {
+    //add preloader
+    Alternatives.DeleteInput.Loading = $('<span class="loading">&nbsp;</span>');
+    that.after(Alternatives.DeleteInput.Loading);
     data = {
             'alternative_id': that.siblings('input').attr('id').split('_')[1],
             'action'     : 'delete'
@@ -89,6 +94,9 @@ Alternatives.DeleteInput = function(that) {
             {
                 that.parents('li').remove();
                 Core.ProjectMenu(data['projectMenu']);
+                Alternatives.DeleteInput.Loading.remove();
+            } else {
+                Alternatives.DeleteInput.Loading.remove();
             }
         }
     });
