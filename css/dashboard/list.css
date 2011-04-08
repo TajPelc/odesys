@@ -1,0 +1,94 @@
+/*
+ --> Decision list css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.0
+*/
+
+#content {
+    width: 100%;
+}
+
+#content > h1 {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #dedfe3;
+}
+
+/* Recent decisions
+********************************************************/
+#content .recentDecisions {
+    margin-bottom: 32px;
+    color: #444a56;
+}
+
+#content .recentDecisions dt {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 40px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    background: url(../../images/sprite_icons.png) 0 -500px no-repeat;
+}
+
+#content .recentDecisions dd {
+    border-top: 1px solid #dedfe3;
+    margin-left: 40px;
+}
+
+/* Table
+********************************************************/
+#content table {
+    width: 100%;
+    margin-bottom: 8px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+    #content table tr {
+        height: 31px;
+        padding: 0 8px;
+        background: url(../../images/bg/dashboard_cell.png) top right no-repeat;
+    }
+
+    #content table tr:hover,
+    #content table tr:first-child {
+        background: #fff;
+    }
+
+    #content table th {
+        line-height: 16px;
+        padding-left: 20px;
+        font-style: italic;
+        font-weight: bold;
+        text-align: left;
+        vertical-align: middle;
+        border-bottom: 1px solid #596171;
+        background: url(../../images/sprite_icons.png) no-repeat;
+    }
+
+    #content table th:nth-child(2){ background-position: 0 6px }
+    #content table th:nth-child(3){ background-position: 0 6px }
+    #content table th:nth-child(4){ background-position: 2px -443px }
+    #content table th:nth-child(5){ background-position: 2px -443px }
+    #content table th:nth-child(6){ background-position: 0 -42px }
+    #content table th:nth-child(7){ background-position: 0 -92px }
+
+    #content table td {
+        padding-left: 20px;
+        line-height: 16px;
+        vertical-align: middle;
+        text-align: left;
+        border-bottom: 1px solid #dedfe3;
+    }
+
+    #content table th:first-child,
+    #content table td:first-child {
+        width: 280px;
+        padding-left: 0;
+        text-align: left;
+        background: none;
+    }
+
+    #content table th:last-child,
+    #content table td:last-child {
+        padding-right: 10px;
+    }

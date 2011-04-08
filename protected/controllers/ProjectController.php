@@ -74,6 +74,9 @@ class ProjectController extends Controller
      */
     public function actionList()
     {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/list.css');
+
         // find all user's projects
         $Decisions = Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id));
 
