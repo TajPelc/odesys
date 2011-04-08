@@ -242,14 +242,14 @@ a:hover {
         }
 
         #overlay p {
-            padding: 0 10px 0 16px;
+            padding: 0 10px 0 30px;
             line-height: 16px;
             margin-bottom: 16px;
             float: left;
             font-size: 11px;
             font-style: italic;
             color: #fff;
-            background: url(../../images/sprite_icons.png) -1px -400px no-repeat;
+            background: url(../../images/sprite_icons.png) 10px -400px no-repeat;
         }
 
         #overlay form,
