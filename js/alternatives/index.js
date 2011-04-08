@@ -21,8 +21,13 @@ Alternatives.FormErrorReporting = function(that, text){
 }
 
 Alternatives.SaveInput = function(that, add) {
+    //trim input values
     var trimValue = $.trim(that.val());
     that.val(trimValue);
+    //add preloader
+    Alternatives.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
+    that.after(Alternatives.SaveInput.Loading);
+    //post
     if (!that.val() == ''){
         var data = {
                 'alternative_id': add ? that.attr('id') : that.attr('id').split('_')[1],
@@ -45,10 +50,12 @@ Alternatives.SaveInput = function(that, add) {
                         $('#content form ol').append('<li><input type="text" id="alternative_'+data['alternative_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span></li>');
                         that.focus();
                         that.val('');
+                        Alternatives.SaveInput.Loading.remove();
                         Core.ProjectMenu(data['projectMenu']);
 
                         //errors
                     } else {
+                        Alternatives.SaveInput.Loading.remove();
                         Alternatives.FormErrorReporting(that, data['errors']['title']);
                     }
 

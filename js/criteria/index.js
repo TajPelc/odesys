@@ -22,8 +22,13 @@ Criteria.FormErrorReporting = function(that, text){
 }
 
 Criteria.SaveInput = function(that, add) {
+    //trim input values
     var trimValue = $.trim(that.val());
     that.val(trimValue);
+    //add preloader
+    Criteria.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
+    that.after(Criteria.SaveInput.Loading);
+    //post
     if (!that.val() == ''){
         var data = {
                 'criteria_id': add ? that.attr('id') : that.attr('id').split('_')[1],
@@ -46,10 +51,12 @@ Criteria.SaveInput = function(that, add) {
                         $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span><span class="drag">&nbsp;</span></li>');
                         that.focus();
                         that.val('');
+                        Criteria.SaveInput.Loading.remove();
                         Core.ProjectMenu(data['projectMenu']);
 
                         //errors
                     } else {
+                        Criteria.SaveInput.Loading.remove();
                         Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
 

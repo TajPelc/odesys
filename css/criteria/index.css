@@ -1,7 +1,7 @@
 /*
  --> Criteria css
  --> @author:     Frenk T. Sedmak Nahtigal
- --> @version:    1.1
+ --> @version:    1.2
 */
 
 #content > form {
@@ -114,6 +114,16 @@
             top: 0;
             left: 0;
             background-position: 0 -200px;
+        }
+
+        #content form .loading {
+            width: 24px;
+            height: 24px;
+            display: block;
+            position: absolute;
+            top: 2px;
+            right: 50px;
+            background: url(../../images/ajax-loader-circular.gif) no-repeat;
         }
 
 

@@ -241,7 +241,7 @@ a:hover {
             color: #fff;
         }
 
-        #overlay p {
+        #overlay > p {
             padding: 0 10px 0 30px;
             line-height: 16px;
             margin-bottom: 16px;
