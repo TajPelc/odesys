@@ -188,7 +188,7 @@ a:hover {
     position: absolute;
     top: 0;
     left: 0;
-    background: url(../../images/bg/overlay.png) repeat;
+    background: url(../../images/bg/overlay_bg.png) repeat;
     border: none !important;
     z-index: 100;
 }
