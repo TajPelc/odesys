@@ -90,17 +90,12 @@ class ResultsController extends DecisionController
         }
 
         //include script files
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jqplot/jquery.jqplot.min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jqplot/plugins/jqplot.categoryAxisRenderer.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jqplot/plugins/jqplot.highlighter.min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jqplot/plugins/jqplot.cursor.min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jqplot/plugins/jqplot.canvasTextRenderer.min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/raphael-min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/results/graph.js');
 
         //include style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/js/core/jqplot/jquery.jqplot.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/results/index.css');
 
         $this->render('display',array(
             'rv'        => $rv,
