@@ -54,7 +54,7 @@ Core.Overlay = function(html){
                 if(data['status'] == true)
                 {
                     Core.Overlay.Close();
-                    $(location).attr('href', location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=criteria/create');
+                    $(location).attr('href', location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=alternatives/create');
                 }
                 else {
                     //$('#overlay form').insertAfter('<span>'+data['errors']['title']+'</span>');

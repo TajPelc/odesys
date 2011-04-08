@@ -77,12 +77,6 @@ class AlternativeController extends DecisionController
             }
         }
 
-        // redirect to criteria create if not enough criteria have been entered
-        if(count($Project->criteria) < 2)
-        {
-            $this->redirect(array('criteria/create'));
-        }
-
         // save criteria
         if(isset($_POST['newAlternative']))
         {

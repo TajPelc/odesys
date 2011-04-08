@@ -81,11 +81,11 @@ class Controller extends CController
     {
         $activeProject = Project::getActive();
         return array(
-            'criteria'      => $this->createUrl('criteria/create'),
-            'alternatives'  => ((bool)$activeProject->criteria_complete ? $this->createUrl('alternative/create') : false),
-            'evaluation'    => ((bool)$activeProject->criteria_complete && (bool)$activeProject->alternatives_complete ? $this->createUrl('evaluation/evaluate') : false),
-            'analysis'      => ((bool)$activeProject->evaluation_complete ? $this->createUrl('results/display') : false),
-            'overview'       => ((bool)$activeProject->analysis_complete ? $this->createUrl('project/details') : false),
+        	'alternatives'  => $this->createUrl('alternatives/create'),
+            'criteria'      => ($activeProject->checkAlternativesComplete() ? $this->createUrl('criteria/create') : false),
+            'evaluation'    => ($activeProject->checkEvaluateConditions() ? $this->createUrl('evaluation/evaluate') : false),
+            'analysis'      => ($activeProject->checkEvaluationComplete() ? $this->createUrl('results/display') : false),
+            'overview'      => ($activeProject->checkAnalysisComplete() ? $this->createUrl('project/details') : false),
         );
     }
 
@@ -114,7 +114,7 @@ class Controller extends CController
     /**
      * Try to load the project from session or redirect to index page
      *
-     * @return CActiveRecord
+     * @return Project
      */
     protected function loadActiveProject($redirect = true)
     {
