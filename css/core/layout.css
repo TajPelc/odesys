@@ -45,6 +45,7 @@ a:hover {
 
         #content {
             width: 686px;
+            min-height: 400px;
             float: left;
         }
 
