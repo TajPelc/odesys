@@ -1,5 +1,48 @@
 /*
- --> Results css
+ --> Analysis css
  --> @author:     Frenk T. Sedmak Nahtigal
  --> @version:    1.0
 */
+
+/* Layout
+********************************************************/
+.content {
+    width: 686px;
+    min-height: 400px;
+    float: left;
+}
+
+.sidebar {
+    float: right;
+    width: 214px;
+}
+
+/* Accordion
+********************************************************/
+#accordion {
+    width: 100%;
+}
+
+    #accordion h3 {
+        width: 100%;
+        float: left;
+        background: #444A56;
+    }
+
+        #accordion h3 a {
+            width: 100%;
+            padding: 4px 0;
+            height: 100%;
+            display: block;
+            color: #fff;
+        }
+
+    #accordion > div {
+        width: 100%;
+        float: left;
+
+    }
+
+
+        #content #accordion > div p {
+        }

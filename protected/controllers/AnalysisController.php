@@ -90,6 +90,7 @@ class AnalysisController extends DecisionController
         }
 
         //include script files
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/raphael-min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/graph.js');
 
