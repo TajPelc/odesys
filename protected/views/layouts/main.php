@@ -64,7 +64,7 @@
             <ul>
                 <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
                 <li><?php echo CHtml::link('Terms of use', array('/site/terms')); ?></li>
-                <li><a href="#">Contact</a></li>
+                <li><?php echo CHtml::link('Contact', array('/site/contact')); ?></li>
             </ul>
         </div>
     </div>

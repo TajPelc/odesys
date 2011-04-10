@@ -1,0 +1,49 @@
+/*
+ --> Contact css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.2
+*/
+
+#content form {
+    width: 646px;
+}
+
+#content > form label {
+    width: 100%;
+    margin-bottom: 8px;
+    float: left;
+}
+
+#content > form input[type="text"] {
+    width: 603px; /*646px*/
+    height: 28px;
+    line-height: 28px;
+    padding: 0 35px 0 8px;
+    margin-bottom: 16px;
+    background: url(../../images/form/input_big.png) no-repeat;
+    border: none;
+    float: left;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border: none;
+}
+
+#content > form input[type="submit"] {
+    float: right;
+}
+
+#content > form input[type="text"]:focus {
+    font-weight: bold;
+}
+
+
+#content > form textarea {
+    width: 630px; /*646px*/
+    padding: 8px;
+    margin: 0 0 16px 0;
+    float: left;
+}
+
+/* Sidebar
+********************************************************/
