@@ -71,3 +71,87 @@
 
 /* Sidebar
 ********************************************************/
+.sidebar h4 {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444a56;
+}
+
+.sidebar form {
+    position: relative;
+}
+
+    .sidebar form input[type="submit"] {
+        width: 27px;
+        height: 28px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: url(../../images/form/sprite_buttons.png) 0 -100px no-repeat;
+        text-indent: -9999px;
+            border-radius: 0 6px 6px 0;
+        -moz-border-radius: 0 6px 6px 0;
+        -webkit-border-radius: 0 6px 6px 0;
+        border: 1px solid #97999d;
+        border-width: 1px 1px 1px 0;
+    }
+
+
+/*sidebar select ul - fake*/
+.selectBox-dropdown-menu {
+    width: 206px;
+    position: absolute;
+    border: 1px solid #97999d;
+    border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px;
+}
+
+    .selectBox-dropdown-menu a {
+        padding: 3px 10px;
+        cursor: pointer;
+        display: block;
+    }
+
+    .selectBox-dropdown-menu a:hover {
+        background: #97999d;
+    }
+
+/*sidebar select*/
+.sidebar .selectBox-dropdown {
+    width: 208px;
+    height: 26px;
+    line-height: 26px;
+    position: relative;
+    border-radius: 6px 0 0 6px;
+    -moz-border-radius: 6px 0 0 6px;
+    -webkit-border-radius: 6px 0 0 6px;
+    border: 1px solid #97999d;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sidebar .selectBox-menuShowing {
+    border-bottom: 0;
+    border-radius: 6px 0 0 0;
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+}
+
+    .sidebar .selectBox-label {
+        width: 183px;
+        padding-left: 23px;
+        display: block;
+    }
+
+    .sidebar .selectBox-arrow {
+        width: 11px;
+        height: 9px;
+        margin: 9px 0 0 7px;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(../../images/sprite_icons.png) 0 -600px no-repeat;
+    }

@@ -8,9 +8,10 @@
                 <fieldset>
                     <select name="legend">
                         <option value="option_1">option_1</option>
-                        <option value="option_1">option_2</option>
-                        <option value="option_1">option_3</option>
+                        <option value="option_2">option_2</option>
+                        <option value="option_3">option_3</option>
                     </select>
+                    <input type="submit" name="add" value="add option" />
                 </fieldset>
             </form>
         </div>

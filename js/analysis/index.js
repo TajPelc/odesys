@@ -13,5 +13,5 @@ $(document).ready(function(){
     $( "#accordion" ).accordion();
 
     //selectbox
-    $('#sidebar select').selectBox();
+    $('.sidebar select').selectBox();
 });
