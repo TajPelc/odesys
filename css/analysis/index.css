@@ -98,9 +98,13 @@
     }
 
 
+    .sidebar form input[type="submit"]:hover { background-position: -100px -100px; cursor: pointer }
+    .sidebar form input[type="submit"]:active { background-position: -200px -100px }
+
 /*sidebar select ul - fake*/
 .selectBox-dropdown-menu {
     width: 206px;
+    padding: 6px 0;
     position: absolute;
     border: 1px solid #97999d;
     border-radius: 0 0 6px 6px;
@@ -109,13 +113,19 @@
 }
 
     .selectBox-dropdown-menu a {
-        padding: 3px 10px;
+        padding: 6px 10px;
+        margin-bottom: 2px;
         cursor: pointer;
         display: block;
+        text-decoration: none;
     }
 
     .selectBox-dropdown-menu a:hover {
-        background: #97999d;
+        background: #F7F7F8;
+    }
+
+    .selectBox-dropdown-menu a:last-child {
+        margin-bottom: 0;
     }
 
 /*sidebar select*/
