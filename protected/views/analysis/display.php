@@ -17,6 +17,11 @@ var data = <?php echo json_encode($eval); ?>;
                     <input type="submit" name="add" value="add option" />
                 </fieldset>
             </form>
+            <ul>
+                <li><span class="color" style="background-color: #f00">&nbsp;</span>Fiat kurac<span class="remove">X</span></li>
+                <li><span class="color" style="background-color: #ef034f">&nbsp;</span>Fiat pizda<span class="remove">X</span></li>
+                <li><span class="color" style="background-color: #040">&nbsp;</span>Fiat drek<span class="remove">X</span></li>
+            </ul>
         </div>
     </div>
     <h3><a href="#">Pie chart</a></h3>
