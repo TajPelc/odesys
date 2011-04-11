@@ -5,12 +5,27 @@ var data = <?php echo json_encode($eval); ?>;
     <h3><a href="#">Abacon</a></h3>
     <div>
         <div id="abacon" class="content">
-            <table>
+            <table class="criteria">
             <?php foreach($Project->criteria as $Criteria) { ?>
                 <tr>
                     <td><?php echo CHtml::encode($Criteria->title); ?></td>
                 </tr>
             <?php }?>
+            </table>
+            <table class="scale">
+                <tr>
+                    <td>0</td>
+                    <td>10</td>
+                    <td>20</td>
+                    <td>30</td>
+                    <td>40</td>
+                    <td>50</td>
+                    <td>60</td>
+                    <td>70</td>
+                    <td>80</td>
+                    <td>90</td>
+                    <td>100</td>
+                </tr>
             </table>
         </div>
         <div class="sidebar">
