@@ -3,7 +3,16 @@
     <div>
         <div id="abacon" class="content"></div>
         <div class="sidebar">
-            <p>Sidebar</p>
+            <h4>Legend</h4>
+            <form method="post" action="">
+                <fieldset>
+                    <select name="legend">
+                        <option value="option_1">option_1</option>
+                        <option value="option_1">option_2</option>
+                        <option value="option_1">option_3</option>
+                    </select>
+                </fieldset>
+            </form>
         </div>
     </div>
     <h3><a href="#">Pie chart</a></h3>
