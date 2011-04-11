@@ -4,7 +4,22 @@ var data = <?php echo json_encode($eval); ?>;
 <div id="accordion">
     <h3><a href="#">Abacon</a></h3>
     <div>
-        <div id="abacon" class="content"></div>
+        <div id="abacon" class="content">
+            <table>
+                <tr>
+                    <td>Criteria #1</td>
+                </tr>
+                <tr>
+                    <td>Criteria #2</td>
+                </tr>
+                <tr>
+                    <td>Criteria #3</td>
+                </tr>
+                <tr>
+                    <td>Criteria #4</td>
+                </tr>
+            </table>
+        </div>
         <div class="sidebar">
             <h4>Legend</h4>
             <form method="post" action="">
@@ -17,6 +32,11 @@ var data = <?php echo json_encode($eval); ?>;
                     <input type="submit" name="add" value="add option" />
                 </fieldset>
             </form>
+            <ul>
+                <li><span class="color" style="background-color: #f00">&nbsp;</span>Fiat kurac<span class="remove">X</span></li>
+                <li><span class="color" style="background-color: #ef034f">&nbsp;</span>Fiat pizda<span class="remove">X</span></li>
+                <li><span class="color" style="background-color: #040">&nbsp;</span>Fiat drek<span class="remove">X</span></li>
+            </ul>
         </div>
     </div>
     <h3><a href="#">Pie chart</a></h3>
