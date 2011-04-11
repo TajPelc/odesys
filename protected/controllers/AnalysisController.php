@@ -8,24 +8,6 @@
 class AnalysisController extends DecisionController
 {
     /**
-     * Color pool for plotting graphs
-     *
-     * @var array
-     */
-    private static $colorPool = array(
-        "#5c0369",
-        "#6ac616",
-        "#eb8e94",
-        "#c6dc0c",
-        "#d4a460",
-        "#2da7b9",
-        "#b000b7",
-        "#18b3f7",
-        "#bd3439",
-        "#00953f"
-    );
-
-    /**
      * @return array action filters
      */
     public function filters()
@@ -74,10 +56,20 @@ class AnalysisController extends DecisionController
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
+        $eval = $Project->getEvaluationArray();
+
+        // find two last projects by weighted score
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('rel_project_id=:rel_project_id');
+        $criteria->order = 'weightedScore DESC';
+        $criteria->params = array('rel_project_id' => $Project->project_id);
+        $criteria->limit = 2;
+        $bestAlternatives = Alternative::model()->findAll($criteria);
+
         $this->render('display',array(
-            'eval'      => $Project->getEvaluationArray(),
+            'eval'      => $eval,
+            'bestAlternatives' =>  $bestAlternatives,
             'Project'   => $Project,
-            'colorPool' => self::$colorPool,
         ));
     }
 }

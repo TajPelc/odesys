@@ -273,12 +273,13 @@ class Project extends CActiveRecord
         foreach($this->alternatives as $Alternative)
         {
             $eval['Alternatives'][$i] = array(
+                'alternative_id'          => $Alternative->alternative_id,
                 'title'                   => $Alternative->title,
+                'color'					  => $Alternative->color,
                 'criteria'                => array(),
                 'total'					  => 0,
                 'weightedTotal' 		  => 0,
             );
-
 
             // init score
             $total = 0;
@@ -317,6 +318,11 @@ class Project extends CActiveRecord
             // addd totals
             $eval['Alternatives'][$i]['total'] = (int)$total;
             $eval['Alternatives'][$i]['weightedTotal'] = (int)$weightedTotal;
+
+            // update scores
+            $Alternative->score = $total;
+            $Alternative->weightedScore = $weightedTotal;
+            $Alternative->save();
 
             // increase first counter
             $i++;

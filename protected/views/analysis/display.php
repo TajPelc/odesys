@@ -41,9 +41,9 @@ var data = <?php echo json_encode($eval); ?>;
                 </fieldset>
             </form>
             <ul>
-                <li><span class="color" style="background-color: #f00">&nbsp;</span>Fiat kurac<span class="remove">X</span></li>
-                <li><span class="color" style="background-color: #ef034f">&nbsp;</span>Fiat pizda<span class="remove">X</span></li>
-                <li><span class="color" style="background-color: #040">&nbsp;</span>Fiat drek<span class="remove">X</span></li>
+                <?php foreach($bestAlternatives as $A) {?>
+                    <li><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode($A->title); ?><span class="remove">X</span></li>
+                <?php }?>
             </ul>
         </div>
     </div>
