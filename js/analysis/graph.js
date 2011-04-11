@@ -75,7 +75,7 @@ Graph.DrawAlternative = function(n)
     for (i=0; i<Graph.Data['criteriaNr']; i++)
     {
         // calculate x postion
-        var x = Graph.Config['leftLegendOffset'] + parseInt(Graph.Data['Alternatives'][n]['criteria'][i]['score'] * 5, 10);
+        var x = Graph.Config['leftLegendOffset'] + parseInt(Graph.Data['Alternatives'][n]['criteria'][i]['weightedScore'] * 5, 10);
 
         // calculate y position
         var y = Graph.Config['rowHeight'] * i + (Graph.Config['rowHeight']/2);
