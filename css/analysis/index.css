@@ -80,6 +80,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        table-layout: fixed;
     }
 
         #abacon table tr {
@@ -88,12 +89,15 @@
         }
 
             #abacon table tr td {
-                padding-left: 10px;
+                height: 59px;
+                max-height: 59px;
+                padding: 0 0 1px 10px;
                 vertical-align: middle;
                 color: #444a56;
                 opacity: 0.7;
                 font-size: 14px;
                 font-style: italic;
+                overflow: hidden;
             }
 
 /* Abacon Sidebar
