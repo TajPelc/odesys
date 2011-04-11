@@ -10,8 +10,9 @@ Graph.Data = {};
 Graph.Config = {
     'width': 666,
     'rowHeight': 60,
-    'lineWidth': 2,
-    'bottomLegend': 25
+    'bottomLegend': 25,
+    'leftLegendOffset': 157,
+    'tickWidth': 50,
 };
 
 Graph.initAbacon = function(){
@@ -20,17 +21,16 @@ Graph.initAbacon = function(){
     var container = $('#abacon');
 
     // calculate abacon height
-    var height = Graph.Data['criteriaNr'] * Graph.Config['rowHeight'] + Graph.Data['criteriaNr'] * Graph.Config['rowHeight'];
+    var height = Graph.Data['criteriaNr'] * Graph.Config['rowHeight'] + Graph.Data['criteriaNr'] + Graph.Config['bottomLegend'];
 
     // resize abacon container
     container.css({
         height: height,
         width: Graph.Config['width'],
-//        border: '1px solid red',
     });
 
     // resize accoredion container
-    container.parents().find('.ui-accordion-content').css({
+    container.parent('.ui-accordion-content').css({
         height: height + 20,
     });
 
@@ -42,20 +42,39 @@ Graph.initAbacon = function(){
         stroke: '#dddee2',
     });
 
-    return;
-
-    // datapoints
-    var dataPoints = [];
-
-    for (i=0; i<Graph.Data.length; i++)
+    // draw horizontal grid
+    for(i=0; i<Graph.Data['criteriaNr']; i++)
     {
-        var x = parseInt(Graph.Data[i]*4, 10);
-        var y = 30*i + 15;
-        var element = canvas.circle(x, y, 6);
-        element.attr({
+        canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Graph.Config['width']).attr({
+            'stroke': '#dddee2',
+            'stroke-dasharray': '-',
+            'stroke-width': 1
+        });
+    }
+
+    // draw vertical grid
+    for(i=0; i<=10; i++)
+    {
+        canvas.path('M ' + (Graph.Config['leftLegendOffset'] + (i*Graph.Config['tickWidth'])) + ' 0 v ' + height).attr({
+            'stroke': '#dddee2',
+            'stroke-dasharray': '-',
+            'stroke-width': 1
+        });
+    }
+
+
+    // get alternative
+    var Alternative = Graph.Data['Alternatives'][0];
+
+    var dataPoints = [];
+    for (i=0; i<Graph.Data['criteriaNr']; i++)
+    {
+        var x = parseInt(Alternative['criteria'][i]['score'] * 5, 10);
+        var y = Graph.Config['rowHeight']*i + (Graph.Config['rowHeight']/2);
+        var element = canvas.circle(x, y, 6).attr({
             stroke: '#4b7eda',
             fill: '#4b7eda',
-        });
+        }).toFront();
 
         // add to arr
         dataPoints.push({
@@ -80,7 +99,7 @@ Graph.initAbacon = function(){
         pathString = pathString + ' ' + char + ' '+ x + ' ' + y;
     }
 
-    var path = canvas.path(pathString).toBack();
+    var path = canvas.path(pathString);
     path.attr({"stroke-width": 3, "stroke": '#4b7eda'});
 }
 
