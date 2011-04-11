@@ -63,32 +63,6 @@ class AnalysisController extends DecisionController
             $this->redirect(array('evaluation/evaluate'));
         }
 
-        // graph data
-        $eval = $Project->getEvaluationArray();
-        $rv = array('colorPool' => self::$colorPool);
-        foreach($eval as $Alternative)
-        {
-            $scores = array();
-            $weightedScores = array();
-            $weights = array();
-            $rv['nrCriteria'] = count($Alternative['Criteria']);
-            $rv['legend'][] = CHtml::encode(Common::truncate($Alternative['Obj']->title, 25));
-
-            $Alternative['Criteria'] = array_reverse($Alternative['Criteria'], true);
-            foreach($Alternative['Criteria'] as $Criteria)
-            {
-                $scores[]           = array((int)$Criteria['score'],            CHtml::encode($Criteria['Obj']->title));
-                $weightedScores[]   = array((int)$Criteria['weightedScore'],   CHtml::encode($Criteria['Obj']->title));
-                $weights[CHtml::encode($Criteria['Obj']->title)] = $Criteria['weight'];
-            }
-
-            $rv['scores'][] = $scores;
-            $rv['weightedScores'][] = $weightedScores;
-            $rv['weights'][] = $weights;
-            $rv['total'][] = $Alternative['total'];
-            $rv['weightedTotal'][] = $Alternative['weightedTotal'];
-        }
-
         //include script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery.selectBox.min.js');
@@ -101,7 +75,7 @@ class AnalysisController extends DecisionController
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
         $this->render('display',array(
-            'rv'        => $rv,
+            'eval'      => $Project->getEvaluationArray(),
             'Project'   => $Project,
             'colorPool' => self::$colorPool,
         ));

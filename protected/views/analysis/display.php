@@ -1,3 +1,6 @@
+<script type="text/javascript">
+var data = <?php echo json_encode($eval); ?>;
+</script>
 <div id="accordion">
     <h3><a href="#">Abacon</a></h3>
     <div>

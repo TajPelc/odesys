@@ -254,116 +254,76 @@ class Project extends CActiveRecord
 
     /**
      * Build an array of grades by alternatives and criteria
+     *
+     * @param double $quotient
+     * @param string $sortBy
      */
-    public function getEvaluationArrayByCriteria()
+    public function getEvaluationArray($quotient = 0.9)
     {
         // find criteria by priority
         $criteriaArray = $this->findCriteriaByPriority();
 
         // build the array of evaluations
-        $eval = array();
-        foreach($criteriaArray as $Criteria)
-        {
-            $eval[$Criteria->criteria_id] = array(
-                'Obj'                      => $Criteria,
-                'Alternatives'             => array(),
-            );
+        $eval = array(
+            'criteriaNr' => count($criteriaArray),
+        );
 
-            // loop through alternatives
-            foreach($this->alternatives as $Alternative)
-            {
-                // save criteria
-                $eval[$Criteria->criteria_id]['Alternatives'][$Alternative->alternative_id]['Obj'] = $Alternative;
-
-                // get all evaluations for this model
-                $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' =>$Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
-
-                // evaluation does not exist yet
-                if(false === $Evaluation instanceof Evaluation)
-                {
-                    $Evaluation = new Evaluation();
-                }
-
-                // add evaluation
-                $eval[$Criteria->criteria_id]['Alternatives'][$Alternative->alternative_id]['Evaluation'] = $Evaluation;
-            }
-        }
-
-        return $eval;
-    }
-
-    /**
-     * Build an array of grades by alternatives and criteria
-     *
-     * @param double $quotient
-     * @param string $sortBy
-     */
-    public function getEvaluationArray($quotient = 0.9, $sort = false)
-    {
-        // build the array of evaluations
-        $eval = array();
+        // loop alternatives
+        $i = 0;
         foreach($this->alternatives as $Alternative)
         {
-            $eval[$Alternative->alternative_id] = array(
-                'Obj'                     => $Alternative,
-                'Criteria'                => array(),
-                'totalPercentage'         => null,
-                'weightedTotalPercentage' => null,
+            $eval['Alternatives'][$i] = array(
+                'title'                   => $Alternative->title,
+                'criteria'                => array(),
+                'total'					  => 0,
+                'weightedTotal' 		  => 0,
             );
 
-            // find criteria by priority
-            $criteriaArray = $this->findCriteriaByPriority();
 
-            //dump($criteriaArray);
             // init score
             $total = 0;
             $weightedTotal = 0;
-            $i = 1;
+            $j = 0; // criteria loop counter
+
             // loop through criteria
             foreach($criteriaArray as $Criteria)
             {
                 // save criteria
-                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['Obj'] = $Criteria;
+                $eval['Alternatives'][$i]['criteria'][$j]['title'] = $Criteria->title;
 
-                // get all evaluations for this model
-                $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' =>$Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
-                // evaluation does not exist yet
-                if(false === $Evaluation instanceof Evaluation)
-                {
-                    $Evaluation = new Evaluation();
-                }
+                // get evaluation for criteria / alternative pair
+                $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' => $Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
 
                 // calcualte weight
-                $weight = pow($quotient, $i - 1);
+                $weight = pow($quotient, $j);
 
                 // calculate the score and total
-                $score = $Evaluation->grade * 10;
-                $total = $total + $Evaluation->grade * 10;
+                $score = (int)$Evaluation->grade;
+                $total = $total + (int)$Evaluation->grade;
 
                 // calculate weighted score and total
                 $weightedScore = $score * $weight;
                 $weightedTotal = $weightedTotal + $weightedScore;
 
                 // add evaluation
-                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['Evaluation'] = $Evaluation;
-                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['weight'] = $weight;
-                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['score'] = $score;
-                $eval[$Alternative->alternative_id]['Criteria'][$Criteria->criteria_id]['weightedScore'] = $weightedScore;
+                $eval['Alternatives'][$i]['criteria'][$j]['weight'] = $weight;
+                $eval['Alternatives'][$i]['criteria'][$j]['score'] = $score;
+                $eval['Alternatives'][$i]['criteria'][$j]['weightedScore'] = $weightedScore;
 
                 // increase counter
-                $i++;
+                $j++;
             }
 
             // addd totals
-            $eval[$Alternative->alternative_id]['total'] = $total;
-            $eval[$Alternative->alternative_id]['weightedTotal'] = (int)$weightedTotal;
+            $eval['Alternatives'][$i]['total'] = (int)$total;
+            $eval['Alternatives'][$i]['weightedTotal'] = (int)$weightedTotal;
+
+            // increase first counter
+            $i++;
         }
 
         // sort the array
-        if($sort)
-        {
-            uasort($eval, array('Project', 'compareAlternative'));
-        }
+        usort($eval['Alternatives'], array('Project', 'compareAlternative'));
 
         return $eval;
     }
