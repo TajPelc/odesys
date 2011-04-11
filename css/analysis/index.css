@@ -8,7 +8,6 @@
 ********************************************************/
 .content {
     width: 666px;
-    min-height: 400px;
     float: left;
 }
 
@@ -66,6 +65,7 @@
 
     #accordion > div {
         width: 100%;
+        margin-bottom: 16px;
         float: left;
     }
 
@@ -142,7 +142,7 @@
         height: 33px;
         line-height: 33px;
         padding-right: 17px;
-        margin-bottom: 2px;
+        margin-bottom: 1px;
         position: relative;
         background: #fff url(../../images/bg/legend_list.png) top right no-repeat;;
     }
@@ -163,7 +163,7 @@
             position: absolute;
             top: 0;
             right: 0;
-            font-size: 13px;
+            font-size: 11px;
             text-align: center;
             font-weight: bold;
             color: #444a56;
