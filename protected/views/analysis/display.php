@@ -6,7 +6,7 @@ var data = <?php echo json_encode($eval); ?>;
     <div>
         <div id="abacon" class="content">
             <table class="criteria">
-            <?php foreach($Project->criteria as $Criteria) { ?>
+            <?php foreach($Project->findCriteriaByPriority() as $Criteria) { ?>
                 <tr>
                     <td><?php echo CHtml::encode($Criteria->title); ?></td>
                 </tr>
