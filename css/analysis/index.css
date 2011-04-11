@@ -7,14 +7,14 @@
 /* Layout
 ********************************************************/
 .content {
-    width: 686px;
+    width: 666px;
     min-height: 400px;
     float: left;
 }
 
 .sidebar {
+    width: 234px;
     float: right;
-    width: 214px;
 }
 
 /* Accordion
