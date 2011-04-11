@@ -1,9 +1,7 @@
 <div id="accordion">
     <h3><a href="#">Abacon</a></h3>
     <div>
-        <div class="content">
-            <p>Here be Raphael...</p>
-        </div>
+        <div id="abacon" class="content"></div>
         <div class="sidebar">
             <p>Sidebar</p>
         </div>
