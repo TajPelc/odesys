@@ -11,5 +11,5 @@ Analysis = {};
  * Document Ready
  * */
 $(document).ready(function(){
-
+    $('#sidebar select').selectBox();
 });
