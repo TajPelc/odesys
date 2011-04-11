@@ -5,11 +5,13 @@
 
 Analysis = {};
 
-
-
 /*
  * Document Ready
  * */
 $(document).ready(function(){
+    //accordion
+    $( "#accordion" ).accordion();
+
+    //selectbox
     $('#sidebar select').selectBox();
 });

@@ -314,6 +314,7 @@ class Project extends CActiveRecord
             // find criteria by priority
             $criteriaArray = $this->findCriteriaByPriority();
 
+            //dump($criteriaArray);
             // init score
             $total = 0;
             $weightedTotal = 0;
