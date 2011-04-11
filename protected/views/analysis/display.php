@@ -4,7 +4,22 @@ var data = <?php echo json_encode($eval); ?>;
 <div id="accordion">
     <h3><a href="#">Abacon</a></h3>
     <div>
-        <div id="abacon" class="content"></div>
+        <div id="abacon" class="content">
+            <table>
+                <tr>
+                    <td>Criteria #1</td>
+                </tr>
+                <tr>
+                    <td>Criteria #2</td>
+                </tr>
+                <tr>
+                    <td>Criteria #3</td>
+                </tr>
+                <tr>
+                    <td>Criteria #4</td>
+                </tr>
+            </table>
+        </div>
         <div class="sidebar">
             <h4>Legend</h4>
             <form method="post" action="">
