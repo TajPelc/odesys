@@ -116,6 +116,11 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         fill: '#000',
     }).toFront().animate({r: 5, stroke: color, fill: color}, 500));
 
+    // draw path shadow /** EXPERIMENTAL **/
+    Graph.Elements[n].push(Graph.Canvas.path('M' + paths[i]).attr({stroke: "#000", fill: "#000", translation: "4,4"}).animate({
+        'path': 'M'+ paths[i] + ' L' + paths[i+1],
+    }, 500, 'cubic-bezier(p1)').blur(2));
+
     // draw path
     Graph.Elements[n].push(Graph.Canvas.path('M' + paths[i]).attr({"stroke-width": 3, "stroke": '#000', 'class': 'WTFLOL'}).animate({
         'path': 'M'+ paths[i] + ' L' + paths[i+1],
