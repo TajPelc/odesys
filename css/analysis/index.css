@@ -89,18 +89,18 @@
         position: absolute;
         top: 0;
         right: 0;
-        background: url(../../images/form/sprite_buttons.png) 0 -100px no-repeat;
+        background: url(../../images/form/sprite_buttons.png) -101px -300px no-repeat;
         text-indent: -9999px;
-            border-radius: 0 6px 6px 0;
-        -moz-border-radius: 0 6px 6px 0;
-        -webkit-border-radius: 0 6px 6px 0;
+            border-radius: 0 6px 0 0;
+        -moz-border-radius: 0 6px 0 0;
+        -webkit-border-radius: 0 6px 0 0;
         border: 1px solid #97999d;
         border-width: 1px 1px 1px 0;
     }
 
 
-    .sidebar form input[type="submit"]:hover { background-position: -100px -100px; cursor: pointer }
-    .sidebar form input[type="submit"]:active { background-position: -200px -100px }
+    .sidebar form input[type="submit"]:hover { background-position: -201px -300px; cursor: pointer }
+    .sidebar form input[type="submit"]:active { background-position: -301px -300px }
 
 .sidebar form + ul {
 
@@ -181,13 +181,6 @@
     border: 1px solid #97999d;
     text-decoration: none;
     cursor: pointer;
-}
-
-.sidebar .selectBox-menuShowing {
-    border-bottom: 0;
-    border-radius: 6px 0 0 0;
-    -moz-border-radius: 6px 0 0 0;
-    -webkit-border-radius: 6px 0 0 0;
 }
 
     .sidebar .selectBox-label {
