@@ -62,46 +62,61 @@ Graph.initAbacon = function(){
         });
     }
 
-
     // get alternative
     var Alternative = Graph.Data['Alternatives'][0];
 
+
+    // create & draw data points
     var dataPoints = [];
     for (i=0; i<Graph.Data['criteriaNr']; i++)
     {
-        var x = parseInt(Alternative['criteria'][i]['score'] * 5, 10);
-        var y = Graph.Config['rowHeight']*i + (Graph.Config['rowHeight']/2);
-        var element = canvas.circle(x, y, 6).attr({
-            stroke: '#4b7eda',
-            fill: '#4b7eda',
-        }).toFront();
+        // calculate x postion
+        var x = Graph.Config['leftLegendOffset'] + parseInt(Alternative['criteria'][i]['score'] * 5, 10);
+
+        // calculate y position
+        var y = Graph.Config['rowHeight'] * i + (Graph.Config['rowHeight']/2);
 
         // add to arr
         dataPoints.push({
-            element: element,
             x: x,
             y: y
         });
     }
 
-    pathString = '';
-    start = true;
+    // build pathstring and draw line
+    paths = [];
     for (i=0; i<dataPoints.length; i++)
     {
-        var char = 'L';
-        if(start)
-        {
-            char = 'M';
-            start = false;
-        }
-        var x = dataPoints[i]['x'];
-        var y = dataPoints[i]['y'];
-        pathString = pathString + ' ' + char + ' '+ x + ' ' + y;
+        var x = dataPoints[i]['x']; // get x position
+        var y = dataPoints[i]['y']; // get y position
+
+        // build path string
+        paths.push(x + ' ' + y);
     }
 
-    var path = canvas.path(pathString);
-    path.attr({"stroke-width": 3, "stroke": '#4b7eda'});
+    // animate paths
+    Graph.AnimateDrawPath(0, paths, dataPoints, canvas);
 }
+
+Graph.AnimateDrawPath = function(i, paths, dataPoints, canvas)
+{
+    canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
+        stroke: '#000',
+        fill: '#000',
+    }).toFront().animate({r: 5, stroke: '#4b7eda', fill: '#4b7eda'}, 500);
+
+    canvas.path('M' + paths[i]).attr({"stroke-width": 3, "stroke": '#000'}).animate({
+        'path': 'M'+ paths[i] + ' L' + paths[i+1],
+        "stroke": '#4b7eda',
+    }, 500, 'cubic-bezier(p1)', function(){
+        if(i < paths.length - 1)
+        {
+            Graph.AnimateDrawPath(i+1, paths, dataPoints, canvas);
+
+        }
+    });
+}
+
 
 $(document).ready(function(){
     Graph.Data = data;

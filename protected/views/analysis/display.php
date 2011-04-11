@@ -6,18 +6,11 @@ var data = <?php echo json_encode($eval); ?>;
     <div>
         <div id="abacon" class="content">
             <table>
+            <?php foreach($Project->criteria as $Criteria) { ?>
                 <tr>
-                    <td>Criteria #1</td>
+                    <td><?php echo CHtml::encode($Criteria->title); ?></td>
                 </tr>
-                <tr>
-                    <td>Criteria #2</td>
-                </tr>
-                <tr>
-                    <td>Criteria #3</td>
-                </tr>
-                <tr>
-                    <td>Criteria #4</td>
-                </tr>
+            <?php }?>
             </table>
         </div>
         <div class="sidebar">
