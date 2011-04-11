@@ -35,20 +35,34 @@
         -webkit-border-radius: 6px;
     }
 
+
+    #accordion h3.ui-state-default {
+        background: #f7f7f8;
+    }
+
         #accordion h3 a {
-            width: 646px; /*666px*/
+            width: 879px;
             height: 100%;
             padding: 0 10px;
             line-height: 25px;
             font-size: 16px;
             display: block;
+            float: left;
             color: #444a56;
             text-decoration: none;
         }
 
-        #accordion h3.ui-state-default {
-            background: #f7f7f8;
+        #accordion h3 .ui-icon {
+            width: 11px;
+            height: 9px;
+            margin: 8px 0 0 10px;
+            display: block;
+            float: left;
+            background: url(../../images/sprite_icons.png) no-repeat;
         }
+
+        #accordion h3 .ui-icon-triangle-1-s { background-position: 0 -550px }
+        #accordion h3 .ui-icon-triangle-1-e { background-position: 0 -600px }
 
     #accordion > div {
         width: 100%;
