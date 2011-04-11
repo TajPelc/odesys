@@ -28,21 +28,21 @@ var data = <?php echo json_encode($eval); ?>;
                 </tr>
             </table>
         </div>
-        <div class="sidebar">
+        <div id="abacon-sidebar" class="sidebar">
             <h4>Legend</h4>
             <form method="post" action="">
                 <fieldset>
                     <select name="legend">
-                        <option value="option_1">option_1</option>
-                        <option value="option_2">option_2</option>
-                        <option value="option_3">option_3</option>
+                        <?php foreach($Alternatives as $A) { ?>
+                            <option value="<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?></option>
+                        <?php }?>
                     </select>
                     <input type="submit" name="add" value="add option" />
                 </fieldset>
             </form>
             <ul>
                 <?php foreach($bestAlternatives as $A) {?>
-                    <li><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode($A->title); ?><span class="remove">X</span></li>
+                    <li id="alternative_<?php echo $A->alternative_id; ?>"><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode($A->title); ?><span class="remove">X</span></li>
                 <?php }?>
             </ul>
         </div>

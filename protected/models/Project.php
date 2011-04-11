@@ -272,7 +272,7 @@ class Project extends CActiveRecord
         $i = 0;
         foreach($this->alternatives as $Alternative)
         {
-            $eval['Alternatives'][$i] = array(
+            $eval['Alternatives'][$Alternative->alternative_id] = array(
                 'alternative_id'          => $Alternative->alternative_id,
                 'title'                   => $Alternative->title,
                 'color'					  => $Alternative->color,
@@ -290,7 +290,7 @@ class Project extends CActiveRecord
             foreach($criteriaArray as $Criteria)
             {
                 // save criteria
-                $eval['Alternatives'][$i]['criteria'][$j]['title'] = $Criteria->title;
+                $eval['Alternatives'][$Alternative->alternative_id]['criteria'][$j]['title'] = $Criteria->title;
 
                 // get evaluation for criteria / alternative pair
                 $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' => $Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
@@ -307,17 +307,17 @@ class Project extends CActiveRecord
                 $weightedTotal = $weightedTotal + $weightedScore;
 
                 // add evaluation
-                $eval['Alternatives'][$i]['criteria'][$j]['weight'] = $weight;
-                $eval['Alternatives'][$i]['criteria'][$j]['score'] = $score;
-                $eval['Alternatives'][$i]['criteria'][$j]['weightedScore'] = $weightedScore;
+                $eval['Alternatives'][$Alternative->alternative_id]['criteria'][$j]['weight'] = $weight;
+                $eval['Alternatives'][$Alternative->alternative_id]['criteria'][$j]['score'] = $score;
+                $eval['Alternatives'][$Alternative->alternative_id]['criteria'][$j]['weightedScore'] = $weightedScore;
 
                 // increase counter
                 $j++;
             }
 
             // addd totals
-            $eval['Alternatives'][$i]['total'] = (int)$total;
-            $eval['Alternatives'][$i]['weightedTotal'] = (int)$weightedTotal;
+            $eval['Alternatives'][$Alternative->alternative_id]['total'] = (int)$total;
+            $eval['Alternatives'][$Alternative->alternative_id]['weightedTotal'] = (int)$weightedTotal;
 
             // update scores
             $Alternative->score = $total;
@@ -329,7 +329,7 @@ class Project extends CActiveRecord
         }
 
         // sort the array
-        usort($eval['Alternatives'], array('Project', 'compareAlternative'));
+        uasort($eval['Alternatives'], array('Project', 'compareAlternative'));
 
         return $eval;
     }

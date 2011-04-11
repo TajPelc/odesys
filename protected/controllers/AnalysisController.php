@@ -70,6 +70,7 @@ class AnalysisController extends DecisionController
             'eval'      => $eval,
             'bestAlternatives' =>  $bestAlternatives,
             'Project'   => $Project,
+            'Alternatives'	=> $Project->alternatives,
         ));
     }
 }

@@ -5,10 +5,45 @@
 
 Core = {};
 
+/**
+ * Preload images
+ * @param arrayOfImages
+ */
 function ImagePreload(arrayOfImages) {
     $(arrayOfImages).each(function(){
         $('<img/>')[0].src = this;
     });
+}
+
+/**
+ * Extract numbers from a string
+ * @param string
+ */
+Core.ExtractNumbers = function (str)
+{
+    return str.match(/\d+(,\d{3})*(\.\d{1,2})?/g);
+}
+
+/**
+ * Escape HTML characters
+ * @param str
+ * @return str
+ */
+Core.EscapeString = function (str) {
+    var div = document.createElement('div');
+    var text = document.createTextNode(str);
+    div.appendChild(text);
+    return div.innerHTML;
+}
+
+/**
+ * Redirect
+ *
+ * @param string url
+ * @return
+ */
+function redirectUser(url) {
+    window.location.replace(location.protocol + '//'+ location.hostname + location.pathname + '?r=' + url);
 }
 
 /**
