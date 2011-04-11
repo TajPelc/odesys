@@ -110,19 +110,32 @@ Graph.DrawAlternative = function(n)
  */
 Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
 {
-    // draw data points
-    Graph.Elements[n].push(Graph.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
+    // draw data points shadow /** EXPERIMENTAL **/
+    var shadowDot = Graph.Canvas.circle(dataPoints[i]['x'] + 1, dataPoints[i]['y'] + 1, 0).attr({
+        'stroke-width': '5px',
         stroke: '#000',
-        fill: '#000',
-    }).toFront().animate({r: 5, stroke: color, fill: color}, 500));
+        fill: 'none',
+        opacity: 0.3,
+    }).animate({r: 3}, 500, 'elastic');
+    Graph.Elements[n].push(shadowDot);
 
     // draw path shadow /** EXPERIMENTAL **/
-    Graph.Elements[n].push(Graph.Canvas.path('M' + paths[i]).attr({stroke: "#000", fill: "#000", translation: "4,4"}).animate({
-        'path': 'M'+ paths[i] + ' L' + paths[i+1],
-    }, 500, 'cubic-bezier(p1)').blur(2));
+    if(i < paths.length - 1)
+    {
+        var pathShadow = Graph.Canvas.path('M' + paths[i]).attr({
+            'stroke-width': 3,
+            stroke: "#000",
+            'opacity': 0.4,
+        }).animate({
+            'path': 'M'+ (dataPoints[i]['x'] + 2) + ' ' + (dataPoints[i]['y'] + 1) + ' L' + (dataPoints[i+1]['x'] + 1) + ' ' + (dataPoints[i+1]['y'] + 2),
+        }, 500, 'cubic-bezier(p1)');
+        Graph.Elements[n].push(pathShadow);
+        pathShadow.blur(1);
+    }
+
 
     // draw path
-    Graph.Elements[n].push(Graph.Canvas.path('M' + paths[i]).attr({"stroke-width": 3, "stroke": '#000', 'class': 'WTFLOL'}).animate({
+    Graph.Elements[n].push(Graph.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#000'}).animate({
         'path': 'M'+ paths[i] + ' L' + paths[i+1],
         "stroke": color,
     }, 500, 'cubic-bezier(p1)', function(){
@@ -137,6 +150,35 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
             $('#abacon-sidebar ul span.remove').fadeIn();
         }
     }));
+
+    // draw data points
+    var dot = Graph.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
+        'stroke-width': '5px',
+        stroke: '#000',
+        fill: '#000',
+    }).animate({r: 3, stroke: color, fill: color}, 500);
+
+    // draw dot for hovering
+    var hoverDot = Graph.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 15).attr({
+        'stroke-width': '5px',
+        stroke: 'red',
+        fill: 'red',
+        'opacity': 0,
+    })
+
+    // hover over dot (to make life easier)
+    hoverDot.mouseover(function (event) {
+        dot.animate({r: 6}, 1000, 'elastic');
+        shadowDot.animate({r: 6}, 1000, 'elastic');
+    });
+    hoverDot.mouseout(function (event) {
+        dot.animate({r: 3}, 1000, 'elastic');
+        shadowDot.animate({r:3}, 1000, 'elastic');
+    });
+
+    // push to elements
+    Graph.Elements[n].push(dot);
+    Graph.Elements[n].push(hoverDot);
 }
 
 /**
@@ -208,13 +250,13 @@ $(document).ready(function(){
         // fadeout & remove elements
         for(i=0; i < Graph.Elements[id].length; i++)
         {
-            Graph.Elements[id][i].animate({'opacity': 0}, 500, function(){
+            Graph.Elements[id][i].animate({'opacity': 0}, 300, function(){
                 this.remove();
             });
         }
 
         // fadeout legend item
-        $(this).parent().fadeOut(500, function(){
+        $(this).parent().fadeOut(300, function(){
             $(this).remove();
         });
     });
