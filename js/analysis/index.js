@@ -29,6 +29,8 @@ $(document).ready(function(){
     $('#abacon-tab').click(function(){
         if(initDraw)
         {
+            Abacon.Legend.rebuildDropdown();
+
             // draw the two best alternatives
             Abacon.Legend.LegendList.children().each(function(){
                 // get id
