@@ -11,7 +11,8 @@ Analysis = {};
 $(document).ready(function(){
     //accordion
     $( "#accordion" ).accordion({
-        autoHeight: false
+        autoHeight: false,
+        animated: false
 
     });
 
