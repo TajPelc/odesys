@@ -8,11 +8,13 @@
 ********************************************************/
 .content {
     width: 666px;
+    margin-bottom: 16px;
     float: left;
 }
 
 .sidebar {
     width: 234px;
+    margin-bottom: 16px;
     float: right;
 }
 

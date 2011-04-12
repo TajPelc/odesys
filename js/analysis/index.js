@@ -10,7 +10,10 @@ Analysis = {};
  * */
 $(document).ready(function(){
     //accordion
-    $( "#accordion" ).accordion();
+    $( "#accordion" ).accordion({
+        autoHeight: false
+
+    });
 
     //selectbox
     $('.sidebar select').selectBox();
