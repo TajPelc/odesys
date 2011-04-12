@@ -116,7 +116,7 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         stroke: '#000',
         fill: 'none',
         opacity: 0.3,
-    }).animate({r: 3}, 500, 'elastic');
+    }).animate({r: 3}, 250, 'elastic');
     Graph.Elements[n].push(shadowDot);
 
     // draw path shadow /** EXPERIMENTAL **/
@@ -128,17 +128,16 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
             'opacity': 0.4,
         }).animate({
             'path': 'M'+ (dataPoints[i]['x'] + 2) + ' ' + (dataPoints[i]['y'] + 1) + ' L' + (dataPoints[i+1]['x'] + 1) + ' ' + (dataPoints[i+1]['y'] + 2),
-        }, 500, 'cubic-bezier(p1)');
+        }, 250, 'cubic-bezier(p1)');
         Graph.Elements[n].push(pathShadow);
         pathShadow.blur(1);
     }
-
 
     // draw path
     Graph.Elements[n].push(Graph.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#000'}).animate({
         'path': 'M'+ paths[i] + ' L' + paths[i+1],
         "stroke": color,
-    }, 500, 'cubic-bezier(p1)', function(){
+    }, 200, 'cubic-bezier(p1)', function(){
         // not all lines yet drawn
         if(i < paths.length - 1)
         {
@@ -147,7 +146,7 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         }
         else // fade in sidebar
         {
-            $('#abacon-sidebar ul span.remove').fadeIn();
+            $('#abacon-sidebar ul li[id="alternative_' + n + '"] span.remove').fadeIn();
         }
     }));
 
@@ -156,7 +155,7 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         'stroke-width': '5px',
         stroke: '#000',
         fill: '#000',
-    }).animate({r: 3, stroke: color, fill: color}, 500);
+    }).animate({r: 3, stroke: color, fill: color}, 250);
 
     // draw dot for hovering
     var hoverDot = Graph.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 15).attr({
@@ -197,43 +196,63 @@ $(document).ready(function(){
         var id = Core.ExtractNumbers($(this).attr('id'));
 
         // remove all selected options from the drop down
-        $('#abacon-sidebar select option[value="'+ id + '"], ul.selectBox-dropdown-menu li a[rel="'+ id +'"]').remove();
+        $('ul.selectBox-dropdown-menu li a[rel="'+ id +'"]').hide().addClass('hidden');
 
         // draw alternatives
         Graph.DrawAlternative(Core.ExtractNumbers($(this).attr('id')));
     });
 
     // draw on demand
-    $('ul.selectBox-dropdown-menu li a, #abacon-sidebar input[type="submit"]').live('click', function(){
+    $('ul.selectBox-dropdown-menu li a').live('click', function(){
         //get id
         var id = Core.ExtractNumbers($(this).attr('rel'));
 
         // draw alternative
         Graph.DrawAlternative(id);
 
-        // remove link
-        $(this).remove();
-        // remove label
-        $('span.selectBox-label').remove();
+        // hide dropdown element
+        $(this).hide().addClass('hidden');
 
-        // @TODO prepare li etc ...
+        // select all non-draw alternatives
+        var alternativePool = $('ul.selectBox-dropdown-menu li a:not(.hidden)');
+
+        // select label
+        var label = $('#abacon-sidebar form span.selectBox-label');
+
+        // empty label
+        label.empty();
+
+        // set label value
+        if(alternativePool.length > 0)
+        {
+            label.html(alternativePool.first().html());
+        }
+        else
+        {
+            $('#abacon-sidebar form fieldset span.selectBox-arrow').fadeOut();
+        }
+
+        // remove span
+        var x = $('<span>X</span>')
+            .addClass('remove')
+            .css({'display': 'block'})
+            .hide();
+
+        // legend list element
         var li = $('<li>' + Graph.Data['Alternatives'][id]['title'] + '</li>')
             .attr('id', 'alternative_' + id)
             .append($('<span>&nbsp;</span>')
                 .addClass('color')
                 .css({'background-color': Graph.Data['Alternatives'][id]['color']})
-            )
-            .append($('<span>X</span>')
-                .addClass('remove')
-                .css({'display': 'block'})
-            )
-            .hide();
+            ).append(x);
 
         // append li
         $('#abacon-sidebar ul').append(li);
 
         // fade in
         li.fadeIn();
+
+        return false;
     });
 
     // remove alternative
@@ -241,11 +260,18 @@ $(document).ready(function(){
         // get id
         var id = Core.ExtractNumbers($(this).parent().attr('id'));
 
-        /**
-         * @TODO - FIX ADDING ELEMENTS BACK TO THE MENU
-         */
-        var li = $('<li></li>').attr('rel', id).val(Graph.Data['Alternatives'][id]['title']);
-        $('ul.selectBox-dropdown-menu').append(li);
+        // get list element link
+        var link = $('ul.selectBox-dropdown-menu li a[rel="' +  id+ '"]');
+
+        // all elements hidden
+        if($('ul.selectBox-dropdown-menu li a.hidden').length ==  $('ul.selectBox-dropdown-menu li a').length)
+        {
+            $('#abacon-sidebar form fieldset span.selectBox-arrow').fadeIn();
+            $('#abacon-sidebar form span.selectBox-label').html(link.html());
+        }
+
+        // reenable dropdown element
+        link.show().removeClass('hidden');
 
         // fadeout & remove elements
         for(i=0; i < Graph.Elements[id].length; i++)
