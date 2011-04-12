@@ -77,31 +77,50 @@ Score.init = function(){
         });
     }
 
-    // calculate percentages
-    for(i=0; i<Score.Scores.length; i++)
+    // draw alternatives
+    Score.DrawAlternative(0);
+}
+
+Score.DrawAlternative = function(i)
+{
+    // avoid division by zero
+    if(Score.Scores[0]['weightedTotal'] == 0)
     {
-        // avoid division by zero
-        if(Score.Scores[0]['weightedTotal'] == 0)
-        {
-            Score.Scores[0]['weightedTotal'] = 1;
-        }
-
-        // calculate width
-        width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
-
-        // calculate x postion
-        var x = Abacon.Config['leftLegendOffset'];
-
-        // calculate y position
-        var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2) - 20;
-
-        // draw bar
-        Score.Canvas.rect(x, y, 0, 40).attr({
-            'fill': '#000',
-            'stroke-width': 0,
-        }).animate({
-            'fill': Score.Scores[i]['color'],
-            width: width,
-        }, 600);
+        Score.Scores[0]['weightedTotal'] = 1;
     }
+
+    // calculate width
+    width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
+
+    // calculate x postion
+    var x = Abacon.Config['leftLegendOffset']+0.5;
+
+    // calculate y position
+    var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2) - 10;
+
+    // shadow
+    var rect = Score.Canvas.rect(x+2, y+2, 0, 20).attr({
+        'fill': '#000',
+        'stroke-width': 0,
+        'opacity': 0.4,
+    }).animate({
+        width: width,
+    }, 500, '<>').blur(1);
+
+    // rectangle
+    var rect = Score.Canvas.rect(x, y, 0, 20, 0).attr({
+        'fill': '#000',
+        'stroke': '#000',
+        'stroke-width': 2,
+    }).animate({
+        'fill': Score.Scores[i]['color'],
+        'stroke': Score.Scores[i]['color'],
+        width: width,
+    }, 500, '<>', function(){
+        if(i < Score.Scores.length)
+        {
+            i++;
+            Score.DrawAlternative(i);
+        }
+    });
 }
