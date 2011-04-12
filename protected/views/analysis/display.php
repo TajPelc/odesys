@@ -37,7 +37,6 @@ var data = <?php echo json_encode($eval); ?>;
                             <option value="<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?></option>
                         <?php }?>
                     </select>
-                    <input type="submit" name="add" value="add option" />
                 </fieldset>
             </form>
             <ul>
