@@ -100,7 +100,7 @@ Abacon.DrawAlternative = function(n)
     }
 
     // array for elements
-    Abacon.Elements[n] = [];
+    Abacon.Elements[n] = Abacon.Canvas.set();
 
     // animate paths
     Abacon.AnimateDrawPath(0, n, Abacon.Data['Alternatives'][n]['color'], paths, dataPoints);
@@ -330,12 +330,9 @@ Abacon.Legend.removeAlternative = function()
         Abacon.Legend.rebuildDropdown();
 
         // fadeout & remove elements
-        for(i=0; i < Abacon.Elements[id].length; i++)
-        {
-            Abacon.Elements[id][i].animate({'opacity': 0}, 300, function(){
-                this.remove();
-            });
-        }
+        Abacon.Elements[id].animate({'opacity': 0}, 300, function(){
+            this.remove();
+        });
 
         // fadeout legend item
         $(this).parent().fadeOut(300, function(){
