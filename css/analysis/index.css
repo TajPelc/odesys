@@ -65,6 +65,7 @@
 
     #accordion > div {
         width: 100%;
+        padding-top: 8px;
         float: left;
     }
 
@@ -232,7 +233,8 @@
         display: block;
     }
 
-    .sidebar .selectBox-arrow {
+    .sidebar .selectBox-arrow,
+    .sidebar .selectBox-arrow-reverse {
         width: 11px;
         height: 9px;
         margin: 9px 0 0 7px;
@@ -242,3 +244,5 @@
         left: 0;
         background: url(../../images/sprite_icons.png) 0 -600px no-repeat;
     }
+
+    .sidebar .selectBox-arrow-reverse { background-position: 0 -550px}
