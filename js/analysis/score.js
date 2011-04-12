@@ -108,10 +108,10 @@ Score.DrawAlternative = function(i)
     }, 500, '<>').blur(1);
 
     // rectangle
-    var rect = Score.Canvas.rect(x, y, 0, 20, 0).attr({
+    var rect = Score.Canvas.rect(x-1, y, 0, 20, 0).attr({
         'fill': '#000',
         'stroke': '#000',
-        'stroke-width': 2,
+        'stroke-width': 0,
     }).animate({
         'fill': Score.Scores[i]['color'],
         'stroke': Score.Scores[i]['color'],

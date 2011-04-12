@@ -86,10 +86,8 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <h3><a href="#">Statistics</a></h3>
     <div>
         <div class="content">
-            <p>Here be another graph...</p>
         </div>
         <div class="sidebar">
-            <p>and sidebar..</p>
         </div>
     </div>
 </div>
