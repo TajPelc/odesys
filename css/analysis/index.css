@@ -176,11 +176,12 @@
     width: 232px;
     position: absolute;
     border: 1px solid #97999d;
-    border-radius: 0 0 6px 6px;
-    -moz-border-radius: 0 0 6px 6px;
-    -webkit-border-radius: 0 0 6px 6px;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
     background: #fff;
     z-index: 5;
+    overflow: hidden;
 }
 
     .selectBox-dropdown-menu li:hover {
@@ -188,13 +189,10 @@
     }
 
     .selectBox-dropdown-menu li:last-child {
-        border-radius: 0 0 6px 6px;
-       -moz-border-radius: 0 0 6px 6px;
-       -webkit-border-radius: 0 0 6px 6px;
     }
 
         .selectBox-dropdown-menu a {
-            padding: 8px 20px;
+            padding: 8px 23px;
             margin-bottom: 2px;
             cursor: pointer;
             display: block;
@@ -222,12 +220,6 @@
 .sidebar span.selectBox-dropdown {
     width: 234px;
     cursor: default;
-}
-
-.sidebar .selectBox-menuShowing {
-    border-radius: 6px 6px 0 0;
-    -moz-border-radius: 6px 6px 0 0;
-    -webkit-border-radius: 6px 6px 0 0;
 }
 
     .sidebar .selectBox-label {
