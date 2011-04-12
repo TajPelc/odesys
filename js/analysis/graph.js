@@ -192,11 +192,8 @@ Abacon.Legend.init = function()
     Abacon.Legend.LegendList = $('#abacon-sidebar ul');
     Abacon.Legend.DropdownList = $('<ul></ul>').attr('id', 'abacon-dropdown').addClass('selectBox-dropdown-menu').hide();
 
-    // handle click functionality to show an alternative from dropdown
-    Abacon.Legend.displayFromDropdown();
-
     // handle click functionality to remove an alternative from abacon and legend
-    Abacon.Legend.removeAlternative
+    Abacon.Legend.removeAlternative();
 
     // hide select box
     Abacon.Legend.Select.hide();
@@ -216,15 +213,39 @@ Abacon.Legend.init = function()
        );
     });
 
-    // display menu on hover
-    Abacon.Legend.Fieldset.find('a').hover(
-        function () {
-            Abacon.Legend.DropdownList.show();
-        },
-        function () {
-            Abacon.Legend.DropdownList.hide();
+    // hide alternatives drawn by default
+    Abacon.Legend.LegendList.children().each(function(){
+        Abacon.Legend.DropdownList.find('li a[rel="'+ Core.ExtractNumbers($(this).attr('id')) +'"]').parent().hide().addClass('hidden');
+    });
+
+    // recalculate dropdown position
+    Abacon.Legend.rebuildDropdown();
+
+    // display menu on click
+    var a = true;
+    Abacon.Legend.Fieldset.find('a').click(function () {
+        // handle click functionality to show an alternative from dropdown
+        if(a)
+        {
+            Abacon.Legend.displayFromDropdown();
+            a = false;
         }
-    );
+
+        // extend / shrink menu
+        if(Abacon.Legend.DropdownList.find('li:not(.hidden)').length > 0)
+        {
+            if(Abacon.Legend.DropdownList.is(':hidden'))
+            {
+                Abacon.Legend.DropdownList.show();
+                $(this).find('span.selectBox-arrow').attr('class', 'selectBox-arrow-reverse');
+            }
+            else
+            {
+                Abacon.Legend.DropdownList.hide();
+                $(this).find('span.selectBox-arrow-reverse').attr('class', 'selectBox-arrow');
+            }
+        }
+    });
 }
 
 /**
@@ -232,59 +253,51 @@ Abacon.Legend.init = function()
  */
 Abacon.Legend.displayFromDropdown = function()
 {
-    Abacon.Legend.DropdownList.find('li a').live('click', function(){
+    Abacon.Legend.DropdownList.find('li a').click(function(){
         // get id
         var id = Core.ExtractNumbers($(this).attr('rel'));
+
+        // switch arrrow
+        Abacon.Legend.Fieldset.find('span.selectBox-arrow-reverse').attr('class', 'selectBox-arrow');
 
         // draw alternative
         Abacon.DrawAlternative(id);
 
-        /*
         // hide dropdown element
         $(this).parent().hide().addClass('hidden');
 
+        // recalculate position
+        Abacon.Legend.rebuildDropdown();
+
         // select all non-draw alternatives
-        var alternativePool = $('ul.selectBox-dropdown-menu li:not(.hidden)');
-
-        // select label
-        var label = $('#abacon-sidebar form span.selectBox-label');
-
-        // empty label
-        label.empty();
+        var nonHidden = Abacon.Legend.DropdownList.find('li:not(.hidden)');
 
         // set label value
-        if(alternativePool.length > 0)
+        if(nonHidden.length == 0)
         {
-            label.html(alternativePool.children().first().html());
-        }
-        else
-        {
-            $('#abacon-sidebar form fieldset span.selectBox-arrow').fadeOut(500, function(){
-                $('#abacon-sidebar form fieldset').hide();
-                $('#abacon-sidebar form').append($('<span id="disabledDropdown">&nbsp;</span>').addClass('selectBox-dropdown').css({display: 'block'}));
-            });
+            Abacon.Legend.Fieldset.find('a span[class*=selectBox-arrow]').fadeOut();
+            Abacon.Legend.Fieldset.find('span.selectBox-label').html('All alternatives are drawn');
         }
 
-        // remove span
+        // create span
         var x = $('<span>X</span>')
             .addClass('remove')
             .css({'display': 'block'})
             .hide();
 
-        // legend list element
+        // create legend list element
         var li = $('<li>' + Abacon.Data['Alternatives'][id]['title'] + '</li>')
             .attr('id', 'alternative_' + id)
             .append($('<span>&nbsp;</span>')
                 .addClass('color')
                 .css({'background-color': Abacon.Data['Alternatives'][id]['color']})
-            ).append(x);
+            ).append(x).hide();
 
         // append li
-        $('#abacon-sidebar ul').append(li);
+        Abacon.Legend.LegendList.append(li);
 
         // fade in
         li.fadeIn();
-        */
 
         return false;
     });
@@ -295,26 +308,26 @@ Abacon.Legend.displayFromDropdown = function()
  */
 Abacon.Legend.removeAlternative = function()
 {
-    /*
     // remove alternative
-    $('#abacon-sidebar ul li span.remove').live('click', function(){
+    Abacon.Legend.LegendList.find('li span.remove').live('click', function(){
         // get id
         var id = Core.ExtractNumbers($(this).parent().attr('id'));
 
         // get list element link
-        var link = $('ul.selectBox-dropdown-menu li a[rel="' +  id+ '"]');
+        var link = Abacon.Legend.DropdownList.find('li a[rel="' +  id+ '"]');
 
-        // all elements hidden
-        if($('ul.selectBox-dropdown-menu li.hidden').length ==  $('ul.selectBox-dropdown-menu li').length)
+        // all alternatives hidden
+        if(Abacon.Legend.DropdownList.find('li.hidden').length ==  Abacon.Legend.DropdownList.find('li').length)
         {
-            $('#abacon-sidebar form fieldset').show();
-            $('#disabledDropdown').remove();
-            $('#abacon-sidebar form fieldset span.selectBox-arrow').fadeIn();
-            $('#abacon-sidebar form span.selectBox-label').html(link.html());
+            Abacon.Legend.Fieldset.find('a span[class*=selectBox-arrow]').fadeIn();
+            Abacon.Legend.Fieldset.find('span.selectBox-label').html('Draw more alternatives');
         }
 
         // reenable dropdown element
         link.parent().show().removeClass('hidden');
+
+        // recalculate dropdown position position
+        Abacon.Legend.rebuildDropdown();
 
         // fadeout & remove elements
         for(i=0; i < Abacon.Elements[id].length; i++)
@@ -328,7 +341,16 @@ Abacon.Legend.removeAlternative = function()
         $(this).parent().fadeOut(300, function(){
             $(this).remove();
         });
-    });*/
+    });
+}
+
+/**
+ * Recaluclates dropdown menu positon
+ */
+Abacon.Legend.rebuildDropdown = function()
+{
+    // adjust dropdown position
+    Abacon.Legend.DropdownList.css({left: 0, bottom: -(Abacon.Legend.DropdownList.height() + 8)});
 }
 
 /**

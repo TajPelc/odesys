@@ -38,7 +38,7 @@ Abacon.Data = <?php echo json_encode($eval); ?>;
                         <?php }?>
                     </select>
                     <a class="selectBox selectBox-dropdown" style="display: inline-block; width: 232px; -moz-user-select: none;" title="" tabindex="0">
-                        <span class="selectBox-label">Bout healer</span>
+                        <span class="selectBox-label">Draw more alternatives</span>
                         <span class="selectBox-arrow"></span>
                     </a>
                 </fieldset>
