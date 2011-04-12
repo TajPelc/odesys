@@ -229,7 +229,10 @@ $(document).ready(function(){
         }
         else
         {
-            $('#abacon-sidebar form fieldset span.selectBox-arrow').fadeOut();
+            $('#abacon-sidebar form fieldset span.selectBox-arrow').fadeOut(500, function(){
+                $('#abacon-sidebar form fieldset').hide();
+                $('#abacon-sidebar form').append($('<span id="disabledDropdown">&nbsp;</span>').addClass('selectBox-dropdown').css({display: 'block'}));
+            });
         }
 
         // remove span
@@ -266,6 +269,8 @@ $(document).ready(function(){
         // all elements hidden
         if($('ul.selectBox-dropdown-menu li a.hidden').length ==  $('ul.selectBox-dropdown-menu li a').length)
         {
+            $('#abacon-sidebar form fieldset').show();
+            $('#disabledDropdown').remove();
             $('#abacon-sidebar form fieldset span.selectBox-arrow').fadeIn();
             $('#abacon-sidebar form span.selectBox-label').html(link.html());
         }
