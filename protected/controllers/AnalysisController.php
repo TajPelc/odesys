@@ -50,6 +50,8 @@ class AnalysisController extends DecisionController
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery.selectBox.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/index.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/raphael-min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/score.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/abacon.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/graph.js');
 
         //include style files
@@ -63,7 +65,6 @@ class AnalysisController extends DecisionController
         $criteria->addCondition('rel_project_id=:rel_project_id');
         $criteria->order = 'weightedScore DESC';
         $criteria->params = array('rel_project_id' => $Project->project_id);
-        $criteria->limit = 2;
         $bestAlternatives = Alternative::model()->findAll($criteria);
 
         $this->render('display',array(

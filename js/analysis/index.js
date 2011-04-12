@@ -15,6 +15,27 @@ $(document).ready(function(){
 
     });
 
-    //selectbox
-    //$('.sidebar select').selectBox();
+    // init abacon
+    Abacon.init();
+
+    /**
+     * Draw when u first switch tab
+     */
+    var initDraw = true;
+    $('#abacon-tab').click(function(){
+        if(initDraw)
+        {
+            // draw the two best alternatives
+            Abacon.Legend.LegendList.children().each(function(){
+                // get id
+                var id = Core.ExtractNumbers($(this).attr('id'));
+
+                // draw alternatives
+                Abacon.DrawAlternative(id);
+            });
+
+            // disable
+            initDraw = false;
+        }
+    });
 });

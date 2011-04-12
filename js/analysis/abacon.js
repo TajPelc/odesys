@@ -35,7 +35,7 @@ Abacon.init = function(){
     Abacon.Container = $('#abacon');
 
     // calculate abacon height
-    Abacon.Config['height'] = Abacon.Data['criteriaNr'] * Abacon.Config['rowHeight'] + Abacon.Data['criteriaNr'] + Abacon.Config['bottomLegend'];
+    Abacon.Config['height'] = Graph.Data['criteriaNr'] * Abacon.Config['rowHeight'] + Graph.Data['criteriaNr'] + Abacon.Config['bottomLegend'];
 
     // create canvas
     Abacon.Canvas = Raphael("abacon", Abacon.Config['width'], Abacon.Config['height']);
@@ -46,7 +46,7 @@ Abacon.init = function(){
     });
 
     // draw horizontal grid
-    for(i=0; i<Abacon.Data['criteriaNr']; i++)
+    for(i=0; i<Graph.Data['criteriaNr']; i++)
     {
         Abacon.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Abacon.Config['width']).attr({
             'stroke': '#dddee2',
@@ -73,10 +73,10 @@ Abacon.DrawAlternative = function(n)
 {
     // create data point positions
     var dataPoints = [];
-    for (i=0; i<Abacon.Data['criteriaNr']; i++)
+    for (i=0; i<Graph.Data['criteriaNr']; i++)
     {
         // calculate x postion
-        var x = Abacon.Config['leftLegendOffset'] + parseInt(Abacon.Data['Alternatives'][n]['criteria'][i]['weightedScore'] * 5, 10);
+        var x = Abacon.Config['leftLegendOffset'] + parseInt(Graph.Data['Alternatives'][n]['criteria'][i]['weightedScore'] * 5, 10);
 
         // calculate y position
         var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2);
@@ -103,7 +103,7 @@ Abacon.DrawAlternative = function(n)
     Abacon.Elements[n] = Abacon.Canvas.set();
 
     // animate paths
-    Abacon.AnimateDrawPath(0, n, Abacon.Data['Alternatives'][n]['color'], paths, dataPoints);
+    Abacon.AnimateDrawPath(0, n, Graph.Data['Alternatives'][n]['color'], paths, dataPoints);
 }
 
 /**
@@ -286,11 +286,11 @@ Abacon.Legend.displayFromDropdown = function()
             .hide();
 
         // create legend list element
-        var li = $('<li>' + Abacon.Data['Alternatives'][id]['title'] + '</li>')
+        var li = $('<li>' + Graph.Data['Alternatives'][id]['title'] + '</li>')
             .attr('id', 'alternative_' + id)
             .append($('<span>&nbsp;</span>')
                 .addClass('color')
-                .css({'background-color': Abacon.Data['Alternatives'][id]['color']})
+                .css({'background-color': Graph.Data['Alternatives'][id]['color']})
             ).append(x).hide();
 
         // append li
@@ -349,23 +349,3 @@ Abacon.Legend.rebuildDropdown = function()
     // adjust dropdown position
     Abacon.Legend.DropdownList.css({left: 0, bottom: -(Abacon.Legend.DropdownList.height() + 8)});
 }
-
-/**
- * Document load
- */
-$(document).ready(function(){
-    // init abacon
-    Abacon.init();
-
-    // draw the two best alternatives
-    Abacon.Legend.LegendList.children().each(function(){
-        // get id
-        var id = Core.ExtractNumbers($(this).attr('id'));
-
-        // remove all selected options from the drop down
-        Abacon.Legend.DropdownList.find('li a[rel="'+ id +'"]').parent().hide().addClass('hidden');
-
-        // draw alternatives
-        Abacon.DrawAlternative(id);
-    });
-});
