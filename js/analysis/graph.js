@@ -3,13 +3,20 @@
  * @version       1.0
 */
 
-Graph = {};
+// define Abacon object
+Abacon = {};
+Abacon.Container = {};
+Abacon.Canvas = {};
+Abacon.Legend = {};
 
-Graph.Data = {};
+// cotainer for Abacon drawn elements
+Abacon.Elements = [];
 
-Graph.Elements = [];
-
-Graph.Config = {
+/**
+ * Abacon config
+ */
+Abacon.Config = {
+    'height': 0, // dynamically set
     'width': 666,
     'rowHeight': 60,
     'bottomLegend': 25,
@@ -17,37 +24,31 @@ Graph.Config = {
     'tickWidth': 50,
 };
 
-Graph.initAbacon = function(){
+/**
+ * Create raphael container and draw grid
+ */
+Abacon.init = function(){
+    // init legend
+    Abacon.Legend.init();
 
     // get container
-    Graph.Container = $('#abacon');
+    Abacon.Container = $('#abacon');
 
     // calculate abacon height
-    Graph.Height = Graph.Data['criteriaNr'] * Graph.Config['rowHeight'] + Graph.Data['criteriaNr'] + Graph.Config['bottomLegend'];
-
-    // resize abacon container
-    Graph.Container.css({
-        height: Graph.Height,
-        width: Graph.Config['width'],
-    });
-
-    // resize accoredion container
-    Graph.Container.parent('.ui-accordion-content').css({
-        height: Graph.Height + 20,
-    });
+    Abacon.Config['height'] = Abacon.Data['criteriaNr'] * Abacon.Config['rowHeight'] + Abacon.Data['criteriaNr'] + Abacon.Config['bottomLegend'];
 
     // create canvas
-    Graph.Canvas = Raphael("abacon", Graph.Config['width'], Graph.Height);
+    Abacon.Canvas = Raphael("abacon", Abacon.Config['width'], Abacon.Config['height']);
 
     // draw background
-    Graph.Background = Graph.Canvas.rect(1, 0, Graph.Config['width']-1, '100%', 10).attr({
+    Abacon.Background = Abacon.Canvas.rect(1, 0, Abacon.Config['width']-1, '100%', 10).attr({
         stroke: '#dddee2',
     });
 
     // draw horizontal grid
-    for(i=0; i<Graph.Data['criteriaNr']; i++)
+    for(i=0; i<Abacon.Data['criteriaNr']; i++)
     {
-        Graph.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Graph.Config['width']).attr({
+        Abacon.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Abacon.Config['width']).attr({
             'stroke': '#dddee2',
             'stroke-dasharray': '-',
             'stroke-width': 1
@@ -57,7 +58,7 @@ Graph.initAbacon = function(){
     // draw vertical grid
     for(i=0; i<=10; i++)
     {
-        Graph.Canvas.path('M ' + (Graph.Config['leftLegendOffset'] + (i*Graph.Config['tickWidth'])) + ' 0 v ' + Graph.Height).attr({
+        Abacon.Canvas.path('M ' + (Abacon.Config['leftLegendOffset'] + (i*Abacon.Config['tickWidth'])) + ' 0 v ' + Abacon.Config['height']).attr({
             'stroke': '#dddee2',
             'stroke-dasharray': '-',
             'stroke-width': 1
@@ -68,17 +69,17 @@ Graph.initAbacon = function(){
 /**
  * Calculates the points and calls animate path
  */
-Graph.DrawAlternative = function(n)
+Abacon.DrawAlternative = function(n)
 {
-    // create & draw data points
+    // create data point positions
     var dataPoints = [];
-    for (i=0; i<Graph.Data['criteriaNr']; i++)
+    for (i=0; i<Abacon.Data['criteriaNr']; i++)
     {
         // calculate x postion
-        var x = Graph.Config['leftLegendOffset'] + parseInt(Graph.Data['Alternatives'][n]['criteria'][i]['weightedScore'] * 5, 10);
+        var x = Abacon.Config['leftLegendOffset'] + parseInt(Abacon.Data['Alternatives'][n]['criteria'][i]['weightedScore'] * 5, 10);
 
         // calculate y position
-        var y = Graph.Config['rowHeight'] * i + (Graph.Config['rowHeight']/2);
+        var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2);
 
         // add to arr
         dataPoints.push({
@@ -87,7 +88,7 @@ Graph.DrawAlternative = function(n)
         });
     }
 
-    // build pathstring and draw line
+    // build path strings
     paths = [];
     for (i=0; i<dataPoints.length; i++)
     {
@@ -99,42 +100,42 @@ Graph.DrawAlternative = function(n)
     }
 
     // array for elements
-    Graph.Elements[n] = [];
+    Abacon.Elements[n] = [];
 
     // animate paths
-    Graph.AnimateDrawPath(0, n, Graph.Data['Alternatives'][n]['color'], paths, dataPoints);
+    Abacon.AnimateDrawPath(0, n, Abacon.Data['Alternatives'][n]['color'], paths, dataPoints);
 }
 
 /**
  * Animates draw path and data points
  */
-Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
+Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
 {
     // draw data points shadow /** EXPERIMENTAL **/
-    var shadowDot = Graph.Canvas.circle(dataPoints[i]['x'] + 1, dataPoints[i]['y'] + 1, 0).attr({
+    var shadowDot = Abacon.Canvas.circle(dataPoints[i]['x'] + 1, dataPoints[i]['y'] + 1, 0).attr({
         'stroke-width': '5px',
         stroke: '#000',
         fill: 'none',
         opacity: 0.3,
     }).animate({r: 3}, 250, 'elastic');
-    Graph.Elements[n].push(shadowDot);
+    Abacon.Elements[n].push(shadowDot);
 
     // draw path shadow /** EXPERIMENTAL **/
     if(i < paths.length - 1)
     {
-        var pathShadow = Graph.Canvas.path('M' + paths[i]).attr({
+        var pathShadow = Abacon.Canvas.path('M' + paths[i]).attr({
             'stroke-width': 3,
             stroke: "#000",
             'opacity': 0.4,
         }).animate({
             'path': 'M'+ (dataPoints[i]['x'] + 2) + ' ' + (dataPoints[i]['y'] + 1) + ' L' + (dataPoints[i+1]['x'] + 1) + ' ' + (dataPoints[i+1]['y'] + 2),
         }, 250, 'cubic-bezier(p1)');
-        Graph.Elements[n].push(pathShadow);
+        Abacon.Elements[n].push(pathShadow);
         pathShadow.blur(1);
     }
 
     // draw path
-    Graph.Elements[n].push(Graph.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#000'}).animate({
+    Abacon.Elements[n].push(Abacon.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#000'}).animate({
         'path': 'M'+ paths[i] + ' L' + paths[i+1],
         "stroke": color,
     }, 200, 'cubic-bezier(p1)', function(){
@@ -142,7 +143,7 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         if(i < paths.length - 1)
         {
             // recursion
-            Graph.AnimateDrawPath(i+1, n, color, paths, dataPoints);
+            Abacon.AnimateDrawPath(i+1, n, color, paths, dataPoints);
         }
         else // fade in sidebar
         {
@@ -151,14 +152,14 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
     }));
 
     // draw data points
-    var dot = Graph.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
+    var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
         'stroke-width': '5px',
         stroke: '#000',
         fill: '#000',
     }).animate({r: 3, stroke: color, fill: color}, 250);
 
     // draw dot for hovering
-    var hoverDot = Graph.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 15).attr({
+    var hoverDot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 15).attr({
         'stroke-width': '5px',
         stroke: 'red',
         fill: 'red',
@@ -176,45 +177,74 @@ Graph.AnimateDrawPath = function(i, n, color, paths, dataPoints)
     });
 
     // push to elements
-    Graph.Elements[n].push(dot);
-    Graph.Elements[n].push(hoverDot);
+    Abacon.Elements[n].push(dot);
+    Abacon.Elements[n].push(hoverDot);
 }
 
 /**
- * Document load
+ * Initialize legend
  */
-$(document).ready(function(){
-    Graph.Data = data;
-    Graph.initAbacon();
+Abacon.Legend.init = function()
+{
+    // define legend items
+    Abacon.Legend.Select = $('#abacon-sidebar form fieldset select');
+    Abacon.Legend.Fieldset = $('#abacon-sidebar form fieldset');
+    Abacon.Legend.LegendList = $('#abacon-sidebar ul');
+    Abacon.Legend.DropdownList = $('<ul></ul>').attr('id', 'abacon-dropdown').addClass('selectBox-dropdown-menu').hide();
 
-    // hide ui
-    $('#abacon-sidebar ul span.remove').hide();
+    // handle click functionality to show an alternative from dropdown
+    Abacon.Legend.displayFromDropdown();
 
-    // draw all selected alternaitves
-    $('#abacon-sidebar ul li').each(function(){
-        //get id
-        var id = Core.ExtractNumbers($(this).attr('id'));
+    // handle click functionality to remove an alternative from abacon and legend
+    Abacon.Legend.removeAlternative
 
-        // remove all selected options from the drop down
-        $('ul.selectBox-dropdown-menu li a[rel="'+ id +'"]').hide().addClass('hidden');
+    // hide select box
+    Abacon.Legend.Select.hide();
 
-        // draw alternatives
-        Graph.DrawAlternative(Core.ExtractNumbers($(this).attr('id')));
+    // hide remove buttons
+    Abacon.Legend.LegendList.find('span.remove').hide();
+
+    // append dropdown list
+    Abacon.Legend.Fieldset.append(Abacon.Legend.DropdownList);
+
+    // populate ul
+    Abacon.Legend.Select.find('option').each(function(){
+        Abacon.Legend.DropdownList.append($('<li></li>')
+           .attr('id', 'abacon-dropdown-' + $(this).attr('value'))
+           .append($('<a></a>')
+               .attr('rel', $(this).attr('value')).html($(this).html()))
+       );
     });
 
-    // draw on demand
-    $('ul.selectBox-dropdown-menu li a').live('click', function(){
-        //get id
+    // display menu on hover
+    Abacon.Legend.Fieldset.find('a').hover(
+        function () {
+            Abacon.Legend.DropdownList.show();
+        },
+        function () {
+            Abacon.Legend.DropdownList.hide();
+        }
+    );
+}
+
+/**
+ * Display an alternative from the drop down menu
+ */
+Abacon.Legend.displayFromDropdown = function()
+{
+    Abacon.Legend.DropdownList.find('li a').live('click', function(){
+        // get id
         var id = Core.ExtractNumbers($(this).attr('rel'));
 
         // draw alternative
-        Graph.DrawAlternative(id);
+        Abacon.DrawAlternative(id);
 
+        /*
         // hide dropdown element
-        $(this).hide().addClass('hidden');
+        $(this).parent().hide().addClass('hidden');
 
         // select all non-draw alternatives
-        var alternativePool = $('ul.selectBox-dropdown-menu li a:not(.hidden)');
+        var alternativePool = $('ul.selectBox-dropdown-menu li:not(.hidden)');
 
         // select label
         var label = $('#abacon-sidebar form span.selectBox-label');
@@ -225,7 +255,7 @@ $(document).ready(function(){
         // set label value
         if(alternativePool.length > 0)
         {
-            label.html(alternativePool.first().html());
+            label.html(alternativePool.children().first().html());
         }
         else
         {
@@ -242,11 +272,11 @@ $(document).ready(function(){
             .hide();
 
         // legend list element
-        var li = $('<li>' + Graph.Data['Alternatives'][id]['title'] + '</li>')
+        var li = $('<li>' + Abacon.Data['Alternatives'][id]['title'] + '</li>')
             .attr('id', 'alternative_' + id)
             .append($('<span>&nbsp;</span>')
                 .addClass('color')
-                .css({'background-color': Graph.Data['Alternatives'][id]['color']})
+                .css({'background-color': Abacon.Data['Alternatives'][id]['color']})
             ).append(x);
 
         // append li
@@ -254,10 +284,18 @@ $(document).ready(function(){
 
         // fade in
         li.fadeIn();
+        */
 
         return false;
     });
+}
 
+/**
+ * Remove alternative from abacon and legend
+ */
+Abacon.Legend.removeAlternative = function()
+{
+    /*
     // remove alternative
     $('#abacon-sidebar ul li span.remove').live('click', function(){
         // get id
@@ -267,7 +305,7 @@ $(document).ready(function(){
         var link = $('ul.selectBox-dropdown-menu li a[rel="' +  id+ '"]');
 
         // all elements hidden
-        if($('ul.selectBox-dropdown-menu li a.hidden').length ==  $('ul.selectBox-dropdown-menu li a').length)
+        if($('ul.selectBox-dropdown-menu li.hidden').length ==  $('ul.selectBox-dropdown-menu li').length)
         {
             $('#abacon-sidebar form fieldset').show();
             $('#disabledDropdown').remove();
@@ -276,12 +314,12 @@ $(document).ready(function(){
         }
 
         // reenable dropdown element
-        link.show().removeClass('hidden');
+        link.parent().show().removeClass('hidden');
 
         // fadeout & remove elements
-        for(i=0; i < Graph.Elements[id].length; i++)
+        for(i=0; i < Abacon.Elements[id].length; i++)
         {
-            Graph.Elements[id][i].animate({'opacity': 0}, 300, function(){
+            Abacon.Elements[id][i].animate({'opacity': 0}, 300, function(){
                 this.remove();
             });
         }
@@ -290,5 +328,25 @@ $(document).ready(function(){
         $(this).parent().fadeOut(300, function(){
             $(this).remove();
         });
+    });*/
+}
+
+/**
+ * Document load
+ */
+$(document).ready(function(){
+    // init abacon
+    Abacon.init();
+
+    // draw the two best alternatives
+    Abacon.Legend.LegendList.children().each(function(){
+        // get id
+        var id = Core.ExtractNumbers($(this).attr('id'));
+
+        // remove all selected options from the drop down
+        Abacon.Legend.DropdownList.find('li a[rel="'+ id +'"]').parent().hide().addClass('hidden');
+
+        // draw alternatives
+        Abacon.DrawAlternative(id);
     });
 });

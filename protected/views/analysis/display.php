@@ -1,5 +1,5 @@
 <script type="text/javascript">
-var data = <?php echo json_encode($eval); ?>;
+Abacon.Data = <?php echo json_encode($eval); ?>;
 </script>
 <div id="accordion">
     <h3><a href="#">Abacon</a></h3>
@@ -37,6 +37,10 @@ var data = <?php echo json_encode($eval); ?>;
                             <option value="<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?></option>
                         <?php }?>
                     </select>
+                    <a class="selectBox selectBox-dropdown" style="display: inline-block; width: 232px; -moz-user-select: none;" title="" tabindex="0">
+                        <span class="selectBox-label">Bout healer</span>
+                        <span class="selectBox-arrow"></span>
+                    </a>
                 </fieldset>
             </form>
             <ul>

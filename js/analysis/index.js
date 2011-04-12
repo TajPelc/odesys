@@ -16,5 +16,5 @@ $(document).ready(function(){
     });
 
     //selectbox
-    $('.sidebar select').selectBox();
+    //$('.sidebar select').selectBox();
 });
