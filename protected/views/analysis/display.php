@@ -6,7 +6,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <h3 id=""><a href="#">Score graph</a></h3>
     <div>
         <div id="score" class="content">
-            <!-- table class="alternatives">
+            <table class="alternatives">
             <?php foreach($bestAlternatives as $A) { ?>
                 <tr>
                     <td><?php echo CHtml::encode($A->title); ?></td>
@@ -27,7 +27,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <td>90</td>
                     <td>100</td>
                 </tr>
-            </table-->
+            </table>
         </div>
         <div id="abacon-sidebar" class="sidebar">
         </div>

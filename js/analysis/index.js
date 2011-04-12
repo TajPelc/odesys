@@ -15,6 +15,9 @@ $(document).ready(function(){
 
     });
 
+    // init score
+    Score.init();
+
     // init abacon
     Abacon.init();
 
