@@ -173,12 +173,14 @@
 
 /*sidebar select ul - fake*/
 .selectBox-dropdown-menu {
+    width: 232px;
     position: absolute;
     border: 1px solid #97999d;
     border-radius: 0 0 6px 6px;
     -moz-border-radius: 0 0 6px 6px;
     -webkit-border-radius: 0 0 6px 6px;
     background: #fff;
+    z-index: 5;
 }
 
     .selectBox-dropdown-menu li:hover {
@@ -218,7 +220,7 @@
 }
 
 .sidebar span.selectBox-dropdown {
-    width: 232px;
+    width: 234px;
     cursor: default;
 }
 
