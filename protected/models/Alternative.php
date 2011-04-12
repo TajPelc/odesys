@@ -13,12 +13,11 @@ class Alternative extends CActiveRecord
      * @var array
      */
     private static $colorPool = array(
-        "#d4a460",
+        "#c6dc0c",
         "#2da7b9",
         "#5c0369",
         "#6ac616",
         "#eb8e94",
-        "#c6dc0c",
         "#b000b7",
         "#18b3f7",
         "#bd3439",
@@ -119,7 +118,6 @@ class Alternative extends CActiveRecord
             if( $this->isNewRecord )
             {
                 $this->rel_project_id = Project::getActive()->project_id;
-                $this->color = self::$colorPool[count(Project::getActive()->alternatives)];
             }
             return true;
         }
@@ -167,6 +165,7 @@ class Alternative extends CActiveRecord
             if($this->isNewRecord)
             {
                 // increase the number of criteria
+                $this->color = self::$colorPool[Project::getActive()->no_alternatives];
                 Project::getActive()->increase('no_alternatives');
             }
             return true;
