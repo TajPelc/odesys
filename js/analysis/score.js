@@ -117,7 +117,7 @@ Score.DrawAlternative = function(i)
         'stroke': Score.Scores[i]['color'],
         width: width,
     }, 500, '<>', function(){
-        if(i < Score.Scores.length)
+        if(i < Score.Scores.length-1)
         {
             i++;
             Score.DrawAlternative(i);
