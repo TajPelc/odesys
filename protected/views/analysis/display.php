@@ -29,7 +29,22 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 </tr>
             </table>
         </div>
-        <div id="abacon-sidebar" class="sidebar">
+        <div id="score-sidebar" class="sidebar">
+            <h4>Need some help?</h4>
+            <ul>
+                <li>
+                    <dl>
+                        <dt>About the score graph</dt>
+                        <dd>Score graph shows you nominal score values for all your alternatives. Your best scored alternative is at the top, scoring 100 points. All other alternative's scores are relative to the winning alternative.</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>Top scored alternative</dt>
+                        <dd>Is not necessarily the best alternative for you. If you would like to compare two or more alternatives, please use Abacon graph below.</dd>
+                    </dl>
+                </li>
+            </ul>
         </div>
     </div>
     <h3 id="abacon-tab"><a href="#">Abacon</a></h3>
@@ -59,7 +74,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             </table>
         </div>
         <div id="abacon-sidebar" class="sidebar">
-            <h4>Legend</h4>
+            <h3>Legend</h3>
             <form method="post" action="">
                 <fieldset>
                     <select name="legend">
@@ -73,13 +88,22 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     </a>
                 </fieldset>
             </form>
-            <ul>
+            <ul class="legend">
                 <?php $i = 0; ?>
                 <?php foreach($bestAlternatives as $A) {?>
                     <li id="alternative_<?php echo $A->alternative_id; ?>"><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode($A->title); ?><span class="remove">X</span></li>
                     <?php if($i == 1) break; ?>
                     <?php $i++;?>
                 <?php }?>
+            </ul>
+            <h4>Need some help?</h4>
+            <ul class="help">
+                <li>
+                    <dl>
+                        <dt>About the abacon graph</dt>
+                        <dd>Compare two or more alternatives by criteria. Alternative that scored most points and is the winning one is not necessarily the best choice for you. You should yet again think about your decision problem, compare your alternatives by criteria and then make your final decision.</dd>
+                    </dl>
+                </li>
             </ul>
         </div>
     </div>

@@ -142,7 +142,7 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         }
         else // fade in sidebar
         {
-            $('#abacon-sidebar ul li[id="alternative_' + n + '"] span.remove').fadeIn();
+            $('#abacon-sidebar ul.legend li[id="alternative_' + n + '"] span.remove').fadeIn();
         }
     }));
 
@@ -184,7 +184,7 @@ Abacon.Legend.init = function()
     // define legend items
     Abacon.Legend.Select = $('#abacon-sidebar form fieldset select');
     Abacon.Legend.Fieldset = $('#abacon-sidebar form fieldset');
-    Abacon.Legend.LegendList = $('#abacon-sidebar ul');
+    Abacon.Legend.LegendList = $('#abacon-sidebar ul.legend');
     Abacon.Legend.DropdownList = $('<ul></ul>').attr('id', 'abacon-dropdown').addClass('selectBox-dropdown-menu').hide();
 
     // handle click functionality to remove an alternative from abacon and legend
