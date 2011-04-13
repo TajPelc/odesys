@@ -52,11 +52,6 @@ Score.init = function(){
     // create canvas
     Score.Canvas = Raphael("score", Score.Config['width'], Score.Config['height']);
 
-    // draw background
-    Score.Background = Score.Canvas.rect(1, 0, Score.Config['width']-1, '100%', 10).attr({
-        stroke: '#dddee2',
-    });
-
     // draw horizontal grid
     for(i=0; i<Score.nrAlternatives; i++)
     {
