@@ -1,4 +1,0 @@
-#AuthType Basic
-#AuthName "Project HACKSLASH"
-#AuthUserFile /www/kek/hackslash/protected/components/password
-#Require user kek
