@@ -36,16 +36,17 @@
     }
 
         #content ol li {
-            margin-bottom: 8px;
+            margin: 25px 0;
         }
 
         #content ol li p {
-            padding: 2px 4px;
+            padding: 8px 4px;
             display: inline;
         }
 
         #content ol li p.glow {
-            background: #DBE3F0;
+            background: #444a56;
+            color: #fff;
             border-radius: 4px;
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
@@ -73,7 +74,7 @@
 
     #sidebar ul {
         height: 285px;
-        margin-bottom: 16px;
+        margin-top: 35px;
         position: relative;
 
     }

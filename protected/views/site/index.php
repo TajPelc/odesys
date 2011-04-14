@@ -3,7 +3,6 @@
     <?php if(Project::isProjectActive()) { ?>
     <?php } ?>
     <h2>How to use odesys?</h2>
-    <p>First gain a good understanding of your decison problem. You may then proceed to:</p>
     <ol>
         <li class="current"><p>Start by signing in with Facebook and creating a new project</p></li>
         <li><p>Define alternatives among which you are choosing</p></li>
@@ -42,5 +41,4 @@
             <img src="/images/pictures/introduction_6.png" title=""  alt="pic3" />
         </li>
     </ul>
-    <?php if(!Project::isProjectActive()){ ?><p><?php echo CHtml::link('Start by creating a new project', array('criteria/create'), array('class' => 'button', 'id' => 'create')); ?></p><?php }?>
 </div>
