@@ -13,9 +13,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/ie/layout.css" media="screen, projection" />
     <![endif]-->
 
-    <!-- JavaScript framework -->
-    <?php if('results/display' == $this->getRoute() ) { ?><!--[if IE]><script language="javascript" type="text/javascript" src="/js/jqplot/excanvas.js"></script><![endif]--><?php } ?>
-
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
     <!-- Google Analytics -->
@@ -37,7 +34,7 @@
             <div id="headings">
                 <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
                 <?php if(Project::isProjectActive()){ ?>
-                    <h2>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('criteria/create'));?>"</h2>
+                    <h2>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('analysis/display'));?>"</h2>
                 <?php } else { ?>
                     <h2>Helping you decide!</h2>
                 <?php }?>
