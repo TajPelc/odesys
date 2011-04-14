@@ -46,6 +46,10 @@ Score.init = function(){
         }
     }
 
+    /***
+     * @TODO SORT ALTERNATIVES BY SCORE
+     */
+
     // calculate Score height
     Score.Config['height'] = Score.nrAlternatives * Score.Config['rowHeight'] + Graph.Data['criteriaNr'] + Score.Config['bottomLegend'];
 
