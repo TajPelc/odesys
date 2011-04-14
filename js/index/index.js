@@ -48,6 +48,4 @@ Index.Rotate = function() {
 
 
 $(document).ready(function() {
-    //Load the slideshow
-    setTimeout('Index.Rotation()', 1000);
 });
