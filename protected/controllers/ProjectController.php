@@ -70,6 +70,19 @@ class ProjectController extends Controller
     }
 
     /**
+     * Activate a project
+     */
+    public function actionActivate()
+    {
+        if((bool)$this->get('id'))
+        {
+            $Project = Project::model()->findByPk($this->get('id'));
+            $Project->setAsActiveProject();
+        }
+        $this->redirect(array('analysis/display'));
+    }
+
+    /**
      * Create or update project
      */
     public function actionList()

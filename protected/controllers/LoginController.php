@@ -29,7 +29,7 @@ class LoginController extends Controller
             {
                 $this->redirect(array($this->get('returnTo')));
             }
-            $this->redirect(array('site/index'));
+            $this->redirect(array('user/dashboard'));
         }
 
         Yii::log('Facebook login failed!', 'error');

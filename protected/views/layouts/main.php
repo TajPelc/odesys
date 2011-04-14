@@ -44,7 +44,6 @@
             </div>
             <div id="login">
                 <?php if(Yii::app()->user->isGuest){ ?>
-                    <p>Login with Facebook and start making better decisions:</p>
                     <?php echo CHtml::link(CHtml::image('http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif', 'Facbook Connect'), array('login/facebook'), array('id' => 'facebookLogin')); ?>
                 <?php } else { ?>
                     <div id="login_image"><?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?></div>

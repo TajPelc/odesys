@@ -13,7 +13,7 @@
                 </tr>
                 <?php foreach($Decisions as $D) { ?>
                 <tr>
-                    <td><?php echo CHtml::encode($D->title); ?></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('project/activate', 'id' => $D->project_id)); ?></td>
                     <td><?php echo date('d.m.Y', strtotime($D->last_edit)); ?></td>
                     <td>0</td>
                     <td>1</td>
