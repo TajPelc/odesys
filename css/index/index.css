@@ -6,10 +6,50 @@
 
 /* Content
 ********************************************************/
+
 #content {
     width: 450px;
     margin-right: 20px;
 }
+
+    #content h2 {
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        font-size: 20px;
+        font-weight: bold;
+        border-bottom: 1px solid #DEDFE3;
+    }
+
+    #content h2 + p {
+        margin-bottom: 16px;
+        font-style: italic;
+        font-size: 15px;
+    }
+
+    #content ol {
+        line-height: 16px;
+        padding: 0 0 16px 32px;
+        margin-bottom: 32px;
+        font-size: 14px;
+        list-style: decimal outside;
+        border-bottom: 1px solid #DEDFE3;
+    }
+
+        #content ol li {
+            margin-bottom: 8px;
+        }
+
+        #content ol li p {
+            padding: 2px 4px;
+            display: inline;
+        }
+
+        #content ol li p.glow {
+            background: #DBE3F0;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+        }
 
     #content dl {
         line-height: 16px;
@@ -17,12 +57,12 @@
 
         #content dt {
             margin-bottom: 8px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
         }
 
         #content dd {
-            margin-bottom: 8px;
+            margin-bottom: 16px;
         }
 
 /* Sidebar
@@ -44,9 +84,6 @@
             float:left;
             position:absolute;
             list-style: none;
-            -moz-border-radius: 6px;
-            -webkit-border-radius: 6px;
-            border-radius: 6px;
             border:1px solid #ccc;
         }
 
@@ -57,41 +94,4 @@
         #sidebar ul li img {
             width: 442px;
             background: #FFF;
-            -moz-border-radius: 6px;
-            -webkit-border-radius: 6px;
-            border-radius: 6px;
-        }
-
-    #sidebar h2 {
-        margin-bottom: 16px;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    #sidebar h2 + p {
-        line-height: 16px;
-        margin-bottom: 16px;
-    }
-
-    #sidebar ol {
-        line-height: 16px;
-        padding-left: 16px;
-        margin-bottom: 16px;
-        list-style: decimal outside;
-    }
-
-        #sidebar ol li {
-            margin-bottom: 8px;
-        }
-
-        #sidebar ol li p {
-            padding: 2px 4px;
-            display: inline;
-        }
-
-        #sidebar ol li p.glow {
-            background: #DBE3F0;
-            border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
         }
