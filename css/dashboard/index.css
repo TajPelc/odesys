@@ -30,7 +30,7 @@
     margin-left: 40px;
 }
 
-    #content .recentDecisions dd a {
+    #content .recentDecisions dd > a {
         line-height: 16px;
         padding-left: 20px;
         margin-right: 10px;
