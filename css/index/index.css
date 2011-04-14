@@ -7,97 +7,37 @@
 /* Content
 ********************************************************/
 
-#content {
-    width: 450px;
-    margin-right: 20px;
+#content h2 {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-    #content h2 {
-        padding-bottom: 16px;
-        margin-bottom: 16px;
-        font-size: 20px;
-        font-weight: bold;
-        border-bottom: 1px solid #DEDFE3;
-    }
-
-    #content h2 + p {
-        margin-bottom: 16px;
-        font-style: italic;
-        font-size: 15px;
-    }
-
-    #content ol {
-        line-height: 16px;
-        padding: 0 0 17px 32px;
-        margin-bottom: 42px;
-        font-size: 15px;
-        list-style: decimal outside;
-        border-bottom: 1px solid #DEDFE3;
-    }
-
-        #content ol li {
-            margin: 25px 0;
-        }
-
-        #content ol li p {
-            padding: 8px 4px;
-            display: inline;
-        }
-
-        #content ol li p.glow {
-            background: #dedfe3;
-            border-color: 444a56;
-            border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-        }
-
-    #content dl {
-        line-height: 16px;
-        margin-bottom: 50px;
-    }
-
-        #content dt {
-            margin-bottom: 16px;
-            font-size: 16px;
-            font-style: italic;
-        }
-
-        #content dd {
-            font-size: 13px;
-            margin-bottom: 16px;
-            padding-left: 10px;
-        }
-
-/* Sidebar
-********************************************************/
-#sidebar {
-    width: 450px;
+#content h2 + p {
+    margin-bottom: 16px;
+    font-style: italic;
+    font-size: 15px;
 }
 
-    #sidebar ul {
-        height: 285px;
-        margin-top: 16px;
-        margin-bottom: 35px;
-        position: relative;
-        background: url(../../images/bg/introduction.png)
+#content ol {
+    line-height: 16px;
+    padding: 0 0 17px 32px;
+    font-size: 15px;
+    list-style: decimal outside;
+}
 
+    #content ol li {
+        margin: 20px 0;
     }
 
-        #sidebar ul li {
-            width: 442px;
-            height: 277px;
-            padding: 1px 0 0 1px;
-            float:left;
-            position:absolute;
-            list-style: none;
-        }
+    #content ol li p {
+        padding: 8px 4px;
+        display: inline;
+    }
 
-        #sidebar ul li.show {
-            z-index:500;
-        }
-
-        #sidebar ul li img {
-            width: 442px;
-            background: #FFF;
-        }
+    #content ol li p.glow {
+        background: #dedfe3;
+        border-color: 444a56;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+    }
