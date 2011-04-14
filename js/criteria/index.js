@@ -25,11 +25,11 @@ Criteria.SaveInput = function(that, add) {
     //trim input values
     var trimValue = $.trim(that.val());
     that.val(trimValue);
-    //add preloader
-    Criteria.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
-    that.after(Criteria.SaveInput.Loading);
     //post
     if (!that.val() == ''){
+        //add preloader
+        Criteria.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
+        that.after(Criteria.SaveInput.Loading);
         var data = {
                 'criteria_id': add ? that.attr('id') : that.attr('id').split('_')[1],
                 'value'      : that.attr('value'),

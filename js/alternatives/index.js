@@ -24,11 +24,11 @@ Alternatives.SaveInput = function(that, add) {
     //trim input values
     var trimValue = $.trim(that.val());
     that.val(trimValue);
-    //add preloader
-    Alternatives.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
-    that.after(Alternatives.SaveInput.Loading);
     //post
     if (!that.val() == ''){
+        //add preloader
+        Alternatives.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
+        that.after(Alternatives.SaveInput.Loading);
         var data = {
                 'alternative_id': add ? that.attr('id') : that.attr('id').split('_')[1],
                 'value'      : that.attr('value'),
