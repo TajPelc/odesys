@@ -9,4 +9,5 @@
         <li><p>Analyse the results using our graphical method</p></li>
         <li><p>Make a better decision</p></li>
     </ol>
+    <img src="../../images/introduction.png" title="kolazz" alt="kolazz" />
 </div>
