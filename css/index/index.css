@@ -28,9 +28,9 @@
 
     #content ol {
         line-height: 16px;
-        padding: 0 0 8px 32px;
-        margin-bottom: 32px;
-        font-size: 14px;
+        padding: 0 0 17px 32px;
+        margin-bottom: 42px;
+        font-size: 15px;
         list-style: decimal outside;
         border-bottom: 1px solid #DEDFE3;
     }
@@ -45,8 +45,8 @@
         }
 
         #content ol li p.glow {
-            background: #444a56;
-            color: #fff;
+            background: #dedfe3;
+            border-color: 444a56;
             border-radius: 4px;
             -webkit-border-radius: 4px;
             -moz-border-radius: 4px;
@@ -54,16 +54,19 @@
 
     #content dl {
         line-height: 16px;
+        margin-bottom: 50px;
     }
 
         #content dt {
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: bold;
+            margin-bottom: 16px;
+            font-size: 16px;
+            font-style: italic;
         }
 
         #content dd {
+            font-size: 13px;
             margin-bottom: 16px;
+            padding-left: 10px;
         }
 
 /* Sidebar
@@ -74,7 +77,8 @@
 
     #sidebar ul {
         height: 285px;
-        margin-top: 35px;
+        margin-top: 16px;
+        margin-bottom: 35px;
         position: relative;
         background: url(../../images/bg/introduction.png)
 

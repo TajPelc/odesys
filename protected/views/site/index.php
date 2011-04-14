@@ -1,8 +1,5 @@
 <div id="content">
     <?php $this->pageTitle=Yii::app()->name . 'ODESYS: Online Decision Support System'; ?>
-    <?php if(Project::isProjectActive()) { ?>
-    <?php } ?>
-    <h2>How to use odesys?</h2>
     <ol>
         <li class="current"><p>Start by signing in with Facebook and creating a new project</p></li>
         <li><p>Define alternatives among which you are choosing</p></li>
@@ -41,4 +38,35 @@
             <img src="/images/pictures/introduction_6.png" title=""  alt="pic3" />
         </li>
     </ul>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+    new TWTR.Widget({
+      version: 2,
+      type: 'profile',
+      rpp: 3,
+      interval: 6000,
+      width: 444,
+      height: 182,
+      theme: {
+        shell: {
+          background: '#dedfe3',
+          color: '#444a56'
+        },
+        tweets: {
+          background: '#ffffff',
+          color: '#444a56',
+          links: '#000000'
+        }
+      },
+      features: {
+        scrollbar: false,
+        loop: false,
+        live: true,
+        hashtags: true,
+        timestamp: true,
+        avatars: false,
+        behavior: 'all'
+      }
+    }).render().setUser('ODESYSinfo').start();
+    </script>
 </div>
