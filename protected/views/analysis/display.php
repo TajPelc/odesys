@@ -30,7 +30,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             </table>
         </div>
         <div id="score-sidebar" class="sidebar">
-            <h4>Need some help?</h4>
             <ul>
                 <li>
                     <dl>
@@ -96,7 +95,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <?php $i++;?>
                 <?php }?>
             </ul>
-            <h4>Need some help?</h4>
             <ul class="help">
                 <li>
                     <dl>
