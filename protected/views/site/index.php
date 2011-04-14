@@ -16,28 +16,28 @@
         <li class="show">
             <img src="/images/pictures/introduction_1.png" title=""  alt="pic1" />
         </li>
-            <li>
-            <img src="/images/pictures/introduction_2.png" title=""  alt="pic2" />
-        </li>
         <li>
             <img src="/images/pictures/introduction_3.png" title=""  alt="pic3" />
         </li>
         <li>
-            <img src="/images/pictures/introduction_1.png" title=""  alt="pic1" />
-        </li>
-            <li>
             <img src="/images/pictures/introduction_2.png" title=""  alt="pic2" />
         </li>
         <li>
-            <img src="/images/pictures/introduction_3.png" title=""  alt="pic3" />
+            <img src="/images/pictures/introduction_4.png" title=""  alt="pic1" />
+        </li>
+            <li>
+            <img src="/images/pictures/introduction_5.png" title=""  alt="pic2" />
+        </li>
+        <li>
+            <img src="/images/pictures/introduction_6.png" title=""  alt="pic3" />
         </li>
     </ul>
     <h2>How to use odesys?</h2>
     <p>First gain a good understanding of your decison problem. You may then proceed to:</p>
     <ol>
         <li class="current"><p>Start by signing in with Facebook and creating a new project</p></li>
+        <li><p>Define alternatives among which you are choosing</p></li>
         <li><p>Define criteria and order them from most to least important</p></li>
-        <li><p>Define alternatives between which you are choosing</p></li>
         <li><p>Evalute each alternative by the defined criteria</p></li>
         <li><p>Analyse the results using our graphical method</p></li>
         <li><p>Make a better decision</p></li>
