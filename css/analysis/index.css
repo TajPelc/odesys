@@ -187,13 +187,17 @@
 }
 
 #abacon-sidebar form {
+    width: 234px;
+    height: 26px;
     padding-top: 8px;
     margin-bottom: 16px;
     position: relative;
+    float: left;
 }
 
     #abacon-sidebar ul.legend {
         margin-bottom: 16px;
+        float: left;
     }
 
     #abacon-sidebar ul.legend li {
@@ -268,6 +272,7 @@
     width: 234px;
     height: 26px;
     line-height: 26px;
+    display: block;
     position: relative;
     border-radius: 6px;
     -moz-border-radius: 6px;
