@@ -343,26 +343,14 @@ class Project extends CActiveRecord
             $i++;
         }
 
-        // sort the array
-        uasort($eval['Alternatives'], array('Project', 'compareAlternative'));
-
-        return $eval;
-    }
-
-    /**
-     * Compare two alternatives by weighted score
-     *
-     * @param array $a
-     * @param array $b
-     */
-    public static function compareAlternative($a, $b)
-    {
-        if($a['weightedTotal'] == $b['weightedTotal'])
+        // get the order of alternatives (from the database)
+        $eval['orderOfAlternatives'] = array();
+        foreach($this->findByWeightedScore() as $A)
         {
-            return 0;
+            array_push($eval['orderOfAlternatives'], $A->alternative_id);
         }
 
-        return ($a['weightedTotal'] < $b['weightedTotal'] ? +1 : -1);
+        return $eval;
     }
 
     /**
