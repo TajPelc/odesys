@@ -17,7 +17,7 @@ class CriteriaController extends DecisionController
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/criteria/index.css');
 
         // javascript
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.11.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria/index.js');
 
         // load active project
@@ -50,7 +50,7 @@ class CriteriaController extends DecisionController
                     {
                         // all good, reutrn new criteria id
                         Ajax::respondOk(array(
-                        	'criteria_id' => $Criteria->criteria_id,
+                            'criteria_id' => $Criteria->criteria_id,
                             'projectMenu' => $this->getProjectMenu(),
                         ));
                     }
@@ -67,7 +67,7 @@ class CriteriaController extends DecisionController
                         if($Criteria->delete())
                         {
                             Ajax::respondOk(array(
-                            	'projectMenu' => $this->getProjectMenu(),
+                                'projectMenu' => $this->getProjectMenu(),
                             ));
                         }
                     }
