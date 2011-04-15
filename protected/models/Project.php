@@ -239,6 +239,21 @@ class Project extends CActiveRecord
     }
 
     /**
+     * Find alternatives by weighted score
+     *
+     * descending
+     */
+    public function findByWeightedScore()
+    {
+        $criteria = new CDbCriteria();
+        $criteria->addCondition('rel_project_id=:rel_project_id');
+        $criteria->order = 'weightedScore DESC';
+        $criteria->params = array('rel_project_id' => $this->project_id);
+
+        return Alternative::model()->findAll($criteria);
+    }
+
+    /**
      * Return all project's criteria ordered by priority
      */
     public function findCriteriaByPriority()
@@ -270,7 +285,7 @@ class Project extends CActiveRecord
 
         // loop alternatives
         $i = 0;
-        foreach($this->alternatives as $Alternative)
+        foreach($this->findByWeightedScore() as $Alternative)
         {
             $eval['Alternatives'][$Alternative->alternative_id] = array(
                 'alternative_id'          => $Alternative->alternative_id,
@@ -328,26 +343,14 @@ class Project extends CActiveRecord
             $i++;
         }
 
-        // sort the array
-        uasort($eval['Alternatives'], array('Project', 'compareAlternative'));
-
-        return $eval;
-    }
-
-    /**
-     * Compare two alternatives by weighted score
-     *
-     * @param array $a
-     * @param array $b
-     */
-    public static function compareAlternative($a, $b)
-    {
-        if($a['weightedTotal'] == $b['weightedTotal'])
+        // get the order of alternatives (from the database)
+        $eval['orderOfAlternatives'] = array();
+        foreach($this->findByWeightedScore() as $A)
         {
-            return 0;
+            array_push($eval['orderOfAlternatives'], $A->alternative_id);
         }
 
-        return ($a['weightedTotal'] < $b['weightedTotal'] ? +1 : -1);
+        return $eval;
     }
 
     /**

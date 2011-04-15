@@ -11,9 +11,6 @@ Score.Legend = {};
 Score.nrAlternatives = 0;
 Score.Scores = [];
 
-// cotainer for Score drawn elements
-Score.Elements = [];
-
 /**
  * Score config
  */
@@ -33,17 +30,14 @@ Score.init = function(){
     // get container
     Score.Container = $('#score');
 
-    // get number of alternatives
-    var i = 0;
-    for (var k in Graph.Data['Alternatives']) {
-        if (Graph.Data['Alternatives'].hasOwnProperty(k)) {
-            Score.Scores[i] = {
-                    'weightedTotal': Graph.Data['Alternatives'][k]['weightedTotal'],
-                    'color': Graph.Data['Alternatives'][k]['color'],
-            };
-            i++;
-            Score.nrAlternatives++;
-        }
+    // build the score aray from Graph.Data array
+    for (i=0; i<Graph.Data['orderOfAlternatives'].length; i++) {
+        var id = Graph.Data['orderOfAlternatives'][i];
+        Score.Scores[i] = {
+                'weightedTotal': Graph.Data['Alternatives'][id]['weightedTotal'],
+                'color': Graph.Data['Alternatives'][id]['color'],
+        };
+        Score.nrAlternatives++;
     }
 
     // calculate Score height
@@ -51,6 +45,9 @@ Score.init = function(){
 
     // create canvas
     Score.Canvas = Raphael("score", Score.Config['width'], Score.Config['height']);
+
+    // cotainer for Score drawn elements
+    Score.Elements = Score.Canvas.set();
 
     // draw horizontal grid
     for(i=0; i<Score.nrAlternatives; i++)
@@ -76,6 +73,9 @@ Score.init = function(){
     Score.DrawAlternative(0);
 }
 
+/**
+ * Recursively draw all alternatives
+ */
 Score.DrawAlternative = function(i)
 {
     // avoid division by zero
@@ -93,17 +93,19 @@ Score.DrawAlternative = function(i)
     // calculate y position
     var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2) - 10;
 
+    // create a set for alternatives
+    var Alternative = Score.Canvas.set();
     // shadow
-    var rect = Score.Canvas.rect(x+2, y+2, 0, 20).attr({
+    Alternative.push(Score.Canvas.rect(x+2, y+2, 0, 20).attr({
         'fill': '#000',
         'stroke-width': 0,
         'opacity': 0.4,
     }).animate({
         width: width,
-    }, 500, '<>').blur(1);
+    }, 500, '<>').blur(1));
 
     // rectangle
-    var rect = Score.Canvas.rect(x-1, y, 0, 20, 0).attr({
+    Alternative.push(Score.Canvas.rect(x-1, y, 0, 20, 0).attr({
         'fill': '#000',
         'stroke': '#000',
         'stroke-width': 0,
@@ -117,5 +119,7 @@ Score.DrawAlternative = function(i)
             i++;
             Score.DrawAlternative(i);
         }
-    });
+    }));
+
+    Score.Elements.push(Alternative);
 }

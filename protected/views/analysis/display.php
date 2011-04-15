@@ -3,7 +3,7 @@ var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 <div id="accordion">
-    <h3 id=""><a href="#">Score graph</a></h3>
+    <h3 id=""><a href="#">Results</a></h3>
     <div>
         <div id="score" class="content">
             <table class="alternatives">
@@ -33,20 +33,20 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <ul>
                 <li>
                     <dl>
-                        <dt>About the score graph</dt>
-                        <dd>Score graph shows you nominal score values for all your alternatives. Your best scored alternative is at the top, scoring 100 points. All other alternative's scores are relative to the winning alternative.</dd>
+                        <dt>A note on scores</dt>
+                        <dd>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the winning alternative.</dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
-                        <dt>Top scored alternative</dt>
-                        <dd>Is not necessarily the best alternative for you. If you would like to compare two or more alternatives, please use Abacon graph below.</dd>
+                        <dt>But which one is best?</dt>
+                        <dd>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</dd>
                     </dl>
                 </li>
             </ul>
         </div>
     </div>
-    <h3 id="abacon-tab"><a href="#">Abacon</a></h3>
+    <h3 id="abacon-tab"><a href="#">Detailed comparison</a></h3>
     <div>
         <div id="abacon" class="content">
             <table class="criteria">
@@ -98,8 +98,8 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <ul class="help">
                 <li>
                     <dl>
-                        <dt>About the abacon graph</dt>
-                        <dd>Compare two or more alternatives by criteria. Alternative that scored most points and is the winning one is not necessarily the best choice for you. You should yet again think about your decision problem, compare your alternatives by criteria and then make your final decision.</dd>
+                        <dt>About the detailed comparison</dt>
+                        <dd>This graph shows alternative profiles. You should be seeing how each alternative compares to others at each criteria. Do you still think the first one is the best?.</dd>
                     </dl>
                 </li>
             </ul>
