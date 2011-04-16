@@ -49,6 +49,7 @@ function handleSlider()
                                 Core.ProjectMenu(data['projectMenu']);
                             }
                             Core.Unblock(sliderSlider);
+                            Evaluation.Sidebar($('#content form ul'));
                         }
                 });
             }
@@ -79,8 +80,10 @@ Evaluation.NextCriteria = function(that) {
             }
             setTimeout(html, 120);
             $('#content h2 b').text(data['title']);
+            $('#content h2').attr('class', data['criteria_id']);
             Evaluation.Navigation(that, data['previous'], data['next'], data['pageNr'], data['criteriaNr']);
             Core.Unblock($('#main'));
+            Evaluation.Sidebar(data['html'], data['criteria_id']);
         }
     });
 
@@ -114,6 +117,23 @@ Evaluation.Navigation = function(that, prev, next, pageNr, criteriaNr) {
     }
 }
 
+Evaluation.Sidebar = function(html, criteria_id) {
+    $(html).find('li').each(function(index, element){
+        if (!criteria_id){
+            criteria_id = $('#content h2').attr('class');
+        }
+        if($(element).attr('class') == ''){
+            $('#sidebar ul li.'+criteria_id+'').addClass('nok');
+            return false;
+        } else {
+            var sidebarList = $('#sidebar ul li');
+            if (sidebarList.hasClass(criteria_id) && sidebarList.hasClass('nok')){
+                $('#sidebar ul li.'+criteria_id+'.nok').removeClass('nok');
+            }
+        }
+    });
+}
+
 /**
  * On document load
  */
@@ -128,4 +148,7 @@ $(document).ready(function(){
         Evaluation.NextCriteria($(this));
         return false;
     });
+
+    // check for empty evaluation fields at the star
+    Evaluation.Sidebar($('#content form ul'));
 });

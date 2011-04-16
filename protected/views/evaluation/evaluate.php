@@ -2,7 +2,7 @@
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
     <p>Fill out the statements by moving the sliders to the appropriate location.</p>
-    <h2><b><?php echo CHtml::encode($Criteria->title); ?></b> for</h2>
+    <h2 class="<?php echo $Criteria->criteria_id; ?>"><b><?php echo CHtml::encode($Criteria->title); ?></b> for</h2>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
 <?php }?>
         <ul>
@@ -28,6 +28,14 @@
         <li><?php echo ( $pageNr > 0 ? CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $pageNr - 1), array('class' => 'previous')) : '')?></li>
         <li>Criteria <?php echo $pageNr + 1; ?> of <?php echo $nrOfCriteria ?></li>
         <li><?php echo ( $pageNr < $nrOfCriteria - 1 ? CHtml::link('Next', array('evaluation/evaluate', 'pageNr' => $pageNr + 1), array('class' => 'next')) : '')?></li>
+    </ul>
+</div>
+<div id="sidebar">
+    <p>Following criteria not evaluated:</p>
+    <ul>
+        <?php foreach($Project->criteria as $Criteria) { ?>
+        <li class="<?php echo CHtml::encode($Criteria->criteria_id);?>"><?php echo CHtml::encode($Criteria->title)?></li>
+        <?php } ?>
     </ul>
 </div>
 <?php } ?>

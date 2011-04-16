@@ -151,3 +151,20 @@
         top: 7px;
         background: url(../../images/form/sprite_slider.png) -500px 0 no-repeat;
     }
+
+/* Slider
+********************************************************/
+#sidebar > p {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+    #sidebar ul li {
+        padding: 4px 0;
+        color: green;
+    }
+
+    #sidebar ul li.nok {
+        font-weight: bold;
+        color: #f00;
+    }

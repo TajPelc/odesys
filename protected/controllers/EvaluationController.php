@@ -47,7 +47,7 @@ class EvaluationController extends DecisionController
 
         // evaluation array
         $Evaluation = Evaluation::model()->findAllByAttributes(array(
-        	'rel_project_id' => Project::getActive()->project_id,
+            'rel_project_id' => Project::getActive()->project_id,
             'rel_criteria_id' => $Criteria->criteria_id,
         ));
 
@@ -81,6 +81,7 @@ class EvaluationController extends DecisionController
                     Ajax::respondOk(array(
                         'html' => $html,
                         'title' => $Criteria->title,
+                        'criteria_id' => $Criteria->criteria_id,
                         'pageNr' => $pageNr + 1,
                         'criteriaNr' => $criteriaNr,
                         'previous' => ($pageNr > 0 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1)) : false),
