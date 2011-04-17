@@ -1,7 +1,7 @@
 <?php if(!Ajax::isAjax()) { ?>
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
-    <p>Fill out the statements by moving the sliders to the appropriate location.</p>
+    <h2>Fill out the statements by moving the sliders to the appropriate location.</h2>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded" action="">
 <?php }?>
 <?php if($renderEvaluation) { ?>
@@ -32,7 +32,7 @@
     </ul>
 </div>
 <div id="sidebar">
-    <p>Evaluation steps</p>
+    <h3>Evaluation steps</h3>
     <ul>
 <?php } ?>
 <?php if ($renderSidebar) { ?>
