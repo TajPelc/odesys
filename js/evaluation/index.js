@@ -118,7 +118,7 @@ Evaluation.Navigation = function(that, prev, next, pageNr, criteriaNr) {
 }
 
 Evaluation.Sidebar = function(sidebar) {
-    var sidebarUl = $('#sidebar ul');
+    var sidebarUl = $('#sidebar ul.steps');
     var sidebarUlHeight = sidebarUl.height();
     sidebarUl.height(sidebarUlHeight);
     sidebarUl.children().remove();

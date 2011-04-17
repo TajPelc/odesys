@@ -33,7 +33,7 @@
 </div>
 <div id="sidebar">
     <h3>Evaluation steps</h3>
-    <ul>
+    <ul class="steps">
 <?php } ?>
 <?php if ($renderSidebar) { ?>
         <?php $i = 0;?>
@@ -48,13 +48,14 @@
 <?php } ?>
 <?php if(!Ajax::isAjax()) { ?>
     </ul>
-    <h3>Need some help?</h3>
-    <ul>
+    <ul class="help">
         <li>
             <dl>
                 <dt>About</dt>
                 <dd>Read the sentances and think about how each alternative compares at a given criteria. If a sentance doesn't make any sense, you should probably rename your criteria or alternatives.</dd>
             </dl>
+        </li>
+        <li>
             <dl>
                 <dt>How to evaluate</dt>
                 <dd>Think about how each alternative compares to others at this criteria. Then just move or click on the slider to evaluate it.</dd>

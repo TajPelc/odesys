@@ -148,13 +148,14 @@
     text-align: center;
 }
 
-    #sidebar ul {
+    #sidebar ul.steps {
         width: 100%;
         line-height: 32px;
+        margin-bottom: 16px;
         list-style: inside decimal;
     }
 
-        #sidebar ul li {
+        #sidebar ul.steps li {
             width: 198px;
             height: 32px;
             padding: 0 8px 0 8px;
@@ -167,14 +168,18 @@
             border-radius: 3px;
         }
 
-            #sidebar ul li a {
+        #sidebar ul.steps li:last-child {
+            margin-bottom: 0;
+        }
+
+            #sidebar ul.steps li a {
                 width: 176px;
                 line-height: 32px;
                 display: inline-block;
                 text-decoration: none;
             }
 
-            #sidebar ul li span {
+            #sidebar ul.steps li span {
                 width: 8px;
                 height: 15px;
                 position: absolute;
@@ -183,10 +188,33 @@
                 background: url(../../images/sprite_icons.png) 0 -650px no-repeat;
             }
 
-        #sidebar ul li.current {
+        #sidebar ul.steps li.current {
             font-weight: bold;
         }
 
-        #sidebar ul li.saved {
+        #sidebar ul.steps li.saved {
             background: url("../../images/form/sprite_slider.png") no-repeat scroll -3px -213px transparent;
+        }
+
+/* #abacon-sidebar help */
+#sidebar ul.help {
+    line-height: 16px;
+    list-style: none;
+    padding: 5px;
+    text-align: left;
+    font-size: 11px;
+}
+
+    #sidebar ul.help li {
+        margin-bottom: 8px;
+    }
+
+    #sidebar ul.help li:last-child {
+        margin-bottom: 0;
+    }
+        #sidebar ul.help li dl dt {
+            font-size: 12px;
+            font-style: italic;
+            font-weight: bold;
+            margin-bottom: 6px;
         }
