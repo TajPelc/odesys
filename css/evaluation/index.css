@@ -155,16 +155,37 @@
 /* Slider
 ********************************************************/
 #sidebar > p {
-    margin-bottom: 8px;
+    line-height: 16px;
+    margin-bottom: 16px;
     font-size: 15px;
+    font-style: italic;
+    color: #c8cbd0;
+    text-align: center;
 }
 
-    #sidebar ul li {
-        padding: 4px 0;
-        color: green;
+    #sidebar ul {
+        width: 100%;
+        line-height: 32px;
+        list-style: inside decimal;
     }
 
-    #sidebar ul li.nok {
-        font-weight: bold;
-        color: #f00;
-    }
+        #sidebar ul li {
+            height: 32px;
+            padding: 0 8px;
+            margin-bottom: 8px;
+            color: #444a56;
+            border: 1px solid #c8cbd0;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        #sidebar ul li.current {
+            font-weight: bold;
+        }
+
+        #sidebar ul li.saved {
+            font-weight: bold;
+            color: #f00;
+            background: url("../../images/form/sprite_slider.png") no-repeat scroll -3px -203px transparent;
+        }
