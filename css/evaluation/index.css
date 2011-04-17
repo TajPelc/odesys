@@ -9,24 +9,6 @@
     width: 670px;
 }
 
-#content > h2 {
-    width: 666px; /*686px*/
-    padding: 8px 10px;
-    font-size: 20px;
-    border-top: 1px solid #dedfe3;
-    border-bottom: 1px solid #dedfe3;
-}
-
-    #content > h2 b {
-        font-weight: bold;
-    }
-
-#content > p {
-    width: 100%;
-    margin-bottom: 16px;
-    font-size: 18px;
-}
-
 #content form {
     width: 100%;
     margin-bottom: 32px;
@@ -158,10 +140,10 @@
 
 /* Slider
 ********************************************************/
-#sidebar > p {
+#sidebar > h3 {
     line-height: 16px;
-    margin-bottom: 16px;
-    font-size: 15px;
+    margin-bottom: 18px;
+    font-size: 16px;
     font-style: italic;
     text-align: center;
 }

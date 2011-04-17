@@ -1,7 +1,7 @@
 <?php if(!Ajax::isAjax()) { ?>
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
-    <p>Move each slider to the appropriate position to evaluate alternatives.</p>
+    <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded" action="">
 <?php }?>
 <?php if($renderEvaluation) { ?>
@@ -32,7 +32,7 @@
     </ul>
 </div>
 <div id="sidebar">
-    <p>Evaluation steps</p>
+    <h3>Evaluation steps</h3>
     <ul>
 <?php } ?>
 <?php if ($renderSidebar) { ?>
@@ -47,6 +47,19 @@
         <?php } ?>
 <?php } ?>
 <?php if(!Ajax::isAjax()) { ?>
+    </ul>
+    <h3>Need some help?</h3>
+    <ul>
+        <li>
+            <dl>
+                <dt>About</dt>
+                <dd>Read the sentances and think about how each alternative compares at a given criteria. If a sentance doesn't make any sense, you should probably rename your criteria or alternatives.</dd>
+            </dl>
+            <dl>
+                <dt>How to evaluate</dt>
+                <dd>Think about how each alternative compares to others at this criteria. Then just move or click on the slider to evaluate it.</dd>
+            </dl>
+        </li>
     </ul>
 </div>
 <?php } ?>
