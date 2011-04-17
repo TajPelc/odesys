@@ -131,6 +131,9 @@ class Alternative extends CActiveRecord
     {
         if( parent::beforeDelete() )
         {
+            // update project's last edit
+            Project::getActive()->updateLastEdit();
+
             // delete criteria
             foreach($this->evaluations as $e)
             {
@@ -162,6 +165,9 @@ class Alternative extends CActiveRecord
     {
         if( parent::beforeSave() )
         {
+            // update project's last edit
+            Project::getActive()->updateLastEdit();
+
             if($this->isNewRecord)
             {
                 // increase the number of criteria

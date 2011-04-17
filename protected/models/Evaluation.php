@@ -57,6 +57,9 @@ class Evaluation extends CActiveRecord
     {
         if( parent::beforeSave() )
         {
+            // update project's last edit
+            Project::getActive()->updateLastEdit();
+
             if($this->isNewRecord)
             {
                 // increase the number of evaluations
