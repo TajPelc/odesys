@@ -17,7 +17,7 @@ class ProjectMenu extends CWidget
         'menu-criteria'      => array('route' => array('criteria/create'), 'label' => 'Criteria', 'enabled' => false),
         'menu-evaluation'    => array('route' => array('evaluation/evaluate'), 'label' => 'Evaluation', 'enabled' => false),
         'menu-analysis'      => array('route' => array('analysis/display'), 'label' => 'Analysis', 'enabled' => false),
-        'menu-overview'      => array('route' => array('project/details'), 'label' => 'Overview', 'enabled' => false),
+        'menu-overview'      => array('route' => array('project/details'), 'label' => 'Sharing and settings', 'enabled' => false),
     );
 
     /**
