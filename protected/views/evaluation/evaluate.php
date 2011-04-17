@@ -9,7 +9,7 @@
             <?php foreach($Project->alternatives as $Alternative) { ?>
             <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
             <li<?php echo ((bool)$Evaluation ? ' class="saved"' : ''); ?>>
-                <h3><?php echo CHtml::encode($Criteria->title)?> <em>for</em> <b><?php echo CHtml::encode($Alternative->title)?></b> <em>is</em></h3>
+                <h3><b><?php echo CHtml::encode(Common::truncate($Criteria->title, 45))?></b> <em>for</em> <b><?php echo CHtml::encode(Common::truncate($Alternative->title, 45))?></b> <em>is</em></h3>
                 <div>
                     <span class="worst">the worst</span>
                     <select id="<?php echo 'eval-'. $Alternative->alternative_id . '-' . $Criteria->criteria_id; ?>" name="<?php echo 'eval['. $Alternative->alternative_id . '][' . $Criteria->criteria_id . ']'; ?>">
@@ -42,7 +42,7 @@
             <?php $evaluated = $C->isDecisionEvaluated(); ?>
             <li<?php if($current || $evaluated) { echo ' class="'; if($current){echo 'current';} if($current && $evaluated){echo ' ';} if($evaluated){echo 'saved';} echo '"';}?>>
                 <?php if($current) { ?><span>&nbsp;</span><?php }?>
-                <?php echo CHtml::link(CHtml::encode($C->title), array('evaluation/evaluate', 'pageNr' => $i++)); ?>
+                <?php echo CHtml::link(CHtml::encode(Common::truncate($C->title, 32)), array('evaluation/evaluate', 'pageNr' => $i++)); ?>
             </li>
         <?php } ?>
 <?php } ?>

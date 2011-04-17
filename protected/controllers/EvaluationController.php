@@ -36,6 +36,25 @@ class EvaluationController extends DecisionController
             }
         }
 
+        // redirect to the first unevaluated criteria
+        if(false === $this->get('pageNr'))
+        {
+            $i = 0;
+            foreach($Project->findCriteriaByPriority() as $C)
+            {
+                if(!$C->isDecisionEvaluated())
+                {
+                    // do not redirect on the first criteria
+                    if($i === 0)
+                    {
+                        break;
+                    }
+                    $this->redirect(array('evaluation/evaluate', 'pageNr' => (string)$i));
+                }
+                $i++;
+            }
+        }
+
         // get page number
         if(false === $pageNr = $this->get('pageNr'))
         {

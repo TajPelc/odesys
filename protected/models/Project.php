@@ -255,6 +255,8 @@ class Project extends CActiveRecord
 
     /**
      * Return all project's criteria ordered by priority
+     *
+     * @return Criteria
      */
     public function findCriteriaByPriority()
     {
