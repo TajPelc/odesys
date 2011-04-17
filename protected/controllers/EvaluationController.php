@@ -76,10 +76,21 @@ class EvaluationController extends DecisionController
                         'Project'          => $Project,
                         'Criteria'         => $Criteria,
                         'eval'	           => $eval,
+            			'renderEvaluation' => true,
+                        'renderSidebar'	   => false,
+                    ), true);
+
+                    // sidebar partial
+                    $sidebarHtml = $this->renderPartial('evaluate', array(
+                        'Project'          => $Project,
+                        'Criteria'         => $Criteria,
+            			'renderEvaluation' => false,
+                        'renderSidebar'	   => true,
                     ), true);
 
                     Ajax::respondOk(array(
                         'html' => $html,
+                        'sideBar' => $sidebarHtml,
                         'title' => $Criteria->title,
                         'criteria_id' => $Criteria->criteria_id,
                         'pageNr' => $pageNr + 1,
@@ -101,6 +112,8 @@ class EvaluationController extends DecisionController
             'eval'	           => $eval,
             'pageNr'		   => $pageNr,
             'nrOfCriteria'	   => $criteriaNr,
+            'renderEvaluation' => true,
+            'renderSidebar'	   => true,
         ));
     }
 

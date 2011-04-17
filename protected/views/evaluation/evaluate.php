@@ -3,8 +3,9 @@
 <div id="content">
     <p>Fill out the statements by moving the sliders to the appropriate location.</p>
     <h2 class="<?php echo $Criteria->criteria_id; ?>"><b><?php echo CHtml::encode($Criteria->title); ?></b> for</h2>
-    <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded">
+    <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded" action="">
 <?php }?>
+<?php if($renderEvaluation) { ?>
         <ul>
             <?php foreach($Project->alternatives as $Alternative) { ?>
             <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
@@ -22,6 +23,7 @@
             </li>
             <?php } ?>
         </ul>
+    <?php }?>
     <?php if(!Ajax::isAjax()) { ?>
     </form>
     <ul>
@@ -31,11 +33,20 @@
     </ul>
 </div>
 <div id="sidebar">
-    <p>Following criteria not evaluated:</p>
+    <p>Evaluation steps</p>
     <ul>
-        <?php foreach($Project->criteria as $Criteria) { ?>
-        <li class="<?php echo CHtml::encode($Criteria->criteria_id);?>"><?php echo CHtml::encode($Criteria->title)?></li>
+<?php } ?>
+<?php if ($renderSidebar) { ?>
+        <?php $i = 0;?>
+        <?php foreach($Project->findCriteriaByPriority() as $C) { ?>
+            <?php $current = ($C->criteria_id == $Criteria->criteria_id);?>
+            <?php $evaluated = $C->isDecisionEvaluated(); ?>
+            <li<?php if($current || $evaluated) { echo ' class="'; if($current){echo 'current';} if($current && $evaluated){echo ' ';} if($evaluated){echo 'saved';} echo '"';}?>>
+                <?php echo CHtml::link(CHtml::encode($C->title), array('evaluation/evaluate', 'pageNr' => $i++)); ?>
+            </li>
         <?php } ?>
+<?php } ?>
+<?php if(!Ajax::isAjax()) { ?>
     </ul>
 </div>
 <?php } ?>

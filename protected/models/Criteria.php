@@ -171,7 +171,6 @@ class Criteria extends CActiveRecord
         Project::getActive()->decrease('no_criteria');
     }
 
-
     /**
      * Return criteria for the current project matching the position given
      *
@@ -180,6 +179,17 @@ class Criteria extends CActiveRecord
     public static function getCriteriaByPosition($position)
     {
         return self::model()->findByAttributes(array('rel_project_id' => Project::getActive()->project_id, 'position' => $position));
+    }
+
+    /**
+     * Check if this decision is evaluated by current criteria
+     *
+     * @param int $position
+     */
+    public function isDecisionEvaluated()
+    {
+        // if there are the same number of evaluations with this criteria and project id as there are alternatives, then this criteria has been evaluated
+        return (Project::getActive()->no_alternatives == Evaluation::model()->countByAttributes(array('rel_project_id' => $this->rel_project_id, 'rel_criteria_id' => $this->criteria_id)));
     }
 
     /**
