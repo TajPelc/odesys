@@ -170,9 +170,11 @@
     }
 
         #sidebar ul li {
+            width: 198px;
             height: 32px;
-            padding: 0 8px;
+            padding: 0 8px 0 8px;
             margin-bottom: 8px;
+            position: relative;
             color: #444a56;
             border: 1px solid #c8cbd0;
             -moz-border-radius: 3px;
@@ -180,12 +182,25 @@
             border-radius: 3px;
         }
 
+            #sidebar ul li a {
+                width: 176px;
+                line-height: 32px;
+                display: inline-block;
+            }
+
+            #sidebar ul li span {
+                width: 8px;
+                height: 15px;
+                position: absolute;
+                top: 9px;
+                left: -12px;
+                background: url(../../images/sprite_icons.png) 0 -650px no-repeat;
+            }
+
         #sidebar ul li.current {
             font-weight: bold;
         }
 
         #sidebar ul li.saved {
-            font-weight: bold;
-            color: #f00;
             background: url("../../images/form/sprite_slider.png") no-repeat scroll -3px -203px transparent;
         }
