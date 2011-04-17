@@ -51,14 +51,14 @@
     <ul class="help">
         <li>
             <dl>
-                <dt>About</dt>
+                <dt>Think</dt>
                 <dd>Read the sentances and think about how each alternative compares at a given criteria. If a sentance doesn't make any sense, you should probably rename your criteria or alternatives.</dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>How to evaluate</dt>
-                <dd>Think about how each alternative compares to others at this criteria. Then just move or click on the slider to evaluate it.</dd>
+                <dd>Just move or click on the slider to evaluate an alternative.</dd>
             </dl>
         </li>
     </ul>
