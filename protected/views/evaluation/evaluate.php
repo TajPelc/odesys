@@ -9,7 +9,7 @@
             <?php foreach($Project->alternatives as $Alternative) { ?>
             <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
             <li<?php echo ((bool)$Evaluation ? ' class="saved"' : ''); ?>>
-                <h3><b><?php echo CHtml::encode($Criteria->title)?></b> <em>for</em> <b><?php echo CHtml::encode($Alternative->title)?></b> <em>is</em></h3>
+                <h3><?php echo CHtml::encode($Criteria->title)?> <em>for</em> <b><?php echo CHtml::encode($Alternative->title)?></b> <em>is</em></h3>
                 <div>
                     <span class="worst">the worst</span>
                     <select id="<?php echo 'eval-'. $Alternative->alternative_id . '-' . $Criteria->criteria_id; ?>" name="<?php echo 'eval['. $Alternative->alternative_id . '][' . $Criteria->criteria_id . ']'; ?>">

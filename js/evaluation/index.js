@@ -81,8 +81,6 @@ Evaluation.NextCriteria = function(that) {
                 handleSlider();
             }
             setTimeout(html, 120);
-            $('#content h2 b').text(data['title']);
-            $('#content h2').attr('class', data['criteria_id']);
             Evaluation.Navigation(that, data['previous'], data['next'], data['pageNr'], data['criteriaNr']);
             Core.Unblock($('#main'));
             Evaluation.Sidebar(data['sideBar']);
