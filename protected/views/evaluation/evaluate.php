@@ -1,7 +1,7 @@
 <?php if(!Ajax::isAjax()) { ?>
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
 <div id="content">
-    <p>Fill out the statements by moving the sliders to the appropriate location.</p>
+    <p>Move each slider to the appropriate position to evaluate alternatives.</p>
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded" action="">
 <?php }?>
 <?php if($renderEvaluation) { ?>
