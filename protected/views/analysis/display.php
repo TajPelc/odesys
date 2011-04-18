@@ -78,7 +78,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 <fieldset>
                     <select name="legend">
                         <?php foreach($Alternatives as $A) { ?>
-                            <option value="<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?></option>
+                            <option value="<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode(Common::truncate($A->title, 32)); ?></option>
                         <?php }?>
                     </select>
                     <a class="selectBox selectBox-dropdown" style="display: inline-block; width: 232px; -moz-user-select: none;" title="" tabindex="0">
@@ -90,7 +90,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <ul class="legend">
                 <?php $i = 0; ?>
                 <?php foreach($bestAlternatives as $A) {?>
-                    <li id="alternative_<?php echo $A->alternative_id; ?>"><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode($A->title); ?><span class="remove">X</span></li>
+                    <li id="alternative_<?php echo $A->alternative_id; ?>"><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode(Common::truncate($A->title, 32)); ?><span class="remove">X</span></li>
                     <?php if($i == 1) break; ?>
                     <?php $i++;?>
                 <?php }?>
