@@ -52,6 +52,7 @@ Alternatives.SaveInput = function(that, add) {
                         that.val('');
                         Alternatives.SaveInput.Loading.remove();
                         Core.ProjectMenu(data['projectMenu']);
+                        Alternatives.handleButtons(data['projectMenu']);
 
                         //errors
                     } else {
@@ -94,12 +95,42 @@ Alternatives.DeleteInput = function(that) {
             {
                 that.parents('li').remove();
                 Core.ProjectMenu(data['projectMenu']);
+                Alternatives.handleButtons(data['projectMenu']);
                 Alternatives.DeleteInput.Loading.remove();
             } else {
                 Alternatives.DeleteInput.Loading.remove();
             }
         }
     });
+}
+
+/**
+ * Handle next button
+ */
+Alternatives.handleButtons = function(menu) {
+    // next button
+    var next = $('#content-nav li.next a');
+
+    // check if next button should be enabled or disabled
+    var nextEnabled = false;
+    if(menu == undefined)
+    {
+        nextEnabled = $('#menu-criteria').is('a');
+    }
+    else
+    {
+        nextEnabled = (false != menu['criteria']);
+    }
+
+    // hide next button
+    if(nextEnabled)
+    {
+        next.fadeIn(500);
+    }
+    else
+    {
+        next.fadeOut(500);
+    }
 }
 
 
@@ -112,6 +143,10 @@ $(document).ready(function(){
     Alternatives.FormListButtons($('#content form li input'));
     $('#content form input[type="submit"]').remove();
     $('#content form div input').focus();
+
+    // hide navigation
+    $('#content-nav').find('li a').hide();
+    Alternatives.handleButtons();
 
     //prepare ajax
     url = $('#content form').attr('action');

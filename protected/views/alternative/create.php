@@ -18,6 +18,10 @@
         <?php } ?>
         </ol>
         <input type="submit" name="submit" value="Add" />
+        <ul id="content-nav">
+            <li class="prev"></li>
+            <li class="next"><?php echo CHtml::link('Next', array('criteria/create'), array('class' => 'next')); ?></li>
+        </ul>
     <?php echo CHtml::endForm();?>
 </div>
 <div id="sidebar">
