@@ -70,45 +70,6 @@
                     text-align: right;
                 }
 
-/* Prev/Next navigation
-********************************************************/
-#content > ul {
-    margin-bottom: 16px;
-    float: left;
-    position: relative;
-}
-
-    #content > ul li {
-        height: 34px;
-        line-height: 34px;
-        padding: 0 20px;
-        float: left;
-        font-weight: bold;
-        font-size: 18px;
-        text-align: center;
-    }
-
-    #content > ul li:first-child,
-    #content > ul li:last-child {
-        width: 101px;
-        padding: 0;
-    }
-
-        #content > ul li a {
-            width: 103px;
-            height: 34px;
-            display: block;
-            text-indent: -9999px;
-            background: transparent url(../../images/form/sprite_buttons.png) no-repeat;
-        }
-
-        #content > ul li:first-child a        { background-position: -300px -200px }
-        #content > ul li:last-child a         { background-position: -300px -100px }
-        #content > ul li:first-child a:hover  { background-position: -450px -200px }
-        #content > ul li:last-child a:hover   { background-position: -450px -100px }
-        #content > ul li:first-child a:active { background-position: -600px -200px }
-        #content > ul li:last-child a:active  { background-position: -600px -100px }
-
 /* Slider
 ********************************************************/
 #content .ui-slider {

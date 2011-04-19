@@ -33,7 +33,7 @@ a:hover {
     height: auto !important;
     height: 100%;
     margin: 0 auto;
-    margin-bottom: -224px; /* compensate for sticky footer */
+    margin-bottom: -244px; /* compensate for sticky footer */
     float: none !important;
 }
 
@@ -337,13 +337,13 @@ a:hover {
 ********************************************************/
 #footer {
     width: 100%;
-    height: 200px; /*224px*/
+    height: 220px; /*244px*/
     padding: 24px 0 0 0;
     clear: both;
     position: relative;
     text-align: center;
     color: #eeeeee;
-    background: url(../../images/bg/footer.png) repeat-x;
+    background: #444a56 url(../../images/bg/footer.png) repeat-x;
 }
 
     #footer ul {
@@ -423,6 +423,7 @@ a:hover {
                         display: block;
                         text-indent: -9999px;
                         background: url(../../images/sprite_sns.png) no-repeat;
+                        text-decoration: none;
                     }
 
                     #footer ul li #footer_twitter { background-position: 0 -48px }

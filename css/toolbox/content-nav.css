@@ -1,0 +1,49 @@
+/*
+ --> Toolbox/content navigation css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.1
+*/
+
+/* Prev/Next navigation
+********************************************************/
+#content-nav {
+    margin-bottom: 16px;
+    float: right;
+    position: relative;
+}
+
+    #content-nav li {
+        height: 34px;
+        line-height: 34px;
+        padding: 0 20px;
+        margin-right: 20px;
+        float: left;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #content-nav li.next {
+        margin-right: 0;
+    }
+
+    #content-nav li.prev,
+    #content-nav li.next {
+        width: 101px;
+        padding: 0;
+    }
+
+        #content-nav li a {
+            width: 103px;
+            height: 34px;
+            display: block;
+            text-indent: -9999px;
+            background: transparent url(../../images/form/sprite_buttons.png) no-repeat;
+        }
+
+        #content-nav li.prev a        { background-position: -300px -200px }
+        #content-nav li.next a         { background-position: -300px -100px }
+        #content-nav li.prev a:hover  { background-position: -450px -200px }
+        #content-nav li.next a:hover   { background-position: -450px -100px }
+        #content-nav li,prev a:active { background-position: -600px -200px }
+        #content-nav li.next a:active  { background-position: -600px -100px }
