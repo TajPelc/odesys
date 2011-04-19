@@ -50,14 +50,16 @@ function handleSlider()
 }
 
 Evaluation.NextCriteria = function(that) {
-    Core.Block($('#main'));
-
     // change page
     if(that.hasClass('changePage'))
     {
         return true;
     }
 
+    // block page
+    Core.Block($('#main'));
+
+    // get unsaved and saved items
     var unsavedList = $('#evaluation ul li:not(.saved)');
     var list = $('#evaluation ul li');
 
