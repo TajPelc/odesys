@@ -15,6 +15,7 @@ class EvaluationController extends DecisionController
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/evaluation/index.css');
 
         // add script files
@@ -181,7 +182,7 @@ class EvaluationController extends DecisionController
 
     /**
      * Update an evaluation or create a new one if it doesn't yet exist
-	 *
+     *
      * @param unknown_type $alternative_id
      * @param unknown_type $criteria_id
      */
