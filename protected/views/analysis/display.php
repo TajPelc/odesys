@@ -4,9 +4,9 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 
 <div id="heading">
-    <h2>Results for your decision are at your grasp.</h2>
+    <h2>Compare alternatives to find which one is best suited for you.</h2>
     <a href="#">Help</a>
-    <h3>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('analysis/display'));?>"</h3>
+    <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
 </div>
 
 <div id="accordion">
@@ -120,4 +120,8 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </div>
     </div>
 </div>
+<ul id="content-nav">
+    <li class="prev"><?php echo CHtml::link('Next', array('evaluation/evaluate', 'pageNr' => $Project->no_criteria-1)); ?></li>
+    <li class="next"><?php echo CHtml::link('Next', array('sharing/index')); ?></li>
+</ul>
 
