@@ -14,6 +14,7 @@ class EvaluationController extends DecisionController
     {
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/evaluation/index.css');
 
         // add script files
@@ -104,7 +105,7 @@ class EvaluationController extends DecisionController
                         'Project'          => $Project,
                         'Criteria'         => $Criteria,
                         'eval'	           => $eval,
-            			'renderEvaluation' => true,
+                        'renderEvaluation' => true,
                         'renderSidebar'	   => false,
                     ), true);
 
@@ -112,7 +113,7 @@ class EvaluationController extends DecisionController
                     $sidebarHtml = $this->renderPartial('evaluate', array(
                         'Project'          => $Project,
                         'Criteria'         => $Criteria,
-            			'renderEvaluation' => false,
+                        'renderEvaluation' => false,
                         'renderSidebar'	   => true,
                     ), true);
 

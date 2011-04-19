@@ -1,6 +1,12 @@
 <?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Alternatives'; ?>
-<div id="content">
+
+<div id="heading">
     <h2>What alternatives are you considering?</h2>
+    <a href="#">Help</a>
+    <h3>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('analysis/display'));?>"</h3>
+</div>
+
+<div id="content">
     <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Alternatives = $Project->alternatives; ?>
         <div><input type="text" name="newAlternative[title]" id="newAlternative" /></div>

@@ -2,6 +2,13 @@
 var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
+
+<div id="heading">
+    <h2>Results for your decision are at your grasp.</h2>
+    <a href="#">Help</a>
+    <h3>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('analysis/display'));?>"</h3>
+</div>
+
 <div id="accordion">
     <h3 id=""><a href="#">Results</a></h3>
     <div>
