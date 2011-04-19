@@ -111,10 +111,7 @@ Evaluation.NextCriteria = function(that) {
 
 Evaluation.Navigation = function(that, prev, next, pageNr, criteriaNr) {
     var prevButton = $('#content > ul li:eq(0)');
-    var pageNumber = $('#content > ul li:eq(1)');
-    var nextButton = $('#content > ul li:eq(2)');
-
-    pageNumber.text('Criteria '+pageNr+' of '+criteriaNr+'')
+    var nextButton = $('#content > ul li:eq(1)');
 
     if (next == false){
         nextButton.find('a').remove();
