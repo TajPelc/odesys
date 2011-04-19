@@ -90,6 +90,15 @@ class EvaluationController extends DecisionController
             {
                 case 'getContent':
 
+                    $unsaved = $this->post('unsaved');
+                    if(!empty($unsaved))
+                    {
+                        foreach($this->post('unsaved') as $arr)
+                        {
+                            $this->_updateEvaluation($arr[0], $arr[1], 0);
+                        }
+                    }
+
                     // render partial
                     $html = $this->renderPartial('evaluate', array(
                         'Project'          => $Project,
@@ -157,20 +166,7 @@ class EvaluationController extends DecisionController
         // update evaluation
         if(is_array($this->post('params')) && count($this->post('params')) == 2)
         {
-            // load existing evaluation
-            $Evaluation = Evaluation::model()->findByAttributes(array('rel_alternative_id' => $params[0], 'rel_criteria_id' => $params[1]));
-
-            // create new evaluation
-            if(empty($Evaluation))
-            {
-                $Evaluation = new Evaluation();
-                $Evaluation->rel_project_id = $Project->project_id;
-                $Evaluation->rel_alternative_id = $params[0];
-                $Evaluation->rel_criteria_id = $params[1];
-            }
-
-            $Evaluation->grade = $grade;
-            if($Evaluation->save())
+            if($this->_updateEvaluation($params[0], $params[1], $grade))
             {
                 Ajax::respondOk(array(
                     'projectMenu' => $this->getProjectMenu(),
@@ -180,5 +176,37 @@ class EvaluationController extends DecisionController
         }
 
         Ajax::respondError();
+    }
+
+    /**
+     * Update an evaluation or create a new one if it doesn't yet exist
+	 *
+     * @param unknown_type $alternative_id
+     * @param unknown_type $criteria_id
+     */
+    private function _updateEvaluation($alternative_id, $criteria_id, $grade)
+    {
+        /**
+         * @TODO - privacy (check if this evaluation belongs to valid alternative & criteria
+         */
+
+        // load existing evaluation
+        $Evaluation = Evaluation::model()->findByAttributes(array('rel_alternative_id' => $alternative_id, 'rel_criteria_id' => $criteria_id));
+
+        // create new evaluation
+        if(empty($Evaluation))
+        {
+            $Evaluation = new Evaluation();
+            $Evaluation->rel_project_id = $Project->project_id;
+            $Evaluation->rel_alternative_id = $alternative_id;
+            $Evaluation->rel_criteria_id = $criteria_id;
+        }
+
+        $Evaluation->grade = $grade;
+        if($Evaluation->save())
+        {
+            return true;
+        }
+        return false;
     }
 }

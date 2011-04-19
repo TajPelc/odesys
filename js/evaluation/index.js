@@ -63,17 +63,36 @@ function handleSlider()
 Evaluation.NextCriteria = function(that) {
     Core.Block($('#main'));
 
+    var unsavedList = $('#evaluation ul li:not(.saved)');
+    var list = $('#evaluation ul li');
+
+    // non evaluated
+    if(unsavedList.length == list.length)
+    {
+        if(false === confirm('Are you sure you want to proceed without evaluating?'))
+        {
+            return false;
+        }
+    }
+
+    // get unsaved values
+    var unsaved = [];
+    unsavedList.each(function(){
+        unsaved.push(Core.ExtractNumbers($(this).find('div:first input').attr('name')));
+    });
+
     Evaluation.NextCriteria.Url = that.attr('href');
     $.post(Evaluation.NextCriteria.Url, {
-        'action': 'getContent'
+        'action': 'getContent',
+        'unsaved': unsaved
     }, function(data){
         if(data['status'] == true){
 
-            //make forms height fixed
+            // make forms height fixed
             var formHeight = $('#content form').height();
             $('#content form').css('height', formHeight);
 
-            //insert new criteria
+            // insert new criteria
             $('#content form ul').fadeOut(100, function(){$(this).remove()});
             var html = function() {
                 $('#content form').append(data['html']);
