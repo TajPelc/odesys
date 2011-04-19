@@ -22,12 +22,12 @@ Criteria.FormErrorReporting = function(that, text){
 }
 
 Criteria.SaveInput = function(that, add) {
-    //trim input values
+    // trim input values
     var trimValue = $.trim(that.val());
     that.val(trimValue);
-    //post
+    // post
     if (!that.val() == ''){
-        //add preloader
+        // add preloader
         Criteria.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
         that.after(Criteria.SaveInput.Loading);
         var data = {
@@ -39,12 +39,12 @@ Criteria.SaveInput = function(that, add) {
         $.ajax({
             data: data,
             success: function(data) {
-                //if previous error exist, remove them
+                // if previous error exist, remove them
                 if (that.hasClass('error')){
                     that.removeClass('error');
                     that.siblings('div.error').remove();
                 }
-                //add new field
+                // add new field
                 if (add){
                     if(data['status'] == true){
                         // here be returned shite
@@ -53,20 +53,21 @@ Criteria.SaveInput = function(that, add) {
                         that.val('');
                         Criteria.SaveInput.Loading.remove();
                         Core.ProjectMenu(data['projectMenu']);
+                        Criteria.handleButtons(data['projectMenu']);
 
-                        //errors
+                        // errors
                     } else {
                         Criteria.SaveInput.Loading.remove();
                         Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
 
-                //update field
+                // update field
                 } else {
                     if(data['status'] == true){
                         // here be returned shite
                         that.siblings('.loading').remove();
 
-                        //errors
+                        // errors
                     } else {
                         that.siblings('.loading').remove();
                         Criteria.FormErrorReporting(that, data['errors']['title']);
@@ -79,7 +80,7 @@ Criteria.SaveInput = function(that, add) {
 }
 
 Criteria.DeleteInput = function(that) {
-    //add preloader
+    // add preloader
     Criteria.DeleteInput.Loading = $('<span class="loading">&nbsp;</span>');
     that.after(Criteria.DeleteInput.Loading);
     data = {
@@ -95,6 +96,7 @@ Criteria.DeleteInput = function(that) {
             {
                 that.parents('li').remove();
                 Core.ProjectMenu(data['projectMenu']);
+                Criteria.handleButtons(data['projectMenu']);
                 Criteria.DeleteInput.Loading.remove();
             } else {
                 Criteria.DeleteInput.Loading.remove();
@@ -104,23 +106,55 @@ Criteria.DeleteInput = function(that) {
     });
 }
 
+/**
+ * Handle previous / next button
+ */
+Criteria.handleButtons = function(menu) {
+    // next button
+    var next = $('#content-nav li.next a');
+
+    // check if next button should be enabled or disabled
+    var nextEnabled = false;
+    if(menu == undefined)
+    {
+        nextEnabled = $('#menu-evaluation').is('a');
+    }
+    else
+    {
+        nextEnabled = (false != menu['evaluation']);
+    }
+
+    // hide next button
+    if(nextEnabled)
+    {
+        next.fadeIn(500);
+    }
+    else
+    {
+        next.fadeOut(500);
+    }
+}
 
 /*
  * Document Ready
- * */
+ */
 $(document).ready(function(){
-    //add or remove necessary elements
+    // add or remove necessary elements
     Criteria.FormAddButton($('#content form div input'));
     Criteria.FormListButtons($('#content form li input'));
     $('#content form input[type="submit"]').remove();
     $('#content form div input').focus();
 
-    //copy input ID's to list items
+    // hide navigation
+    $('#content-nav li.next').find('a').hide();
+    Criteria.handleButtons();
+
+    // copy input ID's to list items
     $('#content form li input').each(function(){
         $(this).parents('li').attr('id', $(this).attr('id'));
     });
 
-    //prepare ajax
+    // prepare ajax
     url = $('#content form').attr('action');
     $.ajaxSetup({
         type: 'POST',
@@ -128,7 +162,7 @@ $(document).ready(function(){
         dataType: 'json',
     });
 
-    //add new field
+    // add new field
     $('#content form > div input').live('keypress', function(e){
         if (e.which == 13) {
             var that = $(this);
@@ -140,7 +174,7 @@ $(document).ready(function(){
         Criteria.SaveInput(that.siblings('input'), true);
     });
 
-    //update field
+    // update field
     $('#content form ol li input').live('focus', function(){
         Criteria.tempInputValue = $(this).val();
     });
@@ -159,7 +193,7 @@ $(document).ready(function(){
         }
     });
 
-    //remove field
+    // remove field
     $('#content form li .remove').live('click', function(){
         var that = $(this);
         Criteria.DeleteInput(that);
@@ -196,7 +230,7 @@ $(document).ready(function(){
         });
     });
 
-    //prevent form submission
+    // prevent form submission
     $('#content form').submit(function(){
         return false;
     });
