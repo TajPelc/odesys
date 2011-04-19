@@ -19,6 +19,7 @@ class AlternativeController extends DecisionController
     {
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/alternatives/index.css');
 
         // add style files
@@ -49,7 +50,7 @@ class AlternativeController extends DecisionController
                     if($Alternative->save())
                     {
                         Ajax::respondOk(array(
-                        	'alternative_id' => $Alternative->alternative_id,
+                            'alternative_id' => $Alternative->alternative_id,
                             'projectMenu' => $this->getProjectMenu(),
                         ));
                     }
@@ -65,7 +66,7 @@ class AlternativeController extends DecisionController
                         if($Alternative->delete())
                         {
                             Ajax::respondOk(array(
-                            	'projectMenu' => $this->getProjectMenu(),
+                                'projectMenu' => $this->getProjectMenu(),
                             ));
                         }
                     }

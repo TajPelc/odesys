@@ -8,78 +8,83 @@
 
 #projectBg {
     width: 100%;
+    height: 44px;
+    margin-bottom: 37px; /*compensate for #heading*/
     float: left;
     position: relative;
-    background: #717c90;
+    background: url(../../images/bg/projectMenu.png) no-repeat;
 }
 
     #project {
-        width: 100%;
+        width: 960px;
         margin: 10px 0 0 0;
         background-color: #444a56;
         float: left;
         clear: both;
     }
 
-        #project ul li {
-            width: 168px;
-            margin-left: 20px;
-            position: relative;
+        #project ul {
+            width: 958px;
+            margin-left: 2px;
             float: left;
-            border-top: 5px solid #444a56;
         }
 
-        #project ul li a,
-        #project ul li > span {
-            width: 100%;
-            padding: 6px 0;
-            font-size: 13px;
-            display: block;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        #project ul li span.restricted {
-            color: #7a818d;
-            cursor: help;
-        }
-
-        #project ul li span.selected,
-        #project ul li a:hover {
-            width: 100%;
-            cursor: default;
-            color: #32353E;
-            background-color: #fff;
-            border-radius: 7px 7px 0 0;
-            -moz-border-radius: 7px 7px 0 0;
-            -webkit-border-radius: 7px 7px 0 0;
-        }
-
-        #project ul li span.selected {
-            font-weight: bold;
-        }
-
-        #project ul li a:hover {
-            cursor: pointer;
-        }
-
-        #project ul li .loadingBar {
-            width: 208px;
-            padding: 0;
-            height: 10px;
-            display: block;
-            background: #FFD700;
-            position: absolute;
-            left: -20px;
-            top: -15px;
-            border: none;
-        }
-
-            #project ul li .loadingBar.end {
-                background: transparent url(../../images/bg/progress_bar.png) top right no-repeat;
+            #project ul li {
+                width: 168px;
+                height: 22px;
+                line-height: 24px;
+                margin: 5px 0 0 20px;
+                position: relative;
+                float: left;
             }
 
-            #project ul li:last-child .loadingBar.end {
+            #project ul li a,
+            #project ul li > span {
+                width: 100%;
+                font-size: 13px;
+                display: block;
+                color: #fff;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            #project ul li span.restricted {
+                color: #717c90;
+                cursor: help;
+            }
+
+            #project ul li span.selected,
+            #project ul li a:hover {
+                width: 100%;
+                cursor: default;
+                color: #fff;
+                background: url(../../images/bg/tab.png) no-repeat;
+            }
+
+            #project ul li span.selected {
+                font-weight: bold;
+            }
+
+            #project ul li a:hover {
+                cursor: pointer;
+            }
+
+            #project ul li .loadingBar {
+                width: 208px;
+                padding: 0;
+                height: 10px;
+                display: block;
                 background: #FFD700;
+                position: absolute;
+                left: -20px;
+                top: -15px;
+                border: none;
             }
+
+                #project ul li .loadingBar.end {
+                    background: transparent url(../../images/bg/progress_bar.png) top right no-repeat;
+                }
+
+                #project ul li:last-child .loadingBar.end {
+                    background: #FFD700;
+                }

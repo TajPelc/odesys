@@ -5,10 +5,12 @@
 */
 
 html {
+    height: 100%;
     overflow-y: scroll;
 }
 
 body {
+    height: 100%;
     color: #5A6071;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -26,21 +28,31 @@ a:hover {
 /* CONTAINERS
 ********************************************************/
 #wrapper {
-    width: 960px;
-    margin: 5px auto;
-    background: #fff;
+    width: 965px;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto;
+    margin-bottom: -224px; /* compensate for sticky footer */
     float: none !important;
-    border-radius: 8px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border: 1px solid #596171;
 }
 
     #main {
         width: 920px;
-        padding: 16px 20px 16px 20px;
+        padding: 16px 25px 16px 20px;
+        margin-bottom: 30px; /*14+16*/
         float: left;
         position: relative;
+        background: url(../../images/bg/main.png) repeat-y;
+    }
+
+    #mainEnd {
+        width: 965px;
+        height: 14px;
+        position: absolute;
+        left: 0;
+        bottom: -14px;
+        background: url(../../images/bg/mainEnd.png) no-repeat;
     }
 
         #content {
@@ -57,12 +69,12 @@ a:hover {
 /* Header
 ********************************************************/
 #header {
-    width: 962px;
-    height: 79px;
+    width: 965px;
+    height: 48px;
+    margin-top: 5px;
     position: relative;
-    left: -1px;
     float: left;
-    background: url(../../images/bg/header.png) 1px 0 no-repeat;
+    background: url(../../images/bg/header.png) no-repeat;
 }
 
     #header #headings {
@@ -71,9 +83,9 @@ a:hover {
     }
 
         #header h1 {
-            width: 387px;
-            height: 30px;
-            margin-bottom: 4px;
+            width: 310px;
+            height: 25px;
+            margin-top: 2px;
             float: left;
         }
 
@@ -85,20 +97,8 @@ a:hover {
                 background: url(../../images/logo.png) no-repeat;
             }
 
-        #header h2 {
-            float: left;
-            clear: left;
-            font-size: 18px;
-            font-style: italic;
-            color: #fff;
-        }
-
-            #header h2 a {
-                color: #fff;
-            }
-
     #header #login {
-        padding: 12px 20px 0 0;
+        padding: 6px 20px 0 0;
         height: 64px;
         float: right;
         color: #fff;
@@ -118,31 +118,33 @@ a:hover {
         }
 
         #header #login #login_image {
+            width: 37px;
+            height: 38px;
+            padding: 0;
             margin: 0 0 8px 16px;
             float: right;
-            padding: 1px 7px 8px 1px;
-            background: url(../../images/bg/user_img.png);
-            border-radius: 4px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
+            background: url(../../images/bg/user_img.png) no-repeat;
         }
 
             #header #login #login_image img {
-                width: 50px;
-                height: 50px;
+                width: 34px;
+                height: 34px;
                 display: block;
+                position: relative;
+                top: 1px;
+                left: 1px;
             }
 
         #header #login div {
-            padding-top: 4px;
+            padding-top: 2px;
             float: right;
         }
 
             #header #login div h2 {
-                margin-bottom: 16px;
+                margin-bottom: 6px;
                 float: right;
                 clear: both;
-                font-size: 16px;
+                font-size: 12px;
                 font-weight: bold;
             }
 
@@ -335,13 +337,13 @@ a:hover {
 ********************************************************/
 #footer {
     width: 100%;
+    height: 208px; /*224px*/
     padding: 8px 0;
     clear: both;
     position: relative;
     text-align: center;
     color: #eeeeee;
-    background: url(../../images/bg/footer.png) no-repeat;
-    border-top: 1px solid #596171;
+    background: url(../../images/bg/footer.png) repeat-x;
 }
 
     #footer ul {

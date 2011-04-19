@@ -33,11 +33,6 @@
         <div id="header">
             <div id="headings">
                 <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
-                <?php if(Project::isProjectActive()){ ?>
-                    <h2>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('analysis/display'));?>"</h2>
-                <?php } else { ?>
-                    <h2>Helping you decide!</h2>
-                <?php }?>
             </div>
             <div id="login">
                 <?php if(Yii::app()->user->isGuest){ ?>
@@ -56,13 +51,14 @@
             </div>
         </div>
         <?php echo $content; ?>
-        <div id="footer">
-            <ul>
-                <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
-                <li><?php echo CHtml::link('Terms of use', array('/site/terms')); ?></li>
-                <li><?php echo CHtml::link('Contact', array('/site/contact')); ?></li>
-            </ul>
-        </div>
+        <div id="push"></div>
+    </div>
+    <div id="footer">
+        <ul>
+            <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
+            <li><?php echo CHtml::link('Terms of use', array('/site/terms')); ?></li>
+            <li><?php echo CHtml::link('Contact', array('/site/contact')); ?></li>
+        </ul>
     </div>
     <?php if(YII_DEBUG) { ?>
         <?php if(0 !== $miliSleepTime = Yii::app()->params['miliSleepTime']) { ?>
