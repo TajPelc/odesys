@@ -118,6 +118,28 @@ class EvaluationController extends DecisionController
                         'renderSidebar'	   => true,
                     ), true);
 
+                    // get previous and next links
+                    $back = false;
+                    $forward = false;
+                    if($pageNr > 0)
+                    {
+                        $prev = $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1));
+                    }
+                    else
+                    {
+                        $prev = $this->createUrl('criteria/create');
+                        $back = true;
+                    }
+                    if($pageNr < $criteriaNr - 1)
+                    {
+                        $next = $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr + 1));
+                    }
+                    else
+                    {
+                        $next = $this->createUrl('analysis/display');
+                        $forward = true;
+                    }
+
                     Ajax::respondOk(array(
                         'html' => $html,
                         'sideBar' => $sidebarHtml,
@@ -125,8 +147,10 @@ class EvaluationController extends DecisionController
                         'criteria_id' => $Criteria->criteria_id,
                         'pageNr' => $pageNr + 1,
                         'criteriaNr' => $criteriaNr,
-                        'previous' => ($pageNr > 0 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1)) : false),
-                        'next' => ($pageNr < $criteriaNr - 1 ? $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr + 1)) : false),
+                        'previous' => $prev,
+                        'next' => $next,
+                        'back' => $back,
+                        'forward' => $forward,
                         'projectMenu' => $this->getProjectMenu(),
                     ));
                     break;

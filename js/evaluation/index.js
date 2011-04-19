@@ -1,17 +1,6 @@
 Evaluation = {};
 
 /**
- * Extract the numbers from a given string
- *
- * @param str
- * @returns int
- */
-function extractNumbers(str)
-{
-    return str.match(/\d+(,\d{3})*(\.\d{1,2})?/g);
-}
-
-/**
  * Change select input fields to sliders
  */
 function handleSlider()
@@ -36,7 +25,7 @@ function handleSlider()
                 sliderSlider = $(this).parents('li');
                 Core.Block(sliderSlider, true);
                 $(this).parent().find('input').attr('value', ui.value);
-                params = extractNumbers($(this).parent().find('input').attr('name'));
+                params = Core.ExtractNumbers($(this).parent().find('input').attr('name'));
                 $.post(
                     'index.php?r=evaluation/update', {
                         grade: ui.value,
@@ -62,6 +51,12 @@ function handleSlider()
 
 Evaluation.NextCriteria = function(that) {
     Core.Block($('#main'));
+
+    // change page
+    if(that.hasClass('changePage'))
+    {
+        return true;
+    }
 
     var unsavedList = $('#evaluation ul li:not(.saved)');
     var list = $('#evaluation ul li');
@@ -101,37 +96,27 @@ Evaluation.NextCriteria = function(that) {
                 handleSlider();
             }
             setTimeout(html, 120);
-            Evaluation.Navigation(that, data['previous'], data['next'], data['pageNr'], data['criteriaNr']);
+
+            var prevButton = $('#content-nav li:eq(0) a');
+            var nextButton = $('#content-nav li:eq(1) a');
+
+            prevButton.attr('href', data['previous']);
+            nextButton.attr('href', data['next']);
+
+            if(data['forward'])
+            {
+                nextButton.addClass('changePage');
+            }
+            if(data['back'])
+            {
+                prevButton.addClass('changePage');
+            }
+
             Core.Unblock($('#main'));
             Evaluation.Sidebar(data['sideBar']);
         }
     });
 
-}
-
-Evaluation.Navigation = function(that, prev, next, pageNr, criteriaNr) {
-    var prevButton = $('#content > ul li:eq(0)');
-    var nextButton = $('#content > ul li:eq(1)');
-
-    if (next == false){
-        nextButton.find('a').remove();
-    } else {
-        if (nextButton.find('a').length > 0){
-            nextButton.children('a').attr('href', next);
-        } else {
-            nextButton.append('<a href="'+next+'" class="next">Next</a>');
-        }
-    }
-
-    if (prev == false){
-        prevButton.find('a').remove();
-    } else {
-        if (prevButton.find('a').length > 0){
-            prevButton.children('a').attr('href', prev);
-        } else {
-            prevButton.append('<a href="'+prev+'" class="next">Next</a>');
-        }
-    }
 }
 
 Evaluation.Sidebar = function(sidebar) {
@@ -148,17 +133,12 @@ Evaluation.Sidebar = function(sidebar) {
 $(document).ready(function(){
     handleSlider();
 
-    // align navigation
-    $('#content > ul').css('left', ($('#content').width()-$('#content > ul').width())/2);
-
     // load next criteria for evaluation
-    $('#content .next, #content .previous').live('click', function(){
-        Evaluation.NextCriteria($(this));
-        return false;
-    });
-
-    $('#sidebar ul li a').live('click', function(){
-        Evaluation.NextCriteria($(this));
+    $('#content-nav li a, #sidebar ul li a').live('click', function(){
+        if(Evaluation.NextCriteria($(this)))
+        {
+            return true;
+        }
         return false;
     });
 });
