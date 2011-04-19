@@ -3,7 +3,7 @@
 <div id="heading">
     <h2>What factors influence your decision the most?</h2>
     <a href="#">Help</a>
-    <h3>Now deciding on "<?php echo CHtml::link(CHtml::encode(Project::getActive()->title), array('analysis/display'));?>"</h3>
+    <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
 </div>
 
 <div id="content">
