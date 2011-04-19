@@ -198,7 +198,7 @@ class Project extends CActiveRecord
         if((bool)$criteriaComplete
             && (bool)$alternativesComplete
             && $nrOfExpectedEvaluations > 0
-            && $nrOfExpectedEvaluations == (int)$this->no_evaluation
+            && ((int)$this->no_evaluation > ($nrOfExpectedEvaluations - $this->no_criteria + 1))
         )
         {
             $evaluationComplete = 1;

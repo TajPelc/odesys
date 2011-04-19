@@ -71,6 +71,7 @@ Evaluation.NextCriteria = function(that) {
     {
         if(false === confirm('Are you sure you want to proceed without evaluating?'))
         {
+            Core.Unblock($('#main'));
             return false;
         }
     }

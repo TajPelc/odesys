@@ -33,12 +33,10 @@
     </form>
     <ul>
         <li><?php echo ( $pageNr > 0 ? CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $pageNr - 1), array('class' => 'previous')) : '')?></li>
-        <li>Criteria <?php echo $pageNr + 1; ?> of <?php echo $nrOfCriteria ?></li>
         <li><?php echo ( $pageNr < $nrOfCriteria - 1 ? CHtml::link('Next', array('evaluation/evaluate', 'pageNr' => $pageNr + 1), array('class' => 'next')) : '')?></li>
     </ul>
 </div>
 <div id="sidebar">
-    <h3>Evaluation steps</h3>
     <ul class="steps">
 <?php } ?>
 <?php if ($renderSidebar) { ?>
@@ -53,20 +51,6 @@
         <?php } ?>
 <?php } ?>
 <?php if(!Ajax::isAjax()) { ?>
-    </ul>
-    <ul class="help">
-        <li>
-            <dl>
-                <dt>Think</dt>
-                <dd>Read the sentances and think about how each alternative compares at a given criteria. If a sentance doesn't make any sense, you should probably rename your criteria or alternatives.</dd>
-            </dl>
-        </li>
-        <li>
-            <dl>
-                <dt>How to evaluate</dt>
-                <dd>Just move or click on the slider to evaluate an alternative.</dd>
-            </dl>
-        </li>
     </ul>
 </div>
 <?php } ?>

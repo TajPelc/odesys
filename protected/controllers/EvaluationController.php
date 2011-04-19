@@ -198,7 +198,7 @@ class EvaluationController extends DecisionController
         if(empty($Evaluation))
         {
             $Evaluation = new Evaluation();
-            $Evaluation->rel_project_id = $Project->project_id;
+            $Evaluation->rel_project_id = Project::getActive()->project_id;
             $Evaluation->rel_alternative_id = $alternative_id;
             $Evaluation->rel_criteria_id = $criteria_id;
         }
