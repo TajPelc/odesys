@@ -105,7 +105,7 @@ Alternatives.DeleteInput = function(that) {
 }
 
 /**
- * Handle next button
+ * Handle previous / next button
  */
 Alternatives.handleButtons = function(menu) {
     // next button

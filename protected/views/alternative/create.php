@@ -18,26 +18,10 @@
         <?php } ?>
         </ol>
         <input type="submit" name="submit" value="Add" />
-        <ul id="content-nav">
-            <li class="prev"></li>
-            <li class="next"><?php echo CHtml::link('Next', array('criteria/create'), array('class' => 'next')); ?></li>
-        </ul>
     <?php echo CHtml::endForm();?>
-</div>
-<div id="sidebar">
-    <h3>Need some help?</h3>
-    <ul>
-        <li>
-            <dl>
-                <dt>Think</dt>
-                <dd>Have you thought of all possible alternatives? Your decision will be complete by choosing one of these alternatives. What are you considering?</dd>
-            </dl>
-        </li>
-        <li>
-            <dl>
-                <dt>Examples</dt>
-                <dd>When choosing a career path one might create such a list of alternatives: Dentist, Physicist, Web application developer.</dd>
-            </dl>
-        </li>
+    <ul id="content-nav">
+        <li class="prev"></li>
+        <li class="next"><?php echo CHtml::link('Next', array('criteria/create')); ?></li>
     </ul>
 </div>
+<div id="sidebar"></div>
