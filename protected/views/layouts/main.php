@@ -55,9 +55,36 @@
     </div>
     <div id="footer">
         <ul>
-            <li><?php echo CHtml::link('About', array('/site/about')); ?></li>
-            <li><?php echo CHtml::link('Terms of use', array('/site/terms')); ?></li>
-            <li><?php echo CHtml::link('Contact', array('/site/contact')); ?></li>
+            <li>
+                <dl>
+                    <dt><?php echo CHtml::link('About', array('/site/about')); ?></dt>
+                    <dd>
+                        <p>Making decisions is tough. But we are here to help.</p>
+                        <p>Our application will guide you through the decision-making process. We provide the tool you need to analize your alternatives and weigh your options. The decision is then up to you.</p>
+                        <p>But by utilizing the power of our visual engine and by enlisting help from the people you trust, your decision will improve.</p>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><?php echo CHtml::link('Contact', array('/site/contact')); ?></dt>
+                    <dd>
+                        <span><b>ODESYS</b> on</span>
+                        <a id="footer_facebook" href="https://www.facebook.com/odesys">ODESYS on Facebook</a>
+                        <a id="footer_twitter" href="https://twitter.com/#!/ODESYSinfo">Follow ODESYS on Twitter</a>
+                        <a id="footer_email" href="#">Email us!</a>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><?php echo CHtml::link('Terms', array('/site/terms')); ?></dt>
+                    <dd>
+                        <p>Before using this service you must agree to the following terms.</p>
+                        <p>We provide the tools you need to analize your decisions. You are the one that decides, and we are not responsible for the consequences of your decisions.</p>
+                    </dd>
+                </dl>
+            </li>
         </ul>
     </div>
     <?php if(YII_DEBUG) { ?>
