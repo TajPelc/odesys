@@ -19,7 +19,7 @@
     }
 
         #content > form ol li {
-            width: 646px;
+            width: 666px;
             height: 28px;
             margin-bottom: 16px;
             float: left;
@@ -40,7 +40,7 @@
     }
 
     #content > form input[type="text"] {
-        width: 603px; /*646px*/
+        width: 623px; /*666px*/
         height: 28px;
         padding: 0 35px 0 8px;
         line-height: 28px;

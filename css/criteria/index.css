@@ -19,7 +19,7 @@
     }
 
         #content > form ol li {
-            width: 646px;
+            width: 666px;
             height: 28px;
             margin-bottom: 16px;
             float: left;
@@ -47,7 +47,7 @@
             }
 
     #content > form > div {
-        padding: 0 20px 24px 20px;
+        padding: 0 0 24px 20px;
         margin-bottom: 24px;
         position: relative;
         float: left;
@@ -56,7 +56,7 @@
     }
 
     #content > form input[type="text"] {
-        width: 559px; /*646px*/
+        width: 579px; /*646px*/
         height: 28px;
         line-height: 28px;
         padding: 0 35px 0 52px;
@@ -69,7 +69,7 @@
     }
 
     #content > form div input[type="text"]{
-        width: 603px; /*646px*/
+        width: 623px; /*646px*/
         padding: 0 35px 0 8px;
     }
 
@@ -98,7 +98,7 @@
         }
 
         #content > form span.add {
-            right: 21px;
+            right: 1px;
         }
 
         #content > form span.remove        { background-position: 0 0 }
