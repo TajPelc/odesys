@@ -31,7 +31,7 @@
         }
 
     #content > form > div {
-        padding: 0 20px 24px 20px;
+        padding: 0 0 24px 20px;
         margin-bottom: 24px;
         position: relative;
         float: left;
@@ -76,7 +76,7 @@
         }
 
         #content > form span.add {
-            right: 21px;
+            right: 1px;
         }
 
         #content > form span.remove        { background-position: 0 0 }
