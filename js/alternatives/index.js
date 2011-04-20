@@ -110,35 +110,14 @@ Alternatives.DeleteInput = function(that) {
 Alternatives.handleButtons = function(menu) {
     // next button
     var li = $('#content-nav li.next');
-    var next = li.find('a');
-    var span = li.find('span');
+    var element = li.find('a, span');
 
     // check if next button should be enabled or disabled
-    var nextEnabled = false;
-    if(menu == undefined)
-    {
-        nextEnabled = $('#menu-criteria').is('a');
-    }
-    else
-    {
-        nextEnabled = (false != menu['criteria']);
-    }
+    var enabled = (false != menu['criteria']);
 
-    // hide next button
-    if(nextEnabled)
-    {
-        next.show();
-        span.hide();
-        li.removeClass('disabled');
-    }
-    else
-    {
-        next.hide()
-        span.show();
-        li.addClass('disabled');
-    }
+    // do it
+    Core.ContentNav.toggle(status, menu);
 }
-
 
 /*
  * Document Ready
@@ -149,10 +128,6 @@ $(document).ready(function(){
     Alternatives.FormListButtons($('#content form li input'));
     $('#content form input[type="submit"]').remove();
     $('#content form div input').focus();
-    $('#content-nav li.next span').hide();
-
-    // hide navigation
-    Alternatives.handleButtons();
 
     //prepare ajax
     url = $('#content form').attr('action');

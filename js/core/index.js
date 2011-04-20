@@ -294,6 +294,36 @@ Core.ProjectMenu.initMenu = function()
     });
 }
 
+/**
+ * Handle previous / next button
+ */
+Core.ContentNav.toggle = function(status, element) {
+    if(status)
+    {
+        if(element.is('span'))
+        {
+            element.animate({color: 'white'}, 250, 'linear', function(){
+                var a = $('<a></a>').attr('href', menu['criteria']).text(element.text());
+                element.remove();
+                li.append(a);
+                li.removeClass('disabled');
+            });
+        }
+    }
+    else
+    {
+        if(element.is('a'))
+        {
+            element.animate({color: '#444a56'}, 250, 'linear', function(){
+                var span = $('<span></span>').text(element.text());
+                element.remove();
+                li.append(span);
+                li.addClass('disabled');
+            });
+        }
+    }
+}
+
 /*
  * Document Ready
  * */
