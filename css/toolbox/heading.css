@@ -51,14 +51,16 @@
 
     #heading > a:active { background-position: -600px -300px }
 
+/* Help */
     #heading #help {
         width: 206px;
         padding: 0 10px 8px 15px;
         position: absolute;
-        top: 54px; /*37+16*/
-        right: 22px;
+        top: 53px; /*37+16*/
+        right: 24px;
         color: #fff;
         background: url(../../images/bg/sprite_help.png) 0 -50px no-repeat;
+        z-index: 10;
     }
 
         #heading #help #helpEnd {

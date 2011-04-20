@@ -114,6 +114,7 @@ a:hover {
         }
 
         #header #login #facebookLogin {
+            margin-top: 8px;
             float: right;
         }
 
