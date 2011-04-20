@@ -72,18 +72,6 @@
             background: url(../../images/bg/sprite_help.png) no-repeat;
         }
 
-        #heading #help .helpClose {
-            width: 30px;
-            height: 30px;
-            display: block;
-            position: absolute;
-            top: 3px;
-            right: 7px;
-            text-indent: -9999px;
-            background: url(../../images/form/sprite_buttons.png) 0 -300px no-repeat;
-            cursor: pointer;
-        }
-
             #heading #help h3 {
                 height: 34px;
                 line-height: 34px;
