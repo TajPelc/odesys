@@ -76,7 +76,7 @@
             <li<?php if($current || $evaluated) { echo ' class="'; if($current){echo 'current';} if($current && $evaluated){echo ' ';} if($evaluated){echo 'saved';} echo '"';}?>>
                 <?php if($current) { ?><span>&nbsp;</span><?php }?>
                 <?php if($evaluated) { ?>
-                <?php echo CHtml::link(CHtml::encode(Common::truncate($C->title, ($current ? 28 : 32))), array('evaluation/evaluate', 'pageNr' => $i++)); ?>
+                <?php echo CHtml::link(CHtml::encode(Common::truncate($C->title, ($current ? 28 : 30))), array('evaluation/evaluate', 'pageNr' => $i++)); ?>
                 <?php } else { ?>
                 <?php echo Common::truncate($C->title, ($current ? 28 : 32)); ?>
                 <?php }?>
