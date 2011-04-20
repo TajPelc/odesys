@@ -1,6 +1,9 @@
+<div id="heading">
+    <h2>How to use odesys</h2>
+</div>
+
 <div id="content">
     <?php $this->pageTitle=Yii::app()->name . 'ODESYS: Online Decision Support System'; ?>
-    <h2>How to use odesys</h2>
     <ol>
         <li><p>Start by signing in with Facebook and creating a new project</p></li>
         <li><p>Define alternatives among which you are choosing</p></li>

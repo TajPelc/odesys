@@ -46,6 +46,10 @@ a:hover {
         background: url(../../images/bg/main.png) repeat-y;
     }
 
+    #main.nomenu {
+        margin-top: 37px; /* heading compensation*/
+    }
+
     #mainEnd {
         width: 965px;
         height: 14px;
