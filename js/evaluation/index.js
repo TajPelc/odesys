@@ -50,12 +50,6 @@ function handleSlider()
 }
 
 Evaluation.NextCriteria = function(that) {
-    // change page
-    if(that.hasClass('changePage'))
-    {
-        return true;
-    }
-
     // block page
     Core.Block($('#main'));
 
@@ -64,7 +58,7 @@ Evaluation.NextCriteria = function(that) {
     var list = $('#evaluation ul li');
 
     // non evaluated
-    if(unsavedList.length == list.length)
+    if(unsavedList.length == list.length && that.parent().hasClass('next'))
     {
         if(false === confirm('Are you sure you want to proceed without evaluating?'))
         {
@@ -73,11 +67,20 @@ Evaluation.NextCriteria = function(that) {
         }
     }
 
+    // change page
+    if(that.hasClass('changePage'))
+    {
+        return true;
+    }
+
     // get unsaved values
     var unsaved = [];
-    unsavedList.each(function(){
-        unsaved.push(Core.ExtractNumbers($(this).find('div:first input').attr('name')));
-    });
+    if(that.parent().hasClass('next'))
+    {
+        unsavedList.each(function(){
+            unsaved.push(Core.ExtractNumbers($(this).find('div:first input').attr('name')));
+        });
+    }
 
     Evaluation.NextCriteria.Url = that.attr('href');
     $.post(Evaluation.NextCriteria.Url, {
@@ -105,6 +108,8 @@ Evaluation.NextCriteria = function(that) {
             prevButton.attr('href', data['previous']);
             nextButton.attr('href', data['next']);
 
+            prevButton.removeClass('changePage');
+            nextButton.removeClass('changePage');
             if(data['forward'])
             {
                 nextButton.addClass('changePage');

@@ -43,7 +43,7 @@
         <?php $next = CHtml::link('Next', array('analysis/display'), array('class' => 'changePage')); ?>
         <?php } ?>
         <li class="prev"><?php echo $prev; ?></li>
-        <li class="next"><?php echo $next; ?><span>Next</span></li>
+        <li class="next"><?php echo $next; ?></li>
     </ul>
 </div>
 <div id="sidebar">
