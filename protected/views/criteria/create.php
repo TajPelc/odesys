@@ -26,7 +26,6 @@
                 </dl>
             </li>
         </ul>
-        <span class="helpClose">&nbsp;</span>
         <div id="helpEnd"></div>
     </div>
 </div>
