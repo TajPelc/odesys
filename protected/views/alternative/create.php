@@ -2,8 +2,27 @@
 
 <div id="heading">
     <h2>What alternatives are you considering?</h2>
-    <a href="#">Help</a>
+    <a id="helpButton" href="#">Help</a>
     <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
+    <div id="help" style="display: none;">
+        <h3>Need some help?</h3>
+        <ul>
+            <li>
+                <dl>
+                    <dt>Think</dt>
+                    <dd>Have you thought of all possible alternatives? Your decision will be complete by choosing one of these alternatives. What are you considering?</dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>Examples</dt>
+                    <dd>When choosing a career path one might create such a list of alternatives: Dentist, Physicist, Web application developer.</dd>
+                </dl>
+            </li>
+        </ul>
+        <span class="helpClose">&nbsp;</span>
+        <div id="helpEnd"></div>
+    </div>
 </div>
 
 <div id="content">

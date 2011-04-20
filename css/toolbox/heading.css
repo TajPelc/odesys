@@ -24,7 +24,7 @@
         color: #fff;
     }
 
-    #heading h3 {
+    #heading > h3 {
         width: 256px;
         margin-right: 20px;
         font-size: 12px;
@@ -48,3 +48,61 @@
         text-indent: -9999px;
         background: url(../../images/form/sprite_buttons.png) -450px -300px no-repeat;
     }
+
+    #heading > a:active { background-position: -600px -300px }
+
+    #heading #help {
+        width: 206px;
+        padding: 0 10px 8px 15px;
+        position: absolute;
+        top: 54px; /*37+16*/
+        right: 22px;
+        color: #fff;
+        background: url(../../images/bg/sprite_help.png) 0 -50px no-repeat;
+    }
+
+        #heading #help #helpEnd {
+            width: 231px;
+            height: 8px;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            background: url(../../images/bg/sprite_help.png) no-repeat;
+        }
+
+        #heading #help .helpClose {
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: absolute;
+            top: -13px;
+            right: -13px;
+            text-indent: -9999px;
+            background: url(../../images/form/sprite_buttons.png) 0 -300px no-repeat;
+            cursor: pointer;
+        }
+
+            #heading #help h3 {
+                height: 34px;
+                line-height: 34px;
+                margin-bottom: 16px;
+                font-size: 18px;
+            }
+
+            #heading #help dl {
+                line-height: 16px;
+            }
+
+                #heading #help dt {
+                    margin-bottom: 8px;
+                    font-weight: bold;
+                    font-style: italic;
+                }
+
+                #heading #help li {
+                    margin-bottom: 24px;
+                }
+
+                #heading #help li:last-child {
+                    margin-bottom: 8px;
+                }

@@ -23,7 +23,8 @@
         background: url(../../images/form/button_end.png) top right no-repeat;
     }
 
-    #content-nav li:active { background: url(../../images/form/button_end_a.png) top right no-repeat }
+    #content-nav li:active          { background: url(../../images/form/button_end_a.png) top right no-repeat }
+    #content-nav li.disabled:active { background: url(../../images/form/button_end.png) top right no-repeat }
 
     #content-nav li.next {
         margin-right: 0;

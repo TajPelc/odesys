@@ -328,6 +328,16 @@ Core.ContentNav.toggle = function(nextStep, menu) {
     }
 }
 
+Core.Help = function(){
+    if ($('#help').hasClass('shown')){
+        $('#help').hide();
+        $('#help').removeClass('shown');
+    } else {
+        $('#help').show();
+        $('#help').addClass('shown');
+    }
+}
+
 /*
  * Document Ready
  * */
@@ -352,4 +362,15 @@ $(document).ready(function(){
         }
         return false;
     });
+
+    //show or hide help
+    $('#helpButton').toggle(function(){
+        Core.Help();
+    }, function(){
+        Core.Help();
+    });
+    $('#help .helpClose').click(function(){
+        Core.Help();
+    });
+
 });
