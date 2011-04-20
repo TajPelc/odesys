@@ -52,7 +52,7 @@ Alternatives.SaveInput = function(that, add) {
                         that.val('');
                         Alternatives.SaveInput.Loading.remove();
                         Core.ProjectMenu(data['projectMenu']);
-                        Alternatives.handleButtons(data['projectMenu']);
+                        Core.ContentNav.toggle('criteria', data['projectMenu']);
 
                         //errors
                     } else {
@@ -95,28 +95,13 @@ Alternatives.DeleteInput = function(that) {
             {
                 that.parents('li').remove();
                 Core.ProjectMenu(data['projectMenu']);
-                Alternatives.handleButtons(data['projectMenu']);
+                Core.ContentNav.toggle('criteria', data['projectMenu']);
                 Alternatives.DeleteInput.Loading.remove();
             } else {
                 Alternatives.DeleteInput.Loading.remove();
             }
         }
     });
-}
-
-/**
- * Handle previous / next button
- */
-Alternatives.handleButtons = function(menu) {
-    // next button
-    var li = $('#content-nav li.next');
-    var element = li.find('a, span');
-
-    // check if next button should be enabled or disabled
-    var enabled = (false != menu['criteria']);
-
-    // do it
-    Core.ContentNav.toggle(status, menu);
 }
 
 /*

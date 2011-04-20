@@ -297,8 +297,12 @@ Core.ProjectMenu.initMenu = function()
 /**
  * Handle previous / next button
  */
-Core.ContentNav.toggle = function(status, element) {
-    if(status)
+Core.ContentNav = {};
+Core.ContentNav.toggle = function(nextStep, menu) {
+    var li = $('#content-nav li.next');
+    var element = li.find('a, span');
+
+    if(menu[nextStep])
     {
         if(element.is('span'))
         {
