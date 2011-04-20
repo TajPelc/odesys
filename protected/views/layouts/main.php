@@ -69,10 +69,9 @@
                 <dl>
                     <dt><?php echo CHtml::link('Contact', array('/site/contact')); ?></dt>
                     <dd>
-                        <span><b>ODESYS</b> on</span>
                         <a id="footer_facebook" href="https://www.facebook.com/odesys">ODESYS on Facebook</a>
                         <a id="footer_twitter" href="https://twitter.com/#!/ODESYSinfo">Follow ODESYS on Twitter</a>
-                        <a id="footer_email" href="#">Email us!</a>
+                        <span id="footer_email">Email us!</span>
                     </dd>
                 </dl>
             </li>
