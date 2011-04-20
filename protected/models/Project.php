@@ -312,6 +312,17 @@ class Project extends CActiveRecord
                 // get evaluation for criteria / alternative pair
                 $Evaluation = Evaluation::model()->find('rel_criteria_id=:criteriaId AND rel_alternative_id=:alternativeId', array('criteriaId' => $Criteria->criteria_id, 'alternativeId' => $Alternative->alternative_id));
 
+                // save empty evaluation
+                if(empty($Evaluation))
+                {
+                    $Evaluation = new Evaluation();
+                    $Evaluation->rel_project_id = Project::getActive()->project_id;
+                    $Evaluation->rel_alternative_id = $Alternative->alternative_id;
+                    $Evaluation->rel_criteria_id = $Criteria->criteria_id;
+                    $Evaluation->grade = 0;
+                    $Evaluation->save();
+                }
+
                 // calcualte weight
                 $weight = pow($quotient, $j);
 
