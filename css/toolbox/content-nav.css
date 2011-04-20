@@ -15,7 +15,7 @@
     #content-nav li {
         height: 35px;
         line-height: 35px;
-        padding-right: 9px; /* sliding doors*/
+        padding-right: 7px; /* sliding doors*/
         margin-right: 20px;
         float: left;
         font-weight: bold;
@@ -24,29 +24,27 @@
         background: url(../../images/form/button_end.png) top right no-repeat;
     }
 
+    #content-nav li:active { background: url(../../images/form/button_end_a.png) top right no-repeat }
+
     #content-nav li.next {
         margin-right: 0;
     }
-
-    #content-nav li.prev,
-    #content-nav li.next {
-        width: 101px;
-    }
-
 
         #content-nav li a,
         #content-nav li span {
             width: 103px;
             height: 35px;
             line-height: 35px;
+            padding-left: 7px;
             display: block;
             background: transparent url(../../images/form/sprite_buttons.png) -300px -100px no-repeat;
             text-decoration: none;
             color: #fff;
         }
 
+        #content-nav li.disabled a,
         #content-nav li.disabled span {
             color: #717C90;
         }
 
-        #content-nav li a:active  { background-position: -300px -100px }
+        #content-nav li a:active  { background-position: -300px -200px }
