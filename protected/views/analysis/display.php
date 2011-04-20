@@ -5,8 +5,32 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 
 <div id="heading">
     <h2>Compare alternatives to find which one is best suited for you.</h2>
-    <a href="#">Help</a>
+    <a id="helpButton" href="#">Help</a>
     <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
+    <div id="help" style="display: none;">
+        <h3>Need some help?</h3>
+        <ul>
+            <li>
+                <dl>
+                    <dt>A note on scores</dt>
+                    <dd>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the winning alternative.</dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>But which one is best?</dt>
+                    <dd>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>About the detailed comparison</dt>
+                    <dd>This graph shows alternative profiles. You should be seeing how each alternative compares to others at each criteria. Do you still think the first one is the best?</dd>
+                </dl>
+            </li>
+        </ul>
+        <div id="helpEnd"></div>
+    </div>
 </div>
 
 <div id="accordion">
@@ -35,22 +59,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <td>100</td>
                 </tr>
             </table>
-        </div>
-        <div id="score-sidebar" class="sidebar">
-            <ul>
-                <li>
-                    <dl>
-                        <dt>A note on scores</dt>
-                        <dd>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the winning alternative.</dd>
-                    </dl>
-                </li>
-                <li>
-                    <dl>
-                        <dt>But which one is best?</dt>
-                        <dd>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</dd>
-                    </dl>
-                </li>
-            </ul>
         </div>
     </div>
     <h3 id="abacon-tab"><a href="#">Detailed comparison</a></h3>
@@ -101,14 +109,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <?php if($i == 1) break; ?>
                     <?php $i++;?>
                 <?php }?>
-            </ul>
-            <ul class="help">
-                <li>
-                    <dl>
-                        <dt>About the detailed comparison</dt>
-                        <dd>This graph shows alternative profiles. You should be seeing how each alternative compares to others at each criteria. Do you still think the first one is the best?.</dd>
-                    </dl>
-                </li>
             </ul>
         </div>
     </div>

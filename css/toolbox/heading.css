@@ -54,7 +54,7 @@
 /* Help */
     #heading #help {
         width: 206px;
-        padding: 0 10px 8px 15px;
+        padding: 0 15px 8px 10px;
         position: absolute;
         top: 53px; /*37+16*/
         right: 24px;
@@ -75,7 +75,7 @@
             #heading #help h3 {
                 height: 34px;
                 line-height: 34px;
-                margin-bottom: 16px;
+                margin-bottom: 10px;
                 font-size: 18px;
             }
 
@@ -89,8 +89,12 @@
                     font-style: italic;
                 }
 
+                #heading #help dd {
+                    font-size: 11px;
+                }
+
                 #heading #help li {
-                    margin-bottom: 24px;
+                    margin-bottom: 10px;
                 }
 
                 #heading #help li:last-child {
