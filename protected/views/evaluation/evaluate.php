@@ -3,8 +3,27 @@
 
 <div id="heading">
     <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>
-    <a href="#">Help</a>
+    <a id="helpButton" href="#">Help</a>
     <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
+    <div id="help" style="display: none;">
+        <h3>Need some help?</h3>
+        <ul>
+            <li>
+                <dl>
+                    <dt>Think</dt>
+                    <dd>Read the sentances and think about how each alternative compares at a given criteria. If a sentance doesn't make any sense, you should probably rename your criteria or alternatives.</dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>How to evaluate</dt>
+                    <dd>Just move or click on the slider to evaluate an alternative.</dd>
+                </dl>
+            </li>
+        </ul>
+        <span class="helpClose">&nbsp;</span>
+        <div id="helpEnd"></div>
+    </div>
 </div>
 
 <div id="content">
