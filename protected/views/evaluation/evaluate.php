@@ -43,7 +43,7 @@
         <?php $next = CHtml::link('Next', array('analysis/display'), array('class' => 'changePage')); ?>
         <?php } ?>
         <li class="prev"><?php echo $prev; ?></li>
-        <li class="next"><?php echo $next; ?></li>
+        <li class="next"><?php echo $next; ?><span>Next</span></li>
     </ul>
 </div>
 <div id="sidebar">
@@ -56,7 +56,11 @@
             <?php $evaluated = $C->isDecisionEvaluated(); ?>
             <li<?php if($current || $evaluated) { echo ' class="'; if($current){echo 'current';} if($current && $evaluated){echo ' ';} if($evaluated){echo 'saved';} echo '"';}?>>
                 <?php if($current) { ?><span>&nbsp;</span><?php }?>
+                <?php if($evaluated) { ?>
                 <?php echo CHtml::link(CHtml::encode(Common::truncate($C->title, ($current ? 28 : 32))), array('evaluation/evaluate', 'pageNr' => $i++)); ?>
+                <?php } else { ?>
+                <?php echo Common::truncate($C->title, ($current ? 28 : 32)); ?>
+                <?php }?>
             </li>
         <?php } ?>
 <?php } ?>

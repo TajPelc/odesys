@@ -14,11 +14,10 @@
 
     #content-nav li {
         height: 35px;
-        line-height: 35px;
+        line-height: 32px;
         padding-right: 7px; /* sliding doors*/
         margin-right: 20px;
         float: left;
-        font-weight: bold;
         font-size: 18px;
         text-align: center;
         background: url(../../images/form/button_end.png) top right no-repeat;
@@ -34,7 +33,7 @@
         #content-nav li span {
             width: 103px;
             height: 35px;
-            line-height: 35px;
+            line-height: 32px;
             padding-left: 7px;
             display: block;
             background: transparent url(../../images/form/sprite_buttons.png) -300px -100px no-repeat;
@@ -42,9 +41,9 @@
             color: #fff;
         }
 
-        #content-nav li.disabled a,
         #content-nav li.disabled span {
-            color: #717C90;
+            color: #444a56;
+            cursor: default;
         }
 
         #content-nav li a:active  { background-position: -300px -200px }
