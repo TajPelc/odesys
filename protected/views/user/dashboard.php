@@ -1,5 +1,8 @@
+<div id="heading">
+    <h2>Dashboard</h2>
+</div>
+
 <div id="content">
-    <h1>Dashboard</h1>
 
     <dl class="recentDecisions">
         <dt>My latest decisions</dt>

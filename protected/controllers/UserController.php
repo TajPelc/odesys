@@ -27,6 +27,7 @@ class UserController extends Controller
     public function actionDashboard()
     {
         // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/index.css');
 
         // load last five decisions
