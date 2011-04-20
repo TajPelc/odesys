@@ -264,16 +264,6 @@ Abacon.Legend.displayFromDropdown = function()
         // recalculate position
         Abacon.Legend.rebuildDropdown();
 
-        // select all non-draw alternatives
-        var nonHidden = Abacon.Legend.DropdownList.find('li:not(.hidden)');
-
-        // set label value
-        if(nonHidden.length == 0)
-        {
-            Abacon.Legend.Fieldset.find('a span[class*=selectBox-arrow]').fadeOut();
-            Abacon.Legend.Fieldset.find('span.selectBox-label').html('All alternatives are drawn');
-        }
-
         // create span
         var x = $('<span>X</span>')
             .addClass('remove')
@@ -343,4 +333,14 @@ Abacon.Legend.rebuildDropdown = function()
 {
     // adjust dropdown position
     Abacon.Legend.DropdownList.css({left: 0, bottom: -(Abacon.Legend.DropdownList.height() + 8)});
+
+    // select all non-draw alternatives
+    var nonHidden = Abacon.Legend.DropdownList.find('li:not(.hidden)');
+
+    // set label value
+    if(nonHidden.length == 0)
+    {
+        Abacon.Legend.Fieldset.find('a span[class*=selectBox-arrow]').fadeOut();
+        Abacon.Legend.Fieldset.find('span.selectBox-label').html('All alternatives are drawn');
+    }
 }
