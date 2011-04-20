@@ -329,12 +329,18 @@ Core.ContentNav.toggle = function(nextStep, menu) {
 }
 
 Core.Help = function(){
-    if ($('#help').hasClass('shown')){
-        $('#help').hide();
-        $('#help').removeClass('shown');
+    var help = $('#help');
+    var helpButton = $('#helpButton');
+
+    if (help.hasClass('shown')){
+        help.fadeOut('fast', function(){
+            help.removeClass('shown');
+            helpButton.removeClass('active');
+        });
     } else {
-        $('#help').show();
-        $('#help').addClass('shown');
+        help.addClass('shown');
+        helpButton.addClass('active');
+        help.fadeIn('fast');
     }
 }
 
