@@ -20,7 +20,7 @@
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
     <ul id="content-nav">
-        <li class="next"><?php echo CHtml::link('Next', array('criteria/create')); ?></li>
+        <li class="next"><?php echo CHtml::link('Next', array('criteria/create')); ?><span>Next</span></li>
     </ul>
 </div>
 <div id="sidebar"></div>

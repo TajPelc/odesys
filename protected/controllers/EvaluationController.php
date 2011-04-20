@@ -39,6 +39,7 @@ class EvaluationController extends DecisionController
         }
 
         // redirect to the first unevaluated criteria
+        /*
         if(false === $this->get('pageNr'))
         {
             $i = 0;
@@ -56,6 +57,7 @@ class EvaluationController extends DecisionController
                 $i++;
             }
         }
+        */
 
         // get page number
         if(false === $pageNr = $this->get('pageNr'))
