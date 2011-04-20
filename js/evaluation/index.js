@@ -1,6 +1,37 @@
 Evaluation = {};
 
 /**
+ * Blocker for Entire Evaluation
+ *
+ * @param object
+ * @returns void
+ */
+Evaluation.Block = function(that){
+    that.append('<div class="block"><img src="/images/ajax-loader.gif" /></div>');
+    $('.block').each(function(index, element){
+        $(element).addClass('roundedBottom');
+        $(element).width($(element).parent().outerWidth()-4);
+        $(element).height($(element).parent().outerHeight()+10);
+        $(element).find('img').css({
+            'top': ($(element).height()-$(element).children('img').height())/2,
+            'left': ($(element).width()-$(element).children('img').width())/2
+        });
+    });
+}
+
+/**
+ * Unblocker for Entire Evaluation
+ *
+ * @param object
+ * @returns void
+ */
+Evaluation.Unblock = function(that){
+    Core.Unblock.Block = that.find('.block').fadeOut(200);
+
+    setTimeout('Core.Unblock.Block.remove()', 200);
+}
+
+/**
  * Change select input fields to sliders
  */
 function handleSlider()
@@ -51,7 +82,7 @@ function handleSlider()
 
 Evaluation.NextCriteria = function(that) {
     // block page
-    Core.Block($('#main'));
+    Evaluation.Block($('#main'));
 
     // get unsaved and saved items
     var unsavedList = $('#evaluation ul li:not(.saved)');
@@ -62,7 +93,7 @@ Evaluation.NextCriteria = function(that) {
     {
         if(false === confirm('Are you sure you want to proceed without evaluating?'))
         {
-            Core.Unblock($('#main'));
+            Evaluation.Unblock($('#main'));
             return false;
         }
     }
@@ -119,7 +150,7 @@ Evaluation.NextCriteria = function(that) {
                 prevButton.addClass('changePage');
             }
 
-            Core.Unblock($('#main'));
+            Evaluation.Unblock($('#main'));
             Evaluation.Sidebar(data['sideBar']);
         }
     });
