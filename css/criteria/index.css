@@ -25,6 +25,7 @@
         #content > form ol li {
             width: 650px;
             height: 28px;
+            line-height: 0;
             margin-bottom: 16px;
             float: left;
             position: relative;
