@@ -21,7 +21,7 @@
     <?php echo CHtml::endForm();?>
     <ul id="content-nav">
         <li class="prev"><?php echo CHtml::link('Previous', array('alternative/create')); ?></li>
-        <li class="next"><?php echo CHtml::link('Next', array('evaluation/evaluate')); ?></li>
+        <li class="next<?php echo (!$Project->checkCriteriaComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkCriteriaComplete() ? CHtml::link('Next', array('evaluation/evaluate')) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
 <div id="sidebar"></div>

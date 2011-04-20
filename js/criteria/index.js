@@ -53,7 +53,7 @@ Criteria.SaveInput = function(that, add) {
                         that.val('');
                         Criteria.SaveInput.Loading.remove();
                         Core.ProjectMenu(data['projectMenu']);
-                        Criteria.handleButtons(data['projectMenu']);
+                        Core.ContentNav.toggle('evaluation', data['projectMenu']);
 
                         // errors
                     } else {
@@ -96,7 +96,7 @@ Criteria.DeleteInput = function(that) {
             {
                 that.parents('li').remove();
                 Core.ProjectMenu(data['projectMenu']);
-                Criteria.handleButtons(data['projectMenu']);
+                Core.ContentNav.toggle('evaluation', data['projectMenu']);
                 Criteria.DeleteInput.Loading.remove();
             } else {
                 Criteria.DeleteInput.Loading.remove();
@@ -144,10 +144,6 @@ $(document).ready(function(){
     Criteria.FormListButtons($('#content form li input'));
     $('#content form input[type="submit"]').remove();
     $('#content form div input').focus();
-
-    // hide navigation
-    $('#content-nav li.next').find('a').hide();
-    Criteria.handleButtons();
 
     // copy input ID's to list items
     $('#content form li input').each(function(){
