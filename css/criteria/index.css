@@ -10,7 +10,6 @@
 
 #content > form {
     width: 100%;
-    margin-bottom: 32px;
     float: left;
     position: relative;
 }
@@ -29,10 +28,6 @@
             margin-bottom: 16px;
             float: left;
             position: relative;
-        }
-
-        #content > form ol li:last-child {
-            margin-bottom: 0;
         }
 
         #content > form ol li.placeholder {
