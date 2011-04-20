@@ -98,11 +98,6 @@ Evaluation.NextCriteria = function(that) {
         }
     }
 
-    // change page
-    if(that.hasClass('changePage'))
-    {
-        return true;
-    }
 
     // get unsaved values
     var unsaved = [];
@@ -113,6 +108,24 @@ Evaluation.NextCriteria = function(that) {
         });
     }
 
+    // change page
+    if(that.hasClass('changePage'))
+    {
+        // going to analysis
+        if(that.parent().hasClass('next'))
+        {
+            // post empty criteria
+            $.post(location.href, {'action': 'save', 'unsaved': unsaved}, function(data){
+                if(data['status'] == true)
+                {
+                    Core.redirectUser('analysis/display');
+                }
+            });
+        }
+        return true;
+    }
+
+    // navigate criteria
     Evaluation.NextCriteria.Url = that.attr('href');
     $.post(Evaluation.NextCriteria.Url, {
         'action': 'getContent',

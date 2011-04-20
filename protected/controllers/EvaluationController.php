@@ -39,7 +39,6 @@ class EvaluationController extends DecisionController
         }
 
         // redirect to the first unevaluated criteria
-        /*
         if(false === $this->get('pageNr'))
         {
             $i = 0;
@@ -57,7 +56,6 @@ class EvaluationController extends DecisionController
                 $i++;
             }
         }
-        */
 
         // get page number
         if(false === $pageNr = $this->get('pageNr'))
@@ -92,16 +90,15 @@ class EvaluationController extends DecisionController
         {
             switch($this->post('action'))
             {
+                // save empty evals
+                case 'save':
+                    $this->_saveEmpty();
+                    Ajax::respondOk();
+
+                // return content
                 case 'getContent':
 
-                    $unsaved = $this->post('unsaved');
-                    if(!empty($unsaved))
-                    {
-                        foreach($this->post('unsaved') as $arr)
-                        {
-                            $this->_updateEvaluation($arr[0], $arr[1], 0);
-                        }
-                    }
+                    $this->_saveEmpty();
 
                     // render partial
                     $html = $this->renderPartial('evaluate', array(
@@ -204,6 +201,21 @@ class EvaluationController extends DecisionController
         }
 
         Ajax::respondError();
+    }
+
+    /**
+     * Save all empty evaluations
+     */
+    private function _saveEmpty()
+    {
+        $unsaved = $this->post('unsaved');
+        if(!empty($unsaved))
+        {
+            foreach($this->post('unsaved') as $arr)
+            {
+                $this->_updateEvaluation($arr[0], $arr[1], 0);
+            }
+        }
     }
 
     /**
