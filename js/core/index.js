@@ -307,7 +307,7 @@ Core.ContentNav.toggle = function(nextStep, menu) {
         if(element.is('span'))
         {
             element.animate({color: 'white'}, 250, 'linear', function(){
-                var a = $('<a></a>').attr('href', menu['criteria']).text(element.text());
+                var a = $('<a></a>').attr('href', menu[nextStep]).text(element.text());
                 element.remove();
                 li.append(a);
                 li.removeClass('disabled');

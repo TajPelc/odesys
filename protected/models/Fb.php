@@ -83,7 +83,7 @@ class Fb extends Facebook
                 $User->created = date('Y-m-d H:i:s');
                 $User->lastvisit = date('Y-m-d H:i:s');
 
-                if($User->save(false))
+                if($User->updateConfig())
                 {
                     Yii::log('User sucessfully created. UID: ' . $uid, 'error');
                 }

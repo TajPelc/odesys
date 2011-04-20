@@ -3,9 +3,9 @@
 
 <div id="heading">
     <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>
-    <a id="helpButton" href="#">Help</a>
+    <a id="helpButton" href="#"<?php if(User::current()->getConfig('help')) { echo ' class="active"'; }?>>Help</a>
     <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
-    <div id="help" style="display: none;">
+    <div id="help"<?php if(!User::current()->getConfig('help')) { ?> style="display: none;"<?php } else { ?> class="shown"<?php } ?>>
         <h3>Need some help?</h3>
         <ul>
             <li>

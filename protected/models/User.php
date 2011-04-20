@@ -17,12 +17,29 @@ class User extends CActiveRecord
     const TYPE_FACEBOOK = 40;
 
     /**
+     * User config
+     */
+    private $_config = array(
+        'lang' => 'en-GB',
+        'help' => true,
+    );
+
+    /**
      * Returns the static model of the specified AR class.
      * @return CActiveRecord the static model class
      */
     public static function model($className=__CLASS__)
     {
         return parent::model($className);
+    }
+
+    /**
+     * Returns the current user.
+     * @return CActiveRecord the static model class
+     */
+    public static function current()
+    {
+        return self::model()->findByPk(Yii::app()->user->id);
     }
 
     /**
@@ -104,6 +121,59 @@ class User extends CActiveRecord
     protected function generateSalt()
     {
         return uniqid('',true);
+    }
+
+    /**
+     * Decrypt config
+     * @see CActiveRecord::afterFind()
+     */
+    protected function afterFind()
+    {
+        $this->_config = unserialize($this->config);
+    }
+
+    /**
+     * Generates a salt that can be used to generate a password hash.
+     *
+     * @return bool
+     */
+    public function getConfig($val = null)
+    {
+        if(is_null($val))
+        {
+            return $this->_config;
+        }
+        else
+        {
+            return $this->_config[$val];
+        }
+    }
+
+    /**
+     * Generates a salt that can be used to generate a password hash.
+     *
+     * @return bool
+     */
+    public function setConfig($attr, $val)
+    {
+        $this->_config[$attr] = $val;
+        $this->updateConfig();
+    }
+
+    /**
+     * Generates a salt that can be used to generate a password hash.
+     *
+     * @return bool
+     */
+    public function updateConfig()
+    {
+        $this->config = serialize($this->_config);
+
+        if( $this->save(false) )
+        {
+            return true;
+        }
+        return false;
     }
 
     /**

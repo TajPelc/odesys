@@ -5,9 +5,9 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 
 <div id="heading">
     <h2>Compare alternatives to find which one is best suited for you.</h2>
-    <a id="helpButton" href="#">Help</a>
+    <a id="helpButton" href="#"<?php if(User::current()->getConfig('help')) { echo ' class="active"'; }?>>Help</a>
     <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
-    <div id="help" style="display: none;">
+    <div id="help"<?php if(!User::current()->getConfig('help')) { ?> style="display: none;"<?php } else { ?> class="shown"<?php } ?>>
         <h3>Need some help?</h3>
         <ul>
             <li>
