@@ -75,8 +75,8 @@
             height: 30px;
             display: block;
             position: absolute;
-            top: -13px;
-            right: -13px;
+            top: 3px;
+            right: 7px;
             text-indent: -9999px;
             background: url(../../images/form/sprite_buttons.png) 0 -300px no-repeat;
             cursor: pointer;
