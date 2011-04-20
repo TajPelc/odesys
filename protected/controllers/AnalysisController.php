@@ -45,6 +45,11 @@ class AnalysisController extends DecisionController
             $this->redirect(array('evaluation/evaluate'));
         }
 
+        /**
+         * @TODO Move this code to the last page
+         */
+        User::current()->setConfig('help', false);
+
         //include script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery.selectBox.min.js');
