@@ -6,19 +6,20 @@
 
 /* Content
 ********************************************************/
-#content > ul {
+#privacy {
     width: 100%;
     float: left;
+    margin-bottom: 24px;
     border-top: 1px solid #dedfe3;
 }
 
-    #content > ul > li {
+    #privacy li {
         width: 100%;
         float: left;
         border-bottom: 1px solid #dedfe3;
     }
 
-        #content > ul li dt {
+        #privacy li dt {
             width: 184px;
             height: 56px;
             line-height: 56px;
@@ -26,7 +27,7 @@
             float: left;
         }
 
-        #content > ul li dd {
+        #privacy li dd {
             width: 486px;
             height: 56px;
             line-height: 56px;
@@ -34,7 +35,7 @@
             border-bottom: 1px solid #dedfe3;
         }
 
-        #content > ul li dd:last-child {
+        #privacy li dd:last-child {
             border-bottom: none;
         }
 
@@ -69,3 +70,12 @@
                 #content #sns #share_digg        { background-position: 0 -800px }
                 #content #sns #share_reddit      { background-position: 0 -850px }
                 #content #sns #share_stumbleupon { background-position: 0 -900px }
+
+#content-nav li {
+    margin-right: 0;
+}
+
+#content-nav li a {
+    padding: 0 10px;
+    width: auto;
+}
