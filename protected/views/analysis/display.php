@@ -122,6 +122,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </div>
 <ul id="content-nav">
     <li class="prev"><?php echo CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $Project->no_criteria-1)); ?></li>
-    <li class="next disabled"><?php // echo CHtml::link('Next', array('sharing/index')); ?><span>Next</span></li>
+    <li class="next disabled"><?php echo CHtml::link('Next', array('sharing/index')); ?><span>Next</span></li>
 </ul>
 

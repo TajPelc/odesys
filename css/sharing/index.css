@@ -1,0 +1,71 @@
+/*
+ --> Sharing css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.1
+*/
+
+/* Content
+********************************************************/
+#content > ul {
+    width: 100%;
+    float: left;
+    border-top: 1px solid #dedfe3;
+}
+
+    #content > ul > li {
+        width: 100%;
+        float: left;
+        border-bottom: 1px solid #dedfe3;
+    }
+
+        #content > ul li dt {
+            width: 184px;
+            height: 56px;
+            line-height: 56px;
+            font-weight: bold;
+            float: left;
+        }
+
+        #content > ul li dd {
+            width: 486px;
+            height: 56px;
+            line-height: 56px;
+            float: right;
+            border-bottom: 1px solid #dedfe3;
+        }
+
+        #content > ul li dd:last-child {
+            border-bottom: none;
+        }
+
+        #content #sns {
+            width: 148px;
+            height: 16px;
+            padding: 20px 0;
+            float: right;
+        }
+
+            #content #sns li {
+                width: 16px;
+                height: 16px;
+                margin-right: 17px;
+                float: left;
+            }
+
+            #content #sns li:last-child {
+                margin-right: 0;
+            }
+
+                #content #sns li a {
+                    width: 16px;
+                    height: 16px;
+                    display: block;
+                    text-indent: -9999px;
+                    background: url(../../images/sprite_icons.png) no-repeat;
+                }
+
+                #content #sns #share_facebook    { background-position: 0 -700px }
+                #content #sns #share_twitter     { background-position: 0 -750px }
+                #content #sns #share_digg        { background-position: 0 -800px }
+                #content #sns #share_reddit      { background-position: 0 -850px }
+                #content #sns #share_stumbleupon { background-position: 0 -900px }
