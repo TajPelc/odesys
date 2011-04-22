@@ -9,11 +9,11 @@ Analysis = {};
  * Document Ready
  * */
 $(document).ready(function(){
-    //accordion
-    $( "#accordion" ).accordion({
-        autoHeight: false,
-        animated: false
-
+    // setup ajax
+    $.ajaxSetup({
+        type: 'POST',
+        url: location.href,
+        dataType: 'json',
     });
 
     // init score
@@ -21,27 +21,4 @@ $(document).ready(function(){
 
     // init abacon
     Abacon.init();
-
-    /**
-     * Draw when u first switch tab
-     */
-    var initDraw = true;
-    $('#abacon-tab').click(function(){
-        if(initDraw)
-        {
-            Abacon.Legend.rebuildDropdown();
-
-            // draw the two best alternatives
-            Abacon.Legend.LegendList.children().each(function(){
-                // get id
-                var id = Core.ExtractNumbers($(this).attr('id'));
-
-                // draw alternatives
-                Abacon.DrawAlternative(id);
-            });
-
-            // disable
-            initDraw = false;
-        }
-    });
 });

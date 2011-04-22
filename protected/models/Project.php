@@ -213,6 +213,13 @@ class Project extends CActiveRecord
             $this->criteria_complete = $criteriaComplete;
             $this->alternatives_complete = $alternativesComplete;
             $this->evaluation_complete = $evaluationComplete;
+
+            // analysis not complete if evaluation changes
+            if(!(bool)$evaluationComplete)
+            {
+                $this->disableAnalysisComplete();
+            }
+
             $this->save();
         }
     }
@@ -280,14 +287,18 @@ class Project extends CActiveRecord
         // find criteria by priority
         $criteriaArray = $this->findCriteriaByPriority();
 
+        // find alternatives by score
+        $alternativeArray = $this->findByWeightedScore();
+
         // build the array of evaluations
         $eval = array(
             'criteriaNr' => count($criteriaArray),
+            'alternativeNr' => count($alternativeArray),
         );
 
         // loop alternatives
         $i = 0;
-        foreach($this->findByWeightedScore() as $Alternative)
+        foreach($alternativeArray as $Alternative)
         {
             $eval['Alternatives'][$Alternative->alternative_id] = array(
                 'alternative_id'          => $Alternative->alternative_id,
@@ -406,7 +417,14 @@ class Project extends CActiveRecord
         return (bool)$this->analysis_complete;
     }
 
-
+    /**
+     * Disable analysis complete state
+     */
+    public function disableAnalysisComplete()
+    {
+        $this->analysis_complete = 0;
+        $this->save();
+    }
 
     /**
      * Create a url to view this project

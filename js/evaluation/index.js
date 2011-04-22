@@ -64,10 +64,12 @@ function handleSlider()
                     },
                     function(data) {
                         if (data['status'] == true){
+                            Core.ProjectMenu(data['projectMenu']);
+
                             if (sliderSlider.attr('class') == ''){
                                 sliderSlider.addClass('saved');
-                                Core.ProjectMenu(data['projectMenu']);
                             }
+
                             Core.Unblock(sliderSlider);
                             if( $('#evaluation li').length == $('#evaluation li.saved').length) {
                                 $('#sidebar li.current').addClass('saved');

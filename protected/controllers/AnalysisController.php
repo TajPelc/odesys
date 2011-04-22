@@ -45,10 +45,20 @@ class AnalysisController extends DecisionController
             $this->redirect(array('evaluation/evaluate'));
         }
 
-        /**
-         * @TODO Move this code to the last page
-         */
-        User::current()->setConfig('help', false);
+        if(Ajax::isAjax())
+        {
+            // enable next step
+            if($this->post('action') == 'enableSharing')
+            {
+                $Project->analysis_complete = 1;
+                if( $Project->save() )
+                {
+                    Ajax::respondOk(array(
+                        'projectMenu' => $this->getProjectMenu(),
+                    ));
+                }
+            }
+        }
 
         //include script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');

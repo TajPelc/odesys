@@ -114,10 +114,24 @@ Score.DrawAlternative = function(i)
         'stroke': Score.Scores[i]['color'],
         width: width,
     }, 500, '<>', function(){
+        // not last => draw more
         if(i < Score.Scores.length-1)
         {
             i++;
             Score.DrawAlternative(i);
+        }
+        else // last => draw abacon
+        {
+            Abacon.Legend.rebuildDropdown();
+
+            // draw the two best alternatives
+            Abacon.Legend.LegendList.children().each(function(){
+                // get id
+                var id = Core.ExtractNumbers($(this).attr('id'));
+
+                // draw alternatives
+                Abacon.DrawAlternative(id);
+            });
         }
     }));
 

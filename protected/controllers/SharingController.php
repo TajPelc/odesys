@@ -13,6 +13,11 @@ class SharingController extends DecisionController
      */
     public function actionIndex()
     {
+        /**
+         * @TODO Move this code to the last page
+         */
+        User::current()->setConfig('help', false);
+
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');

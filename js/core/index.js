@@ -383,6 +383,6 @@ $(document).ready(function(){
     {
         setTimeout(function(){
             Core.Help();
-        }, 3000);
+        }, 5000);
     }
 });

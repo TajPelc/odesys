@@ -60,6 +60,10 @@ class Evaluation extends CActiveRecord
             // update project's last edit
             Project::getActive()->updateLastEdit();
 
+            // disable project sharing
+            Project::getActive()->analysis_complete = 0;
+            Project::getActive()->disableAnalysisComplete();
+
             if($this->isNewRecord)
             {
                 // increase the number of evaluations

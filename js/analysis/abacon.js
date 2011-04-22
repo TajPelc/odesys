@@ -9,6 +9,9 @@ Abacon.Container = {};
 Abacon.Canvas = {};
 Abacon.Legend = {};
 
+// handle previous / next buttons
+Abacon.HandleButtons = true;
+
 // cotainer for Abacon drawn elements
 Abacon.Elements = [];
 
@@ -129,23 +132,6 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         pathShadow.blur(1);
     }
 
-    // draw path
-    Abacon.Elements[n].push(Abacon.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#000'}).animate({
-        'path': 'M'+ paths[i] + ' L' + paths[i+1],
-        "stroke": color,
-    }, 200, 'cubic-bezier(p1)', function(){
-        // not all lines yet drawn
-        if(i < paths.length - 1)
-        {
-            // recursion
-            Abacon.AnimateDrawPath(i+1, n, color, paths, dataPoints);
-        }
-        else // fade in sidebar
-        {
-            $('#abacon-sidebar ul.legend li[id="alternative_' + n + '"] span.remove').fadeIn();
-        }
-    }));
-
     // draw data points
     var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
         'stroke-width': '5px',
@@ -174,6 +160,43 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
     // push to elements
     Abacon.Elements[n].push(dot);
     Abacon.Elements[n].push(hoverDot);
+
+    // draw path
+    Abacon.Elements[n].push(Abacon.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#000'}).animate({
+        'path': 'M'+ paths[i] + ' L' + paths[i+1],
+        "stroke": color,
+    }, 200, 'cubic-bezier(p1)', function(){
+        // not all lines yet drawn
+        if(i < paths.length - 1)
+        {
+            // recursion
+            Abacon.AnimateDrawPath(i+1, n, color, paths, dataPoints);
+        }
+        else // fade in sidebar
+        {
+            $('#abacon-sidebar ul.legend li[id="alternative_' + n + '"] span.remove').fadeIn();
+
+            // handlebuttons
+            if(Abacon.HandleButtons)
+            {
+                Abacon.HandleButtons = false;
+
+                // enable next step
+                $.ajax({
+                    data: {
+                        'action': 'enableSharing',
+                    },
+                    success: function(data) {
+                        if(data['status'] == true)
+                        {
+                            Core.ProjectMenu(data['projectMenu']);
+                            Core.ContentNav.toggle('overview', data['projectMenu']);
+                        }
+                    }
+                });
+            }
+        }
+    }));
 }
 
 /**
