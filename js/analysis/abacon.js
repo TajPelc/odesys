@@ -56,7 +56,7 @@ Abacon.init = function(){
     // draw vertical grid
     for(i=0; i<=10; i++)
     {
-        Abacon.Canvas.path('M ' + (Abacon.Config['leftLegendOffset'] + (i*Abacon.Config['tickWidth'])) + ' 0 v ' + Abacon.Config['height']).attr({
+        Abacon.Canvas.path('M ' + (Abacon.Config['leftLegendOffset'] + (i*Abacon.Config['tickWidth'])) + '.5 0 v ' + Abacon.Config['height']).attr({
             'stroke': '#dddee2',
             'stroke-dasharray': '-',
             'stroke-width': 1
@@ -110,7 +110,7 @@ Abacon.DrawAlternative = function(n)
 Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
 {
     // draw data points shadow /** EXPERIMENTAL **/
-    var shadowDot = Abacon.Canvas.circle(dataPoints[i]['x'] + 1, dataPoints[i]['y'] + 1, 0).attr({
+    /*var shadowDot = Abacon.Canvas.circle(dataPoints[i]['x'] + 1, dataPoints[i]['y'] + 1, 0).attr({
         'stroke-width': '5px',
         stroke: '#000',
         fill: 'none',
@@ -118,8 +118,9 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
     }).animate({r: 3}, 250, 'elastic');
     Abacon.Elements[n].push(shadowDot);
 
+*/
     // draw path shadow /** EXPERIMENTAL **/
-    if(i < paths.length - 1)
+    /*if(i < paths.length - 1)
     {
         var pathShadow = Abacon.Canvas.path('M' + paths[i]).attr({
             'stroke-width': 3,
@@ -130,13 +131,13 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         }, 250, 'cubic-bezier(p1)');
         Abacon.Elements[n].push(pathShadow);
         pathShadow.blur(1);
-    }
+    }*/
 
     // draw data points
     var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
         'stroke-width': '5px',
-        stroke: '#000',
-        fill: '#000',
+        stroke: '#fff',
+        fill: '#fff',
     }).animate({r: 3, stroke: color, fill: color}, 250);
 
     // draw dot for hovering
@@ -162,7 +163,7 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
     Abacon.Elements[n].push(hoverDot);
 
     // draw path
-    Abacon.Elements[n].push(Abacon.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#000'}).animate({
+    Abacon.Elements[n].push(Abacon.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#fff'}).animate({
         'path': 'M'+ paths[i] + ' L' + paths[i+1],
         "stroke": color,
     }, 200, 'cubic-bezier(p1)', function(){

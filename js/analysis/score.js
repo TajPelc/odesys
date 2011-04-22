@@ -62,7 +62,7 @@ Score.init = function(){
     // draw vertical grid
     for(i=0; i<=10; i++)
     {
-        Score.Canvas.path('M ' + (Score.Config['leftLegendOffset'] + (i*Score.Config['tickWidth'])) + ' 0 v ' + Score.Config['height']).attr({
+        Score.Canvas.path('M ' + (Score.Config['leftLegendOffset'] + (i*Score.Config['tickWidth'])) + '.5 0 v ' + Score.Config['height']).attr({
             'stroke': '#dddee2',
             'stroke-dasharray': '-',
             'stroke-width': 1
@@ -88,26 +88,29 @@ Score.DrawAlternative = function(i)
     width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
 
     // calculate x postion
-    var x = Abacon.Config['leftLegendOffset']+0.5;
+    var x = Abacon.Config['leftLegendOffset']+1;
 
     // calculate y position
     var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2) - 10;
 
     // create a set for alternatives
     var Alternative = Score.Canvas.set();
+
     // shadow
-    Alternative.push(Score.Canvas.rect(x+2, y+2, 0, 20).attr({
-        'fill': '#000',
+    /*
+    Alternative.push(Score.Canvas.rect(x+0, y+1, 0, 20).attr({
+        'fill': '#596171',
         'stroke-width': 0,
-        'opacity': 0.4,
+        'opacity': 0.5,
     }).animate({
         width: width,
     }, 500, '<>').blur(1));
+    */
 
     // rectangle
     Alternative.push(Score.Canvas.rect(x-1, y, 0, 20, 0).attr({
-        'fill': '#000',
-        'stroke': '#000',
+        'fill': '#fff',
+        'stroke': '#fff',
         'stroke-width': 0,
     }).animate({
         'fill': Score.Scores[i]['color'],
