@@ -46,9 +46,14 @@ Abacon.init = function(){
     // draw horizontal grid
     for(i=0; i<Graph.Data['criteriaNr']; i++)
     {
+        var dashArray = '-';
+        if(i==Graph.Data['criteriaNr']-1)
+        {
+            dashArray = '';
+        }
         Abacon.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Abacon.Config['width']).attr({
-            'stroke': '#dddee2',
-            'stroke-dasharray': '-',
+            'stroke': '#dedfe3',
+            'stroke-dasharray': dashArray,
             'stroke-width': 1
         });
     }
@@ -56,9 +61,14 @@ Abacon.init = function(){
     // draw vertical grid
     for(i=0; i<=10; i++)
     {
+        var dashArray = '';
+        if(i>0)
+        {
+            dashArray = '-';
+        }
         Abacon.Canvas.path('M ' + (Abacon.Config['leftLegendOffset'] + (i*Abacon.Config['tickWidth'])) + '.5 0 v ' + Abacon.Config['height']).attr({
-            'stroke': '#dddee2',
-            'stroke-dasharray': '-',
+            'stroke': '#dedfe3',
+            'stroke-dasharray': dashArray,
             'stroke-width': 1
         });
     }

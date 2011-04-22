@@ -19,7 +19,7 @@ Score.Config = {
     'width': 666,
     'rowHeight': 60,
     'bottomLegend': 25,
-    'leftLegendOffset': 157,
+    'leftLegendOffset': 155,
     'tickWidth': 50,
 };
 
@@ -52,9 +52,14 @@ Score.init = function(){
     // draw horizontal grid
     for(i=0; i<Score.nrAlternatives; i++)
     {
+        var dashArray = '-';
+        if(i==Score.nrAlternatives-1)
+        {
+            dashArray = '';
+        }
         Score.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Score.Config['width']).attr({
-            'stroke': '#dddee2',
-            'stroke-dasharray': '-',
+            'stroke': '#dedfe3',
+            'stroke-dasharray': dashArray,
             'stroke-width': 1
         });
     }
@@ -62,9 +67,14 @@ Score.init = function(){
     // draw vertical grid
     for(i=0; i<=10; i++)
     {
+        var dashArray = '';
+        if(i>0)
+        {
+            dashArray = '-';
+        }
         Score.Canvas.path('M ' + (Score.Config['leftLegendOffset'] + (i*Score.Config['tickWidth'])) + '.5 0 v ' + Score.Config['height']).attr({
-            'stroke': '#dddee2',
-            'stroke-dasharray': '-',
+            'stroke': '#dedfe3',
+            'stroke-dasharray': dashArray,
             'stroke-width': 1
         });
     }
@@ -88,7 +98,7 @@ Score.DrawAlternative = function(i)
     width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
 
     // calculate x postion
-    var x = Abacon.Config['leftLegendOffset']+1;
+    var x = Abacon.Config['leftLegendOffset'];
 
     // calculate y position
     var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2) - 10;
