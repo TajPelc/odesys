@@ -14,6 +14,7 @@ Abacon.HandleButtons = true;
 
 // cotainer for Abacon drawn elements
 Abacon.Elements = [];
+Abacon.Alternatives = [];
 
 /**
  * Abacon config
@@ -46,14 +47,8 @@ Abacon.init = function(){
     // draw horizontal grid
     for(i=0; i<Graph.Data['criteriaNr']; i++)
     {
-        var dashArray = '-';
-        if(i==Graph.Data['criteriaNr']-1)
-        {
-            dashArray = '';
-        }
         Abacon.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Abacon.Config['width']).attr({
             'stroke': '#dedfe3',
-            'stroke-dasharray': dashArray,
             'stroke-width': 1
         });
     }
@@ -119,36 +114,82 @@ Abacon.DrawAlternative = function(n)
  */
 Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
 {
-    // draw data points shadow /** EXPERIMENTAL **/
-    /*var shadowDot = Abacon.Canvas.circle(dataPoints[i]['x'] + 1, dataPoints[i]['y'] + 1, 0).attr({
-        'stroke-width': '5px',
-        stroke: '#000',
-        fill: 'none',
-        opacity: 0.3,
-    }).animate({r: 3}, 250, 'elastic');
-    Abacon.Elements[n].push(shadowDot);
-
-*/
-    // draw path shadow /** EXPERIMENTAL **/
-    /*if(i < paths.length - 1)
+    // build path for animation
+    var path = '';
+    for(j=0; j<=i; j++)
     {
-        var pathShadow = Abacon.Canvas.path('M' + paths[i]).attr({
-            'stroke-width': 3,
-            stroke: "#000",
-            'opacity': 0.4,
-        }).animate({
-            'path': 'M'+ (dataPoints[i]['x'] + 2) + ' ' + (dataPoints[i]['y'] + 1) + ' L' + (dataPoints[i+1]['x'] + 1) + ' ' + (dataPoints[i+1]['y'] + 2),
-        }, 250, 'cubic-bezier(p1)');
-        Abacon.Elements[n].push(pathShadow);
-        pathShadow.blur(1);
-    }*/
+        var action = ' L';
+        if(j==0)
+        {
+            action = 'M';
+        }
+        path = path + action + paths[j];
+    }
+    
+    // first data point
+    if(i==0)
+    {
+        // create the path and data point
+        Abacon.Alternatives[n] = Abacon.Canvas.path(path).attr({"stroke-width": 4, "stroke": color});
+        Abacon.Elements[n].push(Abacon.Alternatives[n]);
+        Abacon.AnimateDataPoint(i, n, color, dataPoints)
+        Abacon.AnimateDrawPath(i+1, n, color, paths, dataPoints);
+    }
+    else
+    {
+        // animate path to the next position
+        Abacon.Alternatives[n].animate({
+            'path': path,
+        }, 250, 'normal', function(){
+            
+            // draw data point
+            Abacon.AnimateDataPoint(i, n, color, dataPoints)
+            
+            // until full drawn, repeat process
+            if(i < paths.length - 1)
+            {
+                Abacon.AnimateDrawPath(i+1, n, color, paths, dataPoints);
+            }
+            else // when complete
+            {
+                // fade in sidebar
+                $('#abacon-sidebar ul.legend li[id="alternative_' + n + '"] span.remove').fadeIn();
 
+                // handlebuttons
+                if(Abacon.HandleButtons)
+                {
+                    Abacon.HandleButtons = false;
+
+                    // enable next step
+                    $.ajax({
+                        data: {
+                            'action': 'enableSharing',
+                        },
+                        success: function(data) {
+                            if(data['status'] == true)
+                            {
+                                Core.ProjectMenu(data['projectMenu']);
+                                Core.ContentNav.toggle('overview', data['projectMenu']);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
+
+/**
+ * Animates data points
+ */
+Abacon.AnimateDataPoint = function(i, n, color, dataPoints)
+{
     // draw data points
-    var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 0).attr({
-        'stroke-width': '5px',
-        stroke: '#fff',
-        fill: '#fff',
-    }).animate({r: 3, stroke: color, fill: color}, 250);
+    var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 10).attr({
+        'stroke-width': '6px',
+        stroke: color,
+        fill: 'white',
+    }).animate({r: 3}, 500);
 
     // draw dot for hovering
     var hoverDot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 15).attr({
@@ -156,58 +197,18 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         stroke: 'red',
         fill: 'red',
         'opacity': 0,
-    })
+    });
 
     // hover over dot (to make life easier)
     hoverDot.mouseover(function (event) {
         dot.animate({r: 6}, 1000, 'elastic');
-        shadowDot.animate({r: 6}, 1000, 'elastic');
     });
     hoverDot.mouseout(function (event) {
         dot.animate({r: 3}, 1000, 'elastic');
-        shadowDot.animate({r:3}, 1000, 'elastic');
     });
 
     // push to elements
     Abacon.Elements[n].push(dot);
-    Abacon.Elements[n].push(hoverDot);
-
-    // draw path
-    Abacon.Elements[n].push(Abacon.Canvas.path('M' + paths[i]).translate(5,0).attr({"stroke-width": 3, "stroke": '#fff'}).animate({
-        'path': 'M'+ paths[i] + ' L' + paths[i+1],
-        "stroke": color,
-    }, 200, 'cubic-bezier(p1)', function(){
-        // not all lines yet drawn
-        if(i < paths.length - 1)
-        {
-            // recursion
-            Abacon.AnimateDrawPath(i+1, n, color, paths, dataPoints);
-        }
-        else // fade in sidebar
-        {
-            $('#abacon-sidebar ul.legend li[id="alternative_' + n + '"] span.remove').fadeIn();
-
-            // handlebuttons
-            if(Abacon.HandleButtons)
-            {
-                Abacon.HandleButtons = false;
-
-                // enable next step
-                $.ajax({
-                    data: {
-                        'action': 'enableSharing',
-                    },
-                    success: function(data) {
-                        if(data['status'] == true)
-                        {
-                            Core.ProjectMenu(data['projectMenu']);
-                            Core.ContentNav.toggle('overview', data['projectMenu']);
-                        }
-                    }
-                });
-            }
-        }
-    }));
 }
 
 /**
