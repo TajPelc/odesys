@@ -88,7 +88,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             </table>
         </div>
         <div id="abacon-sidebar" class="sidebar">
-            <h3>Legend</h3>
             <form method="post" action="">
                 <fieldset>
                     <select name="legend">

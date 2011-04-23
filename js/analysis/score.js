@@ -52,14 +52,8 @@ Score.init = function(){
     // draw horizontal grid
     for(i=0; i<Score.nrAlternatives; i++)
     {
-        var dashArray = '-';
-        if(i==Score.nrAlternatives-1)
-        {
-            dashArray = '';
-        }
         Score.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Score.Config['width']).attr({
             'stroke': '#dedfe3',
-            'stroke-dasharray': dashArray,
             'stroke-width': 1
         });
     }
