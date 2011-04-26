@@ -59,7 +59,7 @@ class ProjectController extends Controller
         // save or return errrors
         if($Project->save())
         {
-            Ajax::respondOk(array('redirectUrl' => $this->createUrl('/decision/alternatives', array('decisionId' => $Project->project_id))));
+            Ajax::respondOk(array('redirectUrl' => $this->createUrl('/decision/alternatives', array('decisionId' => $Project->project_id, 'label' => $Project->label))));
         }
         else
         {
@@ -79,7 +79,7 @@ class ProjectController extends Controller
             $Project = Project::model()->findByPk($this->get('id'));
             $Project->setAsActiveProject();
         }
-        $this->redirect(array('/decision/analysis', 'decisionId' => $this->get('id')));
+        $this->redirect(array('/decision/analysis', 'decisionId' => $this->get('id'), 'label' => $Project->label));
     }
 
     /**

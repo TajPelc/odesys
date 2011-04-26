@@ -21,7 +21,7 @@ class AnalysisController extends DecisionController
         // redirect to evaluation if it's not yet complete
         if(!$Project->checkEvaluationComplete())
         {
-            $this->redirect(array('/decision/evaluation', 'decisionId' => $Project->project_id));
+            $this->redirect(array('/decision/evaluation', 'decisionId' => $Project->project_id, 'label' => $Project->label));
         }
 
         if(Ajax::isAjax())

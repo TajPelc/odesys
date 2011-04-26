@@ -29,7 +29,7 @@ class Tabs extends CWidget
         $rv = array();
         foreach(self::getMenuItems() as $k => $I)
         {
-            $rv[substr($k, strlen('menu-'), strlen($k))] = $I['enabled'] ? $Controller->createUrl($I['path'], array('decisionId' => Project::getActive()->project_id)) : false;
+            $rv[substr($k, strlen('menu-'), strlen($k))] = $I['enabled'] ? $Controller->createUrl($I['path'], array('decisionId' => Project::getActive()->project_id, 'label' => Project::getActive()->label)) : false;
         }
         return $rv;
     }

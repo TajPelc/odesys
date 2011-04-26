@@ -56,7 +56,8 @@ class Project extends CActiveRecord
                 // set created
                 $this->created = date('Y-m-d H:i:s', time());
                 $this->rel_user_id = Yii::app()->user->id;
-
+                $this->label = Common::toAscii($this->title, array('’', '\''));
+                $this->label = strlen($this->label) > 0 ? $this->label : 'my-decision';
             }
             return true;
         }

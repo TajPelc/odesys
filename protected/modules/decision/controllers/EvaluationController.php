@@ -33,11 +33,11 @@ class EvaluationController extends DecisionController
         {
             if(!$Project->checkAlternativesComplete())
             {
-                $this->redirect(array('/decision/alternatives', 'decisionId' => $Project->project_id));
+                $this->redirect(array('/decision/alternatives', 'decisionId' => $Project->project_id, 'label' => $Project->label));
             }
             else
             {
-                $this->redirect(array('/decision/criteria', 'decisionId' => $Project->project_id));
+                $this->redirect(array('/decision/criteria', 'decisionId' => $Project->project_id, 'label' => $Project->label));
             }
         }
 

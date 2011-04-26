@@ -39,7 +39,7 @@
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
     <ul id="content-nav">
-        <li class="next<?php echo (!$Project->checkAlternativesComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkAlternativesComplete() ? CHtml::link('Next', array('/decision/criteria', 'decisionId' => $Project->project_id)) : '<span>Next</span>'); ?></li>
+        <li class="next<?php echo (!$Project->checkAlternativesComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkAlternativesComplete() ? CHtml::link('Next', array('/decision/criteria', 'decisionId' => $Project->project_id, 'label' => $Project->label)) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
 <div id="sidebar"></div>

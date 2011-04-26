@@ -12,7 +12,7 @@
                     <?php $label = $menuItem['label']; ?>
                     <?php if($menuItem['enabled'] && !$activeItem) {?>
                         <li>
-                            <?php echo CHtml::link(CHtml::encode($label), array($menuItem['path'], 'decisionId' => $Project->project_id), array('title' => CHtml::encode($label), 'id' => $id)); ?>
+                            <?php echo CHtml::link(CHtml::encode($label), array($menuItem['path'], 'decisionId' => $Project->project_id, 'label' => $Project->label), array('title' => CHtml::encode($label), 'id' => $id)); ?>
                             <span class="loadingBar<?php echo ( $lastEnabledItem && !$lastItem ? ' end' : ''); ?>">&nbsp;</span>
                         </li>
                     <?php } else { ?>
