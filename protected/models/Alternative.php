@@ -168,15 +168,58 @@ class Alternative extends CActiveRecord
             // update project's last edit
             Project::getActive()->updateLastEdit();
 
+            // new record?
             if($this->isNewRecord)
             {
+                // allocate a color
+                $this->allocateColor();
+
                 // increase the number of criteria
-                $this->color = self::$colorPool[Project::getActive()->no_alternatives];
                 Project::getActive()->increase('no_alternatives');
             }
             return true;
         }
         return false;
+    }
+
+    /**
+     * Gives the current alternative a color for graphical display
+     *
+     * @return string $this->color
+     */
+    public function allocateColor()
+    {
+        // choose a color from the pool
+        if(count(self::$colorPool) > $noAlt = Project::getActive()->no_alternatives)
+        {
+            // find out what colors are beeing used
+            $usedColors = array();
+            foreach(Project::getActive()->alternatives as $A)
+            {
+                $usedColors[] = $A->color;
+            }
+
+            // find a free color
+            foreach(self::$colorPool as $color)
+            {
+                if(!in_array($color, $usedColors))
+                {
+                    $this->color = $color;
+                }
+            }
+
+            return $this->color;
+        }
+
+        // generate random color using colorjizz library
+        Yii::import('application.vendors.color-jizz.*');
+        require_once('ColorJizz-0.2.php');
+
+        // get a random color by random hue
+        $color = new HSV(rand(0,360), 80, 75);
+        $this->color = '#' . str_pad($color->toHex()->toString(), 6, '0', STR_PAD_LEFT);
+
+        return $this->color;
     }
 
     /**
