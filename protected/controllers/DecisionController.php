@@ -1,11 +1,11 @@
 <?php
 /**
- * Project controller
+ * Decision controller
  *
  * @author Taj
  *
  */
-class ProjectController extends Controller
+class DecisionController extends Controller
 {
     /**
      * @return array action filters
