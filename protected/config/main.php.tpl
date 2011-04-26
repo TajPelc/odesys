@@ -4,7 +4,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-    'name'=>'ODESYS Alpha: The on-line decision support system',
+    'name'=>'ODESYS 2.0: The on-line decision support system',
 
     // preloading 'log' component
     'preload'=>array('log'),
@@ -16,19 +16,45 @@ return array(
         'application.helpers.*',
     ),
 
+    // modules
+	'modules'=>array(
+        'decision',
+        'gii'=>array( // gii tool
+            'class'=>'system.gii.GiiModule',
+    		'ipFilters'=> array('localhost', '127.0.0.1', '192.168.15.148'),
+            'password'=>'wtf',
+        ),
+    ),
+
     // application components
     'components'=>array(
-	// login component
+
+        // user
         'user'=>array(
-            'allowAutoLogin'=>true,
+          'allowAutoLogin'=>true,
         ),
+
+        // url manager
+        'urlManager'=>array(
+            'urlFormat'=>'path',
+            'rules'=>array_merge(
+                array(
+                    '/' => 'site/index',
+                ),
+                require_once('protected/modules/decision/config/url-rules.php')
+            ),
+            'showScriptName'=>false,
+            'urlSuffix' => '/',
+        ),
+
         // database configuration
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=databasenamehere',
+            'connectionString' => 'mysql:host=localhost;dbname=DBNAMEHERE',
             'emulatePrepare' => true,
-            'username' => 'usernamehere',
-            'password' => 'passwordhere',
+            'username' => 'DBUSERNAME',
+            'password' => 'DBPASSWORD',
             'charset' => 'utf8',
+        	'tablePrefix' => '',
         ),
 	// error handling
         'errorHandler'=>array(
@@ -55,7 +81,7 @@ return array(
         'fbAppId' => '165209310185741',
         'fbAppSecret' => '8625578e976c2e457236a5cd1c0d3c79',
 
-        // testing/debug params
+        // debuging / test
         'miliSleepTime' => 0,
     ),
 );
