@@ -127,4 +127,14 @@ class SiteController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/contact/index.css');
         $this->render('contact');
     }
+
+/**
+     * Contact page
+     */
+    public function actionPublic()
+    {
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
+        $this->render('public');
+    }
 }
