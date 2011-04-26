@@ -1,22 +1,22 @@
 <?php
 /**
- * Alternative controller
+ * Alternatives controller
  *
  * @author Taj
  *
  */
-class AlternativeController extends DecisionController
+class AlternativesController extends DecisionController
 {
-    /**
-     * @var CActiveRecord the currently loaded data model instance.
-     */
-    protected $_Alternative;
+    // default action
+    public $defaultAction = 'create';
 
     /**
      * Add / Update / Delete alternatives
      */
     public function actionCreate()
     {
+        Tabs::getMenuItemsForAjax();
+
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');

@@ -7,6 +7,9 @@
  */
 class EvaluationController extends DecisionController
 {
+    // default action
+    public $defaultAction = 'evaluate';
+
     /**
      * Evaluate each alternative - criteria pair
      */
@@ -30,11 +33,26 @@ class EvaluationController extends DecisionController
         {
             if(!$Project->checkAlternativesComplete())
             {
-                $this->redirect(array('alternative/create'));
+                $this->redirect(array('/decision/alternatives', 'decisionId' => $Project->project_id));
             }
             else
             {
-                $this->redirect(array('criteria/create'));
+                $this->redirect(array('/decision/criteria', 'decisionId' => $Project->project_id));
+            }
+        }
+
+        // ajax?
+        if(Ajax::isAjax())
+        {
+            switch($this->post('action'))
+            {
+                // save empty evals
+                case 'save':
+                    $this->_saveEmpty();
+                    Ajax::respondOk();
+                // update single eval
+                case 'update':
+                    $this->actionUpdate();
             }
         }
 
@@ -85,76 +103,65 @@ class EvaluationController extends DecisionController
         // calculate the number of criteria
         $criteriaNr = count($Project->criteria);
 
-        // ajax
+        // ajax next / previous
         if(Ajax::isAjax())
         {
-            switch($this->post('action'))
-            {
-                // save empty evals
-                case 'save':
-                    $this->_saveEmpty();
-                    Ajax::respondOk();
+             if($this->post('action') == 'getContent')
+             {
+                $this->_saveEmpty();
 
-                // return content
-                case 'getContent':
+                // render partial
+                $html = $this->renderPartial('evaluate', array(
+                    'Project'          => $Project,
+                    'Criteria'         => $Criteria,
+                    'eval'	           => $eval,
+                    'renderEvaluation' => true,
+                    'renderSidebar'	   => false,
+                ), true);
 
-                    $this->_saveEmpty();
+                // sidebar partial
+                $sidebarHtml = $this->renderPartial('evaluate', array(
+                    'Project'          => $Project,
+                    'Criteria'         => $Criteria,
+                    'renderEvaluation' => false,
+                    'renderSidebar'	   => true,
+                ), true);
 
-                    // render partial
-                    $html = $this->renderPartial('evaluate', array(
-                        'Project'          => $Project,
-                        'Criteria'         => $Criteria,
-                        'eval'	           => $eval,
-                        'renderEvaluation' => true,
-                        'renderSidebar'	   => false,
-                    ), true);
+                // get previous and next links
+                $back = false;
+                $forward = false;
+                if($pageNr > 0)
+                {
+                    $prev = $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1));
+                }
+                else
+                {
+                    $prev = $this->createUrl('criteria/create');
+                    $back = true;
+                }
+                if($pageNr < $criteriaNr - 1)
+                {
+                    $next = $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr + 1));
+                }
+                else
+                {
+                    $next = $this->createUrl('analysis/display');
+                    $forward = true;
+                }
 
-                    // sidebar partial
-                    $sidebarHtml = $this->renderPartial('evaluate', array(
-                        'Project'          => $Project,
-                        'Criteria'         => $Criteria,
-                        'renderEvaluation' => false,
-                        'renderSidebar'	   => true,
-                    ), true);
-
-                    // get previous and next links
-                    $back = false;
-                    $forward = false;
-                    if($pageNr > 0)
-                    {
-                        $prev = $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr - 1));
-                    }
-                    else
-                    {
-                        $prev = $this->createUrl('criteria/create');
-                        $back = true;
-                    }
-                    if($pageNr < $criteriaNr - 1)
-                    {
-                        $next = $this->createUrl('evaluation/evaluate', array('pageNr' => $pageNr + 1));
-                    }
-                    else
-                    {
-                        $next = $this->createUrl('analysis/display');
-                        $forward = true;
-                    }
-
-                    Ajax::respondOk(array(
-                        'html' => $html,
-                        'sideBar' => $sidebarHtml,
-                        'title' => $Criteria->title,
-                        'criteria_id' => $Criteria->criteria_id,
-                        'pageNr' => $pageNr + 1,
-                        'criteriaNr' => $criteriaNr,
-                        'previous' => $prev,
-                        'next' => $next,
-                        'back' => $back,
-                        'forward' => $forward,
-                        'projectMenu' => $this->getProjectMenu(),
-                    ));
-                    break;
-                default:
-                    Ajax::respondError();
+                Ajax::respondOk(array(
+                    'html' => $html,
+                    'sideBar' => $sidebarHtml,
+                    'title' => $Criteria->title,
+                    'criteria_id' => $Criteria->criteria_id,
+                    'pageNr' => $pageNr + 1,
+                    'criteriaNr' => $criteriaNr,
+                    'previous' => $prev,
+                    'next' => $next,
+                    'back' => $back,
+                    'forward' => $forward,
+                    'projectMenu' => $this->getProjectMenu(),
+                ));
             }
         }
 

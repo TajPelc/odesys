@@ -5,7 +5,7 @@
  * @author Taj
  *
  */
-class DecisionController extends Controller
+class ProjectController extends Controller
 {
     /**
      * @return array action filters
@@ -59,7 +59,7 @@ class DecisionController extends Controller
         // save or return errrors
         if($Project->save())
         {
-            Ajax::respondOk();
+            Ajax::respondOk(array('redirectUrl' => $this->createUrl('/decision/alternatives', array('decisionId' => $Project->project_id))));
         }
         else
         {
@@ -79,7 +79,7 @@ class DecisionController extends Controller
             $Project = Project::model()->findByPk($this->get('id'));
             $Project->setAsActiveProject();
         }
-        $this->redirect(array('analysis/display'));
+        $this->redirect(array('/decision/analysis', 'decisionId' => $this->get('id')));
     }
 
     /**

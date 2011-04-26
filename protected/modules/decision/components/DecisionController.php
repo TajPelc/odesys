@@ -11,7 +11,7 @@ class DecisionController extends Controller
      * Default layout
      * @var string
      */
-    public $layout='application.views.layouts.projectTabs';
+    public $layout='application.modules.decision.views.layouts.projectTabs';
 
     /**
      * @return array action filters

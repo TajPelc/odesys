@@ -58,7 +58,8 @@ function handleSlider()
                 $(this).parent().find('input').attr('value', ui.value);
                 params = Core.ExtractNumbers($(this).parent().find('input').attr('name'));
                 $.post(
-                    'index.php?r=evaluation/update', {
+                    location.href, {
+                        action: 'update',
                         grade: ui.value,
                         params: params,
                     },
@@ -120,7 +121,7 @@ Evaluation.NextCriteria = function(that) {
             $.post(location.href, {'action': 'save', 'unsaved': unsaved}, function(data){
                 if(data['status'] == true)
                 {
-                    Core.redirectUser('analysis/display');
+                    Core.redirectUser(data['projectMenu']['analysis']);
                 }
             });
         }

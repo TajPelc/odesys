@@ -44,8 +44,8 @@
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
     <ul id="content-nav">
-        <li class="prev"><?php echo CHtml::link('Previous', array('alternative/create')); ?></li>
-        <li class="next<?php echo (!$Project->checkCriteriaComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkCriteriaComplete() ? CHtml::link('Next', array('evaluation/evaluate')) : '<span>Next</span>'); ?></li>
+        <li class="prev"><?php echo CHtml::link('Previous', array('/decision/alternatives', 'decisionId' => $Project->project_id)); ?></li>
+        <li class="next<?php echo (!$Project->checkCriteriaComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkCriteriaComplete() ? CHtml::link('Next', array('/decision/evaluation', 'decisionId' => $Project->project_id)) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
 <div id="sidebar"></div>

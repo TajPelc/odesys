@@ -113,7 +113,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
 </div>
 <ul id="content-nav">
-    <li class="prev"><?php echo CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $Project->no_criteria-1)); ?></li>
+    <li class="prev"><?php echo CHtml::link('Previous', array('/decision/evaluation', 'decisionId' => $Project->project_id, 'pageNr' => $Project->no_criteria-1)); ?></li>
     <li class="next<?php echo (!$Project->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkAnalysisComplete() ? CHtml::link('Next', array('sharing/index')) : '<span>Next</span>'); ?></li>
 </ul>
 

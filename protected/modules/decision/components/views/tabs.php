@@ -9,10 +9,10 @@
                     <?php $activeItem = ($menuItem['route'][0] === $currentRoute); ?>
                     <?php $lastEnabledItem = ($id === $lastEnabled); ?>
                     <?php $lastItem = ($i === count($menu));?>
-                    <?php $label = $i . '. ' . $menuItem['label']; ?>
+                    <?php $label = $menuItem['label']; ?>
                     <?php if($menuItem['enabled'] && !$activeItem) {?>
                         <li>
-                            <?php echo CHtml::link(CHtml::encode($label), $menuItem['route'], array('title' => CHtml::encode($label), 'id' => $id)); ?>
+                            <?php echo CHtml::link(CHtml::encode($label), array($menuItem['path'], 'decisionId' => $Project->project_id), array('title' => CHtml::encode($label), 'id' => $id)); ?>
                             <span class="loadingBar<?php echo ( $lastEnabledItem && !$lastItem ? ' end' : ''); ?>">&nbsp;</span>
                         </li>
                     <?php } else { ?>

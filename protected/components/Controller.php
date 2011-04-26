@@ -80,14 +80,7 @@ class Controller extends CController
      */
     protected function getProjectMenu()
     {
-        $activeProject = Project::getActive();
-        return array(
-        	'alternatives'  => $this->createUrl('alternatives/create'),
-            'criteria'      => ($activeProject->checkAlternativesComplete() ? $this->createUrl('criteria/create') : false),
-            'evaluation'    => ($activeProject->checkEvaluateConditions() ? $this->createUrl('evaluation/evaluate') : false),
-            'analysis'      => ($activeProject->checkEvaluationComplete() ? $this->createUrl('analysis/display') : false),
-            'overview'      => ($activeProject->checkAnalysisComplete() ? $this->createUrl('sharing/index') : false),
-        );
+        return Tabs::getMenuItemsForAjax();
     }
 
     /**

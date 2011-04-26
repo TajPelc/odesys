@@ -43,7 +43,7 @@ Core.EscapeString = function (str) {
  * @return
  */
 function redirectUser(url) {
-    window.location.replace(location.protocol + '//'+ location.hostname + location.pathname + '?r=' + url);
+    window.location.replace(location.protocol + '//'+ location.hostname + location.pathname + url);
 }
 
 /**
@@ -89,7 +89,7 @@ Core.Overlay = function(html){
                 if(data['status'] == true)
                 {
                     Core.Overlay.Close();
-                    $(location).attr('href', location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=alternative/create');
+                    $(location).attr('href', data['redirectUrl']);
                 }
                 else {
                     //$('#overlay form').insertAfter('<span>'+data['errors']['title']+'</span>');

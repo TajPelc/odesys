@@ -7,29 +7,8 @@
  */
 class AnalysisController extends DecisionController
 {
-    /**
-     * @return array action filters
-     */
-    public function filters()
-    {
-        return array(
-            'accessControl', // perform access control for CRUD operations
-        );
-    }
-
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules()
-    {
-        return array(
-            array('allow',
-                'users'=>array('*'),
-            ),
-        );
-    }
+    // default action
+    public $defaultAction = 'display';
 
     /**
      * Displays a particular model.
@@ -42,7 +21,7 @@ class AnalysisController extends DecisionController
         // redirect to evaluation if it's not yet complete
         if(!$Project->checkEvaluationComplete())
         {
-            $this->redirect(array('evaluation/evaluate'));
+            $this->redirect(array('/decision/evaluation', 'decisionId' => $Project->project_id));
         }
 
         if(Ajax::isAjax())

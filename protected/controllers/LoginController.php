@@ -21,12 +21,13 @@ class LoginController extends Controller
             // redirect to facebook
             $this->redirect(Fb::singleton()->getLoginUrl());
         }
-
         // login
         if( Fb::singleton()->login() )
         {
             if($this->get('returnTo'))
             {
+                dump($this->get('returnTo'));
+                die;
                 $this->redirect(array($this->get('returnTo')));
             }
             $this->redirect(array('user/dashboard'));

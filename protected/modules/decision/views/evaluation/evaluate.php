@@ -52,14 +52,14 @@
     </form>
     <ul id="content-nav">
         <?php if($pageNr > 0) { ?>
-        <?php $prev = CHtml::link('Previous', array('evaluation/evaluate', 'pageNr' => $pageNr - 1)); ?>
+        <?php $prev = CHtml::link('Previous', array('/decision/evaluation', 'decisionId' => $Project->project_id, 'pageNr' => $pageNr - 1)); ?>
         <?php } else { ?>
-        <?php $prev = CHtml::link('Previous', array('criteria/create'), array('class' => 'changePage')); ?>
+        <?php $prev = CHtml::link('Previous', array('/decision/criteria', 'decisionId' => $Project->project_id), array('class' => 'changePage')); ?>
         <?php }?>
         <?php if($pageNr < $nrOfCriteria - 1) { ?>
-        <?php $next = CHtml::link('Next', array('evaluation/evaluate', 'pageNr' => $pageNr + 1)); ?>
+        <?php $next = CHtml::link('Next', array('/decision/evaluation', 'decisionId' => $Project->project_id, 'pageNr' => $pageNr + 1)); ?>
         <?php } else { ?>
-        <?php $next = CHtml::link('Next', array('analysis/display'), array('class' => 'changePage')); ?>
+        <?php $next = CHtml::link('Next', array('/decision/analysis', 'decisionId' => $Project->project_id), array('class' => 'changePage')); ?>
         <?php } ?>
         <li class="prev"><?php echo $prev; ?></li>
         <li class="next"><?php echo $next; ?></li>

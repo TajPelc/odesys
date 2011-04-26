@@ -7,6 +7,9 @@
  */
 class CriteriaController extends DecisionController
 {
+    // default action
+    public $defaultAction = 'create';
+
     /**
      * Add / update / remove criteria.
      */
@@ -85,7 +88,7 @@ class CriteriaController extends DecisionController
         // redirect to alternatives create if not enough have been entered
         if(!$Project->checkAlternativesComplete())
         {
-            $this->redirect(array('alternative/create'));
+            $this->redirect(array('/decision/alternatives', 'decisionId' => $Project->project_id));
         }
 
         // save criteria
