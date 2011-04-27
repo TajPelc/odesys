@@ -96,47 +96,4 @@ class Controller extends CController
     {
         return isset($_GET[$key]) ? $_GET[$key] : false;
     }
-
-    /**
-     * Tries to load and return a given model by it's name (given as a function parameter) and id (supplied in a $_GET parameter)
-     *
-     * Example:
-     * Calling $this->loadModel('project').
-     * $_GET['project_id'] is set to 15.
-     *
-     * Will return model Project with project_id 15 or thrown an exception.
-     *
-     * @param string $name
-     * @return CActiveRecord
-     */
-    protected function loadModel($name)
-    {
-        // define names
-        $modelName = ucfirst($name);
-        $paramName = strtolower($name) . '_id';
-
-        // if the model is not yet loaded
-        if($this->{'_' . $modelName} === null)
-        {
-            // load by given id
-            if(isset($_GET[$paramName]))
-            {
-                // try to load model
-                $this->{'_' . $modelName} = call_user_func($modelName. '::model')->findbyPk($_GET[$paramName]);
-            }
-            else // new model
-            {
-                $this->{'_' . $modelName} = new $modelName();
-            }
-
-            // loading requested and failed failed
-            if($this->{'_' . $modelName} === null)
-            {
-                // throw an exception
-                throw new CHttpException(404, 'The requested page does not exist.');
-            }
-        }
-
-        return $this->{'_' . $modelName};
-    }
 }

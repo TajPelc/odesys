@@ -38,7 +38,6 @@ class SiteController extends Controller
      */
     public function actionError()
     {
-        //Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/error.css');
         if($error = Yii::app()->errorHandler->error)
         {
@@ -110,7 +109,7 @@ class SiteController extends Controller
         $this->render('about');
     }
 
-/**
+	/**
      * Terms of use page
      */
     public function actionTerms()
@@ -119,22 +118,12 @@ class SiteController extends Controller
         $this->render('terms');
     }
 
-/**
+	/**
      * Contact page
      */
     public function actionContact()
     {
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/contact/index.css');
         $this->render('contact');
-    }
-
-/**
-     * Contact page
-     */
-    public function actionPublic()
-    {
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
-        $this->render('public');
     }
 }

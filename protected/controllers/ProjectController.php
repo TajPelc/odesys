@@ -32,49 +32,15 @@ class ProjectController extends Controller
     }
 
     /**
-     * Create or update project
+     * Specify actions (non-PHPdoc)
+     * @see CController::actions()
      */
-    public function actionCreate()
+    public function actions()
     {
-        // ajax only
-        if(!Ajax::isAjax())
-        {
-            $this->redirect(array('site/index'));
-        }
-
-        // unset active project
-        if($this->post('action') == 'create')
-        {
-            $Project = new Project();
-        }
-
-        // save project
-        $Project->title = $this->post('title');
-
-        // save or return errrors
-        if($Project->save())
-        {
-            Ajax::respondOk(array('redirectUrl' => $this->createUrl('/decision/alternatives', array('decisionId' => $Project->project_id, 'label' => $Project->label))));
-        }
-        else
-        {
-            Ajax::respondError($Project->getErrors());
-        }
-
-        Ajax::respondError(array('fail'));
-    }
-
-    /**
-     * Create or update project
-     */
-    public function actionList()
-    {
-        // include styles
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/list.css');
-
-        // find all user's projects
-        $Decisions = Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id));
-
-        $this->render('list', array('Decisions' => $Decisions));
+        return array(
+            'create'      => 'application.controllers.project.CreateAction',
+            'list'        => 'application.controllers.project.ListAction',
+            'public'      => 'application.controllers.project.PublicAction',
+        );
     }
 }
