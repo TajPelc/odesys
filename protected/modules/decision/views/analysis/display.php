@@ -34,7 +34,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </div>
 
 <div id="accordion">
-    <h3 id=""><a href="#">Results</a></h3>
+    <h3>Results</h3>
     <div>
         <div id="score" class="content">
             <table class="alternatives">
@@ -61,7 +61,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             </table>
         </div>
     </div>
-    <h3 id="abacon-tab"><a href="#">Detailed comparison</a></h3>
+    <h3>Detailed comparison</h3>
     <div>
         <div id="abacon" class="content">
             <table class="criteria">

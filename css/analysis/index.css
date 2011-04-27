@@ -26,45 +26,11 @@
 
     #accordion h3 {
         width: 100%;
-        height: 25px;
-        line-height: 25px;
-        margin: 0 0 16px 0;
+        margin-bottom: 16px;
         float: left;
-        border: 1px solid #dedfe3;
-        border-radius: 6px;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
+        font-size: 18px;
+        font-style: italic;
     }
-
-
-    #accordion h3.ui-state-default {
-        background: #f7f7f8;
-    }
-
-        #accordion h3 a {
-            width: 879px;
-            height: 100%;
-            padding: 0 10px;
-            line-height: 25px;
-            display: block;
-            float: left;
-            font-size: 14px;
-            font-weight: bold;
-            color: #444a56;
-            text-decoration: none;
-        }
-
-        #accordion h3 .ui-icon {
-            width: 11px;
-            height: 9px;
-            margin: 8px 0 0 10px;
-            display: block;
-            float: left;
-            background: url(../../images/sprite_icons.png) no-repeat;
-        }
-
-        #accordion h3 .ui-icon-triangle-1-e { background-position: 0 -550px }
-        #accordion h3 .ui-icon-triangle-1-s { background-position: 0 -600px }
 
     #accordion > div {
         width: 100%;
@@ -307,25 +273,8 @@
 
     #abacon-sidebar .selectBox-arrow-reverse { background-position: 0 -550px}
 
-/* #abacon-sidebar help */
-    #abacon-sidebar ul.help {
-        line-height: 16px;
-        list-style: none;
-        padding: 5px;
-        text-align: left;
-        font-size: 11px;
-    }
-
-        #abacon-sidebar ul.help li {
-            margin-bottom: 8px;
-        }
-
-        #abacon-sidebar ul.help li:last-child {
-            margin-bottom: 0;
-        }
-            #abacon-sidebar ul.help li dl dt {
-                font-size: 12px;
-                font-style: italic;
-                font-weight: bold;
-                margin-bottom: 6px;
-            }
+/* Content navigation
+********************************************************/
+#content-nav {
+    margin-right: 250px;
+}
