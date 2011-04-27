@@ -30,6 +30,8 @@ Criteria.SaveInput = function(that, add) {
         // add preloader
         Criteria.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
         that.after(Criteria.SaveInput.Loading);
+        //disable input field
+        that.attr('disabled', 'disabled');
         var data = {
                 'criteria_id': add ? that.attr('id') : that.attr('id').split('_')[1],
                 'value'      : that.attr('value'),
@@ -51,13 +53,19 @@ Criteria.SaveInput = function(that, add) {
                         $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span><span class="drag">&nbsp;</span></li>');
                         that.focus();
                         that.val('');
+                        //remove preloader
                         Criteria.SaveInput.Loading.remove();
+                        //enable input field
+                        that.attr('disabled', '');
                         Core.ProjectMenu(data['projectMenu']);
                         Core.ContentNav.toggle('evaluation', data['projectMenu']);
 
                         // errors
                     } else {
+                        //remove preloader
                         Criteria.SaveInput.Loading.remove();
+                        //enable input field
+                        that.attr('disabled', '');
                         Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
 
