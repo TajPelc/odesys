@@ -4,7 +4,7 @@
 <div id="heading">
     <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>
     <a id="helpButton" href="#"<?php if(User::current()->getConfig('help')) { echo ' class="config"'; }?>>Help</a>
-    <h3><?php echo CHtml::encode(Project::getActive()->title);?></h3>
+    <h3><?php echo CHtml::encode($this->Decision->title);?></h3>
     <div id="help" style="display: none;">
         <h3>Need some help?</h3>
         <ul>
@@ -76,7 +76,7 @@
             <li<?php if($current || $evaluated) { echo ' class="'; if($current){echo 'current';} if($current && $evaluated){echo ' ';} if($evaluated){echo 'saved';} echo '"';}?>>
                 <?php if($current) { ?><span>&nbsp;</span><?php }?>
                 <?php if($evaluated) { ?>
-                <?php echo CHtml::link(CHtml::encode(Common::truncate($C->title, ($current ? 28 : 30))), array('evaluation/evaluate', 'pageNr' => $i++)); ?>
+                <?php echo CHtml::link(CHtml::encode(Common::truncate($C->title, ($current ? 28 : 30))), array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label, 'pageNr' => $i++)); ?>
                 <?php } else { ?>
                 <?php echo Common::truncate($C->title, ($current ? 28 : 32)); ?>
                 <?php }?>

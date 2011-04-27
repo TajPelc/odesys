@@ -28,6 +28,6 @@ class SharingController extends DecisionController
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/sharing/index.js');
 
         // render the view
-        $this->render('index', array('Project' => Project::getActive()));
+        $this->render('index');
     }
 }

@@ -78,14 +78,6 @@ class Project extends CActiveRecord
     }
 
     /**
-     * Handle all the logic after saving
-     */
-    public function afterSave()
-    {
-        $this->setAsActiveProject();
-    }
-
-    /**
      * Delete all project related stuff
      */
     public function beforeDelete()
@@ -113,33 +105,6 @@ class Project extends CActiveRecord
             return true;
         }
         return false;
-    }
-
-    /**
-     * Make this project active
-     */
-    public function setAsActiveProject()
-    {
-        $session = Yii::app()->session;
-        $session['project_id'] = $this->project_id;
-    }
-
-    /**
-     * Unset the active project
-     */
-    public static function unsetActiveProject()
-    {
-        $session = Yii::app()->session;
-        unset($session['project_id']);
-    }
-
-    /**
-     * Is a project active?
-     */
-    public static function isProjectActive()
-    {
-        $session = Yii::app()->session;
-        return isset($session['project_id']);
     }
 
     /**
@@ -226,27 +191,6 @@ class Project extends CActiveRecord
     }
 
     /**
-     * Get the active project
-     */
-    public static function getActive()
-    {
-        // is a project active?
-        if(self::isProjectActive())
-        {
-            $session = Yii::app()->session;
-            $model = Project::model()->findByPk($session['project_id']);
-            if(empty($model))
-            {
-                $this->unsetActiveProject();
-                return false;
-            }
-
-            return $model;
-        }
-        return false;
-    }
-
-    /**
      * Find alternatives by weighted score
      *
      * descending
@@ -328,7 +272,7 @@ class Project extends CActiveRecord
                 if(empty($Evaluation))
                 {
                     $Evaluation = new Evaluation();
-                    $Evaluation->rel_project_id = Project::getActive()->project_id;
+                    $Evaluation->rel_project_id = $this->project_id;
                     $Evaluation->rel_alternative_id = $Alternative->alternative_id;
                     $Evaluation->rel_criteria_id = $Criteria->criteria_id;
                     $Evaluation->grade = 0;

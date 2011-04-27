@@ -16,14 +16,14 @@
                 </tr>
                 <?php foreach($Decisions as $D) { ?>
                 <tr>
-                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('project/activate', 'id' => $D->project_id)); ?></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/analysis', 'decisionId' => $D->project_id, 'label' => $D->label)); ?></td>
                     <td><?php echo date('d.m.Y', strtotime($D->last_edit)); ?></td>
                     <td>0</td>
                     <td>1</td>
                 </tr>
                 <?php } ?>
             </table>
-            <?php echo CHtml::link('View all', array('project/list')); ?>
+            <?php echo CHtml::link('View all', array('/project/list')); ?>
         </dd>
     </dl>
     <dl class="statistics">

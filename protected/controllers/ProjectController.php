@@ -45,12 +45,7 @@ class ProjectController extends Controller
         // unset active project
         if($this->post('action') == 'create')
         {
-            Project::unsetActiveProject();
             $Project = new Project();
-        }
-        else
-        {
-            $Project = Project::getActive();
         }
 
         // save project
@@ -67,19 +62,6 @@ class ProjectController extends Controller
         }
 
         Ajax::respondError(array('fail'));
-    }
-
-    /**
-     * Activate a project
-     */
-    public function actionActivate()
-    {
-        if((bool)$this->get('id'))
-        {
-            $Project = Project::model()->findByPk($this->get('id'));
-            $Project->setAsActiveProject();
-        }
-        $this->redirect(array('/decision/analysis', 'decisionId' => $this->get('id'), 'label' => $Project->label));
     }
 
     /**

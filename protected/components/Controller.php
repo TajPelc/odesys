@@ -76,14 +76,6 @@ class Controller extends CController
     }
 
     /**
-     * Get projectMenu
-     */
-    protected function getProjectMenu()
-    {
-        return Tabs::getMenuItemsForAjax();
-    }
-
-    /**
      * Check if post parameter is set and return the value or false
      *
      * @param  string $key

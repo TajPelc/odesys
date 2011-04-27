@@ -1,31 +1,31 @@
-<?php if(!Ajax::isAjax() && !empty($Project)) {?>
+<?php if(!Ajax::isAjax() && !empty($this->Decision)) {?>
 <div id="projectBg">
     <div id="project">
     <?php }?>
-        <?php if(!empty($Project) && !empty($menu)) { ?>
+        <?php if(!empty($this->Decision) && !empty($this->pages)) { ?>
             <ul>
                 <?php $i = 1;?>
-                <?php foreach($menu as $id => $menuItem) {?>
-                    <?php $activeItem = ($menuItem['route'][0] === $currentRoute); ?>
-                    <?php $lastEnabledItem = ($id === $lastEnabled); ?>
-                    <?php $lastItem = ($i === count($menu));?>
-                    <?php $label = $menuItem['label']; ?>
-                    <?php if($menuItem['enabled'] && !$activeItem) {?>
+                <?php foreach($this->pages as $id => $Page) {?>
+                    <?php $activePage = ($Page['route'][0] === $currentRoute); ?>
+                    <?php $lastEnabledPage = ($id === $lastEnabled); ?>
+                    <?php $lastPage = ($i === count($this->pages));?>
+                    <?php $label = $Page['label']; ?>
+                    <?php if($Page['enabled'] && !$activePage) {?>
                         <li>
-                            <?php echo CHtml::link(CHtml::encode($label), array($menuItem['path'], 'decisionId' => $Project->project_id, 'label' => $Project->label), array('title' => CHtml::encode($label), 'id' => $id)); ?>
-                            <span class="loadingBar<?php echo ( $lastEnabledItem && !$lastItem ? ' end' : ''); ?>">&nbsp;</span>
+                            <?php echo CHtml::link(CHtml::encode($label), array($Page['path'], 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label), array('title' => CHtml::encode($label), 'id' => $id)); ?>
+                            <span class="loadingBar<?php echo ( $lastEnabledPage && !$lastPage ? ' end' : ''); ?>">&nbsp;</span>
                         </li>
                     <?php } else { ?>
                         <li>
-                            <span id="<?php echo $id; ?>" class="<?php echo (($activeItem) ? 'selected' : 'restricted'); ?>"><?php echo CHtml::encode($label); ?></span>
-                            <?php if($activeItem) { ?><span class="loadingBar<?php echo (($lastEnabledItem && !$lastItem) ? ' end' : ''); ?>">&nbsp;</span><?php } ?>
+                            <span id="<?php echo $id; ?>" class="<?php echo (($activePage) ? 'selected' : 'restricted'); ?>"><?php echo CHtml::encode($label); ?></span>
+                            <?php if($activePage) { ?><span class="loadingBar<?php echo (($lastEnabledPage && !$lastPage) ? ' end' : ''); ?>">&nbsp;</span><?php } ?>
                         </li>
                     <?php } ?>
                     <?php $i++;?>
                 <?php } ?>
             </ul>
         <?php }?>
-    <?php if(!Ajax::isAjax() && !empty($Project)){?>
+    <?php if(!Ajax::isAjax() && !empty($this->Decision)){?>
     </div>
 </div>
 <?php }?>
