@@ -29,6 +29,8 @@ Alternatives.SaveInput = function(that, add) {
         //add preloader
         Alternatives.SaveInput.Loading = $('<span class="loading">&nbsp;</span>');
         that.after(Alternatives.SaveInput.Loading);
+        //disable input field
+        that.attr('disabled', 'disabled');
         var data = {
                 'alternative_id': add ? that.attr('id') : that.attr('id').split('_')[1],
                 'value'      : that.attr('value'),
@@ -46,17 +48,23 @@ Alternatives.SaveInput = function(that, add) {
                 //add new field
                 if (add){
                     if(data['status'] == true){
-                        // here be returned shite
+                        //here be returned shite
                         $('#content form ol').append('<li><input type="text" id="alternative_'+data['alternative_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span></li>');
                         that.focus();
                         that.val('');
+                        //remove preloader
                         Alternatives.SaveInput.Loading.remove();
+                        //enable input field
+                        that.attr('disabled', '');
                         Core.ProjectMenu(data['projectMenu']);
                         Core.ContentNav.toggle('criteria', data['projectMenu']);
 
                         //errors
                     } else {
+                        //remove preloader
                         Alternatives.SaveInput.Loading.remove();
+                        //enable input field
+                        that.attr('disabled', '');
                         Alternatives.FormErrorReporting(that, data['errors']['title']);
                     }
 
