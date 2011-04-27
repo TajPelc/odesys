@@ -65,7 +65,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div>
         <div id="abacon" class="content">
             <table class="criteria">
-            <?php foreach($Project->findCriteriaByPriority() as $Criteria) { ?>
+            <?php foreach($this->Decision->findCriteriaByPriority() as $Criteria) { ?>
                 <tr>
                     <td><?php echo CHtml::encode($Criteria->title); ?></td>
                 </tr>
@@ -113,7 +113,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
 </div>
 <ul id="content-nav">
-    <li class="prev"><?php echo CHtml::link('Previous', array('/decision/evaluation', 'decisionId' => $Project->project_id, 'label' => $Project->label, 'pageNr' => $Project->no_criteria-1)); ?></li>
-    <li class="next<?php echo (!$Project->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkAnalysisComplete() ? CHtml::link('Next', array('/decision/sharing', 'decisionId' => $Project->project_id, 'label' => $Project->label)) : '<span>Next</span>'); ?></li>
+    <li class="prev"><?php echo CHtml::link('Previous', array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label, 'pageNr' => $this->Decision->no_criteria-1)); ?></li>
+    <li class="next<?php echo (!$this->Decision->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($this->Decision->checkAnalysisComplete() ? CHtml::link('Next', array('/decision/sharing', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
 </ul>
-

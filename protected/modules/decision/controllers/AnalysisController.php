@@ -15,13 +15,10 @@ class AnalysisController extends DecisionController
      */
     public function actionDisplay()
     {
-        // load active project
-        $Project = $this->loadActiveProject();
-
         // redirect to evaluation if it's not yet complete
-        if(!$Project->checkEvaluationComplete())
+        if(!$this->Decision->checkEvaluationComplete())
         {
-            $this->redirect(array('/decision/evaluation', 'decisionId' => $Project->project_id, 'label' => $Project->label));
+            $this->redirect(array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
         }
 
         if(Ajax::isAjax())
@@ -29,8 +26,8 @@ class AnalysisController extends DecisionController
             // enable next step
             if($this->post('action') == 'enableSharing')
             {
-                $Project->analysis_complete = 1;
-                if( $Project->save() )
+                $this->Decision->analysis_complete = 1;
+                if( $this->Decision->save() )
                 {
                     Ajax::respondOk(array(
                         'projectMenu' => $this->getProjectMenu(),
@@ -53,20 +50,20 @@ class AnalysisController extends DecisionController
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
-        $eval = $Project->getEvaluationArray();
+        // get evaluation array
+        $eval = $this->Decision->getEvaluationArray();
 
         // find two last projects by weighted score
         $criteria = new CDbCriteria();
         $criteria->addCondition('rel_project_id=:rel_project_id');
         $criteria->order = 'weightedScore DESC';
-        $criteria->params = array('rel_project_id' => $Project->project_id);
+        $criteria->params = array('rel_project_id' => $this->Decision->project_id);
         $bestAlternatives = Alternative::model()->findAll($criteria);
 
         $this->render('display',array(
             'eval'      => $eval,
             'bestAlternatives' =>  $bestAlternatives,
-            'Project'   => $Project,
-            'Alternatives'	=> $Project->alternatives,
+            'Alternatives'	=> $this->Decision->alternatives,
         ));
     }
 }
