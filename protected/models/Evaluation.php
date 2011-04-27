@@ -3,16 +3,23 @@
 class Evaluation extends CActiveRecord
 {
     /**
+     *  Old values
+     */
+    private $_oldValues;
+
+    /**
      * The followings are the available columns in table 'evaluation':
-     * @var double $evaluation_id
-     * @var double $rel_criteria_id
-     * @var double $rel_alternative_id
+     *
+     * @var integer $evaluation_id
+     * @var integer $rel_project_id
+     * @var integer $rel_criteria_id
+     * @var integer $rel_alternative_id
      * @var integer $grade
      */
 
     /**
      * Returns the static model of the specified AR class.
-     * @return CActiveRecord the static model class
+     * @return Evaluation
      */
     public static function model($className=__CLASS__)
     {
@@ -44,10 +51,22 @@ class Evaluation extends CActiveRecord
     public function relations()
     {
         return array(
-            'project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
+            'Project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
             'alternative' => array(self::BELONGS_TO, 'Alternative', 'rel_alternative_id'),
             'criteria' => array(self::BELONGS_TO, 'Criteria', 'rel_criteria_id'),
         );
+    }
+
+    /**
+     * After find
+     *
+     * Save old values
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        $this->_oldValues = $this->getAttributes();
     }
 
     /**
@@ -58,16 +77,16 @@ class Evaluation extends CActiveRecord
         if( parent::beforeSave() )
         {
             // update project's last edit
-            Project::getActive()->updateLastEdit();
+            $this->Project->updateLastEdit();
 
             // disable project sharing
-            Project::getActive()->analysis_complete = 0;
-            Project::getActive()->disableAnalysisComplete();
+            $this->Project->analysis_complete = 0;
+            $this->Project->disableAnalysisComplete();
 
             if($this->isNewRecord)
             {
                 // increase the number of evaluations
-                Project::getActive()->increase('no_evaluation');
+                $this->Project->increase('no_evaluation');
             }
             return true;
         }
@@ -82,7 +101,7 @@ class Evaluation extends CActiveRecord
         parent::afterDelete();
 
         // decrease the number of evaluations
-        Project::getActive()->decrease('no_evaluation');
+        Project::model()->findByPk($this->_oldValues['rel_project_id'])->decrease('no_evaluation');
     }
 
     /**

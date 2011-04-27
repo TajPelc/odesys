@@ -1,5 +1,5 @@
 <?php if(!Ajax::isAjax()) { ?>
-<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Evaluation'; ?>
+<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($this->Decision->title) . ' / ' . ' Evaluation'; ?>
 
 <div id="heading">
     <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>
@@ -31,7 +31,7 @@
 <?php }?>
 <?php if($renderEvaluation) { ?>
         <ul>
-            <?php foreach($Project->alternatives as $Alternative) { ?>
+            <?php foreach($this->Decision->alternatives as $Alternative) { ?>
             <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
             <li<?php echo ((bool)$Evaluation ? ' class="saved"' : ''); ?>>
                 <h3><b><?php echo CHtml::encode(Common::truncate($Criteria->title, 45))?></b> <em>for</em> <b><?php echo CHtml::encode(Common::truncate($Alternative->title, 45))?></b> <em>is</em></h3>
@@ -52,14 +52,14 @@
     </form>
     <ul id="content-nav">
         <?php if($pageNr > 0) { ?>
-        <?php $prev = CHtml::link('Previous', array('/decision/evaluation', 'decisionId' => $Project->project_id, 'decisionId' => $Project->project_id, 'label' => $Project->label, 'pageNr' => $pageNr - 1)); ?>
+        <?php $prev = CHtml::link('Previous', array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label, 'pageNr' => $pageNr - 1)); ?>
         <?php } else { ?>
-        <?php $prev = CHtml::link('Previous', array('/decision/criteria', 'decisionId' => $Project->project_id, 'decisionId' => $Project->project_id, 'label' => $Project->label), array('class' => 'changePage')); ?>
+        <?php $prev = CHtml::link('Previous', array('/decision/criteria', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label), array('class' => 'changePage')); ?>
         <?php }?>
         <?php if($pageNr < $nrOfCriteria - 1) { ?>
-        <?php $next = CHtml::link('Next', array('/decision/evaluation', 'decisionId' => $Project->project_id, 'decisionId' => $Project->project_id, 'label' => $Project->label, 'pageNr' => $pageNr + 1)); ?>
+        <?php $next = CHtml::link('Next', array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label, 'pageNr' => $pageNr + 1)); ?>
         <?php } else { ?>
-        <?php $next = CHtml::link('Next', array('/decision/analysis', 'decisionId' => $Project->project_id, 'decisionId' => $Project->project_id, 'label' => $Project->label), array('class' => 'changePage')); ?>
+        <?php $next = CHtml::link('Next', array('/decision/analysis', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label), array('class' => 'changePage')); ?>
         <?php } ?>
         <li class="prev"><?php echo $prev; ?></li>
         <li class="next"><?php echo $next; ?></li>
@@ -70,7 +70,7 @@
 <?php } ?>
 <?php if ($renderSidebar) { ?>
         <?php $i = 0;?>
-        <?php foreach($Project->findCriteriaByPriority() as $C) { ?>
+        <?php foreach($this->Decision->findCriteriaByPriority() as $C) { ?>
             <?php $current = ($C->criteria_id == $Criteria->criteria_id);?>
             <?php $evaluated = $C->isDecisionEvaluated(); ?>
             <li<?php if($current || $evaluated) { echo ' class="'; if($current){echo 'current';} if($current && $evaluated){echo ' ';} if($evaluated){echo 'saved';} echo '"';}?>>
