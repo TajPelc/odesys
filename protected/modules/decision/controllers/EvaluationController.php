@@ -82,7 +82,7 @@ class EvaluationController extends DecisionController
         }
 
         // get criteria by position
-        $Criteria = Criteria::getCriteriaByPosition($pageNr);
+        $Criteria = Criteria::getCriteriaByPosition($this->Decision->project_id, $pageNr);
 
         // evaluation array
         $Evaluation = Evaluation::model()->findAllByAttributes(array(

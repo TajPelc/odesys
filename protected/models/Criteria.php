@@ -3,9 +3,9 @@
 class Criteria extends CActiveRecord
 {
     /**
-     *  Old title for uniqueness comparison
+     *  Old values
      */
-    private $oldTitle;
+    private $_oldValues;
 
     /**
      * The followings are the available columns in table 'criteria':
@@ -16,8 +16,8 @@ class Criteria extends CActiveRecord
      */
 
     /**
-     * Returns the static model of the specified AR class.
-     * @return CActiveRecord the static model class
+     * Returns the static model
+     * @return Criteria
      */
     public static function model($className=__CLASS__)
     {
@@ -51,7 +51,7 @@ class Criteria extends CActiveRecord
     public function relations()
     {
         return array(
-            'project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
+            'Project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
             'evaluations' => array(self::HAS_MANY, 'Evaluation', 'rel_criteria_id'),
         );
     }
@@ -65,10 +65,10 @@ class Criteria extends CActiveRecord
     public function isProjectUnique($attribute, $params)
     {
         // check for new records or if the title has been changed
-        if($this->getIsNewRecord() || $this->oldTitle !== $this->title)
+        if($this->getIsNewRecord() || $this->_oldValues['title'] !== $this->title)
         {
             // editing
-            if(!$this->getIsNewRecord() && mb_strtolower($this->title, mb_detect_encoding($this->title)) == mb_strtolower($this->oldTitle, mb_detect_encoding($this->oldTitle)) )
+            if(!$this->getIsNewRecord() && mb_strtolower($this->title, mb_detect_encoding($this->title)) == mb_strtolower($this->_oldValues['title'], mb_detect_encoding($this->_oldValues['title'])) )
             {
                 return true;
             }
@@ -82,47 +82,38 @@ class Criteria extends CActiveRecord
     }
 
     /**
-     * Save the title value for later comparison
+     * After find
+     *
+     * Save old values
      */
     public function afterFind()
     {
         parent::afterFind();
 
-        // save old title
-        $this->oldTitle = $this->title;
+        $this->_oldValues = $this->getAttributes();
     }
 
     /**
-     * Handle all the logic before validation
-     */
-    public function beforeValidate()
-    {
-        if( parent::beforeValidate() )
-        {
-            if( $this->isNewRecord )
-            {
-                $this->rel_project_id = Project::getActive()->project_id;
-                $this->position = Project::getActive()->no_criteria;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Handle all the logic before save
+     * Before save
+     *
+     * Updat project last edit
+     * Set position
+     * Increase project criteria counter
      */
     public function beforeSave()
     {
         if( parent::beforeSave() )
         {
             // update project's last edit
-            Project::getActive()->updateLastEdit();
+            $this->Project->updateLastEdit();
 
             if($this->isNewRecord)
             {
+                // set initial position
+                $this->position = $this->Project->no_criteria;
+
                 // increase the number of criteria
-                Project::getActive()->increase('no_criteria');
+                $this->Project->increase('no_criteria');
             }
             return true;
         }
@@ -130,6 +121,9 @@ class Criteria extends CActiveRecord
     }
 
     /**
+     * Before delete
+     *
+     * Update last edit
      * Delete evaluations
      */
     public function beforeDelete()
@@ -137,7 +131,7 @@ class Criteria extends CActiveRecord
         if(parent::beforeDelete())
         {
             // update project's last edit
-            Project::getActive()->updateLastEdit();
+            $this->Project->updateLastEdit();
 
             // delete criteria
             foreach($this->evaluations as $e)
@@ -161,7 +155,7 @@ class Criteria extends CActiveRecord
         $dbCriteria= new CDbCriteria();
         $dbCriteria->condition = 'rel_project_id = :rel_project_id';
         $dbCriteria->order = 'position ASC';
-        $dbCriteria->params = array(':rel_project_id' => Project::getActive()->project_id);
+        $dbCriteria->params = array(':rel_project_id' => $this->_oldValues['rel_project_id']);
 
         // query
         $result = self::model()->findAll($dbCriteria);
@@ -174,7 +168,7 @@ class Criteria extends CActiveRecord
         }
 
         // decrease the number of criteria
-        Project::getActive()->decrease('no_criteria');
+        Project::model()->findByPk($this->_oldValues['rel_project_id'])->decrease('no_criteria');
     }
 
     /**
@@ -182,9 +176,9 @@ class Criteria extends CActiveRecord
      *
      * @param int $position
      */
-    public static function getCriteriaByPosition($position)
+    public static function getCriteriaByPosition($id, $position)
     {
-        return self::model()->findByAttributes(array('rel_project_id' => Project::getActive()->project_id, 'position' => $position));
+        return self::model()->findByAttributes(array('rel_project_id' => $id, 'position' => $position));
     }
 
     /**
@@ -195,7 +189,7 @@ class Criteria extends CActiveRecord
     public function isDecisionEvaluated()
     {
         // if there are the same number of evaluations with this criteria and project id as there are alternatives, then this criteria has been evaluated
-        return (Project::getActive()->no_alternatives == Evaluation::model()->countByAttributes(array('rel_project_id' => $this->rel_project_id, 'rel_criteria_id' => $this->criteria_id)));
+        return ($this->Project->no_alternatives == Evaluation::model()->countByAttributes(array('rel_project_id' => $this->rel_project_id, 'rel_criteria_id' => $this->criteria_id)));
     }
 
     /**

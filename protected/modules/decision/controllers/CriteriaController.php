@@ -26,9 +26,6 @@ class CriteriaController extends DecisionController
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.11.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/criteria/index.js');
 
-        // load active project
-        $Project = $this->loadActiveProject();
-
         // ajax
         if(Ajax::isAjax())
         {
@@ -40,21 +37,21 @@ class CriteriaController extends DecisionController
             // switch
             switch ($this->post('action'))
             {
-                // create/edit criteria
+                // create / edit criteria
                 case 'save':
-                    // not yet loaded, create new
+                    // not found, create new
                     if(empty($Criteria))
                     {
                         $Criteria = new Criteria();
                     }
 
                     // set title
+                    $Criteria->rel_project_id = $this->Decision->project_id;
                     $Criteria->title = $this->post('value');
 
                     // save
                     if($Criteria->save())
                     {
-                        // all good, reutrn new criteria id
                         Ajax::respondOk(array(
                             'criteria_id' => $Criteria->criteria_id,
                             'projectMenu' => $this->getProjectMenu(),
@@ -63,7 +60,7 @@ class CriteriaController extends DecisionController
 
                     // save failed
                     Ajax::respondError($Criteria->getErrors());
-                    break;
+
                 // delete
                 case 'delete':
                     // criteria found!
@@ -78,7 +75,7 @@ class CriteriaController extends DecisionController
                         }
                     }
                     Ajax::respondError();
-                    break;
+
                 // default action
                 default:
                     Ajax::respondError();
@@ -86,9 +83,9 @@ class CriteriaController extends DecisionController
         }
 
         // redirect to alternatives create if not enough have been entered
-        if(!$Project->checkAlternativesComplete())
+        if(!$this->Decision->checkAlternativesComplete())
         {
-            $this->redirect(array('/decision/alternatives', 'decisionId' => $Project->project_id));
+            $this->redirect(array('/decision/alternatives', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
         }
 
         // save criteria
@@ -97,6 +94,7 @@ class CriteriaController extends DecisionController
             // set attributes
             $Criteria = new Criteria();
             $Criteria->attributes = $_POST['newCriteria'];
+            $Criteria->rel_project_id = $this->Decision->project_id;
 
 
             // redirect
@@ -107,9 +105,7 @@ class CriteriaController extends DecisionController
         }
 
         // render the view
-        $this->render('create', array(
-            'Project'   => $Project,
-        ));
+        $this->render('create');
     }
 
     /**
