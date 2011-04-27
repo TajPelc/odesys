@@ -137,7 +137,7 @@ class EvaluationController extends DecisionController
                 }
                 else
                 {
-                    $next = $this->createUrl('analysis/display', array('decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
+                    $next = $this->createUrl('/decision/analysis', array('decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
                     $forward = true;
                 }
 
