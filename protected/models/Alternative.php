@@ -3,9 +3,9 @@
 class Alternative extends CActiveRecord
 {
     /**
-     *  Old title for uniqueness comparison
+     *  Old values
      */
-    private $oldTitle;
+    private $_oldValues = array();
 
     /**
      * Color pool for plotting graphs
@@ -26,14 +26,19 @@ class Alternative extends CActiveRecord
 
     /**
      * The followings are the available columns in table 'alternative':
-     * @var double $alternative_id
-     * @var double $rel_project_id
+     *
+     * @var integer $alternative_id
+     * @var integer $rel_project_id
      * @var string $title
+     * @var double $score
+     * @var double $weightedScore
+     * @var string $color
      */
 
     /**
-     * Returns the static model of the specified AR class.
-     * @return CActiveRecord the static model class
+     * Returns the static model
+     *
+     * @return Alternative
      */
     public static function model($className=__CLASS__)
     {
@@ -67,7 +72,7 @@ class Alternative extends CActiveRecord
     public function relations()
     {
         return array(
-            'project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
+            'Project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
             'evaluations' => array(self::HAS_MANY, 'Evaluation', 'rel_alternative_id'),
         );
     }
@@ -81,10 +86,10 @@ class Alternative extends CActiveRecord
     public function isProjectUnique($attribute, $params)
     {
         // check for new records or if the title has been changed
-        if($this->getIsNewRecord() || $this->oldTitle !== $this->title)
+        if($this->getIsNewRecord() || $this->_oldValues['title'] !== $this->title)
         {
             // editing
-            if(!$this->getIsNewRecord() && mb_strtolower($this->title, mb_detect_encoding($this->title)) == mb_strtolower($this->oldTitle, mb_detect_encoding($this->oldTitle)) )
+            if(!$this->getIsNewRecord() && mb_strtolower($this->title, mb_detect_encoding($this->title)) == mb_strtolower($this->_oldValues['title'], mb_detect_encoding($this->_oldValues['title'])) )
             {
                 return true;
             }
@@ -98,41 +103,28 @@ class Alternative extends CActiveRecord
     }
 
     /**
-     * Save the title value for later comparison
+     * After find
+     *
+     * Save old values
      */
     public function afterFind()
     {
         parent::afterFind();
 
-        // save old title
-        $this->oldTitle = $this->title;
+        $this->_oldValues = $this->getAttributes();
     }
 
     /**
-     * Handle all the logic before validation
-     */
-    public function beforeValidate()
-    {
-        if( parent::beforeValidate() )
-        {
-            if( $this->isNewRecord )
-            {
-                $this->rel_project_id = Project::getActive()->project_id;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Delete alternative related stuff
+     * Before delete
+     *
+     * Update project last edit date and delete all evaluation
      */
     public function beforeDelete()
     {
         if( parent::beforeDelete() )
         {
             // update project's last edit
-            Project::getActive()->updateLastEdit();
+            $this->Project->updateLastEdit();
 
             // delete criteria
             foreach($this->evaluations as $e)
@@ -154,7 +146,7 @@ class Alternative extends CActiveRecord
         parent::afterDelete();
 
         // decrease the number of criteria
-        Project::getActive()->decrease('no_alternatives');
+        Project::model()->findByPk($this->_oldValues['rel_project_id'])->decrease('no_alternatives');
     }
 
 
@@ -166,7 +158,7 @@ class Alternative extends CActiveRecord
         if( parent::beforeSave() )
         {
             // update project's last edit
-            Project::getActive()->updateLastEdit();
+            $this->Project->updateLastEdit();
 
             // new record?
             if($this->isNewRecord)
@@ -175,7 +167,7 @@ class Alternative extends CActiveRecord
                 $this->allocateColor();
 
                 // increase the number of criteria
-                Project::getActive()->increase('no_alternatives');
+                $this->Project->increase('no_alternatives');
             }
             return true;
         }
@@ -189,12 +181,14 @@ class Alternative extends CActiveRecord
      */
     public function allocateColor()
     {
+        $Project = $this->Project;
+
         // choose a color from the pool
-        if(count(self::$colorPool) > $noAlt = Project::getActive()->no_alternatives)
+        if(count(self::$colorPool) > $noAlt = $Project->no_alternatives)
         {
             // find out what colors are beeing used
             $usedColors = array();
-            foreach(Project::getActive()->alternatives as $A)
+            foreach($Project->alternatives as $A)
             {
                 $usedColors[] = $A->color;
             }

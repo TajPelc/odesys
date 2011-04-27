@@ -14,6 +14,12 @@ class DecisionController extends Controller
     public $layout='application.modules.decision.views.layouts.projectTabs';
 
     /**
+     * Decision
+     * @var Project
+     */
+    public $Decision;
+
+    /**
      * @return array action filters
      */
     public function filters()
@@ -36,4 +42,20 @@ class DecisionController extends Controller
             ),
         );
     }
+
+    /**
+     * Initiliaze (non-PHPdoc)
+     * @see CController::init()
+     */
+	public function init()
+	{
+        // load decision
+	    $this->Decision = Project::model()->findByPk($this->get('decisionId'));
+
+	    // try to load
+	    if( null === $this->Decision )
+        {
+            $this->redirect('/user/dashboard');
+        }
+	}
 }

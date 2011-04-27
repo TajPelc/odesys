@@ -106,31 +106,6 @@ class Controller extends CController
     }
 
     /**
-     * Try to load the project from session or redirect to index page
-     *
-     * @return Project
-     */
-    protected function loadActiveProject($redirect = true)
-    {
-        // get active project
-        if( $project = Project::getActive() )
-        {
-            return $project;
-        }
-        else
-        {
-            if($redirect)
-            {
-                $this->redirect(array('site/index')); // redirect
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
-
-    /**
      * Tries to load and return a given model by it's name (given as a function parameter) and id (supplied in a $_GET parameter)
      *
      * Example:

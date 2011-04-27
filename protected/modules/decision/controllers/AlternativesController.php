@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Alternatives controller
  *
@@ -15,8 +16,6 @@ class AlternativesController extends DecisionController
      */
     public function actionCreate()
     {
-        Tabs::getMenuItemsForAjax();
-
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
@@ -27,16 +26,13 @@ class AlternativesController extends DecisionController
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery.color.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/alternatives/index.js');
 
-        // load active project
-        $Project = $this->loadActiveProject();
-
         // ajax
         if(Ajax::isAjax())
         {
             // find alternative
             $Alternative = Alternative::model()->findByPk($this->post('alternative_id'));
 
-            // switch
+            // actions
             switch ($this->post('action'))
             {
                 // create/edit alternative
@@ -46,6 +42,7 @@ class AlternativesController extends DecisionController
                         $Alternative = new Alternative();
                     }
                     // set attributes
+                    $Alternative->rel_project_id = $this->Decision->project_id;
                     $Alternative->title = $this->post('value');
 
                     // save
@@ -59,8 +56,8 @@ class AlternativesController extends DecisionController
 
                     // save failed
                     Ajax::respondError($Alternative->getErrors());
-                    break;
-                    // delete
+
+                // delete
                 case 'delete':
                     if(!empty($Alternative))
                     {
@@ -74,7 +71,8 @@ class AlternativesController extends DecisionController
                     }
                     // delete failed
                     Ajax::respondError();
-                    break;
+
+                // default action
                 default:
                     Ajax::respondError();
             }
@@ -96,8 +94,6 @@ class AlternativesController extends DecisionController
         }
 
         // render the view
-        $this->render('create', array(
-            'Project'       => $Project,
-        ));
+        $this->render('create');
     }
 }

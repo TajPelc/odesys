@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($Project->title) . ' / ' . ' Alternatives'; ?>
+<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($this->Decision->title) . ' / ' . ' Alternatives'; ?>
 
 <div id="heading">
     <h2>What alternatives are you considering?</h2>
@@ -27,7 +27,7 @@
 
 <div id="content">
     <?php echo CHtml::beginForm('', 'post'); ?>
-        <?php $Alternatives = $Project->alternatives; ?>
+        <?php $Alternatives = $this->Decision->alternatives; ?>
         <div><input type="text" name="newAlternative[title]" id="newAlternative" /></div>
         <ol>
         <?php for ($i = 0; $i < count($Alternatives); $i++) { ?>
@@ -39,7 +39,7 @@
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
     <ul id="content-nav">
-        <li class="next<?php echo (!$Project->checkAlternativesComplete() ? ' disabled' : ''); ?>"><?php echo ($Project->checkAlternativesComplete() ? CHtml::link('Next', array('/decision/criteria', 'decisionId' => $Project->project_id, 'label' => $Project->label)) : '<span>Next</span>'); ?></li>
+        <li class="next<?php echo (!$this->Decision->checkAlternativesComplete() ? ' disabled' : ''); ?>"><?php echo ($this->Decision->checkAlternativesComplete() ? CHtml::link('Next', array('/decision/criteria', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
 <div id="sidebar"></div>
