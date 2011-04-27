@@ -68,7 +68,7 @@ class Controller extends CController
             if(!in_array($conact, array('login/logout', 'login/facebook')))
             {
                 Yii::trace('Refresh facebook session for user '. Yii::app()->user->id);
-                $this->redirect(array('login/facebook', 'returnTo' => $conact));
+                $this->redirect($this->createUrl('/login/facebook') . '?returnTo=' . urlencode(Yii::app()->getRequest()->getRequestUri()));
             }
         }
 
