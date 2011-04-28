@@ -66,4 +66,10 @@
         </ul>
     </form>
 </div>
-<div id="sidebar"></div>
+<div id="sidebar" class="help">
+    <h4>What’s next?</h4>
+    <p>This is the last step of the decision modelling phase. Your decision will be presented to your social circle.</p>
+    <p>They will be able to see your alternatives, your criteria, how you have evaluated each alternative and which alternative do you prefer.</p>
+    <p class="l">Be sure to write a few words about your decision so others may give you opinions on your decision.</p>
+    <div class="last"></div>
+</div>

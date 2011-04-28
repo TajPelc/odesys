@@ -42,4 +42,8 @@
         <li class="next<?php echo (!$this->DecisionModel->checkAlternativesComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAlternativesComplete() ? CHtml::link('Next', array('/decision/criteria', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
-<div id="sidebar"></div>
+<div id="sidebar" class="help">
+    <h4>What are alternatives?</h4>
+    <p class="l">Alternatives are your options: one of a number of things from which only one can be chosen.</p>
+    <div class="last"></div>
+</div>

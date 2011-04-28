@@ -53,7 +53,7 @@
 
 /* Help */
     #heading #help {
-        width: 206px;
+        width: 208px;
         padding: 0 15px 8px 10px;
         position: absolute;
         top: 53px; /*37+16*/
@@ -64,7 +64,7 @@
     }
 
         #heading #help #helpEnd {
-            width: 231px;
+            width: 233px;
             height: 8px;
             position: absolute;
             left: 0;
