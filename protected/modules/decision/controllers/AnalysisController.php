@@ -16,9 +16,9 @@ class AnalysisController extends DecisionController
     public function actionDisplay()
     {
         // redirect to evaluation if it's not yet complete
-        if(!$this->Decision->checkEvaluationComplete())
+        if(!$this->DecisionModel->checkEvaluationComplete())
         {
-            $this->redirect(array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
+            $this->redirect(array('/decision/evaluation', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
         }
 
         if(Ajax::isAjax())
@@ -26,8 +26,8 @@ class AnalysisController extends DecisionController
             // enable next step
             if($this->post('action') == 'enableSharing')
             {
-                $this->Decision->analysis_complete = 1;
-                if( $this->Decision->save() )
+                $this->DecisionModel->analysis_complete = 1;
+                if( $this->DecisionModel->save() )
                 {
                     Ajax::respondOk(array(
                         'projectMenu' => $this->getProjectMenu(),
@@ -51,19 +51,19 @@ class AnalysisController extends DecisionController
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
         // get evaluation array
-        $eval = $this->Decision->getEvaluationArray();
+        $eval = $this->DecisionModel->getEvaluationArray();
 
-        // find two last projects by weighted score
+        // find the best two alternatives by weighted score
         $criteria = new CDbCriteria();
-        $criteria->addCondition('rel_project_id=:rel_project_id');
+        $criteria->addCondition('rel_model_id=:rel_model_id');
         $criteria->order = 'weightedScore DESC';
-        $criteria->params = array('rel_project_id' => $this->Decision->project_id);
+        $criteria->params = array('rel_model_id' => $this->DecisionModel->model_id);
         $bestAlternatives = Alternative::model()->findAll($criteria);
 
         $this->render('display',array(
             'eval'      => $eval,
             'bestAlternatives' =>  $bestAlternatives,
-            'Alternatives'	=> $this->Decision->alternatives,
+            'Alternatives'	=> $this->DecisionModel->alternatives,
         ));
     }
 }
