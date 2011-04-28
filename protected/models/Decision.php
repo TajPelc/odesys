@@ -121,6 +121,7 @@ class Decision extends CActiveRecord
         // create a new decision model
         $DecisionModel = new DecisionModel();
         $DecisionModel->rel_decision_id = $this->decision_id;
+        $DecisionModel->status = DecisionModel::ACTIVE;
         $DecisionModel->save();
     }
 
