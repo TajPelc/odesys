@@ -98,7 +98,7 @@ class DecisionController extends Controller
         $rv = array();
         foreach($this->_pages as $key => $Page)
         {
-            $rv[substr($key, strlen('menu-'), strlen($key))] = $Page['enabled'] ? $this->createUrl($Page['path'], array('decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)) : false;
+            $rv[substr($key, strlen('menu-'), strlen($key))] = $Page['enabled'] ? $this->createUrl($Page['path'], array('decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : false;
         }
 
         return $rv;

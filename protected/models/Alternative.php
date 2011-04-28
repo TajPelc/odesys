@@ -3,6 +3,8 @@
 /**
  * This is the model class for table "alternative".
  *
+ * Extends DecisionElement
+ *
  * The followings are the available columns in table 'alternative':
  * @property string $alternative_id
  * @property string $rel_model_id
@@ -15,11 +17,28 @@
  * @property Model $relModel
  * @property Criteria[] $criterias
  */
-class Alternative extends CActiveRecord
+class Alternative extends DecisionElement
 {
+    /**
+     * Color pool for plotting graphs
+     *
+     * @var array
+     */
+    private static $colorPool = array(
+        "#c6dc0c",
+        "#2da7b9",
+        "#5c0369",
+        "#6ac616",
+        "#eb8e94",
+        "#b000b7",
+        "#18b3f7",
+        "#bd3439",
+        "#00953f"
+    );
+
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Alternative the static model class
+	 * @return Alternative
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -39,18 +58,13 @@ class Alternative extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('rel_model_id, title, color', 'required'),
-			array('score, weightedScore', 'numerical'),
-			array('rel_model_id', 'length', 'max'=>20),
-			array('title', 'length', 'max'=>60),
-			array('color', 'length', 'max'=>7),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('alternative_id, rel_model_id, title, score, weightedScore, color', 'safe', 'on'=>'search'),
-		);
+        return array(
+            array('title', 'filter', 'filter' => 'trim'),
+            array('title', 'required'),
+            array('title', 'length', 'max' => 60),
+            array('title', 'isDecisionModelUnique'),
+			array('title', 'safe', 'on'=>'search'),
+        );
 	}
 
 	/**
@@ -58,11 +72,10 @@ class Alternative extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'relModel' => array(self::BELONGS_TO, 'Model', 'rel_model_id'),
-			'criterias' => array(self::MANY_MANY, 'Criteria', 'evaluation(rel_alternative_id, rel_criteria_id)'),
+			'DecisionModel' => array(self::BELONGS_TO, 'DecisionModel', 'rel_model_id'),
+            'evaluations' => array(self::HAS_MANY, 'Evaluation', 'rel_alternative_id'),
+			// 'criterias' => array(self::MANY_MANY, 'Criteria', 'evaluation(rel_alternative_id, rel_criteria_id)'),
 		);
 	}
 
@@ -87,20 +100,87 @@ class Alternative extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('alternative_id',$this->alternative_id,true);
-		$criteria->compare('rel_model_id',$this->rel_model_id,true);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('score',$this->score);
-		$criteria->compare('weightedScore',$this->weightedScore);
-		$criteria->compare('color',$this->color,true);
-
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));
 	}
+
+    /**
+     * Reorder criteria
+     */
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        // decrease the number of criteria
+        DecisionModel::model()->findByPk($this->_oldValues['rel_model_id'])->decrease('no_alternatives');
+    }
+
+    /**
+     * Handle all the logic before save
+     */
+    public function beforeSave()
+    {
+        if( parent::beforeSave() )
+        {
+            // update decision model's last edit
+            $this->DecisionModel->updateLastEdit();
+
+            // new record?
+            if($this->isNewRecord)
+            {
+                // allocate a color
+                $this->allocateColor();
+
+                // increase the number of criteria
+                $this->DecisionModel->increase('no_alternatives');
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Gives the current alternative a color for graphical display
+     *
+     * @return string $this->color
+     */
+    public function allocateColor()
+    {
+        $DecisionModel = $this->DecisionModel;
+
+        // choose a color from the pool
+        if(count(self::$colorPool) > $noAlt = $DecisionModel->no_alternatives)
+        {
+            // find out what colors are beeing used
+            $usedColors = array();
+            foreach($DecisionModel->alternatives as $A)
+            {
+                $usedColors[] = $A->color;
+            }
+
+            // find a free color
+            foreach(self::$colorPool as $color)
+            {
+                if(!in_array($color, $usedColors))
+                {
+                    $this->color = $color;
+                }
+            }
+
+            return $this->color;
+        }
+
+        // generate random color using colorjizz library
+        Yii::import('application.vendors.color-jizz.*');
+        require_once('ColorJizz-0.2.php');
+
+        // get a random color by random hue
+        $color = new HSV(rand(0,360), 80, 75);
+        $this->color = '#' . str_pad($color->toHex()->toString(), 6, '0', STR_PAD_LEFT);
+
+        return $this->color;
+    }
 }

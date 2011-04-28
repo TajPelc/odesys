@@ -12,7 +12,7 @@
                     <?php $label = $Page['label']; ?>
                     <?php if($Page['enabled'] && !$activePage) {?>
                         <li>
-                            <?php echo CHtml::link(CHtml::encode($label), array($Page['path'], 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label), array('title' => CHtml::encode($label), 'id' => $id)); ?>
+                            <?php echo CHtml::link(CHtml::encode($label), array($Page['path'], 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label), array('title' => CHtml::encode($label), 'id' => $id)); ?>
                             <span class="loadingBar<?php echo ( $lastEnabledPage && !$lastPage ? ' end' : ''); ?>">&nbsp;</span>
                         </li>
                     <?php } else { ?>
