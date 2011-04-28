@@ -69,3 +69,13 @@
         <a href="#" id="comments_more">Show more opinions</a>
     </div>
 </div>
+<div id="sidebar">
+    <p>Share on:</p>
+    <ul id="sns">
+        <li><a id="share_facebook" href="#">Facebook</a></li>
+        <li><a id="share_twitter" href="#">Twitter</a></li>
+        <li><a id="share_digg" href="#">Digg</a></li>
+        <li><a id="share_reddit" href="#">Reddit</a></li>
+        <li><a id="share_stumbleupon" href="#">StumbleUpon</a></li>
+    </ul>
+</div>
