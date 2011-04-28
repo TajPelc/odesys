@@ -47,7 +47,7 @@ Abacon.init = function(){
     // draw horizontal grid
     for(i=0; i<Graph.Data['criteriaNr']; i++)
     {
-        Abacon.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Abacon.Config['width']).attr({
+        Abacon.Canvas.path('M 0 ' + (60 * (i+1)) + ' h ' + Abacon.Config['width']).attr({
             'stroke': '#dedfe3',
             'stroke-width': 1
         });
@@ -125,7 +125,7 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         }
         path = path + action + paths[j];
     }
-    
+
     // first data point
     if(i==0)
     {
@@ -141,10 +141,10 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         Abacon.Alternatives[n].animate({
             'path': path,
         }, 250, 'normal', function(){
-            
+
             // draw data point
             Abacon.AnimateDataPoint(i, n, color, dataPoints)
-            
+
             // until full drawn, repeat process
             if(i < paths.length - 1)
             {
