@@ -1,0 +1,85 @@
+/*
+ --> Toolbox/dropdown css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.1
+*/
+
+/* DROPDOWN */
+
+.selectBox-dropdown-menu {
+    line-height: normal;
+    position: absolute;
+    border: 1px solid #97999d;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background: #fff;
+    z-index: 5;
+    overflow: hidden;
+}
+
+dd .selectBox-dropdown-menu {
+    right: 0;
+}
+
+form > div .selectBox-dropdown-menu {
+    left: 20px;
+}
+
+    .selectBox-dropdown-menu li:hover {
+        background: #F7F7F8;
+    }
+
+    .selectBox-dropdown-menu li:last-child {
+    }
+
+        .selectBox-dropdown-menu a {
+            padding: 4px 23px;
+            margin-bottom: 2px;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+        }
+
+        .selectBox-dropdown-menu a:last-child {
+            margin-bottom: 0;
+        }
+
+/*sidebar select*/
+.selectBox-dropdown {
+    height: 22px;
+    line-height: 22px;
+    display: block;
+    position: relative;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border: 1px solid #97999d;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+span.selectBox-dropdown {
+    width: 234px;
+    cursor: default;
+}
+
+    .selectBox-label {
+        padding-left: 23px;
+        display: block;
+        color: #444a56;
+    }
+
+    .selectBox-arrow,
+    .selectBox-arrow-reverse {
+        width: 11px;
+        height: 9px;
+        margin: 7px 0 0 7px;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(../../images/sprite_icons.png) 0 -600px no-repeat;
+    }
+
+    .selectBox-arrow-reverse { background-position: 0 -550px}

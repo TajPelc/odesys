@@ -4,37 +4,104 @@
  --> @version:    1.1
 */
 
+#content {
+    width: 670px;
+}
 /* Content
 ********************************************************/
-#privacy {
+#content h3 {
     width: 100%;
+    margin-bottom: 16px;
     float: left;
-    margin-bottom: 24px;
-    border-top: 1px solid #dedfe3;
+    font-size: 18px;
+    font-style: italic;
 }
 
-    #privacy li {
-        width: 100%;
+#content form {
+    width: 100%;
+    float: left;
+}
+
+    #content form > div {
+        width: 630px;
+        padding: 8px 20px;
+        margin-bottom: 28px; /*16+12*/
         float: left;
-        border-bottom: 1px solid #dedfe3;
+        position: relative;
+        background: url(../../images/bg/sharing_bubble.png) 0 -50px no-repeat;
     }
 
-        #privacy li dt {
-            width: 184px;
-            height: 56px;
-            line-height: 56px;
-            font-weight: bold;
+        #content form > div label {
+            width: 100%;
+            margin-bottom: 4px;
             float: left;
+            font-size: 11px;
+            font-style: italic;
+            cursor: pointer;
         }
 
-        #privacy li dd {
-            width: 486px;
-            height: 56px;
-            line-height: 56px;
-            float: right;
+        #content form > div textarea {
+            width: 600px !important;
+            min-height: 68px !important;
+            max-height: 600px !important;
+            height: 68px;
+            padding: 8px 8px 8px 16px;
+            margin: 0 0 8px 0;
+            border-radius: 4px 4px 4px 4px;
+            color: #838790;
+            border: 1px solid #C7CACF;
+        }
+
+        #content form > div .last {
+            width: 670px;
+            height: 12px;
+            position: absolute;
+            left: 0;
+            bottom: -12px;
+            background: url(../../images/bg/sharing_bubble.png) 0 0 no-repeat;
+
+        }
+
+    #privacy {
+        width: 100%;
+        float: left;
+        margin-bottom: 16px;
+        border-top: 1px solid #dedfe3;
+    }
+
+        #privacy > li {
+            width: 100%;
+            float: left;
             border-bottom: 1px solid #dedfe3;
         }
 
-        #privacy li dd:last-child {
-            border-bottom: none;
-        }
+            #privacy li dt {
+                width: 184px;
+                height: 56px;
+                line-height: 56px;
+                font-weight: bold;
+                float: left;
+            }
+
+            #privacy > li dl > dd {
+                width: 486px;
+                height: 56px;
+                line-height: 56px;
+                position: relative;
+                float: right;
+                border-bottom: 1px solid #dedfe3;
+            }
+
+            #privacy li dd:last-child {
+                border-bottom: none;
+            }
+
+/* DROPDOWN */
+dd .selectBox-dropdown {
+    margin-top: 15px;
+    float: right;
+}
+
+form > div .selectBox-dropdown {
+    float: left;
+}
