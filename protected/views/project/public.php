@@ -70,12 +70,38 @@
     </div>
 </div>
 <div id="sidebar">
-    <p>Share on:</p>
-    <ul id="sns">
-        <li><a id="share_facebook" href="#">Facebook</a></li>
-        <li><a id="share_twitter" href="#">Twitter</a></li>
-        <li><a id="share_digg" href="#">Digg</a></li>
-        <li><a id="share_reddit" href="#">Reddit</a></li>
-        <li><a id="share_stumbleupon" href="#">StumbleUpon</a></li>
-    </ul>
+    <div class="help">
+        <h4>Share on:</h4>
+        <ul id="sns">
+            <li><a id="share_facebook" href="#">Facebook</a></li>
+            <li><a id="share_twitter" href="#">Twitter</a></li>
+            <li><a id="share_digg" href="#">Digg</a></li>
+            <li><a id="share_reddit" href="#">Reddit</a></li>
+            <li><a id="share_stumbleupon" href="#">StumbleUpon</a></li>
+        </ul>
+        <div class="last"></div>
+    </div>
+    <div class="help">
+        <h4>Decision overview:</h4>
+        <ul class="do">
+            <li><span>No. alternatives</span><em>0</em></li>
+            <li><span>No. criteria</span><em>0</em></li>
+            <li><span>No. opinions</span><em>0</em></li>
+        </ul>
+        <div class="last"></div>
+    </div>
+    <div class="help">
+        <h4>Best scored alternative:</h4>
+        <p class="l"><b>Honda S2000 with a 16% lead</b></p>
+        <div class="last"></div>
+    </div>
+    <div class="help">
+        <h4>Frenk Ten prefers</h4>
+        <p><b>Mazda MX-5 2.0 Revolution</b></p>
+        <h4>out of</h4>
+        <p>Honda S2000, Mazda MX-5, Fiat Barchetta, Golf MK II Cabrio, MG Roadster</p>
+        <h4>when considering</h4>
+        <p>Price, Acceleration, Looks, Top Speed, Fun factor, Running costs</p>
+        <div class="last"></div>
+    </div>
 </div>
