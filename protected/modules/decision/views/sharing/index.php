@@ -33,7 +33,7 @@
             </li>
         </ul>
         <ul id="content-nav">
-            <li class="prev"><?php echo CHtml::link('Previous', array('/decision/analysis', 'decisionId' => $this->Decision->project_id, 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)); ?></li>
+            <li class="prev"><?php echo CHtml::link('Previous', array('/decision/analysis', 'decisionId' => $this->Decision->decision_id, 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)); ?></li>
             <li class="next"><input type="submit" name="publish" value="Publish" /></li>
         </ul>
     </form>
