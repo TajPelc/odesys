@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'model':
  * @property string $model_id
  * @property string $rel_decision_id
+ * @property integer $status
  * @property string $created
  * @property string $last_edit
  * @property integer $criteria_complete

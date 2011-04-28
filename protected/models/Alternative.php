@@ -125,17 +125,20 @@ class Alternative extends DecisionElement
     {
         if( parent::beforeSave() )
         {
-            // update decision model's last edit
-            $this->DecisionModel->updateLastEdit();
-
-            // new record?
-            if($this->isNewRecord)
+            if(!$this->clone)
             {
-                // allocate a color
-                $this->allocateColor();
+                // update decision model's last edit
+                $this->DecisionModel->updateLastEdit();
 
-                // increase the number of criteria
-                $this->DecisionModel->increase('no_alternatives');
+                // new record?
+                if($this->isNewRecord)
+                {
+                    // allocate a color
+                    $this->allocateColor();
+
+                    // increase the number of criteria
+                    $this->DecisionModel->increase('no_alternatives');
+                }
             }
             return true;
         }

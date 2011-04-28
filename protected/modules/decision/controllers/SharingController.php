@@ -13,11 +13,6 @@ class SharingController extends DecisionController
      */
     public function actionIndex()
     {
-        /**
-         * @TODO Move this code to the last page
-         */
-        User::current()->setConfig('help', false);
-
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
@@ -28,7 +23,23 @@ class SharingController extends DecisionController
         // add style files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/sharing/index.js');
 
+        if($this->post('publish'))
+        {
+            $this->Decision->description = $this->post('description_new');
+            if($this->Decision->validate(array('description')))
+            {
+                $this->Decision->save(false);
+                $this->Decision->publishDecisionModel();
+
+
+                // @TODO: Fix the URL problem
+                $this->redirect('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html');
+            }
+        }
+
         // render the view
-        $this->render('index');
+        $this->render('index', array(
+            'errors' => $this->Decision->getErrors(),
+        ));
     }
 }

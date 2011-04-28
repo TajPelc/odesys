@@ -11,6 +11,11 @@ abstract class DecisionElement extends CActiveRecord
     protected $_oldValues = array();
 
     /**
+     * Clone
+     */
+    protected $clone = false;
+
+    /**
      * Check if title is unique for this decision
      *
      * @param $attribute

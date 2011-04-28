@@ -15,12 +15,12 @@ class DecisionController extends Controller
 
     /**
      * Decision
-     * @var Project
+     * @var Decision
      */
     public $Decision;
 
     /**
-     * Decision model
+     * DecisionModel
      */
     public $DecisionModel;
 

@@ -96,16 +96,19 @@ class Criteria extends DecisionElement
     {
         if( parent::beforeSave() )
         {
-            // update decision model's last edit
-            $this->DecisionModel->updateLastEdit();
-
-            if($this->isNewRecord)
+            if(!$this->clone)
             {
-                // set initial position
-                $this->position = $this->DecisionModel->no_criteria;
+                // update decision model's last edit
+                $this->DecisionModel->updateLastEdit();
 
-                // increase the number of criteria
-                $this->DecisionModel->increase('no_criteria');
+                if($this->isNewRecord)
+                {
+                    // set initial position
+                    $this->position = $this->DecisionModel->no_criteria;
+
+                    // increase the number of criteria
+                    $this->DecisionModel->increase('no_criteria');
+                }
             }
             return true;
         }

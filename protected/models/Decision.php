@@ -46,6 +46,9 @@ class Decision extends CActiveRecord
             array('title', 'required'),
             array('title', 'length', 'max' => 45),
 			array('title', 'safe', 'on'=>'search'),
+
+			array('description', 'filter', 'filter' => 'trim'),
+			array('description', 'required'),
 		);
 	}
 
@@ -153,18 +156,103 @@ class Decision extends CActiveRecord
     }
 
     /**
+     * Get published decision model
+     */
+    public function getPublishedDecisionModel()
+    {
+        return DecisionModel::model()->findByAttributes(array('rel_decision_id' => $this->decision_id, 'status' => DecisionModel::PUBLISHED));
+    }
+
+    /**
      * Create active decision model
      */
     public function createActiveDecisionModel()
     {
-        // no active decision model yet
-        if(count($this->models) == 0)
+        // create a new decision model
+        $DecisionModel = new DecisionModel();
+        $DecisionModel->rel_decision_id = $this->decision_id;
+        $DecisionModel->status = DecisionModel::ACTIVE;
+        $DecisionModel->save();
+
+        return $DecisionModel;
+    }
+
+    /**
+     * Publish the current active decision model and create a new active decision model
+     */
+    public function publishDecisionModel()
+    {
+        // get active decision model
+        $Active = $this->getActiveDecisionModel();
+
+        // copy the active decision model
+        $New = new DecisionModel();
+        $New->setAttributes($Active->getAttributes(), false);
+        unset($New->model_id);
+        $New->insert();
+
+        // publish the old decision model
+        $Active->status = DecisionModel::PUBLISHED;
+        $Active->save();
+
+        // create a hash table with mapping
+        $mapper = array(
+            'alternatives' => array(),
+            'criteria'	=> array(),
+        );
+
+        // clone alternatives
+        foreach($Active->alternatives as $Alt)
         {
-            // create a new decision model
-            $DecisionModel = new DecisionModel();
-            $DecisionModel->rel_decision_id = $this->decision_id;
-            $DecisionModel->status = DecisionModel::ACTIVE;
-            $DecisionModel->save();
+            $newAlt = new Alternative();
+            $newAlt->setAttributes($Alt->getAttributes(), false);
+            $newAlt->clone = true;
+            unset($newAlt->alternative_id);
+            $newAlt->rel_model_id = $New->model_id;
+            $newAlt->insert();
+
+            // save old id => new id
+            $mapper['alternatives'][$Alt->alternative_id] = $newAlt->alternative_id;
+        }
+
+        // clone criteria
+        foreach($Active->criteria as $Cri)
+        {
+            $newCri = new Criteria();
+            $newCri->setAttributes($Cri->getAttributes(), false);
+            $newCri->clone = true;
+            unset($newCri->criteria_id);
+            $newCri->rel_model_id = $New->model_id;
+            $newCri->insert();
+
+            // save old id => new id
+            $mapper['criteria'][$Cri->criteria_id] = $newCri->criteria_id;
+        }
+
+        // clone evaluation
+        foreach($mapper['criteria'] as $oldCriId => $newCriId)
+        {
+            foreach($mapper['alternatives'] as $oldAltId => $newAltId)
+            {
+                // load old evaluation
+                $Evaluation = Evaluation::model()->findByPk(array('rel_alternative_id' => $oldAltId, 'rel_criteria_id' => $oldCriId));
+
+                // create new evaluation
+                $newEvaluation = new Evaluation();
+                $newEvaluation->clone = true;
+                $newEvaluation->rel_alternative_id = $newAltId;
+                $newEvaluation->rel_criteria_id = $newCriId;
+                $newEvaluation->grade = $Evaluation->grade;
+                $newEvaluation->insert();
+            }
+        }
+
+        // save published decision model to saved
+        $Published = $this->getPublishedDecisionModel();
+        if($Published instanceof DecisionModel)
+        {
+            $Published->status = DecisionModel::SAVED;
+            $Published->save();
         }
     }
 }

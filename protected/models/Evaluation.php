@@ -16,6 +16,11 @@ class Evaluation extends CActiveRecord
     private $_oldValues;
 
     /**
+     * Clone
+     */
+    protected $clone = false;
+
+    /**
      * Decision model
      */
     public $DecisionModel;
@@ -101,17 +106,20 @@ class Evaluation extends CActiveRecord
     {
         if( parent::beforeSave() )
         {
-            // update decision model's last edit
-            $this->getDecisionModel()->updateLastEdit();
-
-            // disable decision model step - sharing
-            $this->getDecisionModel()->analysis_complete = 0;
-            $this->getDecisionModel()->disableAnalysisComplete();
-
-            if($this->isNewRecord)
+            if(!$this->clone)
             {
-                // increase the number of evaluations
-                $this->getDecisionModel()->increase('no_evaluation');
+                // update decision model's last edit
+                $this->getDecisionModel()->updateLastEdit();
+
+                // disable decision model step - sharing
+                $this->getDecisionModel()->analysis_complete = 0;
+                $this->getDecisionModel()->disableAnalysisComplete();
+
+                if($this->isNewRecord)
+                {
+                    // increase the number of evaluations
+                    $this->getDecisionModel()->increase('no_evaluation');
+                }
             }
             return true;
         }

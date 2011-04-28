@@ -26,8 +26,9 @@ class CreateAction extends Action
         $Decision->rel_user_id = Yii::app()->user->id;
 
         // save or return errrors
-        if($Decision->save())
+        if($Decision->validate(array('title')))
         {
+            $Decision->save(false);
             $Decision->createActiveDecisionModel();
 
             Ajax::respondOk(array('redirectUrl' => $this->createUrl('/decision/alternatives', array('decisionId' => $Decision->decision_id, 'label' => $Decision->label))));
