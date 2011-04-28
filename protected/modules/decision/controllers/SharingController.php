@@ -23,6 +23,13 @@ class SharingController extends DecisionController
         // add style files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/sharing/index.js');
 
+        // redirect to criteria create if evaluation conditions not set
+        if(!$this->DecisionModel->checkAnalysisComplete())
+        {
+            $this->redirect(array('/decision/analysis', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
+        }
+
+        // post
         if($this->post('publish'))
         {
             $this->Decision->description = $this->post('description_new');
