@@ -46,7 +46,7 @@ class CriteriaController extends DecisionController
                     }
 
                     // set title
-                    $Criteria->rel_project_id = $this->Decision->project_id;
+                    $Criteria->rel_model_id = $this->DecisionModel->model_id;
                     $Criteria->title = $this->post('value');
 
                     // save
@@ -83,9 +83,9 @@ class CriteriaController extends DecisionController
         }
 
         // redirect to alternatives create if not enough have been entered
-        if(!$this->Decision->checkAlternativesComplete())
+        if(!$this->DecisionModel->checkAlternativesComplete())
         {
-            $this->redirect(array('/decision/alternatives', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
+            $this->redirect(array('/decision/alternatives', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
         }
 
         // save criteria
@@ -94,7 +94,7 @@ class CriteriaController extends DecisionController
             // set attributes
             $Criteria = new Criteria();
             $Criteria->attributes = $_POST['newCriteria'];
-            $Criteria->rel_project_id = $this->Decision->project_id;
+            $Criteria->rel_model_id = $this->DecisionModel->model_id;
 
 
             // redirect

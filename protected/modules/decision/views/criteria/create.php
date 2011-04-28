@@ -32,7 +32,7 @@
 
 <div id="content">
     <?php echo CHtml::beginForm('', 'post'); ?>
-        <?php $Criteria = $this->Decision->findCriteriaByPriority(); ?>
+        <?php $Criteria = $this->DecisionModel->findCriteriaByPriority(); ?>
         <div><input type="text" name="newCriteria[title]" id="newCriteria" /></div>
         <ol>
         <?php for ($i = 0; $i < count($Criteria); $i++) { ?>
@@ -44,8 +44,8 @@
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
     <ul id="content-nav">
-        <li class="prev"><?php echo CHtml::link('Previous', array('/decision/alternatives', 'decisionId' => $this->Decision->project_id, 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)); ?></li>
-        <li class="next<?php echo (!$this->Decision->checkCriteriaComplete() ? ' disabled' : ''); ?>"><?php echo ($this->Decision->checkCriteriaComplete() ? CHtml::link('Next', array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
+        <li class="prev"><?php echo CHtml::link('Previous', array('/decision/alternatives', 'decisionId' => $this->Decision->decision_id, 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)); ?></li>
+        <li class="next<?php echo (!$this->DecisionModel->checkCriteriaComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkCriteriaComplete() ? CHtml::link('Next', array('/decision/evaluation', 'decisionId' => $this->Decision->decision_id, 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
 <div id="sidebar"></div>
