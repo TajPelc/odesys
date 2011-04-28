@@ -11,13 +11,18 @@ class DecisionController extends Controller
      * Default layout
      * @var string
      */
-    public $layout='application.modules.decision.views.layouts.projectTabs';
+    public $layout = 'application.modules.decision.views.layouts.projectTabs';
 
     /**
      * Decision
      * @var Project
      */
     public $Decision;
+
+    /**
+     * Decision model
+     */
+    public $DecisionModel;
 
     /**
      * Array of link values
@@ -63,7 +68,10 @@ class DecisionController extends Controller
 	public function init()
 	{
         // load decision
-	    $this->Decision = Project::model()->findByPk($this->get('decisionId'));
+	    $this->Decision = Decision::model()->findByPk($this->get('decisionId'));
+
+	    // load decision model
+	    $this->DecisionModel = $this->Decision->getActiveModel();
 
 	    // try to load
 	    if( null === $this->Decision )
@@ -81,7 +89,7 @@ class DecisionController extends Controller
     public function getProjectMenu()
     {
         // refresh decision model
-        $this->Decision->refresh();
+        $this->DecisionModel->refresh();
 
         // update states
         $this->updateStatesForMenu();
@@ -101,10 +109,10 @@ class DecisionController extends Controller
      */
     public function updateStatesForMenu()
     {
-        $this->_pages['menu-criteria']['enabled']     = $this->Decision->checkAlternativesComplete();
-        $this->_pages['menu-evaluation']['enabled']   = $this->Decision->checkEvaluateConditions();
-        $this->_pages['menu-analysis']['enabled']     = $this->Decision->checkEvaluationComplete();
-        $this->_pages['menu-overview']['enabled']     = $this->Decision->checkAnalysisComplete();
+        $this->_pages['menu-criteria']['enabled']     = $this->DecisionModel->checkAlternativesComplete();
+        $this->_pages['menu-evaluation']['enabled']   = $this->DecisionModel->checkEvaluateConditions();
+        $this->_pages['menu-analysis']['enabled']     = $this->DecisionModel->checkEvaluationComplete();
+        $this->_pages['menu-overview']['enabled']     = $this->DecisionModel->checkAnalysisComplete();
     }
 
 }

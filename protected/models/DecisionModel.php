@@ -44,7 +44,7 @@ class DecisionModel extends CActiveRecord
 
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Model
+	 * @return DecisionModel
 	 */
 	public static function model($className=__CLASS__)
 	{

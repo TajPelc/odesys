@@ -27,7 +27,7 @@
 
 <div id="content">
     <?php echo CHtml::beginForm('', 'post'); ?>
-        <?php $Alternatives = $this->Decision->alternatives; ?>
+        <?php $Alternatives = $this->DecisionModel->alternatives; ?>
         <div><input type="text" name="newAlternative[title]" id="newAlternative" /></div>
         <ol>
         <?php for ($i = 0; $i < count($Alternatives); $i++) { ?>
@@ -39,7 +39,7 @@
         <input type="submit" name="submit" value="Add" />
     <?php echo CHtml::endForm();?>
     <ul id="content-nav">
-        <li class="next<?php echo (!$this->Decision->checkAlternativesComplete() ? ' disabled' : ''); ?>"><?php echo ($this->Decision->checkAlternativesComplete() ? CHtml::link('Next', array('/decision/criteria', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
+        <li class="next<?php echo (!$this->DecisionModel->checkAlternativesComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAlternativesComplete() ? CHtml::link('Next', array('/decision/criteria', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
 <div id="sidebar"></div>

@@ -155,4 +155,12 @@ class Decision extends CActiveRecord
             $this->save();
         }
     }
+
+    /**
+     * Get active decision model
+     */
+    public function getActiveModel()
+    {
+        return DecisionModel::model()->findByAttributes(array('rel_decision_id' => $this->decision_id, 'status' => DecisionModel::ACTIVE));
+    }
 }

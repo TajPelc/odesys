@@ -42,7 +42,7 @@ class AlternativesController extends DecisionController
                         $Alternative = new Alternative();
                     }
                     // set attributes
-                    $Alternative->rel_project_id = $this->Decision->project_id;
+                    $Alternative->rel_decision_id = $this->Decision->decision_id;
                     $Alternative->title = $this->post('value');
 
                     // save
