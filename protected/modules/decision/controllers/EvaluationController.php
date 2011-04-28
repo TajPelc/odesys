@@ -46,7 +46,7 @@ class EvaluationController extends DecisionController
                 // save empty evals
                 case 'save':
                     $this->_saveEmpty();
-                    Ajax::respondOk();
+                    Ajax::respondOk(array('projectMenu' => $this->getProjectMenu()));
                 // update single eval
                 case 'update':
                     $this->actionUpdate();

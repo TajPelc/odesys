@@ -43,7 +43,7 @@ Core.EscapeString = function (str) {
  * @return
  */
 function redirectUser(url) {
-    window.location.replace(location.protocol + '//'+ location.hostname + location.pathname + url);
+    window.location.replace(location.protocol + '//'+ location.hostname + url);
 }
 
 /**

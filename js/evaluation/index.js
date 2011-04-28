@@ -115,17 +115,20 @@ Evaluation.NextCriteria = function(that) {
     if(that.hasClass('changePage'))
     {
         // going to analysis
-        if(that.parent().hasClass('next'))
+        if(that.parent().hasClass('next') && unsaved.length > 0)
         {
             // post empty criteria
             $.post(location.href, {'action': 'save', 'unsaved': unsaved}, function(data){
                 if(data['status'] == true)
                 {
-                    Core.redirectUser(data['projectMenu']['analysis']);
+                    redirectUser(data['projectMenu']['analysis']);
                 }
             });
         }
-        return true;
+        else
+        {
+            return true;
+        }
     }
 
     // navigate criteria
@@ -193,6 +196,9 @@ $(document).ready(function(){
         {
             return true;
         }
-        return false;
+        else
+        {
+            return false;
+        }
     });
 });
