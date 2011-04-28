@@ -73,6 +73,7 @@ Alternatives.SaveInput = function(that, add) {
                     if(data['status'] == true){
                         // here be returned shite
                         that.siblings('.loading').remove();
+                        that.attr('disabled', '');
 
                         //errors
                     } else {
