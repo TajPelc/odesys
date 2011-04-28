@@ -26,15 +26,15 @@ class EvaluationController extends DecisionController
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/evaluation/index.js');
 
         // redirect to criteria create if evaluation conditions not set
-        if(!$this->Decision->checkEvaluateConditions())
+        if(!$this->DecisionModel->checkEvaluateConditions())
         {
             if(!$this->Decision->checkAlternativesComplete())
             {
-                $this->redirect(array('/decision/alternatives', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
+                $this->redirect(array('/decision/alternatives', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
             }
             else
             {
-                $this->redirect(array('/decision/criteria', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
+                $this->redirect(array('/decision/criteria', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
             }
         }
 
@@ -57,7 +57,7 @@ class EvaluationController extends DecisionController
         if(false === $this->get('pageNr'))
         {
             $i = 0;
-            foreach($this->Decision->findCriteriaByPriority() as $C)
+            foreach($this->DecisionModel->findCriteriaByPriority() as $C)
             {
                 if(!$C->isDecisionEvaluated())
                 {
@@ -66,7 +66,7 @@ class EvaluationController extends DecisionController
                     {
                         break;
                     }
-                    $this->redirect(array('/decision/evaluation', 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label, 'pageNr' => (string)$i));
+                    $this->redirect(array('/decision/evaluation', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label, 'pageNr' => (string)$i));
                 }
                 $i++;
             }
@@ -79,12 +79,11 @@ class EvaluationController extends DecisionController
         }
 
         // get criteria by position
-        $Criteria = Criteria::getCriteriaByPosition($this->Decision->project_id, $pageNr);
+        $Criteria = Criteria::getCriteriaByPosition($this->DecisionModel->model_id, $pageNr);
 
         // evaluation array
         $Evaluation = Evaluation::model()->findAllByAttributes(array(
-            'rel_project_id' => $this->Decision->project_id,
-            'rel_criteria_id' => $Criteria->criteria_id,
+             'rel_criteria_id' => $Criteria->criteria_id,
         ));
 
         // order evaluation by alternatives
@@ -124,20 +123,20 @@ class EvaluationController extends DecisionController
                 $forward = false;
                 if($pageNr > 0)
                 {
-                    $prev = $this->createUrl('/decision/evaluation', array('decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label, 'pageNr' => $pageNr - 1));
+                    $prev = $this->createUrl('/decision/evaluation', array('decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label, 'pageNr' => $pageNr - 1));
                 }
                 else
                 {
-                    $prev = $this->createUrl('/decision/criteria', array('decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
+                    $prev = $this->createUrl('/decision/criteria', array('decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
                     $back = true;
                 }
-                if($pageNr < $this->Decision->no_criteria - 1)
+                if($pageNr < $this->DecisionModel->no_criteria - 1)
                 {
-                    $next = $this->createUrl('/decision/evaluation', array('decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label, 'pageNr' => $pageNr + 1));
+                    $next = $this->createUrl('/decision/evaluation', array('decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label, 'pageNr' => $pageNr + 1));
                 }
                 else
                 {
-                    $next = $this->createUrl('/decision/analysis', array('decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label));
+                    $next = $this->createUrl('/decision/analysis', array('decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
                     $forward = true;
                 }
 
@@ -147,7 +146,7 @@ class EvaluationController extends DecisionController
                     'title' => $Criteria->title,
                     'criteria_id' => $Criteria->criteria_id,
                     'pageNr' => $pageNr + 1,
-                    'criteriaNr' => $this->Decision->no_criteria,
+                    'criteriaNr' => $this->DecisionModel->no_criteria,
                     'previous' => $prev,
                     'next' => $next,
                     'back' => $back,
@@ -162,7 +161,7 @@ class EvaluationController extends DecisionController
             'Criteria'         => $Criteria,
             'eval'	           => $eval,
             'pageNr'		   => $pageNr,
-            'nrOfCriteria'	   => $this->Decision->no_criteria,
+            'nrOfCriteria'	   => $this->DecisionModel->no_criteria,
             'renderEvaluation' => true,
             'renderSidebar'	   => true,
         ));
@@ -233,7 +232,6 @@ class EvaluationController extends DecisionController
         if(empty($Evaluation))
         {
             $Evaluation = new Evaluation();
-            $Evaluation->rel_project_id = $this->Decision->project_id;
             $Evaluation->rel_alternative_id = $alternative_id;
             $Evaluation->rel_criteria_id = $criteria_id;
         }

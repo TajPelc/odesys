@@ -10,9 +10,19 @@
  */
 class Evaluation extends CActiveRecord
 {
+    /**
+     *  Old values
+     */
+    private $_oldValues;
+
+    /**
+     * Decision model
+     */
+    public $DecisionModel;
+
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Evaluation the static model class
+	 * @return Evaluation
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -32,16 +42,10 @@ class Evaluation extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('rel_criteria_id, rel_alternative_id, grade', 'required'),
-			array('grade', 'numerical', 'integerOnly'=>true),
-			array('rel_criteria_id, rel_alternative_id', 'length', 'max'=>20),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('rel_criteria_id, rel_alternative_id, grade', 'safe', 'on'=>'search'),
-		);
+        return array(
+            array('grade', 'required'),
+            array('grade', 'numerical', 'integerOnly' => true, 'min' => 0, 'max' => 100),
+        );
 	}
 
 	/**
@@ -49,10 +53,10 @@ class Evaluation extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-		);
+        return array(
+            'Alternative' => array(self::BELONGS_TO, 'Alternative', 'rel_alternative_id'),
+            'Criteria' => array(self::BELONGS_TO, 'Criteria', 'rel_criteria_id'),
+        );
 	}
 
 	/**
@@ -60,11 +64,10 @@ class Evaluation extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'rel_criteria_id' => 'Rel Criteria',
-			'rel_alternative_id' => 'Rel Alternative',
-			'grade' => 'Grade',
-		);
+        return array(
+            'Alternative' => array(self::BELONGS_TO, 'Alternative', 'rel_alternative_id'),
+            'Criteria' => array(self::BELONGS_TO, 'Criteria', 'rel_criteria_id'),
+        );
 	}
 
 	/**
@@ -73,17 +76,84 @@ class Evaluation extends CActiveRecord
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('rel_criteria_id',$this->rel_criteria_id,true);
-		$criteria->compare('rel_alternative_id',$this->rel_alternative_id,true);
-		$criteria->compare('grade',$this->grade);
-
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
 	}
+
+    /**
+     * After find
+     *
+     * Save old values
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        $this->_oldValues = $this->getAttributes();
+    }
+
+    /**
+     * Before save
+     *
+     * - update last edit
+     * - disable analysis
+     * - increase number of eval if new record
+     */
+    public function beforeSave()
+    {
+        if( parent::beforeSave() )
+        {
+            // update decision model's last edit
+            $this->getDecisionModel()->updateLastEdit();
+
+            // disable decision model step - sharing
+            $this->getDecisionModel()->analysis_complete = 0;
+            $this->getDecisionModel()->disableAnalysisComplete();
+
+            if($this->isNewRecord)
+            {
+                // increase the number of evaluations
+                $this->getDecisionModel()->increase('no_evaluation');
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Reorder criteria
+     */
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        // decrease the number of evaluations
+        $this->getDecisionModel()->decrease('no_evaluation');
+    }
+
+    /**
+     * Get decision model
+     */
+    public function getDecisionModel()
+    {
+        // check if already loaded
+        if($this->DecisionModel instanceof DecisionModel)
+        {
+            return $this->DecisionModel;
+        }
+
+        // hack for after delete
+        $id = $this->getAttribute('rel_criteria_id');
+        if(!is_numeric($id))
+        {
+            $id = $this->_oldValues['rel_criteria_id'];
+        }
+
+        // load criteria
+        $Criteria = Criteria::model()->findByPk($id);
+
+        // load decision model
+        $this->DecisionModel = $Criteria->DecisionModel;
+
+        // return
+        return $this->DecisionModel;
+    }
 }
