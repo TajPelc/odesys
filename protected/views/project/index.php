@@ -4,15 +4,15 @@
     <?php if(!empty($Projects)) { ?>
     <p>Click on an existing project to make it active (appear in the left sidebar).</p>
     <ul class="projects">
-        <?php foreach($Projects as $P) {?>
-            <?php $active = (false !== $Project && $P->project_id === $Project->project_id);?>
-            <?php $Alternatives = $P->alternatives; ?>
+        <?php foreach($Decisions as $D) {?>
+            <?php $active = (false !== $Project && $D->project_id === $Project->project_id);?>
+            <?php $Alternatives = $D->alternatives; ?>
             <li<?php if($active) { ?> class="active"<?php }?>>
                 <?php if($active) { ?>
-                    <span><?php echo CHtml::encode($P->title)?></span>
-                    <?php echo CHtml::link(CHtml::encode($P->title), array('view', 'project_id' => $P->project_id), array('style' => 'display: none;', 'title' => CHtml::encode($P->title))); ?>
+                    <span><?php echo CHtml::encode($D->title)?></span>
+                    <?php echo CHtml::link(CHtml::encode($D->title), array('view', 'project_id' => $D->project_id), array('style' => 'display: none;', 'title' => CHtml::encode($D->title))); ?>
                 <?php } else { ?>
-                    <?php echo CHtml::link(CHtml::encode($P->title), array('view', 'project_id' => $P->project_id), array('title' => CHtml::encode($P->title))); ?>
+                    <?php echo CHtml::link(CHtml::encode($D->title), array('view', 'project_id' => $D->project_id), array('title' => CHtml::encode($D->title))); ?>
                 <?php }?>
                 <?php if(empty($Alternatives)){ ?>
                     <p>No alternatives defined</p>

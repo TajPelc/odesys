@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Facebook login controller
+ * User controller
  * @author Taj
  *
  */
@@ -36,7 +36,7 @@ class UserController extends Controller
         $condition->order = 'last_edit DESC';
         $condition->limit = 3;
         $condition->params = array('user_id' => Yii::app()->user->id);
-        $Decisions = Project::model()->findAll($condition);
+        $Decisions = Decision::model()->findAll($condition);
 
         $User = User::model()->findByPk(Yii::app()->user->id);
 

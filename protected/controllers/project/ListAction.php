@@ -13,7 +13,7 @@ class ListAction extends Action
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/list.css');
 
         // find all user's projects
-        $Decisions = Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id));
+        $Decisions = Decision::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id));
 
         // render
         $this->render('list', array('Decisions' => $Decisions));
