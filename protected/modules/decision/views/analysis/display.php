@@ -35,6 +35,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 
 <div id="accordion">
     <h3>Results</h3>
+    <p>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the winning alternative.</p>
     <div>
         <div id="score" class="content">
             <table class="alternatives">
@@ -60,8 +61,17 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 </tr>
             </table>
         </div>
+        <div class="sidebar help">
+            <h4>But which one is best?</h4>
+            <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</p>
+            <h4>Changed your mind?</h4>
+            <p class="l">You may return to modify criteria, alternatives or evaluation at any time.</p>
+            <div class="last"></div>
+        </div>
     </div>
+    <p><b>Dicks</b> scores the highest with a lead of 7% compared to <b>of</b>.</p>
     <h3>Detailed comparison</h3>
+    <p>This graph shows alternative profiles. By comparing the data points at each criteria you are able to see how each alternative compares to others. Do you still think the first one is the best?</p>
     <div>
         <div id="abacon" class="content">
             <table class="criteria">

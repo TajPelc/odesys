@@ -32,10 +32,34 @@
         font-style: italic;
     }
 
+    #accordion h3 + p {
+        width: 650px;
+        line-height: normal;
+        padding-left: 20px;
+        margin-bottom: 24px;
+        float: left;
+        font-style: italic;
+        color: #838790;
+    }
+
     #accordion > div {
         width: 100%;
         float: left;
     }
+
+    #accordion > div + p {
+        padding-left: 20px;
+        margin-bottom: 32px;
+        float: left;
+        color: #838790;
+        font-size: 11px;
+    }
+
+        #accordion > div + p b {
+            font-weight: bold;
+            font-style: italic;
+            color: #444a56;
+        }
 
 /* Abacon Content
  * Score Content
@@ -43,6 +67,10 @@
 #abacon,
 #score {
     position: relative;
+}
+
+#score {
+    margin-bottom: 8px;
 }
 
     #abacon .criteria,
