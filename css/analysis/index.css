@@ -47,7 +47,8 @@
         float: left;
     }
 
-    #accordion > div + p {
+    #accordion > div + p,
+    #accordion #score + p {
         padding-left: 20px;
         margin-bottom: 32px;
         float: left;
@@ -55,7 +56,7 @@
         font-size: 11px;
     }
 
-        #accordion > div + p b {
+        #accordion > div > p b {
             font-weight: bold;
             font-style: italic;
             color: #444a56;
@@ -183,7 +184,6 @@
 #abacon-sidebar form {
     width: 100%;
     height: 24px;
-    padding-top: 8px;
     margin-bottom: 16px;
     position: relative;
     float: left;
