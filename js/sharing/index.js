@@ -75,7 +75,7 @@ $(document).ready(function() {
 
         // prepare native select for submit
         Sharing.Dropdown.AnchorID = $(this).parent().attr('id').split('-')[1];
-        $(this).parent().parent().find('option').each(function(index, element){
+        $(this).parent().parent().parent().find('option').each(function(index, element){
             if ($(element).attr('value') == Sharing.Dropdown.AnchorID){
                 $(element).attr('selected', 'selected');
             }
