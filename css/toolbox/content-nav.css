@@ -18,7 +18,6 @@
         padding-right: 7px; /* sliding doors*/
         margin-right: 20px;
         float: left;
-        font-size: 18px;
         text-align: center;
         background: url(../../images/form/button_end.png) top right no-repeat;
     }
@@ -31,15 +30,25 @@
     }
 
         #content-nav li a,
-        #content-nav li span {
+        #content-nav li span,
+        #content-nav li .button {
             width: 103px;
             height: 35px;
             line-height: 32px;
-            padding-left: 7px;
+            padding: 0 0 0 7px;
             display: block;
             background: transparent url(../../images/form/sprite_buttons.png) -300px -100px no-repeat;
             text-decoration: none;
+            font-size: 18px;
             color: #fff;
+            border: 0;
+        }
+
+        #content-nav li .button {
+            width: 110px;
+            height: 35px;
+            padding-bottom: 4px;
+            cursor: pointer;
         }
 
         #content-nav li.disabled span {
@@ -47,4 +56,5 @@
             cursor: default;
         }
 
-        #content-nav li a:active  { background-position: -300px -200px }
+        #content-nav li a:active,
+        #content-nav li .button:active { background-position: -300px -200px }
