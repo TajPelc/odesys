@@ -40,6 +40,7 @@ return array(
             'rules'=>array_merge(
                 array(
                     '/' => 'site/index',
+					'<_c:(decision)>/<decisionId:\d+>-<label>/' => array('project/public', 'urlSuffix' => '.html'),
                 ),
                 require_once('protected/modules/decision/config/url-rules.php')
             ),
