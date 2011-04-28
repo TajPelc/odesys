@@ -16,7 +16,7 @@
                 </tr>
                 <?php foreach($Decisions as $D) { ?>
                 <tr>
-                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/analysis', 'decisionId' => $D->project_id, 'label' => $D->label)); ?></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/analysis', 'decisionId' => $D->decision_id, 'label' => $D->label)); ?></td>
                     <td><?php echo date('d.m.Y', strtotime($D->last_edit)); ?></td>
                     <td>0</td>
                     <td>1</td>
@@ -28,7 +28,7 @@
     </dl>
     <dl class="statistics">
         <dt>Statistics</dt>
-        <dd class="first">Total number of decisions: <b><?php echo count($User->projects); ?></b></dd>
+        <dd class="first">Total number of decisions: <b><?php echo count($User->decisions); ?></b></dd>
         <dd>Number of comments from your social circle: <b>0</b></dd>
         <dd>Number of people participating on your projects: <b>0</b></dd>
     </dl>

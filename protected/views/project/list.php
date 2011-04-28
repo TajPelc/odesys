@@ -16,11 +16,11 @@
                 </tr>
                 <?php foreach($Decisions as $D) { ?>
                 <tr>
-                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('project/activate', 'id' => $D->project_id)); ?></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/analysis', 'decisionId' => $D->decision_id, 'label' => $D->label)); ?></td>
                     <td><?php echo date('j.n.Y', strtotime($D->created)); ?></td>
                     <td><?php echo date('j.n.Y', strtotime($D->last_edit)); ?></td>
-                    <td><?php echo $D->no_alternatives; ?></td>
-                    <td><?php echo $D->no_criteria; ?></td>
+                    <td><?php echo $D->getActiveModel()->no_alternatives; ?></td>
+                    <td><?php echo $D->getActiveModel()->no_criteria; ?></td>
                     <td>0</td>
                     <td>1</td>
                 </tr>

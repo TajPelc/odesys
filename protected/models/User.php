@@ -55,14 +55,7 @@ class User extends CActiveRecord
      */
     public function rules()
     {
-        // NOTE: you should only define rules for those attributes that
-        // will receive user inputs.
         return array(
-            array('username, password, email', 'required'),
-            array('username, password, email', 'length', 'max'=>128),
-            // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
-            array('user_id, username, password, email', 'safe', 'on'=>'search'),
         );
     }
 
@@ -72,7 +65,7 @@ class User extends CActiveRecord
     public function relations()
     {
         return array(
-            'decisions' => array(self::HAS_MANY, 'Decisions', 'rel_user_id'),
+            'decisions' => array(self::HAS_MANY, 'Decision', 'rel_user_id'),
         );
     }
 
