@@ -194,11 +194,14 @@ a:hover {
     line-height: 16px;
 }
 
+/* Sidebar
+********************************************************/
 #sidebar.help,
 .sidebar.help {
     width: 190px; /*235*/
     padding: 16px 25px 16px 20px;
     position: relative;
+    right: -8px; /*compensate for the shadow*/
     background: url(../../images/bg/sprite_help.png) -300px -50px no-repeat;
 }
 

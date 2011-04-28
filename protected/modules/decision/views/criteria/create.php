@@ -48,4 +48,10 @@
         <li class="next<?php echo (!$this->DecisionModel->checkCriteriaComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkCriteriaComplete() ? CHtml::link('Next', array('/decision/evaluation', 'decisionId' => $this->Decision->decision_id, 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Next</span>'); ?></li>
     </ul>
 </div>
-<div id="sidebar"></div>
+<div id="sidebar" class="help">
+    <h4>What are criteria?</h4>
+    <p>Criteria are factors that influence your decision.</p>
+    <p>When buying a car, one may choose Speed, Performance, Price, Safety, Running costs and so on as the criteria.</p>
+    <p class="l">In the next step, each alternative is going to be evaluated by each criteria.</p>
+    <div class="last"></div>
+</div>
