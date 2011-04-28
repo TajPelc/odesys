@@ -60,10 +60,17 @@ class AnalysisController extends DecisionController
         $criteria->params = array('rel_model_id' => $this->DecisionModel->model_id);
         $bestAlternatives = Alternative::model()->findAll($criteria);
 
+        // get first and second alternative
+        $firstAlternative = current($bestAlternatives);
+        $secondAlternative = next($bestAlternatives);
+
         $this->render('display',array(
-            'eval'      => $eval,
-            'bestAlternatives' =>  $bestAlternatives,
-            'Alternatives'	=> $this->DecisionModel->alternatives,
+            'eval'                     => $eval,
+            'bestAlternatives'         =>  $bestAlternatives,
+            'Alternatives'	           => $this->DecisionModel->alternatives,
+            'first'                    => $firstAlternative,
+            'second'                   => $secondAlternative,
+            'difference'               => number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore)) * 100, 2),
         ));
     }
 }

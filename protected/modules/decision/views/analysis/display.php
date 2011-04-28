@@ -69,7 +69,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <div class="last"></div>
         </div>
     </div>
-    <p><b>Dicks</b> scores the highest with a lead of 7% compared to <b>of</b>.</p>
+    <p><b><?php echo CHtml::encode($first->title); ?></b> scores the highest with a lead of <b><?php echo $difference; ?>%</b> compared to <b><?php  echo CHtml::encode($second->title); ?></b>.</p>
     <h3>Detailed comparison</h3>
     <p>This graph shows alternative profiles. By comparing the data points at each criteria you are able to see how each alternative compares to others. Do you still think the first one is the best?</p>
     <div>
