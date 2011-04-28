@@ -23,6 +23,7 @@
             </a>
             <div class="last"></div>
         </div>
+        <h3>Options</h3>
         <ul id="privacy">
             <li>
                 <dl>
