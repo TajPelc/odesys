@@ -58,7 +58,7 @@
                 width: 100%;
                 cursor: default;
                 color: #fff;
-                background: url(../../images/bg/tab_hover.png) no-repeat;
+                background: url(../../images/bg/tab_hover.png) 0 1px no-repeat;
             }
 
             #project ul li span.selected {
