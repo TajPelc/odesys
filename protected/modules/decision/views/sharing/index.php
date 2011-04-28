@@ -36,24 +36,10 @@
                 </dd>
             </dl>
         </li>
-        <li>
-            <dl>
-                <dt>Privacy settings</dt>
-                <dd>
-                    <span>Share this decision on</span>
-                    <ul id="sns">
-                        <li><a id="share_facebook" href="#">Facebook</a></li>
-                        <li><a id="share_twitter" href="#">Twitter</a></li>
-                        <li><a id="share_digg" href="#">Digg</a></li>
-                        <li><a id="share_reddit" href="#">Reddit</a></li>
-                        <li><a id="share_stumbleupon" href="#">StumbleUpon</a></li>
-                    </ul>
-                </dd>
-            </dl>
-        </li>
     </ul>
     <ul id="content-nav">
-        <li><a href="#">How others see your decision</a></li>
+        <li class="prev"><?php echo CHtml::link('Previous', array('/decision/analysis', 'decisionId' => $this->Decision->project_id, 'decisionId' => $this->Decision->project_id, 'label' => $this->Decision->label)); ?></li>
+        <li class="next"><a href="#">Publish</a></li>
     </ul>
 </div>
 <div id="sidebar"></div>

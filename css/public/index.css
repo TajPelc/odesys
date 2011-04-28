@@ -1,5 +1,5 @@
 /*
- --> Index css
+ --> Public css
  --> @author:     Frenk T. Sedmak Nahtigal
  --> @version:    1.1
 */
@@ -138,3 +138,35 @@
     margin-right: 8px;
     float: right;
 }
+
+/* Sidebar
+********************************************************/
+#sidebar #sns {
+    height: 16px;
+    padding: 20px 0;
+}
+
+    #sidebar #sns li {
+        width: 16px;
+        height: 16px;
+        margin-right: 17px;
+        float: left;
+    }
+
+    #sidebar #sns li:last-child {
+        margin-right: 0;
+    }
+
+        #sidebar #sns li a {
+            width: 16px;
+            height: 16px;
+            display: block;
+            text-indent: -9999px;
+            background: url(../../images/sprite_icons.png) no-repeat;
+        }
+
+        #sidebar #sns #share_facebook    { background-position: 0 -700px }
+        #sidebar #sns #share_twitter     { background-position: 0 -750px }
+        #sidebar #sns #share_digg        { background-position: 0 -800px }
+        #sidebar #sns #share_reddit      { background-position: 0 -850px }
+        #sidebar #sns #share_stumbleupon { background-position: 0 -900px }
