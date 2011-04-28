@@ -105,7 +105,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                             <option value="<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode(Common::truncate($A->title, 32)); ?></option>
                         <?php }?>
                     </select>
-                    <a class="selectBox selectBox-dropdown" style="display: inline-block; width: 232px; -moz-user-select: none;" title="" tabindex="0">
+                    <a class="selectBox selectBox-dropdown" style="display: inline-block;" title="" tabindex="0">
                         <span class="selectBox-label">Draw more alternatives</span>
                         <span class="selectBox-arrow"></span>
                     </a>
