@@ -71,7 +71,7 @@ class DecisionController extends Controller
 	    $this->Decision = Decision::model()->findByPk($this->get('decisionId'));
 
 	    // load decision model
-	    $this->DecisionModel = $this->Decision->getActiveModel();
+	    $this->DecisionModel = $this->Decision->getActiveDecisionModel();
 
 	    // try to load
 	    if( null === $this->Decision )

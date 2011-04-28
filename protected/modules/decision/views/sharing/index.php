@@ -9,13 +9,13 @@
     <h3>About this decision</h3>
     <form action="" method="post">
         <div>
-            <label class="author" for="comment_new">Present your decision to your friends in a few sentances::</label>
+            <label class="author" for="comment_new">Present your decision to your friends in a few sentances:</label>
             <textarea name="description_new" id="comment_new" rows="5" cols="63"></textarea>
-            <label class="alternative" for="preff_alt">Which alternative do you prefer?:</label>
+            <label class="alternative" for="preff_alt">Which alternative do you prefer?</label>
             <select name="preff_alt" id="preff_alt">
-                <option value="alternative_1">alternative_1</option>
-                <option value="alternative_2">alternative_2 with a very long name u see?</option>
-                <option value="alternative_3">alternative_3</option>
+            <?php foreach($this->DecisionModel->alternatives as $A) { ?>
+                <option value="alternative_<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?></option>
+            <?php }?>
             </select>
             <a class="selectBox selectBox-dropdown" title="">
                 <span class="selectBox-label">------</span>
