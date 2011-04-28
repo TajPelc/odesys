@@ -31,8 +31,11 @@
         }
 
         #content > form ol li.placeholder {
-            line-height: 28px;
-            background-color: #efefef;
+            width: 648px; /*fake it*/
+            height: 26px; /*fake it*/
+            line-height: 26px;
+            background-color: #fff;
+            border: 1px solid #dedfe3;
             -moz-border-radius: 6px;
             -webkit-border-radius: 6px;
             border-radius: 6px;
@@ -116,6 +119,8 @@
             left: 0;
             background-position: 0 -200px;
         }
+
+        #content > form span.drag:hover { background-position: -100px -200px }
 
         #content form .loading {
             width: 24px;
