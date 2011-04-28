@@ -114,18 +114,6 @@ class Decision extends CActiveRecord
     }
 
     /**
-     * Handle all the logic before saving
-     */
-    public function afterSave()
-    {
-        // create a new decision model
-        $DecisionModel = new DecisionModel();
-        $DecisionModel->rel_decision_id = $this->decision_id;
-        $DecisionModel->status = DecisionModel::ACTIVE;
-        $DecisionModel->save();
-    }
-
-    /**
      * Delete all decision related stuff
      */
     public function beforeDelete()
@@ -159,8 +147,24 @@ class Decision extends CActiveRecord
     /**
      * Get active decision model
      */
-    public function getActiveModel()
+    public function getActiveDecisionModel()
     {
         return DecisionModel::model()->findByAttributes(array('rel_decision_id' => $this->decision_id, 'status' => DecisionModel::ACTIVE));
+    }
+
+    /**
+     * Create active decision model
+     */
+    public function createActiveDecisionModel()
+    {
+        // no active decision model yet
+        if(count($this->models) == 0)
+        {
+            // create a new decision model
+            $DecisionModel = new DecisionModel();
+            $DecisionModel->rel_decision_id = $this->decision_id;
+            $DecisionModel->status = DecisionModel::ACTIVE;
+            $DecisionModel->save();
+        }
     }
 }

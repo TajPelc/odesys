@@ -28,6 +28,8 @@ class CreateAction extends Action
         // save or return errrors
         if($Decision->save())
         {
+            $Decision->createActiveDecisionModel();
+
             Ajax::respondOk(array('redirectUrl' => $this->createUrl('/decision/alternatives', array('decisionId' => $Decision->decision_id, 'label' => $Decision->label))));
         }
         else
