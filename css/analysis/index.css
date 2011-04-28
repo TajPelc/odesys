@@ -182,7 +182,7 @@
 
 #abacon-sidebar form {
     width: 234px;
-    height: 26px;
+    height: 24px;
     padding-top: 8px;
     margin-bottom: 16px;
     position: relative;
@@ -234,9 +234,9 @@
     width: 232px;
     position: absolute;
     border: 1px solid #97999d;
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     background: #fff;
     z-index: 5;
     overflow: hidden;
@@ -250,7 +250,7 @@
     }
 
         .selectBox-dropdown-menu a {
-            padding: 8px 23px;
+            padding: 6px 23px;
             margin-bottom: 2px;
             cursor: pointer;
             display: block;
@@ -264,13 +264,13 @@
 /*sidebar select*/
 #abacon-sidebar .selectBox-dropdown {
     width: 234px;
-    height: 26px;
-    line-height: 26px;
+    height: 24px;
+    line-height: 24px;
     display: block;
     position: relative;
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     border: 1px solid #97999d;
     text-decoration: none;
     cursor: pointer;
@@ -291,7 +291,7 @@
     #abacon-sidebar .selectBox-arrow-reverse {
         width: 11px;
         height: 9px;
-        margin: 9px 0 0 7px;
+        margin: 8px 0 0 7px;
         display: block;
         position: absolute;
         top: 0;
