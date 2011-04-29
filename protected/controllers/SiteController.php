@@ -105,11 +105,13 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about/index.css');
         $this->render('about');
     }
 
-	/**
+    /**
      * Terms of use page
      */
     public function actionTerms()
@@ -118,7 +120,7 @@ class SiteController extends Controller
         $this->render('terms');
     }
 
-	/**
+    /**
      * Contact page
      */
     public function actionContact()

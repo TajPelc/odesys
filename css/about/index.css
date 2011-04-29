@@ -5,9 +5,7 @@
 */
 
 #content {
-    width: 580px;
-    padding-right: 340px;
-    background: url(../../images/developer.png) no-repeat right 70px;
+    width: 100%;
 }
 
     #content > h2 {
@@ -17,3 +15,36 @@
     #content > p {
         margin-bottom: 8px;
     }
+
+#content dl {
+    width: 100%;
+}
+
+    #content dl dt {
+        width: 100%;
+        line-height: 50px;
+        height: 50px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+        #content dl dt img {
+            margin-right: 20px;
+            display: block;
+            float: left;
+        }
+
+        #content dl dt a {
+            display: block;
+            float: left;
+        }
+
+    #content dl dd {
+        line-height: 16px;
+        margin-bottom: 16px;
+        padding-left: 70px;
+    }
+
+#like {
+    margin-bottom: 16px;
+}
