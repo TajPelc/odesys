@@ -8,6 +8,17 @@
 class ProjectController extends Controller
 {
     /**
+     * Decision
+     * @var Decision
+     */
+    public $Decision;
+
+    /**
+     * DecisionModel
+     */
+    public $DecisionModel;
+
+    /**
      * @return array action filters
      */
     public function filters()

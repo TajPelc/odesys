@@ -20,6 +20,7 @@ Score.Config = {
     'rowHeight': 60,
     'bottomLegend': 25,
     'leftLegendOffset': 155,
+    'scoreOffset': 0,
     'tickWidth': 50,
 };
 
@@ -92,10 +93,10 @@ Score.DrawAlternative = function(i)
     width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
 
     // calculate x postion
-    var x = Abacon.Config['leftLegendOffset'];
+    var x = Score.Config['leftLegendOffset'] + Score.Config['scoreOffset'];
 
     // calculate y position
-    var y = Abacon.Config['rowHeight'] * i + (Abacon.Config['rowHeight']/2) - 10;
+    var y = Score.Config['rowHeight'] * i + (Score.Config['rowHeight']/2) - 10;
 
     // create a set for alternatives
     var Alternative = Score.Canvas.set();
@@ -129,16 +130,20 @@ Score.DrawAlternative = function(i)
         }
         else // last => draw abacon
         {
-            Abacon.Legend.rebuildDropdown();
+            // abacon defined?
+            if(typeof(Abacon) == 'object')
+            {
+                Abacon.Legend.rebuildDropdown();
 
-            // draw the two best alternatives
-            Abacon.Legend.LegendList.children().each(function(){
-                // get id
-                var id = Core.ExtractNumbers($(this).attr('id'));
+                // draw the two best alternatives
+                Abacon.Legend.LegendList.children().each(function(){
+                    // get id
+                    var id = Core.ExtractNumbers($(this).attr('id'));
 
-                // draw alternatives
-                Abacon.DrawAlternative(id);
-            });
+                    // draw alternatives
+                    Abacon.DrawAlternative(id);
+                });
+            }
         }
     }));
 
