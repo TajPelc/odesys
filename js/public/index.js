@@ -5,6 +5,23 @@
 
 Public = {};
 
+Public.Comment = function(that) {
+    $.ajax({
+        data: that,
+        success: function(data) {
+            //add new field
+            if(data['status'] == true){
+                //here be returned shite
+
+                //errors
+            } else {
+
+            }
+        }
+    });
+
+}
+
 /*
  * Document Ready
  * */
@@ -22,4 +39,15 @@ $(document).ready(function(){
 
     // init score
     Score.init();
+
+    //ajax post
+    $('.comments form').submit(function(){
+        //trim input values
+        var trimValue = $.trim($(this).find('textarea').val());
+        //serialize input valus
+        var serializeValue = $(this).serialize().split('=')[0]+'='+trimValue;
+        //post
+        Public.Comment(serializeValue);
+        return false;
+    });
 });

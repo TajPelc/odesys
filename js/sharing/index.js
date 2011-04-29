@@ -34,6 +34,17 @@ Sharing.Dropdown = function(that)
        }
     });
 
+    //calculate and set dropdown's width as wide the widest list element
+    Sharing.Dropdown.DropdownList.ListWidth = 0;
+    Sharing.Dropdown.DropdownList.children('li').each(function(index, element){
+        var fakeWidth = $('<span></span>').append($(this).children().text()).css('display', 'none').appendTo('body');
+        var elementWidth = fakeWidth.outerWidth();
+        if (elementWidth > Sharing.Dropdown.DropdownList.ListWidth){
+            Sharing.Dropdown.DropdownList.ListWidth = elementWidth;
+        }
+    });
+    Sharing.Dropdown.DropdownList.width(Sharing.Dropdown.DropdownList.ListWidth+31);
+
     //Dropdown position
     Sharing.Dropdown.DropdownList.css('bottom', function(){
         return -$(this).height()-6;

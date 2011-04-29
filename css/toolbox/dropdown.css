@@ -26,23 +26,21 @@ form > div .selectBox-dropdown-menu {
     left: 0;
 }
 
+    .selectBox-dropdown-menu li {
+    }
+
     .selectBox-dropdown-menu li:hover {
         background: #F7F7F8;
     }
 
-    .selectBox-dropdown-menu li:last-child {
-    }
-
         .selectBox-dropdown-menu a {
-            padding: 4px 8px 4px 23px;;
-            margin-bottom: 2px;
+            height: 14px;
+            padding: 4px 8px 4px 23px;
+            margin-bottom: 0;
             cursor: pointer;
             display: block;
             text-decoration: none;
-        }
-
-        .selectBox-dropdown-menu a:last-child {
-            margin-bottom: 0;
+            white-space: nowrap;
         }
 
 /*sidebar select*/
