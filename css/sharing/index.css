@@ -24,29 +24,59 @@
 
     #content form > div {
         width: 630px;
-        padding: 8px 20px;
+        padding: 8px 26px 0 20px;
         margin-bottom: 28px; /*16+12*/
         float: left;
         position: relative;
         background: url(../../images/bg/sharing_bubble.png) 0 -50px no-repeat;
     }
 
-        #content form > div label {
+
+        #content form dl {
             width: 100%;
-            margin-bottom: 4px;
+            height: 40px;
+            float: left;
+            border-bottom: 1px solid #dedfe3;
+        }
+
+        #content form dl.l {
+            border: none;
+        }
+
+            #content form div dt {
+                max-width: 250px;
+                line-height: 40px;
+                float: left;
+            }
+
+            #content form div dd {
+                max-width: 400px;
+                float: right;
+                position: relative;
+            }
+
+                #content form div .selectBox-dropdown-menu {
+                    min-width: 120px;
+                }
+
+        #content form div label {
+            width: 100%;
             float: left;
             font-size: 11px;
             font-style: italic;
-            cursor: pointer;
         }
 
-        #content form > div textarea {
-            width: 608px !important;
+        #content form div > label {
+            margin-bottom: 8px;
+        }
+
+        #content form div textarea {
+            width: 612px !important;
             min-height: 68px !important;
-            max-height: 600px !important;
+            max-height: 500px !important;
             height: 68px;
             padding: 8px 8px 8px 8px;
-            margin: 0 0 8px 0;
+            margin: 0;
             border-radius: 4px 4px 4px 4px;
             color: #838790;
             border: 1px solid #C7CACF;
@@ -54,8 +84,9 @@
             font-size: 12px;
         }
 
+
         #content form > div .last {
-            width: 670px;
+            width: 676px;
             height: 12px;
             position: absolute;
             left: 0;
@@ -64,47 +95,14 @@
 
         }
 
-    #privacy {
-        width: 100%;
-        float: left;
-        margin-bottom: 16px;
-        border-top: 1px solid #dedfe3;
-    }
-
-        #privacy > li {
-            width: 100%;
-            float: left;
-            border-bottom: 1px solid #dedfe3;
-        }
-
-            #privacy li dt {
-                width: 184px;
-                height: 56px;
-                line-height: 56px;
-                font-weight: bold;
-                float: left;
-            }
-
-            #privacy > li dl > dd {
-                width: 486px;
-                height: 56px;
-                line-height: 56px;
-                position: relative;
-                float: right;
-                border-bottom: 1px solid #dedfe3;
-            }
-
-            #privacy li dd:last-child {
-                border-bottom: none;
-            }
-
+/* SIDEBAR */
 #sidebar.help {
     margin-top: 34px;
 }
 
 /* DROPDOWN */
 dd .selectBox-dropdown {
-    margin-top: 15px;
+    margin-top: 8px;
     float: right;
 }
 

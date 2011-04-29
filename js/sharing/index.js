@@ -36,14 +36,13 @@ Sharing.Dropdown = function(that)
 
     //Dropdown position
     Sharing.Dropdown.DropdownList.css('bottom', function(){
-        if ($(this).parent('dd').length > 0){
-            return -$(this).height()+9;
-        } else {
-            return -$(this).height();
-        }
+        return -$(this).height()-6;
     });
 }
 
+/**
+ * Dropdown Toggle
+ */
 Sharing.Dropdown.Toggle = function(that) {
     if (that.is(':hidden')){
         that.show();
@@ -60,6 +59,8 @@ $(document).ready(function() {
     $('#content form select').each(function(index, element){
         Sharing.Dropdown($(element));
     });
+
+    //toggle dropdown open/closed
     $('#content .selectBox-dropdown').toggle(function(){
         Sharing.Dropdown.Toggle($(this).siblings('.selectBox-dropdown-menu'));
 
@@ -82,8 +83,12 @@ $(document).ready(function() {
         });
     });
 
+    //make dropdown the same width as the longest option
     $('.selectBox-dropdown').each(function(){
         var ulWidth = $(this).siblings('.selectBox-dropdown-menu').width();
         $(this).width(ulWidth);
-    })
+    });
+
+    //on load put focus in textarea
+    $('#content form textarea').select();
 });
