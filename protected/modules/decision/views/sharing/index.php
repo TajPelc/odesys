@@ -21,7 +21,7 @@
                 <dt><label class="alternative" for="preff_alt">Which alternative do you prefer?</label></dt>
                 <dd>
                     <select name="preff_alt" id="preff_alt">
-                    <?php foreach($this->DecisionModel->alternatives as $A) { ?>
+                    <?php foreach($this->DecisionModel->findByWeightedScore() as $A) { ?>
                         <option value="alternative_<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?></option>
                     <?php }?>
                     </select>

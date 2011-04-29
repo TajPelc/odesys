@@ -12,7 +12,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div id="about">
         <ul class="comments small">
             <li>
-                <img src="http://graph.facebook.com/1362051067/picture?type=large" title="" alt="" />
+                <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=large');?>
                 <div>
                     <span class="author">Frenk Ten Sedmak Nahtigal says:</span>
                     <span class="timestamp">April 5th, 18:13</span>
