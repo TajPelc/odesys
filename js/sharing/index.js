@@ -102,4 +102,11 @@ $(document).ready(function() {
 
     //on load put focus in textarea
     $('#content form textarea').select();
+
+    //remove error on keypress
+    $('#content form textarea').keypress(function(){
+        if ($(this).siblings('.error').length > 0){
+            $(this).siblings('.error').remove();
+        }
+    });
 });

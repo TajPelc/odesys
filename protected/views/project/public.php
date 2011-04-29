@@ -1,4 +1,4 @@
-<?php $this->pageTitle='Buying a car'; ?>
+<?php $this->pageTitle=CHtml::encode($this->Decision->title); ?>
 <div id="heading">
     <h2><?php echo CHtml::encode($this->Decision->title); ?></h2>
 </div>

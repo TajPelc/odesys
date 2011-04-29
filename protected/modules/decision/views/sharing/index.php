@@ -7,13 +7,13 @@
 
 <div id="content">
     <h3>Publishing settings</h3>
-        <?php if(!empty($errors)) { ?>
-            <?php foreach($errors['description'] as $E) { ?>
-                <span class="error" style="color: red; font-size: 22px; display: block; margin-bottom:10px; text-decoration: blink;">! ACHTUNG !   <b style="font-weight: bold;"><?php echo strtoupper($E); ?></b>   ! ACHTUNG !</span>
-            <?php }?>
-        <?php }?>
     <form action="" method="post">
         <div>
+            <?php if(!empty($errors)) { ?>
+                <?php foreach($errors['description'] as $E) { ?>
+                    <div class="error"><p><?php echo $E; ?></p></div>
+                <?php }?>
+            <?php }?>
             <label class="author" for="comment_new">Present your decision to your friends in a few sentances:</label>
             <textarea name="description_new" id="comment_new" rows="5" cols="63"></textarea>
 
