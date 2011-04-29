@@ -20,7 +20,7 @@ Score.Config = {
     'rowHeight': 60,
     'bottomLegend': 25,
     'leftLegendOffset': 155,
-    'scoreOffset': 0,
+    'scoreOffset': 2,
     'tickWidth': 50,
 };
 
