@@ -248,11 +248,19 @@ class Decision extends CActiveRecord
         }
 
         // save published decision model to saved
-        $Published = $this->getPublishedDecisionModel();
-        if($Published instanceof DecisionModel)
+        $condition = new CDbCriteria();
+        $condition->condition = 'rel_decision_id = :rel_decision_id AND status = :status AND model_id != :model_id';
+        $condition->params  = array(
+            'rel_decision_id' => $this->getPrimaryKey(),
+        	'status' => DecisionModel::PUBLISHED,
+        	'model_id' => $Active->getPrimaryKey(),
+        );
+
+        // archive old published
+        foreach(DecisionModel::model()->findAll($condition) as $M)
         {
-            $Published->status = DecisionModel::SAVED;
-            $Published->save();
+            $M->status = DecisionModel::ARCHIVED;
+            $M->save();
         }
     }
 }

@@ -32,16 +32,16 @@ class DecisionModel extends CActiveRecord
     const ACTIVE = 0;
 
     /**
-     * Saved decision model
-     * @var integer
-     */
-    const SAVED = 1;
-
-    /**
      * Published decision model
      * @var integer
      */
-    const PUBLISHED = 2;
+    const PUBLISHED = 1;
+
+    /**
+     * Archived decision model
+     * @var integer
+     */
+    const ARCHIVED = 2;
 
 	/**
 	 * Returns the static model of the specified AR class.
