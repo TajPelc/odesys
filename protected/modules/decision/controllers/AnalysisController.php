@@ -54,11 +54,7 @@ class AnalysisController extends DecisionController
         $eval = $this->DecisionModel->getEvaluationArray();
 
         // find the best two alternatives by weighted score
-        $criteria = new CDbCriteria();
-        $criteria->addCondition('rel_model_id=:rel_model_id');
-        $criteria->order = 'weightedScore DESC';
-        $criteria->params = array('rel_model_id' => $this->DecisionModel->model_id);
-        $bestAlternatives = Alternative::model()->findAll($criteria);
+        $bestAlternatives = $this->DecisionModel->findByWeightedScore();
 
         // get first and second alternative
         $firstAlternative = current($bestAlternatives);
