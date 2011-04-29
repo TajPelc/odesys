@@ -50,4 +50,12 @@ $(document).ready(function(){
         Public.Comment(serializeValue);
         return false;
     });
+
+    //replace button for anchor
+    $('.comments form input[type=submit]').hide();
+    $('.comments form fieldset').append('<a href="#" class="button">'+$('.comments form input[type=submit]').attr('value')+'<span>&nbsp;</span></a>');
+    $('.comments form .button').click(function(){
+        $('.comments form').triggerHandler('submit');
+        return false;
+    });
 });

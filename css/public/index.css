@@ -114,6 +114,12 @@
             background-position: -1201px -50px;
         }
 
+        .comments li.new form,
+        .comments li.new form fieldset {
+            width: 100%;
+            float: left;
+        }
+
         .comments li.new textarea {
             width: 507px !important; /*541px*/
             max-height: 700px !important;
@@ -128,8 +134,11 @@
             -webkit-border-radius: 4px;
         }
 
-        .comments li.new input {
+        .comments li.new input,
+        .comments li.new .button {
             float: right;
+            position: relative;
+            right: 4px;
         }
 
         .comments li.new .last {
@@ -201,11 +210,30 @@
             }
 
 #comments_more {
-    margin-right: 8px;
+    margin-right: 9px;
     float: right;
 }
 
+.button {
+    height: 23px;
+    line-height: 23px;
+    padding: 0 5px 0 8px;
+    display: block;
+    position: relative;
+    color: #717c90;
+    background: url(../../images/form/sprite_buttons.png) -300px -400px no-repeat;
+    text-decoration: none;
+}
 
+    .button span {
+        width: 3px;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -3px;
+        background: url(../../images/form/sprite_buttons.png) -656px -400px no-repeat;
+    }
 
 
 /* Sidebar

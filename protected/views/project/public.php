@@ -79,7 +79,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 </div>
             </li>
         </ul>
-        <a href="#" id="comments_more">Show more opinions</a>
+        <a href="#" id="comments_more" class="button">Show more opinions<span>&nbsp;</span></a>
     </div>
 </div>
 <div id="sidebar">
