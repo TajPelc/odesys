@@ -2,7 +2,7 @@
 
 <div id="heading">
     <h2>What factors influence your decision the most?</h2>
-    <a id="helpButton" href="#"<?php if(User::current()->getConfig('help')) { echo ' class="config"'; }?>>Help</a>
+    <a id="helpButton" href="#">Help</a>
     <h3><?php echo CHtml::encode($this->Decision->title);?></h3>
     <div id="help" style="display: none;">
         <h3>Need some help?</h3>

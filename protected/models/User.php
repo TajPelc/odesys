@@ -21,7 +21,6 @@ class User extends CActiveRecord
      */
     private $_config = array(
         'lang' => 'en-GB',
-        'help' => true,
     );
 
     /**
