@@ -414,4 +414,12 @@ class DecisionModel extends CActiveRecord
         $this->analysis_complete = 0;
         $this->save();
     }
+
+    /**
+     * Get preferred alternative
+     */
+    public function getPreferredAlternative()
+    {
+        return Alternative::model()->findByPk($this->preferred_alternative);
+    }
 }

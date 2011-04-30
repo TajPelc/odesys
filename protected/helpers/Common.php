@@ -34,6 +34,24 @@ class Common
     }
 
     /**
+     * Implode an array of objects by a field
+     *
+     * @param array $Objects
+     * @param string $length
+     * @param string $glue
+     */
+    public static function implodeArrayOfObjects(array $Objects, $field, $glue = ', ')
+    {
+        $rv = array();
+        foreach($Objects as $O)
+        {
+            $rv[] = CHtml::encode($O->{$field});
+        }
+
+        return implode($glue, $rv);
+    }
+
+    /**
      * Generates a random string
      *
      * @param $length

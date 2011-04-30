@@ -106,6 +106,26 @@ class Alternative extends DecisionElement
 			'criteria'=>$criteria,
 		));
 	}
+    /**
+     * Before delete
+     *
+     * Update decision model's last edit date and delete all evaluation
+     */
+    public function beforeDelete()
+    {
+        if( parent::beforeDelete() )
+        {
+            // update prefered alternative
+            if($this->DecisionModel->preferred_alternative == $this->getPrimaryKey())
+            {
+                $this->DecisionModel->preferred_alternative = null;
+                $this->DecisionModel->save();
+            }
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * Reorder criteria

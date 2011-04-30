@@ -68,7 +68,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <span class="last">&nbsp;</span>
                 </div>
             </li>
-            <li>
+            <!-- li>
                 <img src="https://graph.facebook.com/1362051067/picture" title="" alt="" />
                 <div>
                     <span class="author">Frenk Ten Sedmak Nahtigal says:</span>
@@ -77,7 +77,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <br /><br />A se mi splača stegnt za petardo, al bo ena Mazdica u resnic več kot dovolj dobra?</p>
                     <span class="last">&nbsp;</span>
                 </div>
-            </li>
+            </li -->
         </ul>
         <a href="#" id="comments_more" class="button">Show more opinions<span>&nbsp;</span></a>
     </div>
@@ -123,11 +123,11 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
     <div class="help">
         <h4>Frenk Ten prefers</h4>
-        <p><b>Mazda MX-5 2.0 Revolution</b></p>
+        <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
         <h4>out of</h4>
-        <p>Honda S2000, Mazda MX-5, Fiat Barchetta, Golf MK II Cabrio, MG Roadster</p>
+        <p><?php echo Common::implodeArrayOfObjects($this->DecisionModel->alternatives, 'title'); ?></p>
         <h4>when considering</h4>
-        <p>Price, Acceleration, Looks, Top Speed, Fun factor, Running costs</p>
+        <p><?php echo Common::implodeArrayOfObjects($this->DecisionModel->criteria, 'title'); ?></p>
         <div class="last"></div>
     </div>
 </div>
