@@ -83,6 +83,19 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
 </div>
 <div id="sidebar">
+    <?php if($this->Decision->rel_user_id == Yii::app()->user->id) { ?>
+    <div class="help">
+        <h4>View the decision model:</h4>
+        <ul class="do">
+            <li><?php echo CHtml::link('Alternatives', array('/decision/alternatives', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
+            <li><?php echo CHtml::link('Criteria', array('/decision/criteria', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
+            <li><?php echo CHtml::link('Evaluation', array('/decision/evaluation', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
+            <li><?php echo CHtml::link('Analysis', array('/decision/analysis', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
+            <li><?php echo CHtml::link('Sharing', array('/decision/sharing', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
+        </ul>
+        <div class="last"></div>
+    </div>
+    <?php } ?>
     <div class="help">
         <h4>Share on:</h4>
         <ul id="sns">
