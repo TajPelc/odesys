@@ -15,14 +15,16 @@
                 <?php }?>
             <?php }?>
             <label class="author" for="comment_new">Present your decision to your friends in a few sentances:</label>
-            <textarea name="description_new" id="comment_new" rows="5" cols="63"></textarea>
+            <textarea name="description_new" id="comment_new" rows="5" cols="63"><?php echo $this->Decision->description; ?></textarea>
 
             <dl>
                 <dt><label class="alternative" for="preff_alt">Which alternative do you prefer?</label></dt>
                 <dd>
+                    </select>
                     <select name="preff_alt" id="preff_alt">
                     <?php foreach($this->DecisionModel->findByWeightedScore() as $A) { ?>
-                        <option value="alternative_<?php echo $A->alternative_id; ?>"><?php echo CHtml::encode($A->title); ?></option>
+                    <?php dump($A->getPrimaryKey());?>
+                        <option value="<?php echo $A->alternative_id; ?>"<?php echo ($A->getPrimaryKey() === $this->DecisionModel->preferred_alternative ? 'selected="selected"' : ''); ?>><?php echo CHtml::encode($A->title); ?></option>
                     <?php }?>
                     </select>
                     <a class="selectBox selectBox-dropdown" title="">
@@ -35,9 +37,9 @@
                 <dt><label>This decision may be viewed by</label></dt>
                 <dd>
                     <select name="privacy_decision">
-                    <option value="everyone">Everyone</option>
-                    <option value="friends_only">Friends only</option>
-                    <option value="only_me">Only me</option>
+                        <option value="<?php echo Decision::PRIVACY_EVERYONE; ?>"<?php if($this->Decision->view_privacy == Decision::PRIVACY_EVERYONE){ ?> selected="selected"<?php } ?>>Everyone</option>
+                        <option value="<?php echo Decision::PRIVACY_FRIENDS; ?>"<?php if($this->Decision->view_privacy == Decision::PRIVACY_FRIENDS){ ?> selected="selected"<?php } ?>>Friends only</option>
+                        <option value="<?php echo Decision::PRIVACY_ME; ?>"<?php if($this->Decision->view_privacy == Decision::PRIVACY_ME){ ?> selected="selected"<?php } ?>>Only me</option>
                     </select>
                     <a class="selectBox selectBox-dropdown" title="">
                     <span class="selectBox-label">------</span>
@@ -46,12 +48,12 @@
                 </dd>
             </dl>
             <dl class="l">
-                <dt><label>Comments and suggestions may be posted by</label></dt>
+                <dt><label>Opinions and suggestions may be posted by</label></dt>
                 <dd>
                     <select name="privacy_comments">
-                        <option value="everyone">Everyone</option>
-                        <option value="friends_only">Friends only</option>
-                        <option value="only_me">Only me</option>
+                        <option value="<?php echo Decision::PRIVACY_EVERYONE; ?>"<?php if($this->Decision->opinion_privacy == Decision::PRIVACY_EVERYONE){ ?> selected="selected"<?php } ?>>Everyone</option>
+                        <option value="<?php echo Decision::PRIVACY_FRIENDS; ?>"<?php if($this->Decision->opinion_privacy == Decision::PRIVACY_FRIENDS){ ?> selected="selected"<?php } ?>>Friends only</option>
+                        <option value="<?php echo Decision::PRIVACY_ME; ?>"<?php if($this->Decision->opinion_privacy == Decision::PRIVACY_ME){ ?> selected="selected"<?php } ?>>Only me</option>
                     </select>
                     <a class="selectBox selectBox-dropdown" title="">
                     <span class="selectBox-label">------</span>

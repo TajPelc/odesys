@@ -11,6 +11,8 @@
  * @property string $created
  * @property string $last_edit
  * @property string $description
+ * @property integer $view_privacy
+ * @property integer $opinion_privacy
  *
  * The followings are the available model relations:
  * @property User $relUser
@@ -19,6 +21,13 @@
  */
 class Decision extends CActiveRecord
 {
+    /**
+     * Privacy
+     */
+    const PRIVACY_EVERYONE = 0;
+    const PRIVACY_FRIENDS = 1;
+    const PRIVACY_ME = 2;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Decision
@@ -49,6 +58,8 @@ class Decision extends CActiveRecord
 
 			array('description', 'filter', 'filter' => 'trim'),
 			array('description', 'required'),
+
+			array('view_privacy, opinion_privacy', 'numerical', 'min' => 0, 'max' => 2),
 		);
 	}
 
@@ -210,6 +221,13 @@ class Decision extends CActiveRecord
             unset($newAlt->alternative_id);
             $newAlt->rel_model_id = $New->model_id;
             $newAlt->insert();
+
+            // set prefered alternative for the new decision model
+            if($Alt->getPrimaryKey() == $Active->preferred_alternative)
+            {
+                $New->preferred_alternative = $newAlt->getPrimaryKey();
+                $New->save();
+            }
 
             // save old id => new id
             $mapper['alternatives'][$Alt->alternative_id] = $newAlt->alternative_id;

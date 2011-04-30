@@ -7,7 +7,6 @@
  */
 class SharingController extends DecisionController
 {
-
     /**
      * Index page
      */
@@ -28,16 +27,21 @@ class SharingController extends DecisionController
         {
             $this->redirect(array('/decision/analysis', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
         }
-
         // post
         if($this->post('publish'))
         {
+            // set values
             $this->Decision->description = $this->post('description_new');
-            if($this->Decision->validate(array('description')))
+            $this->Decision->view_privacy = $this->post('privacy_decision');
+            $this->Decision->opinion_privacy = $this->post('privacy_comments');
+            $this->DecisionModel->preferred_alternative = $this->post('preff_alt');
+
+            // validate description
+            if($this->Decision->validate(array('description', 'view_privacy', 'opinion_privacy')))
             {
+                $this->DecisionModel->save();
                 $this->Decision->save(false);
                 $this->Decision->publishDecisionModel();
-
 
                 // @TODO: Fix the URL problem
                 $this->redirect('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html');

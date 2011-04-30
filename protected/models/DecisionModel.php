@@ -17,6 +17,7 @@
  * @property integer $no_criteria
  * @property integer $no_evaluation
  * @property string $description
+ * @property integer $preferred_alternative
  *
  * The followings are the available model relations:
  * @property Alternative[] $alternatives
@@ -57,7 +58,7 @@ class DecisionModel extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'model';
+		return 'decision_model';
 	}
 
 	/**
