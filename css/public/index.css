@@ -275,6 +275,19 @@
         background: #f7f7f8;
     }
 
+#sidebar .help .dm {
+    padding-left: 20px;
+    list-style: disc outside;
+}
+
+    #sidebar .help .dm li {
+        margin-bottom: 8px;
+    }
+
+    #sidebar .help .dm li:last-child {
+        margin-bottom: 0;
+    }
+
 /*sns*/
 #sidebar #sns {
     height: 16px;
