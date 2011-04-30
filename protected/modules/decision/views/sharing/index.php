@@ -22,9 +22,9 @@
                 <dd>
                     </select>
                     <select name="preff_alt" id="preff_alt">
+                    <?php $i = 0; ?>
                     <?php foreach($this->DecisionModel->findByWeightedScore() as $A) { ?>
-                    <?php dump($A->getPrimaryKey());?>
-                        <option value="<?php echo $A->alternative_id; ?>"<?php echo ($A->getPrimaryKey() === $this->DecisionModel->preferred_alternative ? 'selected="selected"' : ''); ?>><?php echo CHtml::encode($A->title); ?></option>
+                        <option value="<?php echo $A->alternative_id; ?>"<?php echo ($A->getPrimaryKey() === $this->DecisionModel->preferred_alternative || (!(bool)$this->DecisionModel->preferred_alternative && $i++ == 0) ? 'selected="selected"' : ''); ?>><?php echo CHtml::encode($A->title); ?></option>
                     <?php }?>
                     </select>
                     <a class="selectBox selectBox-dropdown" title="">
