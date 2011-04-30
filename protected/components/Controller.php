@@ -56,23 +56,38 @@ class Controller extends CController
     }
 
     /**
-     * Facebook checking before action
+     * Before action
+     *
+     * - refresh facebook session if needed
      *
      * @see CController::beforeAction()
      */
     function beforeAction($action) {
-        // is user is logged into our page but not facebook, redirect to FB in order to refresh session
+        // the user is logged into our page but facebook session has expired
         if(!Yii::app()->user->isGuest && is_null(Fb::singleton()->getSession()))
         {
-            $conact = $this->id . '/' . $this->getAction()->id;
-            if(!in_array($conact, array('login/logout', 'login/facebook')))
-            {
-                Yii::trace('Refresh facebook session for user '. Yii::app()->user->id);
-                $this->redirect($this->createUrl('/login/facebook') . '?returnTo=' . urlencode(Yii::app()->getRequest()->getRequestUri()));
-            }
+            // refresh session
+            $this->redirect(Fb::singleton()->getLoginStatusUrl());
         }
 
         return parent::beforeAction($action);
+    }
+
+    /**
+     * Before render
+     * - remove facebook session from $_GET
+     *
+     * @see CController::afterAction()
+     */
+    public function beforeRender($view)
+    {
+        // remove facebook session from url
+        if($this->get('session'))
+        {
+            $this->redirect(strstr(Yii::app()->request->getUrl(), '?', true));
+        }
+
+        return true;
     }
 
     /**
