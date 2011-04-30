@@ -16,7 +16,7 @@
                 </tr>
                 <?php foreach($Decisions as $D) { ?>
                 <tr>
-                    <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/analysis', 'decisionId' => $D->decision_id, 'label' => $D->label)); ?></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html'); ?></td>
                     <td><?php echo date('d.m.Y', strtotime($D->last_edit)); ?></td>
                     <td>0</td>
                     <td>1</td>
