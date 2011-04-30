@@ -86,7 +86,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <?php if($this->Decision->rel_user_id == Yii::app()->user->id) { ?>
     <div class="help">
         <h4>View the decision model:</h4>
-        <ul class="do">
+        <ul class="dm">
             <li><?php echo CHtml::link('Alternatives', array('/decision/alternatives', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
             <li><?php echo CHtml::link('Criteria', array('/decision/criteria', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
             <li><?php echo CHtml::link('Evaluation', array('/decision/evaluation', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
