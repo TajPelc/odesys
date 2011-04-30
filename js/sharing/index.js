@@ -29,9 +29,7 @@ Sharing.Dropdown = function(that)
                .attr('rel', $(this).attr('value')).html($(this).html()))
        );
 
-       if (index == 0){
-           Sharing.Dropdown.Fieldset.find('.selectBox-label').text($(this).text());
-       }
+       Sharing.Dropdown.Fieldset.find('.selectBox-label').text($(this).parent().find('option[selected=selected]').text());
     });
 
     //calculate and set dropdown's width as wide the widest list element
@@ -101,7 +99,7 @@ $(document).ready(function() {
     });
 
     //on load put focus in textarea
-    $('#content form textarea').select();
+    $('#content form textarea').focus();
 
     //remove error on keypress
     $('#content form textarea').keypress(function(){
