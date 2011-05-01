@@ -12,7 +12,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div id="about">
         <ul class="comments small">
             <li>
-                <?php echo CHtml::image(Fb::singleton()->getLargePicture($this->Decision->User->facebook_id));?>
+                <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=large');?>
                 <div>
                     <span class="author"><?php echo Fb::singleton()->getInfo($this->Decision->User->facebook_id, 'name'); ?> says:</span>
                     <span class="timestamp">April 5th, 18:13</span>
@@ -56,7 +56,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div id="opinions">
         <ul class="comments">
             <li class="new">
-                <img src="https://graph.facebook.com/1362051067/picture" title="" alt="" />
+                <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture?type=large');?>
                 <div>
                     <form method="post" action="">
                         <fieldset>
@@ -68,16 +68,17 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <span class="last">&nbsp;</span>
                 </div>
             </li>
-            <!-- li>
-                <img src="https://graph.facebook.com/1362051067/picture" title="" alt="" />
+            <?php foreach($this->Decision->opinions as $Opinion) { ?>
+            <li>
+                <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture?type=large'); ?>
                 <div>
-                    <span class="author">Frenk Ten Sedmak Nahtigal says:</span>
-                    <span class="timestamp">April 5th, 18:13</span>
-                    <p>U resnic u pičko zafukana odločitev. Pizda kurac drek, kako se zdej odločit? Hondica je res kr prikladna, ampak je cena pa stroški vzdrževanja mal previsoka.
-                    <br /><br />A se mi splača stegnt za petardo, al bo ena Mazdica u resnic več kot dovolj dobra?</p>
+                    <span class="author"><?php echo Fb::singleton()->getInfo($Opinion->User->facebook_id, 'name'); ?> says:</span>
+                    <span class="timestamp"><?php echo date('F jS, H:i'); ?></span>
+                    <p><?php echo nl2br(CHtml::encode($Opinion->opinion)); ?></p>
                     <span class="last">&nbsp;</span>
                 </div>
-            </li -->
+            </li>
+            <?php } ?>
         </ul>
         <a href="#" id="comments_more" class="button">Show more opinions<span>&nbsp;</span></a>
     </div>

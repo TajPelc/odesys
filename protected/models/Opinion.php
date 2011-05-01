@@ -11,14 +11,14 @@
  * @property string $created
  *
  * The followings are the available model relations:
- * @property User $relUser
- * @property Decision $relDecision
+ * @property User $User
+ * @property Decision $Decision
  */
-class Opinions extends CActiveRecord
+class Opinion extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return Opinions the static model class
+	 * @return Opinions
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +30,7 @@ class Opinions extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'opinions';
+		return 'opinion';
 	}
 
 	/**
@@ -38,14 +38,10 @@ class Opinions extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('opinion_id, rel_user_id, rel_decision_id, opinion, created', 'required'),
-			array('opinion_id, rel_user_id, rel_decision_id', 'length', 'max'=>20),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('opinion_id, rel_user_id, rel_decision_id, opinion, created', 'safe', 'on'=>'search'),
+            array('opinion', 'filter', 'filter' => 'trim'),
+            array('opinion', 'required'),
+			array('opinion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,11 +50,9 @@ class Opinions extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
-			'relUser' => array(self::BELONGS_TO, 'User', 'rel_user_id'),
-			'relDecision' => array(self::BELONGS_TO, 'Decision', 'rel_decision_id'),
+			'User' => array(self::BELONGS_TO, 'User', 'rel_user_id'),
+			'Decision' => array(self::BELONGS_TO, 'Decision', 'rel_decision_id'),
 		);
 	}
 
@@ -76,23 +70,31 @@ class Opinions extends CActiveRecord
 		);
 	}
 
+    /**
+     * Handle all the logic before save
+     */
+    public function beforeSave()
+    {
+        if( parent::beforeSave() )
+        {
+            // new record?
+            if($this->isNewRecord)
+            {
+                $this->created = date('Y-m-d H:i:s', time());
+            }
+            return true;
+        }
+        return false;
+    }
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('opinion_id',$this->opinion_id,true);
-		$criteria->compare('rel_user_id',$this->rel_user_id,true);
-		$criteria->compare('rel_decision_id',$this->rel_decision_id,true);
 		$criteria->compare('opinion',$this->opinion,true);
-		$criteria->compare('created',$this->created,true);
-
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria'=>$criteria,
 		));

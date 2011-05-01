@@ -13,6 +13,37 @@ class PublicAction extends Action
      */
     public function run()
     {
+        // load decision
+	    $this->getController()->Decision = Decision::model()->findByPk($this->get('decisionId'));
+
+	    // ajax
+	    if(Ajax::isAjax())
+        {
+            switch(true)
+            {
+                case isset($_POST['comment_new']):
+                {
+                    // create new opinion
+                    $Opinion = new Opinion();
+                    $Opinion->rel_user_id = Yii::app()->user->id;
+                    $Opinion->rel_decision_id = $this->getController()->Decision->getPrimaryKey();
+                    $Opinion->opinion = $this->post('comment_new');
+
+                    // save
+                    if(!$Opinion->save())
+                    {
+                        // oops, errors
+                        Ajax::respondError($Opinion->getErrors());
+                    }
+
+                    // all good
+                    Ajax::respondOk(array(
+                    	'opinion' => '<li><img src="https://graph.facebook.com/1362051067/picture" title="" alt="" /><div><span class="author">FAKE AJAX RESPONSE says:</span><span class="timestamp">April 5th, 18:13</span><p>I am so fake, trololo. Partial needed hier.</p><span class="last">&nbsp;</span></div></li>',
+                    ));
+                }
+            }
+        }
+
         //include script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/public/index.js');
@@ -23,8 +54,6 @@ class PublicAction extends Action
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
 
-        // load decision
-	    $this->getController()->Decision = Decision::model()->findByPk($this->get('decisionId'));
 
 	    // decision not found
 	    if(null == $this->getController()->Decision)

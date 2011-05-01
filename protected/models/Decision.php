@@ -71,7 +71,7 @@ class Decision extends CActiveRecord
 		return array(
 			'User' => array(self::BELONGS_TO, 'User', 'rel_user_id'),
 			'models' => array(self::HAS_MANY, 'DecisionModel', 'rel_decision_id'),
-			'opinions' => array(self::HAS_MANY, 'Opinions', 'rel_decision_id'),
+			'opinions' => array(self::HAS_MANY, 'Opinion', 'rel_decision_id'),
 		);
 	}
 

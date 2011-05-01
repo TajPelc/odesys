@@ -19,7 +19,6 @@ Public.Comment = function(that) {
             }
         }
     });
-
 }
 
 /*
@@ -33,6 +32,9 @@ $(document).ready(function(){
         dataType: 'json',
     });
 
+    // get comment form
+    Public.CommentForm = $('#opinions ul.comments form');
+
     // override values
     Score.Config['leftLegendOffset'] = 157;
     Score.Config['scoreOffset'] = 2;
@@ -41,21 +43,21 @@ $(document).ready(function(){
     Score.init();
 
     //ajax post
-    $('.comments form').submit(function(){
-        //trim input values
-        var trimValue = $.trim($(this).find('textarea').val());
-        //serialize input valus
-        var serializeValue = $(this).serialize().split('=')[0]+'='+trimValue;
+    Public.CommentForm.submit(function(){
+        // trim
+        var textArea = $(this).find('textarea');
+        textArea.val($.trim(textArea.val()));
+
         //post
-        Public.Comment(serializeValue);
+        Public.Comment($(this).serialize());
         return false;
     });
 
     //replace button for anchor
-    $('.comments form input[type=submit]').hide();
-    $('.comments form fieldset').append('<a href="#" class="button">'+$('.comments form input[type=submit]').attr('value')+'<span>&nbsp;</span></a>');
-    $('.comments form .button').click(function(){
-        $('.comments form').triggerHandler('submit');
+    Public.CommentForm.find('input[type=submit]').hide();
+    Public.CommentForm.find('fieldset').append('<a href="#" class="button">'+Public.CommentForm.find('input[type=submit]').attr('value')+'<span>&nbsp;</span></a>');
+    Public.CommentForm.find('.button').click(function(){
+        Public.CommentForm.triggerHandler('submit');
         return false;
     });
 });
