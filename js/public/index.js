@@ -5,14 +5,14 @@
 
 Public = {};
 
-Public.Comment = function(that) {
+Public.Comment = function(commentForm) {
     $.ajax({
-        data: that,
+        data: commentForm,
         success: function(data) {
             //add new field
             if(data['status'] == true){
                 //here be returned shite
-
+                $('#opinions ul.comments li.new').after(data['opinion']);
                 //errors
             } else {
 
