@@ -1,14 +1,16 @@
 <?php
 // import the facebook API library
 Yii::import('application.vendors.facebook.src.*');
+Yii::import('application.vendors.facebookLibrary.*');
 require_once('facebook.php');
+require_once('facebookLib.php');
 
 /**
- * Facebook wrapper class
+ * Facebook library wrapper that supports Yii login
  *
  * @author Taj
  */
-class Fb extends Facebook
+class Fb extends facebookLib
 {
     /**
      * Instance
@@ -21,12 +23,6 @@ class Fb extends Facebook
      * User identity
      */
     private $_identity;
-
-    /**
-     * The basic user data
-     * @var array
-     */
-    public $user;
 
     /**
      * Initialize the FB model
@@ -43,6 +39,8 @@ class Fb extends Facebook
 
     /**
      * Facebook class is a singleton
+     *
+     * @return Fb
      */
     public static function singleton()
     {
@@ -117,6 +115,29 @@ class Fb extends Facebook
 		{
 			return false;
 		}
+	}
+
+	/**
+	 * Get large picture
+	 *
+	 * @param integer $id
+	 */
+	public function getLargePicture($id=null)
+	{
+		return $this->callApi('picture', $id, true, false, array('type' => 'large'));
+	}
+
+	/**
+	 * Get users information (based on the permission you have)
+	 *
+	 * @param mixed $param returns a specific parameter
+	 * @param string the member profile id, If null will get the current authenticated user
+	 * @return array List of information about the user
+	 */
+	public function getInfo($id=null, $param = false)
+	{
+	    $arr = parent::getInfo();
+		return ($param ? $arr[$param] : $arr);
 	}
 
     /**

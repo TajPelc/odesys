@@ -12,9 +12,9 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div id="about">
         <ul class="comments small">
             <li>
-                <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=large');?>
+                <?php echo CHtml::image(Fb::singleton()->getLargePicture($this->Decision->User->facebook_id));?>
                 <div>
-                    <span class="author">Frenk Ten Sedmak Nahtigal says:</span>
+                    <span class="author"><?php echo Fb::singleton()->getInfo($this->Decision->User->facebook_id, 'name'); ?> says:</span>
                     <span class="timestamp">April 5th, 18:13</span>
                     <p><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></p>
                     <span class="last">&nbsp;</span>
