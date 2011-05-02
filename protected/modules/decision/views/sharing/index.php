@@ -20,7 +20,6 @@
             <dl>
                 <dt><label class="alternative" for="preff_alt">Which alternative do you prefer?</label></dt>
                 <dd>
-                    </select>
                     <select name="preff_alt" id="preff_alt">
                     <?php $i = 0; ?>
                     <?php foreach($this->DecisionModel->findByWeightedScore() as $A) { ?>
@@ -64,7 +63,7 @@
             <div class="last"></div>
         </div>
         <ul id="content-nav">
-            <li class="prev"><?php echo CHtml::link('Previous', array('/decision/analysis', 'decisionId' => $this->Decision->decision_id, 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)); ?></li>
+            <li class="prev"><?php echo CHtml::link('Previous<span class="doors">&nbsp;</span>', array('/decision/analysis', 'decisionId' => $this->Decision->decision_id, 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)); ?></li>
             <li class="next"><input class="button" type="submit" name="publish" value="Publish" /></li>
         </ul>
     </form>

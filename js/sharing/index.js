@@ -107,4 +107,14 @@ $(document).ready(function() {
             $(this).siblings('.error').remove();
         }
     });
+
+    //replace button for anchor
+    Sharing.SharingForm = $('#content form');
+    Sharing.SharingForm.attr('action', location.href);
+    Sharing.SharingForm.find('#content-nav input[type=submit]').hide();
+    Sharing.SharingForm.find('.next').append('<a href="#">'+Sharing.SharingForm.find('#content-nav input[type=submit]').attr('value')+'<span class="doors">&nbsp;</span></a>');
+    Sharing.SharingForm.find('.next a').click(function(){
+        Sharing.SharingForm.find('#content-nav input[type=submit]').trigger('click');
+        return false;
+    });
 });
