@@ -13,6 +13,7 @@ Public.Comment = function(commentForm) {
             if(data['status'] == true){
                 //here be returned shite
                 $('#opinions ul.comments li.new').after(data['opinion']);
+                Public.CommentForm.find('textarea').val('');
                 //errors
             } else {
 

@@ -55,11 +55,9 @@ class UserIdentity extends CUserIdentity
             }
             else
             {
-                $userData = Fb::singleton()->api('/me');
-
-                $this->_id= $userFromFb->user_id;
+                $this->_id = $userFromFb->user_id;
                 $this->username = 'FB User';
-                $this->setState('data', $userData);
+                $this->setState('data', $userFromFb->getAttributes());
                 $this->setState('facebook_id',   $userFromFb->facebook_id);
                 $this->setState('type', User::TYPE_FACEBOOK);
                 $this->errorCode = self::ERROR_NONE;

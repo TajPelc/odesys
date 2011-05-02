@@ -75,12 +75,24 @@ class Fb extends facebookLib
             {
                 Yii::trace('Creating a new user for UID ' . $uid);
 
-                $User = new User();
-                $User->facebook_id = $uid;
-                $User->status = User::STATUS_ACTIVE;
-                $User->created = date('Y-m-d H:i:s');
-                $User->lastvisit = date('Y-m-d H:i:s');
+                // get user data from facebook
+                $data = Fb::singleton()->api('/me');
 
+                // populate new user data
+                $User = new User();
+                $User->setAttributes(array(
+                    'facebook_id' => $uid,
+                    'link' => $data['link'],
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                    'name' => $data['name'],
+                    'gender' => $data['gender'],
+                    'created' => date('Y-m-d H:i:s'),
+                    'status' => User::STATUS_ACTIVE,
+                    'lastvisit' => date('Y-m-d H:i:s'),
+                ), false);
+
+                // update config and save user
                 if($User->updateConfig())
                 {
                     Yii::log('User sucessfully created. UID: ' . $uid, 'error');
@@ -93,7 +105,7 @@ class Fb extends facebookLib
                 Yii::trace('User with UID: ' . $uid . ' found!');
             }
         }
-        catch (FacebookApiException $e)
+        catch (Exception $e)
         {
             Yii::log('FB connect failed: ' . $e, 'error');
         }

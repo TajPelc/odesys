@@ -14,7 +14,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <li>
                 <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=large');?>
                 <div>
-                    <span class="author"><?php echo Fb::singleton()->getInfo($this->Decision->User->facebook_id, 'name'); ?> says:</span>
+                    <span class="author"><?php echo CHtml::encode($this->Decision->User->name); ?> says:</span>
                     <span class="timestamp">April 5th, 18:13</span>
                     <p><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></p>
                     <span class="last">&nbsp;</span>
@@ -56,7 +56,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div id="opinions">
         <ul class="comments">
             <li class="new">
-                <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture?type=large');?>
+                <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?>
                 <div>
                     <form method="post" action="">
                         <fieldset>
@@ -68,16 +68,8 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <span class="last">&nbsp;</span>
                 </div>
             </li>
-            <?php foreach($this->Decision->opinions as $Opinion) { ?>
-            <li>
-                <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture?type=large'); ?>
-                <div>
-                    <span class="author"><?php echo Fb::singleton()->getInfo($Opinion->User->facebook_id, 'name'); ?> says:</span>
-                    <span class="timestamp"><?php echo date('F jS, H:i'); ?></span>
-                    <p><?php echo nl2br(CHtml::encode($Opinion->opinion)); ?></p>
-                    <span class="last">&nbsp;</span>
-                </div>
-            </li>
+            <?php foreach($this->Decision->getAllOpinions() as $Opinion) { ?>
+                <?php $this->renderPartial('_opinion', array('Opinion' => $Opinion))?>
             <?php } ?>
         </ul>
         <a href="#" id="comments_more" class="button">Show more opinions<span>&nbsp;</span></a>

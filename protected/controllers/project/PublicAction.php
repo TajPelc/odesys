@@ -38,8 +38,8 @@ class PublicAction extends Action
 
                     // all good
                     Ajax::respondOk(array(
-                    	'opinion' => '<li><img src="https://graph.facebook.com/1362051067/picture" title="" alt="" /><div><span class="author">FAKE AJAX RESPONSE says:</span><span class="timestamp">April 5th, 18:13</span><p>I am so fake, trololo. Partial needed hier.</p><span class="last">&nbsp;</span></div></li>',
-                    ));
+                    	'opinion' => $this->renderPartial('_opinion', array('Opinion' => $Opinion), true),
+                	));
                 }
             }
         }

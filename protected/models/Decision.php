@@ -281,4 +281,17 @@ class Decision extends CActiveRecord
             $M->save();
         }
     }
+
+    /**
+     * Publish the current active decision model and create a new active decision model
+     */
+    public function getAllOpinions()
+    {
+        $Criteria = new CDbCriteria();
+        $Criteria->condition = 'rel_decision_id=:rel_decision_id';
+        $Criteria->order = 'created DESC';
+        $Criteria->params = array('rel_decision_id' => $this->decision_id);
+
+        return Opinion::model()->findAll($Criteria);
+    }
 }
