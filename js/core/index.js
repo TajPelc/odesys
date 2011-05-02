@@ -307,7 +307,7 @@ Core.ContentNav.toggle = function(nextStep, menu) {
         if(element.is('span'))
         {
             element.animate({color: 'white'}, 250, 'linear', function(){
-                var a = $('<a></a>').attr('href', menu[nextStep]).text(element.text());
+                var a = $('<a></a>').attr('href', menu[nextStep]).text(element.text()).append('<span class="doors">&nbsp;</span>');
                 element.remove();
                 li.append(a);
                 li.removeClass('disabled');
@@ -319,7 +319,7 @@ Core.ContentNav.toggle = function(nextStep, menu) {
         if(element.is('a'))
         {
             element.animate({color: '#444a56'}, 250, 'linear', function(){
-                var span = $('<span></span>').text(element.text());
+                var span = $('<span></span>').text(element.text()).append('<span class="doors">&nbsp;</span>');
                 element.remove();
                 li.append(span);
                 li.addClass('disabled');
