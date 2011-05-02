@@ -300,14 +300,13 @@ Core.ProjectMenu.initMenu = function()
 Core.ContentNav = {};
 Core.ContentNav.toggle = function(nextStep, menu) {
     var li = $('#content-nav li.next');
-    var element = li.find('a, span');
-
+    var element = li.find('a, span:not(.doors)');
     if(menu[nextStep])
     {
         if(element.is('span'))
         {
             element.animate({color: 'white'}, 250, 'linear', function(){
-                var a = $('<a></a>').attr('href', menu[nextStep]).text(element.text()).append('<span class="doors">&nbsp;</span>');
+                var a = $('<a></a>').attr('href', menu[nextStep]).html(element.html());
                 element.remove();
                 li.append(a);
                 li.removeClass('disabled');
@@ -319,7 +318,7 @@ Core.ContentNav.toggle = function(nextStep, menu) {
         if(element.is('a'))
         {
             element.animate({color: '#444a56'}, 250, 'linear', function(){
-                var span = $('<span></span>').text(element.text()).append('<span class="doors">&nbsp;</span>');
+                var span = $('<span></span>').html(element.html());
                 element.remove();
                 li.append(span);
                 li.addClass('disabled');
