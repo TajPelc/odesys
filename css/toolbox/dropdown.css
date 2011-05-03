@@ -58,6 +58,10 @@ form > div .selectBox-dropdown-menu {
     cursor: pointer;
 }
 
+.selectBox-dropdown:hover {
+    text-decoration: none;
+}
+
 span.selectBox-dropdown {
     width: 234px;
     cursor: default;
