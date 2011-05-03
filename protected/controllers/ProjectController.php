@@ -19,6 +19,11 @@ class ProjectController extends Controller
     public $DecisionModel;
 
     /**
+     * Owner
+     */
+    public $Owner;
+
+    /**
      * @return array action filters
      */
     public function filters()

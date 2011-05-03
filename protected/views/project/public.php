@@ -48,19 +48,21 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <h2>Opinions and comments</h2>
     <div id="opinions">
         <ul class="comments">
-            <li class="new">
-                <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?>
-                <div>
-                    <form method="post" action="">
-                        <fieldset>
-                            <label class="author" for="comment_new">Share your opinion:</label>
-                            <textarea name="comment_new" id="comment_new" rows="5" cols="63"></textarea>
-                            <input type="submit" name="comment_save" value="Share" />
-                        </fieldset>
-                    </form>
-                    <span class="last">&nbsp;</span>
-                </div>
-            </li>
+            <?php if($enableComments) { ?>
+                <li class="new">
+                    <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?>
+                    <div>
+                        <form method="post" action="">
+                            <fieldset>
+                                <label class="author" for="comment_new">Share your opinion:</label>
+                                <textarea name="comment_new" id="comment_new" rows="5" cols="63"></textarea>
+                                <input type="submit" name="comment_save" value="Share" />
+                            </fieldset>
+                        </form>
+                        <span class="last">&nbsp;</span>
+                    </div>
+                </li>
+            <?php }?>
             <?php foreach($this->Decision->getAllOpinions() as $Opinion) { ?>
                 <?php $this->renderPartial('_opinion', array('Opinion' => $Opinion))?>
             <?php } ?>

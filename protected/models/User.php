@@ -17,6 +17,12 @@ class User extends CActiveRecord
     const TYPE_FACEBOOK = 40;
 
     /**
+     * Facebook friends
+     * @var array
+     */
+    private $_friends = null;
+
+    /**
      * User config
      */
     private $_config = array(
@@ -164,6 +170,39 @@ class User extends CActiveRecord
         if( $this->save(false) )
         {
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * Retrieves and returns user's facebook friends
+     */
+    public function getFriends()
+    {
+        // friends already loaded
+        if(!is_null($this->_friends))
+        {
+            return $this->_friends;
+        }
+
+        // get friends
+        $data = Fb::singleton()->getFriends($this->facebook_id);
+        $this->_friends = $data['data'];
+
+        return $this->_friends;
+    }
+
+    /**
+     * Check if a given user is friends with this user
+     */
+    public function isFriend($facebookId)
+    {
+        foreach($this->getFriends() as $Friend)
+        {
+            if($Friend['id'] == $facebookId)
+            {
+                return true;
+            }
         }
         return false;
     }
