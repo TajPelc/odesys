@@ -502,6 +502,10 @@ a:hover {
                     #footer ul li #footer_twitter { background-position: 0 -50px }
                     #footer ul li #footer_email   { background-position: 0 -100px }
 
+                    #footer ul li #footer_facebook:hover { background-position: -300px 0 }
+                    #footer ul li #footer_twitter:hover  { background-position: -300px -50px }
+                    #footer ul li #footer_email:hover    { background-position: -300px -100px }
+
                     #footer ul li #footer_facebook span,
                     #footer ul li #footer_twitter span,
                     #footer ul li #footer_email span {
