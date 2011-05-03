@@ -95,7 +95,7 @@ class PublicAction extends Action
                 'Alternatives'	           => $this->getController()->DecisionModel->alternatives,
                 'first'                    => $firstAlternative,
                 'second'                   => $secondAlternative,
-                'difference'               => number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore)) * 100, 2),
+                'difference'               => ($firstAlternative->weightedScore > 0 ? (number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore )) * 100, 2)) : 0),
                 'enableComments'           => !Yii::app()->user->isGuest,
             );
 	    }

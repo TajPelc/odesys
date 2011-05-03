@@ -15,8 +15,8 @@
             </li>
             <li>
                 <dl>
-                    <dt>Examples</dt>
-                    <dd>When buying a car, it may be judged by it's Speed, Performance, Price, Safety, Running costs and so on.</dd>
+                    <dt>Random Examples</dt>
+                    <dd>Speed, Length, Looks, Location, Performance, Price, Education, Safety, Running costs</dd>
                 </dl>
             </li>
             <li>
@@ -51,7 +51,8 @@
 <div id="sidebar" class="help">
     <h4>What are criteria?</h4>
     <p>Criteria are factors that influence your decision.</p>
-    <p>When buying a car, one may choose Speed, Performance, Price, Safety, Running costs and so on as the criteria.</p>
+    <p>When buying a car, one may choose Speed, Performance, Price, Safety and so on as the criteria.</p>
+    <p>You may order criteria by priority (descending).</p>
     <p class="l">In the next step, each alternative is going to be evaluated by each criteria.</p>
     <div class="last"></div>
 </div>

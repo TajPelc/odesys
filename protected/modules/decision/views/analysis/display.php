@@ -18,7 +18,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             </li>
             <li>
                 <dl>
-                    <dt>But which one is best?</dt>
+                    <dt>Which one do I choose?</dt>
                     <dd>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</dd>
                 </dl>
             </li>
@@ -38,7 +38,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <h3>Results</h3>
         <p>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the winning alternative.</p>
         <div class="sidebar help">
-            <h4>But which one is best?</h4>
+            <h4>Which one do I choose?</h4>
             <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</p>
             <h4>Changed your mind?</h4>
             <p class="l">You may return to modify criteria, alternatives or evaluation at any time.</p>

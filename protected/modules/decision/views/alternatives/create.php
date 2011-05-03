@@ -15,8 +15,8 @@
             </li>
             <li>
                 <dl>
-                    <dt>Examples</dt>
-                    <dd>When choosing a career path one might create such a list of alternatives: Dentist, Physicist, Web application developer.</dd>
+                    <dt>Random Examples</dt>
+                    <dd>Family car, Apartment in the city, Dentist, Physicist, Web application developer, Ice cream</dd>
                 </dl>
             </li>
         </ul>
@@ -44,6 +44,7 @@
 </div>
 <div id="sidebar" class="help">
     <h4>What are alternatives?</h4>
-    <p class="l">Alternatives are your options: one of a number of things from which only one can be chosen.</p>
+    <p>Alternatives are the subject of your decision. An alternative is one of a number of things from which usually only one can be chosen.</p>
+    <p class="l">When choosing a career path one might create such a list of alternatives: Dentist, Physicist, Web application developer.</p>
     <div class="last"></div>
 </div>

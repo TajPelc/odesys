@@ -83,14 +83,17 @@ Score.init = function(){
  */
 Score.DrawAlternative = function(i)
 {
-    // avoid division by zero
+    // the best scored alternative has value 0, everyone is zero
     if(Score.Scores[0]['weightedTotal'] == 0)
     {
-        Score.Scores[0]['weightedTotal'] = 1;
+        // set the same width
+        width = 500;
     }
-
-    // calculate width
-    width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
+    else
+    {
+        // calculate width
+        width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
+    }
 
     // calculate x postion
     var x = Score.Config['leftLegendOffset'] + Score.Config['scoreOffset'];
