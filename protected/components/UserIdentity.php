@@ -57,9 +57,9 @@ class UserIdentity extends CUserIdentity
             {
                 $this->_id = $userFromFb->user_id;
                 $this->username = 'FB User';
-                $this->setState('data', $userFromFb->getAttributes());
                 $this->setState('facebook_id',   $userFromFb->facebook_id);
                 $this->setState('type', User::TYPE_FACEBOOK);
+                $this->setState('data', $userFromFb->getAttributes());
                 $this->errorCode = self::ERROR_NONE;
             }
         }
