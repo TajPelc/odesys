@@ -105,7 +105,6 @@ a:hover {
 
     #header #login {
         padding: 6px 20px 0 0;
-        height: 64px;
         float: right;
         color: #fff;
     }
@@ -128,7 +127,7 @@ a:hover {
             width: 37px;
             height: 38px;
             padding: 0;
-            margin: 0 0 8px 16px;
+            margin: 0 0 0 16px;
             float: right;
             background: url(../../images/bg/user_img.png) no-repeat;
         }
@@ -178,7 +177,7 @@ a:hover {
 ********************************************************/
 #content h1 {
     margin-bottom: 16px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }
 
