@@ -38,8 +38,8 @@
 
     #about > dl {
         width: 568px; /*594px;*/
-        min-height: 36px; /*60px*/
-        padding: 0 9px 24px 16px;
+        min-height: 27px; /*60px*/
+        padding: 0 9px 32px 16px;
         float: left;
         position: relative;
         border-left: 1px solid #c7cacf;
