@@ -69,9 +69,9 @@
                 <dl>
                     <dt><?php echo CHtml::link('Contact', array('/site/contact')); ?></dt>
                     <dd>
-                        <a id="footer_facebook" href="https://www.facebook.com/odesys">ODESYS on Facebook</a>
-                        <a id="footer_twitter" href="https://twitter.com/#!/ODESYSinfo">Follow ODESYS on Twitter</a>
-                        <span id="footer_email">Email us!</span>
+                        <a id="footer_facebook" href="https://www.facebook.com/odesys">facebook<span>ODESYS</span></a>
+                        <a id="footer_twitter" href="https://twitter.com/#!/ODESYSinfo">twitter<span>@ODESYSinfo</span></a>
+                        <?php echo CHtml::link('email<span>info@odesys.info</span>', array('/site/contact'), array('id' => 'footer_email')); ?>
                     </dd>
                 </dl>
             </li>

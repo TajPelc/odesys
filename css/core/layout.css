@@ -18,11 +18,11 @@ body {
 }
 
 a {
-    text-decoration: underline;
+    text-decoration: none;
     color: #000;
 }
 a:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 /* CONTAINERS
@@ -448,7 +448,6 @@ a:hover {
                     margin-right: 20px;
                     float: left;
                     font-size: 24px;
-                    background: url(../../images/bg/footer_seperator.png) top right no-repeat;
                 }
 
                 #footer ul li dl dd {
@@ -472,7 +471,7 @@ a:hover {
                         margin-bottom: 0;
                     }
 
-                    #footer ul li dl dd span {
+                    #footer ul li dl dd > span {
                         font-size: 20px;
                         line-height: 20px;
                         margin-bottom: 16px;
@@ -487,20 +486,30 @@ a:hover {
                     #footer ul li #footer_facebook,
                     #footer ul li #footer_twitter,
                     #footer ul li #footer_email {
-                        width: 100%;
-                        height: 36px;
+                        height: 39px;
+                        line-height: 20px;
+                        padding-left: 49px;
                         margin-bottom: 16px;
                         display: block;
-                        text-indent: -9999px;
-                        background: url(../../images/sprite_sns.png) no-repeat;
+                        font-size: 17px;
+                        font-style: italic;
                         text-decoration: none;
+                        background: url(../../images/sprite_sns.png) no-repeat;
                     }
 
                     #footer ul li #footer_twitter { background-position: 0 -50px }
                     #footer ul li #footer_email   { background-position: 0 -100px }
 
+                    #footer ul li #footer_facebook span,
+                    #footer ul li #footer_twitter span,
+                    #footer ul li #footer_email span {
+                        display: block;
+                        font-size: 11px;
+                        color: #717c90;
+                    }
+
             #footer ul li a {
-                color: #eeeeee;
+                color: #fff;
             }
 
 /* DEBUG MODE
