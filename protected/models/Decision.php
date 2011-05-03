@@ -299,10 +299,22 @@ class Decision extends CActiveRecord
      * Check if the given user is the owner
      *
      * @param $userId
-     * @return bool
+     * @return boolean
      */
     public function isOwner($userId)
     {
         return ($this->rel_user_id == $userId);
+    }
+
+    /**
+     * Check if this decision is published
+     *
+     * (had a published decision model)
+
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return (bool) $this->getPublishedDecisionModel();
     }
 }

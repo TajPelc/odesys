@@ -28,7 +28,7 @@ class EvaluationController extends DecisionController
         // redirect to criteria create if evaluation conditions not set
         if(!$this->DecisionModel->checkEvaluateConditions())
         {
-            if(!$this->Decision->checkAlternativesComplete())
+            if(!$this->DecisionModel->checkAlternativesComplete())
             {
                 $this->redirect(array('/decision/alternatives', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label));
             }

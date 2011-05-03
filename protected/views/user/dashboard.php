@@ -1,5 +1,7 @@
 <div id="content">
-
+    <div id="heading">
+        <h2>View your decisions and edit settings</h2>
+    </div>
     <dl class="recentDecisions">
         <dt>My latest decisions</dt>
         <dd>
@@ -12,7 +14,11 @@
                 </tr>
                 <?php foreach($Decisions as $D) { ?>
                 <tr>
-                    <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html'); ?></td>
+                    <?php if($D->isPublished()) { ?>
+                        <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html'); ?></td>
+                    <?php } else { ?>
+                        <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/sharing', 'decisionId' => $D->decision_id, 'label' => $D->label)); ?></td>
+                    <?php }?>
                     <td><?php echo date('d.m.Y', strtotime($D->last_edit)); ?></td>
                     <td>0</td>
                     <td>1</td>
