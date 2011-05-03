@@ -181,13 +181,14 @@ a:hover {
 /* Content
 ********************************************************/
 #content h1 {
-    font-size: 24px;
     margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 #content h2 {
-    font-size: 18px;
     margin-bottom: 16px;
+    font-size: 18px;
 }
 
 #content p {

@@ -8,22 +8,8 @@ var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 <div id="content">
-    <h2>About the decision</h2>
-    <div id="about">
-        <ul class="comments small">
-            <li>
-                <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=large');?>
-                <div>
-                    <span class="author"><?php echo CHtml::encode($this->Decision->User->name); ?> says:</span>
-                    <span class="timestamp">April 5th, 18:13</span>
-                    <p><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></p>
-                    <span class="last">&nbsp;</span>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <h1><?php echo CHtml::encode($this->Decision->User->name); ?> is deciding on “<?php echo CHtml::encode($this->Decision->title); ?>”</h1>
 
-    <h2>Score for alternatives</h2>
     <div id="score">
         <table class="alternatives">
         <?php foreach($bestAlternatives as $A) { ?>
@@ -47,6 +33,15 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 <td>100</td>
             </tr>
         </table>
+    </div>
+    <a href="#" id="detailed_comparison" class="button">Open detailed comparison<span>&nbsp;</span></a>
+    <div id="about">
+        <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=square');?>
+
+        <dl>
+            <dt><?php echo CHtml::encode($this->Decision->User->name); ?><span class="timestamp">(April 5th, 18:13)</span></dt>
+            <dd><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></dd>
+        </dl>
     </div>
 
     <div id="abacon">
