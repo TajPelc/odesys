@@ -16,6 +16,16 @@
     background: url(../../images/bg/heading.png) no-repeat;
 }
 
+    #heading h1 {
+        width: 606px;
+        margin-bottom: 16px;
+        line-height: 37px;
+        float: left;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+}
+
     #heading h2 {
         width: 606px;
         line-height: 37px;

@@ -46,6 +46,10 @@ a:hover {
         background: url(../../images/bg/main.png) repeat-y;
     }
 
+    #main.nomenu {
+        margin-top: 37px; /* heading compensation*/
+    }
+
     #mainEnd {
         width: 965px;
         height: 14px;
@@ -175,12 +179,6 @@ a:hover {
 
 /* Content
 ********************************************************/
-#content h1 {
-    margin-bottom: 16px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
 #content h2 {
     margin-bottom: 16px;
     font-size: 18px;

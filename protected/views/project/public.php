@@ -1,12 +1,13 @@
 <?php $this->pageTitle=CHtml::encode($this->Decision->title); ?>
 <?php if($this->DecisionModel instanceof DecisionModel) { ?>
+<div id="heading">
+    <h1><?php echo CHtml::encode($this->Decision->User->name); ?> is deciding on “<?php echo CHtml::encode($this->Decision->title); ?>”</h1>
+</div>
 <script type="text/javascript">
 var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 <div id="content">
-    <h1><?php echo CHtml::encode($this->Decision->User->name); ?> is deciding on “<?php echo CHtml::encode($this->Decision->title); ?>”</h1>
-
     <div id="score">
         <table class="alternatives">
         <?php foreach($bestAlternatives as $A) { ?>
