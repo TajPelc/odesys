@@ -73,7 +73,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <div id="sidebar">
     <?php if($this->Decision->isOwner(Yii::app()->user->id)) { ?>
     <div class="help">
-        <h4>View the decision model:</h4>
+        <h4>Edit this decision:</h4>
         <ul class="dm">
             <li><?php echo CHtml::link('Alternatives', array('/decision/alternatives', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
             <li><?php echo CHtml::link('Criteria', array('/decision/criteria', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
@@ -86,7 +86,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <?php } ?>
     <div class="help">
         <h4>This decision is available to:</h4>
-        <p><b>Everyone</b></p>
+        <p><b><?php echo $this->Decision->getViewPrivacyLabel(); ?></b></p>
         <h4>Share on:</h4>
         <ul id="sns">
             <li><a id="share_facebook" href="#">Facebook</a></li>

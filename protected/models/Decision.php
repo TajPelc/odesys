@@ -76,6 +76,23 @@ class Decision extends CActiveRecord
 	}
 
 	/**
+	 * Return translations for view privacy constants
+	 *
+	 * @TODO Add translations!
+	 * @return string
+	 */
+	public function getViewPrivacyLabel()
+	{
+	    $labels = array(
+	        self::PRIVACY_EVERYONE => 'Everyone',
+	        self::PRIVACY_FRIENDS => CHtml::encode($this->User->first_name). '\'s friends',
+	        self::PRIVACY_ME => 'Only you',
+	    );
+
+	    return $labels[$this->view_privacy];
+	}
+
+	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
