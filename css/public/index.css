@@ -39,6 +39,7 @@
 
     #about > dl {
         width: 568px; /*594px;*/
+        min-height: 36px; /*60px*/
         padding: 0 9px 24px 16px;
         float: left;
         position: relative;
@@ -159,12 +160,12 @@
         }
 
         .comments li.new textarea {
-            width: 507px !important; /*541px*/
+            width: 515px !important; /*541px*/
             max-height: 700px !important;
-            height: 68px;
-            min-height: 68px !important;
-            padding: 8px 8px 8px 16px;
-            margin: 0 0 8px 0;
+            height: 48px;
+            min-height: 48px !important;
+            padding: 8px 8px 8px 8px;
+            margin: 0 0 4px 0;
             color: #838790;
             border: 1px solid #c7cacf;
             border-radius: 4px;
@@ -176,6 +177,7 @@
         .comments li.new .button {
             float: right;
             position: relative;
+            top: 4px;
             right: 4px;
         }
 
