@@ -351,7 +351,11 @@ $(document).ready(function(){
     ImagePreload([
              '/images/bg/ferlauf.png',
              '/images/bg/overlay.png',
-             '/images/logo.png'
+             '/images/logo.png',
+             '/images/form/button_end.png',
+             '/images/bg/overlay_bottom.png',
+             '/images/form/overlay_input.png',
+             '/images/form/sprite_buttons.png'
      ]);
 
     // init menu
