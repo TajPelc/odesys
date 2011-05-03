@@ -257,6 +257,10 @@
     text-decoration: none;
 }
 
+.button:hover {
+    text-decoration: none;
+}
+
     .button span {
         width: 3px;
         height: 100%;
