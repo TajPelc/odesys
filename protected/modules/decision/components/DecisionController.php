@@ -38,43 +38,25 @@ class DecisionController extends Controller
     );
 
     /**
-     * @return array action filters
-     */
-    public function filters()
-    {
-        return array(
-            'accessControl', // perform access control
-        );
-    }
-
-    /**
-     * Specifies the access control rules.
-     * This method is used by the 'accessControl' filter.
-     * @return array access control rules
-     */
-    public function accessRules()
-    {
-        return array(
-            array('allow',
-                'users'     => array('@'),
-            ),
-        );
-    }
-
-    /**
      * Initiliaze (non-PHPdoc)
      * @see CController::init()
      */
 	public function init()
 	{
+	    // only authenticated users may access these pages
+	    if(Yii::app()->user->isGuest)
+	    {
+	        $this->redirect('/');
+	    }
+
         // load decision
 	    $this->Decision = Decision::model()->findByPk($this->get('decisionId'));
 
 	    // load decision model
 	    $this->DecisionModel = $this->Decision->getActiveDecisionModel();
 
-	    // try to load
-	    if( null === $this->Decision )
+	    // if loading failed or user is not the owner => redirect to dashboard
+	    if( null === $this->Decision || !$this->Decision->isOwner(Yii::app()->user->id) )
         {
             $this->redirect('/user/dashboard');
         }

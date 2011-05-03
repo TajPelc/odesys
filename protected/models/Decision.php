@@ -294,4 +294,15 @@ class Decision extends CActiveRecord
 
         return Opinion::model()->findAll($Criteria);
     }
+
+    /**
+     * Check if the given user is the owner
+     *
+     * @param $userId
+     * @return bool
+     */
+    public function isOwner($userId)
+    {
+        return ($this->rel_user_id == $userId);
+    }
 }
