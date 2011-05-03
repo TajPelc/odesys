@@ -1,9 +1,6 @@
-<div id="heading">
-    <h2>About ODESYS</h2>
-</div>
-
 <div id="content">
     <?php $this->pageTitle='About ODESYS'; ?>
+    <h1>About Odesys</h1>
 
     <div id="like">
         <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fodesys&amp;layout=button_count&amp;show_faces=false&amp;width=110&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:110px; height:20px;" allowTransparency="true"></iframe>

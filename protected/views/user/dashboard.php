@@ -1,7 +1,3 @@
-<div id="heading">
-    <h2>Dashboard</h2>
-</div>
-
 <div id="content">
 
     <dl class="recentDecisions">
