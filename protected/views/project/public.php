@@ -98,7 +98,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <div class="last"></div>
     </div>
     <div class="help">
-        <h4>Frenk Ten's preference</h4>
+        <h4><?php echo CHtml::encode($this->Decision->User->first_name); ?>'s preference</h4>
         <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
         <h4>Highest scoring alternative</h4>
         <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?>%</b></p>
