@@ -82,6 +82,8 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
     <?php } ?>
     <div class="help">
+        <h4>This decision is available to:</h4>
+        <p><b>Everyone</b></p>
         <h4>Share on:</h4>
         <ul id="sns">
             <li><a id="share_facebook" href="#">Facebook</a></li>
@@ -93,26 +95,16 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <div class="last"></div>
     </div>
     <div class="help">
+        <h4>Frenk Ten's preference</h4>
+        <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
+        <h4>Highest scoring alternative</h4>
+        <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?>%</b></p>
         <h4>Decision overview:</h4>
         <ul class="do">
             <li><span>No. alternatives</span><em><?php echo $this->DecisionModel->no_alternatives; ?></em></li>
             <li><span>No. criteria</span><em><?php echo $this->DecisionModel->no_criteria; ?></em></li>
             <li><span>No. opinions</span><em><?php // echo $this->DecisionModel->no_opinions; ?>Meny</em></li>
         </ul>
-        <div class="last"></div>
-    </div>
-    <div class="help">
-        <h4>Best scored alternative:</h4>
-        <p class="l"><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?>%</b></p>
-        <div class="last"></div>
-    </div>
-    <div class="help">
-        <h4>Frenk Ten prefers</h4>
-        <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
-        <h4>out of</h4>
-        <p><?php echo Common::implodeArrayOfObjects($this->DecisionModel->alternatives, 'title'); ?></p>
-        <h4>when considering</h4>
-        <p><?php echo Common::implodeArrayOfObjects($this->DecisionModel->criteria, 'title'); ?></p>
         <div class="last"></div>
     </div>
 </div>

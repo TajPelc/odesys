@@ -275,8 +275,12 @@
     margin-top: 34px;
 }
 
+#sidebar .help p {
+    padding-left: 10px;
+}
+
 #sidebar .help .do {
-    width: 100%;
+    padding-left: 10px;
     position: relative;
     top: -4px;
 }
@@ -323,6 +327,7 @@
 /*sns*/
 #sidebar #sns {
     height: 16px;
+    padding-left: 10px;
 }
 
     #sidebar #sns li {
