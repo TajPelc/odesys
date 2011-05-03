@@ -425,6 +425,7 @@ a:hover {
             width: 331px;
             margin-right: 20px;
             float: left;
+            border-right: 1px solid #717c90;
         }
 
         #footer ul li:nth-child(2) {
@@ -444,7 +445,7 @@ a:hover {
 
                 #footer ul li dl dt {
                     height: 192px;
-                    padding: 8px 20px 0 0;
+                    padding: 8px 0 0 0;
                     margin-right: 20px;
                     float: left;
                     font-size: 24px;
@@ -465,6 +466,7 @@ a:hover {
 
                     #footer ul li dl dd p {
                         margin-bottom: 8px;
+                        color: #717c90;
                     }
 
                     #footer ul li dl dd p:last-child {
