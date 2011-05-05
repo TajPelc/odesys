@@ -1,11 +1,21 @@
 /* Public javascript
  * @author        Frenk T. Sedmak Nahtigal
- * @version       1.0
+ * @version       1.1
 */
 
 Public = {};
 
+Public.FormErrorReporting = function(that, text){
+    that.append('<div class="error"><p>'+text+'</p></div>');
+    $('#content form div.error').css({'top': -$('#content form div.error').height()+12});
+    that.find('textarea').focus();
+}
+
 Public.Comment = function(commentForm) {
+    //add blocker
+    Core.Block(Public.CommentForm.find('.textarea'), true);
+    Public.CommentForm.find('.button').unbind('click');
+    //ajax comment post
     $.ajax({
         data: commentForm,
         success: function(data) {
@@ -14,11 +24,18 @@ Public.Comment = function(commentForm) {
                 //here be returned shite
                 $('#opinions ul.comments li.new').after(data['opinion']);
                 Public.CommentForm.find('textarea').val('');
+                //unblock and bind button back
+                Core.Unblock(Public.CommentForm.find('.textarea'));
+                Public.CommentForm.find('.button').bind('click', eSubmit);
                 //count comments and show/hide "show more" button
                 Public.Comment.Count();
                 //errors
             } else {
-
+                //unblock and bind button back
+                Core.Unblock(Public.CommentForm.find('.textarea'));
+                Public.CommentForm.find('.button').bind('click', eSubmit);
+                //display error
+                Public.FormErrorReporting(Public.CommentForm.find('div.textarea'), data['errors']['opinion']);
             }
         }
     });
@@ -68,10 +85,14 @@ $(document).ready(function(){
         return false;
     });
 
+    Public.CommentForm.find('textarea').keypress(function(){
+        $(this).siblings('div.error').remove();
+    });
+
     //replace button for anchor
     Public.CommentForm.find('input[type=submit]').hide();
     Public.CommentForm.find('fieldset').append('<a href="#" class="button">'+Public.CommentForm.find('input[type=submit]').attr('value')+'<span>&nbsp;</span></a>');
-    Public.CommentForm.find('.button').click(function(){
+    Public.CommentForm.find('.button').bind('click', eSubmit = function(){
         Public.CommentForm.triggerHandler('submit');
         return false;
     });

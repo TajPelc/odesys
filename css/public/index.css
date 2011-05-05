@@ -159,6 +159,7 @@
         .comments li.new form fieldset {
             width: 100%;
             float: left;
+            position: relative;
         }
 
         .comments li.new .textarea {
@@ -241,6 +242,8 @@
             .comments li.new .author {
                 color: #fff;
                 cursor: pointer;
+                top: -22px;
+                left: 0;
             }
 
             .comments li .timestamp {
@@ -286,6 +289,33 @@
         right: -3px;
         background: url(../../images/form/sprite_buttons.png) -656px -400px no-repeat;
     }
+
+/*ERROR*/
+#content form div.error {
+    height: 39px;
+    line-height: 24px;
+    padding: 0 0 0 21px;
+    position: absolute;
+    left: -11px;
+    color: #790e0e;
+    background: url(../../images/form/sprite_error.png) 0 -39px no-repeat;
+    z-index: 10;
+}
+
+    #content form div.error p {
+        height: 39px;
+        padding-right: 26px;
+        line-height: 24px;
+        background: url(../../images/form/sprite_error.png) top right no-repeat;
+    }
+
+/*BLOCKER*/
+.block.rounded {
+    padding: 2px 0;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
 
 
 /* Sidebar
