@@ -453,7 +453,7 @@ a:hover {
 
                 #footer ul li dl dd {
                     width: 223px;
-                    padding-top: 8px;
+                    padding-top: 11px;
                     float: left;
                     text-align: left;
                     font-style: italic;
@@ -462,6 +462,7 @@ a:hover {
 
                 #footer ul li:nth-child(2) dl dd {
                     width: 132px;
+                    padding-top: 7px;
                 }
 
                     #footer ul li dl dd p {
