@@ -22,7 +22,7 @@
 ********************************************************/
 #about {
     width: 100%;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     float: left;
     position: relative;
 }
@@ -38,19 +38,22 @@
 
     #about > dl {
         width: 568px; /*594px;*/
-        min-height: 27px; /*60px*/
-        padding: 0 9px 32px 16px;
+        /*min-height: 27px; /*60px*/
+        padding: 0 9px 8px 16px;
+        margin-bottom: 32px;
         float: left;
         position: relative;
-        border-left: 1px solid #c7cacf;
+        border-left: 1px solid #dedfe3;
+        border-bottom: 1px solid #dedfe3;
     }
 
         #about > dl dt {
             position: absolute;
             right: 9px;
-            bottom: 0;
+            bottom: -30px;
             font-weight: bold;
             font-style: italic;
+            text-align: right;
         }
 
             #about .timestamp {
@@ -139,17 +142,17 @@
 
     .comments li {
         width: 100%;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         float: left;
     }
 
     .comments li.new {
-        padding-bottom: 28px;
+        padding-bottom: 24px;
         border-bottom: 1px solid #dedfe3;
     }
 
         .comments li.new > div {
-            background-position: -1201px -50px;
+            background-position: 0 -50px;
         }
 
         .comments li.new form,
@@ -158,30 +161,40 @@
             float: left;
         }
 
+        .comments li.new .textarea {
+            width: 100%;
+            margin-bottom: 4px;
+            position: relative;
+            float: left;
+        }
+
         .comments li.new textarea {
-            width: 515px !important; /*541px*/
+            width: 527px !important; /*543px*/
             max-height: 700px !important;
             height: 48px;
             min-height: 48px !important;
-            padding: 8px 8px 8px 8px;
-            margin: 0 0 4px 0;
+            padding: 4px 8px 0 8px;
+            margin: 0;
             color: #838790;
-            border: 1px solid #c7cacf;
-            border-radius: 4px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
+            background: #fff url(../../images/bg/sprite_form.png) 0 -50px no-repeat;
+            border: none;
         }
+
+            .comments li.new .textarea .last {
+                width: 543px;
+                height: 4px;
+                position: absolute;
+                bottom: -4px;
+                left: 0;
+                background: url(../../images/bg/sprite_form.png) 0 0 no-repeat;
+            }
 
         .comments li.new input,
         .comments li.new .button {
             float: right;
             position: relative;
-            top: 4px;
-            right: 4px;
-        }
-
-        .comments li.new .last {
-            background-position: -1201px 0;
+            top: 6px;
+            right: 3px;
         }
 
         .comments li > img {
@@ -193,26 +206,24 @@
         }
 
         .comments li > div {
-            width: 534px; /*599*/
-            padding: 30px 20px 8px 45px;
+            width: 540px; /*599*/
+            padding: 30px 20px 8px 39px;
             position: relative;
             float: right;
             color: #838790;
-            background: url(../../images/sprite_comments.png) -500px -50px no-repeat;
+            background: url(../../images/sprite_comments.png) -700px -50px no-repeat;
         }
 
-            .comments li .last {
+            .comments li > div > .last {
                 width: 100%;
                 height: 12px;
                 position: absolute;
                 left: 0;
                 bottom: -12px;
-                background: url(../../images/sprite_comments.png) -500px 0 no-repeat;
+                background: url(../../images/sprite_comments.png) -700px 0 no-repeat;
             }
 
-            .comments.small li .last {
-                height: 10px;
-                bottom: -10px;
+            .comments li.new > div > .last {
                 background-position: 0 0;
             }
 
@@ -225,6 +236,11 @@
                 font-style: italic;
                 font-weight: bold;
                 color: #444a56;
+            }
+
+            .comments li.new .author {
+                color: #fff;
+                cursor: pointer;
             }
 
             .comments li .timestamp {
@@ -282,55 +298,41 @@
     padding-left: 10px;
 }
 
-#sidebar .help .do {
+#sidebar .help ul {
     padding-left: 10px;
     position: relative;
     top: -4px;
 }
 
-#sidebar .help .do li {
-    width: 100%;
+#sidebar .help ul li {
     height: 16px;
     line-height: 16px;
     position: relative;
     border-bottom: 1px dotted #bdbfc4;
 }
 
-    #sidebar .help .do span {
+    #sidebar .help ul li span {
         padding-right: 2px;
         position: absolute;
         left: 0;
         bottom: -4px;
         display: block;
         font-style: italic;
-        background: #f7f7f8;
+        background: #fff;
     }
 
-    #sidebar .help .do em {
+    #sidebar .help ul li em {
         font-style: italic;
         position: absolute;
         right: 0;
         bottom: -4px;
-        background: #f7f7f8;
-    }
-
-#sidebar .help .dm {
-    padding-left: 20px;
-    list-style: disc outside;
-}
-
-    #sidebar .help .dm li {
-        margin-bottom: 8px;
-    }
-
-    #sidebar .help .dm li:last-child {
-        margin-bottom: 0;
+        background: #fff;
     }
 
 /*sns*/
 #sidebar #sns {
     height: 16px;
-    padding-left: 10px;
+    top: 0;
 }
 
     #sidebar #sns li {
@@ -338,6 +340,7 @@
         height: 16px;
         margin-right: 17px;
         float: left;
+        border: none;
     }
 
     #sidebar #sns li:last-child {
@@ -357,3 +360,39 @@
         #sidebar #sns #share_digg        { background-position: 0 -800px }
         #sidebar #sns #share_reddit      { background-position: 0 -850px }
         #sidebar #sns #share_stumbleupon { background-position: 0 -900px }
+
+
+#sidebar .edit {
+    width: 190px;
+    padding: 16px 25px 8px 20px;
+    margin-bottom: 28px;
+    position: relative;
+    right: -8px;
+    background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px -50px transparent;
+}
+
+    #sidebar .edit div.last {
+    background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px 0 transparent;
+    bottom: -13px;
+    height: 13px;
+    left: 0;
+    position: absolute;
+    width: 235px;
+}
+
+    #sidebar .edit h4 {
+        margin-bottom: 16px;
+        font-size: 14px;
+        font-style: italic;
+        text-align: center;
+        color: #fff;
+    }
+
+    #sidebar .edit ul li,
+    #sidebar .edit ul li a {
+        height: 20px;
+        line-height: 20px;
+        display: block;
+        font-size: 11px;
+        color: #fff;
+    }

@@ -14,6 +14,8 @@ Public.Comment = function(commentForm) {
                 //here be returned shite
                 $('#opinions ul.comments li.new').after(data['opinion']);
                 Public.CommentForm.find('textarea').val('');
+                //count comments and show/hide "show more" button
+                Public.Comment.Count();
                 //errors
             } else {
 
@@ -21,6 +23,18 @@ Public.Comment = function(commentForm) {
         }
     });
 }
+
+//display show more opinons button if more than 5 comments
+Public.Comment.Count = function() {
+    var comment = $('.comments');
+    var commentNr = comment.find('li:not(.new)').length;
+    if(commentNr >= 5){
+        comment.siblings('#comments_more').show();
+    } else {
+        comment.siblings('#comments_more').hide();
+    }
+}
+
 
 /*
  * Document Ready
@@ -61,4 +75,7 @@ $(document).ready(function(){
         Public.CommentForm.triggerHandler('submit');
         return false;
     });
+
+    //count comments and show/hide "show more" button
+    Public.Comment.Count();
 });

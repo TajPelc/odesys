@@ -32,12 +32,12 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             </tr>
         </table>
     </div>
-    <a href="#" id="detailed_comparison" class="button">Open detailed comparison<span>&nbsp;</span></a>
+    <!-- >a href="#" id="detailed_comparison" class="button">Open detailed comparison<span>&nbsp;</span></a-->
     <div id="about">
         <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=square');?>
 
         <dl>
-            <dt><?php echo CHtml::encode($this->Decision->User->name); ?><span class="timestamp">(April 5th, 18:13)</span></dt>
+            <dt><?php echo CHtml::encode($this->Decision->User->name); ?><span class="timestamp">April 5th, 18:13</span></dt>
             <dd><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></dd>
         </dl>
     </div>
@@ -55,7 +55,10 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                         <form method="post" action="">
                             <fieldset>
                                 <label class="author" for="comment_new">Share your opinion:</label>
-                                <textarea name="comment_new" id="comment_new" rows="5" cols="63"></textarea>
+                                <div class="textarea">
+                                    <textarea name="comment_new" id="comment_new" rows="5" cols="63"></textarea>
+                                    <div class="last"></div>
+                                </div>
                                 <input type="submit" name="comment_save" value="Share" />
                             </fieldset>
                         </form>
@@ -72,9 +75,9 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </div>
 <div id="sidebar">
     <?php if($this->Decision->isOwner(Yii::app()->user->id)) { ?>
-    <div class="help">
+    <div class="edit">
         <h4>Edit this decision:</h4>
-        <ul class="dm">
+        <ul>
             <li><?php echo CHtml::link('Alternatives', array('/decision/alternatives', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
             <li><?php echo CHtml::link('Criteria', array('/decision/criteria', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
             <li><?php echo CHtml::link('Evaluation', array('/decision/evaluation', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
@@ -103,10 +106,10 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <h4>Highest scoring alternative</h4>
         <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?>%</b></p>
         <h4>Decision overview:</h4>
-        <ul class="do">
+        <ul>
             <li><span>No. alternatives</span><em><?php echo $this->DecisionModel->no_alternatives; ?></em></li>
             <li><span>No. criteria</span><em><?php echo $this->DecisionModel->no_criteria; ?></em></li>
-            <li><span>No. opinions</span><em><?php // echo $this->DecisionModel->no_opinions; ?>Meny</em></li>
+            <li><span>No. opinions</span><em><?php //echo $this->DecisionModel->no_opinions; ?>Meny</em></li>
         </ul>
         <div class="last"></div>
     </div>
