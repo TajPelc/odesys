@@ -2,7 +2,7 @@
 
 <div id="heading">
     <h2>Get opinions on this decision from your friends and collegues.</h2>
-    <h3><?php echo CHtml::encode($this->Decision->title);?></h3>
+    <h3><?php echo CHtml::link(CHtml::encode($this->Decision->title), $this->publicLink); ?></h3>
 </div>
 
 <div id="content">

@@ -21,8 +21,15 @@ class DecisionController extends Controller
 
     /**
      * DecisionModel
+     * @var DecisionModel
      */
     public $DecisionModel;
+
+    /**
+     * Public link
+     * @var string
+     */
+    public $publicLink;
 
     /**
      * Array of link values
@@ -63,6 +70,9 @@ class DecisionController extends Controller
 
         // evaluate states for menu
         $this->updateStatesForMenu();
+
+        // set public link
+        $this->publicLink = '/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html';
 	}
 
     /**

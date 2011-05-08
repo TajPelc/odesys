@@ -4,7 +4,7 @@
 <div id="heading">
     <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>
     <a id="helpButton" href="#">Help</a>
-    <h3><?php echo CHtml::encode($this->Decision->title);?></h3>
+    <h3><?php echo CHtml::link(CHtml::encode($this->Decision->title), $this->publicLink); ?></h3>
     <div id="help" style="display: none;">
         <h3>Need some help?</h3>
         <ul>

@@ -44,7 +44,7 @@ class SharingController extends DecisionController
                 $this->Decision->publishDecisionModel();
 
                 // @TODO: Fix the URL problem
-                $this->redirect('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html');
+                $this->redirect($this->publicLink);
             }
         }
 
