@@ -19,6 +19,9 @@ Public.Comment = function(commentForm) {
     $.ajax({
         data: commentForm,
         success: function(data) {
+            // remove errors
+            Public.CommentForm.find('div.error').remove();
+
             //add new field
             if(data['status'] == true){
                 //here be returned shite

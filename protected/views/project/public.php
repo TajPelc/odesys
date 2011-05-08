@@ -90,14 +90,20 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div class="help">
         <h4>This decision is available to:</h4>
         <p><b><?php echo $this->Decision->getViewPrivacyLabel(); ?></b></p>
+        <?php if(!$this->Decision->isPrivate()){ ?>
         <h4>Share on:</h4>
         <ul id="sns">
-            <li><a id="share_facebook" href="#">Facebook</a></li>
-            <li><a id="share_twitter" href="#">Twitter</a></li>
-            <li><a id="share_digg" href="#">Digg</a></li>
-            <li><a id="share_reddit" href="#">Reddit</a></li>
-            <li><a id="share_stumbleupon" href="#">StumbleUpon</a></li>
+            <?php if(($this->Decision->isOwner(Yii::app()->user->id) && $this->Decision->isFriendsOnly()) || $this->Decision->isPublic()){ ?>
+                <li><a id="share_facebook" href="#">Facebook</a></li>
+            <?php } ?>
+            <?php if($this->Decision->isPublic()) { ?>
+                <li><a id="share_twitter" href="#">Twitter</a></li>
+                <li><a id="share_digg" href="#">Digg</a></li>
+                <li><a id="share_reddit" href="#">Reddit</a></li>
+                <li><a id="share_stumbleupon" href="#">StumbleUpon</a></li>
+            <?php } ?>
         </ul>
+        <?php } ?>
         <div class="last"></div>
     </div>
     <div class="help">
@@ -109,7 +115,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <ul>
             <li><span>No. alternatives</span><em><?php echo $this->DecisionModel->no_alternatives; ?></em></li>
             <li><span>No. criteria</span><em><?php echo $this->DecisionModel->no_criteria; ?></em></li>
-            <li><span>No. opinions</span><em><?php //echo $this->DecisionModel->no_opinions; ?>Meny</em></li>
+            <li><span>No. opinions</span><em><?php echo $this->Decision->opinionCount; ?></em></li>
         </ul>
         <div class="last"></div>
     </div>

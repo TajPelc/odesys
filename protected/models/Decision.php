@@ -72,6 +72,7 @@ class Decision extends CActiveRecord
 			'User' => array(self::BELONGS_TO, 'User', 'rel_user_id'),
 			'models' => array(self::HAS_MANY, 'DecisionModel', 'rel_decision_id'),
 			'opinions' => array(self::HAS_MANY, 'Opinion', 'rel_decision_id'),
+		    'opinionCount' => array(self::STAT, 'Opinion', 'rel_decision_id'),
 		);
 	}
 
@@ -333,5 +334,35 @@ class Decision extends CActiveRecord
     public function isPublished()
     {
         return (bool) $this->getPublishedDecisionModel();
+    }
+
+    /**
+     * Check if this decision is public
+     *
+     * @return boolean
+     */
+    public function isPublic()
+    {
+        return ($this->view_privacy == self::PRIVACY_EVERYONE);
+    }
+
+    /**
+     * Check if this decision is friends only
+     *
+     * @return boolean
+     */
+    public function isFriendsOnly()
+    {
+        return ($this->view_privacy == self::PRIVACY_FRIENDS);
+    }
+
+    /**
+     * Check if this decision is private
+     *
+     * @return boolean
+     */
+    public function isPrivate()
+    {
+        return ($this->view_privacy == self::PRIVACY_ME);
     }
 }
