@@ -21,4 +21,13 @@ $(document).ready(function(){
 
     // init abacon
     Abacon.init();
+
+    Abacon.Legend.rebuildDropdown();
+    // draw the two best alternatives
+    Abacon.Legend.LegendList.children().each(function(){
+        // get id
+        var id = Core.ExtractNumbers($(this).attr('id'));
+        // draw alternatives
+        Abacon.DrawAlternative(id);
+    });
 });

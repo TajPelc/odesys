@@ -10,6 +10,7 @@ Score.Canvas = {};
 Score.Legend = {};
 Score.nrAlternatives = 0;
 Score.Scores = [];
+Score.Alternatives = [];
 
 /**
  * Score config
@@ -47,41 +48,47 @@ Score.init = function(){
     // create canvas
     Score.Canvas = Raphael("score", Score.Config['width'], Score.Config['height']);
 
+    // container
+    Score.Canvas.rect(0, 0, Score.Config['width'], Score.Config['height']).attr({'stroke': '#c7cacf'});
+
     // cotainer for Score drawn elements
     Score.Elements = Score.Canvas.set();
 
     // draw horizontal grid
     for(i=0; i<Score.nrAlternatives; i++)
     {
-        Score.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + Score.Config['width']).attr({
+        var line = Score.Canvas.path('M 0 ' + (60 * (i+1)) + '.5 h ' + (Score.Config['width']-8.5)).attr({
             'stroke': '#dedfe3',
             'stroke-width': 1
         });
     }
 
     // draw vertical grid
-    for(i=0; i<=10; i++)
-    {
+    for(i=0; i<=9; i++){
         var dashArray = '';
-        if(i>0)
-        {
+
+        if(i>0){
             dashArray = '-';
         }
-        Score.Canvas.path('M ' + (Score.Config['leftLegendOffset'] + (i*Score.Config['tickWidth'])) + '.5 0 v ' + Score.Config['height']).attr({
+
+        var path = Score.Canvas.path('M ' + (Score.Config['leftLegendOffset'] + (i*Score.Config['tickWidth'])) + '.5 0 v ' + Score.Config['height']).attr({
             'stroke': '#dedfe3',
             'stroke-dasharray': dashArray,
             'stroke-width': 1
         });
     }
 
+    // create a set for alternatives
+    Score.Alternatives = Score.Canvas.set();
+
     // draw alternatives
-    Score.DrawAlternative(0);
+    Score.CreateAlternative(0);
 }
 
 /**
  * Recursively draw all alternatives
  */
-Score.DrawAlternative = function(i)
+Score.CreateAlternative = function(i)
 {
     // the best scored alternative has value 0, everyone is zero
     if(Score.Scores[0]['weightedTotal'] == 0)
@@ -92,7 +99,7 @@ Score.DrawAlternative = function(i)
     else
     {
         // calculate width
-        width = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
+        Score.Scores[i]['width'] = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
     }
 
     // calculate x postion
@@ -101,54 +108,48 @@ Score.DrawAlternative = function(i)
     // calculate y position
     var y = Score.Config['rowHeight'] * i + (Score.Config['rowHeight']/2) - 10;
 
-    // create a set for alternatives
-    var Alternative = Score.Canvas.set();
-
-    // shadow
-    /*
-    Alternative.push(Score.Canvas.rect(x+0, y+1, 0, 20).attr({
-        'fill': '#596171',
-        'stroke-width': 0,
-        'opacity': 0.5,
-    }).animate({
-        width: width,
-    }, 500, '<>').blur(1));
-    */
-
     // rectangle
-    Alternative.push(Score.Canvas.rect(x-1, y, 0, 20, 0).attr({
+    var Alternative = Score.Canvas.rect(x-1.5, y+0.5, 0, 20, 0).attr({
         'fill': '#fff',
-        'stroke': '#fff',
-        'stroke-width': 0,
-    }).animate({
         'fill': Score.Scores[i]['color'],
-        'stroke': Score.Scores[i]['color'],
-        width: width,
-    }, 500, '<>', function(){
-        // not last => draw more
-        if(i < Score.Scores.length-1)
-        {
-            i++;
-            Score.DrawAlternative(i);
-        }
-        else // last => draw abacon
-        {
-            // abacon defined?
-            if(typeof(Abacon) == 'object')
-            {
-                Abacon.Legend.rebuildDropdown();
+        'stroke': '#596171',
+        'opacity': 0.5,
+        'stroke-width': 1,
+    });
 
-                // draw the two best alternatives
-                Abacon.Legend.LegendList.children().each(function(){
-                    // get id
-                    var id = Core.ExtractNumbers($(this).attr('id'));
+    // hover over dot (to make life easier)
+    Alternative.mouseover(function (event) {
+        Alternative.animate({'opacity': 1}, 500);
+    });
+    Alternative.mouseout(function (event) {
+        Alternative.animate({'opacity': 0.5}, 500);
+    });
 
-                    // draw alternatives
-                    Abacon.DrawAlternative(id);
-                });
-            }
-        }
-    }));
+    // add to set
+    Score.Alternatives.push(Alternative);
+
+    // not last => create more
+    if(i < Score.Scores.length-1)
+    {
+        i++;
+        Score.CreateAlternative(i);
+    }
+    else // last => draw alternatives
+    {
+        Score.DrawAlternatives();
+    }
 
     Score.Elements.push(Alternative);
+}
+
+/**
+ * Draw alternatives
+ */
+Score.DrawAlternatives = function(){
+    $(Score.Alternatives).each(function(index, Alternative) {
+        Alternative.animate({
+            'fill': Score.Scores[index]['color'],
+            width: Score.Scores[index]['width'],
+            }, 1000, '<>');
+    });
 }
