@@ -128,4 +128,44 @@ class SiteController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/contact/index.css');
         $this->render('contact');
     }
+
+    /**
+     * Contact page
+     */
+    public function actionEksperiment()
+    {
+		try
+		{
+		    Yii::import('application.vendors.facebook.src.*');
+            require_once('facebook.php');
+
+		    $facebook = new Facebook(array(
+              'appId'  => '165209310185741',
+              'secret' => '8625578e976c2e457236a5cd1c0d3c79',
+            ));
+
+            //Get list of users
+            $response = $facebook->api('/'.Fb::singleton()->getAppId().'/accounts/test-users');
+            $testUsers = (\array_key_exists('data', $response))? $response['data']:array();
+        } catch (\Exception $e) {
+            dump($e);
+            return;
+        }
+
+        $user = false; $error = false;
+
+        if(isset($_POST['id']))
+        {
+            $id = (int)ltrim($_POST['id'], '0');
+
+            if(!isset($testUsers[$id]))
+            {
+                $error = true;
+            }
+
+            $user = $testUsers[$id];
+        }
+
+        $this->render('eksperiment', array('error' => $error, 'user' => $user));
+    }
 }
