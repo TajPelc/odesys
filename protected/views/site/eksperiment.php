@@ -1,13 +1,17 @@
-<div id="content">
-    <?php $this->pageTitle=Yii::app()->name . 'Eksperiment'; ?>
+<?php $this->pageTitle='ODESYS Eksperiment'; ?>
 
-    <h1>ODESYS Eksperiment</h1>
+<div id="heading">
+    <h2>ODESYS Experiment</h2>
+</div>
+
+<div id="content">
+
     <p>V eksperimentu boste s pomočjo spletnega sistema za podporo odločanju reševali odločitveni problem.</p>
 
-    <p><b>Povezava do vprašalnika:</b> <a href="#"></a></p>
+    <p><a href="http://edu.surveygizmo.com/s3/556000/ODESYS"><b>Povezava do vprašalnika o eksperimentu</b> </a></p>
 
-    <p>Začetek: 10.00</p>
-    <p>Konec: 10.45</p>
+    <p><b>Začetek:</b> 10.45</p>
+    <p><b>Konec:</b> 11.30</p>
 
     <dl>
         <dt>Odločitveni problem</dt>
@@ -18,14 +22,14 @@
         <p>Vnesite veljavno mesto.</p>
     <?php } else { ?>
         <?php if(Yii::app()->user->isGuest) { ?>
-            V polje vnesite številko mize in pritisnite "Pošlji" za prikaz prijavne povezave na Facebook.
             <?php if(!$user){ ?>
             <form action="" method="post">
+                <p><b>V polje vnesite številko mize in pritisnite "Pošlji" za prikaz prijavne povezave na Facebook.</b></p>
                 <input type="text" name="id" maxlength="2" />
                 <input type="submit" name="submit" value="Pošlji" />
             </form>
             <?php } else { ?>
-                <a href="<?php echo $user['login_url']; ?>" title="Povežin na facebook" rel="external" target="_blank">Prijavi se na Facebook</a>
+                <a href="<?php echo $user['login_url']; ?>" title="Povežin na facebook" rel="external" target="_blank"><b>Povezava do testnega uporabnika na Facebook (odpre novo okno).</b></a>
             <?php } ?>
         <?php } ?>
     <?php } ?>
