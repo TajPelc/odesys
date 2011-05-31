@@ -5,21 +5,10 @@
 </div>
 
 <div id="content">
-
-    <p><a href="http://edu.surveygizmo.com/s3/556000/ODESYS" rel="external" target="_blank"><b>Povezava do vprašalnika o eksperimentu (v novem oknu)</b> </a></p>
-
-    <p><b>Začetek:</b> 10.45</p>
-    <p><b>Konec:</b> 11.30</p>
-
-    <dl>
-        <dt>Odločitveni problem</dt>
-        <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla neque tellus, placerat sed dapibus in, rhoncus id risus. Suspendisse sapien enim, ullamcorper quis facilisis sit amet, viverra eu nisi. Praesent vulputate interdum tempus. Cras cursus nisl vitae dui adipiscing consectetur. Curabitur nec tincidunt diam. Morbi fermentum quam in velit commodo condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis faucibus aliquam tellus, quis venenatis justo faucibus a. Aliquam erat volutpat. In sed ipsum nulla. Etiam tempor, lorem sed volutpat dictum, justo ipsum tristique massa, vel convallis justo augue ac dolor. Curabitur malesuada scelerisque egestas. Pellentesque elementum magna vitae massa semper facilisis. Sed viverra erat sed lectus suscipit ultricies. Fusce ut tortor nibh. Aenean eu ante sapien, sed feugiat orci. Mauris lacinia eros sed nulla posuere id tempor diam auctor. Nullam ultricies ipsum id ipsum pharetra in vehicula sem egestas.</dd>
-    </dl>
-
     <?php if(Yii::app()->user->isGuest) { ?>
         <?php if(!$user){ ?>
             <form action="" method="post">
-                <p><b>V polje vnesite številko mize in pritisnite "Pošlji" za prikaz prijavne povezave na Facebook.</b></p>
+                <p><em>Za prikaz Facebook prijavne povezave v polje vnesite številko mize in pritisnite "Pošlji".</em></p>
                 <input type="text" name="id" maxlength="2" />
                 <input type="submit" name="submit" value="Pošlji" />
                 <?php if($fbError){?>
@@ -29,7 +18,25 @@
                 <?php } ?>
             </form>
         <?php } else { ?>
-            <a href="<?php echo $user['login_url']; ?>" title="Poveži na facebook" rel="external" target="_blank"><b>Povezava do testnega uporabnika na Facebooku (odpre novo okno).</b></a>
+            <a id="fbLink" href="<?php echo $user['login_url']; ?>" title="Poveži na facebook" rel="external" target="_blank"><b>Povezava do testnega uporabnika na Facebooku (odpre novo okno).</b></a>
         <?php } ?>
     <?php } ?>
+
+    <dl>
+        <dt>Trajanje eksperimenta</dt>
+        <dd>Od 12.00 do 13.00</dd>
+    </dl>
+    <dl>
+        <dt>Odločitveni problem</dt>
+        <dd><?php echo nl2br('Po zaključenem magistrskem študiju, ste se odločili za nadaljevanje akademske kariere. Neko poletno popoldne na udobnem ležalniku v senci in z iPadom v roki premišljujete o tem, katerega mentorja izbrati za doktorat.
+
+Zavedate se, da bo od vaše odločitve odvisna vaša nadaljna življenska pot. Vsekakor si želite čim hitreje do kvalitetne doktorske disertacije. Želite si mentorja, ki vam je dosegljiv, ko ga potrebujete in vas bo podpiral in vodil pri vašem raziskovalnem delu. Pomembno vam je tudi, da je mentor priznan v akademskem svetu. Ima svoj laboratorij? Želite si mentorja, ki vam bo ponudil sodelovanje na priznanih projektih. Razmisliti je vredno tudi o tem, kakšno karierno pot imajo njegovi bivši doktoranti. Zna mentor prepoznati dosežke svojih doktorantov ali je znan po tem, da rad pobere zasluge. Še nekaj časa razmišljate o drugih faktorjih, ki so vam pomembni.
+
+Ko vam na iPadu zmanjka glasbe in namesto  Andreja Šifrerja zaigrajo Black Sabbath, vas vrže z ležalnika, kjer na sveže pokošeni travi doživite razsvetljenje. Ker je odločitev daleč od trivialne, se odločite, da boste uporabili orodje za podporo odločanju, da zmodelirate svoj odločitveni problem, ocenite izbrane mentorje in jih med sabo primerjate.'); ?></dd>
+    </dl>
+
+    <dl>
+        <dt>Anketni vprašalnik</dt>
+        <dd><a href="http://edu.surveygizmo.com/s3/556000/ODESYS" rel="external" target="_blank"><b>Povezava do vprašalnika o eksperimentu (v novem oknu)</b></a></dd>
+    </dl>
 </div>

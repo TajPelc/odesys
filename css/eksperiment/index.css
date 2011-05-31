@@ -7,6 +7,7 @@
 /* Content
 ********************************************************/
 #content p {
+    font-size: 14px;
     margin-bottom: 16px;
 }
 
@@ -20,14 +21,28 @@
 }
 
     #content dl dt {
+        font-size: 14px;
         margin-bottom: 16px;
         font-weight: bold;
     }
 
     #content dl dd {
+        font-size: 14px;
         padding-left: 20px;
     }
 
-#content form {
-
+#content form, #fbLink{
+    display: block;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
 }
+
+    #content form input {
+        margin-bottom: 20px;
+    }
+
+    #content form p:last-child {
+        margin: 0;
+        color: red;
+    }
