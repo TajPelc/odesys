@@ -38,6 +38,8 @@ class SiteController extends Controller
      */
     public function actionError()
     {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/error.css');
         if($error = Yii::app()->errorHandler->error)
         {
@@ -116,6 +118,8 @@ class SiteController extends Controller
      */
     public function actionTerms()
     {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/terms/index.css');
         $this->render('terms');
     }
@@ -125,6 +129,8 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/contact/index.css');
         $this->render('contact');
     }

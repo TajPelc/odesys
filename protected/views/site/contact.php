@@ -1,8 +1,9 @@
+<?php $this->pageTitle='Contact ODESYS team'; ?>
+<div id="heading">
+    <h2>Contact us</h2>
+</div>
+
 <div id="content">
-    <?php $this->pageTitle=Yii::app()->name . 'Contact ODESYS'; ?>
-
-    <h1>Contact us:</h1>
-
     <form method="post" action="">
         <fieldset>
             <label for="contact_subject">Subject:</label>
@@ -12,5 +13,4 @@
             <input type="submit" name="save" value="Send" />
         </fieldset>
     </form>
-
 </div>

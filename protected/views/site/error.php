@@ -1,7 +1,11 @@
-<?php $this->pageTitle=Yii::app()->name . ' - Error'; ?>
+<?php $this->pageTitle=CHtml::encode($e->title); ?>
 
-<h2><?php echo CHtml::encode($e->title); ?></h2>
+<div id="heading">
+    <h2><?php echo CHtml::encode($e->title); ?></h2>
+</div>
 
-<div class="error">
-<?php echo CHtml::encode($e->message); ?>
+<div id="content">
+    <div class="error">
+        <?php echo CHtml::encode($e->message); ?>
+    </div>
 </div>
