@@ -138,10 +138,22 @@ class SiteController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/eksperiment/index.css');
 
-        $user = false; $error = false;
-
+        $user = false; $error = false; $fbError = false;
         if(isset($_POST['id']))
         {
+            $id = ltrim($_POST['id'], '0');
+
+            if($_POST['id'] == '00')
+            {
+                $id = 0;
+            }
+
+            if(!is_numeric($id))
+            {
+                $error = true;
+                goto render;
+            }
+
             try
             {
                 Yii::import('application.vendors.facebook.src.*');
@@ -156,20 +168,20 @@ class SiteController extends Controller
                 $response = $facebook->api('/'.Fb::singleton()->getAppId().'/accounts/test-users');
                 $testUsers = (\array_key_exists('data', $response))? $response['data']:array();
             } catch (\Exception $e) {
-                dump($e);
-                return;
+                $fbError = $e->getMessage();
             }
-
-            $id = (int)ltrim($_POST['id'], '0');
 
             if(!isset($testUsers[$id]))
             {
                 $error = true;
+                goto render;
             }
 
             $user = $testUsers[$id];
         }
 
-        $this->render('eksperiment', array('error' => $error, 'user' => $user));
+        render:
+
+        $this->render('eksperiment', array('error' => $error, 'user' => $user, 'fbError' => $fbError));
     }
 }
