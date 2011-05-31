@@ -2,6 +2,7 @@
     <h2>How to use odesys</h2>
 </div>
 
+<?php echo CHtml::link('EKSPERIMENT FOV', array('/site/eksperiment/'), array('style' => 'float: left; font-size: 20px; margin-bottom: 20px; text-decoration: underline;')); ?>
 <div id="content">
     <?php $this->pageTitle=Yii::app()->name . 'ODESYS: Online Decision Support System'; ?>
     <ol>
