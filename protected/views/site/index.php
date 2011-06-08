@@ -13,5 +13,4 @@
         <li><p>Make a better decision</p></li>
     </ol>
     <img src="../../images/introduction.png" title="kolazz" alt="kolazz" />
-    <?php echo CHtml::link('=> EKSPERIMENT FOV', array('/site/eksperiment/'), array('style' => 'float: left; font-size: 20px; margin-bottom: 20px; margin-left: 36px; text-decoration: underline;')); ?>
 </div>
