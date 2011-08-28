@@ -1,6 +1,6 @@
 <div id="content">
     <div id="heading">
-        <h2>Decision History</h2>
+        <h2>Dashboard - Decision History</h2>
     </div>
     <table>
         <tr>
