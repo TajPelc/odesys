@@ -10,6 +10,7 @@ class ListAction extends Action
     public function run()
     {
         // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/list.css');
 
         // find all user's projects

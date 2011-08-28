@@ -78,8 +78,8 @@
     <div class="edit">
         <h4>Dashboard Options:</h4>
         <ul>
-            <li><a href="#">Decision Feed</a></li>
-            <li><a href="#">Decision History</a></li>
+            <li><?php echo CHtml::link('Decision Feed', array('user/dashboard')); ?></li>
+            <li><?php echo CHtml::link('Decision History', array('project/list')); ?></li>
             <li><a href="#">Statistics</a></li>
             <li><a href="#">Profile Settings</a></li>
         </ul>

@@ -5,34 +5,13 @@
 */
 
 #content {
-    width: 100%;
+  width: 670px;
 }
 
-#content > h1 {
-    padding-bottom: 16px;
-    border-bottom: 1px solid #dedfe3;
-}
-
-/* Recent decisions
-********************************************************/
-#content .recentDecisions {
-    margin-bottom: 32px;
-    color: #444a56;
-}
-
-#content .recentDecisions dt {
-    height: 30px;
-    line-height: 30px;
-    padding-left: 40px;
-    margin-bottom: 8px;
-    font-size: 18px;
-    background: url(../../images/sprite_icons.png) 0 -500px no-repeat;
-}
-
-#content .recentDecisions dd {
-    border-top: 1px solid #dedfe3;
-    margin-left: 40px;
-}
+    #content > h1 {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #dedfe3;
+    }
 
 /* Table
 ********************************************************/
@@ -65,12 +44,9 @@
         background: url(../../images/sprite_icons.png) no-repeat;
     }
 
+    #content table th:nth-child(1){ background-position: 2px -443px }
     #content table th:nth-child(2){ background-position: 0 6px }
-    #content table th:nth-child(3){ background-position: 0 6px }
-    #content table th:nth-child(4){ background-position: 2px -443px }
-    #content table th:nth-child(5){ background-position: 2px -443px }
-    #content table th:nth-child(6){ background-position: 0 -42px }
-    #content table th:nth-child(7){ background-position: 0 -92px }
+    #content table th:nth-child(3){ background-position: 0 -42px }
 
     #content table td {
         padding-left: 20px;
@@ -82,13 +58,51 @@
 
     #content table th:first-child,
     #content table td:first-child {
-        width: 280px;
-        padding-left: 0;
+        width: 350px;
         text-align: left;
-        background: none;
     }
 
-    #content table th:last-child,
-    #content table td:last-child {
-        padding-right: 10px;
+    #content table td:first-child {
+        padding-left: 10px;
     }
+
+/* Sidebar
+********************************************************/
+#sidebar {
+    width: 235px;
+}
+
+  #sidebar .edit {
+      width: 190px;
+      padding: 16px 25px 8px 20px;
+      margin-bottom: 28px;
+      position: relative;
+      right: -8px;
+      background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px -50px transparent;
+  }
+
+      #sidebar .edit div.last {
+      background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px 0 transparent;
+      bottom: -13px;
+      height: 13px;
+      left: 0;
+      position: absolute;
+      width: 235px;
+  }
+
+      #sidebar .edit h4 {
+          margin-bottom: 16px;
+          font-size: 14px;
+          font-style: italic;
+          text-align: center;
+          color: #fff;
+      }
+
+      #sidebar .edit ul li,
+      #sidebar .edit ul li a {
+          height: 20px;
+          line-height: 20px;
+          display: block;
+          font-size: 11px;
+          color: #fff;
+      }
