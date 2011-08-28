@@ -22,7 +22,7 @@
 
     #content dl dt {
         width: 100%;
-        line-height: 50px;
+        line-height: 40px;
         height: 50px;
         font-weight: bold;
         font-size: 18px;
@@ -42,7 +42,9 @@
     #content dl dd {
         line-height: 16px;
         margin-bottom: 16px;
-        padding-left: 70px;
+        padding-left: 72px;
+        position: relative;
+        top: -16px;
     }
 
 #like {
