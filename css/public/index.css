@@ -151,6 +151,10 @@
         border-bottom: 1px solid #dedfe3;
     }
 
+        .comments li.new > img {
+            border-color: #717c90;
+        }
+
         .comments li.new > div {
             background-position: 0 -50px;
         }

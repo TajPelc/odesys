@@ -1,134 +1,148 @@
 /*
- --> Criteria css
+ --> Dashboard css
  --> @author:     Frenk T. Sedmak Nahtigal
  --> @version:    1.1
 */
+
+#content {
+  width: 670px;
+
+}
 
 #content > h1 {
     padding-bottom: 16px;
     border-bottom: 1px solid #dedfe3;
 }
 
-/* Recent decisions
+/* Decision Feed
 ********************************************************/
-#content .recentDecisions {
-    margin-bottom: 32px;
-    color: #444a56;
-}
-
-#content .recentDecisions dt {
-    height: 30px;
-    line-height: 30px;
-    padding-left: 40px;
-    margin-bottom: 8px;
-    font-size: 18px;
-    background: url(../../images/sprite_icons.png) 0 -250px no-repeat;
-}
-
-#content .recentDecisions dd {
-    border-top: 1px solid #dedfe3;
-    margin-left: 40px;
-}
-
-    #content .recentDecisions dd > a {
-        line-height: 16px;
-        padding-left: 20px;
-        margin-right: 10px;
-        display: block;
-        float: right;
-        background: url(../../images/sprite_icons.png) 0 -300px no-repeat;
-    }
-
-/* Table
-********************************************************/
-#content table {
-    width: 100%;
-    margin-bottom: 8px;
-    text-align: right;
-    vertical-align: middle;
-}
-
-    #content table tr {
-        height: 31px;
-        padding: 0 8px;
-        line-height: 31px;
-        background: url(../../images/bg/dashboard_cell.png) top right no-repeat;
-    }
-
-    #content table tr:hover,
-    #content table tr:first-child {
-        background: #fff;
-    }
-
-    #content table th {
-        padding-right: 16px;
-        padding-left: 20px;
-        font-style: italic;
-        font-weight: bold;
-        text-align: center;
-        border-bottom: 1px solid #596171;
-        background: url(../../images/sprite_icons.png) no-repeat;
-    }
-
-    #content table th:nth-child(2){ background-position: 0 6px }
-    #content table th:nth-child(3){ background-position: 0 -42px }
-    #content table th:nth-child(4){ background-position: 0 -92px }
-
-    #content table td {
-        padding-right: 20px;
-        border-bottom: 1px solid #dedfe3;
-    }
-
-    #content table th:first-child,
-    #content table td:first-child {
-        width: 280px;
-        padding-left: 10px;
-        text-align: left;
-        background: none;
-    }
-
-    #content table th:last-child,
-    #content table td:last-child {
-        padding-right: 10px;
-    }
-
-/* Statistics, Profile
-********************************************************/
-#content .statistics,
-#content .profile {
-    width: 333px;
-    margin-right: 20px;
+#content > ul {
+    margin-bottom: 16px;
     float: left;
-    color: #444a56;
 }
 
-#content .profile {
-    margin-right: 0;
+#content > ul li {
+    width: 647px; /*100%*/
+    padding: 8px 10px 8px 12px;
+    float: left;
+    border-bottom: 1px solid #dedfe3;
+    border-left: 1px solid #dedfe3;
 }
 
-    #content .statistics dt,
-    #content .profile dt {
-        height: 30px;
-        line-height: 30px;
-        padding-left: 40px;
-        margin-bottom: 8px;
-        font-size: 18px;
-        background: url(../../images/sprite_icons.png) 0 -200px no-repeat;
+#content > ul li.new {
+    padding: 8px 10px;
+    background-color: #f4f4f4;
+    border-left: 3px solid #717c90;
+}
+
+    #content > ul li img {
+        float: left;
+        margin-right: 10px;
     }
 
-    #content .profile dt { background-position: 0 -150px }
-
-    #content .statistics dd,
-    #content .profile dd {
-        margin: 0 0 8px 40px;
+    #content > ul li div {
+        width: 587px;
+        float: left;
     }
 
-    #content .statistics .first,
-    #content .profile .first {
-        border-top: 1px solid #dedfe3;
-        padding-top: 12px;
-    }
-
-        #content .statistics dd b {
-            font-weight: bold;
+        #content > ul li h3 {
+            width: 100%;
+            padding-top: 4px;
+            margin-bottom: 8px;
+            float: left;
+            font-size: 13px;
+            color: #9d9fa3;
         }
+
+            #content > ul li h3 a {
+                font-weight: bold;
+            }
+
+        #content > ul li p {
+            float: left;
+            margin-bottom: 8px;
+        }
+
+            #content > ul li p b {
+                font-weight: bold;
+            }
+
+        #content > ul li blockquote {
+            width: 577px;
+            padding-left: 10px;
+            float: left;
+            color: #9d9fa3;
+        }
+
+        #content > ul li blockquote:before {
+            content: "-> ";
+        }
+
+.button {
+    height: 23px;
+    line-height: 23px;
+    padding: 0 5px 0 8px;
+    display: block;
+    position: relative;
+    float: left;
+    left: 298px;
+    color: #717c90;
+    background: url(../../images/form/sprite_buttons.png) -300px -400px no-repeat;
+    text-decoration: none;
+}
+
+.button:hover {
+    text-decoration: none;
+}
+
+    .button span {
+        width: 3px;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -3px;
+        background: url(../../images/form/sprite_buttons.png) -656px -400px no-repeat;
+    }
+
+/* Sidebar
+********************************************************/
+#sidebar {
+    width: 235px;
+}
+
+  #sidebar .edit {
+      width: 190px;
+      padding: 16px 25px 8px 20px;
+      margin-bottom: 28px;
+      position: relative;
+      right: -8px;
+      background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px -50px transparent;
+  }
+
+      #sidebar .edit div.last {
+      background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px 0 transparent;
+      bottom: -13px;
+      height: 13px;
+      left: 0;
+      position: absolute;
+      width: 235px;
+  }
+
+      #sidebar .edit h4 {
+          margin-bottom: 16px;
+          font-size: 14px;
+          font-style: italic;
+          text-align: center;
+          color: #fff;
+      }
+
+      #sidebar .edit ul li,
+      #sidebar .edit ul li a {
+          height: 20px;
+          line-height: 20px;
+          display: block;
+          font-size: 11px;
+          color: #fff;
+      }
+
