@@ -59,7 +59,7 @@
 
         #content > ul li p {
             float: left;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
             #content > ul li p b {
@@ -70,6 +70,7 @@
             width: 577px;
             padding-left: 10px;
             float: left;
+            font-size: 11px;
             color: #9d9fa3;
         }
 

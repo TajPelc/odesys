@@ -15,7 +15,7 @@
 }
 
 #content > form input[type="text"] {
-    width: 603px; /*646px*/
+    width: 607px; /*646px*/
     height: 28px;
     line-height: 28px;
     padding: 0 35px 0 8px;
@@ -37,12 +37,19 @@
     font-weight: bold;
 }
 
-
 #content > form textarea {
-    width: 630px; /*646px*/
+    width: 631px !important;
+    height: 68px;
+    min-height: 68px !important;
+    max-height: 500px !important;
     padding: 8px;
     margin: 0 0 16px 0;
-    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    color: #838790;
+    background-color: #f9f9fa;
+    border-radius: 4px 4px 4px 4px;
+    border: 1px solid #97999d;
 }
 
 /* Sidebar

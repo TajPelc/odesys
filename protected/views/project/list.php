@@ -15,7 +15,7 @@
             <td><?php echo date('j.n.Y', strtotime($D->last_edit)); ?></td>
             <!-- td><?php echo $D->getActiveDecisionModel()->no_alternatives; ?></td-->
             <!-- td><?php echo $D->getActiveDecisionModel()->no_criteria; ?></td-->
-            <td>0</td>
+            <td><div>0<span>X</span></div></td>
         </tr>
         <?php } ?>
     </table>

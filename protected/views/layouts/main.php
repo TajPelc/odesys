@@ -79,7 +79,7 @@
                 <dl>
                     <dt><?php echo CHtml::link('Terms', array('/site/terms')); ?></dt>
                     <dd>
-                        <p>Before using this service you must agree to the following terms.</p>
+                        <p>Before using this service you must agree to the <?php echo CHtml::link('following terms', array('/site/terms')); ?>.</p>
                         <p>We provide the tools you need to analize your decisions. You are the one that decides, and we are not responsible for the consequences of your decisions.</p>
                     </dd>
                 </dl>
