@@ -9,7 +9,7 @@
             <th>No. comments</th>
         </tr>
         <?php foreach($Decisions as $D) { ?>
-        <tr>
+        <tr id="<?php echo $D->decision_id; ?>">
             <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/analysis', 'decisionId' => $D->decision_id, 'label' => $D->label)); ?></td>
             <!-- td><?php echo date('j.n.Y', strtotime($D->created)); ?></td-->
             <td><?php echo date('j.n.Y', strtotime($D->last_edit)); ?></td>
