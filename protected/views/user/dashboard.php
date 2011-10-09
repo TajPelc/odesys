@@ -43,7 +43,7 @@
             </div>
         </li>
     </ul>
-    <a class="button" href="#">Show more<span>&nbsp;</span></a>
+    <a class="button" href="#" id="showMore">Show more<span>&nbsp;</span></a>
     <!--dl class="recentDecisions">
         <dt>My latest decisions</dt>
         <dd>

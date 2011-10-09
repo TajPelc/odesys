@@ -30,6 +30,9 @@ class UserController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/index.css');
 
+        // include javascript
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/dashboard/index.js');
+
         // load last five decisions
         $condition = new CDbCriteria();
         $condition->addCondition('rel_user_id=:user_id');

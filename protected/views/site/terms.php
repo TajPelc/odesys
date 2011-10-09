@@ -43,5 +43,5 @@
     </ul>
     <h3>Controlling your personal information</h3>
     <p>ODESYS or its owners will not sell, distribute or lease your personal information to third parties unless we have your permission or are required by law to do so.</p>
-    <p>If you believe that any information we are holding on you is incorrect or incomplete, please write to or email us as soon as possible, at the above address. We will promptly correct any information found to be incorrect.</p>
+    <p>If you believe that any information we are holding on you is incorrect or incomplete, please <?php echo CHtml::link('contact', array('/site/contact/')); ?> us as soon as possible. We will promptly correct any information found to be incorrect.</p>
 </div>
