@@ -1,6 +1,6 @@
 /* Criteria javascript
  * @author        Frenk T. Sedmak Nahtigal
- * @version       1.0
+ * @version       1.2
 */
 
 Criteria = {};
@@ -56,7 +56,7 @@ Criteria.SaveInput = function(that, add) {
                         //remove preloader
                         Criteria.SaveInput.Loading.remove();
                         //enable input field
-                        that.attr('disabled', '');
+                        that.removeAttr('disabled');
                         Core.ProjectMenu(data['projectMenu']);
                         Core.ContentNav.toggle('evaluation', data['projectMenu']);
 
@@ -65,7 +65,7 @@ Criteria.SaveInput = function(that, add) {
                         //remove preloader
                         Criteria.SaveInput.Loading.remove();
                         //enable input field
-                        that.attr('disabled', '');
+                        that.removeAttr('disabled');
                         Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
 
@@ -74,11 +74,12 @@ Criteria.SaveInput = function(that, add) {
                     if(data['status'] == true){
                         // here be returned shite
                         that.siblings('.loading').remove();
-                        that.attr('disabled', '');
+                        that.removeAttr('disabled');
 
                         // errors
                     } else {
                         that.siblings('.loading').remove();
+                        that.removeAttr('disabled');
                         Criteria.FormErrorReporting(that, data['errors']['title']);
                     }
 

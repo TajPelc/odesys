@@ -1,6 +1,6 @@
 /* Alternatives javascript
  * @author        Frenk T. Sedmak Nahtigal
- * @version       1.1
+ * @version       1.2
 */
 
 Alternatives = {};
@@ -55,7 +55,7 @@ Alternatives.SaveInput = function(that, add) {
                         //remove preloader
                         Alternatives.SaveInput.Loading.remove();
                         //enable input field
-                        that.attr('disabled', '');
+                        that.removeAttr('disabled');
                         Core.ProjectMenu(data['projectMenu']);
                         Core.ContentNav.toggle('criteria', data['projectMenu']);
 
@@ -64,7 +64,7 @@ Alternatives.SaveInput = function(that, add) {
                         //remove preloader
                         Alternatives.SaveInput.Loading.remove();
                         //enable input field
-                        that.attr('disabled', '');
+                        that.removeAttr('disabled');
                         Alternatives.FormErrorReporting(that, data['errors']['title']);
                     }
 
@@ -73,11 +73,12 @@ Alternatives.SaveInput = function(that, add) {
                     if(data['status'] == true){
                         // here be returned shite
                         that.siblings('.loading').remove();
-                        that.attr('disabled', '');
+                        that.removeAttr('disabled');
 
                         //errors
                     } else {
                         that.siblings('.loading').remove();
+                        that.removeAttr('disabled');
                         Alternatives.FormErrorReporting(that, data['errors']['title']);
                     }
 
