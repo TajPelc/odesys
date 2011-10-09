@@ -71,7 +71,11 @@
                     <dd>
                         <a id="footer_facebook" href="https://www.facebook.com/odesys">facebook<span>ODESYS</span></a>
                         <a id="footer_twitter" href="https://twitter.com/#!/ODESYSinfo">twitter<span>@ODESYSinfo</span></a>
-                        <?php echo CHtml::link('email<span>info@odesys.info</span>', array('/site/contact'), array('id' => 'footer_email')); ?>
+                        <?php if(Yii::app()->user->isGuest){ ?>
+                            <?php echo CHtml::link('email<span>odesys.info</span>', array('/site/contact'), array('id' => 'footer_email')); ?>
+                        <?php } else { ?>
+                           <a id="footer_email" href="mailto:info@odesys.info">email<span>info@odesys.info</span></a>
+                        <?php }?>
                     </dd>
                 </dl>
             </li>

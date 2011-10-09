@@ -42,18 +42,10 @@
     consequences.</p>
     <p>ODESYS may be used in the pedagogical process as an introduction to multi-criteria decision support and decision support systems.</p>
 
-
     <h2>A brief history</h2>
     <p>The concept of Odesys and alpha version was developed as a part of a diploma thesis by <em>Taj Pelc</em>, titled Web System For Multicriteria Decision Support (Spletni sistem za podporo odločanju) at the <a href="http://www.fov.uni-mb.si/en/" title="Faculty of Organizational Sciences">Faculty of Organizational Sciences</a> (FOV) in Kranj, Slovenia, under the mentorship of professor dr. Vladislav Rajkovič.</p>
     <p>The thesis fell under the context of the course Decision Support Systems and investigated the development of a web-based decision support system. To this end a unique decision support method was developed based upon Abacon and Kepner-Tregoe methods and was implemented using the latest web technologies available.</p>
     <p>The result was Odesys Alpha, a showcase project that proved, that developing a web based DSS offers quite some benefits over traditional software based DSS. Unlike similar software, Odesys required no installation or dependencies, administrator rights and was not limited by the operating system. It was accessible from any web capable device with a modern browser.</p>
     <p>After taking the diploma, an improved, production ready version (Odesys Beta) was started with the help of another student of FOV, <em>Frenk T. Sedmak Nahtigal</em>. In that form Odesys was limited to solving only non-complex decision problems with up to 10 one-level criteria and up to 10 alternatives, and without advanced analysis methods.</p>
     <p>Now Odesys is a production ready DSS with a single goal - helping you decide.</p>
-    <h2>Developers</h2>
-    <dl>
-        <dt><img src="https://graph.facebook.com/tajpelc/picture" title="Taj Pelc" alt="Taj Pelc" /><a href="https://www.facebook.com/tajpelc">Taj Pelc</a></dt>
-        <dd>Is currently a masters degree student at FOV, Slovenia with 5 years of experience in developing advanced web systems.</dd>
-        <dt><img src="https://graph.facebook.com/frenk.ten/picture" title="Frenk T. Sedmak Nahtigal" alt="Frenk T. Sedmak Nahtigal" /><a href="https://www.facebook.com/frenk.ten">Frenk T. Sedmak Nahtigal</a></dt>
-        <dd>Also a masters degree student at FOV. A senior front-end web developer, co-developing the system.</dd>
-    </dl>
 </div>
