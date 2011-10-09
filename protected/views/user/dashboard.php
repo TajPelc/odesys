@@ -14,24 +14,32 @@
             <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/23088_1037539823_5285_q.jpg" title="Taj Pelc" alt="Taj Pelc" />
             <div>
                 <h3><a href="#">Taj Pelc</a> - today 12.34</h3>
-                <p>posted a <a href="#">comment</a> on your decision: <a href="#">Tig ol' Bitties"</a>.</p>
-                <blockquote>We care?</blockquote>
+                <p>posted a <a href="#">comment</a> on your decision: <a href="#">"Git ol' Bidayes"</a>.</p>
+                <blockquote>Lorem?</blockquote>
             </div>
         </li>
         <li>
             <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/211944_100001775212279_7119928_q.jpg" title="Rosa Salmela" alt="Rosa Salmela" />
             <div>
                 <h3><a href="#">Rosa Salmela</a> - today 12.12</h3>
-                <p>posted a <a href="#">comment</a> on your decision: <a href="#">Tig ol' Bitties"</a>.</p>
-                <blockquote>OMG!!! I am never hanging with you guys again! PERVERTS!</blockquote>
+                <p>posted a <a href="#">comment</a> on your decision: <a href="#">"Git ol' Bidayes"</a>.</p>
+                <blockquote>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</blockquote>
             </div>
         </li>
         <li>
-            <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/186124_100002179114423_3234182_q.jpg" title="Margaryta Ruzhytskaya" alt="Margaryta Ruzhytskaya" />
+            <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/211944_100001775212279_7119928_q.jpg" title="Margaryta Ruzhytskaya" alt="Margaryta Ruzhytskaya" />
             <div>
                 <h3><a href="#">Margaryta Ruzhytskaya</a> - today 12.02</h3>
-                <p>posted a <a href="#">comment</a> on your decision: <a href="#">Tig ol' Bitties"</a>.</p>
-                <blockquote>Wanna motorboat these?</blockquote>
+                <p>posted a <a href="#">comment</a> on your decision: <a href="#">"Git ol' Bidayes"</a>.</p>
+                <blockquote>Lorem ipsum dolor sit amet?</blockquote>
+            </div>
+        </li>
+        <li>
+            <img src="http://profile.ak.fbcdn.net/hprofile-ak-snc4/23088_1037539823_5285_q.jpg" title="Taj Pelc" alt="Taj Pelc" />
+            <div>
+                <h3><a href="#">Taj Pelc</a> - today 12.34</h3>
+                <p>posted a <a href="#">comment</a> on your decision: <a href="#">"Git ol' Bidayes"</a>.</p>
+                <blockquote>Lorem?</blockquote>
             </div>
         </li>
     </ul>

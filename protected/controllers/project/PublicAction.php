@@ -14,19 +14,19 @@ class PublicAction extends Action
     public function run()
     {
         // load decision
-	    $this->getController()->Decision = Decision::model()->findByPk($this->get('decisionId'));
+        $this->getController()->Decision = Decision::model()->findByPk($this->get('decisionId'));
 
-	    // decision not loaded
-	    if(empty($this->getController()->Decision))
-	    {
-	        $this->_redirectBack();
-	    }
+        // decision not loaded
+        if(empty($this->getController()->Decision))
+        {
+            $this->_redirectBack();
+        }
 
         // check privacy
         $this->_checkPrivacy();
 
-	    // ajax
-	    if(Ajax::isAjax())
+        // ajax
+        if(Ajax::isAjax())
         {
             switch(true)
             {
@@ -47,8 +47,8 @@ class PublicAction extends Action
 
                     // all good
                     Ajax::respondOk(array(
-                    	'opinion' => $this->renderPartial('_opinion', array('Opinion' => $Opinion), true),
-                	));
+                        'opinion' => $this->renderPartial('_opinion', array('Opinion' => $Opinion), true),
+                    ));
                 }
             }
         }
@@ -63,20 +63,23 @@ class PublicAction extends Action
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
 
+        // add meta tag
+        Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->title), NULL, NULL, array('property'=>'og:title'));
+        Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->description), NULL, NULL, array('property'=>'og:description'));
 
-	    // decision not found
-	    if(null == $this->getController()->Decision)
-	    {
-    	    $this->redirect('/');
-	    }
+        // decision not found
+        if(null == $this->getController()->Decision)
+        {
+            $this->redirect('/');
+        }
 
-	    // load decision model
-	    $this->getController()->DecisionModel = $this->getController()->Decision->getPublishedDecisionModel();
+        // load decision model
+        $this->getController()->DecisionModel = $this->getController()->Decision->getPublishedDecisionModel();
 
-	    // analysis
-	    $render = array();
-	    if($this->getController()->DecisionModel instanceof DecisionModel)
-	    {
+        // analysis
+        $render = array();
+        if($this->getController()->DecisionModel instanceof DecisionModel)
+        {
 
             // get evaluation array
             $eval = $this->getController()->DecisionModel->getEvaluationArray();
@@ -92,15 +95,15 @@ class PublicAction extends Action
             $render = array(
                 'eval'                     => $eval,
                 'bestAlternatives'         => $bestAlternatives,
-                'Alternatives'	           => $this->getController()->DecisionModel->alternatives,
+                'Alternatives'               => $this->getController()->DecisionModel->alternatives,
                 'first'                    => $firstAlternative,
                 'second'                   => $secondAlternative,
                 'difference'               => ($firstAlternative->weightedScore > 0 ? (number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore )) * 100, 2)) : 0),
                 'enableComments'           => !Yii::app()->user->isGuest,
             );
-	    }
+        }
 
-	    // render
+        // render
         $this->render('public', $render);
     }
 
@@ -109,10 +112,10 @@ class PublicAction extends Action
      */
     private function _redirectBack()
     {
-	    if(Yii::app()->user->isGuest)
-	    {
-	        $this->redirect('/');
-	    }
+        if(Yii::app()->user->isGuest)
+        {
+            $this->redirect('/');
+        }
         $this->redirect('/user/dashboard');
     }
 
@@ -121,23 +124,23 @@ class PublicAction extends Action
      */
     private function _checkPrivacy()
     {
-	    // may the user view this page
-	    $anonymous = Yii::app()->user->isGuest;
-	    $userMayView = false;
+        // may the user view this page
+        $anonymous = Yii::app()->user->isGuest;
+        $userMayView = false;
         $isOwner = (!$anonymous ? $this->getController()->Decision->isOwner(Yii::app()->user->id) : false);
 
         // handle view privacy
-	    switch ($this->getController()->Decision->view_privacy)
-	    {
-	        // only me
-	        case Decision::PRIVACY_ME:
+        switch ($this->getController()->Decision->view_privacy)
+        {
+            // only me
+            case Decision::PRIVACY_ME:
             {
                 $userMayView = $isOwner;
                 break;
             }
 
             // my friends may view
-	        case Decision::PRIVACY_FRIENDS:
+            case Decision::PRIVACY_FRIENDS:
             {
                 if(!$anonymous)
                 {
@@ -151,16 +154,16 @@ class PublicAction extends Action
             }
 
             // everyon may view
-	        case Decision::PRIVACY_EVERYONE:
+            case Decision::PRIVACY_EVERYONE:
             {
                 $userMayView = true;
                 break;
             }
-	    }
+        }
 
-	    if(!$userMayView)
-	    {
-	        $this->_redirectBack();
-	    }
+        if(!$userMayView)
+        {
+            $this->_redirectBack();
+        }
     }
 }
