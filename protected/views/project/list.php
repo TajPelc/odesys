@@ -6,16 +6,15 @@
         <tr>
             <th>Decision name</th>
             <th>Last modified</th>
-            <th>No. comments</th>
+            <th>No. opinions</th>
+            <th>Published</th>
         </tr>
         <?php foreach($Decisions as $D) { ?>
         <tr id="<?php echo $D->decision_id; ?>">
-            <td><?php echo CHtml::link(CHtml::encode($D->title), array('/decision/analysis', 'decisionId' => $D->decision_id, 'label' => $D->label)); ?></td>
-            <!-- td><?php echo date('j.n.Y', strtotime($D->created)); ?></td-->
+            <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html'); ?></td>
             <td><?php echo date('j.n.Y', strtotime($D->last_edit)); ?></td>
-            <!-- td><?php echo $D->getActiveDecisionModel()->no_alternatives; ?></td-->
-            <!-- td><?php echo $D->getActiveDecisionModel()->no_criteria; ?></td-->
-            <td><div>0<span>X</span></div></td>
+            <td><?php echo $D->opinionCount; ?></td>
+            <td><div><?php echo ($D->isPublished() ? 'Yes' : 'No'); ?><span>X</span></div></td>
         </tr>
         <?php } ?>
     </table>
@@ -25,7 +24,7 @@
         <h4>Dashboard Options:</h4>
         <ul>
             <li><?php echo CHtml::link('Decision Feed', array('user/dashboard')); ?></li>
-            <li><a href="#">Decision History</a></li>
+            <li><?php echo CHtml::link('Decision History', array('project/list')); ?></li>
             <li><a href="#">Statistics</a></li>
             <li><a href="#">Profile Settings</a></li>
         </ul>
