@@ -4,25 +4,19 @@
  * This is the model class for table "notification".
  *
  * The followings are the available columns in table 'notification':
- * @property string $notification_id
+ * @property integer $notification_id
  * @property string $rel_user_id
+ * @property string $time
+ * @property string $data
  * @property integer $type
- * @property integer $source_id
- * @property string $created
  *
  * The followings are the available model relations:
- * @property User $relUser
+ * @property User $User
  */
 class Notification extends CActiveRecord
 {
     const PUBLISH_DECISION = 1;
     const ADD_OPINION = 2;
-
-    /**
-     * Type of notification
-     * @var integer
-     */
-    private $type;
 
     /**
      * Decode the json string
@@ -31,6 +25,48 @@ class Notification extends CActiveRecord
     public function afterFind()
     {
         $this->data = json_decode($this->data);
+    }
+
+    /**
+     * Get the notifications for a given user
+     * @param User $User
+     */
+    public function findNotificationsForUser(User $User)
+    {
+        // get friends
+        $friends = $User->getFriendIds();
+
+        // add the current user id
+        array_push($friends, $User->user_id);
+
+        // find all notifications
+        $Criteria = new CDbCriteria();
+        $Criteria->addInCondition('rel_user_id', $friends);
+        $Criteria->order = 'time DESC';
+
+        /**
+         * Find all notifications and return them
+         * @todo Fix this ugly hack, implement factory pattern on SQL load
+         * @var
+         */
+        $rv = array();
+        foreach( $this->findAll($Criteria) as $Notification)
+        {
+            switch((int)$Notification->type)
+            {
+                case self::ADD_OPINION:
+                {
+                    $rv[] = NotificationOpinion::model()->findByPk($Notification->notification_id);
+                    break;
+                }
+                case self::PUBLISH_DECISION:
+                {
+                    $rv[] = NotificationDecision::model()->findByPk($Notification->notification_id);
+                    break;
+                }
+            }
+        }
+        return $rv;
     }
 
     /**

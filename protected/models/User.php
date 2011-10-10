@@ -193,6 +193,32 @@ class User extends CActiveRecord
     }
 
     /**
+     * Retrieves and returns user's facebook friends' ids
+     */
+    public function getFriendIds()
+    {
+        // get facebook friend's ids
+        $rv = array();
+        $friends = $this->getFriends();
+        foreach($friends as $friend)
+        {
+            $rv[] = $friend['id'];
+        }
+
+        // get odesys friend's ids
+        $Criteria = new CDbCriteria();
+        $Criteria->addInCondition('facebook_id', $rv);
+
+        $rv = array();
+        foreach($this->findAll($Criteria) as $F)
+        {
+            $rv[] = $F->user_id;
+        }
+
+        return $rv;
+    }
+
+    /**
      * Check if a given user is friends with this user
      */
     public function isFriend($facebookId)

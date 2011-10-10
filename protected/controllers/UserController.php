@@ -33,16 +33,10 @@ class UserController extends Controller
         // include javascript
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/dashboard/index.js');
 
-        // load last five decisions
-        $condition = new CDbCriteria();
-        $condition->addCondition('rel_user_id=:user_id');
-        $condition->order = 'last_edit DESC';
-        $condition->limit = 3;
-        $condition->params = array('user_id' => Yii::app()->user->id);
-        $Decisions = Decision::model()->findAll($condition);
+        // get notifications
+        $N = new Notification();
 
-        $User = User::model()->findByPk(Yii::app()->user->id);
-
-        $this->render('dashboard', array('Decisions' => $Decisions, 'User' => $User));
+        // render
+        $this->render('dashboard', array('Notifications' => $N->findNotificationsForUser(User::current())));
     }
 }

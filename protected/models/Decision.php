@@ -28,99 +28,99 @@ class Decision extends CActiveRecord
     const PRIVACY_FRIENDS = 1;
     const PRIVACY_ME = 2;
 
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @return Decision
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+    /**
+     * Returns the static model of the specified AR class.
+     * @return Decision
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
 
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'decision';
-	}
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'decision';
+    }
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
-	public function rules()
-	{
-		return array(
+    /**
+     * @return array validation rules for model attributes.
+     */
+    public function rules()
+    {
+        return array(
             array('title', 'filter', 'filter' => 'trim'),
             array('title', 'required'),
             array('title', 'length', 'max' => 45),
-			array('title', 'safe', 'on'=>'search'),
+            array('title', 'safe', 'on'=>'search'),
 
-			array('description', 'filter', 'filter' => 'trim'),
-			array('description', 'required'),
+            array('description', 'filter', 'filter' => 'trim'),
+            array('description', 'required'),
 
-			array('view_privacy, opinion_privacy', 'numerical', 'min' => 0, 'max' => 2),
-		);
-	}
+            array('view_privacy, opinion_privacy', 'numerical', 'min' => 0, 'max' => 2),
+        );
+    }
 
-	/**
-	 * @return array relational rules.
-	 */
-	public function relations()
-	{
-		return array(
-			'User' => array(self::BELONGS_TO, 'User', 'rel_user_id'),
-			'models' => array(self::HAS_MANY, 'DecisionModel', 'rel_decision_id'),
-			'opinions' => array(self::HAS_MANY, 'Opinion', 'rel_decision_id'),
-		    'opinionCount' => array(self::STAT, 'Opinion', 'rel_decision_id'),
-		);
-	}
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        return array(
+            'User' => array(self::BELONGS_TO, 'User', 'rel_user_id'),
+            'models' => array(self::HAS_MANY, 'DecisionModel', 'rel_decision_id'),
+            'opinions' => array(self::HAS_MANY, 'Opinion', 'rel_decision_id'),
+            'opinionCount' => array(self::STAT, 'Opinion', 'rel_decision_id'),
+        );
+    }
 
-	/**
-	 * Return translations for view privacy constants
-	 *
-	 * @TODO Add translations!
-	 * @return string
-	 */
-	public function getViewPrivacyLabel()
-	{
-	    $labels = array(
-	        self::PRIVACY_EVERYONE => 'Everyone',
-	        self::PRIVACY_FRIENDS => CHtml::encode($this->User->first_name). '\'s friends',
-	        self::PRIVACY_ME => 'Only you',
-	    );
+    /**
+     * Return translations for view privacy constants
+     *
+     * @TODO Add translations!
+     * @return string
+     */
+    public function getViewPrivacyLabel()
+    {
+        $labels = array(
+            self::PRIVACY_EVERYONE => 'Everyone',
+            self::PRIVACY_FRIENDS => CHtml::encode($this->User->first_name). '\'s friends',
+            self::PRIVACY_ME => 'Only you',
+        );
 
-	    return $labels[$this->view_privacy];
-	}
+        return $labels[$this->view_privacy];
+    }
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
-	public function attributeLabels()
-	{
-		return array(
-			'decision_id' => 'Decision',
-			'rel_user_id' => 'Rel User',
-			'title' => 'Title',
-			'label' => 'Label',
-			'created' => 'Created',
-			'last_edit' => 'Last Edit',
-			'description' => 'Description',
-		);
-	}
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'decision_id' => 'Decision',
+            'rel_user_id' => 'Rel User',
+            'title' => 'Title',
+            'label' => 'Label',
+            'created' => 'Created',
+            'last_edit' => 'Last Edit',
+            'description' => 'Description',
+        );
+    }
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		$criteria=new CDbCriteria;
-		$criteria->compare('title',$this->title,true);
-		return new CActiveDataProvider(get_class($this), array(
-			'criteria'=>$criteria,
-		));
-	}
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        $criteria=new CDbCriteria;
+        $criteria->compare('title',$this->title,true);
+        return new CActiveDataProvider(get_class($this), array(
+            'criteria'=>$criteria,
+        ));
+    }
 
     /**
      * Handle all the logic before saving
@@ -288,8 +288,8 @@ class Decision extends CActiveRecord
         $condition->condition = 'rel_decision_id = :rel_decision_id AND status = :status AND model_id != :model_id';
         $condition->params  = array(
             'rel_decision_id' => $this->getPrimaryKey(),
-        	'status' => DecisionModel::PUBLISHED,
-        	'model_id' => $Active->getPrimaryKey(),
+            'status' => DecisionModel::PUBLISHED,
+            'model_id' => $Active->getPrimaryKey(),
         );
 
         // archive old published
@@ -298,6 +298,9 @@ class Decision extends CActiveRecord
             $M->status = DecisionModel::ARCHIVED;
             $M->save();
         }
+
+        // add notification
+        NotificationDecision::publish($this->User, $this);
     }
 
     /**
