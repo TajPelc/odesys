@@ -45,6 +45,9 @@ Score.init = function(){
     // calculate Score height
     Score.Config['height'] = Score.nrAlternatives * Score.Config['rowHeight'] + Graph.Data['criteriaNr'] + Score.Config['bottomLegend'];
 
+    // set container height
+    Score.Container.css({'height': Score.Config['height']});
+
     // create canvas
     Score.Canvas = Raphael("score", Score.Config['width'], Score.Config['height']);
 
@@ -148,7 +151,6 @@ Score.CreateAlternative = function(i)
 Score.DrawAlternatives = function(){
     $(Score.Alternatives).each(function(index, Alternative) {
         Alternative.animate({
-            'fill': Score.Scores[index]['color'],
             width: Score.Scores[index]['width'],
             }, 1000, '<>');
     });

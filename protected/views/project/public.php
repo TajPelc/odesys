@@ -105,7 +105,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     <span style="display:none"><?php echo $this->Decision->description; ?></span>
                 </li>
                 <li><a id="share_reddit" target="_blank" href="http://www.reddit.com/submit?url=<?php echo Yii::app()->request->hostInfo; ?><?php echo CHtml::encode('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html'); ?>">Reddit</a></li>
-                <li><script src="http://www.stumbleupon.com/hostedbadge.php?s=4"></script></li>
             <?php } ?>
         </ul>
         <?php } ?>

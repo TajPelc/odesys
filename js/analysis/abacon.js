@@ -41,6 +41,9 @@ Abacon.init = function(){
     // calculate abacon height
     Abacon.Config['height'] = Graph.Data['criteriaNr'] * Abacon.Config['rowHeight'] + Graph.Data['criteriaNr'] + Abacon.Config['bottomLegend'];
 
+    // set container height
+    Abacon.Container.css({'height': Abacon.Config['height']});
+
     // create canvas
     Abacon.Canvas = Raphael("abacon", Abacon.Config['width'], Abacon.Config['height']);
 
