@@ -1,6 +1,6 @@
 /* Public javascript
  * @author        Frenk T. Sedmak Nahtigal
- * @version       1.1
+ * @version       1.2
 */
 
 Public = {};
@@ -48,13 +48,42 @@ Public.Comment = function(commentForm) {
 Public.Comment.Count = function() {
     var comment = $('.comments');
     var commentNr = comment.find('li:not(.new)').length;
+    /* @ToDo
     if(commentNr >= 5){
         comment.siblings('#comments_more').show();
     } else {
         comment.siblings('#comments_more').hide();
-    }
+    }*/
+    comment.siblings('#comments_more').hide();
 }
 
+//display more comments
+Public.Comment.ShowMore = function(that) {
+    that.unbind('click.ShowMore');
+    //data
+    var data = {
+        'showMore': true
+    };
+    
+    $.ajax({
+        data: data,
+        success: function(data) {
+            if(data['status'] == true){
+                //here be returned shite
+                $('#content ul').append(data['more']);
+                
+                //rebind button click event
+                that.bind('click.ShowMore', function(){
+                    Public.Comment.ShowMore($(this));
+                });
+
+            //errors
+            } else {
+                
+            }
+        }
+    });
+}
 
 /*
  * Document Ready
@@ -102,4 +131,13 @@ $(document).ready(function(){
 
     //count comments and show/hide "show more" button
     Public.Comment.Count();
+
+    //show more comments
+    $('#comments_more').click(function(){
+        return false;
+    });
+
+    $('#comments_more').bind('click.ShowMore', function(){
+        Public.Comment.ShowMore($(this));
+    });
 });
