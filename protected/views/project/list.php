@@ -2,6 +2,7 @@
     <div id="heading">
         <h2>Dashboard - Decision History</h2>
     </div>
+    <?php if(!empty($Decisions)) { ?>
     <table>
         <tr>
             <th>Decision name</th>
@@ -18,6 +19,9 @@
         </tr>
         <?php } ?>
     </table>
+    <?php } else { ?>
+    <h3>You have not yet started modeling a decision.</h3>
+    <?php } ?>
 </div>
 <div id="sidebar">
     <div class="edit">

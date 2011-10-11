@@ -3,10 +3,14 @@
         <h2>Dashboard - Decision Feed</h2>
     </div>
     <ul>
-        <?php foreach ($Notifications as $N) { ?>
-            <li>
-                <?php echo $N; ?>
-            </li>
+        <?php if(empty($Notifications)) { ?>
+            <li class="empty">There are no notifications from you nor your friends.</li>
+        <?php } else { ?>
+            <?php foreach ($Notifications as $N) { ?>
+                <li>
+                    <?php echo $N; ?>
+                </li>
+            <?php }?>
         <?php }?>
     </ul>
     <a class="button" href="#" id="showMore">Show more<span>&nbsp;</span></a>

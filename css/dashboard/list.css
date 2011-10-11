@@ -13,6 +13,10 @@
         border-bottom: 1px solid #dedfe3;
     }
 
+    #content > h3 {
+        font-size: 15px;
+    }
+
 /* Table
 ********************************************************/
 #content table {
