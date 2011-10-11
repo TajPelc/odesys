@@ -31,7 +31,7 @@ class Notification extends CActiveRecord
      * Get the notifications for a given user
      * @param User $User
      */
-    public function findNotificationsForUser(User $User)
+    public function findNotificationsForUser(User $User, $page = 0, $pageSize = 8)
     {
         // get friends
         $friends = $User->getFriendIds();
@@ -43,6 +43,13 @@ class Notification extends CActiveRecord
         $Criteria = new CDbCriteria();
         $Criteria->addInCondition('rel_user_id', $friends);
         $Criteria->order = 'time DESC';
+
+        // set pagination
+        $Pagination = new CPagination();
+        $Pagination->setItemCount(self::model()->count($Criteria));
+        $Pagination->setCurrentPage($page);
+        $Pagination->setPageSize($pageSize);
+        $Pagination->applyLimit($Criteria);
 
         /**
          * Find all notifications and return them
@@ -66,7 +73,11 @@ class Notification extends CActiveRecord
                 }
             }
         }
-        return $rv;
+
+        return array(
+            'notifications' => $rv,
+            'pagination' => $Pagination,
+        );
     }
 
     /**

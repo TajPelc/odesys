@@ -4,19 +4,26 @@
 */
 
 DashboardFeed = {};
+DashboardFeed.nextPage = 1;
 
 DashboardFeed.showMore = function() {
     var data = {
-            'showMore': true
+            'showMore': true,
+            'page': DashboardFeed.nextPage,
     };
     // post the form
     $.ajax({
         data: data,
         success: function(data) {
             if(data['status'] == true){
-                //here be returned shite
-                $('#content ul').append(data['more']);
+                DashboardFeed.nextPage++;
 
+                //here be returned shite
+                $('#content ul').append(data['notifications']);
+                if(data['pageCount'] == DashboardFeed.nextPage)
+                {
+                    $('#showMore').hide();
+                }
             //errors
             } else {
             }

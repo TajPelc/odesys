@@ -26,6 +26,23 @@ class UserController extends Controller
      */
     public function actionDashboard()
     {
+        // wake up notifications
+        $N = new Notification();
+        $pageNr = ((bool)$this->post('page') ? $this->post('page') : 0);
+
+        // get notifications
+        $rv = $N->findNotificationsForUser(User::current(), $pageNr);
+
+        // ajax
+        if(Ajax::isAjax())
+        {
+            Ajax::respondOk(array(
+                'page' => $rv['pagination']->getCurrentPage(),
+                'pageCount' => $rv['pagination']->getPageCount(),
+                'notifications' => $this->renderPartial('dashboard/list', array('notifications' => $rv['notifications']), true),
+            ));
+        }
+
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/index.css');
@@ -33,10 +50,8 @@ class UserController extends Controller
         // include javascript
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/dashboard/index.js');
 
-        // get notifications
-        $N = new Notification();
 
         // render
-        $this->render('dashboard', array('Notifications' => $N->findNotificationsForUser(User::current())));
+        $this->render('dashboard', array('notifications' => $rv['notifications'], 'pagination' => $rv['pagination']));
     }
 }
