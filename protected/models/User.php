@@ -17,12 +17,6 @@ class User extends CActiveRecord
     const TYPE_FACEBOOK = 40;
 
     /**
-     * Facebook friends
-     * @var array
-     */
-    private $_friends = null;
-
-    /**
      * User config
      */
     private $_config = array(
@@ -175,21 +169,35 @@ class User extends CActiveRecord
     }
 
     /**
-     * Retrieves and returns user's facebook friends
+     * Retrieves and returns user's facebook friends from session
+     *
+     * If no data is stored in session or the data is older than 6 hours, it fetches it from facebook
      */
     public function getFriends()
     {
+        // calculate the time of last fetch
+        $lastUpdated = (time() - (int)Yii::app()->session['friendsUpdated']) / (60 * 60);
+
         // friends already loaded
-        if(!is_null($this->_friends))
+        if(empty(Yii::app()->session['friends']) || $lastUpdated > 6)
         {
-            return $this->_friends;
+            return $this->fetchFriendsFromFacebook();
         }
 
-        // get friends
-        $data = Fb::singleton()->getFriends($this->facebook_id);
-        $this->_friends = $data['data'];
+        return Yii::app()->session['friends'];
+    }
 
-        return $this->_friends;
+    /**
+     * Retrieves users's facebook friends, saves them to session and returns them
+     * also saves the time of the fetch
+     */
+    public function fetchFriendsFromFacebook()
+    {
+        $data = Fb::singleton()->getFriends($this->facebook_id);
+        Yii::app()->session['friends'] = $data['data'];
+        Yii::app()->session['friendsUpdated'] = time();
+
+        return Yii::app()->session['friends'];
     }
 
     /**
