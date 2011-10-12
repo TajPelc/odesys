@@ -48,22 +48,22 @@ class DecisionController extends Controller
      * Initiliaze (non-PHPdoc)
      * @see CController::init()
      */
-	public function init()
-	{
-	    // only authenticated users may access these pages
-	    if(Yii::app()->user->isGuest)
-	    {
-	        $this->redirect('/');
-	    }
+    public function init()
+    {
+        // only authenticated users may access these pages
+        if(Yii::app()->user->isGuest)
+        {
+            $this->redirect('/');
+        }
 
         // load decision
-	    $this->Decision = Decision::model()->findByPk($this->get('decisionId'));
+        $this->Decision = Decision::model()->findByPk($this->get('decisionId'));
 
-	    // load decision model
-	    $this->DecisionModel = $this->Decision->getActiveDecisionModel();
+        // load decision model
+        $this->DecisionModel = $this->Decision->getActiveDecisionModel();
 
-	    // if loading failed or user is not the owner => redirect to dashboard
-	    if( null === $this->Decision || !$this->Decision->isOwner(Yii::app()->user->id) )
+        // if loading failed or user is not the owner => redirect to dashboard
+        if( null === $this->Decision || !$this->Decision->isOwner(Yii::app()->user->id) )
         {
             $this->redirect('/user/dashboard');
         }
@@ -71,9 +71,12 @@ class DecisionController extends Controller
         // evaluate states for menu
         $this->updateStatesForMenu();
 
+        // custom header
+        $this->customHeader = CHtml::encode(ucfirst($this->Decision->title));
+
         // set public link
         $this->publicLink = '/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html';
-	}
+    }
 
     /**
      * Get menu items for ajax

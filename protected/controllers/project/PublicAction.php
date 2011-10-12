@@ -13,6 +13,7 @@ class PublicAction extends Action
      */
     public function run()
     {
+
         // load decision
         $this->getController()->Decision = Decision::model()->findByPk($this->get('decisionId'));
 
@@ -24,6 +25,9 @@ class PublicAction extends Action
 
         // check privacy
         $this->_checkPrivacy();
+
+        // custom header
+        $this->getController()->customHeader = CHtml::encode(ucfirst($this->getController()->Decision->title));
 
         // ajax
         if(Ajax::isAjax())
