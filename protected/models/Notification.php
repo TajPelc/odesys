@@ -15,8 +15,8 @@
  */
 class Notification extends CActiveRecord
 {
-    const PUBLISH_DECISION = 1;
-    const ADD_OPINION = 2;
+    const DECISION = 1;
+    const OPINION = 2;
 
     /**
      * Decode the json string
@@ -61,12 +61,12 @@ class Notification extends CActiveRecord
         {
             switch((int)$Notification->type)
             {
-                case self::ADD_OPINION:
+                case self::OPINION:
                 {
                     $rv[] = NotificationOpinion::model()->findByPk($Notification->notification_id);
                     break;
                 }
-                case self::PUBLISH_DECISION:
+                case self::DECISION:
                 {
                     $rv[] = NotificationDecision::model()->findByPk($Notification->notification_id);
                     break;

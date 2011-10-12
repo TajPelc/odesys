@@ -12,7 +12,7 @@ class NotificationDecision extends Notification
      */
     public function init()
     {
-        $this->type = self::PUBLISH_DECISION;
+        $this->type = self::DECISION;
     }
 
     /**
