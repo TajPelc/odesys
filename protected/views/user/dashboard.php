@@ -1,3 +1,4 @@
+<?php $this->pageTitle='Profile | Decision feed'; ?>
 <div id="content">
     <div id="heading">
         <h2>Decision feed</h2>

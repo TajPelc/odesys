@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($this->Decision->title) . ' / ' . ' Criteria'; ?>
+<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Criteria'; ?>
 
 <div id="heading">
     <h2>What factors influence your decision the most?</h2>

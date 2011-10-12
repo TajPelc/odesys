@@ -1,3 +1,4 @@
+<?php $this->pageTitle='Profile | Decision history'; ?>
 <div id="content">
     <div id="heading">
         <h2>Decision history</h2>

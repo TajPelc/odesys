@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($this->Decision->title) . ' / ' . ' Alternatives'; ?>
+<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Alternatives'; ?>
 
 <div id="heading">
     <h2>What alternatives are you considering?</h2>

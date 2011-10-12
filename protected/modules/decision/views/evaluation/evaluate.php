@@ -1,5 +1,5 @@
 <?php if(!Ajax::isAjax()) { ?>
-<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($this->Decision->title) . ' / ' . ' Evaluation'; ?>
+<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Evaluation'; ?>
 
 <div id="heading">
     <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>

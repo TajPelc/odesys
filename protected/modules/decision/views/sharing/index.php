@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::app()->name . 'Project ' . CHtml::encode($this->Decision->title) . ' / ' . ' Sharing and Settings'; ?>
+<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Sharing and Settings'; ?>
 
 <div id="heading">
     <h2>Get opinions on this decision from your friends and collegues.</h2>

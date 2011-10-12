@@ -1,4 +1,4 @@
-<?php $this->pageTitle=CHtml::encode($this->Decision->title); ?>
+<?php $this->pageTitle='ODESYS | '.CHtml::encode($this->Decision->title); ?>
 <?php if($this->DecisionModel instanceof DecisionModel) { ?>
 <div id="heading">
     <h1>A decision model by <?php echo CHtml::encode($this->Decision->User->name); ?></h1>

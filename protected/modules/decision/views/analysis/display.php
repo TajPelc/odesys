@@ -1,3 +1,5 @@
+<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Analysis'; ?>
+
 <script type="text/javascript">
 var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;

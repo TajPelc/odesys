@@ -1,4 +1,4 @@
-<?php $this->pageTitle='ODESYS: Terms of use'; ?>
+<?php $this->pageTitle='ODESYS | Terms of use'; ?>
 
 <div id="heading">
     <h2>Disclaimer</h2>

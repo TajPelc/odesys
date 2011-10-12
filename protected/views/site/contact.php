@@ -1,4 +1,4 @@
-<?php $this->pageTitle='Contact ODESYS team'; ?>
+<?php $this->pageTitle='ODESYS | Contact us'; ?>
 <div id="heading">
     <h2>Contact us</h2>
 </div>

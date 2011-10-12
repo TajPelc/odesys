@@ -51,6 +51,7 @@
     #content table th:nth-child(1){ background-position: 2px -443px }
     #content table th:nth-child(2){ background-position: 0 6px }
     #content table th:nth-child(3){ background-position: 0 -42px }
+    #content table th:nth-child(4){ background-position: 0 -92px }
 
     #content table td {
         padding-left: 20px;
