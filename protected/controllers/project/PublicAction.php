@@ -102,6 +102,11 @@ class PublicAction extends Action
                 'enableComments'           => !Yii::app()->user->isGuest,
             );
         }
+        else if( $this->getController()->Decision->isOwner(User::current()->getPrimaryKey())) // not yet published and viewed by owner
+        {
+            // redirect back to publish page
+            $this->redirect(array('/decision/sharing', 'decisionId' => $this->getController()->Decision->decision_id, 'label' => $this->getController()->Decision->label));
+        }
 
         // render
         $this->render('public', $render);
