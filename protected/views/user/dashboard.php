@@ -2,6 +2,26 @@
 <div id="content">
     <div id="heading">
         <h2>Decision feed</h2>
+        <a id="helpButton" href="#">Help</a>
+        <div id="help" style="display: none;">
+            <h3>Need some help?</h3>
+            <ul>
+                <li>
+                    <dl>
+                        <dt>Profile feed</dt>
+                        <dd>This feed shows yours and your friend's decisions and opinions.</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>Help others</dt>
+                        <dd>You should constantly check what your friends's decision problems are and try to contribute with your opinion on the matter.</dd>
+                    </dl>
+                </li>
+            </ul>
+            <span class="helpClose">&nbsp;</span>
+            <div id="helpEnd"></div>
+        </div>
     </div>
     <ul>
         <?php if(empty($notifications)) { ?>

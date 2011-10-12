@@ -1,8 +1,17 @@
 /*
  --> Decision list css
  --> @author:     Frenk T. Sedmak Nahtigal
- --> @version:    1.0
+ --> @version:    1.1
 */
+
+#content a {
+    text-decoration: underline;
+}
+
+#content a:hover {
+    color: #000 !important;
+    text-decoration: none;
+}
 
 #content {
   width: 670px;
