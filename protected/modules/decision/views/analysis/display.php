@@ -8,7 +8,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <div id="heading">
     <h2>Compare alternatives to find which one is best suited for you.</h2>
     <a id="helpButton" href="#">Help</a>
-    <h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3>
+    <?php if($this->Decision->isPublished()){ ?><h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3><?php } ?>
     <div id="help" style="display: none;">
         <h3>Need some help?</h3>
         <ul>

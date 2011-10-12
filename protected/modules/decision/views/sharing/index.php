@@ -2,7 +2,27 @@
 
 <div id="heading">
     <h2>Get opinions on this decision from your friends and collegues.</h2>
-    <h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3>
+    <a id="helpButton" href="#">Help</a>
+    <?php if($this->Decision->isPublished()){ ?><h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3><?php } ?>
+    <div id="help" style="display: none;">
+        <h3>Need some help?</h3>
+        <ul>
+            <li>
+                <dl>
+                    <dt>Think</dt>
+                    <dd>Lorem ipsum dolor sit amet</dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>Random Examples</dt>
+                    <dd>Lorem ipsum dolor sit amet</dd>
+                </dl>
+            </li>
+        </ul>
+        <span class="helpClose">&nbsp;</span>
+        <div id="helpEnd"></div>
+    </div>
 </div>
 
 <div id="content">
