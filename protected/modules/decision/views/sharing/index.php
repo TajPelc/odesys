@@ -6,7 +6,6 @@
 </div>
 
 <div id="content">
-    <h3>Publishing settings</h3>
     <form action="" method="post">
         <div>
             <?php if(!empty($errors)) { ?>
