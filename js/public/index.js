@@ -4,6 +4,7 @@
 */
 
 Public = {};
+Public.OpinionNextPage = 1;
 
 Public.FormErrorReporting = function(that, text){
     that.append('<div class="error"><p>'+text+'</p></div>');
@@ -30,8 +31,6 @@ Public.Comment = function(commentForm) {
                 //unblock and bind button back
                 Core.Unblock(Public.CommentForm.find('.textarea'));
                 Public.CommentForm.find('.button').bind('click', eSubmit);
-                //count comments and show/hide "show more" button
-                Public.Comment.Count();
                 //errors
             } else {
                 //unblock and bind button back
@@ -44,42 +43,36 @@ Public.Comment = function(commentForm) {
     });
 }
 
-//display show more opinons button if more than 5 comments
-Public.Comment.Count = function() {
-    var comment = $('.comments');
-    var commentNr = comment.find('li:not(.new)').length;
-    /* @ToDo
-    if(commentNr >= 5){
-        comment.siblings('#comments_more').show();
-    } else {
-        comment.siblings('#comments_more').hide();
-    }*/
-    comment.siblings('#comments_more').hide();
-}
-
 //display more comments
 Public.Comment.ShowMore = function(that) {
     that.unbind('click.ShowMore');
     //data
     var data = {
-        'showMore': true
+        'showMore': true,
+        'opinionPage': Public.OpinionNextPage,
     };
-    
+
     $.ajax({
         data: data,
         success: function(data) {
             if(data['status'] == true){
+                Public.OpinionNextPage++;
                 //here be returned shite
                 $('#content ul').append(data['more']);
-                
+
                 //rebind button click event
                 that.bind('click.ShowMore', function(){
                     Public.Comment.ShowMore($(this));
                 });
 
+                // hide show more?
+                if(data['pageCount'] == Public.OpinionNextPage)
+                {
+                    $('#showMore').hide();
+                }
             //errors
             } else {
-                
+
             }
         }
     });
@@ -129,15 +122,12 @@ $(document).ready(function(){
         return false;
     });
 
-    //count comments and show/hide "show more" button
-    Public.Comment.Count();
-
     //show more comments
-    $('#comments_more').click(function(){
+    $('#showMore').click(function(){
         return false;
     });
 
-    $('#comments_more').bind('click.ShowMore', function(){
+    $('#showMore').bind('click.ShowMore', function(){
         Public.Comment.ShowMore($(this));
     });
 });

@@ -66,11 +66,11 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                     </div>
                 </li>
             <?php }?>
-            <?php foreach($this->Decision->getAllOpinions() as $Opinion) { ?>
-                <?php $this->renderPartial('_opinion', array('Opinion' => $Opinion))?>
-            <?php } ?>
+            <?php $this->renderPartial('_opinion', array('models' => $opinions['models'])); ?>
         </ul>
-        <a href="#" id="comments_more" class="button">Show more opinions<span>&nbsp;</span></a>
+        <?php if($opinions['pagination']->getPageCount() > 1) { ?>
+            <a href="#" id="showMore" class="button">Show more opinions<span>&nbsp;</span></a>
+        <?php } ?>
     </div>
 </div>
 <div id="sidebar">

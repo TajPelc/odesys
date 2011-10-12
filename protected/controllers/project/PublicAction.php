@@ -34,6 +34,7 @@ class PublicAction extends Action
         {
             switch(true)
             {
+                // new comment
                 case isset($_POST['comment_new']):
                 {
                     // create new opinion
@@ -51,7 +52,18 @@ class PublicAction extends Action
 
                     // all good
                     Ajax::respondOk(array(
-                        'opinion' => $this->renderPartial('_opinion', array('Opinion' => $Opinion), true),
+                        'opinion' => $this->renderPartial('_opinion', array('models' => array($Opinion)), true),
+                    ));
+                }
+                // get more comments
+                case isset($_POST['showMore']):
+                {
+                    $pageNr = $this->post('opinionPage') ? $this->post('opinionPage') : 0;
+                    $rv = $this->getController()->Decision->getAllOpinions($pageNr);
+
+                    Ajax::respondOk(array(
+                        'more' => $this->renderPartial('_opinion', array('models' => $rv['models']), true),
+                        'pageCount' => $rv['pagination']->getPageCount(),
                     ));
                 }
             }
@@ -99,11 +111,12 @@ class PublicAction extends Action
             $render = array(
                 'eval'                     => $eval,
                 'bestAlternatives'         => $bestAlternatives,
-                'Alternatives'               => $this->getController()->DecisionModel->alternatives,
+                'Alternatives'             => $this->getController()->DecisionModel->alternatives,
                 'first'                    => $firstAlternative,
                 'second'                   => $secondAlternative,
                 'difference'               => ($firstAlternative->weightedScore > 0 ? (number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore )) * 100, 2)) : 0),
                 'enableComments'           => !Yii::app()->user->isGuest,
+                'opinions'				   => $this->getController()->Decision->getAllOpinions(0),
             );
         }
         else if( $this->getController()->Decision->isOwner(User::current()->getPrimaryKey())) // not yet published and viewed by owner

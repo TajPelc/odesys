@@ -313,14 +313,25 @@ class Decision extends CActiveRecord
     /**
      * Publish the current active decision model and create a new active decision model
      */
-    public function getAllOpinions()
+    public function getAllOpinions($page, $pageSize = 10)
     {
+        // get opinions
         $Criteria = new CDbCriteria();
         $Criteria->condition = 'rel_decision_id=:rel_decision_id';
         $Criteria->order = 'created DESC';
         $Criteria->params = array('rel_decision_id' => $this->decision_id);
 
-        return Opinion::model()->findAll($Criteria);
+        // set pagination
+        $Pagination = new CPagination();
+        $Pagination->setItemCount(Opinion::model()->count($Criteria));
+        $Pagination->setCurrentPage($page);
+        $Pagination->setPageSize($pageSize);
+        $Pagination->applyLimit($Criteria);
+
+        return array(
+            'pagination' => $Pagination,
+            'models' => Opinion::model()->findAll($Criteria),
+        );
     }
 
     /**
