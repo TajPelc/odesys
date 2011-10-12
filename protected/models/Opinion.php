@@ -40,6 +40,7 @@ class Opinion extends CActiveRecord
     {
         return array(
             array('opinion', 'filter', 'filter' => 'trim'),
+            array('opinion', 'length', 'max' => 3000),
             array('opinion', 'required'),
             array('opinion', 'safe', 'on'=>'search'),
         );

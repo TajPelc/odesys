@@ -112,12 +112,12 @@ Score.CreateAlternative = function(i)
     var y = Score.Config['rowHeight'] * i + (Score.Config['rowHeight']/2) - 10;
 
     // rectangle
-    var Alternative = Score.Canvas.rect(x-1.5, y+0.5, 0, 20, 0).attr({
+    var Alternative = Score.Canvas.rect(x-1, y+4, 0, 14, 0).attr({
         'fill': '#fff',
         'fill': Score.Scores[i]['color'],
         'stroke': '#596171',
         'opacity': 0.5,
-        'stroke-width': 1,
+        'stroke-width': 0
     });
 
     // hover over dot (to make life easier)

@@ -1,7 +1,7 @@
 <?php $this->pageTitle=CHtml::encode($this->Decision->title); ?>
 <?php if($this->DecisionModel instanceof DecisionModel) { ?>
 <div id="heading">
-    <h1><?php echo CHtml::encode($this->Decision->User->name); ?> is deciding on “<?php echo CHtml::encode($this->Decision->title); ?>”</h1>
+    <h1>A decision model by <?php echo CHtml::encode($this->Decision->User->name); ?></h1>
 </div>
 <script type="text/javascript">
 var Graph = {};
@@ -37,7 +37,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=square');?>
 
         <dl>
-            <dt><?php echo CHtml::encode($this->Decision->User->name); ?><span class="timestamp">April 5th, 18:13</span></dt>
+            <dt><?php echo CHtml::encode($this->Decision->User->name); ?><span class="timestamp"><?php echo date('F jS, Y \a\t H:i', strtotime($this->Decision->last_edit)); ?></span></dt>
             <dd><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></dd>
         </dl>
     </div>
