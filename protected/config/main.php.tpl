@@ -12,16 +12,17 @@ return array(
     // autoloading model and component classes
     'import'=>array(
         'application.models.*',
+        'application.models.notification.*',
         'application.components.*',
         'application.helpers.*',
     ),
 
     // modules
-	'modules'=>array(
+    'modules'=>array(
         'decision',
         'gii'=>array( // gii tool
             'class'=>'system.gii.GiiModule',
-    		'ipFilters'=> array('localhost', '127.0.0.1', '192.168.15.148'),
+            'ipFilters'=> array('localhost', '127.0.0.1', '192.168.15.148'),
             'password'=>'wtf',
         ),
     ),
@@ -40,7 +41,7 @@ return array(
             'rules'=>array_merge(
                 array(
                     '/' => 'site/index',
-					'<_c:(decision)>/<decisionId:\d+>-<label>/' => array('project/public', 'urlSuffix' => '.html'),
+                    '<_c:(decision)>/<decisionId:\d+>-<label>/' => array('project/public', 'urlSuffix' => '.html'),
                 ),
                 require_once('protected/modules/decision/config/url-rules.php')
             ),
@@ -55,13 +56,13 @@ return array(
             'username' => 'DBUSERNAME',
             'password' => 'DBPASSWORD',
             'charset' => 'utf8',
-        	'tablePrefix' => '',
+            'tablePrefix' => '',
         ),
-	// error handling
+    // error handling
         'errorHandler'=>array(
             'errorAction'=>'site/error',
         ),
-	// logging
+    // logging
         'log'=>array(
             'class'=>'CLogRouter',
             'routes'=>array(
