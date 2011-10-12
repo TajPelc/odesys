@@ -99,14 +99,6 @@ a:hover {
         }
 
             #header h1 a {
-                width: 310px;
-                height: 100%;
-                display: block;
-                text-indent: -9999px;
-                background: url(../../images/logo.png) no-repeat;
-            }
-
-            #header h1 a#smallLogo {
                 width: 110px;
                 height: 25px;
                 margin-right: 5px;
@@ -116,7 +108,7 @@ a:hover {
                 background: url(../../images/logo2.png) no-repeat;
             }
             
-            #header h1 a#smallLogo + span {
+            #header h1 a + span {
                 line-height: 18px;
                 display: block;
                 float: left;
