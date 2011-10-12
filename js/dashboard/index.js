@@ -19,7 +19,7 @@ DashboardFeed.showMore = function() {
                 DashboardFeed.nextPage++;
 
                 //here be returned shite
-                $('#content ul').append(data['notifications']);
+                $('#content > ul').append(data['notifications']);
                 if(data['pageCount'] == DashboardFeed.nextPage)
                 {
                     $('#showMore').hide();
