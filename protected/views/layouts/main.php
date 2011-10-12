@@ -33,7 +33,7 @@
         <div id="header">
             <div id="headings">
                 <?php if((bool)$this->customHeader){ ?>
-                    <h1><?php echo $this->customHeader; ?></h1>
+                    <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index'), array('id' => 'smallLogo')); ?><span><?php echo $this->customHeader; ?></span></h1>
                 <?php } else { ?>
                     <h1><?php echo CHtml::link(CHtml::encode(Yii::app()->name), array('/site/index')); ?></h1>
                 <?php }?>
