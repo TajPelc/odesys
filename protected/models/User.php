@@ -229,11 +229,11 @@ class User extends CActiveRecord
     /**
      * Check if a given user is friends with this user
      */
-    public function isFriend($facebookId)
+    public function isFriend($userId)
     {
-        foreach($this->getFriends() as $Friend)
+        foreach($this->getFriendIds() as $friendId)
         {
-            if($Friend['id'] == $facebookId)
+            if($userId == $friendId)
             {
                 return true;
             }
