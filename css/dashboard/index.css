@@ -3,7 +3,13 @@
  --> @author:     Frenk T. Sedmak Nahtigal
  --> @version:    1.2
 */
-
+#content a {
+    text-decoration: underline;
+}
+#content a:hover {
+    text-decoration: none;
+    color: #000 !important;
+}
 #content {
   width: 670px;
 }
@@ -70,14 +76,10 @@
 
         #content > ul li blockquote {
             width: 577px;
-            padding-left: 10px;
+            padding-left: 20px;
             float: left;
             font-size: 11px;
             color: #9d9fa3;
-        }
-
-        #content > ul li blockquote:before {
-            content: "-> ";
         }
 
 .button {
@@ -90,7 +92,7 @@
     float: right;
     color: #717c90;
     background: url(../../images/form/sprite_buttons.png) -300px -400px no-repeat;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .button:hover {
@@ -146,5 +148,9 @@
           display: block;
           font-size: 11px;
           color: #fff;
+      }
+      #sidebar .edit ul li span {
+          color: #717C90;
+          cursor: default;
       }
 

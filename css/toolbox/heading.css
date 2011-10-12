@@ -28,9 +28,10 @@
 
     #heading h2 {
         width: 606px;
-        line-height: 37px;
+        line-height: 35px;
         float: left;
         font-size: 17px;
+        font-style: italic;
         color: #fff;
     }
 

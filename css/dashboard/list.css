@@ -135,3 +135,7 @@
           font-size: 11px;
           color: #fff;
       }
+      #sidebar .edit ul li span {
+          color: #717C90;
+          cursor: default;
+      }

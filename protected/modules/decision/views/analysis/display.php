@@ -36,7 +36,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <div id="accordion">
     <div>
         <h3>Results</h3>
-        <p>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the winning alternative.</p>
+        <p>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the best scored alternative.</p>
         <div class="sidebar help">
             <h4>Which one do I choose?</h4>
             <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</p>
@@ -68,7 +68,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 </tr>
             </table>
         </div>
-        <p><b><?php echo CHtml::encode($first->title); ?></b> scores the highest with a lead of <b><?php echo $difference; ?>%</b> compared to <b><?php  echo CHtml::encode($second->title); ?></b></p>
+        <p><b><?php echo CHtml::encode($first->title); ?></b> scores the highest with a lead of <b><?php echo $difference; ?> points</b> compared to <b><?php  echo CHtml::encode($second->title); ?></b></p>
     </div>
     <div>
     <h3>Detailed comparison</h3>

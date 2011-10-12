@@ -1,6 +1,6 @@
 <div id="content">
     <div id="heading">
-        <h2>Dashboard - Decision Feed</h2>
+        <h2>Decision feed</h2>
     </div>
     <ul>
         <?php if(empty($notifications)) { ?>
@@ -15,11 +15,11 @@
 </div>
 <div id="sidebar">
     <div class="edit">
-        <h4>Dashboard Options:</h4>
+        <h4>Profile</h4>
         <ul>
-            <li><?php echo CHtml::link('Decision Feed', array('user/dashboard')); ?></li>
+            <li><span>Decision Feed</span></li>
             <li><?php echo CHtml::link('Decision History', array('project/list')); ?></li>
-            <li><a href="#">Statistics</a></li>
+            <!-- li><a href="#">Statistics</a></li-->
             <li><a href="#">Profile Settings</a></li>
         </ul>
         <div class="last"></div>

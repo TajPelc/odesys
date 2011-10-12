@@ -64,7 +64,11 @@
         </div>
         <ul id="content-nav">
             <li class="prev"><?php echo CHtml::link('Previous<span class="doors">&nbsp;</span>', array('/decision/analysis', 'decisionId' => $this->Decision->decision_id, 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)); ?></li>
-            <li class="next"><input class="button" type="submit" name="publish" value="Publish" /></li>
+            <?php if($this->Decision->isPublished()) { ?>
+                <li class="next"><input class="button" type="submit" name="publish" value="Update" /></li>
+            <?php } else { ?>
+                <li class="next"><input class="button" type="submit" name="publish" value="Publish" /></li>
+            <?php }?>
         </ul>
     </form>
 </div>

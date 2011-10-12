@@ -76,7 +76,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <div id="sidebar">
     <?php if($this->Decision->isOwner(Yii::app()->user->id)) { ?>
     <div class="edit">
-        <h4>Edit this decision:</h4>
+        <h4>Edit this decision</h4>
         <ul>
             <li><?php echo CHtml::link('Alternatives', array('/decision/alternatives', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
             <li><?php echo CHtml::link('Criteria', array('/decision/criteria', 'decisionId' => $this->Decision->getPrimaryKey(), 'label' => $this->Decision->label)); ?></li>
@@ -114,7 +114,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <h4><?php echo CHtml::encode($this->Decision->User->first_name); ?>'s preference</h4>
         <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
         <h4>Highest scoring alternative</h4>
-        <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?>%</b></p>
+        <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?> points</b></p>
         <h4>Decision overview:</h4>
         <ul>
             <li><span>No. alternatives</span><em><?php echo $this->DecisionModel->no_alternatives; ?></em></li>

@@ -16,7 +16,7 @@ class ListAction extends Action
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/dashboard/list.js');
 
         // find all user's projects
-        $Decisions = Decision::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id));
+        $Decisions = Decision::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id), array('order' => 'last_edit DESC'));
 
         // render
         $this->render('list', array('Decisions' => $Decisions));

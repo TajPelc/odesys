@@ -211,6 +211,9 @@ class Decision extends CActiveRecord
      */
     public function publishDecisionModel()
     {
+        // check if the decision model is already published
+        $isPublished = $this->isPublished();
+
         // get active decision model
         $Active = $this->getActiveDecisionModel();
 
@@ -299,8 +302,12 @@ class Decision extends CActiveRecord
             $M->save();
         }
 
-        // add notification
-        NotificationDecision::publish($this->User, $this);
+        // not already published
+        if(!$isPublished)
+        {
+            // add notification
+            NotificationDecision::publish($this->User, $this);
+        }
     }
 
     /**
