@@ -12,7 +12,7 @@ class NotificationOpinion extends Notification
      */
     public function init()
     {
-        $this->type = self::ADD_OPINION;
+        $this->type = self::OPINION;
     }
 
     /**

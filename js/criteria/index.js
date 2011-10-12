@@ -227,6 +227,14 @@ $(document).ready(function(){
                 }
             });
         }
+    }).touch({
+        animate: false,
+        sticky: false,
+        dragx: true,
+        dragy: true,
+        rotate: false,
+        resort: true,
+        scale: false
     });
 
     // update the position of criteria
