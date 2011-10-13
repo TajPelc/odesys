@@ -90,7 +90,54 @@ $(document).ready(function() {
                 $(element).attr('selected', 'selected');
             }
         });
+        
+        // privacy logic - show or hide options accordingly
+        var selectBoxDecision = $(this).parent().parent().siblings('select[name="privacy_decision"]');
+        var selectBoxComments = $('select[name="privacy_comments"]').siblings('ul');
+        
+        if (selectBoxDecision.length > 0 ) {
+            //friends only
+            if ($(this).parent('#dropdown-1').length > 0) {
+                //hide everyone option
+                selectBoxComments.find('#dropdown-0').hide();
+                //select friends only
+                selectBoxComments.find('#dropdown-1 a').trigger('click');
+                selectBoxComments.siblings('.selectBox-dropdown').trigger('click');
+                //dropdown position
+                selectBoxComments.css('bottom', function(){
+                    return -$(this).height()-6;
+                });
+            }
+            // everyone
+            else if ($(this).parent('#dropdown-0').length > 0) {
+                // show all options
+                selectBoxComments.find('#dropdown-0').show();
+                selectBoxComments.find('#dropdown-1').show();
+                //select everyone
+                selectBoxComments.find('#dropdown-0 a').trigger('click');
+                selectBoxComments.siblings('.selectBox-dropdown').trigger('click');
+                //Dropdown position
+                selectBoxComments.css('bottom', function(){
+                    return -$(this).height()-6;
+                });
+            }
+            // only me
+            else if ($(this).parent('#dropdown-2').length > 0) {
+                //hide everyone option
+                selectBoxComments.find('#dropdown-0').hide();
+                //hide friends only option
+                selectBoxComments.find('#dropdown-1').hide();
+                //select only me
+                selectBoxComments.find('#dropdown-2 a').trigger('click');
+                selectBoxComments.siblings('.selectBox-dropdown').trigger('click');
+                //dropdown position
+                selectBoxComments.css('bottom', function(){
+                    return -$(this).height()-6;
+                });
+            }
+        }
     });
+    
 
     //make dropdown the same width as the longest option
     $('.selectBox-dropdown').each(function(){
