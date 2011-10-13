@@ -140,6 +140,12 @@ class Decision extends CActiveRecord
                 $this->label = strlen($this->label) > 0 ? $this->label : 'my-decision';
             }
             $this->updateLastEdit(false);
+
+            // opinion privacy cannot be more open than view privacy
+            if($this->opinion_privacy < $this->view_privacy)
+            {
+                $this->opinion_privacy = $this->view_privacy;
+            }
             return true;
         }
         return false;

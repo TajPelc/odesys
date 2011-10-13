@@ -1,7 +1,7 @@
 <?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Sharing and Settings'; ?>
 
 <div id="heading">
-    <h2>Get opinions on this decision from your friends and collegues.</h2>
+    <h2>Generate a report and share it to your friends and collegues.</h2>
     <a id="helpButton" href="#">Help</a>
     <?php if($this->Decision->isPublished()){ ?><h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3><?php } ?>
     <div id="help" style="display: none;">
@@ -10,13 +10,19 @@
             <li>
                 <dl>
                     <dt>Think</dt>
-                    <dd>Lorem ipsum dolor sit amet</dd>
+                    <dd>Getting input from others may be a good way to discover new alternatives and think creatively about the decision.</dd>
                 </dl>
             </li>
             <li>
                 <dl>
-                    <dt>Random Examples</dt>
-                    <dd>Lorem ipsum dolor sit amet</dd>
+                    <dt>Don't want to share?</dt>
+                    <dd>You may choose to keep the decision private. Only you will be able to see the report or the decision model.</dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>Update</dt>
+                    <dd>You may always return to the design stage and add or remove alternatives, criteria or adjust the evaluation. Just don't forget to update the report after you're done editing!</dd>
                 </dl>
             </li>
         </ul>
@@ -66,7 +72,7 @@
                 </dd>
             </dl>
             <dl class="l">
-                <dt><label>Opinions and suggestions may be posted by</label></dt>
+                <dt><label>Opinions and comments may be posted by</label></dt>
                 <dd>
                     <select name="privacy_comments">
                         <option value="<?php echo Decision::PRIVACY_EVERYONE; ?>"<?php if($this->Decision->opinion_privacy == Decision::PRIVACY_EVERYONE){ ?> selected="selected"<?php } ?>>Everyone</option>
@@ -86,15 +92,15 @@
             <?php if($this->Decision->isPublished()) { ?>
                 <li class="next"><input class="button" type="submit" name="publish" value="Update" /></li>
             <?php } else { ?>
-                <li class="next"><input class="button" type="submit" name="publish" value="Publish" /></li>
+                <li class="next"><input class="button" type="submit" name="publish" value="Generate" /></li>
             <?php }?>
         </ul>
     </form>
 </div>
 <div id="sidebar" class="help">
-    <h4>What’s next?</h4>
-    <p>This is the last step of the decision modelling phase. Your decision will be presented to your social circle.</p>
-    <p>They will be able to see your alternatives, your criteria, how you have evaluated each alternative and which alternative do you prefer.</p>
-    <p class="l">Be sure to write a few words about your decision so others may give you opinions on your decision.</p>
+    <h4>What's next?</h4>
+    <p>Fill out the requested parameters and generate a report.</p>
+    <p>You may choose to share it to your social circle and get input on your decision model from your friends and collegues.</p>
+    <p class="l">Be sure to write a few words about your decision so others may see what you're thinking.</p>
     <div class="last"></div>
 </div>
