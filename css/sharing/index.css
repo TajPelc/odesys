@@ -70,6 +70,22 @@
             margin-bottom: 8px;
         }
 
+        #content form div > input {
+            width: 612px;
+            height: 16px;
+            padding: 4px 8px;
+            margin-bottom: 8px;
+            border-radius: 4px 4px 4px 4px;
+            color: #838790;
+            border: 1px solid #C7CACF;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+
+            #content form div input[type="checkbox"]{
+                margin-top: 12px;
+            }
+
         #content form div textarea {
             width: 612px !important;
             min-height: 68px !important;
