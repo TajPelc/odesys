@@ -22,7 +22,6 @@ class PublicAction extends Action
         {
             $this->_redirectBack();
         }
-
         // check privacy
         $this->_checkPrivacy();
 
@@ -160,14 +159,13 @@ class PublicAction extends Action
                 $userMayView = $isOwner;
                 break;
             }
-
             // my friends may view
             case Decision::PRIVACY_FRIENDS:
             {
                 if(!$anonymous)
                 {
                     // owner or friend
-                    if($isOwner || $this->getController()->Decision->User->isFriend(Yii::app()->user->facebook_id))
+                    if($isOwner || User::current()->isFriend($this->getController()->Decision->User->getPrimaryKey()))
                     {
                         $userMayView = true;
                     }

@@ -227,7 +227,7 @@ class User extends CActiveRecord
     }
 
     /**
-     * Check if a given user is friends with this user
+     * Check if a given user is friends with the current user
      */
     public function isFriend($userId)
     {
