@@ -64,11 +64,11 @@ class Controller extends CController
      */
     function beforeAction($action) {
         // the user is logged into our page but facebook session has expired
-        if(!Yii::app()->user->isGuest && is_null(Fb::singleton()->getSession()))
+        /*if(!Yii::app()->user->isGuest && is_null(Fb::singleton()->getSession()))
         {
             // refresh session
             $this->redirect(Fb::singleton()->getLoginStatusUrl());
-        }
+        }*/
 
         return parent::beforeAction($action);
     }

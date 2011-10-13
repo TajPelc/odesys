@@ -12,23 +12,36 @@ class LoginController extends Controller
      */
     public function actionFacebook()
     {
-        // logout just in case
-        Yii::app()->user->logout();
-
-        // not yet returned from facebook
-        if(!$this->get('session'))
+        // only for unauthenticated users
+        if(!Yii::app()->user->isGuest)
         {
-            // redirect to facebook
-            $this->redirect(Fb::singleton()->getLoginUrl());
+            $this->redirect('/');
         }
-        // login
-        if( Fb::singleton()->login() )
+
+        // get facebook instance
+        $facebook = Fb::singleton();
+
+        // try to get user
+        $user = $facebook->getUser();
+
+        // redirect to facebook
+        if(!$this->get('code'))
         {
-            if($this->get('returnTo'))
+            $this->redirect($facebook->getLoginUrl(array('scope' => 'publish_stream')));
+        }
+
+        // we got the user!
+        if ($user)
+        {
+            // login
+            if($facebook->login())
             {
-                $this->redirect($this->get('returnTo'));
+                if($this->get('returnTo'))
+                {
+                    $this->redirect($this->get('returnTo'));
+                }
+                $this->redirect(array('/user/dashboard'));
             }
-            $this->redirect(array('/user/dashboard'));
         }
 
         Yii::log('Facebook login failed!', 'error');
@@ -39,13 +52,13 @@ class LoginController extends Controller
      */
     public function actionLogout()
     {
+        // guest cannot logout!
         if(Yii::app()->user->isGuest)
         {
             $this->redirect(array('site/index'));
         }
 
         // get user
-        $User = User::model()->findByPk(Yii::app()->user->id);
         Yii::app()->user->logout();
 
         $this->redirect(array('site/index'));
