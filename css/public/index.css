@@ -332,6 +332,10 @@
     padding-left: 10px;
 }
 
+    #sidebar .help p.l {
+        margin-bottom: 0;
+    }
+
 #sidebar .help ul {
     padding-left: 10px;
     position: relative;
