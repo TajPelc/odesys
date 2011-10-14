@@ -350,8 +350,7 @@ $(document).ready(function(){
     // Preload images
     ImagePreload([
              '/images/bg/ferlauf.png',
-             '/images/bg/overlay.png',
-             '/images/logo.png',
+             '/images/logo2.png',
              '/images/form/button_end.png',
              '/images/bg/overlay_bottom.png',
              '/images/form/overlay_input.png',
