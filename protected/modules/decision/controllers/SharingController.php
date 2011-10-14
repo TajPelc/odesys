@@ -81,7 +81,7 @@ class SharingController extends DecisionController
             // post to facebook
             $facebook = Fb::singleton();
             $facebook->api("/".$facebook->getUser()."/feed", 'post', array(
-                'picture' => 'http://dl.dropbox.com/u/1814846/KURAC.png',
+                //'picture' => 'http://dl.dropbox.com/u/1814846/KURAC.png',
                 'message' => 'created a new decision model on ODESYS',
                 'link'    => Common::getBaseURL().$this->publicLink,
                 'name' => CHtml::encode($this->Decision->title),
