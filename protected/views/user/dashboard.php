@@ -36,12 +36,12 @@
 </div>
 <div id="sidebar">
     <div class="edit">
-        <h4>Profile</h4>
+        <h4>Decisions</h4>
         <ul>
-            <li><span>Decision Feed</span></li>
-            <li><?php echo CHtml::link('Decision History', array('project/list')); ?></li>
+            <li><span>My Feed</span></li>
+            <li><?php echo CHtml::link('My Decisions', array('project/list')); ?></li>
             <!-- li><a href="#">Statistics</a></li-->
-            <li><a href="#">Profile Settings</a></li>
+            <!-- li><a href="#">Profile Settings</a></li -->
         </ul>
         <div class="last"></div>
     </div>

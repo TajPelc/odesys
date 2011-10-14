@@ -26,12 +26,12 @@
 </div>
 <div id="sidebar">
     <div class="edit">
-        <h4>Profile</h4>
+        <h4>Decisions</h4>
         <ul>
-            <li><?php echo CHtml::link('Decision Feed', array('user/dashboard')); ?></li>
-            <li><span>Decision History</span></li>
+            <li><?php echo CHtml::link('My Feed', array('user/dashboard')); ?></li>
+            <li><span>My Decisions</span></li>
             <!-- li><a href="#">Statistics</a></li -->
-            <li><a href="#">Profile Settings</a></li>
+            <!-- li><a href="#">Profile Settings</a></li -->
         </ul>
         <div class="last"></div>
     </div>
