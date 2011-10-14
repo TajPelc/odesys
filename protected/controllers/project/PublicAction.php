@@ -183,7 +183,7 @@ class PublicAction extends Action
 
         if(!$userMayView)
         {
-            $this->_redirectBack();
+            throw new CHttpException(403, 'The decision you are trying to view is private. Use the back button to return to the previous page.');
         }
     }
 }

@@ -52,6 +52,10 @@ class SiteController extends Controller
                 $e = new stdClass();
                 switch($error['code'])
                 {
+                    case 403:
+                        $e->title = 'Access restricted!';
+                        $e->message = (bool)$error['message'] ? $error['message'] : 'This page is restricted.';
+                        break;
                     case 404:
                         $e->title = 'Are you lost?';
                         $e->message = 'The requested page does not exist.';
