@@ -309,7 +309,7 @@ class Decision extends CActiveRecord
         }
 
         // not already published
-        if(!$isPublished)
+        if(!$isPublished && $this->view_privacy != self::PRIVACY_ME)
         {
             // add notification
             NotificationDecision::publish($this->User, $this);
