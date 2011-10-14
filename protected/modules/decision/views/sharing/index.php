@@ -39,8 +39,8 @@
                     <div class="error"><p><?php echo $E; ?></p></div>
                 <?php }?>
             <?php }?>
-            <label class="author" for="title_edit">Decision name:</label>
-            <input type="input" id="title_edit" name="title_edit" />
+            <!-- label class="author" for="title_edit">Decision name:</label>
+            <input disabled="disabled" type="input" id="title_edit" name="title_edit" value="<?php echo $this->Decision->title; ?>"/ -->
             <label class="author" for="comment_new">Present your decision to your friends in a few sentances:</label>
             <textarea name="description_new" id="comment_new" rows="5" cols="63"><?php echo $this->Decision->description; ?></textarea>
 
@@ -73,7 +73,7 @@
                     </a>
                 </dd>
             </dl>
-            <dl>
+            <dl<?php if($this->Decision->isPublished()) { ?> class="l"<?php } ?>>
                 <dt><label>Opinions and comments may be posted by</label></dt>
                 <dd>
                     <select name="privacy_comments">
@@ -87,12 +87,14 @@
                     </a>
                 </dd>
             </dl>
+            <?php if(!$this->Decision->isPublished()) { ?>
             <dl class="l">
                 <dt><label>Share this decision on Facebook</label></dt>
                 <dd>
-                    <input type="checkbox" name="facebook_share" checked="checked" />
+                    <input type="checkbox" name="facebook_share" />
                 </dd>
             </dl>
+            <?php } ?>
             <div class="last"></div>
         </div>
         <ul id="content-nav">

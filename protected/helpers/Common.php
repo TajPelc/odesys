@@ -23,10 +23,10 @@ class Common
      *
      * return boolean
      */
-    public static function getFullURL()
+    public static function getBaseURL()
     {
         $request = Yii::app()->request;
-        return ($request->isSecureConnection ? 'https://' : 'http://' ) . $request->getServerName() . $request->getRequestUri();
+        return ($request->isSecureConnection ? 'https://' : 'http://' ) . $request->getServerName();
     }
 
     /**

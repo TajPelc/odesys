@@ -41,16 +41,57 @@ class SharingController extends DecisionController
             {
                 $this->DecisionModel->save();
                 $this->Decision->save(false);
+
+                // share to facebook
+                if($this->post('facebook_share'))
+                {
+                    $this->_shareToFacebook();
+                }
+
+                // publish
                 $this->Decision->publishDecisionModel();
+
 
                 // @TODO: Fix the URL problem
                 $this->redirect($this->publicLink);
             }
+
         }
 
         // render the view
         $this->render('index', array(
             'errors' => $this->Decision->getErrors(),
         ));
+    }
+
+
+    /**
+     * Publish the current active decision model and create a new active decision model
+     */
+    private function _shareToFacebook()
+    {
+        // do not save if decision is private or already published
+        if($this->Decision->view_privacy == Decision::PRIVACY_ME || $this->Decision->isPublished() || Yii::app()->params['fbDisableSharing'])
+        {
+            return;
+        }
+        try
+        {
+
+            // post to facebook
+            $facebook = Fb::singleton();
+            $facebook->api("/".$facebook->getUser()."/feed", 'post', array(
+                'picture' => 'http://dl.dropbox.com/u/1814846/KURAC.png',
+                'message' => 'created a new decision model on ODESYS',
+                'link'    => Common::getBaseURL().$this->publicLink,
+                'name' => CHtml::encode($this->Decision->title),
+                'caption' => CHtml::encode(Common::truncate($this->Decision->description, 900)),
+                )
+            );
+        }
+        catch (Exception $e)
+        {
+            Yii::log($e->getMessage(), 'warning');
+        }
     }
 }
