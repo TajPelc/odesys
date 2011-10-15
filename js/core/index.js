@@ -361,7 +361,7 @@ $(document).ready(function(){
     Core.ProjectMenu.initMenu();
 
     // overlay
-    $('#login .projectNew').click(function(){
+    $('.projectNew').click(function(){
         if($(this).hasClass('active')){
             Core.Overlay.Html = '<h2>Name your new decision?</h2><p>You are in the middle of a decision process! Are you sure you want to start a new one? Don’t worry, everything is safely saved in our database for you to continue at your convenience.</p><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><span>Example: buying a car</span><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>'
             Core.Overlay(Core.Overlay.Html);
