@@ -13,15 +13,15 @@ class PublicAction extends Action
      */
     public function run()
     {
-
         // load decision
-        $this->getController()->Decision = Decision::model()->findByPk($this->get('decisionId'));
+        $this->getController()->Decision = Decision::model()->findNonDeletedByPk($this->get('decisionId'));
 
         // decision not loaded
         if(empty($this->getController()->Decision))
         {
-            $this->_redirectBack();
+            throw new CHttpException(404, 'Decision not found. Please use the back button to return to the previous page.');
         }
+
         // check privacy
         $this->_checkPrivacy();
 
@@ -82,12 +82,6 @@ class PublicAction extends Action
         Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->title), NULL, NULL, array('property'=>'og:title'));
         Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->description), NULL, NULL, array('property'=>'og:description'));
 
-        // decision not found
-        if(null == $this->getController()->Decision)
-        {
-            $this->redirect('/');
-        }
-
         // load decision model
         $this->getController()->DecisionModel = $this->getController()->Decision->getPublishedDecisionModel();
 
@@ -95,7 +89,6 @@ class PublicAction extends Action
         $render = array();
         if($this->getController()->DecisionModel instanceof DecisionModel)
         {
-
             // get evaluation array
             $eval = $this->getController()->DecisionModel->getEvaluationArray();
 

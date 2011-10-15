@@ -7,7 +7,7 @@ DashboardList = {};
 
 DashboardList.DeleteItem = function(that) {
     var data = {
-            'decision_id': that.parents('tr').attr('id')
+            'delete': that.parents('tr').attr('id'),
     };
     // post the form
     $.ajax({
@@ -16,7 +16,6 @@ DashboardList.DeleteItem = function(that) {
             if(data['status'] == true){
                 //here be returned shite
                 that.parents('tr').remove();
-
             //errors
             } else {
             }

@@ -57,15 +57,21 @@ class DecisionController extends Controller
         }
 
         // load decision
-        $this->Decision = Decision::model()->findByPk($this->get('decisionId'));
+        $this->Decision = Decision::model()->findNonDeletedByPk($this->get('decisionId'));
+
+        // nothing loaded
+        if(empty($this->Decision))
+        {
+            throw new CHttpException(404, 'Decision not found. Please use the back button to return to the previous page.');
+        }
 
         // load decision model
         $this->DecisionModel = $this->Decision->getActiveDecisionModel();
 
         // if loading failed or user is not the owner => redirect to dashboard
-        if( null === $this->Decision || !$this->Decision->isOwner(Yii::app()->user->id) )
+        if( !$this->Decision->isOwner(Yii::app()->user->id) )
         {
-            $this->redirect('/user/dashboard');
+            throw new CHttpException(403, 'You are allowed to edit this decision. Please use the back button to return to the previous page.');
         }
 
         // evaluate states for menu

@@ -21,7 +21,7 @@
         <?php } ?>
     </table>
     <?php } else { ?>
-    <h3>You have not yet started modeling a decision.</h3>
+    <h3>You don't have any decisions yet. Start by creating one.</h3>
     <?php } ?>
 </div>
 <div id="sidebar">

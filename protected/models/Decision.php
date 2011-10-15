@@ -77,6 +77,17 @@ class Decision extends CActiveRecord
     }
 
     /**
+     * @return string the associated database table name
+     */
+    public function findNonDeletedByPk($pk)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'deleted != :deleted';
+        $criteria->params = array('deleted' => 1);
+        return $this->findByPk($pk, $criteria);
+    }
+
+    /**
      * Return translations for view privacy constants
      *
      * @TODO Add translations!
@@ -120,6 +131,19 @@ class Decision extends CActiveRecord
         return new CActiveDataProvider(get_class($this), array(
             'criteria'=>$criteria,
         ));
+    }
+
+    /**
+     * Set the delete flag to true
+     */
+    public function softDelete()
+    {
+        $this->deleted = 1;
+        if($this->save(false))
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
