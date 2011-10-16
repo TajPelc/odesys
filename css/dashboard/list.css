@@ -149,3 +149,19 @@
           color: #717C90;
           cursor: default;
       }
+
+/* Overlay
+********************************************************/
+#overlay > div {
+    margin-top: 8px; 
+    clear: both;
+    float: right;
+}
+
+.buttonBig {
+    float: left;
+    text-align: center;
+}
+.buttonBig#deleteYes {
+    margin-right: 20px;
+}

@@ -327,7 +327,6 @@ a:hover {
         #overlay > p {
             padding: 0 10px 0 30px;
             line-height: 16px;
-            margin-bottom: 16px;
             float: left;
             font-size: 11px;
             font-style: italic;
@@ -363,6 +362,7 @@ a:hover {
                     width: 103px;
                     height: 34px;
                     padding: 0;
+                    margin-bottom: 8px;
                     float: right;
                     text-indent: -9999px;
                     background: url(../../images/form/sprite_buttons.png) -300px 0 no-repeat;

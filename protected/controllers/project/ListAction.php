@@ -20,6 +20,7 @@ class ListAction extends Action
 
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/dashboard/list.css');
 
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/dashboard/list.js');
