@@ -61,6 +61,7 @@ class LoginController extends Controller
         // get user
         Yii::app()->user->logout();
 
-        $this->redirect(array('site/index'));
+        // log out
+        $this->redirect(Fb::singleton()->getLogoutUrl());
     }
 }
