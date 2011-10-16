@@ -61,6 +61,7 @@
     #content table th:nth-child(2){ background-position: 0 6px }
     #content table th:nth-child(3){ background-position: 0 -42px }
     #content table th:nth-child(4){ background-position: 0 -92px }
+    #content table th.l { background: none}
 
     #content table td {
         padding-left: 20px;
@@ -68,6 +69,11 @@
         vertical-align: middle;
         text-align: left;
         border-bottom: 1px solid #dedfe3;
+    }
+
+    #content table td.l {
+        position: relative;
+        padding: 0;
     }
 
         #content table td div {
@@ -81,8 +87,8 @@
             height: 16px;
             padding-left: 5px;
             position: absolute;
-            right: 10px;
-            top: -1px;
+            right: 5px;
+            top: -8px;
             display: none;
             font-size: 10px;
             font-weight: bold;
@@ -95,9 +101,14 @@
             cursor: pointer;
         }
 
+        #content table td div em {
+            font-style: italic;
+            color: #9D9FA3;
+        }
+
     #content table th:first-child,
     #content table td:first-child {
-        width: 350px;
+        width: 320px;
         text-align: left;
     }
 
