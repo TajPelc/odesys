@@ -107,7 +107,7 @@ a:hover {
                 text-indent: -9999px;
                 background: url(../../images/logo2.png) no-repeat;
             }
-            
+
             #header h1 a + span {
                 line-height: 18px;
                 display: block;
@@ -332,6 +332,10 @@ a:hover {
             font-style: italic;
             color: #fff;
             background: url(../../images/sprite_icons.png) 10px -400px no-repeat;
+        }
+
+        #overlay > p.notice {
+            margin-bottom: 16px;
         }
 
         #overlay form,

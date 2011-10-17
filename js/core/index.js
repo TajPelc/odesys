@@ -362,7 +362,7 @@ $(document).ready(function(){
 
     //call overlay and insert text
     $('.projectNew').click(function(){
-            Core.Overlay.Html = '<h2>Name your new decision:</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><span>Example: buying a car</span><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form><p>You should be careful naming your decision model, because you can not change it later.</p>';
+            Core.Overlay.Html = '<h2>Name your new decision</h2><p class="notice">You should name your decision carefully, because you can not change it later.</p><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><span>Example: Buying a car</span><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>';
             Core.Overlay(Core.Overlay.Html);
         return false;
     });

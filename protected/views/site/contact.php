@@ -4,8 +4,9 @@
 </div>
 
 <div id="content">
+    <h2>ODESYS</h2>
     <p>You can find us on <b><a href="https://www.facebook.com/odesys">Facebook</a></b> and on <b><a href="https://twitter.com/#!/ODESYSinfo">Twitter</a></b> <?php if(!Yii::app()->user->isGuest){ ?> or you can <b><a href="mailto:info@odesys.info">email (info@odesys.info)</a></b> us<?php } ?>.</p>
-    <h2>Developers</h2>
+    <h2>Developed by</h2>
     <dl>
         <dt><img src="https://graph.facebook.com/tajpelc/picture" title="Taj Pelc" alt="Taj Pelc" />Taj Pelc</dt>
         <dd>Master of PHP, taking care of the back-end of this application. Currently a masters degree student at FOV, Slovenia.</dd>
