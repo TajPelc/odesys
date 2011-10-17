@@ -1,0 +1,88 @@
+/*
+ --> Profile css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    1.0
+*/
+#content {
+  width: 670px;
+}
+
+#content > p {
+    margin-bottom: 16px;
+}
+
+#content .buttonBig {
+    width: 215px;
+    margin-bottom: 16px;
+    float: none;
+    text-align: center;
+}
+
+/* Overlay
+********************************************************/
+#overlay > div {
+    clear: both;
+    float: right;
+    margin-top: 8px;
+}
+.buttonBig {
+    float: left;
+    text-align: center;
+}
+#deleteYes.buttonBig {
+    margin-right: 20px;
+}
+
+/* Sidebar
+********************************************************/
+#sidebar {
+    width: 235px;
+}
+
+  #sidebar .edit {
+      width: 190px;
+      padding: 16px 25px 8px 20px;
+      margin-bottom: 28px;
+      position: relative;
+      right: -8px;
+      background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px -50px transparent;
+  }
+
+      #sidebar .edit div.last {
+      background: url("../../images/bg/sprite_help.png") no-repeat scroll -600px 0 transparent;
+      bottom: -13px;
+      height: 13px;
+      left: 0;
+      position: absolute;
+      width: 235px;
+  }
+
+      #sidebar .edit h4 {
+          margin-bottom: 16px;
+          font-size: 14px;
+          font-style: italic;
+          text-align: center;
+          color: #fff;
+      }
+
+      #sidebar .edit ul li,
+      #sidebar .edit ul li a {
+          height: 20px;
+          line-height: 20px;
+          display: block;
+          font-size: 11px;
+          color: #fff;
+      }
+      #sidebar .edit ul li span {
+          color: #717C90;
+          cursor: default;
+      }
+
+#sidebar .buttonBig {
+    width: 215px;
+    margin-bottom: 16px;
+    float: none;
+    position: relative;
+    right: -8px;
+    text-align: center;
+}

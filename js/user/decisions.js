@@ -51,5 +51,6 @@ $(document).ready(function(){
         $('#deleteNo').click(function(){
             Core.Overlay.Close();
         });
+        return false;
     });
 });
