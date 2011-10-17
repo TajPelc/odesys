@@ -101,18 +101,34 @@ class UserController extends Controller
 
 
     /**
-     * List of user's decisions
+     * Profile settings
      */
     public function actionProfile()
     {
+        // ajax
+        if(Ajax::isAjax())
+        {
+            if($this->post('deleteProfile'))
+            {
+                if(User::current()->deleteProfile())
+                {
+                    // get user
+                    Yii::app()->user->logout();
+
+                    // log out
+                    Ajax::respondOk(array('logoutUrl' => Fb::singleton()->getLogoutUrl()));
+                }
+                Ajax::respondError(array('errors' => 'Could not delete profile. Please try again later.'));
+            }
+        }
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/user/profile.css');
-        
+
         // include scripts
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/user/profile.js');
-        
+
         // render
         $this->render('profile', array());
     }
@@ -129,21 +145,6 @@ class UserController extends Controller
             {
                 Ajax::respondOk(array('deleted' => $id));
             }
-        }
-    }
-
-    /**
-     * Deletes the user's profile
-     */
-    private function _deleteProfile()
-    {
-        if(User::current()->deleteProfile())
-        {
-            // get user
-            Yii::app()->user->logout();
-
-            // log out
-            $this->redirect(Fb::singleton()->getLogoutUrl());
         }
     }
 }

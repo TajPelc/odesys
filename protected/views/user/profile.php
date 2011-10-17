@@ -23,7 +23,7 @@
             <div id="helpEnd"></div>
         </div>
     </div>
-    <p>By pressing "Delete profile" your Odesys profile will be deleted along with all your decisions.</p>
+    <p>By pressing "Delete profile" your Odesys profile will be deleted along with all the data that was created by you.</p>
     <a href="#" class="buttonBig">Delete profile<span class="doors">&nbsp;</span></a>
 </div>
 <div id="sidebar">
