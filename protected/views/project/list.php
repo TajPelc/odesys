@@ -2,6 +2,26 @@
 <div id="content">
     <div id="heading">
         <h2>Decision history</h2>
+        <a id="helpButton" href="#">Help</a>
+        <div id="help" style="display: none;">
+            <h3>Need some help?</h3>
+            <ul>
+                <li>
+                    <dl>
+                        <dt>Your decision history</dt>
+                        <dd>A full list of your decisions is displayed. You can click a decision name to reach its report and further edit it from there.</dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>Can I delete a decision?</dt>
+                        <dd>Yes, you can. Delete button appears if you hover over a decision. Beware, deleting a decision is an ireversible action.</dd>
+                    </dl>
+                </li>
+            </ul>
+            <span class="helpClose">&nbsp;</span>
+            <div id="helpEnd"></div>
+        </div>
     </div>
     <?php if(!empty($Decisions)) { ?>
     <table>

@@ -8,14 +8,14 @@
             <ul>
                 <li>
                     <dl>
-                        <dt>Profile feed</dt>
+                        <dt>Odesys Feed</dt>
                         <dd>This feed shows yours and your friend's decisions and opinions.</dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
-                        <dt>Help others</dt>
-                        <dd>You should constantly check what your friends's decision problems are and try to contribute with your opinion on the matter.</dd>
+                        <dt>Join others</dt>
+                        <dd>By regularly checking your feed, you can see what your friends's decision problems are and you can contribute with your opinion on the matter.</dd>
                     </dl>
                 </li>
             </ul>
