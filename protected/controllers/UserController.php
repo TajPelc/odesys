@@ -95,6 +95,11 @@ class UserController extends Controller
      */
     public function actionProfile()
     {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/user/profile.css');
+        
         // render
         $this->render('profile', array());
     }
