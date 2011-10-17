@@ -73,7 +73,10 @@ class Controller extends CController
         // update last visit
         if(!Yii::app()->user->isGuest)
         {
-            User::current()->updateLastVisit();
+            if((bool)$User = User::current())
+            {
+                $User->updateLastVisit();
+            }
         }
 
         return parent::beforeAction($action);

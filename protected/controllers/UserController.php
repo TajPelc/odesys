@@ -21,9 +21,19 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * Init (non-PHPdoc)
+     * @see CController::init()
+     */
     public function init()
     {
         $this->customHeader = 'Taj Pelc\'s profile';
+
+        // only authenticated users may access these pages
+        if(Yii::app()->user->isGuest)
+        {
+            $this->redirect('/');
+        }
     }
 
     /**
@@ -71,7 +81,7 @@ class UserController extends Controller
         {
             if($this->post('delete'))
             {
-                $this->_delete($this->post('delete'));
+                $this->_deleteDecision($this->post('delete'));
             }
         }
 
@@ -102,7 +112,7 @@ class UserController extends Controller
     /**
      * Delete project helper
      */
-    private function _delete($id)
+    private function _deleteDecision($id)
     {
         $Decision = Decision::model()->findNonDeletedByPk($id);
         if($Decision instanceof Decision && $Decision->isOwner(User::current()->getPrimaryKey()))
@@ -111,6 +121,21 @@ class UserController extends Controller
             {
                 Ajax::respondOk(array('deleted' => $id));
             }
+        }
+    }
+
+    /**
+     * Deletes the user's profile
+     */
+    private function _deleteProfile()
+    {
+        if(User::current()->deleteProfile())
+        {
+            // get user
+            Yii::app()->user->logout();
+
+            // log out
+            $this->redirect(Fb::singleton()->getLogoutUrl());
         }
     }
 }

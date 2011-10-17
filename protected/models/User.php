@@ -64,7 +64,9 @@ class User extends CActiveRecord
     public function relations()
     {
         return array(
-            'decisions' => array(self::HAS_MANY, 'Decision', 'rel_user_id'),
+            'decisions'     => array(self::HAS_MANY, 'Decision', 'rel_user_id'),
+            'notifications' => array(self::HAS_MANY, 'Notification', 'rel_user_id'),
+            'opinions'      => array(self::HAS_MANY, 'Opinion', 'rel_user_id'),
         );
     }
 
@@ -255,6 +257,49 @@ class User extends CActiveRecord
             }
         }
         return false;
+    }
+
+    /**
+     * Delete all user related stuff
+     */
+    public function beforeDelete()
+    {
+        if(parent::beforeDelete())
+        {
+            // delete notifications, decision models and opinions
+            foreach(array_merge($this->notifications, $this->decisions, $this->opinions) as $m)
+            {
+                $m->delete();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Delete this user's profile
+     */
+    public function deleteProfile()
+    {
+        try
+        {
+            // deauthorize the app
+            $facebook = Fb::singleton();
+            $result = $facebook->api("/".$facebook->getUser()."/permissions", 'delete');
+
+            // delete user
+            if(User::current()->delete())
+            {
+                return true;
+            }
+            return false;
+
+        }
+        catch (Exception $e)
+        {
+            return false;
+            Yii::log($e->getMessage(), 'warning');
+        }
     }
 
     /**
