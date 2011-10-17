@@ -8,14 +8,17 @@
             <ul>
                 <li>
                     <dl>
-                        <dt>Odesys Feed</dt>
-                        <dd>This feed shows yours and your friend's decisions and opinions.</dd>
+                        <dt>Delete profile</dt>
+                        <dd>By deleting your profile you will lose all the hard work you have done. If you are sure this is what you want, press "Delete profile" button and confirm it. Keep in mind that this action is irreversible.</dd>
                     </dl>
                 </li>
                 <li>
                     <dl>
-                        <dt>Join others</dt>
-                        <dd>By regularly checking your feed, you can see what your friends's decision problems are and you can contribute with your opinion on the matter.</dd>
+                        <dt>Which data gets deleted?</dt>
+                        <dd>Your profile.</dd>
+                        <dd>Your decisions.</dd>
+                        <dd>Your opinions.</dd>
+                        <dd>Notifications about your actions.</dd>
                     </dl>
                 </li>
             </ul>
