@@ -27,7 +27,7 @@
         <?php if(empty($notifications)) { ?>
             <li class="empty">There are no notifications from you nor your friends.</li>
         <?php } else { ?>
-            <?php echo $this->renderPartial('dashboard/list', array('notifications' => $notifications)); ?>
+            <?php echo $this->renderPartial('notifications/list', array('notifications' => $notifications)); ?>
         <?php }?>
     </ul>
     <?php if($pagination->getPageCount() > 1) { ?>
@@ -35,15 +35,14 @@
     <?php } ?>
 </div>
 <div id="sidebar">
+    <a href="#" class="buttonBig projectNew">Make a new decision<span class="doors">&nbsp;</span></a>
     <div class="edit">
-        <h4>Decisions</h4>
         <ul>
             <li><span>My Feed</span></li>
-            <li><?php echo CHtml::link('My Decisions', array('project/list')); ?></li>
+            <li><?php echo CHtml::link('My Decisions', array('user/decisions')); ?></li>
             <!-- li><a href="#">Statistics</a></li-->
             <!-- li><a href="#">Profile Settings</a></li -->
         </ul>
         <div class="last"></div>
     </div>
-    <a href="#" class="buttonBig projectNew">Make a new decision<span class="doors">&nbsp;</span></a>
 </div>

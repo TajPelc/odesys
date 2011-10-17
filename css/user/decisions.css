@@ -160,11 +160,19 @@
           color: #717C90;
           cursor: default;
       }
+#sidebar .buttonBig {
+    width: 215px;
+    margin-bottom: 16px;
+    float: none;
+    position: relative;
+    right: -8px;
+    text-align: center;
+}
 
 /* Overlay
 ********************************************************/
 #overlay > div {
-    margin-top: 8px; 
+    margin-top: 8px;
     clear: both;
     float: right;
 }

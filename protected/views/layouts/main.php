@@ -47,7 +47,7 @@
                             <h2>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i>!</h2>
                             <ul>
                                 <li><?php echo CHtml::link('New', array('/project/create'), array('title' => 'Start a new decision', 'class' => 'projectNew')); ?></li>
-                                <li><?php echo CHtml::link('Decisions', array('/user/dashboard'), array('title' => 'View your decision feed and your decisions')); ?></li>
+                                <li><?php echo CHtml::link('Profile', array('/user/notifications'), array('title' => 'View your decision feed and your decisions')); ?></li>
                                 <li><?php echo CHtml::link('Logout', array('/login/logout')); ?></li>
                             </ul>
                         </div>

@@ -55,7 +55,6 @@ class ProjectController extends Controller
     {
         return array(
             'create'      => 'application.controllers.project.CreateAction',
-            'list'        => 'application.controllers.project.ListAction',
             'public'      => 'application.controllers.project.PublicAction',
         );
     }

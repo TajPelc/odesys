@@ -40,7 +40,7 @@ class LoginController extends Controller
                 {
                     $this->redirect($this->get('returnTo'));
                 }
-                $this->redirect(array('/user/dashboard'));
+                $this->redirect(array('/user/notifications'));
             }
         }
 

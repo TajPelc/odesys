@@ -1,4 +1,4 @@
-/* Dashboard List javascript
+/* Decisions List javascript
  * @author        Frenk T. Sedmak Nahtigal
  * @version       1.2
 */
@@ -41,8 +41,8 @@ $(document).ready(function(){
         //open overlay and fill it
         Core.Overlay.Html = '<h2>Are you sure?</h2><p>You are about to delete decision model named "'+DashboardList.Item.parents('td').siblings('td:first-child').text()+'". This action is irreversible.</p><div><a href="#" class="buttonBig" id="deleteYes">Yes<span class="doors">&nbsp;</span></a><a href="#" class="buttonBig" id="deleteNo">No<span class="doors">&nbsp;</span></a></div>';
         Core.Overlay(Core.Overlay.Html);
-        
-        
+
+
         //handle delete action
         $('#deleteYes').click(function(){
             DashboardList.DeleteItem(DashboardList.Item);

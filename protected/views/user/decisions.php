@@ -39,7 +39,7 @@
             <td><?php echo $D->opinionCount; ?></td>
             <td>
                 <div>
-                    <?php 
+                    <?php
                     if($D->isPublished()) {
                         if($D->isPrivate()) {
                             echo 'Private';
@@ -62,10 +62,10 @@
     <?php } ?>
 </div>
 <div id="sidebar">
+    <a href="#" class="buttonBig projectNew">Make a new decision<span class="doors">&nbsp;</span></a>
     <div class="edit">
-        <h4>Decisions</h4>
         <ul>
-            <li><?php echo CHtml::link('My Feed', array('user/dashboard')); ?></li>
+            <li><?php echo CHtml::link('My Feed', array('user/notifications')); ?></li>
             <li><span>My Decisions</span></li>
             <!-- li><a href="#">Statistics</a></li -->
             <!-- li><a href="#">Profile Settings</a></li -->
