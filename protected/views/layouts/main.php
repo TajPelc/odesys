@@ -65,7 +65,7 @@
                     <dd>
                         <p>Making decisions is tough. But we are here to help.</p>
                         <p>Our application will guide you through the decision-making process. We provide the tool you need to analyze your alternatives and weigh your options. The decision is then up to you.</p>
-                        <p>But by utilizing the power of our visual engine and by enlisting help from the people you trust, your decision will improve.</p>
+                        <p>By utilizing the power of our visual engine and by enlisting help from the people you trust the quality of your decisions is sure to improve.</p>
                     </dd>
                 </dl>
             </li>
@@ -88,7 +88,7 @@
                     <dt><?php echo CHtml::link('Terms', array('/site/terms')); ?></dt>
                     <dd>
                         <p>Before using this service you must agree to the <?php echo CHtml::link('following terms', array('/site/terms')); ?>.</p>
-                        <p>We provide the tools you need to analyze your decisions. You are the one that decides, and we are not responsible for the consequences of your decisions.</p>
+                        <p>We provide the tools to help. You are the one that makes the decision, therefore we cannot be responsible for the consequences of your actions.</p>
                     </dd>
                 </dl>
             </li>

@@ -14,19 +14,18 @@
     }
 
     #content > h3 {
-        margin: 16px 0;
-        padding-left: 10px;
+        margin: 20px 0 5px 0;
+        padding-left: 30px;
         font-size: 16px;
         font-weight: bold;
     }
 
     #content > p {
-        margin-bottom: 8px;
-        padding-left: 10px;
+        padding: 5px 30px;
     }
 
     #content > ul {
-        padding-left: 24px;
+        padding-left: 64px;
         list-style: disc outside;
     }
 
