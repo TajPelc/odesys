@@ -6,7 +6,7 @@
 <div id="content">
     <h2>TERMS OF USE</h2>
         <p>Your use of this service is subject to these Terms of Use and the Privacy Policy stated below.</p>
-        <p>ODESYS is only a tool to help you analyzie your decision problems and help you decide. You are the one that decides, and ODESYS and its owners are not responsible for the consequences of your decisions.</p>
+        <p>ODESYS is only a tool to help you analyse your decision problems and help you decide. You are the one that decides, and ODESYS and its owners are not responsible for the consequences of your decisions.</p>
         <p>ODESYS reserves the right to change or modify the application without prior notice to you or your acceptance of these changes.</p>
         <p>ODESYS is a Web-based Decision Support System and is offered on "as is" and "as available" basis.</p>
         <p>You solely take all responsibility for the content that you generate using this system.</p>

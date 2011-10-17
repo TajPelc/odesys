@@ -64,7 +64,7 @@
                     <dt><?php echo CHtml::link('About', array('/site/about')); ?></dt>
                     <dd>
                         <p>Making decisions is tough. But we are here to help.</p>
-                        <p>Our application will guide you through the decision-making process. We provide the tool you need to analyze your alternatives and weigh your options. The decision is then up to you.</p>
+                        <p>Our application will guide you through the decision-making process. We provide the tool you need to analyse your alternatives and weigh your options. The decision is then up to you.</p>
                         <p>By utilizing the power of our visual engine and by enlisting help from the people you trust the quality of your decisions is sure to improve.</p>
                     </dd>
                 </dl>

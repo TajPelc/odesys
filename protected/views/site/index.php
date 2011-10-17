@@ -1,6 +1,6 @@
 <?php $this->pageTitle=Yii::app()->name . ' | Welcome'; ?>
 <div id="heading">
-    <h2>How to use Odesys in a few easy steps</h2>
+    <h2>Need to decide? We can help.</h2>
 </div>
 
 <div id="content">
@@ -11,22 +11,22 @@
         </dl>
         <dl>
             <dt>How does it work?</dt>
-            <dd>It seamlessly guides you through the process of creating a decision model, the evaluation of alternatives and results analysis. Armed with new knowledge the hard part is still up to you. Making a choice.</dd>
+            <dd>It seamlessly guides you through the process of creating a decision model, the evaluation of alternatives and the analysis of results. Use the knowledge gained to make a better decision!</dd>
         </dl>
         <dl>
             <dt>What may I use it for?</dt>
-            <dd>A wide variety of decision problems. Try it out!</dd>
+            <dd>A wide variety of decision problems. We guide you through the process step by step. Try it out!</dd>
         </dl>
         <hr />
         <ol>
-            <li><p>Start by signing in with Facebook and creating a new project</p></li>
+            <li><p>Start by signing in with Facebook and creating a decision</p></li>
             <li><p>Define alternatives among which you are choosing</p></li>
             <li><p>Define criteria and order them from most to least important</p></li>
             <li><p>Evalute each alternative by the defined criteria</p></li>
             <li><p>Analyse the results using our graphical method</p></li>
-            <li><p>Publish your decision and invite your social circle to help</p></li>
+            <li><p>Share your decision to your friends and get their opinions</p></li>
             <li><p>Make a better decision</p></li>
         </ol>
     </div>
-    <img src="../../images/introduction.png" title="kolazz" alt="kolazz" />
+    <img src="../../images/introduction.png" title="Examples from the decision making process" alt="Examples from the decision making process" />
 </div>
