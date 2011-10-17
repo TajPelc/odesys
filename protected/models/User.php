@@ -169,6 +169,22 @@ class User extends CActiveRecord
     }
 
     /**
+     * Updates the last visit date
+     *
+     * @return bool
+     */
+    public function updateLastVisit()
+    {
+        $this->lastvisit = date('Y-m-d H:i:s', time());
+
+        if( $this->save(false) )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Retrieves and returns user's facebook friends from session
      *
      * If no data is stored in session or the data is older than 6 hours, it fetches it from facebook

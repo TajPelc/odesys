@@ -70,6 +70,12 @@ class Controller extends CController
             $this->redirect(Fb::singleton()->getLoginStatusUrl());
         }*/
 
+        // update last visit
+        if(!Yii::app()->user->isGuest)
+        {
+            User::current()->updateLastVisit();
+        }
+
         return parent::beforeAction($action);
     }
 
