@@ -1,7 +1,7 @@
 /*
  --> Profile css
  --> @author:     Frenk T. Sedmak Nahtigal
- --> @version:    1.2
+ --> @version:    1.0
 */
 #content {
   width: 670px;
@@ -16,6 +16,21 @@
     margin-bottom: 16px;
     float: none;
     text-align: center;
+}
+
+/* Overlay
+********************************************************/
+#overlay > div {
+    clear: both;
+    float: right;
+    margin-top: 8px;
+}
+.buttonBig {
+    float: left;
+    text-align: center;
+}
+#deleteYes.buttonBig {
+    margin-right: 20px;
 }
 
 /* Sidebar

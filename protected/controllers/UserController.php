@@ -100,6 +100,9 @@ class UserController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/user/profile.css');
         
+        // include scripts
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/user/profile.js');
+        
         // render
         $this->render('profile', array());
     }
