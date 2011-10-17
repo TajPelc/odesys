@@ -50,7 +50,7 @@ class NotificationDecision extends Notification
     {
         $url = '/decision/'. $this->data->Decision->decision_id . '-' . $this->data->Decision->label . '.html';
 
-        return '<img src="https://graph.facebook.com/' . $this->User->facebook_id . '/picture" />
+        return '<img src="https://graph.facebook.com/' . $this->User->facebook_id . '/picture" title="' . $this->User->name . '" alt="' . $this->User->name . '" />
             <div>
                 <h3>' . ( User::current()->user_id == $this->rel_user_id ? '<a href="' . $this->User->link . '">You</a>' : '<a href="' . $this->User->link . '">' . $this->User->name . '</a>') .  ' - ' . date('F jS, Y \a\t H:i', strtotime($this->time)) . '</h3>
                 <p>published a decision: "<a href="' . $url .  '">' . CHtml::encode($this->data->Decision->title) . '</a>" to <b>' . strtolower($this->data->privacy) . '</b></p>
