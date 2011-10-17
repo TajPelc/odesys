@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function init()
     {
-        $this->customHeader = 'Taj Pelc\'s profile';
+        $this->customHeader = CHtml::encode(User::current()->name) . '\'s profile';
 
         // only authenticated users may access these pages
         if(Yii::app()->user->isGuest)
