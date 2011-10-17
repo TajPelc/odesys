@@ -3,6 +3,14 @@
 </div>
 
 <div id="content">
+    <dl>
+        <dt>What is it?</dt>
+        <dd>ODESYS is a simple online decision support system (DSS) with a friendly graphical user interface.</dd>
+        <dt>How does it work?</dt>
+        <dd>It seamlessly guides you through the process of creating a decision model, the evaluation of alternatives and results analysis. Armed with new knowledge the hard part is still up to you. Making a choice.</dd>
+        <dt>What may I use it for?</dt>
+        <dd>A wide variety of decision problems. Try it out!</dd>
+    </dl>
     <?php $this->pageTitle=Yii::app()->name . ' How to use Odesys in a few easy steps'; ?>
     <ol>
         <li><p>Start by signing in with Facebook and creating a new project</p></li>
