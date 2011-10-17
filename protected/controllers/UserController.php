@@ -89,6 +89,16 @@ class UserController extends Controller
         $this->render('decisions', array('Decisions' => $Decisions));
     }
 
+
+    /**
+     * List of user's decisions
+     */
+    public function actionProfile()
+    {
+        // render
+        $this->render('profile', array());
+    }
+
     /**
      * Delete project helper
      */

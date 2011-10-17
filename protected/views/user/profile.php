@@ -1,7 +1,7 @@
 <?php $this->pageTitle='Profile | Decision feed'; ?>
 <div id="content">
     <div id="heading">
-        <h2>Decision feed</h2>
+        <h2>Profile settings</h2>
         <a id="helpButton" href="#">Help</a>
         <div id="help" style="display: none;">
             <h3>Need some help?</h3>
@@ -23,24 +23,15 @@
             <div id="helpEnd"></div>
         </div>
     </div>
-    <ul>
-        <?php if(empty($notifications)) { ?>
-            <li class="empty">There are no notifications from you nor your friends.</li>
-        <?php } else { ?>
-            <?php echo $this->renderPartial('notifications/list', array('notifications' => $notifications)); ?>
-        <?php }?>
-    </ul>
-    <?php if($pagination->getPageCount() > 1) { ?>
-    <a class="button" href="#" id="showMore">Show more<span>&nbsp;</span></a>
-    <?php } ?>
 </div>
+<a href="#" class="buttonBig">Delete profile<span class="doors">&nbsp;</span></a>
 <div id="sidebar">
     <a href="#" class="buttonBig projectNew">Make a new decision<span class="doors">&nbsp;</span></a>
     <div class="edit">
         <ul>
-            <li><span>My Feed</span></li>
+            <li><?php echo CHtml::link('My Feed', array('user/notifications')); ?></li>
             <li><?php echo CHtml::link('My Decisions', array('user/decisions')); ?></li>
-            <li><?php echo CHtml::link('Profile Settings', array('user/profile')); ?></li>
+            <li>Profile Settings</li>
         </ul>
         <div class="last"></div>
     </div>

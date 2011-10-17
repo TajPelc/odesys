@@ -67,8 +67,7 @@
         <ul>
             <li><?php echo CHtml::link('My Feed', array('user/notifications')); ?></li>
             <li><span>My Decisions</span></li>
-            <!-- li><a href="#">Statistics</a></li -->
-            <!-- li><a href="#">Profile Settings</a></li -->
+            <li><?php echo CHtml::link('Profile Settings', array('user/profile')); ?></li>
         </ul>
         <div class="last"></div>
     </div>
