@@ -20,25 +20,26 @@
             margin-bottom: 16px;
             float: left;
         }
-        
+
         #content dl dt {
             padding-left: 10px;
             margin-bottom: 16px;
             font-weight: bold;
         }
-        
+
         #content dl dd {
             line-height: 16px;
             padding-left: 36px;
         }
-    
+
         #content hr {
             border: 1px solid #DEDFE3;
             border-width: 1px 0 0 0;
             width: 100%;
             float: left;
+            margin-bottom: 20px;
         }
-    
+
         #content ol {
             width: 418px;
             line-height: 16px;
@@ -46,16 +47,16 @@
             float: left;
             list-style: decimal outside;
         }
-    
+
             #content ol li {
                 margin-bottom: 16px;
             }
-    
+
             #content ol li p {
                 padding: 8px 4px;
                 display: inline;
             }
-    
+
     #content img {
         float: right;
     }
