@@ -99,18 +99,6 @@ $(document).ready(function(){
     // init score
     Score.init();
 
-    // init abacon
-    Abacon.init();
-
-    Abacon.Legend.rebuildDropdown();
-    // draw the two best alternatives
-    Abacon.Legend.LegendList.children().each(function(){
-        // get id
-        var id = Core.ExtractNumbers($(this).attr('id'));
-        // draw alternatives
-        Abacon.DrawAlternative(id);
-    });
-
     //ajax post
     Public.CommentForm.submit(function(){
         // trim
@@ -144,11 +132,26 @@ $(document).ready(function(){
     $('#showMore').bind('click.ShowMore', function(){
         Public.Comment.ShowMore($(this));
     });
-    
+
+    // save html to a variable and remove it from the dom
+    Core.Overlay.Html = $('#overlayDetails').html();
+    $('#overlayDetails').remove();
+
     //open detailed comparison - abacon
     $('#detailed_comparison').click(function(){
-        Core.Overlay.Html = $('#overlayDetails').html();
         Core.Overlay(Core.Overlay.Html, true);
+
+        // init abacon
+        Abacon.init();
+
+        Abacon.Legend.rebuildDropdown();
+        // draw the two best alternatives
+        Abacon.Legend.LegendList.children().each(function(){
+            // get id
+            var id = Core.ExtractNumbers($(this).attr('id'));
+            // draw alternatives
+            Abacon.DrawAlternative(id);
+        });
         return false;
     });
 });
