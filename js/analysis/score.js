@@ -112,20 +112,19 @@ Score.CreateAlternative = function(i)
     var y = Score.Config['rowHeight'] * i + (Score.Config['rowHeight']/2) - 10;
 
     // rectangle
-    var Alternative = Score.Canvas.rect(x-1, y+4, 0, 14, 0).attr({
+    var Alternative = Score.Canvas.rect(x-1, y+8, 0, 5, 0).attr({
         'fill': '#fff',
         'fill': Score.Scores[i]['color'],
         'stroke': '#596171',
-        'opacity': 0.5,
         'stroke-width': 0
     });
 
     // hover over dot (to make life easier)
     Alternative.mouseover(function (event) {
-        Alternative.animate({'opacity': 1}, 500);
+        Alternative.animate({'opacity': 0.3}, 500);
     });
     Alternative.mouseout(function (event) {
-        Alternative.animate({'opacity': 0.5}, 500);
+        Alternative.animate({'opacity': 1}, 500);
     });
 
     // add to set
