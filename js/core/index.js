@@ -52,11 +52,11 @@ function redirectUser(url) {
  * @param string
  * @returns void
  */
-Core.Overlay = function(html){
+Core.Overlay = function(html, big){
     Core.Overlay.Close();
 
-    $('body').append('<div id="overlay_bg"><div id="overlay">'+html+'<a href="#" class="close">close</a><div id="overlayBottom"></div></div></div>');
-    $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2, 'top': '150px'});
+    $('body').append('<div id="overlay_bg"><div id="overlay" '+ (big ? 'class="big"' : "" ) +'>'+html+'<a href="#" class="close">close</a><div id="overlayBottom"></div></div></div>');
+    $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2-22, 'top': '150px'});
 
     //delay input focus hack
     Core.Overlay.Focus = function() {

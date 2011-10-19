@@ -77,8 +77,8 @@ class PublicAction extends Action
 
         // include CSS files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
-        // Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
+        //Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
         // add meta tag
         Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->title), NULL, NULL, array('property'=>'og:title'));

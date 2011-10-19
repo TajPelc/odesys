@@ -118,7 +118,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
 </div>
 <!-- DECISION DETAILS OVERLAY -->
-<div id="overlayDetails" style="">
+<div id="overlayDetails" style="display: none;">
     <h3>Detailed comparison</h3>
     <p>Lorem ipsum dolor sit amet. Lorem ipsum?</p>
     <div id="abacon-sidebar" class="sidebar">

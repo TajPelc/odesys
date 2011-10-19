@@ -1,6 +1,6 @@
 /* Public javascript
  * @author        Frenk T. Sedmak Nahtigal
- * @version       1.2
+ * @version       1.3
 */
 
 Public = {};
@@ -143,5 +143,12 @@ $(document).ready(function(){
     // show more click action
     $('#showMore').bind('click.ShowMore', function(){
         Public.Comment.ShowMore($(this));
+    });
+    
+    //open detailed comparison - abacon
+    $('#detailed_comparison').click(function(){
+        Core.Overlay.Html = $('#overlayDetails').html();
+        Core.Overlay(Core.Overlay.Html, true);
+        return false;
     });
 });
