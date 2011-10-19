@@ -99,6 +99,18 @@ $(document).ready(function(){
     // init score
     Score.init();
 
+    // init abacon
+    Abacon.init();
+
+    Abacon.Legend.rebuildDropdown();
+    // draw the two best alternatives
+    Abacon.Legend.LegendList.children().each(function(){
+        // get id
+        var id = Core.ExtractNumbers($(this).attr('id'));
+        // draw alternatives
+        Abacon.DrawAlternative(id);
+    });
+
     //ajax post
     Public.CommentForm.submit(function(){
         // trim
@@ -110,6 +122,7 @@ $(document).ready(function(){
         return false;
     });
 
+    // remove error field on keypress
     Public.CommentForm.find('textarea').keypress(function(){
         $(this).siblings('div.error').remove();
     });
@@ -127,6 +140,7 @@ $(document).ready(function(){
         return false;
     });
 
+    // show more click action
     $('#showMore').bind('click.ShowMore', function(){
         Public.Comment.ShowMore($(this));
     });

@@ -73,10 +73,12 @@ class PublicAction extends Action
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/public/index.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/raphael.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/score.js');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/analysis/abacon.js');
 
         // include CSS files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
+        // Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/public/index.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
         // add meta tag
         Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->title), NULL, NULL, array('property'=>'og:title'));
