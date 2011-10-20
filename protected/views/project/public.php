@@ -42,7 +42,9 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </dl>
     </div>
 
+    <?php if($enableComments) { ?>
     <h2>Opinions and comments</h2>
+    <?php }?>
     <div id="opinions">
         <ul class="comments">
             <?php if($enableComments) { ?>
@@ -97,7 +99,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 <a id="share_digg" target="_blank" href="http://digg.com/submit?url=<?php echo Yii::app()->request->hostInfo; ?><?php echo CHtml::encode('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html'); ?>&amp;title=<?php echo CHtml::encode($this->Decision->title); ?>">Digg</a>
                 <span style="display:none"><?php echo $this->Decision->description; ?></span>
             </li>
-            <li><a id="share_reddit" target="_blank" href="http://www.reddit.com/submit?url=<?php echo Yii::app()->request->hostInfo; ?><?php echo CHtml::encode('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html'); ?>">Reddit</a></li>
+            <li><a id="share_reddit" target="_blank" href="http://www.reddit.com/submit?url=<?php echo Yii::app()->request->hostInfo; ?><?php echo CHtml::encode('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html'); ?>&amp;title=<?php echo CHtml::encode($this->Decision->title); ?>">Reddit</a></li>
         </ul>
         <?php } ?>
         <?php } ?>
@@ -120,7 +122,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <!-- DECISION DETAILS OVERLAY -->
 <div id="overlayDetails" style="display: none;">
     <h3>Detailed comparison</h3>
-    <p>Lorem ipsum dolor sit amet. Lorem ipsum?</p>
+    <p>This graph shows alternative profiles. By comparing the data points at each criteria you are able to see how each alternative compares to others.</p>
     <div id="abacon-sidebar" class="sidebar">
         <form method="post" action="">
             <fieldset>
