@@ -88,40 +88,17 @@
         border: 1px solid #c7cacf;
     }
 
-    #about > dl {
+    #about > p {
         width: 568px; /*594px;*/
         /*min-height: 27px; /*60px*/
         padding: 0 9px 8px 16px;
-        margin-bottom: 32px;
         float: left;
         position: relative;
         border-left: 1px solid #dedfe3;
         border-bottom: 1px solid #dedfe3;
+        min-height: 51px;
+        color: #838790;
     }
-
-        #about > dl dt {
-            position: absolute;
-            right: 9px;
-            bottom: -30px;
-            font-weight: bold;
-            font-style: italic;
-            text-align: right;
-        }
-
-            #about .timestamp {
-                margin-top: 2px;
-                display: block;
-                font-size: 10px;
-                text-align: center;
-                color: #9D9FA3;
-                font-weight: normal;
-            }
-
-        #about > dl dd {
-            width: 100%;
-            line-height: 16px;
-            color: #838790;
-        }
 
 /* Abacon Content
  * Score Content

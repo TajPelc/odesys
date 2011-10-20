@@ -8,6 +8,11 @@ var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 <div id="content">
+    <div id="about">
+        <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=square');?>
+        <p><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></p>
+    </div>
+    <h2>Alternatives</h2>
     <div id="score">
         <table class="alternatives">
         <?php foreach($bestAlternatives as $A) { ?>
@@ -33,17 +38,9 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </table>
     </div>
     <a href="#" id="detailed_comparison" class="button">Open detailed comparison<span>&nbsp;</span></a>
-    <div id="about">
-        <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=square');?>
-
-        <dl>
-            <dt><?php echo CHtml::encode($this->Decision->User->name); ?><span class="timestamp"><?php echo date('F jS, Y \a\t H:i', strtotime($this->Decision->last_edit)); ?></span></dt>
-            <dd><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></dd>
-        </dl>
-    </div>
 
     <?php if($enableComments) { ?>
-    <h2>Opinions and comments</h2>
+    <h2>Discussion</h2>
     <?php }?>
     <div id="opinions">
         <ul class="comments">
@@ -87,6 +84,21 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
     <?php } ?>
     <div class="help">
+        <h4>Highest scoring alternative</h4>
+        <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?> points</b></p>
+        <h4><?php echo CHtml::encode($this->Decision->User->first_name); ?>'s preference</h4>
+        <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
+        <h4>Last update</h4>
+        <p><b><?php echo date('F jS, Y \a\t H:i', strtotime($this->Decision->last_edit)); ?></b></p>
+        <h4>Decision overview:</h4>
+        <ul>
+            <li><span>No. alternatives</span><em><?php echo $this->DecisionModel->no_alternatives; ?></em></li>
+            <li><span>No. criteria</span><em><?php echo $this->DecisionModel->no_criteria; ?></em></li>
+            <li><span>No. opinions</span><em><?php echo $this->Decision->opinionCount; ?></em></li>
+        </ul>
+        <div class="last"></div>
+    </div>
+    <div class="help">
         <h4>This decision is available to:</h4>
         <p <?php if(!$this->Decision->isPublic()) { ?>class="l"<?php } ?>><b><?php echo $this->Decision->getViewPrivacyLabel(); ?></b></p>
         <?php if(!$this->Decision->isPrivate()){ ?>
@@ -103,19 +115,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </ul>
         <?php } ?>
         <?php } ?>
-        <div class="last"></div>
-    </div>
-    <div class="help">
-        <h4><?php echo CHtml::encode($this->Decision->User->first_name); ?>'s preference</h4>
-        <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
-        <h4>Highest scoring alternative</h4>
-        <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?> points</b></p>
-        <h4>Decision overview:</h4>
-        <ul>
-            <li><span>No. alternatives</span><em><?php echo $this->DecisionModel->no_alternatives; ?></em></li>
-            <li><span>No. criteria</span><em><?php echo $this->DecisionModel->no_criteria; ?></em></li>
-            <li><span>No. opinions</span><em><?php echo $this->Decision->opinionCount; ?></em></li>
-        </ul>
         <div class="last"></div>
     </div>
 </div>
