@@ -134,12 +134,12 @@ $(document).ready(function(){
     });
 
     // save html to a variable and remove it from the dom
-    Core.Overlay.Html = $('#overlayDetails').html();
+    Public.DetailedComparison = $('#overlayDetails').html();
     $('#overlayDetails').remove();
 
     //open detailed comparison - abacon
     $('#detailed_comparison').click(function(){
-        Core.Overlay(Core.Overlay.Html, true);
+        Core.Overlay(Public.DetailedComparison, true);
 
         // init abacon
         Abacon.init();
