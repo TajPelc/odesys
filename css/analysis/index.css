@@ -65,6 +65,18 @@
 /* Abacon Content
  * Score Content
 ********************************************************/
+#score span.score {
+    position: absolute;
+    text-align: right;
+    background-color: white;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #dedfe3;
+    padding: 2px;
+    display: none;
+}
+
 #abacon,
 #score {
     position: relative;

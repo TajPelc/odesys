@@ -102,7 +102,8 @@ Score.CreateAlternative = function(i)
     else
     {
         // calculate width
-        Score.Scores[i]['width'] = parseInt(((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100)*5);
+        Score.Scores[i]['relativeScore'] = ((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100);
+        Score.Scores[i]['width'] = parseInt(Score.Scores[i]['relativeScore']*5);
     }
 
     // calculate x postion
@@ -110,6 +111,8 @@ Score.CreateAlternative = function(i)
 
     // calculate y position
     var y = Score.Config['rowHeight'] * i + (Score.Config['rowHeight']/2) - 10;
+
+    Score.addNumericScoreField(x, y, Score.Scores[i]['width'], i);
 
     // rectangle
     var Alternative = Score.Canvas.rect(x-1, y+8, 0, 5, 0).attr({
@@ -148,9 +151,39 @@ Score.CreateAlternative = function(i)
  * Draw alternatives
  */
 Score.DrawAlternatives = function(){
+    var scoreFadedIn = false;
     $(Score.Alternatives).each(function(index, Alternative) {
         Alternative.animate({
             width: Score.Scores[index]['width'],
-            }, 1000, '<>');
+            }, 1000, '<>', function(){
+                if(!scoreFadedIn)
+                {
+                    Score.Container.find('span.score').fadeIn();
+                    scoreFadedIn = true;
+                }
+            }
+        );
     });
+}
+
+/**
+ * Add numeric score fields to the graph
+ */
+Score.addNumericScoreField = function(x, y, width, i)
+{
+    // create and append span
+    var span = $('<span class="score">' + Score.Scores[i]['relativeScore'].toFixed(1) + ' points</span>');
+    Score.Container.append(span);
+
+    // calculate left position
+    var left = x + width - 1 - span.outerWidth();
+
+    // recalculate position
+    var position = {
+        top: y - 10,
+        left: (left < Score.Container.find('tbody').outerWidth()) ? Score.Container.find('tbody').outerWidth() + 4 : left,
+    };
+
+    // apply position
+    span.css(position);
 }
