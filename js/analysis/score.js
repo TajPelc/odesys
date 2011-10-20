@@ -118,8 +118,7 @@ Score.CreateAlternative = function(i)
     var Alternative = Score.Canvas.rect(x-1, y+8, 0, 5, 0).attr({
         'fill': '#fff',
         'fill': Score.Scores[i]['color'],
-        'stroke': '#596171',
-        'stroke-width': 0
+        'stroke-width': 0.000001
     });
 
     // hover over dot (to make life easier)

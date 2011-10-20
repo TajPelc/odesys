@@ -8,6 +8,7 @@ Abacon = {};
 Abacon.Container = {};
 Abacon.Canvas = {};
 Abacon.Legend = {};
+Abacon.ScoreBoard = {};
 
 // handle previous / next buttons
 Abacon.HandleButtons = true;
@@ -92,6 +93,7 @@ Abacon.DrawAlternative = function(n)
 
         // add to arr
         dataPoints.push({
+            score: Graph.Data['Alternatives'][n]['criteria'][i]['weightedScore'],
             x: x,
             y: y
         });
@@ -190,27 +192,50 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
  */
 Abacon.AnimateDataPoint = function(i, n, color, dataPoints)
 {
+    if(Abacon.ScoreBoard[i] instanceof Object){
+    }
+    else{
+        Abacon.ScoreBoard[i] = {};
+    }
+
+    // create and append span
+    Abacon.ScoreBoard[i][n] = $('<span class="score">' + dataPoints[i]['score'].toFixed(1) + ' points</span>');
+    Abacon.Container.append(Abacon.ScoreBoard[i][n]);
+
+    // recalculate position
+    var css = {
+        top: dataPoints[i]['y'] - parseInt(Abacon.ScoreBoard[i][n].outerHeight() / 2),
+        left: dataPoints[i]['x'] + 20,
+        borderColor: color,
+    };
+
+    // apply position
+    Abacon.ScoreBoard[i][n].css(css);
+
     // draw data points
-    var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 10).attr({
-        'stroke-width': '6px',
-        stroke: color,
+    var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 6).attr({
+        'stroke-width': '2px',
+        stroke: 'white',
         fill: 'white',
-    }).animate({r: 3}, 500);
+    }).animate({r: 3, stroke: color}, 500);
 
     // draw dot for hovering
     var hoverDot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 15).attr({
-        'stroke-width': '5px',
-        stroke: 'red',
-        fill: 'red',
-        'opacity': 0,
+        'stroke-width': 'none',
+        stroke: color,
+        fill: color,
+        'opacity': 0.1,
+        'fill-opacity': 0
     });
 
     // hover over dot (to make life easier)
     hoverDot.mouseover(function (event) {
-        dot.animate({r: 6}, 1000, 'elastic');
+        dot.animate({r: 8}, 1000, 'elastic');
+        Abacon.ScoreBoard[i][n].show();
     });
     hoverDot.mouseout(function (event) {
         dot.animate({r: 3}, 1000, 'elastic');
+        Abacon.ScoreBoard[i][n].hide();
     });
 
     // push to elements

@@ -65,7 +65,7 @@
 /* Abacon Content
  * Score Content
 ********************************************************/
-#score span.score {
+#score span.score, #abacon span.score {
     position: absolute;
     text-align: right;
     background-color: white;
