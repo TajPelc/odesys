@@ -240,6 +240,7 @@ Abacon.AnimateDataPoint = function(i, n, color, dataPoints)
 
     // push to elements
     Abacon.Elements[n].push(dot);
+    Abacon.Elements[n].push(hoverDot);
 }
 
 /**
