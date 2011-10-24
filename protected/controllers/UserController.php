@@ -27,13 +27,14 @@ class UserController extends Controller
      */
     public function init()
     {
-        $this->customHeader = CHtml::encode(User::current()->name) . '\'s profile';
-
         // only authenticated users may access these pages
         if(Yii::app()->user->isGuest)
         {
             $this->redirect('/');
         }
+
+        // set the costum header
+        $this->customHeader = CHtml::encode(User::current()->name) . '\'s profile';
     }
 
     /**
@@ -116,7 +117,7 @@ class UserController extends Controller
                     Yii::app()->user->logout();
 
                     // log out
-                    Ajax::respondOk(array('logoutUrl' => Fb::singleton()->getLogoutUrl()));
+                    Ajax::respondOk(array('logoutUrl' => $this->createAbsoluteUrl('/')));
                 }
                 Ajax::respondError(array('errors' => 'Could not delete profile. Please try again later.'));
             }

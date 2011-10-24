@@ -36,7 +36,7 @@
         <div><input type="text" name="newCriteria[title]" id="newCriteria" /></div>
         <ol>
         <?php for ($i = 0; $i < count($Criteria); $i++) { ?>
-            <li>
+            <li class="drag">
                 <input type="text" name="criteria[<?php echo $Criteria[$i]->criteria_id; ?>][title]" id="criteria_<?php echo $Criteria[$i]->criteria_id; ?>" value="<?php echo $Criteria[$i]->title; ?>" />
             </li>
         <?php } ?>
