@@ -10,7 +10,7 @@ Criteria.FormAddButton = function(that){
 }
 
 Criteria.FormListButtons = function(that){
-    that.parent().append('<span class="remove">-</span>');
+    that.parent().append('<span class="remove">&ndash;</span>');
     that.parent().append('<span class="drag">&nbsp;</span>');
 }
 
@@ -50,7 +50,7 @@ Criteria.SaveInput = function(that, add) {
                 if (add){
                     if(data['status'] == true){
                         // here be returned shite
-                        $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">-</span><span class="drag">&nbsp;</span></li>');
+                        $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">&ndash;</span><span class="drag">&nbsp;</span></li>');
                         that.focus();
                         that.val('');
                         //remove preloader
@@ -59,6 +59,7 @@ Criteria.SaveInput = function(that, add) {
                         that.removeAttr('disabled');
                         Core.ProjectMenu(data['projectMenu']);
                         Core.ContentNav.toggle('evaluation', data['projectMenu']);
+                        Criteria.handleListFontSize($('#content form ol li'));
 
                         // errors
                     } else {
@@ -108,6 +109,7 @@ Criteria.DeleteInput = function(that) {
                 Core.ProjectMenu(data['projectMenu']);
                 Core.ContentNav.toggle('evaluation', data['projectMenu']);
                 Criteria.DeleteInput.Loading.remove();
+                Criteria.handleListFontSize($('#content form ol li'));
             } else {
                 Criteria.DeleteInput.Loading.remove();
             }
@@ -145,6 +147,23 @@ Criteria.handleButtons = function(menu) {
     }
 }
 
+/**
+ * Handle criteria list font-size
+ */
+Criteria.handleListFontSize = function(that) {
+        $(that).not('.ui-sortable-helper').each(function(index, that){
+            var fontSizes = new Array(36, 31, 26, 22, 18, 15, 12, 11, 10, 9, 8);
+            var fontRatio = (fontSizes[index]);
+            var fontSizesMin = 8;
+            
+            // min font size failsafe
+            if (index < fontSizes.length) {
+                $(that).css('font-size', fontRatio);
+            } else {
+                $(that).css('font-size', fontSizesMin);
+            }
+        });
+}
 /*
  * Document Ready
  */
@@ -207,7 +226,7 @@ $(document).ready(function(){
 
     // make criteria list sortable
     $('#content form ol').sortable({
-        opacity: 0.70,
+        opacity: 0.90,
         placeholder: 'placeholder',
         handle: '.drag',
         sort: function(){ // Ordered list fix by Bryan Blakey
@@ -226,6 +245,16 @@ $(document).ready(function(){
                     }
                 }
             });
+            Criteria.handleListFontSize($('#content form ol li'));
+        },
+        start: function() {
+            Criteria.handleListFontSize($('#content form ol li'));
+        },
+        beforeStop: function() {
+            Criteria.handleListFontSize($('#content form ol li'));
+        },
+        stop: function() {
+            Criteria.handleListFontSize($('#content form ol li'));
         }
     }).touch({
         animate: false,
@@ -248,4 +277,7 @@ $(document).ready(function(){
     $('#content form').submit(function(){
         return false;
     });
+    
+    // handle list font size
+    Criteria.handleListFontSize($('#content form ol li'));
 });

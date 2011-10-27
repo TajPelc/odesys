@@ -194,7 +194,10 @@ a:hover {
 ********************************************************/
 #content h2 {
     margin-bottom: 16px;
-    font-size: 18px;
+    font-family: Times New Roman, Arial, sans-serif;
+    font-size: 30px;
+    font-style: italic;
+    color: #717c90;
 }
 
 #content p {

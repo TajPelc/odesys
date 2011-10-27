@@ -31,6 +31,8 @@
 </div>
 
 <div id="content">
+    <h2>What factors influence your decision the most?</h2>
+    <p>When choosing which car to buy, some sample factors would be Acceleration, Top speed, Safety, and so on. Think of some factors that apply to your decision and order them by priority from the most important to the least imporatnt.</p>
     <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Criteria = $this->DecisionModel->findCriteriaByPriority(); ?>
         <div><input type="text" name="newCriteria[title]" id="newCriteria" /></div>
