@@ -26,6 +26,8 @@
 </div>
 
 <div id="content">
+    <h2>What alternatives are you considering?</h2>
+    <p>Lorem ipsum dolor sit amet Lorem ipsum dolor, sit amet Lorem ipsum dolor . Sit amet Lorem ipsum dolor sit amet Lorem ipsum d,olor sit amet Lorem ipsum dolor sit amem,t Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
     <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Alternatives = $this->DecisionModel->alternatives; ?>
         <div><input type="text" name="newAlternative[title]" id="newAlternative" /></div>

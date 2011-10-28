@@ -1,30 +1,38 @@
 /*
- --> Criteria css
+ --> Alternatives css
  --> @author:     Frenk T. Sedmak Nahtigal
- --> @version:    1.2
+ --> @version:    2.0
 */
 
 #content {
     width: 670px;
 }
 
+#content > p {
+    padding-left: 20px;
+    margin-bottom: 16px;
+    color: #9d9fa3;
+    font-style: italic;
+  }
+
 #content > form {
     width: 100%;
+    margin-bottom: 16px;
     float: left;
     position: relative;
 }
 
     #content > form ol {
         padding-left: 20px;
-        list-style: decimal outside;
+        list-style: none;
         float: left;
         position: relative;
     }
 
         #content > form ol li {
             width: 650px;
-            height: 28px;
-            line-height: 0;
+            height: 38px;
+            line-height: 38px;
             margin-bottom: 16px;
             float: left;
             position: relative;
@@ -35,20 +43,17 @@
         margin-bottom: 24px;
         position: relative;
         float: left;
-        background: url(../../images/sprite_icons.png) 1px -343px no-repeat;
         border-bottom: 1px solid #dedfe3;
     }
 
     #content > form input[type="text"] {
         width: 607px; /*650px*/
-        height: 28px;
+        height: 38px;
+        line-height: 38px;
         padding: 0 35px 0 8px;
-        line-height: 28px;
-        background: url(../../images/form/input_big.png) no-repeat;
-        border: none;
-        -moz-border-radius: 6px;
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
+        float: left;
+        font-size: 14px;
+        background: url(../../images/form/sprite_input.png) 0 0 no-repeat;
         border: none;
     }
 
@@ -61,38 +66,43 @@
 
         #content > form span.add,
         #content > form span.remove {
-            width: 27px;
-            height: 26px;
+            width: 40px;
+            height: 36px;
             display: block;
             position: absolute;
             background: url(../../images/form/sprite_buttons.png) no-repeat;
-            text-indent: -9999px;
         }
 
         #content > form span.add,
         #content > form span.remove {
+            width: 46px;
             top: 1px;
             right: 1px;
+            color: #fff;
+            line-height: 35px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
         }
 
         #content > form span.add {
             right: 1px;
         }
 
-        #content > form span.remove        { background-position: 0 0 }
-        #content > form span.add           { background-position: 0 -100px }
-        #content > form span.remove:hover  { background-position: -100px 0 }
-        #content > form span.add:hover     { background-position: -100px -100px }
-        #content > form span.remove:active { background-position: -200px 0 }
-        #content > form span.add:active    { background-position: -200px -100px }
+        #content > form span.remove,
+        #content > form span.add           { background-position: 0 0 }
+        #content > form span.remove:hover,
+        #content > form span.add:hover { color: #FFD700 }
+        #content > form span.remove:active,
+        #content > form span.add:active    { background-position: 0 -100px }
 
         #content form .loading {
             width: 24px;
             height: 24px;
             display: block;
             position: absolute;
-            top: 2px;
-            right: 30px;
+            top: 7px;
+            right: 52px;
             background: url(../../images/ajax-loader-circular.gif) no-repeat;
         }
 
