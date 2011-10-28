@@ -247,8 +247,9 @@ $(document).ready(function(){
             });
             Criteria.handleListFontSize($('#content form ol li'));
         },
-        start: function() {
+        start: function(e, ui) {
             Criteria.handleListFontSize($('#content form ol li'));
+            ui.placeholder.append('<div>Drop your criteria to this position.</div>');
         },
         beforeStop: function() {
             Criteria.handleListFontSize($('#content form ol li'));
