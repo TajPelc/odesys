@@ -26,6 +26,9 @@
     </div>
 </div>
 
+<h2>How would you rate “<em><?php echo CHtml::encode($Criteria->title); ?></em>”?</h2>
+<p>Think about how each alternative compares with the others and adjust the sliders to the appropriate position. Which alternative is the best at this factor? Which is the worst?</p>
+
 <div id="content">
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded" action="">
 <?php }?>

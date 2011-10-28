@@ -192,6 +192,7 @@ a:hover {
 
 /* Content
 ********************************************************/
+#main > h2,
 #content h2 {
     margin-bottom: 16px;
     font-family: Times New Roman, Arial, sans-serif;
@@ -200,6 +201,7 @@ a:hover {
     color: #717c90;
 }
 
+#main > p,
 #content p {
     line-height: 16px;
 }
