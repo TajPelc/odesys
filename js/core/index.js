@@ -71,6 +71,7 @@ Core.Overlay = function(html, big){
             return false;
         }
     });
+
     //on submit
     $('#overlay form').submit(function(){
         Core.Overlay.Url = location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=project/create';
@@ -363,8 +364,10 @@ $(document).ready(function(){
 
     //call overlay and insert text
     $('.projectNew').click(function(){
-            Core.Overlay.Html = '<h2>Name your new decision</h2><p class="notice">You should name your decision carefully, because you can not change it later.</p><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_titile" /><span>Example: Buying a car</span><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>';
+            var example = 'Choosing a car';
+            Core.Overlay.Html = '<h2>What would you like to decide?</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_title" value="' + example + '" /><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>';
             Core.Overlay(Core.Overlay.Html);
+            $('#project_title').select();
         return false;
     });
 
