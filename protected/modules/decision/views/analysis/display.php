@@ -5,36 +5,6 @@ var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 
-<div id="heading">
-    <h2>Compare alternatives to find which one is best suited for you.</h2>
-    <a id="helpButton" href="#">Help</a>
-    <?php if($this->Decision->isPublished()){ ?><h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3><?php } ?>
-    <div id="help" style="display: none;">
-        <h3>Need some help?</h3>
-        <ul>
-            <li>
-                <dl>
-                    <dt>A note on scores</dt>
-                    <dd>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the winning alternative.</dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>Which one do I choose?</dt>
-                    <dd>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>About the detailed comparison</dt>
-                    <dd>This graph shows alternative profiles. You should be seeing how each alternative compares to others at each criteria. Do you still think the first one is the best?</dd>
-                </dl>
-            </li>
-        </ul>
-        <div id="helpEnd"></div>
-    </div>
-</div>
-
 <div id="accordion">
     <div>
         <h3>Results</h3>
@@ -126,5 +96,5 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </div>
 <ul id="content-nav">
     <li class="prev"><?php echo CHtml::link('Previous<span class="doors">&nbsp;</span>', array('/decision/evaluation', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label, 'pageNr' => $this->DecisionModel->no_criteria-1)); ?></li>
-    <li class="next<?php echo (!$this->DecisionModel->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAnalysisComplete() ? CHtml::link('Next<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Next<span class="doors">&nbsp;</span></span>'); ?></li>
+    <li class="next<?php echo (!$this->DecisionModel->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAnalysisComplete() ? CHtml::link('Next<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Close<span class="doors">&nbsp;</span></span>'); ?></li>
 </ul>

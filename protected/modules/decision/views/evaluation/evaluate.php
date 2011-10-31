@@ -1,33 +1,8 @@
 <?php if(!Ajax::isAjax()) { ?>
 <?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Evaluation'; ?>
 
-<div id="heading">
-    <h2>Move each slider to the appropriate position to evaluate alternatives.</h2>
-    <a id="helpButton" href="#">Help</a>
-    <?php if($this->Decision->isPublished()){ ?><h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3><?php } ?>
-    <div id="help" style="display: none;">
-        <h3>Need some help?</h3>
-        <ul>
-            <li>
-                <dl>
-                    <dt>Think</dt>
-                    <dd>Read the sentances and think about how each alternative compares at a given criteria. If a sentance doesn't make any sense, you should probably rename your criteria or alternatives.</dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>How to evaluate</dt>
-                    <dd>Just move or click on the slider to evaluate an alternative.</dd>
-                </dl>
-            </li>
-        </ul>
-        <span class="helpClose">&nbsp;</span>
-        <div id="helpEnd"></div>
-    </div>
-</div>
-
 <h2>How would you rate “<em><?php echo CHtml::encode($Criteria->title); ?></em>”?</h2>
-<p>Think about how each alternative compares with the others and adjust the sliders to the appropriate position. Which alternative is the best at this factor? Which is the worst?</p>
+<p>Think about how alternatives compare at this factor and adjust the sliders to the appropriate position.</p>
 
 <div id="content">
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded" action="">
@@ -37,7 +12,7 @@
             <?php foreach($this->DecisionModel->alternatives as $Alternative) { ?>
             <?php $Evaluation = isset($eval[$Alternative->alternative_id]) ? $eval[$Alternative->alternative_id] : false; ?>
             <li<?php echo ((bool)$Evaluation ? ' class="saved"' : ''); ?>>
-                <h3><b><?php echo CHtml::encode(Common::truncate($Criteria->title, 45))?></b> <em>for</em> <b><?php echo CHtml::encode(Common::truncate($Alternative->title, 45))?></b> <em>is</em></h3>
+                <h3><b><?php echo CHtml::encode(Common::truncate($Alternative->title, 45))?></b></h3>
                 <div>
                     <span class="worst">the worst</span>
                     <select id="<?php echo 'eval-'. $Alternative->alternative_id . '-' . $Criteria->criteria_id; ?>" name="<?php echo 'eval['. $Alternative->alternative_id . '][' . $Criteria->criteria_id . ']'; ?>">

@@ -1,33 +1,8 @@
 <?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Alternatives'; ?>
 
-<div id="heading">
-    <h2>What alternatives are you considering?</h2>
-    <a id="helpButton" href="#">Help</a>
-    <?php if($this->Decision->isPublished()){ ?><h3><?php echo CHtml::link('Back to report<span>&nbsp;</span>', CHtml::encode($this->publicLink)); ?></h3><?php } ?>
-    <div id="help" style="display: none;">
-        <h3>Need some help?</h3>
-        <ul>
-            <li>
-                <dl>
-                    <dt>Think</dt>
-                    <dd>Have you thought of all possible alternatives? Your decision will be complete by choosing one of these alternatives. What are you considering?</dd>
-                </dl>
-            </li>
-            <li>
-                <dl>
-                    <dt>Random Examples</dt>
-                    <dd>Family car, Apartment in the city, Dentist, Physicist, Web application developer, Ice cream</dd>
-                </dl>
-            </li>
-        </ul>
-        <span class="helpClose">&nbsp;</span>
-        <div id="helpEnd"></div>
-    </div>
-</div>
-
 <div id="content">
     <h2>What alternatives are you considering?</h2>
-    <p>Lorem ipsum dolor sit amet Lorem ipsum dolor, sit amet Lorem ipsum dolor . Sit amet Lorem ipsum dolor sit amet Lorem ipsum d,olor sit amet Lorem ipsum dolor sit amem,t Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+    <p>Think of a few alternatives between which you will be choosing.</p>
     <?php echo CHtml::beginForm('', 'post'); ?>
         <?php $Alternatives = $this->DecisionModel->alternatives; ?>
         <div><input type="text" name="newAlternative[title]" id="newAlternative" /></div>

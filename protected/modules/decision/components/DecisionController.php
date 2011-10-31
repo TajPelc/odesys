@@ -37,11 +37,10 @@ class DecisionController extends Controller
      * @var array
      */
     protected $_pages = array(
-        'menu-alternatives'  => array('path' => '/decision/alternatives/', 	'route' => array('decision/alternatives/create'), 'label' => 'Alternatives', 'enabled' => true),
-        'menu-criteria'      => array('path' => '/decision/criteria/', 		'route' => array('decision/criteria/create'), 'label' => 'Criteria', 'enabled' => false),
-        'menu-evaluation'    => array('path' => '/decision/evaluation/', 	'route' => array('decision/evaluation/evaluate'), 'label' => 'Evaluation', 'enabled' => false),
-        'menu-analysis'      => array('path' => '/decision/analysis/', 		'route' => array('decision/analysis/display'), 'label' => 'Analysis', 'enabled' => false),
-        'menu-overview'      => array('path' => '/decision/sharing/', 		'route' => array('decision/sharing/index'), 'label' => 'Sharing and settings', 'enabled' => false),
+        'menu-alternatives'  => array('path' => '/decision/alternatives/', 	'route' => array('decision/alternatives/create'), 'label' => '1. Alternatives', 'enabled' => true),
+        'menu-criteria'      => array('path' => '/decision/criteria/', 		'route' => array('decision/criteria/create'), 'label' => '2. Factors', 'enabled' => false),
+        'menu-evaluation'    => array('path' => '/decision/evaluation/', 	'route' => array('decision/evaluation/evaluate'), 'label' => '3. Evaluation', 'enabled' => false),
+        'menu-analysis'      => array('path' => '/decision/analysis/', 		'route' => array('decision/analysis/display'), 'label' => '4. Analysis', 'enabled' => false),
     );
 
     /**
@@ -113,7 +112,5 @@ class DecisionController extends Controller
         $this->_pages['menu-criteria']['enabled']     = $this->DecisionModel->checkAlternativesComplete();
         $this->_pages['menu-evaluation']['enabled']   = $this->DecisionModel->checkEvaluateConditions();
         $this->_pages['menu-analysis']['enabled']     = $this->DecisionModel->checkEvaluationComplete();
-        $this->_pages['menu-overview']['enabled']     = $this->DecisionModel->checkAnalysisComplete();
     }
-
 }

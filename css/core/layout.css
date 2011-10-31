@@ -198,7 +198,11 @@ a:hover {
     font-family: Times New Roman, Arial, sans-serif;
     font-size: 30px;
     font-style: italic;
-    color: #717c90;
+    color: #596171;
+}
+#main > h2 em,
+#content h2 em {
+    font-weight: bold;
 }
 
 #main > p,
