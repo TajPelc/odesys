@@ -22,6 +22,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        dump(Yii::app()->user);
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
@@ -78,30 +79,40 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays the login page
+     * Login
      */
-    public function actionLogin()
-    {
-        $model=new LoginForm;
+    public function actionLogin() {
+        $service = Yii::app()->request->getQuery('service');
+        if (isset($service)) {
+            $authIdentity = Yii::app()->eauth->getIdentity($service);
+            $authIdentity->redirectUrl = Yii::app()->user->returnUrl;
+            $authIdentity->cancelUrl = $this->createAbsoluteUrl('site/login');
 
-        // if it is ajax validation request
-        if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-        {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
+            if ($authIdentity->authenticate()) {
+                $identity = new EAuthUserIdentity($authIdentity);
+
+                // successful authentication
+                if ($identity->authenticate()) {
+                    dump($identity);
+                    die;
+                    Yii::app()->user->login($identity->name);
+
+                    // special redirect with closing popup window
+                    $authIdentity->redirect();
+                }
+                else {
+                    // close popup window and redirect to cancelUrl
+                    $authIdentity->cancel();
+                }
+            }
+
+            // Something went wrong, redirect to login page
+            $this->redirect(array('site/login'));
         }
 
-        // collect user input data
-        if(isset($_POST['LoginForm']))
-        {
-            $model->attributes=$_POST['LoginForm'];
-            // validate user input and redirect to the previous page if valid
-            if($model->validate() && $model->login())
-                $this->redirect(Yii::app()->user->returnUrl);
-        }
-        // display the login form
-        $this->render('login',array('model'=>$model));
+        // default authorization code through login/password ..
     }
+
 
     /**
      * Logs out the current user and redirect to homepage.

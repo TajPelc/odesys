@@ -44,9 +44,9 @@
                     <div class="fb-login-button">Login with Facebook</div>
                     <?php CHtml::link(CHtml::image('http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif', 'Facbook Connect'), array('/login/facebook'), array('id' => 'facebookLogin')); ?>
                 <?php } else { ?>
-                    <div id="login_image"><?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?></div>
+                    <div id="login_image"><?php // echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?></div>
                         <div>
-                            <h2>Welcome, <i><?php echo Yii::app()->user->data['name']; ?></i>!</h2>
+                            <h2>Welcome, <i><?php // echo Yii::app()->user->data['name']; ?></i>!</h2>
                             <ul>
                                 <li><?php echo CHtml::link('New', array('/project/create'), array('title' => 'Start a new decision', 'class' => 'projectNew')); ?></li>
                                 <li><?php echo CHtml::link('Profile', array('/user/notifications'), array('title' => 'View your decision feed and your decisions')); ?></li>
