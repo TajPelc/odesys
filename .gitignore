@@ -3,7 +3,7 @@
 .settings/
 .htaccess
 .htpasswd
-assets/
+/assets/
 protected/config/main.php
 protected/runtime/
 index.php
