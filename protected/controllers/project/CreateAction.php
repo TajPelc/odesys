@@ -21,7 +21,7 @@ class CreateAction extends Action
         $Decision->title = $this->post('title');
         $Decision->rel_user_id = User::ANONYMOUS;
         if(!Yii::app()->user->isGuest) {
-            $Decision->rel_user_id = Yii::app()->user->id;
+            $Decision->rel_user_id = Common::getUser()->user_id;
         }
 
         // save or return errrors

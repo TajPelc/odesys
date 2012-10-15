@@ -116,4 +116,13 @@ class Common
 
         return $clean;
     }
+
+    /**
+     *
+     * Load the current user model
+     * @return User|mixed|null
+     */
+    public static function getUser($user = false) {
+        return Identity::model()->findByPk((bool)$user ? $user : Yii::app()->user->id)->User;
+    }
 }

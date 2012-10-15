@@ -34,7 +34,7 @@ class UserController extends Controller
         }
 
         // set the costum header
-        $this->customHeader = CHtml::encode(User::current()->name) . '\'s profile';
+        $this->customHeader = CHtml::encode(Yii::app()->user->name) . '\'s profile';
     }
 
     /**
@@ -42,13 +42,13 @@ class UserController extends Controller
      */
     public function actionNotifications()
     {
+        /*
         // wake up notifications
         $N = new Notification();
         $pageNr = ((bool)$this->post('page') ? $this->post('page') : 0);
 
         // get notifications
         $rv = $N->findNotificationsForUser(User::current(), $pageNr);
-
         // ajax
         if(Ajax::isAjax())
         {
@@ -58,6 +58,8 @@ class UserController extends Controller
                 'notifications' => $this->renderPartial('notifications/list', array('notifications' => $rv['notifications']), true),
             ));
         }
+
+        */
 
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
@@ -69,7 +71,8 @@ class UserController extends Controller
 
 
         // render
-        $this->render('notifications', array('notifications' => $rv['notifications'], 'pagination' => $rv['pagination']));
+        //$this->render('notifications', array('notifications' => $rv['notifications'], 'pagination' => $rv['pagination']));
+        $this->render('notifications');
     }
 
     /**
@@ -94,7 +97,7 @@ class UserController extends Controller
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/user/decisions.js');
 
         // find all user's projects
-        $Decisions = Decision::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id, 'deleted' => 0), array('order' => 'last_edit DESC'));
+        $Decisions = Decision::model()->findAllByAttributes(array('rel_user_id' => User::current()->getPrimaryKey(), 'deleted' => 0), array('order' => 'last_edit DESC'));
 
         // render
         $this->render('decisions', array('Decisions' => $Decisions));

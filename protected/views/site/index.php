@@ -4,15 +4,17 @@
 </div>
 
 <div id="content">
-    <a href="#" class="buttonBig projectNew" style="width: 100px; text-align: center; margin: 0 0 10px 10px;">
+    <?php if(Yii::app()->user->isGuest) { ?>
+    <h2>Do you already have an account on one of these sites?</h2>
+    <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
+    <hr />
+    <?php } else { ?>
+    <a href="#" class="buttonBig projectNew" style="clear: left; width: 100px; text-align: center; margin: 0 0 10px 10px;">
         Start here
         <span class="doors"></span>
     </a>
-    <h2>Do you already have an account on one of these sites? Click the logo to log in with it here:</h2>
-    <?php
-    $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login'));
-    ?>
     <hr />
+    <?php } ?>
     <div>
         <dl>
             <dt>What is it?</dt>

@@ -144,7 +144,7 @@ class PublicAction extends Action
         // may the user view this page
         $anonymous = Yii::app()->user->isGuest;
         $userMayView = false;
-        $isOwner = (!$anonymous ? $this->getController()->Decision->isOwner(Yii::app()->user->id) : false);
+        $isOwner = (!$anonymous ? $this->getController()->Decision->isOwner(Common::getUser()->getPrimaryKey()) : false);
 
         // handle view privacy
         switch ($this->getController()->Decision->view_privacy)

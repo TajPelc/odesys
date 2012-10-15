@@ -67,7 +67,7 @@ class DecisionController extends Controller
         $this->DecisionModel = $this->Decision->getActiveDecisionModel();
 
         // if loading failed or user is not the owner => redirect to dashboard
-        if( !$this->Decision->isAnonymous() && !$this->Decision->isOwner(Yii::app()->user->id) )
+        if( !$this->Decision->isAnonymous() && !$this->Decision->isOwner(Common::getUser()->getPrimaryKey()) )
         {
             throw new CHttpException(403, 'You are allowed to edit this decision. Please use the back button to return to the previous page.');
         }

@@ -70,7 +70,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </div>
 </div>
 <div id="sidebar">
-    <?php if($this->Decision->isOwner(Yii::app()->user->id)) { ?>
+    <?php if($this->Decision->isOwner(Common::getUser()->getPrimaryKey())) { ?>
     <div class="edit">
         <h4>Edit this decision</h4>
         <ul>

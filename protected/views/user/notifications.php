@@ -25,12 +25,12 @@
     </div>
     <ul>
         <?php if(empty($notifications)) { ?>
-            <li class="empty">There are no notifications from you nor your friends.</li>
+            <li class="empty">You have no notifications.</li>
         <?php } else { ?>
             <?php echo $this->renderPartial('notifications/list', array('notifications' => $notifications)); ?>
         <?php }?>
     </ul>
-    <?php if($pagination->getPageCount() > 1) { ?>
+    <?php if(isset($pagination) && $pagination->getPageCount() > 1) { ?>
     <a class="button" href="#" id="showMore">Show more<span>&nbsp;</span></a>
     <?php } ?>
 </div>

@@ -22,7 +22,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        dump(Yii::app()->user);
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
@@ -82,6 +81,8 @@ class SiteController extends Controller
      * Login
      */
     public function actionLogin() {
+        $wasGuest = Yii::app()->user->isGuest;
+        $formerId = Yii::app()->user->id;
         $service = Yii::app()->request->getQuery('service');
         if (isset($service)) {
             $authIdentity = Yii::app()->eauth->getIdentity($service);
@@ -90,12 +91,28 @@ class SiteController extends Controller
 
             if ($authIdentity->authenticate()) {
                 $identity = new EAuthUserIdentity($authIdentity);
-
                 // successful authentication
                 if ($identity->authenticate()) {
-                    dump($identity);
-                    die;
-                    Yii::app()->user->login($identity->name);
+                    Yii::app()->user->login($identity);
+
+                    $savedIdentity = Identity::model()->findByPk(Yii::app()->user->id);
+                    if(null === $savedIdentity) {
+                        // create a new user
+                        if($wasGuest) {
+                            $User = new User();
+                            $User->save();
+                        } else { // add aditional identities
+                            $User = Common::getUser($formerId);
+                        }
+                        if(!$User->isAnonymous()){
+                            $savedIdentity = new Identity();
+                            $savedIdentity->identity_id = Yii::app()->user->id;
+                            $savedIdentity->rel_user_id = $User->getPrimaryKey();
+                            $savedIdentity->name = Yii::app()->user->name;
+                            $savedIdentity->service = Yii::app()->user->service;
+                            $savedIdentity->save();
+                        }
+                    }
 
                     // special redirect with closing popup window
                     $authIdentity->redirect();

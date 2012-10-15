@@ -9,12 +9,7 @@ class User extends CActiveRecord
      * @var string $password
      * @var string $email
      */
-
     const ANONYMOUS = 1;
-
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
-    const TYPE_FACEBOOK = 40;
 
     /**
      * User config
@@ -38,7 +33,7 @@ class User extends CActiveRecord
      */
     public static function current()
     {
-        return self::model()->findByPk(Yii::app()->user->id);
+        return Identity::model()->findByPk(Yii::app()->user->id)->User;
     }
 
     /**
@@ -67,6 +62,7 @@ class User extends CActiveRecord
             'decisions'     => array(self::HAS_MANY, 'Decision', 'rel_user_id'),
             'notifications' => array(self::HAS_MANY, 'Notification', 'rel_user_id'),
             'opinions'      => array(self::HAS_MANY, 'Opinion', 'rel_user_id'),
+            'identities'    => array(self::HAS_MANY, 'Identity', 'rel_user_id'),
         );
     }
 
@@ -85,39 +81,6 @@ class User extends CActiveRecord
     }
 
     /**
-     * Validate password
-     *
-     * @param string $password
-     * @return boolean
-     */
-    public function validatePassword($password)
-    {
-        return $this->hashPassword($password, $this->salt) === $this->password;
-    }
-
-    /**
-     * Create a password hash using the password and salt
-     *
-     * @param string $password
-     * @param string $salt
-     * @return string
-     */
-    public function hashPassword($password, $salt)
-    {
-        return md5($salt . $password);
-    }
-
-    /**
-     * Generates a salt that can be used to generate a password hash.
-     *
-     * @return string the salt
-     */
-    protected function generateSalt()
-    {
-        return uniqid('',true);
-    }
-
-    /**
      * Decrypt config
      * @see CActiveRecord::afterFind()
      */
@@ -127,63 +90,12 @@ class User extends CActiveRecord
     }
 
     /**
-     * Generates a salt that can be used to generate a password hash.
-     *
-     * @return bool
+     * Decrypt config
+     * @see CActiveRecord::afterFind()
      */
-    public function getConfig($val = null)
+    public function isAnonymous()
     {
-        if(is_null($val))
-        {
-            return $this->_config;
-        }
-        else
-        {
-            return $this->_config[$val];
-        }
-    }
-
-    /**
-     * Generates a salt that can be used to generate a password hash.
-     *
-     * @return bool
-     */
-    public function setConfig($attr, $val)
-    {
-        $this->_config[$attr] = $val;
-        $this->updateConfig();
-    }
-
-    /**
-     * Generates a salt that can be used to generate a password hash.
-     *
-     * @return bool
-     */
-    public function updateConfig()
-    {
-        $this->config = serialize($this->_config);
-
-        if( $this->save(false) )
-        {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Updates the last visit date
-     *
-     * @return bool
-     */
-    public function updateLastVisit()
-    {
-        $this->lastvisit = date('Y-m-d H:i:s', time());
-
-        if( $this->save(false) )
-        {
-            return true;
-        }
-        return false;
+        return $this->getPrimaryKey() === self::ANONYMOUS;
     }
 
     /**
@@ -260,6 +172,66 @@ class User extends CActiveRecord
     }
 
     /**
+     * Generates a salt that can be used to generate a password hash.
+     *
+     * @return bool
+     */
+    public function getConfig($val = null)
+    {
+        if(is_null($val))
+        {
+            return $this->_config;
+        }
+        else
+        {
+            return $this->_config[$val];
+        }
+    }
+
+    /**
+     * Generates a salt that can be used to generate a password hash.
+     *
+     * @return bool
+     */
+    public function setConfig($attr, $val)
+    {
+        $this->_config[$attr] = $val;
+        $this->updateConfig();
+    }
+
+    /**
+     * Generates a salt that can be used to generate a password hash.
+     *
+     * @return bool
+     */
+    public function updateConfig()
+    {
+        $this->config = serialize($this->_config);
+
+        if( $this->save(false) )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Updates the last visit date
+     *
+     * @return bool
+     */
+    public function updateLastVisit()
+    {
+        $this->lastvisit = date('Y-m-d H:i:s', time());
+
+        if( $this->save(false) )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Delete all user related stuff
      */
     public function beforeDelete()
@@ -267,7 +239,7 @@ class User extends CActiveRecord
         if(parent::beforeDelete())
         {
             // delete notifications, decision models and opinions
-            foreach(array_merge($this->notifications, $this->decisions, $this->opinions) as $m)
+            foreach(array_merge($this->notifications, $this->decisions, $this->opinions, $this->identities) as $m)
             {
                 $m->delete();
             }
@@ -278,15 +250,12 @@ class User extends CActiveRecord
 
     /**
      * Delete this user's profile
+     * @todo deauthorize user for all identities
      */
     public function deleteProfile()
     {
         try
         {
-            // deauthorize the app
-            $facebook = Fb::singleton();
-            $result = $facebook->api("/".$facebook->getUser()."/permissions", 'delete');
-
             // delete user
             if(User::current()->delete())
             {

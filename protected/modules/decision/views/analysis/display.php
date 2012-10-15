@@ -99,7 +99,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <?php if(Yii::app()->user->isGuest) { ?>
         <li class="next"><a href="/" title="Close this decision">Close<span class="doors">&nbsp;</span></a></li>
     <?php } else { ?>
-        <li class="next"><?php echo CHtml::link('Close<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) ?></li>
+        <li class="next"><?php echo CHtml::link('Close<span class="doors">&nbsp;</span>', array('/user/notifications')) ?></li>
     <?php } ?>
     <!-- li class="next<?php echo (!$this->DecisionModel->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAnalysisComplete() ? CHtml::link('Next<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Close<span class="doors">&nbsp;</span></span>'); ?></li -->
 </ul>
