@@ -26,7 +26,7 @@ Abacon.Config = {
     'rowHeight': 60,
     'bottomLegend': 25,
     'leftLegendOffset': 157,
-    'tickWidth': 50,
+    'tickWidth': 50
 };
 
 /**
@@ -74,7 +74,7 @@ Abacon.init = function(){
             'stroke-width': 1
         });
     }
-}
+};
 
 /**
  * Calculates the points and calls animate path
@@ -115,7 +115,7 @@ Abacon.DrawAlternative = function(n)
 
     // animate paths
     Abacon.AnimateDrawPath(0, n, Graph.Data['Alternatives'][n]['color'], paths, dataPoints);
-}
+};
 
 /**
  * Animates draw path and data points
@@ -140,14 +140,14 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
         // create the path and data point
         Abacon.Alternatives[n] = Abacon.Canvas.path(path).attr({"stroke-width": 4, "stroke": color});
         Abacon.Elements[n].push(Abacon.Alternatives[n]);
-        Abacon.AnimateDataPoint(i, n, color, dataPoints)
+        Abacon.AnimateDataPoint(i, n, color, dataPoints);
         Abacon.AnimateDrawPath(i+1, n, color, paths, dataPoints);
     }
     else
     {
         // animate path to the next position
         Abacon.Alternatives[n].animate({
-            'path': path,
+            'path': path
         }, 250, 'normal', function(){
 
             // draw data point
@@ -171,21 +171,16 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
                     // enable next step
                     $.ajax({
                         data: {
-                            'action': 'enableSharing',
+                            'action': 'enableSharing'
                         },
                         success: function(data) {
-                            if(data['status'] == true)
-                            {
-                                Core.ProjectMenu(data['projectMenu']);
-                                Core.ContentNav.toggle('overview', data['projectMenu']);
-                            }
                         }
                     });
                 }
             }
         });
     }
-}
+};
 
 /**
  * Animates data points
@@ -206,7 +201,7 @@ Abacon.AnimateDataPoint = function(i, n, color, dataPoints)
     var css = {
         top: dataPoints[i]['y'] - parseInt(Abacon.ScoreBoard[i][n].outerHeight() / 2),
         left: dataPoints[i]['x'] + 20,
-        borderColor: color,
+        borderColor: color
     };
 
     // apply position
@@ -216,7 +211,7 @@ Abacon.AnimateDataPoint = function(i, n, color, dataPoints)
     var dot = Abacon.Canvas.circle(dataPoints[i]['x'], dataPoints[i]['y'], 6).attr({
         'stroke-width': '2px',
         stroke: 'white',
-        fill: 'white',
+        fill: 'white'
     }).animate({r: 3, stroke: color}, 500);
 
     // draw dot for hovering
@@ -241,7 +236,7 @@ Abacon.AnimateDataPoint = function(i, n, color, dataPoints)
     // push to elements
     Abacon.Elements[n].push(dot);
     Abacon.Elements[n].push(hoverDot);
-}
+};
 
 /**
  * Initialize legend
@@ -308,7 +303,7 @@ Abacon.Legend.init = function()
             }
         }
     });
-}
+};
 
 /**
  * Display an alternative from the drop down menu
@@ -353,7 +348,7 @@ Abacon.Legend.displayFromDropdown = function()
 
         return false;
     });
-}
+};
 
 /**
  * Remove alternative from abacon and legend
@@ -391,7 +386,7 @@ Abacon.Legend.removeAlternative = function()
             $(this).remove();
         });
     });
-}
+};
 
 /**
  * Recaluclates dropdown menu positon
@@ -410,4 +405,4 @@ Abacon.Legend.rebuildDropdown = function()
         Abacon.Legend.Fieldset.find('a span[class*=selectBox-arrow]').fadeOut();
         Abacon.Legend.Fieldset.find('span.selectBox-label').html('All alternatives are drawn');
     }
-}
+};

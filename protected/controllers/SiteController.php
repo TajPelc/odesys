@@ -24,6 +24,7 @@ class SiteController extends Controller
     {
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index/index.css');
 
         // include scrips

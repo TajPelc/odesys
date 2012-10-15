@@ -297,8 +297,8 @@ class User extends CActiveRecord
         }
         catch (Exception $e)
         {
-            return false;
             Yii::log($e->getMessage(), 'warning');
+            return false;
         }
     }
 

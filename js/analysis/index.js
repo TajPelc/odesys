@@ -13,7 +13,7 @@ $(document).ready(function(){
     $.ajaxSetup({
         type: 'POST',
         url: location.href,
-        dataType: 'json',
+        dataType: 'json'
     });
 
     // init score

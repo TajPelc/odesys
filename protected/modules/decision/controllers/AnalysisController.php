@@ -29,9 +29,7 @@ class AnalysisController extends DecisionController
                 $this->DecisionModel->analysis_complete = 1;
                 if( $this->DecisionModel->save() )
                 {
-                    Ajax::respondOk(array(
-                        'projectMenu' => $this->getProjectMenu(),
-                    ));
+                    Ajax::respondOk();
                 }
             }
         }

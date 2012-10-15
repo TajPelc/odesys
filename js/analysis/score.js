@@ -22,7 +22,7 @@ Score.Config = {
     'bottomLegend': 25,
     'leftLegendOffset': 155,
     'scoreOffset': 2,
-    'tickWidth': 50,
+    'tickWidth': 50
 };
 
 /**
@@ -37,7 +37,7 @@ Score.init = function(){
         var id = Graph.Data['orderOfAlternatives'][i];
         Score.Scores[i] = {
                 'weightedTotal': Graph.Data['Alternatives'][id]['weightedTotal'],
-                'color': Graph.Data['Alternatives'][id]['color'],
+                'color': Graph.Data['Alternatives'][id]['color']
         };
         Score.nrAlternatives++;
     }
@@ -54,7 +54,7 @@ Score.init = function(){
     // container
     Score.Canvas.rect(0, 0, Score.Config['width'], Score.Config['height']).attr({'stroke': '#c7cacf'});
 
-    // cotainer for Score drawn elements
+    // container for Score drawn elements
     Score.Elements = Score.Canvas.set();
 
     // draw horizontal grid
@@ -86,7 +86,7 @@ Score.init = function(){
 
     // draw alternatives
     Score.CreateAlternative(0);
-}
+};
 
 /**
  * Recursively draw all alternatives
@@ -144,7 +144,7 @@ Score.CreateAlternative = function(i)
     }
 
     Score.Elements.push(Alternative);
-}
+};
 
 /**
  * Draw alternatives
@@ -153,7 +153,7 @@ Score.DrawAlternatives = function(){
     var scoreFadedIn = false;
     $(Score.Alternatives).each(function(index, Alternative) {
         Alternative.animate({
-            width: Score.Scores[index]['width'],
+            width: Score.Scores[index]['width']
             }, 1000, '<>', function(){
                 if(!scoreFadedIn)
                 {
@@ -163,7 +163,7 @@ Score.DrawAlternatives = function(){
             }
         );
     });
-}
+};
 
 /**
  * Add numeric score fields to the graph
@@ -185,4 +185,4 @@ Score.addNumericScoreField = function(x, y, width, i)
 
     // apply position
     span.css(position);
-}
+};

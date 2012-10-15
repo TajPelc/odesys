@@ -8,7 +8,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <div id="accordion">
     <div>
         <h3>Results</h3>
-        <p>This graph shows you score values for all your alternatives. Best scoring alternative is at the top, having 100 points. All other alternative's scores are displayed relative to the best scored alternative.</p>
+        <p>This graph shows you total scores. The best scoring alternative is at the top, having 100 points. All other alternative's scores are calculated relative to the best scoring alternative.</p>
         <div class="sidebar help">
             <h4>Which one do I choose?</h4>
             <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</p>
@@ -18,11 +18,11 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </div>
         <div id="score" class="content">
             <table class="alternatives">
-            <?php foreach($bestAlternatives as $A) { ?>
+                <?php foreach($bestAlternatives as $A) { ?>
                 <tr>
                     <td><?php echo CHtml::encode($A->title); ?></td>
                 </tr>
-            <?php }?>
+                <?php }?>
             </table>
             <table class="scale">
                 <tr>
@@ -40,11 +40,11 @@ Graph.Data = <?php echo json_encode($eval); ?>;
                 </tr>
             </table>
         </div>
-        <p><b><?php echo CHtml::encode($first->title); ?></b> scores the highest with a lead of <b><?php echo $difference; ?> points</b> compared to <b><?php  echo CHtml::encode($second->title); ?></b></p>
+            <p><b><?php echo CHtml::encode($first->title); ?></b> scores the highest with a lead of <b><?php echo $difference; ?> points</b> compared to <b><?php  echo CHtml::encode($second->title); ?></b></p>
     </div>
     <div>
     <h3>Detailed comparison</h3>
-    <p>This graph shows alternative profiles. By comparing the data points at each criteria you are able to see how each alternative compares to others. Do you still think the first one is the best?</p>
+    <p>This graph shows alternative profiles based on your evaluation. By comparing the data points at each criteria you are able to see how each alternative compares to others. You can add or remove alternatives from the graph. Do you still think the first one is the best?</p>
         <div id="abacon-sidebar" class="sidebar">
             <form method="post" action="">
                 <fieldset>
@@ -96,5 +96,10 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </div>
 <ul id="content-nav">
     <li class="prev"><?php echo CHtml::link('Previous<span class="doors">&nbsp;</span>', array('/decision/evaluation', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label, 'pageNr' => $this->DecisionModel->no_criteria-1)); ?></li>
-    <li class="next<?php echo (!$this->DecisionModel->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAnalysisComplete() ? CHtml::link('Next<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Close<span class="doors">&nbsp;</span></span>'); ?></li>
+    <?php if(Yii::app()->user->isGuest) { ?>
+        <li class="next"><a href="/" title="Close this decision">Close<span class="doors">&nbsp;</span></a></li>
+    <?php } else { ?>
+        <li class="next"><?php echo CHtml::link('Close<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) ?></li>
+    <?php } ?>
+    <!-- li class="next<?php echo (!$this->DecisionModel->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAnalysisComplete() ? CHtml::link('Next<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Close<span class="doors">&nbsp;</span></span>'); ?></li -->
 </ul>

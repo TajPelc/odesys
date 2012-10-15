@@ -16,8 +16,7 @@ Index.Rotation = function() {
 
     //Call the rotator function to run the slideshow, 6000 = change to next image after 6 seconds
     setInterval('Index.Rotate()',5000);
-
-}
+};
 
 Index.Rotate = function() {
     //Get the first image

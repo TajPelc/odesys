@@ -15,15 +15,14 @@ class CreateAction extends Action
             $this->redirect(array('/site/index'));
         }
 
-        // create a new decision
-        if($this->post('action') == 'create')
-        {
-            $Decision = new Decision();
-        }
+        $Decision = new Decision();
 
         // save project
         $Decision->title = $this->post('title');
-        $Decision->rel_user_id = Yii::app()->user->id;
+        $Decision->rel_user_id = User::ANONYMOUS;
+        if(!Yii::app()->user->isGuest) {
+            $Decision->rel_user_id = Yii::app()->user->id;
+        }
 
         // save or return errrors
         if($Decision->validate(array('title')))

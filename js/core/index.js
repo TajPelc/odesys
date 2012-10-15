@@ -16,13 +16,42 @@ function ImagePreload(arrayOfImages) {
 }
 
 /**
+ * Init the Facebook SDK
+ */
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '165209310185741', // App ID
+        channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+        status     : true, // check login status
+        cookie     : true, // enable cookies to allow the server to access the session
+        xfbml      : true  // parse XFBML
+    });
+
+
+    FB.Event.subscribe('auth.authResponseChange', function(response) {
+        // alert('The status of the session is: ' + response.status);
+    });
+};
+
+/**
+ * Load the Facebook SDK asynchronously
+ */
+(function(d){
+    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement('script'); js.id = id; js.async = true;
+    js.src = "//connect.facebook.net/en_US/all.js";
+    ref.parentNode.insertBefore(js, ref);
+}(document));
+
+/**
  * Extract numbers from a string
  * @param string
  */
 Core.ExtractNumbers = function (str)
 {
     return str.match(/\d+(,\d{3})*(\.\d{1,2})?/g);
-}
+};
 
 /**
  * Escape HTML characters
@@ -34,7 +63,7 @@ Core.EscapeString = function (str) {
     var text = document.createTextNode(str);
     div.appendChild(text);
     return div.innerHTML;
-}
+};
 
 /**
  * Redirect
@@ -62,7 +91,7 @@ Core.Overlay = function(html, big){
     //delay input focus hack
     Core.Overlay.Focus = function() {
         $('#overlay').find('input[type="text"]').focus();
-    }
+    };
     setTimeout('Core.Overlay.Focus()', 20);
 
     $('#overlay form input[type="text"]').keypress(function(e){
@@ -78,7 +107,7 @@ Core.Overlay = function(html, big){
         Core.Overlay.Data = {
             'title'   : $.trim($(this).find('input[type="text"]').val()),
             'action'  : 'create'
-        }
+        };
 
         //post project title
         $.ajax({
@@ -112,7 +141,7 @@ Core.Overlay = function(html, big){
     $('#overlay .close').click(function(){
         Core.Overlay.Close();
     });
-}
+};
 
 /**
  * Overlay errors
@@ -126,7 +155,7 @@ Core.Overlay.FormErrorReporting = function(that, text){
     }
     that.append('<div class="error"><p>'+text+'</p></div>');
     that.find('input[type="text"]').focus();
-}
+};
 
 /**
  * Overlay close
@@ -137,7 +166,7 @@ Core.Overlay.FormErrorReporting = function(that, text){
 Core.Overlay.Close = function() {
     $('#overlay').remove();
     $('#overlay_bg').remove();
-}
+};
 
 /**
  * Blocker
@@ -158,7 +187,7 @@ Core.Block = function(that, rounded){
             'left': ($(element).width()-$(element).children('img').width())/2
         });
     });
-}
+};
 
 /**
  * Unblocker
@@ -170,7 +199,7 @@ Core.Unblock = function(that){
     Core.Unblock.Block = that.find('.block').fadeOut(200);
 
     setTimeout('Core.Unblock.Block.remove()', 200);
-}
+};
 
 /**
  * Animate Project Menu
@@ -258,7 +287,7 @@ Core.ProjectMenu = function(projectMenu){
             Core.ProjectMenu.Animate($(this), span, shrinkBy);
         }
     });
-}
+};
 
 /**
  * Animate Project Menu
@@ -277,7 +306,7 @@ Core.ProjectMenu.Animate = function(oldElement, newElement){
         oldElement.remove()
         newElement.fadeIn(500);
     });
-}
+};
 
 /**
  * Replace multiple spans by just the last one and resize it to fit
@@ -294,7 +323,7 @@ Core.ProjectMenu.initMenu = function()
     lastSpan.css({
         'width': lastSpan.outerWidth() + (lastSpan.parents('li').outerWidth(true) * spanCount)
     });
-}
+};
 
 /**
  * Handle previous / next button
@@ -327,7 +356,7 @@ Core.ContentNav.toggle = function(nextStep, menu) {
             });
         }
     }
-}
+};
 
 Core.Help = function(){
     var help = $('#help');
@@ -343,7 +372,7 @@ Core.Help = function(){
         helpButton.addClass('active');
         help.fadeIn('fast');
     }
-}
+};
 
 /*
  * Document Ready

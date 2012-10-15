@@ -105,6 +105,15 @@ class Decision extends CActiveRecord
     }
 
     /**
+     * Is this an anonymous decision
+     *
+     * @return bool
+     */
+    public function isAnonymous() {
+        return (int) $this->rel_user_id === User::ANONYMOUS;
+    }
+
+    /**
      * @return array customized attribute labels (name=>label)
      */
     public function attributeLabels()
