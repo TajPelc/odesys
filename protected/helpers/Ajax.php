@@ -47,8 +47,10 @@ class Ajax
      */
     public static function returnJSON(array $var)
     {
-        header('Content-type: application/json');
-        echo CJSON::encode($var);
-        Yii::app()->end();
+        if(self::isAjax()) {
+            header('Content-type: application/json');
+            echo CJSON::encode($var);
+            Yii::app()->end();
+        }
     }
 }

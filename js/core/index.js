@@ -28,8 +28,12 @@ window.fbAsyncInit = function() {
     });
 
 
-    FB.Event.subscribe('auth.authResponseChange', function(response) {
-        // alert('The status of the session is: ' + response.status);
+    FB.Event.subscribe('auth.login', function(response) {
+        $.get( '/login/facebook/', {}, function(data){
+            if(data['status']) {
+                location.reload();
+            }
+        });
     });
 };
 
