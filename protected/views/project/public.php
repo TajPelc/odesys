@@ -1,7 +1,7 @@
 <?php $this->pageTitle='ODESYS | '.CHtml::encode($this->Decision->title); ?>
 <?php if($this->DecisionModel instanceof DecisionModel) { ?>
 <div id="heading">
-    <h1>A decision model by <?php echo CHtml::encode($this->Decision->User->name); ?></h1>
+    <h1>A decision model by <?php echo CHtml::encode($this->Decision->User->identities[0]->name); ?></h1>
 </div>
 <script type="text/javascript">
 var Graph = {};
@@ -9,7 +9,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 <div id="content">
     <div id="about">
-        <?php echo CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=square');?>
+        <?php // CHtml::image('https://graph.facebook.com/' . $this->Decision->User->facebook_id . '/picture?type=square');?>
         <p><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></p>
     </div>
     <h2>Alternatives</h2>
@@ -46,7 +46,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <ul class="comments">
             <?php if($enableComments) { ?>
                 <li class="new">
-                    <?php echo CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?>
+                    <?php // CHtml::image('https://graph.facebook.com/' . Yii::app()->user->facebook_id . '/picture');?>
                     <div>
                         <form method="post" action="">
                             <fieldset>
@@ -86,7 +86,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div class="help">
         <h4>Highest scoring alternative</h4>
         <p><b><?php echo CHtml::encode($first->title);?> by <?php echo $difference; ?> points</b></p>
-        <h4><?php echo CHtml::encode($this->Decision->User->first_name); ?>'s preference</h4>
+        <h4><?php echo CHtml::encode($this->Decision->User->identities[0]->name); ?>'s preference</h4>
         <p><b><?php echo CHtml::encode($this->DecisionModel->getPreferredAlternative()->title); ?></b></p>
         <h4>Last update</h4>
         <p><b><?php echo date('F jS, Y \a\t H:i', strtotime($this->Decision->last_edit)); ?></b></p>

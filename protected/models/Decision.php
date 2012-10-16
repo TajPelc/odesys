@@ -97,7 +97,7 @@ class Decision extends CActiveRecord
     {
         $labels = array(
             self::PRIVACY_EVERYONE => 'Everyone',
-            self::PRIVACY_FRIENDS => CHtml::encode($this->User->first_name). '\'s friends',
+            self::PRIVACY_FRIENDS => CHtml::encode($this->User->identities[0]->name). '\'s friends',
             self::PRIVACY_ME => 'Only you',
         );
 

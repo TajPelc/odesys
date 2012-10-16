@@ -1,6 +1,6 @@
 <?php foreach($models as $Opinion) { ?>
     <li>
-        <?php echo CHtml::image('https://graph.facebook.com/' . $Opinion->User->facebook_id . '/picture'); ?>
+        <?php // CHtml::image('https://graph.facebook.com/' . $Opinion->User->facebook_id . '/picture'); ?>
         <div>
             <span class="author"><?php echo CHtml::encode($Opinion->User->name); ?> says:</span>
             <span class="timestamp"><?php echo date('F jS, Y \a\t H:i', strtotime($Opinion->created)); ?></span>
