@@ -1,0 +1,23 @@
+/*
+ --> Index css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+
+/* CONTAINERS
+********************************************************/
+section.content {
+    padding-bottom: 0; /*overwrite layout.css*/
+}
+
+section.about {
+    width: 100%;
+    padding-bottom: 83px; /*footer height*/
+}
+
+    section.about ul {
+        width: 960px;
+        padding: 0 20px;
+        margin: 0 auto;
+    }
