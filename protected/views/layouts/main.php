@@ -17,7 +17,31 @@
 </head>
 <body>
 
-<?php echo $content; ?>
+<div id="wrapper">
+
+    <header class="content">
+        <section>
+            <a href="#" title="">Odesys</a>
+            <nav>
+                <a href="#" title="">login</a>
+            </nav>
+        </section>
+        <div id="banner"><div></div></div>
+    </header>
+
+    <?php echo $content; ?>
+
+    </div>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="#">about us</a> / </li>
+                <li><a href="#">terms & conditioons</a> / </li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </nav>
+    </footer>
 
 <!-- DEBUGGER -->
 <?php if(YII_DEBUG) { ?>

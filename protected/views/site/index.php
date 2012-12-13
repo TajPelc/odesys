@@ -1,18 +1,5 @@
-<?php $this->pageTitle=Yii::app()->name . ' | Welcome'; ?>
-<?php // $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
-
-
-<div id="wrapper">
-
-    <header class="content">
-        <section>
-            <a href="#" title="">Odesys</a>
-            <nav>
-                <a href="#" title="">login</a>
-            </nav>
-        </section>
-        <div id="banner"><div></div></div>
-    </header>
+    <?php $this->pageTitle=Yii::app()->name . ' | Welcome'; ?>
+    <?php // $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
 
     <section class="content">
         <h1>Start by logging in with your social account. Then create a new decision and we will guide you through through the process.</h1>
@@ -48,15 +35,3 @@
             </li>
         </ul>
     </section>
-
-</div>
-
-<footer>
-    <nav>
-        <ul>
-            <li><a href="#">about us</a> / </li>
-            <li><a href="#">terms & conditioons</a> / </li>
-            <li><a href="#">contact</a></li>
-        </ul>
-    </nav>
-</footer>
