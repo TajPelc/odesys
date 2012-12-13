@@ -27,7 +27,6 @@ a:hover {
 
 h1,
 h2,
-h3,
 nav a {
     font-family: Times, Helvetica, sans-serif;
     font-style: italic;
@@ -39,42 +38,48 @@ nav a {
     min-height: 100%;
 }
 
+#main {
+    overflow: auto;
+    padding-bottom: 83px; /*must the the same as footer height*/
+    margin-bottom: 20px;
+}
+
 /*Opera Fix*/
 body:before {
-    content:"";
-    height:100%;
-    float:left;
-    width:0;
-    margin-top:-32767px;
-}
+content:"";
+height:100%;
+float:left;
+width:0;
+margin-top:-32767px;
+    }
 
 section.content,
 header.content section,
 body > footer nav {
-    width: 960px;
-    padding: 0 20px;
-    margin: 0 auto;
-}
+width: 920px;
+padding: 0 20px;
+margin: 0 auto;
+    }
 
 /* HEADER
 ********************************************************/
 header.content {
     width: 100%;
-    height: 114px; /*180px*/
+    height: 79px; /*180px*/
     padding-bottom: 101px;
     margin-bottom: 24px;
     position: relative;
     background: url(../../images/bg/banner.png) bottom left repeat-x;
     box-shadow: 0px 1px 6px #d4d4d4;
 }
-    header.content #banner {
+header.content #banner {
         width: 100%;
         height: 101px;
         position: absolute;
         bottom: -8px;
         left: 0;
     }
-        header.content #banner div {
+header.content #banner div {
             width: 870px;
             height: 100%;
             margin: 0 auto;
@@ -86,7 +91,6 @@ header.content {
 ********************************************************/
 section.content {
     /*overflow: auto; /*sticky footer*/
-    padding-bottom: 83px; /*must the the same as footer height*/
 }
 
 

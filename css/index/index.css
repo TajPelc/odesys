@@ -4,25 +4,74 @@
  --> @version:    3.0
 */
 
-section.content h1 {
-    font-size: 30px;
-    text-align: center;
-}
-
-
-/* CONTAINERS
-********************************************************/
 section.content {
-    padding-bottom: 0; /*overwrite layout.css*/
+    margin-bottom: 20px;
 }
 
-section.about {
+    section.content h1 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    section.content ul {}
+        section.content ul li {
+            width: 306px;
+            float: left;
+        }
+
+            section.content ul li h2,
+            section.content ul li p {
+                padding-left: 60px;
+            }
+
+    section.content > div {
+        margin-bottom: 20px;
+    }
+
+/* Public decisions
+********************************************************/
+section#public_decisions {
     width: 100%;
-    padding-bottom: 83px; /*footer height*/
+    padding: 20px 0;
+    background: #f8f9fb;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #eeeff1;
+    box-shadow: 0px -1px 0px #eeeff1;
 }
 
-    section.about ul {
-        width: 960px;
+    section#public_decisions ul {
+        width: 920px;
         padding: 0 20px;
         margin: 0 auto;
     }
+        section#public_decisions ul li {
+            width: 193px;
+            height: 50px;
+            padding: 10px;
+            margin: 0 20px 20px 0;
+            float: left;
+            border: 1px solid #eeeff1;
+            background: #fff;
+        }
+
+        section#public_decisions ul li:nth-child(4n) {
+            margin-right: 0;
+        }
+        section#public_decisions ul li:nth-child(5n),
+        section#public_decisions ul li:nth-child(6n),
+        section#public_decisions ul li:nth-child(7n),
+        section#public_decisions ul li:nth-child(8n){
+            margin-bottom: 0;
+        }
+
+            section#public_decisions ul li aside {
+                width: 50px;
+                height: 50px;
+            }
+            section#public_decisions ul li header {
+                width: 133px;
+                padding-top: 8px;
+                float: right;
+                font-style: italic;
+            }

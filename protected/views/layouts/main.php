@@ -1,66 +1,67 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="language" content="en" />
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="language" content="en" />
+        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
-    <!-- CSS framework -->
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/reset.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/layout.css" />
+        <!-- CSS framework -->
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/reset.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/layout.css" />
 
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/ie/layout.css" media="screen, projection" />
-    <![endif]-->
+        <!--[if lt IE 8]>
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/ie/layout.css" media="screen, projection" />
+        <![endif]-->
 
-    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-</head>
-<body>
+        <title><?php echo CHtml::encode($this->pageTitle); ?></title>
+    </head>
 
-<div id="wrapper">
+    <body>
+        <div id="wrapper">
 
-    <header class="content">
-        <section>
-            <a href="#" title="">Odesys</a>
+            <div id="main">
+                <header class="content">
+                    <section>
+                        <a href="#" title="">Odesys</a>
+                        <nav>
+                            <a href="#" title="">login</a>
+                        </nav>
+                    </section>
+                    <div id="banner"><div></div></div>
+                </header>
+
+                <?php echo $content; ?>
+            </div>
+
+        </div>
+        <footer>
             <nav>
-                <a href="#" title="">login</a>
+                <ul>
+                    <li><a href="#">about us</a> / </li>
+                    <li><a href="#">terms & conditioons</a> / </li>
+                    <li><a href="#">contact</a></li>
+                </ul>
             </nav>
-        </section>
-        <div id="banner"><div></div></div>
-    </header>
+        </footer>
 
-    <?php echo $content; ?>
+        <!-- DEBUGGER -->
+        <?php if(YII_DEBUG) { ?>
+            <?php if(0 !== $miliSleepTime = Yii::app()->params['miliSleepTime']) { ?>
+                <div class="debug"><b>Warning!</b> Slow loading enabled, script execution delayed by <em><?php echo $miliSleepTime; ?>ms</em>.</div>
+            <?php }?>
+        <?php }?>
 
-    </div>
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-19289535-1']);
+            _gaq.push(['_trackPageview']);
 
-    <footer>
-        <nav>
-            <ul>
-                <li><a href="#">about us</a> / </li>
-                <li><a href="#">terms & conditioons</a> / </li>
-                <li><a href="#">contact</a></li>
-            </ul>
-        </nav>
-    </footer>
-
-<!-- DEBUGGER -->
-<?php if(YII_DEBUG) { ?>
-    <?php if(0 !== $miliSleepTime = Yii::app()->params['miliSleepTime']) { ?>
-        <div class="debug"><b>Warning!</b> Slow loading enabled, script execution delayed by <em><?php echo $miliSleepTime; ?>ms</em>.</div>
-    <?php }?>
-<?php }?>
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-19289535-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-</script>
-</body>
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </body>
 </html>
