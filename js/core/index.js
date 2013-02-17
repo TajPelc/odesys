@@ -14,40 +14,6 @@ function ImagePreload(arrayOfImages) {
         $('<img/>')[0].src = this;
     });
 }
-
-/**
- * Init the Facebook SDK
- */
-window.fbAsyncInit = function() {
-    FB.init({
-        appId      : '165209310185741', // App ID
-        channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
-    });
-
-
-    FB.Event.subscribe('auth.login', function(response) {
-        $.get( '/login/facebook/', {}, function(data){
-            if(data['status']) {
-                location.reload();
-            }
-        });
-    });
-};
-
-/**
- * Load the Facebook SDK asynchronously
- */
-(function(d){
-    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement('script'); js.id = id; js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
-    ref.parentNode.insertBefore(js, ref);
-}(document));
-
 /**
  * Extract numbers from a string
  * @param string
@@ -88,7 +54,7 @@ function redirectUser(url) {
 Core.Overlay = function(html, big){
     Core.Overlay.Close();
 
-    $('body').append('<div id="overlay_bg"><div id="overlay" '+ (big ? 'class="big"' : "" ) +'>'+html+'<a href="#" class="close">close</a><div id="overlayBottom"></div></div></div>');
+    $('body').append('<div id="overlay_bg"><div id="overlay" '+ (big ? 'class="big"' : "" ) +'>'+html+'<a href="#" class="close">X</a><div id="overlayBottom"></div></div></div>');
     $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2-22, 'top': '150px'});
     $('#overlay_bg').css('height', $('#wrapper').height());
 
@@ -362,34 +328,13 @@ Core.ContentNav.toggle = function(nextStep, menu) {
     }
 };
 
-Core.Help = function(){
-    var help = $('#help');
-    var helpButton = $('#helpButton');
-
-    if (help.hasClass('shown')){
-        help.fadeOut('fast', function(){
-            help.removeClass('shown');
-            helpButton.removeClass('active');
-        });
-    } else {
-        help.addClass('shown');
-        helpButton.addClass('active');
-        help.fadeIn('fast');
-    }
-};
-
 /*
  * Document Ready
  * */
 $(document).ready(function(){
     // Preload images
     ImagePreload([
-             '/images/bg/ferlauf.png',
-             '/images/logo2.png',
-             '/images/form/button_end.png',
-             '/images/bg/overlay_bottom.png',
-             '/images/form/overlay_input.png',
-             '/images/form/sprite_buttons.png'
+             '/images/bg/banner.png'
      ]);
 
     // init menu
@@ -397,26 +342,20 @@ $(document).ready(function(){
 
     //call overlay and insert text
     $('.projectNew').click(function(){
-            var example = 'Choosing a car';
-            Core.Overlay.Html = '<h2>What would you like to decide?</h2><form method="post" action=""><fieldset><input type="text" name="project_title" id="project_title" value="' + example + '" /><input type="submit" name="project_save" id="project_save" value="Start" /></fieldset></form>';
-            Core.Overlay(Core.Overlay.Html);
-            $('#project_title').select();
+
+            $.ajax({
+                type: 'POST',
+                url: '/site/login/',
+                dataType: 'json',
+                success: function(data) {
+                    if(data['status'] == true)
+                    {
+                        Core.Overlay(data['html']);
+                    }
+                    else {
+                    }
+                }
+            });
         return false;
     });
-
-    //show or hide help
-    $('#helpButton').toggle(function(){
-        Core.Help();
-    }, function(){
-        Core.Help();
-    });
-    $('#help .helpClose').click(function(){
-        Core.Help();
-    });
-    if($('#helpButton').hasClass('config'))
-    {
-        setTimeout(function(){
-            Core.Help();
-        }, 5000);
-    }
 });

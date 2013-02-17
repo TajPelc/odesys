@@ -65,7 +65,9 @@ section.content {
             background: -ms-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* IE10+ */
             background: linear-gradient(to bottom, #3d4a61 14%,#1c2434 100%); /* W3C */
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d4a61', endColorstr='#1c2434',GradientType=0 ); /* IE6-9 */
-            box-shadow: 0 3px 1px #ecedee;
+            box-shadow: 2px 3px 1px #ecedee;
+            -moz-box-shadow: 2px 3px 1px #ecedee;
+            -webkit-box-shadow:  2px 3px 1px #ecedee;
         }
 
 /* Public decisions

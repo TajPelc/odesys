@@ -43,7 +43,6 @@ class SiteController extends Controller
     public function actionError()
     {
         // include styles
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/error.css');
         if($error = Yii::app()->errorHandler->error)
         {
@@ -79,7 +78,19 @@ class SiteController extends Controller
      * Login
      */
     public function actionLogin() {
-        $wasGuest = Yii::app()->user->isGuest;
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/login/index.css');
+
+        // ajax
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            Ajax::respondOk(array('html'=>$this->renderPartial('login', true, true)));
+        }
+        else
+        {
+            $this->render('login');
+        }
+        /*$wasGuest = Yii::app()->user->isGuest;
         $formerId = Yii::app()->user->id;
         $service = Yii::app()->request->getQuery('service');
         if (isset($service)) {
@@ -123,9 +134,10 @@ class SiteController extends Controller
 
             // Something went wrong, redirect to login page
             $this->redirect(array('site/login'));
-        }
+        }*/
 
         // default authorization code through login/password ..
+
     }
 
 
@@ -144,7 +156,6 @@ class SiteController extends Controller
     public function actionAbout()
     {
         // include styles
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about/index.css');
         $this->render('about');
     }
@@ -155,7 +166,6 @@ class SiteController extends Controller
     public function actionTerms()
     {
         // include styles
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/terms/index.css');
         $this->render('terms');
     }
@@ -166,64 +176,8 @@ class SiteController extends Controller
     public function actionContact()
     {
         // include styles
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/contact/index.css');
         $this->render('contact');
     }
 
-    /**
-     * Contact page
-     */
-    public function actionEksperiment()
-    {
-        // include styles
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/eksperiment/index.css');
-
-        $user = false; $error = false; $fbError = false;
-        if(isset($_POST['id']))
-        {
-            $id = ltrim($_POST['id'], '0');
-
-            if($_POST['id'] == '00')
-            {
-                $id = 0;
-            }
-
-            if(!is_numeric($id))
-            {
-                $error = true;
-                goto render;
-            }
-
-            try
-            {
-                Yii::import('application.vendors.facebook.src.*');
-                require_once('facebook.php');
-
-                $facebook = new Facebook(array(
-                  'appId'  => '165209310185741',
-                  'secret' => '8625578e976c2e457236a5cd1c0d3c79',
-                ));
-
-                //Get list of users
-                $response = $facebook->api('/'.Fb::singleton()->getAppId().'/accounts/test-users');
-                $testUsers = (\array_key_exists('data', $response))? $response['data']:array();
-            } catch (\Exception $e) {
-                $fbError = $e->getMessage();
-            }
-
-            if(!isset($testUsers[$id]))
-            {
-                $error = true;
-                goto render;
-            }
-
-            $user = $testUsers[$id];
-        }
-
-        render:
-
-        $this->render('eksperiment', array('error' => $error, 'user' => $user, 'fbError' => $fbError));
-    }
 }

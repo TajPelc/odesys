@@ -8,6 +8,7 @@
         <!-- CSS framework -->
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/reset.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/layout.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/auth.css" />
 
         <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/ie/layout.css" media="screen, projection" />
@@ -23,9 +24,9 @@
                 <header class="content">
                     <section>
                         <nav class="btcf">
-                            <a href="#" id="logo" title="">odesys // helping you decide</a>
+                            <?php echo CHtml::link('odesys // helping you decide', array('/site/index/'), array('title'=>'odesys // helping you decide')); ?>
                             <ul>
-                                <a href="#" title="">login</a>
+                                <?php echo CHtml::link('login', array('/site/login/'), array('class'=>'projectNew', 'title'=>'login')); ?>
                             </ul>
                         </nav>
                     </section>
@@ -39,9 +40,9 @@
         <footer>
             <nav>
                 <ul class="btcf">
-                    <li><a href="#">about us</a> / </li>
-                    <li><a href="#">terms & conditioons</a> / </li>
-                    <li><a href="#">contact</a></li>
+                    <li><?php echo CHtml::link('about us', array('/site/about/'), array('title'=>'about us')); ?> / </li>
+                    <li><?php echo CHtml::link('terms & conditions', array('/site/terms/'), array('title'=>'terms & conditions')); ?> / </li>
+                    <li><?php echo CHtml::link('contact', array('/site/contact/'), array('title'=>'contact')); ?></li>
                 </ul>
             </nav>
         </footer>

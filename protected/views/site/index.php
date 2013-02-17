@@ -4,7 +4,7 @@
     <section class="content">
         <h1>Start by logging in with your social account. Then create a new decision and we will guide you through through the process.</h1>
         <div>
-            <a href="#" title="">begin your journey</a>
+            <?php echo CHtml::link('begin your journey', array('/site/login/'), array('class'=>'projectNew', 'title'=>'begin your journey')); ?>
         </div>
         <ul class="btcf">
             <li>
