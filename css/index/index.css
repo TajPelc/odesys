@@ -19,7 +19,7 @@ section.content {
     section.content ul {}
         section.content ul li {
             width: 306px;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             float: left;
         }
             section.content ul li h2,
@@ -55,7 +55,7 @@ section.content {
             background: -ms-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* IE10+ */
             background: linear-gradient(to bottom, #3d4a61 14%,#1c2434 100%); /* W3C */
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d4a61', endColorstr='#1c2434',GradientType=0 ); /* IE6-9 */
-            box-shadow: 0 1px 2px #333e51;
+            box-shadow: 0 3px 1px #ecedee;
         }
 
 /* Public decisions
@@ -68,6 +68,16 @@ section#public_decisions {
     border-bottom: 1px solid #eeeff1;
     box-shadow: 0px -1px 0px #eeeff1;
 }
+    section#public_decisions > header {
+        width: 920px;
+        padding: 0 20px;
+        margin: 0 auto;
+        margin-bottom: 24px;
+    }
+        section#public_decisions > header h1 {
+            font-size: 30px;
+            text-align: center;
+        }
 
     section#public_decisions ul {
         width: 920px;

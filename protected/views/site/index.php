@@ -36,6 +36,9 @@
     </section>
 
     <section id="public_decisions">
+        <header>
+            <h1>Latest public decisions by our users</h1>
+        </header>
         <ul class="btcf">
             <li>
                 <article>
