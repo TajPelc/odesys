@@ -22,9 +22,11 @@
             <div id="main">
                 <header class="content">
                     <section>
-                        <a href="#" title="">Odesys</a>
-                        <nav>
-                            <a href="#" title="">login</a>
+                        <nav class="btcf">
+                            <a href="#" id="logo" title="">odesys // helping you decide</a>
+                            <ul>
+                                <a href="#" title="">login</a>
+                            </ul>
                         </nav>
                     </section>
                     <div id="banner"><div></div></div>
@@ -36,7 +38,7 @@
         </div>
         <footer>
             <nav>
-                <ul>
+                <ul class="btcf">
                     <li><a href="#">about us</a> / </li>
                     <li><a href="#">terms & conditioons</a> / </li>
                     <li><a href="#">contact</a></li>
