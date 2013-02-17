@@ -126,9 +126,7 @@ class UserController extends Controller
             }
         }
         // include styles
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/user/profile.css');
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/profile/index.css');
 
         // include scripts
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/user/profile.js');

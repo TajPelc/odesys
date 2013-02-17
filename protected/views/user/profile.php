@@ -1,40 +1,45 @@
 <?php $this->pageTitle='Profile | Decision feed'; ?>
-<div id="content">
-    <div id="heading">
-        <h2>Profile settings</h2>
+<section class="content">
+    <h1>Welcome <b>Frenk Ten</b>, thank you for logging in with your social account. You may now use all the features of odesys.</h1>
+    <div>
+        <?php echo CHtml::link('create a new decision', array('/site/login/'), array('class'=>'projectNew', 'title'=>'create a new decision')); ?>
     </div>
-    <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
-    <ul>
-        <li>
-            <dl>
-                <dt>Delete profile</dt>
-                <dd>By deleting your profile you will lose all the hard work you have done. If you are sure this is what you want, press "Delete profile" button and confirm it. Keep in mind that this action is irreversible.</dd>
-            </dl>
-        </li>
-        <li>
-            <dl>
-                <dt>Which data gets deleted?</dt>
-                <dd>Your profile.</dd>
-                <dd>Your decisions.</dd>
-                <dd>Your opinions.</dd>
-                <dd>Notifications about your actions.</dd>
-            </dl>
-        </li>
-    </ul>
-
-    <span class="helpClose">&nbsp;</span>
-    <div id="helpEnd"></div>
-    <p>By deleting your profile you will lose all the hard work you have done. If you are sure this is what you want, press "Delete profile" button and confirm it. Keep in mind that this action is irreversible.</p>
-    <a href="#" class="buttonBig">Delete profile<span class="doors">&nbsp;</span></a>
-</div>
-<div id="sidebar">
-    <a href="#" class="buttonBig projectNew">Make a new decision<span class="doors">&nbsp;</span></a>
-    <div class="edit">
-        <ul>
-            <li><?php echo CHtml::link('My Feed', array('user/notifications')); ?></li>
-            <li><?php echo CHtml::link('My Decisions', array('user/decisions')); ?></li>
-            <li><span>Profile Settings</span></li>
-        </ul>
-        <div class="last"></div>
+</section>
+<section class="accounts">
+    <div class="btcf">
+        <h1>Account management</h1>
+        <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
+        <?php echo CHtml::link('delete my account', array('/'), array('id'=>'delete', 'title'=>'delete my account')); ?>
     </div>
-</div>
+</section>
+<section class="decisions">
+    <h1>My latest decisions</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>decision name</th>
+                <th>visible</th>
+                <th>edit</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tr>
+            <td><a href="#">Buying a second-hand sports car</a></td>
+            <td>public</td>
+            <td><a href="#" class="edit">edit</a></td>
+            <td><a href="#" class="delete">delete</a></td>
+        </tr>
+        <tr>
+            <td>Buying a second-hand sports car</td>
+            <td>private</td>
+            <td><a href="#" class="edit">edit</a></td>
+            <td><a href="#" class="delete">delete</a></td>
+        </tr>
+        <tr>
+            <td>Buying a second-hand sports car</td>
+            <td>private</td>
+            <td><a href="#" class="edit">edit</a></td>
+            <td><a href="#" class="delete">delete</a></td>
+        </tr>
+    </table>
+</section>
