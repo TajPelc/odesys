@@ -99,6 +99,18 @@ header.content nav {
     }
     header.content nav > ul {
         float: right;
+        margin-bottom: 8px;
+    }
+        header.content nav > ul li {
+            float: left;
+            margin-right: 6px;
+        }
+    header.content nav > p {
+        float: right;
+        clear: both;
+        font-style: italic;
+        font-size: 12px;
+        font-family: Times, sans-serif;
     }
 
 /* CONTENT
