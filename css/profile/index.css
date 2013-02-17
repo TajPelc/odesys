@@ -161,8 +161,8 @@ section.decisions {
                     background: url(../../images/bg/icons.png) no-repeat;
                 }
                     section.decisions table .edit {
-                        background-position: -90px 9px;
+                        background-position: 9px -590px;
                     }
                     section.decisions table .delete {
-                        background-position: -90px -193px;
+                        background-position: 11px -793px;
                     }
