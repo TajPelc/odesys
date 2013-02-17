@@ -26,9 +26,8 @@ class SiteController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index/index.css');
 
         // include scrips
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index/index.js');
-        
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/index.js');
+
         // add meta tag
         Yii::app()->clientScript->registerMetaTag(CHtml::encode('ODESYS: Decision Support'), NULL, NULL, array('property'=>'og:title'));
         Yii::app()->clientScript->registerMetaTag(CHtml::encode('Check out this pre-release version of the new ODESYS. Please feel free to play around with the system and report any bugs that you may find. We\'ll be happy to hear your opinions, comments and suggestions. Invite your friends!'), NULL, NULL, array('property'=>'og:description'));

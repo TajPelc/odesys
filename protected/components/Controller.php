@@ -50,9 +50,6 @@ class Controller extends CController
         /**
          * END DEBUG
          */
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/config.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-1.5.1.min.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/index.js');
     }
 
     /**

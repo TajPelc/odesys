@@ -5,7 +5,7 @@
         <meta name="language" content="en" />
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
 
-        <!-- CSS framework -->
+        <!-- CSS Core -->
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/reset.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/layout.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/auth.css" />
@@ -13,6 +13,12 @@
         <!--[if lt IE 8]>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/ie/layout.css" media="screen, projection" />
         <![endif]-->
+
+        <!-- JavaScript Core -->
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/core/jquery-1.5.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/core/jquery-ui-1.8.2.custom.min.js"></script>
+
+        <!-- Additional Includes -->
 
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
     </head>
