@@ -79,19 +79,21 @@ class SiteController extends Controller
         // include styles
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/login/index.css');
 
-        // ajax
+        /**
+         * Render overlay
+         */
         if(Yii::app()->request->isAjaxRequest)
         {
             Ajax::respondOk(array('html'=>$this->renderPartial('login', true, true)));
         }
-        else
-        {
-            $this->render('login');
-        }
-        /*$wasGuest = Yii::app()->user->isGuest;
-        $formerId = Yii::app()->user->id;
+
+        /**
+         * Login with a service
+         */
         $service = Yii::app()->request->getQuery('service');
         if (isset($service)) {
+            $wasGuest = Yii::app()->user->isGuest;
+            $formerId = Yii::app()->user->id;
             $authIdentity = Yii::app()->eauth->getIdentity($service);
             $authIdentity->redirectUrl = Yii::app()->user->returnUrl;
             $authIdentity->cancelUrl = $this->createAbsoluteUrl('site/login');
@@ -131,11 +133,10 @@ class SiteController extends Controller
             }
 
             // Something went wrong, redirect to login page
-            $this->redirect(array('site/login'));
-        }*/
-
-        // default authorization code through login/password ..
-
+            $this->redirect(array('site/index'));
+        } else {
+            $this->render('login');
+        }
     }
 
 
