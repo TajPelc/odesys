@@ -32,9 +32,18 @@
                     <section>
                         <nav class="btcf">
                             <?php echo CHtml::link('odesys // helping you decide', array('/site/index/'), array('title'=>'odesys // helping you decide')); ?>
-                            <ul>
-                                <?php echo CHtml::link('login', array('/site/login/'), array('class'=>'projectNew', 'title'=>'login')); ?>
-                            </ul>
+                            <?php if(Yii::app()->user->isGuest) { ?>
+                                <ul>
+                                    <?php echo CHtml::link('login', array('/site/login/'), array('class'=>'projectNew', 'title'=>'login')); ?>
+                                </ul>
+                            <?php } else { ?>
+                                <ul>
+                                    <li><?php echo CHtml::link('new decision', array('/project/create'), array('title' => 'Create a new decision', 'class' => 'projectNew')); ?></li>
+                                    <li><?php echo CHtml::link('profile', array('/user/notifications'), array('title' => 'View your decision feed and your decisions')); ?></li>
+                                    <li><?php echo CHtml::link('log out', array('/login/logout')); ?></li>
+                                </ul>
+                                <p>Logged in as <?php echo Yii::app()->user->name; ?></p>
+                            <?php } ?>
                         </nav>
                     </section>
                     <div id="banner"><div></div></div>
