@@ -182,6 +182,11 @@ body > footer {
         background: -ms-linear-gradient(top, #ffffff 0%,#f2f2f2 100%); /* IE10+ */
         background: linear-gradient(to bottom, #ffffff 0%,#f2f2f2 100%); /* W3C */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
+        transform: scale(0,0);
+        -moz-transition: -moz-transform 0.2s;
+        -webkit-transition: -webkit-transform 0.2s;
+        -o-transition: -o-transform 0.2s;
+        transition: transform 0.2s;
     }
         #overlay a.close {
             width: 24px;

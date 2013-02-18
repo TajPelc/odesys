@@ -56,7 +56,7 @@ Core.Overlay = function(html, big){
     Core.Overlay.Close();
 
     $('body').append('<div id="overlay_bg"><div id="overlay" '+ (big ? 'class="big"' : "" ) +'>'+html+'<a href="#" class="close">X</a><div id="overlayBottom"></div></div></div>');
-    $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2-40, 'top': '150px'});
+    $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2-40, 'top': '150px', 'transform': 'scale(1, 1)'});
     $('#overlay_bg').css('height', $('#wrapper').height());
 
     //delay input focus hack
