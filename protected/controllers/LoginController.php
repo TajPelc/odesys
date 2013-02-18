@@ -24,11 +24,13 @@ class LoginController extends Controller
 
         /**
          * Login with a service
+         * @TODO move parts of this to the WebUser model
          */
         $service = Yii::app()->request->getQuery('service');
         if (isset($service)) {
             $wasGuest = Yii::app()->user->isGuest;
             $formerId = Yii::app()->user->id;
+
             $authIdentity = Yii::app()->eauth->getIdentity($service);
             $authIdentity->redirectUrl = Yii::app()->user->returnUrl;
             $authIdentity->cancelUrl = $this->createAbsoluteUrl('login');
@@ -45,7 +47,7 @@ class LoginController extends Controller
                         if($wasGuest) {
                             $User = new User();
                             $User->save();
-                        } else { // add aditional identities
+                        } else { // add additional identities
                             $User = Common::getUser($formerId);
                         }
                         if(!$User->isAnonymous()){

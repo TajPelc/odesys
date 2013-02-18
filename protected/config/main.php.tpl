@@ -127,7 +127,8 @@ return array(
 
         // user
         'user'=>array(
-          'allowAutoLogin'=>true,
+            'class' => 'WebUser',
+            'allowAutoLogin'=>true,
         ),
 
         // url manager
@@ -137,6 +138,7 @@ return array(
                 array(
                     '/' => 'site/index',
                     '<_c:(decision)>/<decisionId:\d+>-<label>/' => array('project/public', 'urlSuffix' => '.html'),
+                    '/logout/' => array('login/logout')
                 ),
                 require_once('protected/modules/decision/config/url-rules.php')
             ),
