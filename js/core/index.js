@@ -110,6 +110,7 @@ Core.Overlay = function(html, big){
 
     $('#overlay .close').click(function(){
         Core.Overlay.Close();
+        return false;
     });
 };
 

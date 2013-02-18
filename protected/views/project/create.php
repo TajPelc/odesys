@@ -14,7 +14,7 @@
                 <option value="private">private decision</option>
             </select>
         </div>
-        <input type="button" name="cancel" id="cancel" value="Cancel" />
+        <input type="button" name="cancel" id="cancel" value="Cancel" class="close" />
         <input type="button" name="next" id="next" value="Next" />
     </form>
 <?php if(!Yii::app()->request->isAjaxRequest) { ?>
