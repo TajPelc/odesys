@@ -102,7 +102,10 @@ header.content {
     margin-left: 20px;
 }
 
-#content-nav a {
+#content-nav a,
+#content-nav .disabled span {
+    width: 80px;
+    text-align: center;
     padding: 8px 30px;
     background: #3d4a61; /* Old browsers */
     color: #fff !important;
@@ -118,4 +121,7 @@ header.content {
     -moz-box-shadow: 2px 3px 1px #ecedee;
     -webkit-box-shadow:  2px 3px 1px #ecedee;
     float: right;
+}
+#content-nav .disabled span {
+    opacity: 0.5;
 }

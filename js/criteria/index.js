@@ -11,7 +11,7 @@ Criteria.FormAddButton = function(that){
 
 Criteria.FormListButtons = function(that){
     that.parent().append('<span class="remove">&ndash;</span>');
-    that.parent().append('<span class="drag">&nbsp;</span>');
+    that.parent().append('<span class="drag">&nbsp;<span></span></span>');
 }
 
 Criteria.FormErrorReporting = function(that, text){
@@ -51,7 +51,7 @@ Criteria.SaveInput = function(that, add) {
                 if (add){
                     if(data['status'] == true){
                         // here be returned shite
-                        $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">&ndash;</span><span class="drag">&nbsp;</span></li>');
+                        $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">&ndash;</span><span class="drag">&nbsp;<span></span></span></li>');
                         that.focus();
                         that.val('');
                         //remove preloader
