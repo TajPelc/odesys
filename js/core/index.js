@@ -16,27 +16,6 @@ function ImagePreload(arrayOfImages) {
 }
 
 /**
- * Serialize object
- * @return {Object}
- */
-$.fn.serializeObject = function()
-{
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function() {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
-
-/**
  * Extract numbers from a string
  * @param string
  */
@@ -357,10 +336,32 @@ Core.ContentNav.toggle = function(nextStep, menu) {
 /*
  * Document Ready
  * */
-$(document).ready(function(){
+$(document).ready(function() {
+    /**
+     * Serialize object
+     * @return {Object}
+     */
+    jQuery.fn.extend({
+        serializeObject: function() {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function() {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        }
+    });
+
     // Preload images
     ImagePreload([
-             '/images/bg/banner.png'
+         '/images/bg/banner.png'
      ]);
 
     // init menu
