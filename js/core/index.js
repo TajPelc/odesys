@@ -186,7 +186,7 @@ Core.ProjectMenu = function(projectMenu){
     // select menu elements and loding bar
     var ListElements = $('#project li span[id*=menu-], #project li a[id*=menu-]');
     var loadingBar = $('#project span.loadingBar');
-alert('bla');
+
     // init counters
     var i = 0;
     var j = 0;
@@ -226,7 +226,7 @@ alert('bla');
                 .css({display: 'block'}) // IE hack
                 .hide();
 
-            Core.ProjectMenu.Animate($(this), link, extendBy);
+            Core.ProjectMenu.Animate($(this), link);
         }
         // disable element
         else if($(this).is('a') && newValue === false )
@@ -239,7 +239,7 @@ alert('bla');
                 .css({display: 'block'}) // IE hack
                 .hide();
 
-            Core.ProjectMenu.Animate($(this), span, shrinkBy);
+            Core.ProjectMenu.Animate($(this), span);
         }
     });
 };

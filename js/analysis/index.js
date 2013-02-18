@@ -30,4 +30,13 @@ $(document).ready(function(){
         // draw alternatives
         Abacon.DrawAlternative(id);
     });
+
+    // call ProjectMenu
+    var dummyProjectMenu = {
+        "alternatives":false,
+        "criteria":false,
+        "evaluation":false,
+        "analysis":false
+    }
+    Core.ProjectMenu(dummyProjectMenu);
 });
