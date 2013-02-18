@@ -13,17 +13,16 @@
                     <?php if($Page['enabled'] && !$activePage) {?>
                         <li>
                             <?php echo CHtml::link(CHtml::encode($label), array($Page['path'], 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label), array('title' => CHtml::encode($label), 'id' => $id)); ?>
-                            <span class="loadingBar<?php echo ( $lastEnabledPage && !$lastPage ? ' end' : ''); ?>">&nbsp;</span>
                         </li>
                     <?php } else { ?>
                         <li>
                             <span id="<?php echo $id; ?>" class="<?php echo (($activePage) ? 'selected' : 'restricted'); ?>"><?php echo CHtml::encode($label); ?></span>
-                            <?php if($activePage) { ?><span class="loadingBar<?php echo (($lastEnabledPage && !$lastPage) ? ' end' : ''); ?>">&nbsp;</span><?php } ?>
                         </li>
                     <?php } ?>
                     <?php $i++;?>
                 <?php } ?>
             </ul>
+            <div id="bar"><span class="loadingBar<?php echo ( $lastEnabledPage && !$lastPage ? ' end' : ''); ?>">&nbsp;</span></div>
         <?php }?>
     <?php if(!Ajax::isAjax() && !empty($this->Decision)){?>
     </div>

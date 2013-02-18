@@ -186,7 +186,7 @@ Core.ProjectMenu = function(projectMenu){
     // select menu elements and loding bar
     var ListElements = $('#project li span[id*=menu-], #project li a[id*=menu-]');
     var loadingBar = $('#project span.loadingBar');
-
+alert('bla');
     // init counters
     var i = 0;
     var j = 0;
@@ -206,28 +206,8 @@ Core.ProjectMenu = function(projectMenu){
         }
     });
 
-    // calculate widths
-    var extendBy = loadingBar.outerWidth() + (loadingBar.parents('li').outerWidth(true) * i); // extend
-    var shrinkBy = loadingBar.outerWidth() - (loadingBar.parents('li').outerWidth(true) * j); // shrink
-    (i > 0) ? newWidth = extendBy : newWidth = shrinkBy;
-
-
-    // add arrow
-    if(loadingBar.outerWidth() == 960 && newWidth < 960)
-    {
-        loadingBar.addClass('end');
-    }
-
     // animate progress bar
-    loadingBar.animate({
-        'width': newWidth
-    }, 500, function(){
-        // remove arrow on last element
-        if(newWidth == 960)
-        {
-            loadingBar.removeClass('end');
-        }
-    });
+    loadingBar.css({width: (parseInt($('#project span.selected').offset().left) + 230) + 'px'});
 
     // iterate through the elements
     ListElements.each(function(index, element){

@@ -24,6 +24,9 @@ header.content {
             width: 960px;
             padding: 0;
             margin: 0 auto;
+            font-family: Times,Helvetica,sans-serif;
+            font-style: italic;
+            font-size: 14px;
         }
 
             #project ul li {
@@ -36,7 +39,6 @@ header.content {
             #project ul li a,
             #project ul li > span {
                 width: 100%;
-                font-size: 13px;
                 display: block;
                 color: #fff;
                 text-align: center;
@@ -69,16 +71,25 @@ header.content {
                 cursor: default;
             }
 
+            #bar {
+                position: relative;
+                top: 10px;
+                width: 100%;
+                height: 10px;
+                border-top: 1px solid #374256;
+                border-bottom: 1px solid #374256;
+            }
             #project .loadingBar {
-                width: 208px;
+                width: 0;
                 padding: 0;
+                margin: 0;
                 height: 10px;
                 display: block;
                 background: #FFD700;
-                position: absolute;
-                left: 0px;
-                bottom: -15px;
-                border: none;
+                -moz-transition:width 2s;
+                -webkit-transition:width 2s;
+                -o-transition:width 2s;
+                transition:width 2s;
             }
 
                 #project .loadingBar.end {
