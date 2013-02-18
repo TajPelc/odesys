@@ -95,11 +95,13 @@ header.content #banner {
         }
 
 header.content nav {
-    padding-top: 40px;
+    padding-top: 30px;
     font-size: 24px;
 }
     header.content nav > a {
         float: left;
+        padding: 15px 0 15px 50px;
+        background: url(../../images/logo.png) 0 0 no-repeat;
     }
     header.content nav > ul {
         float: right;
@@ -109,6 +111,17 @@ header.content nav {
             float: left;
             margin-right: 6px;
         }
+            header.content nav > ul a,
+            header.content nav > ul span {
+                padding: 15px 0;
+                float: left;
+            }
+            header.content nav > ul span {
+                margin-left: 5px;
+                font-family: Times;
+                font-style: italic;
+            }
+
     header.content nav > p {
         float: right;
         clear: both;
@@ -197,7 +210,9 @@ body > footer {
 
         #overlay h1 {
             font-size: 24px;
-            margin-bottom: 24px;
+            padding: 12px 0 13px 50px;
+            margin-bottom: 16px;
+            background: url(../../images/logo.png) 0 -2px no-repeat;
         }
         #overlay p {
             margin-bottom: 24px;

@@ -34,12 +34,12 @@
                             <?php echo CHtml::link('odesys // helping you decide', array('/site/index/'), array('title'=>'odesys // helping you decide')); ?>
                             <?php if(Yii::app()->user->isGuest) { ?>
                                 <ul>
-                                    <?php echo CHtml::link('login', array('/site/login/'), array('class'=>'loginNew', 'title'=>'login')); ?>
+                                    <li><?php echo CHtml::link('login', array('/site/login/'), array('class'=>'loginNew', 'title'=>'login')); ?></li>
                                 </ul>
                             <?php } else { ?>
                                 <ul>
-                                    <li><?php echo CHtml::link('new decision', array('/project/create'), array('title' => 'Create a new decision', 'class' => 'decisionNew')); ?> /</li>
-                                    <li><?php echo CHtml::link('profile', array('/user/notifications'), array('title' => 'View your decision feed and your decisions')); ?> /</li>
+                                    <li><?php echo CHtml::link('new decision', array('/project/create'), array('title' => 'Create a new decision', 'class' => 'decisionNew')); ?> <span>/</span></li>
+                                    <li><?php echo CHtml::link('profile', array('/user/notifications'), array('title' => 'View your decision feed and your decisions')); ?> <span>/</span></li>
                                     <li><?php echo CHtml::link('log out', array('/login/logout')); ?></li>
                                 </ul>
                                 <p>Logged in as <?php echo Yii::app()->user->name; ?></p>
