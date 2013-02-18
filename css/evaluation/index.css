@@ -1,0 +1,181 @@
+/*
+ --> Evaluation css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+#content h1 {
+    font-size: 30px;
+    margin-bottom: 24px;
+}
+    #content h1 em {
+        font-weight: bold;
+    }
+
+#content > p {
+    padding-left: 20px;
+    margin-bottom: 16px;
+    color: #9d9fa3;
+    font-style: italic;
+    line-height: 16px;
+}
+
+#content {
+    position: relative;
+    width: 670px;
+    float: left;
+}
+
+#content form {
+    width: 100%;
+    margin-bottom: 32px;
+    float: left;
+    position: relative;
+}
+
+    #content form ul {
+        width: 100%;
+    }
+
+        #content form ul li {
+            width: 651px; /*671px*/
+            height: 51px; /*63px*/
+            padding: 6px 10px;
+            margin-bottom: 16px;
+            position: relative;
+            background: url(../../images/form/sprite_slider.png) 0 -300px no-repeat;
+        }
+
+        #content form ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        #content form ul li.saved {
+            background-position: 0 -200px;
+        }
+
+            #content form ul li h3 {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+
+                #content form ul li h3 b {
+                    font-weight: bold;
+                }
+
+                #content form ul li h3 em {
+                    font-style: italic;
+                }
+
+            #content form ul li > div {
+                width: 100%;
+                float: left;
+            }
+
+                #content form ul li .worst,
+                #content form ul li .best {
+                    width: 83px;
+                    line-height: 16px;
+                    display: block;
+                    float: left;
+                    font-size: 14px;
+                    font-style: italic;
+                }
+
+                #content form ul li .best {
+                    width: 75px;
+                    text-align: right;
+                }
+
+/* Slider
+********************************************************/
+#content .ui-slider {
+    width: 492px;
+    height: 32px;
+    float: left;
+    position: relative;
+    top: -7px;
+    background: url(../../images/form/sprite_slider.png) 0 10px no-repeat;
+}
+
+    #content .ui-slider-range {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(../../images/form/sprite_slider.png) 0 -90px no-repeat;
+    }
+
+    #content .ui-slider-handle {
+        width: 19px;
+        height: 19px;
+        margin-left: -8px;
+        display: block;
+        position: absolute;
+        top: 7px;
+        background: url(../../images/form/sprite_slider.png) -500px 0 no-repeat;
+    }
+
+/* sidebar
+********************************************************/
+#sidebar {
+    float: right;
+    width: 214px;
+}
+
+#sidebar > h3 {
+    line-height: 16px;
+    margin-bottom: 18px;
+    font-size: 16px;
+    font-style: italic;
+    text-align: center;
+}
+
+    #sidebar ul.steps {
+        width: 100%;
+        margin-top: 87px;
+        line-height: 32px;
+        margin-bottom: 16px;
+        list-style: inside decimal;
+    }
+
+        #sidebar ul.steps li {
+            width: 198px;
+            height: 32px;
+            padding: 0 8px 0 8px;
+            margin-bottom: 8px;
+            position: relative;
+            color: #444a56;
+            border: 1px solid #c8cbd0;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        #sidebar ul.steps li:last-child {
+            margin-bottom: 0;
+        }
+
+            #sidebar ul.steps li a {
+                width: 170px;
+                line-height: 32px;
+                display: inline-block;
+                text-decoration: none;
+            }
+
+            #sidebar ul.steps li span {
+                width: 8px;
+                height: 15px;
+                position: absolute;
+                top: 9px;
+                left: -12px;
+                background: url(../../images/sprite_icons.png) 0 -650px no-repeat;
+            }
+
+        #sidebar ul.steps li.current {
+            font-weight: bold;
+        }
+
+        #sidebar ul.steps li.saved {
+            background: url("../../images/form/sprite_slider.png") no-repeat scroll -3px -213px transparent;
+        }

@@ -20,7 +20,7 @@
     color: #9d9fa3;
     font-style: italic;
     line-height: 16px;
-  }
+}
 
 #content > form {
     width: 100%;
@@ -151,13 +151,13 @@
     line-height: 16px;
     float: right;
 }
-    #sidebar h2 {
-        font-size: 18px;
-        margin-bottom: 16px;
-    }
+#sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
 
-    #sidebar p {
-        margin-bottom: 8px;
-        line-height: 16px;
-        color: #9d9fa3;
-    }
+#sidebar p {
+    margin-bottom: 8px;
+    line-height: 16px;
+    color: #9d9fa3;
+}

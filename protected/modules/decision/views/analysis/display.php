@@ -5,14 +5,15 @@ var Graph = {};
 Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
 
+<section class="content">
 <div id="accordion">
     <div>
-        <h3>Results</h3>
+        <h1>Results</h1>
         <p>This graph shows you total scores. The best scoring alternative is at the top, having 100 points. All other alternative's scores are calculated relative to the best scoring alternative.</p>
         <div class="sidebar help">
-            <h4>Which one do I choose?</h4>
+            <h2>Which one do I choose?</h2>
             <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</p>
-            <h4>Changed your mind?</h4>
+            <h2>Changed your mind?</h2>
             <p class="l">You may return to modify criteria, alternatives or evaluation at any time.</p>
             <div class="last"></div>
         </div>
@@ -43,7 +44,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <p><b><?php echo CHtml::encode($first->title); ?></b> scores the highest with a lead of <b><?php echo $difference; ?> points</b> compared to <b><?php  echo CHtml::encode($second->title); ?></b></p>
     </div>
     <div>
-    <h3>Detailed comparison</h3>
+    <h1>Detailed comparison</h1>
     <p>This graph shows alternative profiles based on your evaluation. By comparing the data points at each criteria you are able to see how each alternative compares to others. You can add or remove alternatives from the graph. Do you still think the first one is the best?</p>
         <div id="abacon-sidebar" class="sidebar">
             <form method="post" action="">
@@ -103,3 +104,4 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <?php } ?>
     <!-- li class="next<?php echo (!$this->DecisionModel->checkAnalysisComplete() ? ' disabled' : ''); ?>"><?php echo ($this->DecisionModel->checkAnalysisComplete() ? CHtml::link('Next<span class="doors">&nbsp;</span>', array('/decision/sharing', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label)) : '<span>Close<span class="doors">&nbsp;</span></span>'); ?></li -->
 </ul>
+</section>

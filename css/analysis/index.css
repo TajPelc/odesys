@@ -6,10 +6,17 @@
 
 /* Layout
 ********************************************************/
-.content {
-    width: 666px;
+.content h1 {
+    font-size: 30px;
+    margin-bottom: 24px;
+}
+
+.content > p {
+    padding-left: 20px;
     margin-bottom: 16px;
-    float: left;
+    color: #9d9fa3;
+    font-style: italic;
+    line-height: 16px;
 }
 
 .sidebar {
@@ -34,7 +41,7 @@
         font-style: italic;
     }
 
-    #accordion h3 + p {
+    #accordion h1 + p {
         width: 650px;
         line-height: normal;
         padding-left: 20px;
@@ -82,6 +89,11 @@
 #abacon,
 #score {
     position: relative;
+    float: left;
+}
+
+#abacon {
+    margin-bottom: 24px;
 }
 
 #score {
@@ -319,4 +331,26 @@
 ********************************************************/
 #content-nav {
     margin-right: 250px;
+}
+
+/* Sidebar
+********************************************************/
+.sidebar.help {
+    width: 234px; /*254px*/
+    padding: 0px 10px 8px 10px;
+    line-height: 16px;
+    float: right;
+}
+.sidebar.help h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+    .sidebar.help h2 + p {
+        margin-bottom: 24px;
+    }
+
+.sidebar.help p {
+    margin-bottom: 8px;
+    line-height: 16px;
+    color: #9d9fa3;
 }

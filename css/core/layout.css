@@ -292,6 +292,24 @@ body > footer {
             display: none;
         }
 
+/* Ajax Block
+********************************************************/
+.block {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #1c2434;
+    opacity: 0.7;
+    border: none !important;
+    z-index: 100;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+
 /* DEBUG MODE
 ********************************************************/
 .debug {
