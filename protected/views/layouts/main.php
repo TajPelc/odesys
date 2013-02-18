@@ -39,7 +39,7 @@
                             <?php } else { ?>
                                 <ul>
                                     <li><?php echo CHtml::link('new decision', array('/project/create'), array('title' => 'Create a new decision', 'class' => 'decisionNew')); ?> <span>/</span></li>
-                                    <li><?php echo CHtml::link('profile', array('/user/notifications'), array('title' => 'View your decision feed and your decisions')); ?> <span>/</span></li>
+                                    <li><?php echo CHtml::link('profile', array('/user/profile'), array('title' => 'Your profile')); ?> <span>/</span></li>
                                     <li><?php echo CHtml::link('log out', array('/login/logout')); ?></li>
                                 </ul>
                                 <p>Logged in as <?php echo Yii::app()->user->name; ?></p>
