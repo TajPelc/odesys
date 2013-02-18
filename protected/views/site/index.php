@@ -2,13 +2,9 @@
     <?php // $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
 
     <section class="content">
-        <h1>Start by logging in with your social account. Then create a new decision and we will guide you through through the process.</h1>
+        <h1>Decision making is hard. We know. Why not let our system guide you through the process step by step until you reach a good decision?</h1>
         <div>
-            <?php if(Yii::app()->user->isGuest) { ?>
-                <?php echo CHtml::link('begin your journey', array('/site/login/'), array('class'=>'loginNew', 'title'=>'begin your journey')); ?>
-            <?php } else { ?>
-                <?php echo CHtml::link('create a new decision', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'create a new decision')); ?>
-            <?php } ?>
+            <?php echo CHtml::link('begin your journey', array('/site/login/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
         </div>
         <ul class="btcf">
             <li>

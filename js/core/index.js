@@ -370,7 +370,7 @@ $(document).ready(function(){
     $('.loginNew').click(function(){
             $.ajax({
                 type: 'POST',
-                url: '/site/login/',
+                url: '/login/',
                 dataType: 'json',
                 success: function(data) {
                     if(data['status'] == true)
