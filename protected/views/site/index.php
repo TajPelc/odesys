@@ -1,8 +1,7 @@
     <?php $this->pageTitle=Yii::app()->name . ' | Welcome'; ?>
-    <?php // $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
 
     <section class="content">
-        <h1>Decision making is hard. We know. Why not let our system guide you through the process step by step until you reach a good decision?</h1>
+        <h1>Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?</h1>
         <div>
             <?php echo CHtml::link('begin your journey', array('/site/login/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
         </div>
