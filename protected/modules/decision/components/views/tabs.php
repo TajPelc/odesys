@@ -3,7 +3,7 @@
     <div id="project">
     <?php }?>
         <?php if(!empty($this->Decision) && !empty($this->pages)) { ?>
-            <ul>
+            <ul class="btcf">
                 <?php $i = 1;?>
                 <?php foreach($this->pages as $id => $Page) {?>
                     <?php $activePage = ($Page['route'][0] === $currentRoute); ?>
