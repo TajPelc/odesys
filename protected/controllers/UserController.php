@@ -131,8 +131,12 @@ class UserController extends Controller
         // include scripts
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/user/profile.js');
 
+
+        // find all user's projects
+        $Decisions = Decision::model()->findAllByAttributes(array('rel_user_id' => User::current()->getPrimaryKey(), 'deleted' => 0), array('order' => 'last_edit DESC'));
+
         // render
-        $this->render('profile', array());
+        $this->render('profile', array('Decisions' => $Decisions));
     }
 
     /**
