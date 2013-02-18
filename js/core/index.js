@@ -341,8 +341,7 @@ $(document).ready(function(){
     Core.ProjectMenu.initMenu();
 
     //call overlay and insert text
-    $('.projectNew').click(function(){
-
+    $('.loginNew').click(function(){
             $.ajax({
                 type: 'POST',
                 url: '/site/login/',
@@ -356,6 +355,23 @@ $(document).ready(function(){
                     }
                 }
             });
+        return false;
+    });
+    $('.decisionNew').click(function(){
+
+        $.ajax({
+            type: 'POST',
+            url: '/project/create/',
+            dataType: 'json',
+            success: function(data) {
+                if(data['status'] == true)
+                {
+                    Core.Overlay(data['html']);
+                }
+                else {
+                }
+            }
+        });
         return false;
     });
 });

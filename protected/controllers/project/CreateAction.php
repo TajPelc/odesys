@@ -9,7 +9,15 @@ class CreateAction extends Action
 {
     public function run()
     {
-        $this->render('create');
+        // ajax
+        if(Yii::app()->request->isAjaxRequest)
+        {
+            Ajax::respondOk(array('html'=>$this->renderPartial('create', true, true)));
+        }
+        else
+        {
+            $this->render('create');
+        }
 
         // Create a new decision
         if(Ajax::isAjax()) {

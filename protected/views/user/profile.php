@@ -2,7 +2,7 @@
 <section class="content">
     <h1>Welcome <b>Frenk Ten</b>, thank you for logging in with your social account. You may now use all the features of odesys.</h1>
     <div>
-        <?php echo CHtml::link('create a new decision', array('/site/login/'), array('class'=>'projectNew', 'title'=>'create a new decision')); ?>
+        <?php echo CHtml::link('create a new decision', array('/site/login/'), array('class'=>'decisionNew', 'title'=>'create a new decision')); ?>
     </div>
 </section>
 <section class="accounts">
