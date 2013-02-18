@@ -14,6 +14,28 @@ function ImagePreload(arrayOfImages) {
         $('<img/>')[0].src = this;
     });
 }
+
+/**
+ * Serialize object
+ * @return {Object}
+ */
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
 /**
  * Extract numbers from a string
  * @param string
@@ -72,10 +94,12 @@ Core.Overlay = function(html, big){
     });
 
     //on submit
-    $('#overlay form').submit(function(){
-        Core.Overlay.Url = location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/index.php?r=project/create';
+    $('#overlay form').submit(function() {
+        var formObject = $(this).serializeObject();
+        Core.Overlay.Url = location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/project/create/';
         Core.Overlay.Data = {
-            'title'   : $.trim($(this).find('input[type="text"]').val()),
+            'title'   : $.trim(formObject.title),
+            'privacy' : formObject.privacy,
             'action'  : 'create'
         };
 
@@ -86,6 +110,7 @@ Core.Overlay = function(html, big){
             dataType: 'json',
             data: Core.Overlay.Data,
             success: function(data) {
+                console.log(data);
                 // success
                 if(data['status'] == true)
                 {
@@ -108,7 +133,7 @@ Core.Overlay = function(html, big){
         }
     });
 
-    $('#overlay .close').click(function(){
+    $('#overlay .close, #cancel').click(function(){
         Core.Overlay.Close();
         return false;
     });
@@ -352,14 +377,11 @@ $(document).ready(function(){
                     {
                         Core.Overlay(data['html']);
                     }
-                    else {
-                    }
                 }
             });
         return false;
     });
     $('.decisionNew').click(function(){
-
         $.ajax({
             type: 'POST',
             url: '/project/create/',
@@ -368,8 +390,6 @@ $(document).ready(function(){
                 if(data['status'] == true)
                 {
                     Core.Overlay(data['html']);
-                }
-                else {
                 }
             }
         });
