@@ -85,7 +85,7 @@ function handleSlider()
 
 Evaluation.NextCriteria = function(that) {
     // block page
-    Evaluation.Block($('#main'));
+    Evaluation.Block($('section.content'));
 
     // get unsaved and saved items
     var unsavedList = $('#evaluation ul li:not(.saved)');
@@ -96,7 +96,7 @@ Evaluation.NextCriteria = function(that) {
     {
         if(false === confirm('Are you sure you want to proceed without evaluating?'))
         {
-            Evaluation.Unblock($('#main'));
+            Evaluation.Unblock($('section.content'));
             return false;
         }
     }
@@ -171,7 +171,7 @@ Evaluation.NextCriteria = function(that) {
                 prevButton.addClass('changePage');
             }
 
-            Evaluation.Unblock($('#main'));
+            Evaluation.Unblock($('section.content'));
             Evaluation.Sidebar(data['sideBar']);
         }
     });

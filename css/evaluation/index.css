@@ -4,6 +4,10 @@
  --> @version:    3.0
 */
 
+section.content {
+    position: relative;
+}
+
 #content h1 {
     font-size: 30px;
     margin-bottom: 24px;
