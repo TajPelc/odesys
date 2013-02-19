@@ -117,7 +117,7 @@ class PublicAction extends Action
         else if( $this->getController()->Decision->isOwner(User::current()->getPrimaryKey())) // not yet published and viewed by owner
         {
             // redirect back to publish page
-            $this->redirect(array('/decision/sharing', 'decisionId' => $this->getController()->Decision->decision_id, 'label' => $this->getController()->Decision->label));
+            $this->redirect(array('/decision/analysis', 'decisionId' => $this->getController()->Decision->decision_id, 'label' => $this->getController()->Decision->label));
         }
 
         // render
