@@ -22,7 +22,7 @@
                     <?php $i++;?>
                 <?php } ?>
             </ul>
-            <div id="bar"><span class="loadingBar<?php echo ( $lastEnabledPage && !$lastPage ? ' end' : ''); ?>">&nbsp;</span></div>
+            <div id="bar"></div>
         <?php }?>
     <?php if(!Ajax::isAjax() && !empty($this->Decision)){?>
     </div>

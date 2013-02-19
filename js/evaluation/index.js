@@ -61,7 +61,7 @@ function handleSlider()
                     location.href, {
                         action: 'update',
                         grade: ui.value,
-                        params: params,
+                        params: params
                     },
                     function(data) {
                         if (data['status'] == true){
@@ -149,7 +149,7 @@ Evaluation.NextCriteria = function(that) {
                 $('#content form').append(data['html']);
                 $('#content form ul').hide().fadeIn(100);
                 handleSlider();
-            }
+            };
             setTimeout(html, 120);
 
             $('#main > h2 em').text(data['title']);
@@ -176,7 +176,7 @@ Evaluation.NextCriteria = function(that) {
         }
     });
 
-}
+};
 
 Evaluation.Sidebar = function(sidebar) {
     var sidebarUl = $('#sidebar ul.steps');
@@ -184,7 +184,7 @@ Evaluation.Sidebar = function(sidebar) {
     sidebarUl.height(sidebarUlHeight);
     sidebarUl.children().remove();
     sidebarUl.append(sidebar);
-}
+};
 
 /**
  * On document load
@@ -203,13 +203,4 @@ $(document).ready(function(){
             return false;
         }
     });
-
-    // call ProjectMenu
-    var dummyProjectMenu = {
-        "alternatives":false,
-        "criteria":false,
-        "evaluation":false,
-        "analysis":false
-    }
-    Core.ProjectMenu(dummyProjectMenu);
 });

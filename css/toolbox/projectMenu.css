@@ -67,39 +67,19 @@ header.content {
             }
 
             #project ul li span.restricted {
-                color: #717c90;
+                color: #ccc;
                 cursor: default;
             }
 
             #bar {
                 position: relative;
-                top: 10px;
                 width: 100%;
                 height: 10px;
-                border-top: 1px solid #374256;
-                border-bottom: 1px solid #374256;
+                border-bottom: 5px solid #374256;
+                box-shadow: 0 3px 3px #ccc;
+                -moz-box-shadow: 0 3px 3px #ccc;
+                -webkit-box-shadow: 0 3px 3px #ccc;
             }
-            #project .loadingBar {
-                width: 0;
-                padding: 0;
-                margin: 0;
-                height: 10px;
-                display: block;
-                background: #FFD700;
-                -moz-transition:width 2s;
-                -webkit-transition:width 2s;
-                -o-transition:width 2s;
-                transition:width 2s;
-            }
-
-                #project .loadingBar.end {
-                    background: #FFD700 url(../../images/bg/sprite_projectMenu.png) bottom right no-repeat;
-                }
-
-                #project .loadingBar.end {
-                    background: #FFD700;
-                }
-
 
 
 /* Bottom Navigation */

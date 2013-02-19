@@ -282,13 +282,4 @@ $(document).ready(function(){
     
     // handle list font size
     Criteria.handleListFontSize($('#content form ol li'));
-
-    // call ProjectMenu
-    var dummyProjectMenu = {
-        "alternatives":false,
-        "criteria":false,
-        "evaluation":false,
-        "analysis":false
-    }
-    Core.ProjectMenu(dummyProjectMenu);
 });

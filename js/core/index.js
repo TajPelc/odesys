@@ -185,61 +185,40 @@ Core.Unblock = function(that){
 Core.ProjectMenu = function(projectMenu){
     // select menu elements and loding bar
     var ListElements = $('#project li span[id*=menu-], #project li a[id*=menu-]');
-    var loadingBar = $('#project span.loadingBar');
 
-    // init counters
-    var i = 0;
-    var j = 0;
-    ListElements.each(function(index, element){
+
+    console.log(projectMenu);
+    ListElements.each(function(index, element) {
         // get new value for this element from the ajax supplied array
-        var newValue = projectMenu[$(this).attr('id').split("-")[1]];
+        var value = projectMenu[$(this).attr('id').split("-")[1]];
+        console.log(value);
 
         // count how many need to be enabled
-        if($(this).is('span') && $(this).hasClass('selected') === false && newValue !== false )
-        {
-            i++;
-        }
-        // count how many need to be disabled
-        else if($(this).is('a') && newValue === false )
-        {
-            j++;
-        }
-    });
-
-    // animate progress bar
-    loadingBar.css({width: (parseInt($('#project span.selected').offset().left) + 230) + 'px'});
-
-    // iterate through the elements
-    ListElements.each(function(index, element){
-        // get new value for this element from the ajax supplied array
-        var newValue = projectMenu[$(this).attr('id').split("-")[1]];
-
-        // enable element
-        if($(this).is('span') && $(this).hasClass('selected') === false && newValue !== false )
+        if($(element).is('span') && $(element).hasClass('selected') === false && value !== false )
         {
             // create link
             var link = $('<a></a>')
-                .attr('href', newValue)
-                .attr('title', $(this).text())
-                .attr('id', $(this).attr('id'))
-                .html($(this).text())
+                .attr('href', value)
+                .attr('title', $(element).text())
+                .attr('id', $(element).attr('id'))
+                .html($(element).text())
                 .css({display: 'block'}) // IE hack
                 .hide();
 
-            Core.ProjectMenu.Animate($(this), link);
+            Core.ProjectMenu.Animate($(element), link);
         }
-        // disable element
-        else if($(this).is('a') && newValue === false )
+        // count how many need to be disabled
+        else if($(element).is('a') && value === false )
         {
             // create span
             var span = $('<span></span>')
-                .attr('id', $(this).attr('id'))
+                .attr('id', $(element).attr('id'))
                 .addClass('restricted')
-                .html($(this).text())
+                .html($(element).text())
                 .css({display: 'block'}) // IE hack
                 .hide();
 
-            Core.ProjectMenu.Animate($(this), span);
+            Core.ProjectMenu.Animate($(element), span);
         }
     });
 };
@@ -252,32 +231,10 @@ Core.ProjectMenu = function(projectMenu){
  * @param integer width
  * @returns void
  */
-Core.ProjectMenu.Animate = function(oldElement, newElement){
-    // insert new element
+Core.ProjectMenu.Animate = function(oldElement, newElement) {
     oldElement.after(newElement);
-
-    // fade out and remove link, fade in span
-    oldElement.fadeOut(200, function(){
-        oldElement.remove()
-        newElement.fadeIn(500);
-    });
-};
-
-/**
- * Replace multiple spans by just the last one and resize it to fit
- */
-Core.ProjectMenu.initMenu = function()
-{
-    var spans = $('#project li').children('span.loadingBar');
-    var lastSpan = spans.last();
-    var spanCount = spans.length;
-    spans.remove();
-    $('#project li:first-child').prepend(lastSpan);
-
-    lastSpan.css({'width': 20});
-    lastSpan.css({
-        'width': lastSpan.outerWidth() + (lastSpan.parents('li').outerWidth(true) * spanCount)
-    });
+    oldElement.remove();
+    newElement.show();
 };
 
 /**
@@ -291,24 +248,20 @@ Core.ContentNav.toggle = function(nextStep, menu) {
     {
         if(element.is('span'))
         {
-            element.animate({color: 'white'}, 250, 'linear', function(){
-                var a = $('<a></a>').attr('href', menu[nextStep]).html(element.html());
-                element.remove();
-                li.append(a);
-                li.removeClass('disabled');
-            });
+            var a = $('<a></a>').attr('href', menu[nextStep]).html(element.html());
+            element.remove();
+            li.append(a);
+            li.removeClass('disabled');
         }
     }
     else
     {
         if(element.is('a'))
         {
-            element.animate({color: '#444a56'}, 250, 'linear', function(){
-                var span = $('<span></span>').html(element.html());
-                element.remove();
-                li.append(span);
-                li.addClass('disabled');
-            });
+            var span = $('<span></span>').html(element.html());
+            element.remove();
+            li.append(span);
+            li.addClass('disabled');
         }
     }
 };
@@ -343,9 +296,6 @@ $(document).ready(function() {
     ImagePreload([
          '/images/bg/banner.png'
      ]);
-
-    // init menu
-    Core.ProjectMenu.initMenu();
 
     //call overlay and insert text
     $('.loginNew').click(function(){
