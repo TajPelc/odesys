@@ -16,8 +16,9 @@ class CreateAction extends Action
 
                 // save project
                 $Decision->title = $this->post('title');
-                $Decision->rel_user_id = User::ANONYMOUS;
-                if(!Yii::app()->user->isGuest) {
+                if(Yii::app()->user->isGuest) {
+                    $Decision->rel_user_id = User::ANONYMOUS;
+                } else {
                     $Decision->rel_user_id = Common::getUser()->user_id;
                 }
 
@@ -27,6 +28,9 @@ class CreateAction extends Action
                     $Decision->save(false);
                     $Decision->createActiveDecisionModel();
 
+                    if(Yii::app()->user->isGuest) {
+                        Yii::app()->session['latest_decision_process'] = $Decision->getPrimaryKey();
+                    }
                     Ajax::respondOk(array('redirectUrl' => $this->createUrl('/decision/alternatives', array('decisionId' => $Decision->decision_id, 'label' => $Decision->label))));
                 }
                 else

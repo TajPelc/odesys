@@ -48,12 +48,6 @@ class DecisionController extends Controller
      */
     public function init()
     {
-        // only authenticated users may access these pages
-        if(Yii::app()->user->isGuest)
-        {
-            // $this->redirect('/');
-        }
-
         // load decision
         $this->Decision = Decision::model()->findNonDeletedByPk($this->get('decisionId'));
 
@@ -67,9 +61,9 @@ class DecisionController extends Controller
         $this->DecisionModel = $this->Decision->getActiveDecisionModel();
 
         // if loading failed or user is not the owner => redirect to dashboard
-        if( !$this->Decision->isAnonymous() && !$this->Decision->isOwner(Common::getUser()->getPrimaryKey()) )
+        if( !$this->Decision->isAnonymous() && (Yii::app()->user->isGuest || !$this->Decision->isOwner(Common::getUser()->getPrimaryKey())) )
         {
-            throw new CHttpException(403, 'You are allowed to edit this decision. Please use the back button to return to the previous page.');
+            throw new CHttpException(403, 'You are not allowed to edit this decision. Please use the back button to return to the previous page.');
         }
 
         // evaluate states for menu

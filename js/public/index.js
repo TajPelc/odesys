@@ -86,7 +86,7 @@ $(document).ready(function(){
     $.ajaxSetup({
         type: 'POST',
         url: location.href,
-        dataType: 'json',
+        dataType: 'json'
     });
 
     // get comment form

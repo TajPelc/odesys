@@ -98,7 +98,9 @@ $(document).ready(function(){
             success: function(data) {
                 if(data['status'] == true){
                     //here be returned shite
-                    ProfileSettings.getDecision.parents('tr').remove();
+                    ProfileSettings.getDecision.parents('tr').fadeOut('slow', function() {
+                        $(this).remove();
+                    });
                     Core.Overlay.Close();
                     //errors
                 } else {
