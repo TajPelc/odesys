@@ -36,7 +36,7 @@ $(document).ready(function(){
         // post the form
         $.ajax({
             type: 'POST',
-            url: location.href,
+            url: '/login/index/',
             dataType: 'json',
             data: {
                 'isGuest' : true
