@@ -1,6 +1,6 @@
 /* Analysis javascript
  * @author        Frenk T. Sedmak Nahtigal
- * @version       1.0
+ * @version       3.0
 */
 
 Analysis = {};
@@ -30,4 +30,25 @@ $(document).ready(function(){
         // draw alternatives
         Abacon.DrawAlternative(id);
     });
+
+    // check if guest and offer login
+    if($('header.content section nav p').length == 0){
+        // post the form
+        $.ajax({
+            type: 'POST',
+            url: location.href,
+            dataType: 'json',
+            data: {
+                'isGuest' : true
+            },
+            success: function(data) {
+                if(data['status'] == true){
+
+                    //errors
+                } else {
+
+                }
+            }
+        });
+    }
 });

@@ -167,15 +167,6 @@ Abacon.AnimateDrawPath = function(i, n, color, paths, dataPoints)
                 if(Abacon.HandleButtons)
                 {
                     Abacon.HandleButtons = false;
-
-                    // enable next step
-                    $.ajax({
-                        data: {
-                            'action': 'enableSharing'
-                        },
-                        success: function(data) {
-                        }
-                    });
                 }
             }
         });
