@@ -43,7 +43,7 @@ $(document).ready(function(){
             },
             success: function(data) {
                 if(data['status'] == true){
-
+                    Core.Overlay(data['html']);
                     //errors
                 } else {
 
