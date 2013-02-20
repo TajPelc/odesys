@@ -35,7 +35,7 @@
                         echo 'public';
                         }?></td>
                     <td><a href="#" class="edit">edit</a></td>
-                    <td><a href="#" class="delete">delete</a></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html/delete/', array('class'=>'delete')); ?></td>
                 </tr>
             <?php } ?>
         </table>

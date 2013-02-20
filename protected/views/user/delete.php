@@ -12,9 +12,9 @@
         <li>Your opinions.</li>
         <li>Notifications about your actions.</li>
     </ul>
-    <form method="post" action="" class="btcf">
+    <form method="post" action="" class="btcf" id="deleteUser">
         <input type="button" name="cancel" id="cancel" value="Cancel" class="close" />
-        <input type="submit" name="delete" id="delete" value="Delete" />
+        <input type="submit" name="delete" id="delete" value="Delete & Logout" />
     </form>
 <?php if(!Yii::app()->request->isAjaxRequest) { ?>
 </section>

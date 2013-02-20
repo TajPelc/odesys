@@ -229,6 +229,10 @@ body > footer {
             font-size: 11px;
             line-height: 16px;
         }
+            #overlay p em {
+                font-style: italic;
+                font-weight: bold;
+            }
 
         #overlay h2 + ul {
             list-style: inside circle;

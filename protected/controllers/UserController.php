@@ -147,11 +147,13 @@ class UserController extends Controller
         // ajax
         if(Ajax::isAjax())
         {
+            // render partial
             if($this->post('partial'))
             {
                 Ajax::respondOk(array('html'=>$this->renderPartial('delete', true, true)));
             }
 
+            // delete current user
             if($this->post('deleteUser'))
             {
                 if(User::current()->deleteProfile())
