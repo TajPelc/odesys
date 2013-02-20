@@ -8,7 +8,7 @@
 <section class="accounts">
     <div class="btcf">
         <h1>Account management</h1>
-        <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/login')); ?>
+        <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'login/index')); ?>
         <?php echo CHtml::link('delete my account', array('/user/delete/'), array('id'=>'deleteUser', 'title'=>'delete my account')); ?>
     </div>
 </section>
