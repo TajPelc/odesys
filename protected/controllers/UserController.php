@@ -140,6 +140,39 @@ class UserController extends Controller
     }
 
     /**
+     * Profile settings
+     */
+    public function actionDelete()
+    {
+        // ajax
+        if(Ajax::isAjax())
+        {
+            if($this->post('partial'))
+            {
+                Ajax::respondOk(array('html'=>$this->renderPartial('delete', true, true)));
+            }
+
+            if($this->post('deleteUser'))
+            {
+                if(User::current()->deleteProfile())
+                {
+                    // get user
+                    Yii::app()->user->logout();
+
+                    // log out
+                    Ajax::respondOk(array('logoutUrl' => $this->createAbsoluteUrl('/')));
+                }
+                Ajax::respondError(array('errors' => 'Could not delete profile. Please try again later.'));
+            }
+        }
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/profile/delete.css');
+
+        // render
+        $this->render('delete');
+    }
+
+    /**
      * Delete project helper
      */
     private function _deleteDecision($id)

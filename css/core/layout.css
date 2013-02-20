@@ -218,10 +218,24 @@ body > footer {
             margin-bottom: 16px;
             background: url(../../images/logo.png) 0 -2px no-repeat;
         }
+
+        #overlay h2 {
+            font-size: 16px;
+            padding: 12px 0 13px 0;
+        }
+
         #overlay p {
             margin-bottom: 24px;
             font-size: 11px;
             line-height: 16px;
+        }
+
+        #overlay h2 + ul {
+            list-style: inside circle;
+            font-size: 11px;
+            line-height: 16px;
+            margin-bottom: 32px;
+            padding-left: 20px;
         }
 
         #overlay #title {
@@ -266,9 +280,10 @@ body > footer {
                 padding-bottom: 2px;
             }
         #overlay #cancel,
-        #overlay #next {
+        #overlay #next,
+        #overlay #delete {
             padding: 4px 0;
-            width: 84px;
+            width: 200px;
             float: left;
             font-size: 16px;
             border: none;
@@ -286,11 +301,18 @@ body > footer {
             -webkit-box-shadow:  2px 3px 1px #ecedee;
             cursor: pointer;
         }
-            #overlay #next {
+            #overlay #next,
+            #overlay #delete {
                 float: right;
             }
+            #overlay #prettySelectBox + #cancel,
+            #overlay #prettySelectBox + #cancel + #next {
+                width: 84px;
+            }
+
             #overlay #cancel:hover,
-            #overlay #next:hover {
+            #overlay #next:hover,
+            #overlay #delete:hover {
                 text-decoration: underline;
             }
         #overlay label {

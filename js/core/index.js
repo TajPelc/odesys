@@ -73,7 +73,7 @@ Core.Overlay = function(html, big){
     });
 
     //on submit
-    $('#overlay form').submit(function() {
+    $('#overlay #projectCreate').submit(function() {
         var formObject = $(this).serializeObject();
         Core.Overlay.Url = location.href.split('/')[0]+'//'+location.href.split('/')[2]+'/project/create/';
         Core.Overlay.Data = {
@@ -191,7 +191,6 @@ Core.ProjectMenu = function(projectMenu){
     ListElements.each(function(index, element) {
         // get new value for this element from the ajax supplied array
         var value = projectMenu[$(this).attr('id').split("-")[1]];
-        console.log(value);
 
         // count how many need to be enabled
         if($(element).is('span') && $(element).hasClass('selected') === false && value !== false )

@@ -13,6 +13,9 @@ DashboardList.DeleteItem = function(that) {
     };
     // post the form
     $.ajax({
+        type: 'POST',
+        url: '/user/decisions/',
+        dataType: 'json',
         data: data,
         success: function(data) {
             if(data['status'] == true){
@@ -30,38 +33,50 @@ DashboardList.DeleteItem = function(that) {
  * Document Ready
  * */
 $(document).ready(function(){
-    $('#delete').click(function() {
-        //open overlay and fill it
-        Core.Overlay.Html = '<h2>Are you sure?</h2><p>You are about to delete your profile. This action is irreversible.</p><div><a href="#" class="buttonBig" id="deleteYes">Yes<span class="doors">&nbsp;</span></a><a href="#" class="buttonBig" id="deleteNo">No<span class="doors">&nbsp;</span></a></div>';
-        Core.Overlay(Core.Overlay.Html);
-
-        //handle delete action
-        $('#deleteYes').click(function(){
-            // post the form
-            $.ajax({
-                data: {'deleteProfile': true},
-                success: function(data) {
-                    if(data['status'] == true){
-                        location.href = data['logoutUrl'];
-                    } else { // errors
-                        Core.Overlay.Close();
-                    }
+    $('#deleteUser').click(function() {
+        $.ajax({
+            type: 'POST',
+            url: '/user/delete/',
+            dataType: 'json',
+            data: {
+                'partial': true
+            },
+            success: function(data) {
+                if(data['status'] == true)
+                {
+                    Core.Overlay(data['html']);
                 }
-            });
+            }
         });
-        $('#deleteNo').click(function(){
+
+        $('#overlay #cancel').click(function(){
             Core.Overlay.Close();
         });
         return false;
     });
 
-    //prepare ajax
-    url = '/user/decisions/';
-    $.ajaxSetup({
-        type: 'POST',
-        url: url,
-        dataType: 'json'
-    });
+    //handle delete action
+    $('#overlay form').live('submit', (function(){
+        // post the form
+        $.ajax({
+            type: 'POST',
+            url: '/user/delete/',
+            dataType: 'json',
+            data: {
+                'deleteUser': true
+            },
+            success: function(data) {
+                if(data['status'] == true){
+                    location.href = data['logoutUrl'];
+                } else { // errors
+                    Core.Overlay.Close();
+                }
+            }
+        });
+        return false;
+    }));
+
+    // delete decisions
     $('table .delete').click(function() {
         //remember decision object
         DashboardList.Item = $(this);

@@ -63,7 +63,7 @@ section.accounts {
             font-size: 24px;
             margin-bottom: 16px;
         }
-        section.accounts > div #delete {
+        section.accounts > div #deleteUser {
             padding: 8px 30px;
             float: right;
             color: #fff !important;
