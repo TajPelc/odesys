@@ -19,7 +19,7 @@ class LoginController extends Controller
          */
         if(Yii::app()->request->isAjaxRequest)
         {
-            Ajax::respondOk(array('html'=>$this->renderPartial('index', array('isGuest' => (bool)$this->get('isGuest')), true)));
+            Ajax::respondOk(array('html'=>$this->renderPartial('index', array('connectToAccount' => ((bool)$this->post('isGuest') && (bool)Yii::app()->session['latest_decision_process'])), true)));
         }
 
         /**

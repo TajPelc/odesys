@@ -57,13 +57,22 @@ class DecisionController extends Controller
             throw new CHttpException(404, 'Decision not found. Please use the back button to return to the previous page.');
         }
 
+        // set public link
+        $this->publicLink = '/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html';
+
         // load decision model
         $this->DecisionModel = $this->Decision->getActiveDecisionModel();
 
         // if loading failed or user is not the owner => redirect to dashboard
-        if( !$this->Decision->isAnonymous() && (Yii::app()->user->isGuest || !$this->Decision->isOwner(Common::getUser()->getPrimaryKey())) )
+        if( Yii::app()->user->isGuest )
         {
-            throw new CHttpException(403, 'You are not allowed to edit this decision. Please use the back button to return to the previous page.');
+            if(!Yii::app()->session['latest_decision_process']) {
+                $this->redirect($this->publicLink);
+            }
+        } else {
+            if(!$this->Decision->isOwner(Yii::app()->user->getModel()->getPrimaryKey())) {
+                throw new CHttpException(403, 'You are not allowed to edit this decision. Please use the back button to return to the previous page.');
+            }
         }
 
         // evaluate states for menu
@@ -71,9 +80,6 @@ class DecisionController extends Controller
 
         // custom header
         $this->customHeader = CHtml::encode(ucfirst($this->Decision->title));
-
-        // set public link
-        $this->publicLink = '/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html';
     }
 
     /**
