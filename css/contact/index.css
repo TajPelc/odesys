@@ -1,0 +1,89 @@
+/*
+ --> Contact css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+section.content h1 {
+    font-size: 30px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+section.content .social {
+    margin: 0 auto;
+    margin-bottom: 24px;
+    width: 184px;
+}
+    section.content .social .facebook,
+    section.content .social .twitter,
+    section.content .social .google {
+        width: 48px;
+        height: 48px;
+        display: block;
+        outline: none;
+        float: left;
+        margin-right: 20px;
+        text-indent: -9999px;
+        background: url(../../images/social/facebook.png) no-repeat;
+    }
+    section.content .social .twitter {
+        background: url(../../images/social/twitter.png) no-repeat;
+    }
+    section.content .social .google {
+        background: url(../../images/social/google+.png) no-repeat;
+        margin-right: 0;
+    }
+
+
+section.content > p {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+section.content > p a,
+section.content > p b{
+    font-weight: bold;
+}
+
+section.content #developers {
+    width: 620px;
+    margin: 0 auto;
+}
+
+section.content dl {
+    width: 300px;
+    float: left;
+}
+    section.content dl:first-child {
+        margin-right: 20px;
+    }
+
+
+    section.content dl dt {
+        width: 100%;
+        height: 50px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+        section.content dl dt img {
+            margin-right: 20px;
+            margin-top: 3px;
+            display: block;
+            float: left;
+        }
+
+        section.content dl dt a {
+            display: block;
+            float: left;
+        }
+
+    section.content dl dd {
+        line-height: 16px;
+        margin-bottom: 4px;
+        padding-left: 72px;
+        position: relative;
+        top: -26px;
+    }
+

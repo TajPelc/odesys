@@ -34,8 +34,8 @@
                         } elseif ($D->isPublic()) {
                         echo 'public';
                         }?></td>
-                    <td><a href="#" class="edit">edit</a></td>
-                    <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html/delete/', array('class'=>'delete')); ?></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '/edit/', array('class'=>'edit')); ?></td>
+                    <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '/delete/', array('class'=>'delete')); ?></td>
                 </tr>
             <?php } ?>
         </table>

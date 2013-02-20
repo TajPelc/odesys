@@ -27,9 +27,9 @@ class DeleteController extends DecisionController
             }
 
             // delete decision by id
-            if($this->post('delete'))
+            if($this->post('decision'))
             {
-                $this->_deleteDecision($this->post('delete'));
+                $this->_deleteDecision($this->post('decision'));
             }
         }
 

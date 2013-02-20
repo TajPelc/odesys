@@ -53,12 +53,12 @@ $(document).ready(function(){
     }));
 
     // delete decisions
-    $('table .delete').click(function() {
+    $('table .delete, table .edit').click(function() {
         ProfileSettings.getDecision = $(this);
 
         $.ajax({
             type: 'POST',
-            url: $(this).parent().siblings('td').find('a').attr('href')+'/delete/',
+            url: $(this).attr('href'),
             dataType: 'json',
             data: {
                 'partial': true
@@ -87,7 +87,7 @@ $(document).ready(function(){
     //handle delete action
     $('#overlay #deleteDecision').live('submit', (function(){
         var data = {
-            'delete': ProfileSettings.getDecision.parents('tr').attr('id')
+            'decision': ProfileSettings.getDecision.parents('tr').attr('id')
         };
         // post the form
         $.ajax({
@@ -99,6 +99,35 @@ $(document).ready(function(){
                 if(data['status'] == true){
                     //here be returned shite
                     ProfileSettings.getDecision.parents('tr').remove();
+                    Core.Overlay.Close();
+                    //errors
+                } else {
+
+                }
+            }
+        });
+        return false;
+    }));
+
+    //handle delete action
+    $('#overlay #editDecision').live('submit', (function(){
+        var newDecisionTitle = $(this).find('#title').val()
+        var data = {
+            'decision': ProfileSettings.getDecision.parents('tr').attr('id'),
+            'title' : newDecisionTitle
+        };
+        // post the form
+        $.ajax({
+            type: 'POST',
+            url: ProfileSettings.getDecision.attr('href'),
+            dataType: 'json',
+            data: data,
+            success: function(data) {
+                if(data['status'] == true){
+                    //update title in the table
+                    ProfileSettings.getDecision.parents('tr').find('td:first a').text(newDecisionTitle);
+                    //update to the correct url
+                    ProfileSettings.getDecision.parents('tr').find('td:first a').attr('href', data['url']+'.html');
                     Core.Overlay.Close();
                     //errors
                 } else {
