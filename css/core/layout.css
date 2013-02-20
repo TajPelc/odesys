@@ -162,7 +162,7 @@ body > footer {
 ********************************************************/
 #overlay_bg {
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     background: url(../../images/bg/overlay.png) repeat;
