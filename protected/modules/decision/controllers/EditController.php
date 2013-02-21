@@ -54,6 +54,6 @@ class EditController extends DecisionController
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/delete.css');
 
-        $this->render('edit', array('title' => $decisionTitle));
+        $this->render('edit', array('title' => $decisionTitle, 'description' => $decisionDescription));
     }
 }

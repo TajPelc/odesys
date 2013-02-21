@@ -1,0 +1,13 @@
+diff --git a/protected/modules/decision/controllers/EditController.php b/protected/modules/decision/controllers/EditController.php
+index 3f38292..5f981c6 100755
+--- a/protected/modules/decision/controllers/EditController.php
++++ b/protected/modules/decision/controllers/EditController.php
+@@ -54,6 +54,6 @@ class EditController extends DecisionController
+         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
+         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/delete.css');
+ 
+-        $this->render('edit', array('title' => $decisionTitle));
++        $this->render('edit', array('title' => $decisionTitle, 'description' => $decisionDescription));
+     }
+ }
+\ No newline at end of file
