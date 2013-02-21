@@ -105,14 +105,16 @@ $(document).ready(function(){
         return false;
     }));
 
-    //handle delete action
+    //handle edit action
     $('#overlay #editDecision').live('submit', (function(){
         var newDecisionTitle = $(this).find('#title').val();
         var newDecisionDescription = $(this).find('#description').val();
+        var newDecisionPrivacy = $(this).find('#privacy :selected').val();
         var data = {
             'decision': ProfileSettings.getDecision.parents('tr').attr('id'),
             'title' : newDecisionTitle,
-            'description' : newDecisionDescription
+            'description' : newDecisionDescription,
+            'privacy' : newDecisionPrivacy
         };
         // post the form
         $.ajax({
@@ -126,6 +128,8 @@ $(document).ready(function(){
                     ProfileSettings.getDecision.parents('tr').find('td:first a').text(newDecisionTitle);
                     //update to the correct url
                     ProfileSettings.getDecision.parents('tr').find('td:first a').attr('href', '/decision/' + data['id'] + '-' + data['url'] + '.html');
+                    //update to correct privacy
+                    ProfileSettings.getDecision.parents('tr').find('td:nth-child(2)').text(data['privacy']);
                     Core.Overlay.Close();
                     //errors
                 } else {
@@ -135,29 +139,6 @@ $(document).ready(function(){
         });
         return false;
     }));
-
-    /*var facebook = 'facebook';
-    var twitter = 'twitter';
-    var google = 'google_oauth';
-    var linkedin = 'linkedin';
-    var github = 'github';
-
-    //handle connected accounts
-    if( $('section.accounts h1').hasClass(facebook)){
-        $('.services').find('li.' + facebook).addClass('connected');
-    }
-    if( $('section.accounts h1').hasClass(twitter) ){
-        $('.services').find('li.' + twitter).addClass('connected');
-    }
-    if( $('section.accounts h1').hasClass(google) ){
-        $('.services').find('li.' + google).addClass('connected');
-    }
-    if ( $('section.accounts h1').hasClass(linkedin) ){
-        $('.services').find('li.' + linkedin).addClass('connected');
-    }
-    if ( $('section.accounts h1').hasClass(github) ){
-        $('.services').find('li.' + github).addClass('connected');
-    }*/
 
     var sns = {
         'facebook': 'facebook',

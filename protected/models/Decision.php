@@ -57,7 +57,6 @@ class Decision extends CActiveRecord
             array('title', 'safe', 'on'=>'search'),
 
             array('description', 'filter', 'filter' => 'trim'),
-            array('description', 'required'),
 
             array('view_privacy, opinion_privacy', 'numerical', 'min' => 0, 'max' => 2),
         );
@@ -424,5 +423,18 @@ class Decision extends CActiveRecord
     public function isPrivate()
     {
         return ($this->view_privacy == self::PRIVACY_ME);
+    }
+
+    /**
+     * Get the privacy label
+     * @return mixed
+     */
+    public function getPrivacyLabel() {
+        $translations = array(
+            self::PRIVACY_EVERYONE => 'public',
+            self::PRIVACY_FRIENDS => 'closed',
+            self::PRIVACY_ME => 'private',
+        );
+        return $translations[$this->view_privacy];
     }
 }

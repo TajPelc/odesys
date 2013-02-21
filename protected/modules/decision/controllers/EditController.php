@@ -35,12 +35,13 @@ class EditController extends DecisionController
             // save project
             $Decision->title = $this->post('title');
             $Decision->description = $this->post('description');
+            $Decision->view_privacy = $this->post('privacy');
 
             // save or return errors
-            if($Decision->validate(array('title', 'description')))
+            if($Decision->validate(array('title', 'description', 'view_privacy')))
             {
                 $Decision->save(false);
-                Ajax::respondOk(array('url' => CHtml::encode($Decision->label), 'id' => $Decision->getPrimaryKey()));
+                Ajax::respondOk(array('url' => CHtml::encode($Decision->label), 'id' => $Decision->getPrimaryKey(), 'privacy' => $Decision->getPrivacyLabel()));
             }
             else
             {

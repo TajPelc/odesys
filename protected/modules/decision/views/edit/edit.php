@@ -11,8 +11,8 @@
         <label for="privacy">Privacy</label>
         <div id="prettySelectBox">
             <select name="privacy" id="privacy">
-                <option value="public">public decision</option>
-                <option value="private">private decision</option>
+                <option value="<?php echo Decision::PRIVACY_EVERYONE; ?>"<?php echo ($this->DecisionModel->Decision->isPublic() ? 'selected="selected"' : '')?>>public decision</option>
+                <option value="<?php echo Decision::PRIVACY_ME; ?>"<?php echo ($this->DecisionModel->Decision->isPrivate() ? 'selected="selected"' : ''); ?>>private decision</option>
             </select>
         </div>
         <input type="button" name="cancel" id="cancel" value="Cancel" class="close" />
