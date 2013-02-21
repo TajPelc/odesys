@@ -23,16 +23,6 @@ class AnalysisController extends DecisionController
 
         if(Ajax::isAjax())
         {
-            // enable next step
-            if($this->post('action') == 'enableSharing')
-            {
-                $this->DecisionModel->analysis_complete = 1;
-                if( $this->DecisionModel->save() )
-                {
-                    Ajax::respondOk();
-                }
-            }
-
             // save description
             if($this->post('description'))
             {

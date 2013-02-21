@@ -21,7 +21,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </form>
         <?php } else {?>
         <div id="description">
-            <p><?php echo $description; ?></p>
+            <p><?php echo nl2br($description); ?></p>
             <a href="#">Edit</a>
         </div>
         <form method="post" action="" style="display:none;">
