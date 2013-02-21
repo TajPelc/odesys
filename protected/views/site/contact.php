@@ -2,9 +2,9 @@
 <section class="content">
     <h1>Follow us on</h1>
     <div class="social btcf">
-        <a class="facebook" href="https://www.facebook.com/odesys">Facebook</a>
-        <a class="twitter" href="https://twitter.com/DecisionTool">Twitter</a>
-        <a class="google" href="#">Google+</a>
+        <a target="_blank" class="facebook" href="https://www.facebook.com/odesys">Facebook</a>
+        <a target="_blank" class="twitter" href="https://twitter.com/DecisionTool">Twitter</a>
+        <a target="_blank" class="google" href="https://plus.google.com/112275384094460979880/">Google+</a>
     </div>
     <p>You can also do it the old fashion way - via <?php if(Yii::app()->user->isGuest){ ?><b>info -[at]- odesys.info</b><?php } else { ?><a href="mailto:info@odesys.info">info@odesys.info</a><?php } ?></p>
     <h1>Follow the developers</h1>
