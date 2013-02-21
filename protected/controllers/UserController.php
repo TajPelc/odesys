@@ -131,12 +131,21 @@ class UserController extends Controller
         // include scripts
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/user/profile.js');
 
+        // get connected social accounts
+        $Identities = Yii::app()->User->getModel()->identities;
+        $Services = array();
+        foreach($Identities as $i)
+        {
+            // load model and save new position
+            $Services[] = $i->service;
+        }
+        $Services = implode(" ", $Services);
 
         // find all user's projects
         $Decisions = Decision::model()->findAllByAttributes(array('rel_user_id' => User::current()->getPrimaryKey(), 'deleted' => 0), array('order' => 'last_edit DESC'));
 
         // render
-        $this->render('profile', array('Decisions' => $Decisions));
+        $this->render('profile', array('Decisions' => $Decisions, 'Services' => $Services));
     }
 
     /**

@@ -7,7 +7,7 @@
 </section>
 <section class="accounts">
     <div class="btcf">
-        <h1 class="twitter facebook">Account management</h1>
+        <h1 class="<?php echo $Services; ?>">Account management</h1>
         <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'login/index')); ?>
         <?php echo CHtml::link('delete my account', array('/user/delete/'), array('id'=>'deleteUser', 'title'=>'delete my account')); ?>
     </div>
