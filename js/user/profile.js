@@ -113,10 +113,12 @@ $(document).ready(function(){
 
     //handle delete action
     $('#overlay #editDecision').live('submit', (function(){
-        var newDecisionTitle = $(this).find('#title').val()
+        var newDecisionTitle = $(this).find('#title').val();
+        var newDecisionDescription = $(this).find('#description').val();
         var data = {
             'decision': ProfileSettings.getDecision.parents('tr').attr('id'),
-            'title' : newDecisionTitle
+            'title' : newDecisionTitle,
+            'description' : newDecisionDescription
         };
         // post the form
         $.ajax({

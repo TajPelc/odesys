@@ -15,7 +15,9 @@ class EditController extends DecisionController
      */
     public function actionEdit()
     {
+        // set values
         $decisionTitle = $this->DecisionModel->Decision->title;
+        $decisionDescription = $this->DecisionModel->Decision->description;
 
         // ajax
         if(Ajax::isAjax())
@@ -23,7 +25,7 @@ class EditController extends DecisionController
             // render partial
             if($this->post('partial'))
             {
-                Ajax::respondOk(array('html'=>$this->renderPartial('edit', array('title' => $decisionTitle), true)));
+                Ajax::respondOk(array('html'=>$this->renderPartial('edit', array('title' => $decisionTitle, 'description' => $decisionDescription), true)));
             }
         }
 
@@ -32,9 +34,10 @@ class EditController extends DecisionController
 
             // save project
             $Decision->title = $this->post('title');
+            $Decision->description = $this->post('description');
 
             // save or return errors
-            if($Decision->validate(array('title')))
+            if($Decision->validate(array('title', 'description')))
             {
                 $Decision->save(false);
                 Ajax::respondOk(array('url'=>CHtml::encode($Decision->label)));
