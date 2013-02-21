@@ -10,8 +10,8 @@
         <label for="privacy">Privacy</label>
         <div id="prettySelectBox">
             <select name="privacy" id="privacy">
-                <option value="public">public decision</option>
-                <option value="private">private decision</option>
+                <option value="<?php echo Decision::PRIVACY_EVERYONE; ?>">public decision</option>
+                <option value="<?php echo Decision::PRIVACY_ME; ?>">private decision</option>
             </select>
         </div>
         <input type="button" name="cancel" id="cancel" value="Cancel" class="close" />

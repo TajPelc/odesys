@@ -16,6 +16,7 @@ class CreateAction extends Action
 
                 // save project
                 $Decision->title = $this->post('title');
+                $Decision->view_privacy = $this->post('privacy');
                 if(Yii::app()->user->isGuest) {
                     $Decision->rel_user_id = User::ANONYMOUS;
                 } else {
