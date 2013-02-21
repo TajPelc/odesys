@@ -33,8 +33,8 @@ class AnalysisController extends DecisionController
                 if($this->Decision->validate(array('description')))
                 {
                     $this->Decision->save(false);
-                    //@todo send back partial containing new form and description html
-                    Ajax::respondOk(array('html'=>$this->renderPartial('display', array('description' => $this->Decision->description), true)));
+
+                    Ajax::respondOk(array('html'=>$this->renderPartial('display', array('description' => nl2br($this->Decision->description)), true)));
                     //Ajax::respondOk(array('html'=>$this->Decision->description));
                 }
             }

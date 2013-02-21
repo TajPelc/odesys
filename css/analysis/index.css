@@ -8,7 +8,7 @@
 ********************************************************/
 .content h1 {
     font-size: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 8px;
     text-align: center;
 }
     .content h1 b,
@@ -20,6 +20,13 @@
     font-size: 20px;
     margin-bottom: 16px;
 }
+    .content h1 + h2 {
+        font-size: 12px;
+        font-family: Arial;
+        font-style: normal;
+        margin-bottom: 40px;
+        text-align: center;
+    }
 
 .content form + p,
 .content form p,

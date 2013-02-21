@@ -10,7 +10,9 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <section class="content">
 <div id="accordion" class="btcf">
     <div>
-        <h1><b>Frenk Ten</b>, below are the results of your analysis:</h1>
+        <h1>Public decision: <?php echo ucfirst($this->Decision->title); ?></h1>
+        <h2>by ____________</h2>
+        <h2></h2>
         <?php if(!$description) { ?>
         <form method="post" action="">
             <p>Please take a moment to write a short description of your decision. Text you enter will serve as a guidline for people that will check out your decision model, don't let them wander in the dark.</p>
@@ -144,7 +146,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 </div>
 <form method="post" action="" style="display:none;">
     <p>Edit your description and click save.</p>
-    <textarea><?php echo $description; ?></textarea>
+    <textarea><?php echo nl2br($description); ?></textarea>
     <div>
         <input name="save" type="submit" value="Save description">
     </div>
