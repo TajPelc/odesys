@@ -54,25 +54,26 @@ $(document).ready(function(){
 
     //description
     $('#accordion form').live('submit', (function(){
-        var that = $(this);
-        $.ajax({
-            type: 'POST',
-            url: location.href,
-            dataType: 'json',
-            data: {
-                'description' : that.find('textarea').val()
-            },
-            success: function(data) {
-                if(data['status'] == true){
-                    that.after(data['html']);
-                    that.remove();
 
-                    //errors
-                } else {
+            var that = $(this);
+            $.ajax({
+                type: 'POST',
+                url: location.href,
+                dataType: 'json',
+                data: {
+                    'description' : that.find('textarea').val()
+                },
+                success: function(data) {
+                    if(data['status'] == true){
+                        that.after(data['html']);
+                        that.remove();
 
+                        //errors
+                    } else {
+
+                    }
                 }
-            }
-        });
+            });
         return false;
     }));
 
