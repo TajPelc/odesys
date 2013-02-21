@@ -51,4 +51,38 @@ $(document).ready(function(){
             }
         });
     }
+
+    //description
+    $('#accordion form').live('submit', (function(){
+
+            var that = $(this);
+        if(that.find('textarea').val() !== ''){
+            $.ajax({
+                type: 'POST',
+                url: location.href,
+                dataType: 'json',
+                data: {
+                    'description' : that.find('textarea').val()
+                },
+                success: function(data) {
+                    if(data['status'] == true){
+                        that.after(data['html']);
+                        that.remove();
+
+                        //errors
+                    } else {
+
+                    }
+                }
+            });
+        }
+        return false;
+    }));
+
+    //live edit description
+    $('#description a').live('click', function(){
+        $(this).parent().hide();
+        $(this).parent().siblings('form').show();
+        return false;
+    });
 });

@@ -32,6 +32,22 @@ class AnalysisController extends DecisionController
                     Ajax::respondOk();
                 }
             }
+
+            // save description
+            if($this->post('description'))
+            {
+                // set value
+                $this->Decision->description = $this->post('description');
+
+                // validate post
+                if($this->Decision->validate(array('description')))
+                {
+                    $this->Decision->save(false);
+                    //@todo send back partial containing new form and description html
+                    Ajax::respondOk(array('html'=>$this->renderPartial('display', array('description' => $this->Decision->description), true)));
+                    //Ajax::respondOk(array('html'=>$this->Decision->description));
+                }
+            }
         }
 
         //include script files
@@ -59,6 +75,7 @@ class AnalysisController extends DecisionController
         $secondAlternative = next($bestAlternatives);
 
         $this->render('display',array(
+            'description'              => $this->Decision->description,
             'eval'                     => $eval,
             'bestAlternatives'         =>  $bestAlternatives,
             'Alternatives'	           => $this->DecisionModel->alternatives,

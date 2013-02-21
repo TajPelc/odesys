@@ -139,4 +139,59 @@ $(document).ready(function(){
         });
         return false;
     }));
+
+    /*var facebook = 'facebook';
+    var twitter = 'twitter';
+    var google = 'google_oauth';
+    var linkedin = 'linkedin';
+    var github = 'github';
+
+    //handle connected accounts
+    if( $('section.accounts h1').hasClass(facebook)){
+        $('.services').find('li.' + facebook).addClass('connected');
+    }
+    if( $('section.accounts h1').hasClass(twitter) ){
+        $('.services').find('li.' + twitter).addClass('connected');
+    }
+    if( $('section.accounts h1').hasClass(google) ){
+        $('.services').find('li.' + google).addClass('connected');
+    }
+    if ( $('section.accounts h1').hasClass(linkedin) ){
+        $('.services').find('li.' + linkedin).addClass('connected');
+    }
+    if ( $('section.accounts h1').hasClass(github) ){
+        $('.services').find('li.' + github).addClass('connected');
+    }*/
+
+    var sns = {
+        'facebook': 'facebook',
+        'twitter':  'twitter',
+        'google':   'google_oauth',
+        'linkedin': 'linkedin',
+        'github':   'github'
+    };
+
+    $.each(sns, function(key, value){
+        if( $('section.accounts h1').hasClass(key)){
+            var that = $('.services').find('li.' + value);
+            that.addClass('connected');
+
+            var aHtml = that.children('a').html();
+            var aClass = that.children('a').attr('class');
+            that.children('a').after('<span></span>')
+            that.children('a').remove();
+            that.children('span').html(aHtml).addClass(aClass).append('<div class="enabled"></div>');
+            that.children('span.auth-link').css('opacity', 0.5);
+
+
+            that.children('a').click(function(e){
+                var html = $(this).html();
+                var cssClass = $(this).attr('class');
+                $(this).remove();
+                alert(cssClass);
+                //$(this).css('cursor', 'normal')
+                return false;
+            })
+        }
+    })
 });

@@ -8,15 +8,37 @@
 ********************************************************/
 .content h1 {
     font-size: 30px;
-    margin-bottom: 24px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+    .content h1 b,
+    .content p b {
+        font-weight: bold;
+    }
+
+.content h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
 }
 
-.content > p {
-    padding-left: 20px;
+.content form + p,
+.content form p,
+#accordion > div > p {
+    padding: 0 20px;
     margin-bottom: 16px;
     color: #9d9fa3;
     font-style: italic;
     line-height: 16px;
+}
+
+.content > p {
+    padding: 0 20px;
+    margin-bottom: 16px;
+    color: #9d9fa3;
+    font-style: italic;
+    line-height: 16px;
+    font-size: 14px;
+    margin-bottom: 40px;
 }
 
 .sidebar {
@@ -25,10 +47,91 @@
     float: right;
 }
 
+
+#accordion form textarea {
+    width: 898px; /*628px*/
+    max-width: 898px; /*628px*/
+    min-width: 898px; /*628px*/
+    height: 120px;
+    padding: 8px 10px;
+    margin-bottom: 40px;
+    float: left;
+    font-size: 14px;
+    color: #444a56;
+    border: 1px solid #97999d;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background: #fdfefe; /* Old browsers */
+    background: -moz-linear-gradient(top, #fdfefe 0%, #f4f4f4 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfefe), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #fdfefe 0%,#f4f4f4 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfefe', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-9 */
+}
+
+#description {
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    border-bottom: 1px solid #eeeff1;
+}
+    #description p {
+        line-height: 16px;
+        padding: 0 20px;
+    }
+
+    #description > a {
+        background: url("../../images/bg/icons.png") no-repeat scroll 9px -590px transparent;
+        display: block;
+        height: 32px;
+        text-indent: -9999px;
+        width: 32px;
+        position: absolute;
+        top: -10px;
+        left: -22px;
+    }
+
+/* Button: begin your journey
+********************************************************/
+#accordion form div,
+#sns {
+    margin-bottom: 40px;
+    text-align: center;
+    float: left;
+    width: 100%;
+    background: url(../../images/bg/index_button.png) 0 11px no-repeat;
+}
+
+#accordion form div input {
+    padding: 8px 30px;
+    background: #3d4a61; /* Old browsers */
+    color: #fff !important;
+    font-size: 16px;
+    background: -moz-linear-gradient(top, #3d4a61 14%, #1c2434 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(14%,#3d4a61), color-stop(100%,#1c2434)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #3d4a61 14%,#1c2434 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d4a61', endColorstr='#1c2434',GradientType=0 ); /* IE6-9 */
+    box-shadow: 2px 3px 1px #ecedee;
+    -moz-box-shadow: 2px 3px 1px #ecedee;
+    -webkit-box-shadow:  2px 3px 1px #ecedee;
+    border: none;
+    cursor: pointer;
+}
+    #accordion form div input:hover {
+        text-decoration: underline;
+    }
+
+
 /* Accordion
 ********************************************************/
 #accordion {
     width: 100%;
+    margin-bottom: 24px;
 }
 
     #accordion h3 {
@@ -41,7 +144,8 @@
         font-style: italic;
     }
 
-    #accordion h1 + p {
+    #accordion h1 + p,
+    #accordion h1 + div + p {
         width: 650px;
         line-height: normal;
         padding-left: 20px;
@@ -59,8 +163,8 @@
     #accordion > div + p,
     #accordion #score + p {
         padding-left: 20px;
-        margin-bottom: 32px;
-        float: left;
+        margin-bottom: 40px;
+        float: right;
         color: #838790;
         font-size: 11px;
     }
@@ -135,6 +239,9 @@
         right: 14px;
     }
 
+    #score .scale {
+        right: 20px;
+    }
         #abacon .scale tr,
         #score .scale tr {
             width: 100%;
@@ -150,6 +257,10 @@
                 font-style: italic;
                 text-align: right;
                 overflow: hidden;
+            }
+
+            #score .scale tr td {
+                width: 75px;
             }
 
 /* Score Sidebar
@@ -330,7 +441,7 @@
 /* Content navigation
 ********************************************************/
 #content-nav {
-    margin-right: 250px;
+    margin-right: 0px;
 }
 
 /* Sidebar
@@ -354,3 +465,33 @@
     line-height: 16px;
     color: #9d9fa3;
 }
+
+#sns ul {
+    width: 192px;
+    margin: 0 auto;
+}
+    #sns ul li {
+        float: left;
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+        #sns ul li:last-child {
+            margin-right: 0;
+        }
+
+    #sns li a {
+        width: 32px;
+        height: 32px;
+        margin-top: 4px;
+        display: block;
+        text-indent: -9999px;
+        outline: none;
+    }
+
+    #sns #share_facebook    { background: url(../../images/social/facebook-32x32.png) no-repeat }
+    #sns #share_twitter     { background: url(../../images/social/twitter-32x32.png) no-repeat }
+    #sns #share_digg        { background: url(../../images/social/digg-32x32.png) no-repeat }
+    #sns #share_reddit      { background: url(../../images/social/reddit-32x32.png) no-repeat }
+    #sns #share_stumbleupon { background: url(../../images/social/facebook-32x32.png) no-repeat }
+    #sns #share_google      { background: url(../../images/social/google+-32x32.png) no-repeat }

@@ -33,9 +33,18 @@
     background: url("../../images/auth.png") 0 0 no-repeat;
 }
 
+.auth-link .enabled {
+    background: url("../../images/bg/icons.png") 0 -1400px no-repeat !important;
+    width: 24px;
+    height: 24px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 8px;
+}
+
 .auth-services {
-    height: 50px;
-    margin: 0 0 1em;
+    height: 75px !important;
+    margin: 0 !important;
     list-style: none;
 	/* Height hack for float wrappers */
     overflow:hidden;

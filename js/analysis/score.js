@@ -17,12 +17,12 @@ Score.Alternatives = [];
  */
 Score.Config = {
     'height': 0, // dynamically set
-    'width': 666,
+    'width': 920,
     'rowHeight': 60,
     'bottomLegend': 25,
     'leftLegendOffset': 155,
     'scoreOffset': 2,
-    'tickWidth': 50
+    'tickWidth': 75
 };
 
 /**
@@ -52,7 +52,7 @@ Score.init = function(){
     Score.Canvas = Raphael("score", Score.Config['width'], Score.Config['height']);
 
     // container
-    Score.Canvas.rect(0, 0, Score.Config['width'], Score.Config['height']).attr({'stroke': '#c7cacf'});
+    Score.Canvas.rect(0, 0, Score.Config['width'], Score.Config['height']).attr({'stroke': '#fff'});
 
     // container for Score drawn elements
     Score.Elements = Score.Canvas.set();
@@ -97,13 +97,13 @@ Score.CreateAlternative = function(i)
     if(Score.Scores[0]['weightedTotal'] == 0)
     {
         // set the same width
-        width = 500;
+        width = 754;
     }
     else
     {
         // calculate width
         Score.Scores[i]['relativeScore'] = ((Score.Scores[i]['weightedTotal'] / Score.Scores[0]['weightedTotal'])*100);
-        Score.Scores[i]['width'] = parseInt(Score.Scores[i]['relativeScore']*5);
+        Score.Scores[i]['width'] = parseInt(Score.Scores[i]['relativeScore']*7.5);
     }
 
     // calculate x postion
