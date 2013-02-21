@@ -32,7 +32,12 @@ class SiteController extends Controller
         Yii::app()->clientScript->registerMetaTag(CHtml::encode('Check out this pre-release version of the new ODESYS. Please feel free to play around with the system and report any bugs that you may find. We\'ll be happy to hear your opinions, comments and suggestions. Invite your friends!'), NULL, NULL, array('property'=>'og:description'));
         Yii::app()->clientScript->registerMetaTag(CHtml::encode('http://odesys.info/images/introduction.png'), NULL, NULL, array('property'=>'og:image'));
 
-        $this->render('index');
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'view_privacy = 0';
+        $criteria->limit = 8;
+        $criteria->order = 'created DESC';
+
+        $this->render('index', array('latestDecisions' => Decision::model()->findAll($criteria)));
     }
 
     /**

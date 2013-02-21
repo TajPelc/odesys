@@ -231,6 +231,15 @@ class Decision extends CActiveRecord
     }
 
     /**
+     * Get the public url
+     * @return string
+     */
+    public function getPublicLink()
+    {
+        return '/decision/'. $this->decision_id . '-' . $this->label . '.html';
+    }
+
+    /**
      * Create active decision model
      */
     public function createActiveDecisionModel()

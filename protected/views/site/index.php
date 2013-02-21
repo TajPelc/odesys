@@ -39,79 +39,17 @@
             <h1>Latest public decisions by our users</h1>
         </header>
         <ul class="btcf">
+            <?php foreach($latestDecisions as $d) { ?>
             <li>
                 <article>
                     <header>
-                        <h3><a href="#" title="">What should I eat today?</a></h3>
+                        <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo $d->getPublicLink(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
                     </header>
                     <aside>
-                        <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
+                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo $d->getPublicLink(); ?>"><img src="/images/gravatar_default.png" title="" /></a>
                     </aside>
                 </article>
             </li>
-            <li>
-                <article>
-                    <header>
-                        <h3><a href="#" title="">What should I eat today?</a></h3>
-                    </header>
-                    <aside>
-                        <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
-                    </aside>
-                </article>
-            </li>            <li>
-            <article>
-                <header>
-                    <h3><a href="#" title="">What should I eat today?</a></h3>
-                </header>
-                <aside>
-                    <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
-                </aside>
-            </article>
-        </li>            <li>
-            <article>
-                <header>
-                    <h3><a href="#" title="">What should I eat today?</a></h3>
-                </header>
-                <aside>
-                    <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
-                </aside>
-            </article>
-        </li>            <li>
-            <article>
-                <header>
-                    <h3><a href="#" title="">What should I eat today?</a></h3>
-                </header>
-                <aside>
-                    <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
-                </aside>
-            </article>
-        </li>            <li>
-            <article>
-                <header>
-                    <h3><a href="#" title="">What should I eat today?</a></h3>
-                </header>
-                <aside>
-                    <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
-                </aside>
-            </article>
-        </li>            <li>
-            <article>
-                <header>
-                    <h3><a href="#" title="">What should I eat today?</a></h3>
-                </header>
-                <aside>
-                    <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
-                </aside>
-            </article>
-        </li>            <li>
-            <article>
-                <header>
-                    <h3><a href="#" title="">What should I eat today?</a></h3>
-                </header>
-                <aside>
-                    <a href="#" title=""><img src="../../../images/gravatar_default.png" title="" /></a>
-                </aside>
-            </article>
-        </li>
+            <? } ?>
         </ul>
     </section>
