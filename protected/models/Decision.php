@@ -231,6 +231,14 @@ class Decision extends CActiveRecord
     }
 
     /**
+     * Get published decision model
+     */
+    public function getLatestEvaluatedDecisionModel()
+    {
+        return DecisionModel::model()->findBySql('SELECT * FROM decision_model d WHERE d.rel_decision_id = :id AND d.evaluation_complete = 1 ORDER BY d.last_edit DESC LIMIT 1', array('id' => $this->getPrimaryKey()));
+    }
+
+    /**
      * Get the public url
      * @return string
      */
