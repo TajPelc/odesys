@@ -144,9 +144,17 @@ class Common
     /**
      *
      * Load the current user model
-     * @return User|mixed|null
+     * @return User
      */
     public static function getUser($user = false) {
-        return Identity::model()->findByPk((bool)$user ? $user : Yii::app()->user->id)->User;
+        if(!$user) {
+            $user = Yii::app()->user->id;
+        }
+
+        if(Yii::app()->user->isGuest) {
+            return User::model()->findByPk(User::ANONYMOUS);
+        } else {
+            return Identity::model()->findByPk($user)->User;
+        }
     }
 }
