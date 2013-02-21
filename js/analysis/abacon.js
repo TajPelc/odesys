@@ -49,7 +49,7 @@ Abacon.init = function(){
     Abacon.Canvas = Raphael("abacon", Abacon.Config['width'], Abacon.Config['height']);
 
     // container
-    Abacon.Canvas.rect(0, 0, Abacon.Config['width'], Abacon.Config['height']).attr({'stroke': '#c7cacf'});
+    Abacon.Canvas.rect(0, 0, Abacon.Config['width'], Abacon.Config['height']).attr({'stroke': '#fff'});
 
     // draw horizontal grid
     for(i=0; i<Graph.Data['criteriaNr']; i++)
