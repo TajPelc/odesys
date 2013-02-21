@@ -12,7 +12,6 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div>
         <h1><b>Frenk Ten</b>, here are results of your analysis</h1>
         <h2>― <?php echo ucfirst($this->Decision->title); ?> ―</h2>
-        <h2></h2>
         <?php if(!$description) { ?>
         <form method="post" action="">
             <p>Please take a moment to write a short description of your decision. Text you enter will serve as a guidline for people that will check out your decision model, don't let them wander in the dark.</p>
