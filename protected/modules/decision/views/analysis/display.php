@@ -141,12 +141,12 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 
 <?php } else { ?>
 <div id="description">
-    <p><?php echo $description; ?></p>
+    <p><?php echo nl2br($description); ?></p>
     <a href="#">Edit</a>
 </div>
 <form method="post" action="" style="display:none;">
     <p>Edit your description and click save.</p>
-    <textarea><?php echo nl2br($description); ?></textarea>
+    <textarea><?php echo $description; ?></textarea>
     <div>
         <input name="save" type="submit" value="Save description">
     </div>

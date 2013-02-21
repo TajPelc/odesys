@@ -34,7 +34,7 @@ class AnalysisController extends DecisionController
                 {
                     $this->Decision->save(false);
 
-                    Ajax::respondOk(array('html'=>$this->renderPartial('display', array('description' => nl2br($this->Decision->description)), true)));
+                    Ajax::respondOk(array('html'=>$this->renderPartial('display', array('description' => $this->Decision->description), true)));
                     //Ajax::respondOk(array('html'=>$this->Decision->description));
                 }
             }
