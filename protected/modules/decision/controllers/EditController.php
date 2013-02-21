@@ -40,7 +40,7 @@ class EditController extends DecisionController
             if($Decision->validate(array('title', 'description')))
             {
                 $Decision->save(false);
-                Ajax::respondOk(array('url'=>CHtml::encode($Decision->label)));
+                Ajax::respondOk(array('url' => CHtml::encode($Decision->label), 'id' => $Decision->getPrimaryKey()));
             }
             else
             {

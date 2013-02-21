@@ -75,12 +75,6 @@ $(document).ready(function(){
             Core.Overlay.Close();
         });
         return false;
-        //remember decision object
-        //DashboardList.Item = $(this);
-
-        //open overlay and fill it
-        //Core.Overlay.Html = '<h2>Are you sure?</h2><p>You are about to delete decision model named "'+DashboardList.Item.parents('td').siblings('td:first-child').text()+'". This action is irreversible.</p><div><a href="#" class="buttonBig" id="deleteYes">Yes<span class="doors">&nbsp;</span></a><a href="#" class="buttonBig" id="deleteNo">No<span class="doors">&nbsp;</span></a></div>';
-        //Core.Overlay(Core.Overlay.Html);
     });
 
 
@@ -131,7 +125,7 @@ $(document).ready(function(){
                     //update title in the table
                     ProfileSettings.getDecision.parents('tr').find('td:first a').text(newDecisionTitle);
                     //update to the correct url
-                    ProfileSettings.getDecision.parents('tr').find('td:first a').attr('href', data['url']+'.html');
+                    ProfileSettings.getDecision.parents('tr').find('td:first a').attr('href', '/decision/' + data['id'] + '-' + data['url'] + '.html');
                     Core.Overlay.Close();
                     //errors
                 } else {
