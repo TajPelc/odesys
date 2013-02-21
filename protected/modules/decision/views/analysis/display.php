@@ -10,8 +10,8 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <section class="content">
 <div id="accordion" class="btcf">
     <div>
-        <h1>Public decision: <?php echo ucfirst($this->Decision->title); ?></h1>
-        <h2>by ____________</h2>
+        <h1><b>Frenk Ten</b>, here are results of your analysis</h1>
+        <h2>― <?php echo ucfirst($this->Decision->title); ?> ―</h2>
         <h2></h2>
         <?php if(!$description) { ?>
         <form method="post" action="">

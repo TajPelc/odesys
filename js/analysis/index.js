@@ -56,7 +56,6 @@ $(document).ready(function(){
     $('#accordion form').live('submit', (function(){
 
             var that = $(this);
-        if(that.find('textarea').val() !== ''){
             $.ajax({
                 type: 'POST',
                 url: location.href,
@@ -75,7 +74,6 @@ $(document).ready(function(){
                     }
                 }
             });
-        }
         return false;
     }));
 
