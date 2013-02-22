@@ -125,4 +125,6 @@ section#public_decisions {
                 padding-top: 8px;
                 float: right;
                 font-style: italic;
+                overflow: hidden;
+                word-break: break-all;
             }

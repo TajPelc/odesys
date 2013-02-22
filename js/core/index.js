@@ -89,7 +89,6 @@ Core.Overlay = function(html, big){
             dataType: 'json',
             data: Core.Overlay.Data,
             success: function(data) {
-                console.log(data);
                 // success
                 if(data['status'] == true)
                 {
@@ -97,7 +96,6 @@ Core.Overlay = function(html, big){
                     $(location).attr('href', data['redirectUrl']);
                 }
                 else {
-                    //$('#overlay form').insertAfter('<span>'+data['errors']['title']+'</span>');
                     Core.Overlay.FormErrorReporting($('#overlay form'), data['errors']['title']);
                 }
             }
@@ -129,6 +127,7 @@ Core.Overlay.FormErrorReporting = function(that, text){
         $('#overlay .error').remove();
     }
     that.append('<div class="error"><p>'+text+'</p></div>');
+    $('#overlay .error').css('right', -$('#overlay .error').outerWidth()-12);
     that.find('input[type="text"]').focus();
 };
 
@@ -187,7 +186,6 @@ Core.ProjectMenu = function(projectMenu){
     var ListElements = $('#project li span[id*=menu-], #project li a[id*=menu-]');
 
 
-    console.log(projectMenu);
     ListElements.each(function(index, element) {
         // get new value for this element from the ajax supplied array
         var value = projectMenu[$(this).attr('id').split("-")[1]];
@@ -324,5 +322,11 @@ $(document).ready(function() {
             }
         });
         return false;
+    });
+
+    $('#projectCreate').live('keydown',function(){
+        if(!$(this).find('.error').length == 0){
+            $(this).find('.error').remove();
+        }
     });
 });
