@@ -152,7 +152,7 @@ Evaluation.NextCriteria = function(that) {
             };
             setTimeout(html, 120);
 
-            $('#content > h1 em').text(data['title']);
+            $('section.content > h1 em').text(data['title']);
 
             var prevButton = $('#content-nav li:eq(0) a');
             var nextButton = $('#content-nav li:eq(1) a');
