@@ -128,3 +128,6 @@ section#public_decisions {
                 overflow: hidden;
                 word-break: break-all;
             }
+                section#public_decisions ul li header a {
+                    line-height: 16px;
+                }
