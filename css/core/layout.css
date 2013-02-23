@@ -366,7 +366,9 @@ body > footer {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
 }
-
+    .block img {
+        position: absolute;
+    }
 
 /* DEBUG MODE
 ********************************************************/
