@@ -82,5 +82,6 @@
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
         </script>
+        <a style="display: none" href="https://plus.google.com/112275384094460979880" rel="publisher">Google+</a>
     </body>
 </html>

@@ -8,15 +8,15 @@ section.content {
     position: relative;
 }
 
-#content h1 {
+section.content h1 {
     font-size: 30px;
     margin-bottom: 24px;
 }
-    #content h1 em {
+section.content h1 em {
         font-weight: bold;
     }
 
-#content > p {
+section.content > p {
     padding-left: 20px;
     margin-bottom: 16px;
     color: #9d9fa3;
@@ -26,7 +26,7 @@ section.content {
 
 #content {
     position: relative;
-    width: 670px;
+    width: 648px;
     float: left;
 }
 
@@ -42,12 +42,23 @@ section.content {
     }
 
         #content form ul li {
-            width: 651px; /*671px*/
+            width: 626px; /*648px*/
             height: 51px; /*63px*/
             padding: 6px 10px;
             margin-bottom: 16px;
             position: relative;
-            background: url(../../images/form/sprite_slider.png) 0 -300px no-repeat;
+            border: 1px solid #c8cbd0;
+            -moz-border-radius: 1px;
+            -webkit-border-radius: 1px;
+            border-radius: 1px;
+            background: #fdfefe; /* Old browsers */
+            background: -moz-linear-gradient(top, #fdfefe 0%, #f4f4f4 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfefe), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #fdfefe 0%,#f4f4f4 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfefe', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-9 */
         }
 
         #content form ul li:last-child {
@@ -55,7 +66,14 @@ section.content {
         }
 
         #content form ul li.saved {
-            background-position: 0 -200px;
+            background: #fdfefe; /* Old browsers */
+            background: -moz-linear-gradient(top, #fdfefe 0%, #f4f4f4 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfefe), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #fdfefe 0%,#f4f4f4 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfefe', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-9 */
         }
 
             #content form ul li h3 {
@@ -94,12 +112,15 @@ section.content {
 /* Slider
 ********************************************************/
 #content .ui-slider {
-    width: 492px;
+    width: 462px;
     height: 32px;
     float: left;
     position: relative;
     top: -7px;
-    background: url(../../images/form/sprite_slider.png) 0 10px no-repeat;
+    background: url(../../images/form/sprite_slider.png) 0px 10px no-repeat;
+    -moz-border-radius: 1px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
 }
 
     #content .ui-slider-range {
@@ -123,8 +144,9 @@ section.content {
 /* sidebar
 ********************************************************/
 #sidebar {
+    width: 234px;
+    padding: 0 10px;
     float: right;
-    width: 214px;
 }
 
 #sidebar > h3 {
@@ -137,23 +159,22 @@ section.content {
 
     #sidebar ul.steps {
         width: 100%;
-        margin-top: 87px;
         line-height: 32px;
         margin-bottom: 16px;
         list-style: inside decimal;
     }
 
         #sidebar ul.steps li {
-            width: 198px;
+            width: 216px;
             height: 32px;
             padding: 0 8px 0 8px;
             margin-bottom: 8px;
             position: relative;
             color: #444a56;
             border: 1px solid #c8cbd0;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-radius: 3px;
+            -moz-border-radius: 1px;
+            -webkit-border-radius: 1px;
+            border-radius: 1px;
         }
 
         #sidebar ul.steps li:last-child {
@@ -161,7 +182,7 @@ section.content {
         }
 
             #sidebar ul.steps li a {
-                width: 170px;
+                width: 192px;
                 line-height: 32px;
                 display: inline-block;
                 text-decoration: none;

@@ -158,13 +158,14 @@
 ********************************************************/
 #sidebar {
     width: 234px; /*254px*/
-    padding: 54px 10px 8px 10px;
+    padding: 0 10px 8px 10px;
     line-height: 16px;
     float: right;
 }
 #sidebar h2 {
     font-size: 18px;
-    margin-bottom: 16px;
+    padding-top: 12px;
+    margin-bottom: 24px;
 }
 
 #sidebar p {

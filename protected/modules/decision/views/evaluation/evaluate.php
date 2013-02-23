@@ -2,9 +2,9 @@
 <?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Evaluation'; ?>
 
 <section class="content btcf">
-    <div id="content">
     <h1>How would you rate “<em><?php echo CHtml::encode($Criteria->title); ?></em>”?</h1>
     <p>Think about how alternatives compare at this factor and adjust the sliders to the appropriate position.</p>
+    <div id="content">
     <form id="evaluation" method="post" enctype="application/x-www-form-urlencoded" action="">
     <?php }?>
     <?php if($renderEvaluation) { ?>
