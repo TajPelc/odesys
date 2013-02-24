@@ -83,4 +83,32 @@ $(document).ready(function(){
         $(this).parent().siblings('form').show();
         return false;
     });
+
+    //hover favourite
+    $('#score table td.name').hover(function(){
+        $(this).siblings('td').addClass('hover');
+    }, function(){
+        $(this).siblings('td').removeClass('hover');
+    });
+
+    //post favourite
+    $('#score table td').click(function(){
+        $.ajax({
+            type: 'POST',
+            url: location.href,
+            dataType: 'json',
+            data: {
+                'favourite' : true,
+                'alternative' : $(this).attr('id')
+            },
+            success: function(data) {
+                if(data['status'] == true){
+
+                    //errors
+                } else {
+
+                }
+            }
+        });
+    });
 });
