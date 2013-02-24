@@ -86,7 +86,7 @@ class PublicAction extends Action
         Yii::app()->clientScript->registerMetaTag(CHtml::encode(Common::getBaseURL().'/images/introduction.png'), NULL, NULL, array('property'=>'og:image'));
 
         // load decision model
-        $this->getController()->DecisionModel = $this->getController()->Decision->getPublishedDecisionModel();
+        $this->getController()->DecisionModel = $this->getController()->Decision->getLatestEvaluatedDecisionModel();
 
         // analysis
         $render = array();
