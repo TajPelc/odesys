@@ -20,7 +20,8 @@
                 <table class="alternatives">
                     <?php foreach($bestAlternatives as $A) { ?>
                     <tr>
-                        <td id="<?php echo $A->getPrimaryKey(); ?>"><?php echo CHtml::encode($A->title); ?></td>
+                        <td class="fav"></td>
+                        <td class="name" id="<?php echo $A->getPrimaryKey(); ?>"><?php echo CHtml::encode($A->title); ?></td>
                     </tr>
                     <?php }?>
                 </table>
