@@ -292,7 +292,7 @@
             }
 
             #score .alternatives tr:hover td.fav {
-                background: url(../../images/bg/icons.png) 0 -1990px no-repeat;
+                background: url(../../images/bg/icons.png) 0 -1987px no-repeat;
                 cursor: pointer;
             }
 
@@ -302,7 +302,7 @@
             }
 
             #score .alternatives tr.public:hover td.fav.selected {
-                background: url(../../images/bg/icons.png) 0 -1990px no-repeat;
+                background: url(../../images/bg/icons.png) 0 -1987px no-repeat;
             }
 
             #score .alternatives td.selected {
