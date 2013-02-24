@@ -233,6 +233,7 @@
 
             #abacon .criteria tr td,
             #score .alternatives tr td.name {
+                width: 134px;
                 height: 59px;
                 max-height: 59px;
                 padding: 0 10px 1px 10px;
@@ -280,20 +281,48 @@
                 cursor: pointer;
             }
 
+            #score .alternatives tr.public td.name:hover {
+                cursor: text;
+            }
+
             #score .alternatives td.fav {
                 width: 44px;
                 top: 0;
                 left: -30px;
             }
 
-            #score .alternatives td.hover {
+            #score .alternatives tr:hover td.fav {
                 background: url(../../images/bg/icons.png) 0 -1990px no-repeat;
-                opacity: 0.4;
+                cursor: pointer;
+            }
+
+            #score .alternatives tr.public:hover td.fav {
+                background: none;
+                cursor: default;
+            }
+
+            #score .alternatives tr.public:hover td.fav.selected {
+                background: url(../../images/bg/icons.png) 0 -1990px no-repeat;
             }
 
             #score .alternatives td.selected {
                 background: url(../../images/bg/icons.png) 0 -1990px no-repeat;
-                opacity: 1;
+
+            }
+
+            #score .alternatives td.selected + td.name {
+                background: #fdfefe; /* Old browsers */
+                background: -moz-linear-gradient(left, #fdfefe 0%, #f4f4f4 99%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, right top, color-stop(0%,#fdfefe), color-stop(99%,#f4f4f4)); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(left, #fdfefe 0%,#f4f4f4 99%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(left, #fdfefe 0%,#f4f4f4 99%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(left, #fdfefe 0%,#f4f4f4 99%); /* IE10+ */
+                background: linear-gradient(to right, #fdfefe 0%,#f4f4f4 99%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfefe', endColorstr='#f4f4f4',GradientType=1 ); /* IE6-9 */
+                height: 58px;
+                font-weight: bold;
+                position: relative;
+                top: 1px;
             }
 
 /* Score Sidebar

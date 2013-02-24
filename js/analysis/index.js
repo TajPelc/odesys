@@ -84,31 +84,26 @@ $(document).ready(function(){
         return false;
     });
 
-    //hover favourite
-    $('#score table td.name').hover(function(){
-        $(this).siblings('td').addClass('hover');
-    }, function(){
-        $(this).siblings('td').removeClass('hover');
-    });
-
     //post favourite
-    $('#score table tr > td').click(function(){
-        $('table.alternatives td.selected').removeClass('selected');
-        $(this).siblings('.fav').addClass('selected');
-        $.ajax({
-            type: 'POST',
-            url: location.href,
-            dataType: 'json',
-            data: {
-                'favourite' : true,
-                'alternative' : $(this).attr('id')
-            },
-            success: function(data) {
-                if(data['status'] == true){
-                    //errors
-                } else {
+    $('#score table tr td.name').click(function(){
+        if(!$(this).siblings('.fav').hasClass('selected')){
+            $('table.alternatives td.selected').removeClass('selected');
+            $(this).siblings('.fav').addClass('selected');
+            $.ajax({
+                type: 'POST',
+                url: location.href,
+                dataType: 'json',
+                data: {
+                    'favourite' : true,
+                    'alternative' : $(this).attr('id')
+                },
+                success: function(data) {
+                    if(data['status'] == true){
+                        //errors
+                    } else {
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 });
