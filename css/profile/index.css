@@ -20,9 +20,9 @@ section.content {
         }
 
 #overlay #editDecision textarea {
-    width: 420px;
-    max-width: 420px; /*628px*/
-    min-width: 420px; /*628px*/
+    width: 418px;
+    max-width: 418px; /*628px*/
+    min-width: 418px; /*628px*/
     height: 100px;
     min-height: 100px;
     padding: 4px 10px;
