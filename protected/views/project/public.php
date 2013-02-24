@@ -14,7 +14,7 @@
             <h2>― A decision model by <b><?php echo CHtml::encode($this->Decision->User->identities[0]->name); ?></b> ―</h2>
             <?php if($this->Decision->description) { ?>
             <div id="description">
-                <p><?php echo CHtml::encode(nl2br($this->Decision->description)); ?></p>
+                <p><?php echo nl2br(CHtml::encode($this->Decision->description)); ?></p>
             </div>
             <?php }?>
             <?php if(isset($eval)) { ?>
