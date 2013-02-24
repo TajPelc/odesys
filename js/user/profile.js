@@ -141,11 +141,11 @@ $(document).ready(function(){
     }));
 
     var sns = {
-        'facebook': 'facebook',
-        'twitter':  'twitter',
-        'google':   'google_oauth',
-        'linkedin': 'linkedin',
-        'github':   'github'
+        'facebook':      'facebook',
+        'twitter':       'twitter',
+        'google_oauth':  'google_oauth',
+        'linkedin':      'linkedin',
+        'github':        'github'
     };
 
     $.each(sns, function(key, value){
