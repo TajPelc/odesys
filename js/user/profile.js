@@ -133,7 +133,7 @@ $(document).ready(function(){
                     Core.Overlay.Close();
                     //errors
                 } else {
-
+                    Core.Overlay.FormErrorReporting($('#overlay form'), data['errors']['title']);
                 }
             }
         });
@@ -170,5 +170,11 @@ $(document).ready(function(){
                 return false;
             })
         }
-    })
+    });
+
+    $('#editDecision').live('keydown',function(){
+        if(!$(this).find('.error').length == 0){
+            $(this).find('.error').remove();
+        }
+    });
 });
