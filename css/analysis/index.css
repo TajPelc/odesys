@@ -483,7 +483,7 @@
 }
 
 #sns ul {
-    width: 192px;
+    width: 232px;
     margin: 0 auto;
 }
     #sns ul li {
@@ -511,3 +511,4 @@
     #sns #share_reddit      { background: url(../../images/social/reddit-32x32.png) no-repeat }
     #sns #share_stumbleupon { background: url(../../images/social/facebook-32x32.png) no-repeat }
     #sns #share_google      { background: url(../../images/social/google+-32x32.png) no-repeat }
+    #sns #share_linkedin    { background: url(../../images/social/linkedin-32x32.png) no-repeat }
