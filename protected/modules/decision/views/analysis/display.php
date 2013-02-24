@@ -14,7 +14,11 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <h2>― <?php echo CHtml::encode(ucfirst($this->Decision->title)); ?> ―</h2>
         <?php if(!$description) { ?>
         <form method="post" action="">
+            <?php if($this->Decision->isPublic()) { ?>
             <p>Please take a moment to write a short description of your decision. Text you enter will serve as a guidline for people that will check out your decision model, don't let them wander in the dark.</p>
+            <?php } else { ?>
+            <p>You can write a description about this decision for yourself, since you chose this to be a private decision. Therefor also sharing is disabled.</p>
+            <?php } ?>
             <textarea></textarea>
             <div>
                 <input name="save" type="submit" value="Save description">
@@ -34,6 +38,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </form>
         <?php }?>
         <p><b>Score graph</b> shows you total scores for your alternatives. The best scoring alternative is at the top, having 100 points. All other alternative's scores are calculated relative to the best scoring alternative.</p>
+        <p>Additinally you can pick your <b>favorite</b> alternative by clicking on it on the Score graph.</p>
         <div id="score" class="content">
             <table class="alternatives">
                 <?php foreach($bestAlternatives as $A) { ?>
@@ -112,6 +117,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         </div>
     </div>
 </div>
+<?php if($this->Decision->isPublic()) { ?>
 <div id="sns" class="btcf">
     <ul>
         <li><a id="share_facebook" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="https://www.facebook.com/sharer.php?u=<?php echo Yii::app()->request->hostInfo; ?><?php echo CHtml::encode('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html'); ?>&amp;t=<?php echo CHtml::encode($this->Decision->title); ?>">Facebook</a></li>
@@ -125,8 +131,14 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <li><a id="share_reddit" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="http://www.reddit.com/submit?url=<?php echo Yii::app()->request->hostInfo; ?><?php echo CHtml::encode('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html'); ?>&amp;title=<?php echo CHtml::encode($this->Decision->title); ?>&amp;text=<?php echo CHtml::encode(Common::truncate($this->Decision->description, 115)); ?>">Reddit</a></li>
     </ul>
 </div>
+<?php } ?>
 <h2>Which one do I choose?</h2>
-<p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison below to see how they really compare.</p>
+<p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison to see how they really compare.</p>
+<?php if($this->Decision->isPublic()) { ?>
+<p>You can also share this decision to your friends or your other social circles. Just copy the link in your browser or click on one of the social links above.</p>
+<?php } else { ?>
+<p>If you change this decision's privacy to public, you will be able to share it with your friends and other circles, hence receive additional feedback about your decision model. Why not try it? It might make you decision making a lot easier.</p>
+<?php } ?>
 <h2>Changed your mind?</h2>
 <p>You may return to modify criteria, alternatives or evaluation at any time.</p>
 <ul id="content-nav">
