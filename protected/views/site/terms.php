@@ -1,4 +1,4 @@
-<?php $this->pageTitle='ODESYS | Terms of use'; ?>
+<?php $this->pageTitle='Terms of use & Conditions | odesys'; ?>
 
 <section class="content">
     <heading>

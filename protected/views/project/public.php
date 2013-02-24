@@ -1,4 +1,4 @@
-<?php $this->pageTitle = 'odesys | ' . CHtml::encode($this->Decision->title); ?>
+<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ', a decision model by ' . CHtml::encode($this->Decision->User->identities[0]->name) . ' | odesys'; ?>
 
 <?php if(isset($eval)) { ?>
 <script type="text/javascript">

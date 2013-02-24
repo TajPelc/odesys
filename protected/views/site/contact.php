@@ -1,4 +1,4 @@
-<?php $this->pageTitle='ODESYS | Contact'; ?>
+<?php $this->pageTitle='Contact | odesys'; ?>
 <section class="content">
     <h1>Follow us on</h1>
     <div class="social btcf">

@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::app()->name . ' / Login'; ?>
+<?php $this->pageTitle = ' Create a new Decision | odesys'; ?>
 
 <?php if(!Yii::app()->request->isAjaxRequest) { ?>
 <section class="content">
