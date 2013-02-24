@@ -92,7 +92,9 @@ $(document).ready(function(){
     });
 
     //post favourite
-    $('#score table td').click(function(){
+    $('#score table tr > td').click(function(){
+        $('table.alternatives td.selected').removeClass('selected');
+        $(this).siblings('.fav').addClass('selected');
         $.ajax({
             type: 'POST',
             url: location.href,
@@ -103,10 +105,8 @@ $(document).ready(function(){
             },
             success: function(data) {
                 if(data['status'] == true){
-
                     //errors
                 } else {
-
                 }
             }
         });

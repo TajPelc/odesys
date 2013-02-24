@@ -69,6 +69,7 @@ class PublicAction extends Action
                 'Alternatives'             => $this->getController()->DecisionModel->alternatives,
                 'first'                    => $firstAlternative,
                 'second'                   => $secondAlternative,
+                'preferred'                => $this->getController()->Decision->getActiveDecisionModel()->preferred_alternative,
                 'difference'               => ($firstAlternative->weightedScore > 0 ? (number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore )) * 100, 2)) : 0),
                 'opinions'				   => $this->getController()->Decision->getAllOpinions(0)
             );

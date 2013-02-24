@@ -74,6 +74,7 @@ class AnalysisController extends DecisionController
             'Alternatives'	           => $this->DecisionModel->alternatives,
             'first'                    => $firstAlternative,
             'second'                   => $secondAlternative,
+            'preferred'                => $this->Decision->getActiveDecisionModel()->preferred_alternative,
             'difference'               => ($firstAlternative->weightedScore > 0 ? (number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore )) * 100, 2)) : 0),
         ));
     }

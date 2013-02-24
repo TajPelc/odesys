@@ -23,7 +23,7 @@
                 <table class="alternatives">
                     <?php foreach($bestAlternatives as $A) { ?>
                     <tr>
-                        <td class="fav"></td>
+                        <td class="fav<?php echo ($preferred === $A->getPrimaryKey() ? ' selected' : '')?>"></td>
                         <td class="name" id="<?php echo $A->getPrimaryKey(); ?>"><?php echo CHtml::encode($A->title); ?></td>
                     </tr>
                     <?php }?>
