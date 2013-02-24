@@ -14,11 +14,13 @@ Graph.Data = <?php echo json_encode($eval); ?>;
         <h2>― <?php echo CHtml::encode(ucfirst($this->Decision->title)); ?> ―</h2>
         <?php if(!$description) { ?>
         <form method="post" action="">
+            <p>Please take a moment to write a few sentences about your decision. Why do you consider these alternatives? What factors did you consider and why? Have you changed your mind now that you have seen the results of the analysis?
             <?php if($this->Decision->isPublic()) { ?>
-            <p>Please take a moment to write a short description of your decision. Text you enter will serve as a guidline for people that will check out your decision model, don't let them wander in the dark.</p>
+                The text you enter here will help people viewing this decision understand what it is about and get an idea about your way of thinking.
             <?php } else { ?>
-            <p>You can write a description about this decision for yourself, since you chose this to be a private decision. Therefor also sharing is disabled.</p>
+                Because this decision is private, only you will be able to see this description. You can change the view privacy for this decision in your profile.</p>
             <?php } ?>
+            </p>
             <textarea></textarea>
             <div>
                 <input name="save" type="submit" value="Save description">
