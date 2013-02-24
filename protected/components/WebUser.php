@@ -15,7 +15,7 @@ class WebUser extends CWebUser {
     public $returnUrl = array('user/profile');
 
     protected function beforeLogin($id, $states, $fromCookie) {
-        $this->returnUrl = array('controller/action');
+        $this->returnUrl = '/';
         return true;
     }
 
@@ -28,13 +28,25 @@ class WebUser extends CWebUser {
         return true;
     }
 
-    // Return first name.
-    // access it by Yii::app()->user->first_name
-    function getFirst_Name(){
-        $user = $this->loadUser(Yii::app()->user->id);
-        return $user->first_name;
+    /**
+     * Return the First and Last name
+     * @return string
+     */
+    public function getName() {
+        return $this->loadUser()->getName();
     }
 
+    /**
+     * Return the first name
+     * @return string
+     */
+    public function getFirstName() {
+        $name = $this->getName();
+        if(strpos($name, ' ')) {
+            substr($name, 0, strpos($name, ' '));
+        }
+        return $name;
+    }
     // This is a function that checks the field 'role'
     // in the User model to be equal to 1, that means it's admin
     // access it by Yii::app()->user->isAdmin()
@@ -67,7 +79,12 @@ class WebUser extends CWebUser {
         if($this->_identity === null)
         {
             $this->_identity = Identity::model()->findByPk($this->id);
-            $this->_model = User::model()->findByPk($this->_identity->rel_user_id);
+            if($this->_identity === null) {
+                $uid = User::ANONYMOUS;
+            } else {
+                $uid = $this->_identity->rel_user_id;
+            }
+            $this->_model = User::model()->findByPk($uid);
         }
         return $this->_model;
     }

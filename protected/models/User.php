@@ -272,6 +272,17 @@ class User extends CActiveRecord
     }
 
     /**
+     * Get the name
+     * @return string
+     */
+    public function getName() {
+        if($this->isAnonymous()) {
+            return 'Anonymous';
+        }
+        return $this->identities[0]->name;
+    }
+
+    /**
      * Get the profile url
      * @return string
      */

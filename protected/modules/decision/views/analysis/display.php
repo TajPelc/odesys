@@ -10,7 +10,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <section class="content">
 <div id="accordion" class="btcf">
     <div>
-        <h1><b><?php echo substr(Yii::app()->user->name, 0, strpos(Yii::app()->user->name, ' ')); ?></b>, here are results of your analysis</h1>
+        <h1><b><?php echo Yii::app()->user->getFirstName(); ?></b>, here are results of your analysis</h1>
         <h2>― <?php echo CHtml::encode(ucfirst($this->Decision->title)); ?> ―</h2>
         <?php if(!$description) { ?>
         <form method="post" action="">
