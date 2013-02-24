@@ -34,6 +34,7 @@
         </ul>
     </section>
 
+    <?php if($latestDecisions) { ?>
     <section id="public_decisions">
         <header>
             <h1>Latest public decisions by our users</h1>
@@ -46,10 +47,11 @@
                         <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo $d->getPublicLink(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
                     </header>
                     <aside>
-                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo $d->getPublicLink(); ?>"><img src="/images/gravatar_default.png" title="" /></a>
+                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo $d->getPublicLink(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="" /></a>
                     </aside>
                 </article>
             </li>
             <? } ?>
         </ul>
     </section>
+    <?php } ?>

@@ -95,7 +95,7 @@ class User extends CActiveRecord
      */
     public function isAnonymous()
     {
-        return $this->getPrimaryKey() === self::ANONYMOUS;
+        return (int)$this->getPrimaryKey() === self::ANONYMOUS;
     }
 
     /**
@@ -270,6 +270,37 @@ class User extends CActiveRecord
             return false;
         }
     }
+
+    /**
+     * Get the profile url
+     * @return string
+     */
+    public function getProfileImage() {
+        if($this->isAnonymous()) {
+            return '/images/gravatar_default.png';
+        }
+
+        $identity = $this->identities[0];
+        $pk = $identity->getPrimaryKey();
+        $rv = '';
+        switch($identity->service) {
+            case 'facebook':
+                $rv = 'https://graph.facebook.com/' . $pk . '/picture';
+                break;
+            case 'twitter':
+                $rv = 'https://api.twitter.com/1/users/profile_image/' . $pk;
+                break;
+            case 'google_oauth':
+                $rv = 'https://www.google.com/s2/photos/profile/' . $pk . '?sz=50';
+                break;
+            case 'linkedin':
+            default:
+                $rv = '/images/gravatar_default.png';
+        }
+
+        return $rv;
+    }
+
 
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
