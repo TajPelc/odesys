@@ -176,7 +176,11 @@ section.decisions {
                 }
                 section.decisions table td:nth-child(1){
                     width: 666px;
+                }
 
+                section.decisions table td.alert {
+                    background: url(../../images/bg/icons.png) 10px -2192px no-repeat;
+                    padding-left: 40px;
                 }
 
                 section.decisions table td:nth-child(2),
