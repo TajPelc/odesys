@@ -220,6 +220,11 @@
         table-layout: fixed;
     }
 
+    #score .alternatives {
+        width: 189px; /*155px*/
+        left: -44px;
+    }
+
         #abacon .criteria tr,
         #score .alternatives tr {
             width: 100%;
@@ -227,7 +232,7 @@
         }
 
             #abacon .criteria tr td,
-            #score .alternatives tr td {
+            #score .alternatives tr td.name {
                 height: 60px;
                 max-height: 60px;
                 padding: 0 10px 1px 10px;
@@ -237,6 +242,7 @@
                 font-style: italic;
                 text-align: right;
                 overflow: hidden;
+                position: relative;
             }
 
     #abacon .scale,
@@ -268,6 +274,27 @@
 
             #score .scale tr td {
                 width: 75px;
+            }
+
+            #score .alternatives td.name:hover {
+                cursor: pointer;
+            }
+
+            #score .alternatives td.fav {
+                width: 44px;
+                height: 50px;
+                top: 0;
+                left: -30px;
+            }
+
+            #score .alternatives td.hover {
+                background: url(../../images/bg/icons.png) 0 -1990px no-repeat;
+                opacity: 0.4;
+            }
+
+            #score .alternatives td.selected {
+                background: url(../../images/bg/icons.png) 0 -1990px no-repeat;
+                opacity: 1;
             }
 
 /* Score Sidebar

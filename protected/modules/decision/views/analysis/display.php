@@ -38,7 +38,8 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <table class="alternatives">
                 <?php foreach($bestAlternatives as $A) { ?>
                 <tr>
-                    <td><?php echo CHtml::encode($A->title); ?></td>
+                    <td class="fav"></td>
+                    <td class="name" id="<?php echo $A->getPrimaryKey(); ?>"><?php echo CHtml::encode($A->title); ?></td>
                 </tr>
                 <?php }?>
             </table>
@@ -89,7 +90,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <table class="criteria">
                 <?php foreach($this->DecisionModel->findCriteriaByPriority() as $Criteria) { ?>
                 <tr>
-                    <td id="<?php echo $A->getPrimaryKey(); ?>"><?php echo CHtml::encode($Criteria->title); ?></td>
+                    <td><?php echo CHtml::encode($Criteria->title); ?></td>
                 </tr>
                 <?php }?>
             </table>
