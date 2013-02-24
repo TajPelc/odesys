@@ -89,7 +89,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <table class="criteria">
                 <?php foreach($this->DecisionModel->findCriteriaByPriority() as $Criteria) { ?>
                 <tr>
-                    <td><?php echo CHtml::encode($Criteria->title); ?></td>
+                    <td id="<?php echo $A->getPrimaryKey(); ?>"><?php echo CHtml::encode($Criteria->title); ?></td>
                 </tr>
                 <?php }?>
             </table>
