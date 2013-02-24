@@ -28,7 +28,7 @@
 
             <?php foreach($Decisions as $D) { ?>
                 <tr id="<?php echo $D->decision_id; ?>">
-                    <td><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html'); ?></td>
+                    <td<?php echo ($D->getActiveDecisionModel()->evaluation_complete ? '' : ' class="alert"') ?>><?php echo CHtml::link(CHtml::encode($D->title), '/decision/'. $D->decision_id . '-' . $D->label . '.html'); ?><?php echo ($D->getActiveDecisionModel()->evaluation_complete ? '' : ' (decision model incomplete)') ?></td>
                     <td><?php if($D->isPrivate()) {
                         echo 'private';
                         } elseif ($D->isPublic()) {

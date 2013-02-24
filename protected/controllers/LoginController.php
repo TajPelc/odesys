@@ -72,7 +72,7 @@ class LoginController extends Controller
             // Something went wrong, redirect to login page
             $this->redirect(array('site/index'));
         } else {
-            $this->render('index');
+            $this->render('index', array('connectToAccount' => ((bool)$this->post('isGuest') && (bool)Yii::app()->session['latest_decision_process'])));
         }
     }
 
