@@ -28,46 +28,6 @@ class PublicAction extends Action
         // custom header
         $this->getController()->customHeader = CHtml::encode(ucfirst($this->getController()->Decision->title));
 
-        // ajax
-        if(Ajax::isAjax())
-        {
-            switch(true)
-            {
-                // new comment
-                case isset($_POST['comment_new']):
-                {
-                    // create new opinion
-                    $Opinion = new Opinion();
-                    $Opinion->rel_user_id = Yii::app()->user->id;
-                    $Opinion->rel_decision_id = $this->getController()->Decision->getPrimaryKey();
-                    $Opinion->opinion = $this->post('comment_new');
-
-                    // save
-                    if(!$Opinion->save())
-                    {
-                        // oops, errors
-                        Ajax::respondError($Opinion->getErrors());
-                    }
-
-                    // all good
-                    Ajax::respondOk(array(
-                        'opinion' => $this->renderPartial('_opinion', array('models' => array($Opinion)), true),
-                    ));
-                }
-                // get more comments
-                case isset($_POST['showMore']):
-                {
-                    $pageNr = $this->post('opinionPage') ? $this->post('opinionPage') : 0;
-                    $rv = $this->getController()->Decision->getAllOpinions($pageNr);
-
-                    Ajax::respondOk(array(
-                        'more' => $this->renderPartial('_opinion', array('models' => $rv['models']), true),
-                        'pageCount' => $rv['pagination']->getPageCount(),
-                    ));
-                }
-            }
-        }
-
         //include script files
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.8.2.custom.min.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/raphael-min-2.0.js');
@@ -114,11 +74,6 @@ class PublicAction extends Action
                 'opinions'				   => $this->getController()->Decision->getAllOpinions(0),
             );
         }
-        else if( $this->getController()->Decision->isOwner(User::current()->getPrimaryKey())) // not yet published and viewed by owner
-        {
-            // redirect back to publish page
-            $this->redirect(array('/decision/analysis', 'decisionId' => $this->getController()->Decision->decision_id, 'label' => $this->getController()->Decision->label));
-        }
 
         // render
         $this->render('public', $render);
@@ -145,6 +100,11 @@ class PublicAction extends Action
         $anonymous = Yii::app()->user->isGuest;
         $userMayView = false;
         $isOwner = (!$anonymous ? $this->getController()->Decision->isOwner(Common::getUser()->getPrimaryKey()) : false);
+
+        // redirect owner to the analysis page
+        if($isOwner) {
+            $this->redirect(array('/decision/analysis', 'decisionId' => $this->getController()->Decision->decision_id, 'label' => $this->getController()->Decision->label));
+        }
 
         // handle view privacy
         switch ($this->getController()->Decision->view_privacy)
@@ -179,7 +139,7 @@ class PublicAction extends Action
 
         if(!$userMayView)
         {
-            throw new CHttpException(403, 'The decision you are trying to view is private. Use the back button to return to the previous page.');
+            throw new CHttpException(403, 'The decision you are trying to view has been flagged by the owner as private. If you are the owner of this decision log in to view it from your profile or use the back button to return to the previous page.');
         }
     }
 }
