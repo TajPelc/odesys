@@ -1,4 +1,4 @@
-    <?php $this->pageTitle=Yii::app()->name . ' | Welcome'; ?>
+<?php $this->pageTitle='odesys // helping you decide'; ?>
 
     <section class="content">
         <h1>Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?</h1>

@@ -1,4 +1,4 @@
-<?php $this->pageTitle='ODESYS | About'; ?>
+<?php $this->pageTitle='About | odesys'; ?>
 <section class="content">
     <article>
         <heading>

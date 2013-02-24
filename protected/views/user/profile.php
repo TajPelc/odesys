@@ -1,4 +1,4 @@
-<?php $this->pageTitle='Profile | Decision feed'; ?>
+<?php $this->pageTitle='Profile | ' . Yii::app()->user->name; ?>
 <section class="content">
     <h1>Welcome <b><?php echo substr(Yii::app()->user->name, 0, strpos(Yii::app()->user->name, ' ')); ?></b>, thank you for logging in with your social account. You may now use all the features of odesys.</h1>
     <div>
