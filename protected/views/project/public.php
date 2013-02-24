@@ -1,9 +1,11 @@
 <?php $this->pageTitle = 'odesys | ' . CHtml::encode($this->Decision->title); ?>
 
+<?php if(isset($eval)) { ?>
 <script type="text/javascript">
     var Graph = {};
     Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
+<? } ?>
 
 <section class="content">
     <div id="accordion" class="btcf">
@@ -12,9 +14,10 @@
             <h2>― A decision model by <b><?php echo CHtml::encode($this->Decision->User->identities[0]->name); ?></b> ―</h2>
             <?php if($this->Decision->description) { ?>
             <div id="description">
-                <p><?php echo nl2br($this->Decision->description); ?></p>
+                <p><?php echo CHtml::encode(nl2br($this->Decision->description)); ?></p>
             </div>
             <?php }?>
+            <?php if(isset($eval)) { ?>
             <p><b>Score graph</b> shows you total scores for your alternatives. The best scoring alternative is at the top, having 100 points. All other alternative's scores are calculated relative to the best scoring alternative.</p>
             <div id="score" class="content">
                 <table class="alternatives">
@@ -41,7 +44,14 @@
                 </table>
             </div>
             <p><b><?php echo CHtml::encode($first->title); ?></b> scores the highest with a lead of <b><?php echo $difference; ?> points</b> compared to <b><?php  echo CHtml::encode($second->title); ?></b></p>
+            <?php } else { ?>
+                <h1>Evaluation not yet complete ...</h1>
+                <div id="description">
+                    <p>The owner of this decision has yet to complete the evaluation process. Please check back at a later time. If you are the owner of this decision, log in and continue the process under your profile.</p>
+                </div>
+            <?php } ?>
         </div>
+        <?php if(isset($eval)) { ?>
         <div>
             <p>This is <b>Detailed comparison graph</b> which shows alternative profiles based on your evaluation. By comparing the data points at each criteria you are able to see how each alternative compares to others. You can add or remove alternatives from the graph. Do you still think the first one is the best?</p>
             <div id="abacon-sidebar" class="sidebar">
@@ -93,6 +103,7 @@
             </div>
         </div>
     </div>
+    <?php } ?>
     <div id="sns" class="btcf">
         <ul>
             <li><a id="share_facebook" target="_blank" href="https://www.facebook.com/sharer.php?u=<?php echo Yii::app()->request->hostInfo; ?><?php echo CHtml::encode('/decision/'. $this->Decision->decision_id . '-' . $this->Decision->label . '.html'); ?>&amp;t=<?php echo CHtml::encode($this->Decision->title); ?>">Facebook</a></li>

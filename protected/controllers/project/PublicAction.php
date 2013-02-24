@@ -70,8 +70,7 @@ class PublicAction extends Action
                 'first'                    => $firstAlternative,
                 'second'                   => $secondAlternative,
                 'difference'               => ($firstAlternative->weightedScore > 0 ? (number_format((1 - ($secondAlternative->weightedScore / $firstAlternative->weightedScore )) * 100, 2)) : 0),
-                'enableComments'           => !Yii::app()->user->isGuest,
-                'opinions'				   => $this->getController()->Decision->getAllOpinions(0),
+                'opinions'				   => $this->getController()->Decision->getAllOpinions(0)
             );
         }
 
