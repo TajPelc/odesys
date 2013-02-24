@@ -23,6 +23,13 @@ class AnalysisController extends DecisionController
 
         if(Ajax::isAjax())
         {
+            // favourite alternative
+            if($this->post('favourite') && $this->post('alternative')) {
+                $model = $this->Decision->getActiveDecisionModel();
+                $model->preferred_alternative = $this->post('alternative');
+                $model->save();
+                Ajax::respondOk();
+            }
             // save description
             if($this->post('description'))
             {
