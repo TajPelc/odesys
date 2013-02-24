@@ -1,11 +1,10 @@
 <?php $this->pageTitle=CHtml::encode($e->title); ?>
 
-<div id="heading">
-    <h2><?php echo CHtml::encode($e->title); ?></h2>
-</div>
-
-<div id="content">
+<section class="content">
+    <heading>
+        <h1><?php echo CHtml::encode($e->title); ?></h1>
+    </heading>
     <div class="error">
         <?php echo CHtml::encode($e->message); ?>
     </div>
-</div>
+</section>

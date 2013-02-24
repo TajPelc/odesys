@@ -11,7 +11,6 @@
                     <header>
                         <h2>Who we are</h2>
                     </header>
-                    <p>ODESYS is a web-based decision support system that augments the user's decision-making process.</p>
                     <p>We utilize the power of social networking to increase ones insight into the decision problem being analyzed by inviting other people to look at it from an independent or unbiased point of view. </p>
                 </article>
             </li>
@@ -20,7 +19,8 @@
                     <header>
                         <h2>What we do</h2>
                     </header>
-                    <p>Our application will guide you through the decision-making process. We provide the tool you need to analyse your alternatives and weigh your options. The decision is then up to you.</p>
+                    <p>We provide the tools you need to analyse your alternatives and weigh your options and our application will guide you through the decision-making process step-by-step.  The decision is then up to you.</p>
+                    <p style="display: none;">Odesys is a web-based decision support system that augments the user's decision-making process.</p>
                 </article>
             </li>
             <li>

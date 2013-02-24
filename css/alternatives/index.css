@@ -165,11 +165,12 @@
 #sidebar h2 {
     font-size: 18px;
     padding-top: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 26px;
 }
 
 #sidebar p {
     margin-bottom: 8px;
     line-height: 16px;
     color: #9d9fa3;
+    font-style: italic;
 }
