@@ -53,6 +53,7 @@ class PublicAction extends Action
                     Ajax::respondOk(array(
                         'opinion' => $this->renderPartial('_opinion', array('models' => array($Opinion)), true),
                     ));
+                    break;
                 }
                 // get more comments
                 case isset($_POST['showMore']):
@@ -64,6 +65,7 @@ class PublicAction extends Action
                         'more' => $this->renderPartial('_opinion', array('models' => $rv['models']), true),
                         'pageCount' => $rv['pagination']->getPageCount(),
                     ));
+                    break;
                 }
             }
         }
@@ -114,11 +116,6 @@ class PublicAction extends Action
                 'opinions'				   => $this->getController()->Decision->getAllOpinions(0),
             );
         }
-        else if( $this->getController()->Decision->isOwner(User::current()->getPrimaryKey())) // not yet published and viewed by owner
-        {
-            // redirect back to publish page
-            $this->redirect(array('/decision/analysis', 'decisionId' => $this->getController()->Decision->decision_id, 'label' => $this->getController()->Decision->label));
-        }
 
         // render
         $this->render('public', $render);
@@ -145,6 +142,11 @@ class PublicAction extends Action
         $anonymous = Yii::app()->user->isGuest;
         $userMayView = false;
         $isOwner = (!$anonymous ? $this->getController()->Decision->isOwner(Common::getUser()->getPrimaryKey()) : false);
+
+        // redirect owner to the analysis page
+        if($isOwner) {
+            $this->redirect(array('/decision/analysis', 'decisionId' => $this->getController()->Decision->decision_id, 'label' => $this->getController()->Decision->label));
+        }
 
         // handle view privacy
         switch ($this->getController()->Decision->view_privacy)
@@ -179,7 +181,7 @@ class PublicAction extends Action
 
         if(!$userMayView)
         {
-            throw new CHttpException(403, 'The decision you are trying to view is private. Use the back button to return to the previous page.');
+            throw new CHttpException(403, 'The decision you are trying to view has been flagged by the owner as private. If you are the owner of this decision log in to view it from your profile or use the back button to return to the previous page.');
         }
     }
 }
