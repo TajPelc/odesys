@@ -72,6 +72,9 @@ section.content dl {
             margin-top: 3px;
             display: block;
             float: left;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
         }
 
         section.content dl dt a {
