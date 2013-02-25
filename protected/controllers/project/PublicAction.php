@@ -40,11 +40,6 @@ class PublicAction extends Action
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
         //Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/analysis/index.css');
 
-        // add meta tag
-        Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->title), NULL, NULL, array('property'=>'og:title'));
-        Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->getController()->Decision->description), NULL, NULL, array('property'=>'og:description'));
-        Yii::app()->clientScript->registerMetaTag(CHtml::encode(Common::getBaseURL().'/images/introduction.png'), NULL, NULL, array('property'=>'og:image'));
-
         // load decision model
         $this->getController()->DecisionModel = $this->getController()->Decision->getLatestEvaluatedDecisionModel();
 

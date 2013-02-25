@@ -1,4 +1,18 @@
-<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ', a decision model by ' . CHtml::encode($this->Decision->User->identities[0]->name) . ' | odesys'; ?>
+<?php $this->pageTitle = CHtml::encode($this->Decision->title) . ', a decision model by ' . CHtml::encode($this->Decision->User->getName()) . ' | odesys'; ?>
+
+<?php Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->Decision->description) . ' | odesys', NULL, NULL, array('property'=>'description')); ?>
+
+<?php Yii::app()->clientScript->registerMetaTag(CHtml::encode(ucfirst($this->Decision->title)), NULL, NULL, array('property'=>'og:title')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('en_US', NULL, NULL, array('property'=>'og:locale')); ?>
+<?php Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->Decision->description) . ' | odesys', NULL, NULL, array('property'=>'og:description')); ?>
+<?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL() . $this->Decision->getPublicLink(), NULL, NULL, array('property'=>'og:url')); ?>
+<?php Yii::app()->clientScript->registerMetaTag(CHtml::encode($this->Decision->title) . ', a decision model by ' . CHtml::encode($this->Decision->User->getName()) . ' | odesys', NULL, NULL, array('property'=>'og:site_name')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('website', NULL, NULL, array('property'=>'og:type')); ?>
+<?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL() . '/images/logo_big.png', NULL, NULL, array('property'=>'og:image')); ?>
+
+<?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, Common::getBaseURL() . $this->Decision->getPublicLink(), NULL, array('rel'=>'canonical')); ?>
+<?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, 'https://plus.google.com/112275384094460979880/', NULL, array('rel'=>'publisher')); ?>
+
 
 <?php if(isset($eval)) { ?>
 <script type="text/javascript">

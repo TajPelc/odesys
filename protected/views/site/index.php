@@ -1,9 +1,26 @@
 <?php $this->pageTitle='odesys // helping you decide'; ?>
 
+<?php Yii::app()->clientScript->registerMetaTag('Decision Making, Visual Engine, Decision Tool, Social Networking, Solving Decision Problems, Helping You Decide, Web-based Decision Support System, Decision-Making Made Easy', NULL, NULL, array('property'=>'description')); ?>
+
+<?php Yii::app()->clientScript->registerMetaTag('odesys // helping you decide | Decision Tool | Decision Support System', NULL, NULL, array('property'=>'og:title')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('en_US', NULL, NULL, array('property'=>'og:locale')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('Decision Making, Visual Engine, Decision Tool, Social Networking, Solving Decision Problems, Helping You Decide, Web-based Decision Support System, Decision-Making Made Easy', NULL, NULL, array('property'=>'og:description')); ?>
+<?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL(), NULL, NULL, array('property'=>'og:url')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('homepage', NULL, NULL, array('property'=>'og:site_name')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('website', NULL, NULL, array('property'=>'og:type')); ?>
+<?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL() . '/images/logo_big.png', NULL, NULL, array('property'=>'og:image')); ?>
+
+<?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, Common::getBaseURL(), NULL, array('rel'=>'canonical')); ?>
+<?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, 'https://plus.google.com/112275384094460979880/', NULL, array('rel'=>'publisher')); ?>
+
     <section class="content">
         <h1>Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?</h1>
         <div>
-            <?php echo CHtml::link('begin your journey', array('/site/login/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
+            <?php if(Yii::app()->user->isGuest) { ?>
+                <?php echo CHtml::link('begin your journey', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'begin your journey', 'rel' => 'nofollow')); ?>
+            <?php } else { ?>
+                <?php echo CHtml::link('begin your journey', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
+            <?php } ?>
         </div>
         <ul class="btcf">
             <li>
@@ -19,7 +36,7 @@
                     <header>
                         <h2>What we do</h2>
                     </header>
-                    <p>We provide the tools you need to analyse your alternatives and weigh your options and our application will guide you through the decision-making process step-by-step.  The decision is then up to you.</p>
+                    <p>Our application will guide you through the decision-making process step-by-step. We provide the tools, you need to analyse your alternatives and weigh your options. The decision is then up to you.</p>
                     <p style="display: none;">Odesys is a web-based decision support system that augments the user's decision-making process.</p>
                 </article>
             </li>
@@ -44,10 +61,10 @@
             <li>
                 <article>
                     <header>
-                        <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo $d->getPublicLink(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
+                        <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . ' by ' . $d->User->getName(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
                     </header>
                     <aside>
-                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo $d->getPublicLink(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="" /></a>
+                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . ' by ' . $d->User->getName(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="" /></a>
                     </aside>
                 </article>
             </li>
