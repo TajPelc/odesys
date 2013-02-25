@@ -3,7 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="language" content="en" />
-        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="/images/icon/favicon.ico" />
+
+        <link rel="apple-touch-icon" href="/images/icon/touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/icon/touch-icon-iphone-retina.png.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/images/icon/touch-icon-ipad.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/images/icon/touch-icon-iphone-retina.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/images/icon/touch-icon-ipad-retina.png" />
+
+        <link rel="icon" href="/images/icon/favicon.ico" sizes="16x16 32x32 48x48 64x64" type="image/vnd.microsoft.icon" />
 
         <!-- CSS Core -->
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/reset.css" />
