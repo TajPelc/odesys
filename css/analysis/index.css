@@ -325,6 +325,10 @@
                 top: 1px;
             }
 
+            #score .alternatives tr.public td.selected + td.name {
+                top: 2px;
+            }
+
 /* Score Sidebar
 ********************************************************/
 #score-sidebar {
