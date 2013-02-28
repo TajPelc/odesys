@@ -1,0 +1,87 @@
+/*
+ --> Index css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+/* Content
+********************************************************/
+section.content {
+    margin-bottom: 24px;
+    line-height: 16px;
+}
+
+section.content #content {
+    float: left;
+    width: 648px;
+}
+
+section.content article {
+    margin-bottom: 24px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #DEDFE3;
+}
+section.content article:last-child {
+    border-bottom: none;
+}
+
+    section.content header {
+        margin-bottom: 16px;
+    }
+        section.content header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            line-height: normal;
+        }
+        section.content header p {
+            font-size: 11px;
+            color: #9D9FA3;
+            font-style: italic;
+            line-height: 16px;
+            margin-bottom: 16px;
+            padding-left: 20px;
+        }
+
+    section.content div p {
+        margin-bottom: 8px;
+    }
+        section.content div p:last-child {
+            margin-bottom: 0;
+        }
+
+/* Sidebar
+********************************************************/
+
+section.content aside {
+    float: right;
+    line-height: 16px;
+    padding: 0 10px 8px;
+    width: 234px;
+}
+    section.content aside h2 {
+        margin-bottom: 8px;
+        padding-top: 4px;
+        line-height: 24px;
+        font-size: 16px;
+    }
+
+/* Breadcrumbs
+********************************************************/
+#main header.content + nav {
+    width: 100%;
+    padding: 20px 0;
+    margin-bottom: 40px;
+    background: #f8f9fb;
+    font-size: 14px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #eeeff1;
+    box-shadow: 0px -1px 0px #eeeff1;
+}
+
+#main nav div {
+    width: 920px;
+    padding: 0 20px;
+    margin: 0 auto;
+    font-style: italic;
+    font-family: Times,Helvetica,sans-serif;
+}
