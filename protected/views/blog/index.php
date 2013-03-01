@@ -23,8 +23,8 @@
     <div id="content">
         <article>
             <header>
-                <h1><?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?></h1>
-                <p>Posted by Taj Pelc on Feb 18th, 2013</p>
+                <h1><span><b>18</b>FEB</span><?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?></h1>
+                <p>Author: Taj Pelc, 2013</p>
             </header>
             <div>
                 <p>Making good decisions is hard, yet most of us consider ourselves to be good decision makers. After all we make decisions every day, most of them without much effort. But there are times when looking at the past when you can’t help thinking how you should have done something different. How to do it better?</p>
@@ -33,8 +33,8 @@
 
         <article>
             <header>
-                <h1>Lorem ipsum dolor sit amet</h1>
-                <p>Posted by Taj Pelc on Jan 11th, 2013</p>
+                <h1><span><b>11</b>JAN</span> Lorem ipsum dolor sit amet</h1>
+                <p>Author: Frenk T. Sedmak Nahtigal, 2013</p>
             </header>
             <div>
                 <p>Nam ullamcorper luctus suscipit. Praesent elementum, risus non lobortis fringilla, est urna lobortis elit, non iaculis ipsum augue ac massa. Integer mollis ultricies est eget tincidunt. Aliquam erat volutpat. Integer eu mauris et eros ultricies hendrerit vitae quis libero. Proin lacinia pulvinar ante, quis facilisis nisl pretium vitae.</p>

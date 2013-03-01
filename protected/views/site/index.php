@@ -26,18 +26,25 @@
             <li>
                 <article>
                     <header>
-                        <h2>Who we are</h2>
+                        <h2>What we do</h2>
                     </header>
                     <p>We utilize the power of social networking to increase ones insight into the decision problem being analyzed by inviting other people to look at it from an independent or unbiased point of view. </p>
+                    <p>Our application will guide you through the decision-making process step-by-step. We provide the tools, you need to analyse your alternatives and weigh your options. The decision is then up to you.</p>
+                    <p style="display: none;">Odesys is a web-based decision support system that augments the user's decision-making process.</p>
                 </article>
             </li>
             <li>
                 <article>
                     <header>
-                        <h2>What we do</h2>
+                        <h2><?php echo CHtml::link('Blog & Tips', array('/blog/'), array('title'=>'Blog | odesys')); ?></h2>
+                        <p>Recent posts:</p>
+                        <ul>
+                            <li>
+                                <span><b>18</b>FEB</span>
+                                <?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?> by Taj Pelc
+                            </li>
+                        </ul>
                     </header>
-                    <p>Our application will guide you through the decision-making process step-by-step. We provide the tools, you need to analyse your alternatives and weigh your options. The decision is then up to you.</p>
-                    <p style="display: none;">Odesys is a web-based decision support system that augments the user's decision-making process.</p>
                 </article>
             </li>
             <li>
@@ -46,6 +53,7 @@
                         <h2>Mission Statement</h2>
                     </header>
                     <p>By utilizing the power of our visual engine and by enlisting help from the people you trust the quality of your decisions is sure to improve.</p>
+                    <p>Helping you decide.</p>
                 </article>
             </li>
         </ul>

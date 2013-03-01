@@ -1,5 +1,5 @@
 /*
- --> Index css
+ --> Blog index css
  --> @author:     Frenk T. Sedmak Nahtigal
  --> @version:    3.0
 */
@@ -30,16 +30,39 @@ section.content article:last-child {
     }
         section.content header h1 {
             font-size: 24px;
-            margin-bottom: 8px;
+            margin-bottom: -1px;
             line-height: normal;
+            padding-left: 56px;
+            position: relative;
         }
+            section.content header h1 span {
+                width: 36px;
+                height: 29px;
+                padding-top: 7px;
+                display: block;
+                position: absolute;
+                top: 5px;
+                left: 0;
+                font-size: 11px;
+                line-height: 12px;
+                text-align: center;
+                font-family: Arial,Helvetica,sans-serif;
+                font-style: normal;
+                background: url(../../images/icon/date.png) top left no-repeat;
+            }
+                section.content header h1 span b {
+                    display: block;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+
         section.content header p {
             font-size: 11px;
             color: #9D9FA3;
             font-style: italic;
             line-height: 16px;
             margin-bottom: 16px;
-            padding-left: 20px;
+            padding-left: 66px;
         }
 
     section.content div p {

@@ -5,12 +5,12 @@
 <?php Yii::app()->clientScript->registerMetaTag('[Article] A different approach to decision making', NULL, NULL, array('property'=>'og:title')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('en_US', NULL, NULL, array('property'=>'og:locale')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('Making good decisions is hard, yet most of us consider ourselves to be good decision makers. After all we make decisions every day, most of them without much effort. But there are times when looking at the past when you can’t help thinking how you should have done something different. How to do it better?', NULL, NULL, array('property'=>'og:description')); ?>
-<?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL(), NULL, NULL, array('property'=>'og:url')); ?>
-<?php Yii::app()->clientScript->registerMetaTag('blog', NULL, NULL, array('property'=>'og:site_name')); ?>
+<?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL() . Yii::app()->request->requestUri, NULL, NULL, array('property'=>'og:url')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('blog post', NULL, NULL, array('property'=>'og:site_name')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('website', NULL, NULL, array('property'=>'og:type')); ?>
 <?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL() . '/images/logo_big.png', NULL, NULL, array('property'=>'og:image')); ?>
 
-<?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, Common::getBaseURL(), NULL, array('rel'=>'canonical')); ?>
+<?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, Common::getBaseURL() . Yii::app()->request->requestUri, NULL, array('rel'=>'canonical')); ?>
 <?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, 'https://plus.google.com/112275384094460979880/', NULL, array('rel'=>'publisher')); ?>
 
 <nav>
