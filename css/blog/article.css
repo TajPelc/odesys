@@ -50,3 +50,44 @@ section.content article {
         font-style: italic;
         font-family: Times,Helvetica,sans-serif;
     }
+
+/* SNS
+********************************************************/
+#sns {
+    background: url("../../images/bg/index_button.png") no-repeat scroll 0 11px transparent;
+    float: left;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+#sns ul {
+    width: 232px;
+    margin: 0 auto;
+}
+#sns ul li {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+}
+#sns ul li:last-child {
+    margin-right: 0;
+}
+
+#sns li a {
+    width: 32px;
+    height: 32px;
+    margin-top: 4px;
+    display: block;
+    text-indent: -9999px;
+    outline: none;
+}
+
+#sns #share_facebook    { background: url(../../images/social/facebook-32x32.png) no-repeat }
+#sns #share_twitter     { background: url(../../images/social/twitter-32x32.png) no-repeat }
+#sns #share_digg        { background: url(../../images/social/digg-32x32.png) no-repeat }
+#sns #share_reddit      { background: url(../../images/social/reddit-32x32.png) no-repeat }
+#sns #share_stumbleupon { background: url(../../images/social/facebook-32x32.png) no-repeat }
+#sns #share_google      { background: url(../../images/social/google+-32x32.png) no-repeat }
+#sns #share_linkedin    { background: url(../../images/social/linkedin-32x32.png) no-repeat }
