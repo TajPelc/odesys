@@ -26,8 +26,14 @@
                 <h1><span><b>18</b>FEB</span><?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?></h1>
                 <p>Author: Taj Pelc, 2013</p>
             </header>
-            <div>
-                <p>Making good decisions is hard, yet most of us consider ourselves to be good decision makers. After all we make decisions every day, most of them without much effort. But there are times when looking at the past when you can’t help thinking how you should have done something different. How to do it better?</p>
+            <div class="btcf">
+                <div class="img">
+                    <img src="/images/article/1_150.png" title="" alt="" />
+                    photo credit: <a href="http://www.flickr.com/photos/jdhancock/3842546304/">JD Hancock</a> via <a href="http://photopin.com">photopin</a> <a href="http://creativecommons.org/licenses/by/2.0/">cc</a>
+                </div>
+                <p>Making good decisions is hard, yet most of us consider ourselves to be good decision makers. After all we make decisions every day, most of them without much effort.</p>
+                <p>But there are times when looking at the past when you can’t help thinking how you should have done something different.</p>
+                <p>How to do it better?</p>
             </div>
         </article>
 
