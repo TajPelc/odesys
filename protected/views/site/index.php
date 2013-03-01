@@ -22,6 +22,7 @@
                 <?php echo CHtml::link('begin your journey', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
             <?php } ?>
         </div>
+        <iframe width="940" height="529" src="http://www.youtube-nocookie.com/embed/Zfb3AwJynpw?rel=0&hd=1&vq=hd720" frameborder="0" allowfullscreen></iframe>
         <ul class="btcf">
             <li>
                 <article>

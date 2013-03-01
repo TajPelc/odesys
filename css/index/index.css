@@ -79,6 +79,10 @@ section.content {
                 background: url(../../images/bg/icons.png) 16px -400px no-repeat;
             }
 
+    section.content iframe {
+        margin-bottom: 40px;
+    }
+
 /* Button: begin your journey
 ********************************************************/
     section.content > div {
