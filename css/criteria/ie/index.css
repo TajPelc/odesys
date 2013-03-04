@@ -1,0 +1,22 @@
+#content > form ol li.placeholder div {
+    width: 559px; /*fake it*/
+}
+
+#content > form input[type="text"] {
+    width: 471px !important;
+}
+
+#content > form #newCriteria {
+    width: 565px !important; /*650px*/
+    padding-right: 20px;
+}
+
+#content > form span.drag {
+    width: 46px;
+    height: 40px;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 65px;
+    border: none;
+}

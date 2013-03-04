@@ -66,8 +66,8 @@
                 <ul class="btcf">
                     <li><?php echo CHtml::link('blog', array('/blog/'), array('title'=>'blog')); ?> / </li>
                     <li><?php echo CHtml::link('about us', array('/site/about/'), array('title'=>'about us')); ?> / </li>
-                    <li><?php echo CHtml::link('terms & conditions', array('/site/terms/'), array('title'=>'terms & conditions')); ?> / </li>
-                    <li><?php echo CHtml::link('contact', array('/site/contact/'), array('title'=>'contact')); ?></li>
+                    <li><?php echo CHtml::link('contact', array('/site/contact/'), array('title'=>'contact')); ?> / </li>
+                    <li><?php echo CHtml::link('terms & conditions', array('/site/terms/'), array('title'=>'terms & conditions')); ?></li>
                 </ul>
             </nav>
         </footer>

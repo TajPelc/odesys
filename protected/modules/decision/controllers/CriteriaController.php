@@ -17,9 +17,10 @@ class CriteriaController extends DecisionController
     {
         // add style files
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/projectMenu.css');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/heading.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/criteria/index.css');
+
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/criteria/ie/index.css', 'screen, projection', 'lt IE 8');
 
         // javascript
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery.color.js');

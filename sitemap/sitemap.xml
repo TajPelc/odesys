@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <url>
+        <loc>http://odesys.si/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+        <changefreq>always</changefreq>
+    </url>
+
+    <!-- STATIC -->
+    <url>
+        <loc>http://odesys.si/login/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/site/about/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/site/terms/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/site/contact/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+
+    <!-- BLOG & ARTICLES -->
+    <url>
+        <loc>http://odesys.si/blog/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/blog/different-approach-to-decision-making/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+
+    <!-- DECISIONS -->
+    <url>
+        <loc>http://odesys.si/decision/95-what-should-i-do-with-my-spare-time.html</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/91-lol-which-character-should-i-pick.html</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/86-demo-buying-a-car.html</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+
+</urlset>
