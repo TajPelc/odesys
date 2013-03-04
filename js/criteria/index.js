@@ -6,11 +6,11 @@
 Criteria = {};
 
 Criteria.FormAddButton = function(that){
-    that.after('<span class="add">+</span>');
+    that.after('<span class="add" onclick = "void(0)">+</span>');
 }
 
 Criteria.FormListButtons = function(that){
-    that.parent().append('<span class="remove">&ndash;</span>');
+    that.parent().append('<span class="remove" onclick = "void(0)">&ndash;</span>');
     that.parent().append('<span class="drag">&nbsp;<span></span></span>');
 }
 
