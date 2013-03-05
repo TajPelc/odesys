@@ -1,10 +1,10 @@
 <?php $this->pageTitle='Blog | odesys'; ?>
 
-<?php Yii::app()->clientScript->registerMetaTag('Decision Making, Visual Engine, Decision Tool, Social Networking, Solving Decision Problems, Helping You Decide, Web-based Decision Support System, Decision-Making Made Easy', NULL, NULL, array('property'=>'description')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('Learning from our mistakes, A different approach to decision making, Decision-making Articles, Decision-making Blog', NULL, NULL, array('property'=>'description')); ?>
 
-<?php Yii::app()->clientScript->registerMetaTag('odesys // helping you decide | Decision Tool | Decision Support System', NULL, NULL, array('property'=>'og:title')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('Blog | odesys', NULL, NULL, array('property'=>'og:title')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('en_US', NULL, NULL, array('property'=>'og:locale')); ?>
-<?php Yii::app()->clientScript->registerMetaTag('Decision Making, Visual Engine, Decision Tool, Social Networking, Solving Decision Problems, Helping You Decide, Web-based Decision Support System, Decision-Making Made Easy', NULL, NULL, array('property'=>'og:description')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('Learning from our mistakes, A different approach to decision making, Decision-making Articles, Decision-making Blog', NULL, NULL, array('property'=>'og:description')); ?>
 <?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL(), NULL, NULL, array('property'=>'og:url')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('blog', NULL, NULL, array('property'=>'og:site_name')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('website', NULL, NULL, array('property'=>'og:type')); ?>

@@ -27,7 +27,7 @@
             <li>
                 <article>
                     <header>
-                        <h2>What we do</h2>
+                        <h2><?php echo CHtml::link('What we do', array('site/about'), array('title'=>'About us | odesys')); ?></h2>
                     </header>
                     <p>We utilize the power of social networking to increase ones insight into the decision problem being analyzed by inviting other people to look at it from an independent or unbiased point of view. </p>
                     <p>Our application will guide you through the decision-making process step-by-step. We provide the tools, you need to analyse your alternatives and weigh your options. The decision is then up to you.</p>
@@ -55,7 +55,7 @@
             <li>
                 <article>
                     <header>
-                        <h2>Mission Statement</h2>
+                        <h2><?php echo CHtml::link('Mission Statement', array('site/about'), array('title'=>'About us | odesys')); ?></h2>
                     </header>
                     <p>By utilizing the power of our visual engine and by enlisting help from the people you trust the quality of your decisions is sure to improve.</p>
                     <p>Helping you decide.</p>
