@@ -87,7 +87,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
             <ul class="legend">
                 <?php $i = 0; ?>
                 <?php foreach($bestAlternatives as $A) {?>
-                <li id="alternative_<?php echo $A->alternative_id; ?>"><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode(Common::truncate($A->title, 32)); ?><span class="remove">X</span></li>
+                <li id="alternative_<?php echo $A->alternative_id; ?>"><span class="color" style="background-color: <?php echo $A->color; ?>">&nbsp;</span><?php echo CHtml::encode(Common::truncate($A->title, 32)); ?><span class="remove" onclick="void(0)">X</span></li>
                 <?php if($i == 1) break; ?>
                 <?php $i++;?>
                 <?php }?>

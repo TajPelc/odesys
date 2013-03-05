@@ -318,7 +318,7 @@ Abacon.Legend.displayFromDropdown = function()
         Abacon.Legend.rebuildDropdown();
 
         // create span
-        var x = $('<span>X</span>')
+        var x = $('<span onclick="void(0)">X</span>')
             .addClass('remove')
             .css({'display': 'block'})
             .hide();
