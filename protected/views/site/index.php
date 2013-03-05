@@ -41,6 +41,10 @@
                         <p>Recent posts:</p>
                         <ul>
                             <li>
+                                <span><b>6</b>MAR</span>
+                                <?php echo CHtml::link('Learning from our mistakes', array('/blog/learning-from-our-mistakes/'), array('title'=>'Article | Learning from our mistakes')); ?> by Frenk T. Sedmak Nahtigal
+                            </li>
+                            <li>
                                 <span><b>18</b>FEB</span>
                                 <?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?> by Taj Pelc
                             </li>
