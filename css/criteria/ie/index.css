@@ -1,5 +1,5 @@
 #content > form ol li.placeholder div {
-    width: 559px; /*fake it*/
+    width: 559px !important; /*fake it*/
 }
 
 #content > form input[type="text"] {
@@ -8,15 +8,15 @@
 
 #content > form #newCriteria {
     width: 565px !important; /*650px*/
-    padding-right: 20px;
+    padding-right: 20px !important;
 }
 
 #content > form span.drag {
-    width: 46px;
+    width: 46px !important;
     height: 40px;
     display: block;
     position: absolute;
     top: 0px;
-    left: 65px;
+    left: 65px !important;
     border: none;
 }

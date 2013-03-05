@@ -18,8 +18,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/layout.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/auth.css" />
 
-        <!--[if lt IE 8]>
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core/ie/layout.css" media="screen, projection" />
+        <!--[if lte IE 9]>
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/criteria/ie/index.css" media="screen, projection" />
+
         <![endif]-->
 
         <!-- JavaScript Core -->

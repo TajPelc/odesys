@@ -20,8 +20,6 @@ class CriteriaController extends DecisionController
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/content-nav.css');
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/criteria/index.css');
 
-        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/criteria/ie/index.css', 'screen, projection', 'lt IE 8');
-
         // javascript
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery.color.js');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/core/jquery-ui-1.10.1.custom.min.js');
