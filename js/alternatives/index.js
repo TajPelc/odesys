@@ -50,7 +50,7 @@ Alternatives.SaveInput = function(that, add) {
                 if (add){
                     if(data['status'] == true){
                         //here be returned shite
-                        $('#content form ol').append('<li><input type="text" id="alternative_'+data['alternative_id']+'" name="" value="'+that.val()+'" /><span class="remove">&ndash;</span></li>');
+                        $('#content form ol').append('<li><input type="text" id="alternative_'+data['alternative_id']+'" name="" value="'+that.val()+'" /><span class="remove"  onclick ="void(0)">&ndash;</span></li>');
                         that.focus();
                         that.val('');
                         //remove preloader

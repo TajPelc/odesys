@@ -11,7 +11,7 @@ Criteria.FormAddButton = function(that){
 
 Criteria.FormListButtons = function(that){
     that.parent().append('<span class="remove" onclick = "void(0)">&ndash;</span>');
-    that.parent().append('<span class="drag">&nbsp;<span></span></span>');
+    that.parent().append('<span class="drag" onclick = "void(0)">&nbsp;<span></span></span>');
 }
 
 Criteria.FormErrorReporting = function(that, text){
@@ -51,7 +51,7 @@ Criteria.SaveInput = function(that, add) {
                 if (add){
                     if(data['status'] == true){
                         // here be returned shite
-                        $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove">&ndash;</span><span class="drag">&nbsp;<span></span></span></li>');
+                        $('#content form ol').append('<li id="criteria_'+data['criteria_id']+'"><input type="text" id="criteria_'+data['criteria_id']+'" name="" value="'+that.val()+'" /><span class="remove" onclick ="void(0)">&ndash;</span><span class="drag" onclick ="void(0)">&nbsp;<span></span></span></li>');
                         that.focus();
                         that.val('');
                         //remove preloader
@@ -258,20 +258,16 @@ $(document).ready(function(){
         stop: function() {
             Criteria.handleListFontSize($('#content form ol li'));
         }
-    }).touch({
-        animate: false,
-        sticky: false,
-        dragx: true,
-        dragy: true,
-        rotate: false,
-        resort: true,
-        scale: false
+    });
+
+    $('#content form ol .drag').live('click', function(){
+        return false;
     });
 
     // update the position of criteria
     $('#content form ol').live( 'sortupdate', function(event, ui) {
         $.post(location.href, {
-            criteriaOrder: $(this).sortable('toArray').toString(),
+            criteriaOrder: $(this).sortable('toArray').toString()
         });
     });
 

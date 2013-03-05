@@ -24,7 +24,6 @@
 
         <!-- JavaScript Core -->
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/core/jquery-1.5.1.min.js"></script>
-        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/core/jquery-ui-1.8.2.custom.min.js"></script>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/core/index.js"></script>
 
         <!-- Additional Includes -->
