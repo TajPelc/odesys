@@ -23,6 +23,20 @@
     <div id="content">
         <article>
             <header>
+                <h1><span><b>6</b>MAR</span><?php echo CHtml::link('Learning from our mistakes', array('/blog/learning-from-our-mistakes/'), array('title'=>'Article | Learning from our mistakes')); ?></h1>
+                <p>Author: Frenk T. Sedmak Nahtigal, 2013</p>
+            </header>
+            <div class="btcf">
+                <div class="img">
+                    <img src="/images/article/2_150.png" title="" alt="" />
+                    photo credit: <a href="http://cybersocialstructure.org/2012/04/23/double-loop-learning-as-an-outcome-of-double-loop-governance/">Bruce Caron</a> via <a href="http://cybersocialstructure.org/">cybersocialstructure.org</a></a>
+                </div>
+                <p>Often in life we follow patterns, repetitions of our actions as we are engaged in a single-learning loop. We see things as they appear and rush to get to the results of our actions focusing only on incremental changes. If our actions do not yield expected results, we might fine-tune our strategy or change it in hope of achieving them. But sometimes that is not enough to achieve the desired results.  We need to change the way we think, question our values, our beliefs.</p>
+            </div>
+        </article>
+
+        <article>
+            <header>
                 <h1><span><b>18</b>FEB</span><?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?></h1>
                 <p>Author: Taj Pelc, 2013</p>
             </header>
@@ -34,17 +48,6 @@
                 <p>Making good decisions is hard, yet most of us consider ourselves to be good decision makers. After all we make decisions every day, most of them without much effort.</p>
                 <p>But there are times when looking at the past when you can’t help thinking how you should have done something different.</p>
                 <p>How to do it better?</p>
-            </div>
-        </article>
-
-        <article>
-            <header>
-                <h1><span><b>11</b>JAN</span> Lorem ipsum dolor sit amet</h1>
-                <p>Author: Frenk T. Sedmak Nahtigal, 2013</p>
-            </header>
-            <div>
-                <p>Nam ullamcorper luctus suscipit. Praesent elementum, risus non lobortis fringilla, est urna lobortis elit, non iaculis ipsum augue ac massa. Integer mollis ultricies est eget tincidunt. Aliquam erat volutpat. Integer eu mauris et eros ultricies hendrerit vitae quis libero. Proin lacinia pulvinar ante, quis facilisis nisl pretium vitae.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed libero eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; </p>
             </div>
         </article>
     </div>
