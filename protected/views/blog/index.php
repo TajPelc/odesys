@@ -53,7 +53,13 @@
     </div>
 
     <aside>
-        <h2>Sidebar</h2>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h2>Follow us on:</h2>
+        <p class="btcf">
+            <a target="_blank" class="social facebook" href="https://www.facebook.com/odesys" title="odesys on Facebook">Facebook</a>
+            <a target="_blank" class="social twitter" href="https://twitter.com/DecisionTool" title="odesys on Twitter">Twitter</a>
+            <a target="_blank" class="social google" href="https://plus.google.com/112275384094460979880/" title="odesys on Google+">Google+</a>
+        </p>
+        <h2>Feedback</h2>
+        <p><?php echo CHtml::link('Tell us your thoughts about odesys or ask us a question.', array('site/contact'), array('title'=>'contact | odesys')); ?></p>
     </aside>
 </section>
