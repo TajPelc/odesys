@@ -106,4 +106,25 @@ $(document).ready(function(){
             });
         }
     });
+    $('#score table tr td.fav').click(function(){
+        if(!$(this).hasClass('selected')) {
+            $('table.alternatives td.selected').removeClass('selected');
+            $(this).addClass('selected');
+            $.ajax({
+                type: 'POST',
+                url: location.href,
+                dataType: 'json',
+                data: {
+                    'favourite' : true,
+                    'alternative' : $(this).siblings('.name').attr('id')
+                },
+                success: function(data) {
+                    if(data['status'] == true){
+                        //errors
+                    } else {
+                    }
+                }
+            });
+        }
+    });
 });

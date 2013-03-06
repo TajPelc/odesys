@@ -296,6 +296,10 @@
                 cursor: pointer;
             }
 
+                #score .alternatives tr:hover td.fav.selected {
+                    cursor: default;
+                }
+
             #score .alternatives tr.public:hover td.fav {
                 background: none;
                 cursor: default;
