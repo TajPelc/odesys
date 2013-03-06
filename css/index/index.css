@@ -70,13 +70,13 @@ section.content {
                     font-weight: bold;
                 }
                 
-            section.content ul li:nth-child(2) h2 {
+            section.content ul li:nth-child(1) h2 {
                  background: url(../../images/bg/icons.png) 23px 2px no-repeat;
             }
-            section.content ul li:nth-child(1) h2 {
+            section.content ul li:nth-child(3) h2 {
                 background: url(../../images/bg/icons.png) 10px -204px no-repeat;
             }
-            section.content ul li:nth-child(3) h2 {
+            section.content ul li:nth-child(2) h2 {
                 background: url(../../images/bg/icons.png) 16px -400px no-repeat;
             }
 

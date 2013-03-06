@@ -23,8 +23,8 @@
     <div id="content">
         <article>
             <header>
-                <h1><span><b>6</b>MAR</span><?php echo CHtml::link('Learning from our mistakes', array('/blog/learning-from-our-mistakes/'), array('title'=>'Article | Learning from our mistakes')); ?></h1>
-                <p>Author: Frenk T. Sedmak Nahtigal, 2013</p>
+                <h1><?php echo CHtml::link('Learning from our mistakes', array('/blog/learning-from-our-mistakes/'), array('title'=>'Article | Learning from our mistakes')); ?></h1>
+                <p>Author: Frenk T. Sedmak Nahtigal, 6th March 2013</p>
             </header>
             <div class="btcf">
                 <div class="img">
@@ -37,8 +37,8 @@
 
         <article>
             <header>
-                <h1><span><b>18</b>FEB</span><?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?></h1>
-                <p>Author: Taj Pelc, 2013</p>
+                <h1><?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?></h1>
+                <p>Author: Taj Pelc, 18th February 2013</p>
             </header>
             <div class="btcf">
                 <div class="img">
