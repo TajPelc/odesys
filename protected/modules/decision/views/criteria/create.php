@@ -1,7 +1,7 @@
 <?php $this->pageTitle = CHtml::encode($this->Decision->title) . ' | ' . ' Criteria'; ?>
 
 <section class="content">
-    <div id="content">
+    <div id="content" class="IE_only_ID_criteria">
         <h1>What factors influence your decision the most?</h1>
         <p>When choosing which car to buy, some sample factors would be Acceleration, Top speed, Safety, and so on. Think of some factors that apply to your decision and order them by priority from the most important to the least imporatnt.</p>
         <?php echo CHtml::beginForm('', 'post'); ?>

@@ -1,17 +1,17 @@
-#content > form ol li.placeholder div {
+.IE_only_ID_criteria > form ol li.placeholder div {
     width: 559px !important; /*fake it*/
 }
 
-#content > form input[type="text"] {
+.IE_only_ID_criteria > form input[type="text"] {
     width: 471px !important;
 }
 
-#content > form #newCriteria {
+.IE_only_ID_criteria > form #newCriteria {
     width: 565px !important; /*650px*/
     padding-right: 20px !important;
 }
 
-#content > form span.drag {
+.IE_only_ID_criteria > form span.drag {
     width: 46px !important;
     height: 40px;
     display: block;
@@ -20,3 +20,21 @@
     left: 65px !important;
     border: none;
 }
+
+#content .remove {
+    display: block !important;
+    width: 44px !important;
+    height: 38px !important;
+    background: #fdfefe; /* Old browsers */
+    background: -moz-linear-gradient(top, #fdfefe 0%, #f4f4f4 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfefe), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #fdfefe 0%,#f4f4f4 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfefe', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-9 */
+    border: 1px solid #97999d;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
