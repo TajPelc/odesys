@@ -55,16 +55,16 @@ function redirectUser(url) {
 Core.Overlay = function(html, big){
     Core.Overlay.Close();
 
-    $('body').append('<div id="overlay_bg"><div id="overlay" '+ (big ? 'class="big"' : "" ) +'>'+html+'<a href="#" class="close">X</a><div id="overlayBottom"></div></div></div>');
+    $('body').append('<div id="overlay_bg"><div id="overlay" '+ (big ? 'class="big"' : "" ) +'>'+html+'<a href="#" class="close">X</a></div></div>');
     $('#overlay').css({'left': ($(window).width()-$('#overlay').width())/2-40, 'top': '150px', 'transform': 'scale(1, 1)'});
     $('#overlay_bg').css('height', $('#wrapper').height());
 
     //delay input focus hack
-    Core.Overlay.Focus = function() {
+    /*Core.Overlay.Focus = function() {
         $('#overlay').find('input[type="text"]').focus();
     };
-    setTimeout('Core.Overlay.Focus()', 20);
-
+    setTimeout('Core.Overlay.Focus()', 200);
+    */
     $('#overlay form input[type="text"]').keypress(function(e){
         if(e.which == 13){
             $(this).parents('form').triggerHandler('submit');
@@ -309,7 +309,7 @@ $(document).ready(function() {
             });
         return false;
     });
-    $('.decisionNew').click(function(){
+    $('.decisionNew').live('click', function(){
         $.ajax({
             type: 'POST',
             url: '/project/create/',
@@ -318,6 +318,7 @@ $(document).ready(function() {
                 if(data['status'] == true)
                 {
                     Core.Overlay(data['html']);
+                    $('#overlay #title').trigger("focus");
                 }
             }
         });

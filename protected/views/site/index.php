@@ -22,8 +22,39 @@
                 <?php echo CHtml::link('begin your journey', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
             <?php } ?>
         </div>
-        <iframe width="920" height="517" src="https://www.youtube-nocookie.com/embed/BYOL0qLUn4k?rel=0&hd=1&vq=hd720&wmode=transparent&showinfo=0" frameborder="0" allowfullscreen></iframe>
-        <ul class="btcf">
+        <iframe id="promoVideo" width="920" height="518" onload="floaded()" src="https://www.youtube.com/embed/BYOL0qLUn4k?rel=0&hd=1&vq=hd720&wmode=transparent&showinfo=0" frameborder="0" allowfullscreen></iframe>
+
+        <script>
+            //onYouTubePlayerAPIReady
+            $('#promoVideo').attr('height', 200);
+
+            $.fn.scrollView = function () {
+                return this.each(function () {
+                    $('html, body').animate({
+                        scrollTop: $(this).offset().top
+                    }, 1000);
+                });
+            }
+
+            var promoVideo;
+            function floaded(){
+                promoVideo = new YT.Player('promoVideo', {
+                    videoId: 'BYOL0qLUn4k',
+                    events:
+                    {
+                        'onStateChange': function (event)
+                        {
+                            if (event.data == YT.PlayerState.PLAYING)      { $('#promoVideo').attr('height', 518); }
+                            else if (event.data == YT.PlayerState.ENDED)   { $('#promoVideo').attr('height', 200); promoVideo.stopVideo() }
+                        }
+                    }
+
+                });
+            }
+
+        </script>
+
+        <ul class="btcf" id="threeMusketeers">
             <li>
                 <article>
                     <header>
