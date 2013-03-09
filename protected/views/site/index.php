@@ -27,15 +27,6 @@
         <script>
             //onYouTubePlayerAPIReady
             $('#promoVideo').attr('height', 200);
-
-            $.fn.scrollView = function () {
-                return this.each(function () {
-                    $('html, body').animate({
-                        scrollTop: $(this).offset().top
-                    }, 1000);
-                });
-            }
-
             var promoVideo;
             function floaded(){
                 promoVideo = new YT.Player('promoVideo', {
@@ -45,13 +36,11 @@
                         'onStateChange': function (event)
                         {
                             if (event.data == YT.PlayerState.PLAYING)      { $('#promoVideo').attr('height', 518); }
-                            else if (event.data == YT.PlayerState.ENDED)   { $('#promoVideo').attr('height', 200); promoVideo.stopVideo() }
+                            else if (event.data == YT.PlayerState.ENDED)   { $('#promoVideo').attr('height', 200); promoVideo.stopVideo(); }
                         }
                     }
-
                 });
             }
-
         </script>
 
         <ul class="btcf" id="threeMusketeers">
@@ -60,9 +49,9 @@
                     <header>
                         <h2><?php echo CHtml::link('Who we are', array('site/about'), array('title'=>'About us | odesys')); ?></h2>
                     </header>
-                    <p>We are an authonomous commune. We vote an executive officer for the week...</p>
-                    <p>By utilizing the power of our visual engine and by enlisting help from the people you trust the quality of your decisions is sure to improve.</p>
-                    <p>Helping you decide.</p>
+                    <p>We are decision theory researches and continuous students of the human mind.</p>
+                    <p>Packaging our knowledge with web development skills results in a powerful visual engine which helps improve the quality of your decisions.</p>
+                    <p>odesys // helping you decide.</p>
                 </article>
             </li>
             <li>
@@ -71,7 +60,7 @@
                         <h2><?php echo CHtml::link('What we do', array('site/about'), array('title'=>'About us | odesys')); ?></h2>
                     </header>
                     <p>We utilize the power of social networking to increase ones insight into the decision problem being analyzed by inviting other people to look at it from an independent or unbiased point of view. </p>
-                    <p>Our application will guide you through the decision-making process step-by-step. We provide the tools, you need to analyse your alternatives and weigh your options. The decision is then up to you.</p>
+                    <p>Our application guides you through the decision-making process step-by-step. We provide the tools, you need to analyse your alternatives and weigh your options.</p>
                     <p style="display: none;">Odesys is a web-based decision support system that augments the user's decision-making process.</p>
                 </article>
             </li>
