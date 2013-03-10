@@ -137,12 +137,12 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <h2>Which one do I choose?</h2>
 <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison to see how they really compare.</p>
 <?php if($this->Decision->isPublic()) { ?>
-<p>You can also share this decision to your friends or your other social circles. Just copy the link in your browser or click on one of the social links above.</p>
+<p>You may also share this decision to your friends or other social circles. This model will help other people get a sense of your decision problem. We strongly encourage you to write a description before sharing this decision. Sharing is easy, just copy the link in your browser or click on one of the icons above.</p>
 <?php } else { ?>
 <p>If you change this decision's privacy to public, you will be able to share it with your friends and other circles, hence receive additional feedback about your decision model. Why not try it? It might make you decision making a lot easier.</p>
 <?php } ?>
 <h2>Changed your mind?</h2>
-<p>You may return to modify criteria, alternatives or evaluation at any time.</p>
+<p>You may always return to previous steps to modify or add alternatives and factors. You may also change the evaluation at any time.</p>
 <ul id="content-nav">
     <li class="prev"><?php echo CHtml::link('Previous', array('/decision/evaluation', 'decisionId' => $this->Decision->decision_id, 'label' => $this->Decision->label, 'pageNr' => $this->DecisionModel->no_criteria-1)); ?></li>
     <?php if(Yii::app()->user->isGuest) { ?>

@@ -49,9 +49,10 @@
                     <header>
                         <h2><?php echo CHtml::link('Who we are', array('site/contact'), array('title'=>'About us | odesys')); ?></h2>
                     </header>
-                    <p>We are decision theory researches and continuous students of the human mind.</p>
-                    <p>Packaging our knowledge about decision theory with our skills of web development results in a powerful visual engine which helps improve the quality of your decisions.</p>
-                    <p>odesys // helping you decide.</p>
+                    <p>We are decision theory researches and explorers of the human mind.</p>
+                    <p>By combining our knowledge of decision theory with our skills of web development, we would like to create a world where the quality of our decisions and the quality of life are at their best.</p>
+                    <p>We are always looking for new connections.</p>
+                    <p>If you would like to work with us or have a question, we encourage you to <a href="/site/contact/" title="contact us">get in touch</a>.</p>
                 </article>
             </li>
             <li>
@@ -59,8 +60,9 @@
                     <header>
                         <h2><?php echo CHtml::link('What we do', array('site/about'), array('title'=>'About us | odesys')); ?></h2>
                     </header>
-                    <p>We utilize the power of social networking to increase ones insight into the decision problem being analyzed by inviting other people to look at it from an independent or unbiased point of view. </p>
-                    <p>Our application guides you through the decision-making process step-by-step. We provide the tools, you need to analyse your alternatives and weigh your options.</p>
+                    <p>We provide the tool that help you quickly and easily build a model of your decision problem by guiding you through the decision-making process step-by-step.</p>
+                    <p>By inviting other people to look at your decision from an independent or unbiased point of view through the power of social networking, you can increase your insight into the decision problem.</p>
+                    <p>If you would like, you can remain anonymous, keep your decision private and just use our tool to model the decision problem for yourself.</p>
                     <p style="display: none;">Odesys is a web-based decision support system that augments the user's decision-making process.</p>
                 </article>
             </li>
