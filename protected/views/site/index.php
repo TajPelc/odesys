@@ -47,7 +47,7 @@
             <li>
                 <article>
                     <header>
-                        <h2><?php echo CHtml::link('Who we are', array('site/about'), array('title'=>'About us | odesys')); ?></h2>
+                        <h2><?php echo CHtml::link('Who we are', array('site/contact'), array('title'=>'About us | odesys')); ?></h2>
                     </header>
                     <p>We are decision theory researches and continuous students of the human mind.</p>
                     <p>Packaging our knowledge about decision theory with our skills of web development results in a powerful visual engine which helps improve the quality of your decisions.</p>
