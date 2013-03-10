@@ -22,7 +22,7 @@
                 <?php echo CHtml::link('begin your journey', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
             <?php } ?>
         </div>
-        <iframe id="promoVideo" width="920" height="518" onload="floaded()" src="https://www.youtube.com/embed/BYOL0qLUn4k?rel=0&hd=1&vq=hd720&wmode=transparent&showinfo=0" frameborder="0" allowfullscreen></iframe>
+        <iframe id="promoVideo" width="920" height="518" onload="floaded()" src="https://www.youtube.com/embed/31pLgeOdohg?rel=0&hd=1&vq=hd720&wmode=transparent&showinfo=0" frameborder="0" allowfullscreen></iframe>
 
         <script>
             //onYouTubePlayerAPIReady
@@ -30,7 +30,7 @@
             var promoVideo;
             function floaded(){
                 promoVideo = new YT.Player('promoVideo', {
-                    videoId: 'BYOL0qLUn4k',
+                    videoId: '31pLgeOdohg',
                     events:
                     {
                         'onStateChange': function (event)
