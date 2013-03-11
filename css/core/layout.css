@@ -194,7 +194,7 @@ body > footer {
     #overlay {
         width: 440px;
         padding: 16px 40px;
-        position: relative;
+        position: fixed;
         border: 5px solid #2394d2;
         -moz-border-radius: 5px;
         border-radius: 5px;

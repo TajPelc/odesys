@@ -114,6 +114,12 @@ Core.Overlay = function(html, big){
         Core.Overlay.Close();
         return false;
     });
+
+    // Android fixes
+    if( /Android/i.test(navigator.userAgent) ) {
+        $('#overlay_bg').css("position", "absolute");
+        $('#overlay').css("position", "absolute");
+    }
 };
 
 /**
@@ -267,7 +273,9 @@ Core.ContentNav.toggle = function(nextStep, menu) {
  * Document Ready
  * */
 $(document).ready(function() {
+    // noscript
     $('html.no-js').removeClass('no-js');
+
     /**
      * Serialize object
      * @return {Object}
