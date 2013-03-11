@@ -38,7 +38,7 @@ class SiteController extends Controller
                 'condition' => 'models.evaluation_complete = 1 AND t.view_privacy = 0',
                 'order' => 't.created DESC'
             ),
-        ))->findAll(array('limit' => 8, 'together' => true));
+        ))->findAll(array('limit' => 7, 'together' => true));
 
         $this->render('index', array('latestDecisions' => $decisions));
     }

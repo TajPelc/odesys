@@ -267,6 +267,7 @@ Core.ContentNav.toggle = function(nextStep, menu) {
  * Document Ready
  * */
 $(document).ready(function() {
+    $('html.no-js').removeClass('no-js');
     /**
      * Serialize object
      * @return {Object}

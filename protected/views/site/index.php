@@ -94,6 +94,16 @@
             <h1>Latest public decisions by our users</h1>
         </header>
         <ul class="btcf">
+            <li>
+                <article>
+                    <header>
+                        <h3><a title="DEMO: Buying a car by Frenk Ten" href="/decision/86-demo-buying-a-car.html">DEMO: Buying a car</a></h3>
+                    </header>
+                    <aside>
+                        <a title="DEMO: Buying a car by Frenk Ten" href="/decision/86-demo-buying-a-car.html"><img title="Frenk Ten" alt="Frenk Ten" src="https://graph.facebook.com/1362051067/picture"></a>
+                    </aside>
+                </article>
+            </li>
             <?php foreach($latestDecisions as $d) { ?>
             <li>
                 <article>
@@ -101,7 +111,7 @@
                         <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . ' by ' . $d->User->getName(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
                     </header>
                     <aside>
-                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . ' by ' . $d->User->getName(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="" /></a>
+                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . ' by ' . $d->User->getName(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="<?php echo $d->User->getName();?>" alt="<?php echo $d->User->getName();?>" /></a>
                     </aside>
                 </article>
             </li>

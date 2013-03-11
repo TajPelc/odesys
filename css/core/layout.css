@@ -9,6 +9,30 @@ html {
     overflow-y: scroll;
 }
 
+noscript {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #FFD700;
+}
+    #noscript-warning {
+        width: 880px;
+        height: 54px;
+        line-height: 54px;
+        padding: 0 40px;
+        margin: 0 auto;
+        font-size: 24px;
+        background: #FFD700;
+        text-align: center;
+        font-family: Times, Helvetica, sans-serif;
+        font-style: italic;
+    }
+    html.no-js header.content {
+        padding-top: 40px;
+    }
+
+
+
 body {
     height: 100%;
     color: #000;

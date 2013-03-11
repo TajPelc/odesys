@@ -20,8 +20,9 @@
 
         <!--[if lte IE 9]>
         <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/criteria/ie/index.css" media="screen, projection" />
-
         <![endif]-->
+
+        <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]—>
 
         <!-- JavaScript Core -->
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/core/jquery-1.5.1.min.js"></script>
@@ -92,5 +93,8 @@
             })();
         </script>
         <a style="display: none" href="https://plus.google.com/112275384094460979880" rel="publisher">Google+</a>
+        <noscript>
+            <div id="noscript-warning">Without JavaScript enabled odesys can't function properly. :[<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+        </noscript>
     </body>
 </html>
