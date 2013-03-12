@@ -94,7 +94,8 @@
             <h1>Latest public decisions by our users</h1>
         </header>
         <ul class="btcf">
-            <li>
+            <li class="featured">
+                <span>&nbsp;</span>
                 <article>
                     <header>
                         <h3><a title="DEMO: Buying a car by Frenk Ten" href="/decision/86-demo-buying-a-car.html">DEMO: Buying a car</a></h3>

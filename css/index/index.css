@@ -144,6 +144,19 @@ section#public_decisions {
             background: #fff;
         }
 
+            section#public_decisions ul li.featured {
+                position: relative;
+            }
+                section#public_decisions ul li.featured > span {
+                    position: absolute;
+                    top: -10px;;
+                    right: -10px;
+                    width: 24px;
+                    height: 24px;
+                    display: block;
+                    background: url(../../images/icon/featured.png) 0 0 no-repeat;
+                }
+
         section#public_decisions ul li:nth-child(4n) {
             margin-right: 0;
         }
