@@ -60,13 +60,6 @@ class Controller extends CController
      * @see CController::beforeAction()
      */
     function beforeAction($action) {
-        // the user is logged into our page but facebook session has expired
-        /*if(!Yii::app()->user->isGuest && is_null(Fb::singleton()->getSession()))
-        {
-            // refresh session
-            $this->redirect(Fb::singleton()->getLoginStatusUrl());
-        }*/
-
         // update last visit
         if(!Yii::app()->user->isGuest)
         {
@@ -74,6 +67,10 @@ class Controller extends CController
             {
                 $User->updateLastVisit();
             }
+        }
+
+        if($this->get('lang')) {
+            Yii::app()->language = $this->get('lang');
         }
 
         return parent::beforeAction($action);
