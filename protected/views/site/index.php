@@ -47,12 +47,12 @@
             <li>
                 <article>
                     <header>
-                        <h2><?php echo CHtml::link('Who we are', array('site/contact'), array('title'=>'About us | odesys')); ?></h2>
+                        <h2><?php echo CHtml::link('Who we are', array('site/contact'), array('title'=>'Contact | odesys')); ?></h2>
                     </header>
                     <p>We are decision theory researches and explorers of the human mind.</p>
                     <p>By combining our knowledge of decision theory with our skills of web development, we would like to create a world where the quality of our decisions and the quality of life are at their best.</p>
                     <p>We are always looking for new connections.</p>
-                    <p>If you would like to work with us or have a question, we encourage you to <a href="/site/contact/" title="contact us">get in touch</a>.</p>
+                    <p>If you would like to work with us or have a question, we encourage you to <a href="/site/contact/" title="contact">get in touch</a>.</p>
                 </article>
             </li>
             <li>
