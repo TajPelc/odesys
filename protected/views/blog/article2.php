@@ -15,7 +15,7 @@
 
 <nav>
     <div>
-        <?php echo CHtml::link('Home', Yii::app()->homeUrl, array('title'=>'odesys // helping you decide')); ?> / <?php echo CHtml::link('Blog', array('/blog'), array('title'=>'Blog')); ?> / A different approach to decision making
+        <?php echo CHtml::link('Home', Yii::app()->homeUrl, array('title'=>'odesys // helping you decide')); ?> / <?php echo CHtml::link('Blog', array('/blog'), array('title'=>'Blog')); ?> / Learning from our mistakes
     </div>
 </nav>
 <section class="content">

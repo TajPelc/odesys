@@ -1,4 +1,4 @@
-<?php $this->pageTitle='odesys // helping you decide'; ?>
+<?php $this->pageTitle = Yii::t('frontPage', 'odesys // helping you decide'); ?>
 
 <?php Yii::app()->clientScript->registerMetaTag('Decision Making, Visual Engine, Decision Tool, Social Networking, Solving Decision Problems, Helping You Decide, Web-based Decision Support System, Decision-Making Made Easy', NULL, NULL, array('property'=>'description')); ?>
 
@@ -14,12 +14,12 @@
 <?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, 'https://plus.google.com/112275384094460979880/', NULL, array('rel'=>'publisher')); ?>
 
     <section class="content">
-        <h1>Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?</h1>
+        <h1><?php echo Yii::t('frontPage','Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?'); ?></h1>
         <div>
             <?php if(Yii::app()->user->isGuest) { ?>
-                <?php echo CHtml::link('begin your journey', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'begin your journey', 'rel' => 'nofollow')); ?>
+                <?php echo Yii::t('frontPage','<a href="{url}" title="begin your journey" class="decisionNew" rel="nofollow">begin your journey</a>', array('{url}' => '/project/create/')); ?>
             <?php } else { ?>
-                <?php echo CHtml::link('begin your journey', array('/project/create/'), array('class'=>'decisionNew', 'title'=>'begin your journey')); ?>
+                <?php echo Yii::t('frontPage','<a href="{url}" title="begin your journey" class="decisionNew">begin your journey</a>', array('{url}' => '/project/create/')); ?>
             <?php } ?>
         </div>
         <iframe id="promoVideo" width="920" height="518" onload="floaded()" src="https://www.youtube.com/embed/31pLgeOdohg?rel=0&hd=1&vq=hd720&wmode=transparent&showinfo=0" frameborder="0" allowfullscreen></iframe>
@@ -47,38 +47,38 @@
             <li>
                 <article>
                     <header>
-                        <h2><?php echo CHtml::link('Who we are', array('site/contact'), array('title'=>'Contact | odesys')); ?></h2>
+                    <h2><?php echo Yii::t('frontPage','<a href="{url}" title="Contact us | odesys">Who we are</a>', array('{url}' => '/site/contact/')); ?></h2>
                     </header>
-                    <p>We are decision theory researches and explorers of the human mind.</p>
-                    <p>By combining our knowledge of decision theory with our skills of web development, we would like to create a world where the quality of our decisions and the quality of life are at their best.</p>
-                    <p>We are always looking for new connections.</p>
-                    <p>If you would like to work with us or have a question, we encourage you to <a href="/site/contact/" title="contact">get in touch</a>.</p>
+                    <p><?php echo Yii::t('frontPage','We are decision theory researches and explorers of the human mind.'); ?></p>
+                    <p><?php echo Yii::t('frontPage','By combining our knowledge of decision theory with our skills of web development, we would like to create a world where the quality of our decisions and the quality of life are at their best.'); ?></p>
+                    <p><?php echo Yii::t('frontPage','We are always looking for new connections.'); ?></p>
+                    <p><?php echo Yii::t('frontPage','If you would like to work with us or have a question, we encourage you to <a href="{url}" title="contact us">get in touch</a>.', array('{url}' => '/site/contact/')); ?></p>
                 </article>
             </li>
             <li>
                 <article>
                     <header>
-                        <h2><?php echo CHtml::link('What we do', array('site/about'), array('title'=>'About us | odesys')); ?></h2>
+                        <h2><?php echo Yii::t('frontPage','<a href="{url}" title="About us | odesys">What we do</a>.', array('{url}' => '/site/about/')); ?></h2>
                     </header>
-                    <p>We provide the tool that help you quickly and easily build a model of your decision problem by guiding you through the decision-making process step-by-step.</p>
-                    <p>By inviting other people to look at your decision from an independent or unbiased point of view through the power of social networking, you can increase your insight into the decision problem.</p>
-                    <p>If you would like, you can remain anonymous, keep your decision private and just use our tool to model the decision problem for yourself.</p>
-                    <p style="display: none;">Odesys is a web-based decision support system that augments the user's decision-making process.</p>
+                    <p><?php echo Yii::t('frontPage','We provide the tool that help you quickly and easily build a model of your decision problem by guiding you through the decision-making process step-by-step.'); ?></p>
+                    <p><?php echo Yii::t('frontPage','By inviting other people to look at your decision from an independent or unbiased point of view through the power of social networking, you can increase your insight into the decision problem.'); ?></p>
+                    <p><?php echo Yii::t('frontPage','If you would like, you can remain anonymous, keep your decision private and just use our tool to model the decision problem for yourself.'); ?></p>
+                    <p style="display: none;"><?php echo Yii::t('frontPage','Odesys is a web-based decision support system that augments the user\'s decision-making process.'); ?></p>
                 </article>
             </li>
 
             <li>
                 <article>
                     <header>
-                        <h2><?php echo CHtml::link('Our blog', array('/blog/'), array('title'=>'Blog | odesys')); ?></h2>
+                        <h2><?php echo Yii::t('frontPage','<a href="{url}" title="Blog | odesys">Our blog</a>', array('{url}' => '/blog/')); ?></h2>
                         <ul>
                             <li>
                                 <span><b>6</b>MAR</span>
-                                <?php echo CHtml::link('Learning from our mistakes', array('/blog/learning-from-our-mistakes/'), array('title'=>'Article | Learning from our mistakes')); ?> by Frenk T. Sedmak Nahtigal
+                                <?php echo Yii::t('frontPage','<a href="{url}" title="Article | Learning from our mistakes">Learning from our mistakes</a> by Frenk T. Sedmak Nahtigal', array('{url}' => '/blog/learning-from-our-mistakes/')); ?>
                             </li>
                             <li>
                                 <span><b>18</b>FEB</span>
-                                <?php echo CHtml::link('A different approach to decision making', array('/blog/different-approach-to-decision-making/'), array('title'=>'Article | A different approach to decision making')); ?> by Taj Pelc
+                                <?php echo Yii::t('frontPage','<a href="{url}" title="Article | A different approach to decision making">A different approach to decision making</a> by Taj Pelc', array('{url}' => '/blog/different-approach-to-decision-making/')); ?>
                             </li>
                         </ul>
                     </header>
@@ -91,7 +91,7 @@
     <?php if($latestDecisions) { ?>
     <section id="public_decisions">
         <header>
-            <h1>Latest public decisions by our users</h1>
+            <h1><?php echo Yii::t('frontPage','Latest public decisions by our users'); ?></h1>
         </header>
         <ul class="btcf">
             <li class="featured">
@@ -109,10 +109,10 @@
             <li>
                 <article>
                     <header>
-                        <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . ' by ' . $d->User->getName(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
+                        <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . Yii::t('frontPage', ' by ') . $d->User->getName(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
                     </header>
                     <aside>
-                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . ' by ' . $d->User->getName(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="<?php echo $d->User->getName();?>" alt="<?php echo $d->User->getName();?>" /></a>
+                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . Yii::t('frontPage', ' by ') . $d->User->getName(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="<?php echo $d->User->getName();?>" alt="<?php echo $d->User->getName();?>" /></a>
                     </aside>
                 </article>
             </li>
