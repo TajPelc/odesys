@@ -58,7 +58,7 @@
             <li>
                 <article>
                     <header>
-                        <h2><?php echo Yii::t('frontPage','<a href="{url}" title="About us | odesys">What we do</a>.', array('{url}' => '/site/about/')); ?></h2>
+                        <h2><?php echo Yii::t('frontPage','<a href="{url}" title="About us | odesys">What we do</a>', array('{url}' => '/site/about/')); ?></h2>
                     </header>
                     <p><?php echo Yii::t('frontPage','We provide the tool that help you quickly and easily build a model of your decision problem by guiding you through the decision-making process step-by-step.'); ?></p>
                     <p><?php echo Yii::t('frontPage','By inviting other people to look at your decision from an independent or unbiased point of view through the power of social networking, you can increase your insight into the decision problem.'); ?></p>

@@ -20,7 +20,7 @@
  */
 return array (
   ' by ' => ', ',
-  '<a href="{url}" title="About us | odesys">What we do</a>.' => '<a href="{url}" title="O nas | odesys">Kaj počnemo</a>.',
+  '<a href="{url}" title="About us | odesys">What we do</a>' => '<a href="{url}" title="O nas | odesys">Kaj počnemo</a>',
   '<a href="{url}" title="Contact us | odesys">Who we are</a>' => '<a href="{url}" title="Kontaktirajte nas | odesys">Kdo smo</a>',
   '<a href="{url}" title="Article | A different approach to decision making">A different approach to decision making</a> by Taj Pelc' => '<a href="{url}" title="Article | A different approach to decision making">A different approach to decision making</a>, Taj Pelc',
   '<a href="{url}" title="Article | Learning from our mistakes">Learning from our mistakes</a> by Frenk T. Sedmak Nahtigal' => '<a href="{url}" title="Article | Learning from our mistakes">Learning from our mistakes</a>, Frenk T. Sedmak Nahtigal',
