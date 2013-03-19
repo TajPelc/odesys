@@ -171,6 +171,14 @@ section#public_decisions {
                 width: 50px;
                 height: 50px;
             }
+                section#public_decisions ul li aside img {
+                    background: url("../../images/gravatar_default.png") repeat scroll 0 0 transparent;
+                    display: block;
+                    height: 50px;
+                    text-indent: -9999px;
+                    width: 50px;
+                }
+
             section#public_decisions ul li header {
                 width: 133px;
                 padding-top: 8px;
