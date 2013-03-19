@@ -403,12 +403,14 @@
     }
 
     #abacon-sidebar ul.legend li {
-        width: 217px;
+        width: 197px;
         height: 33px;
         line-height: 33px;
         padding-right: 17px;
+        padding-left: 20px;
         margin-bottom: 1px;
         position: relative;
+        overflow: hidden;
         background: #fff url(../../images/bg/legend_list.png) top right no-repeat;;
     }
 
@@ -417,7 +419,9 @@
             height: 32px;
             margin-right: 10px;
             display: block;
-            float: left;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         #abacon-sidebar ul.legend li .remove {
