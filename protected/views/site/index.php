@@ -2,7 +2,7 @@
 
 <?php Yii::app()->clientScript->registerMetaTag('Decision Making, Visual Engine, Decision Tool, Social Networking, Solving Decision Problems, Helping You Decide, Web-based Decision Support System, Decision-Making Made Easy', NULL, NULL, array('property'=>'description')); ?>
 
-<?php Yii::app()->clientScript->registerMetaTag('odesys // helping you decide | Decision Tool | Decision Support System', NULL, NULL, array('property'=>'og:title')); ?>
+<?php Yii::app()->clientScript->registerMetaTag('odesys // helping you decide · Decision Tool · Decision Support System', NULL, NULL, array('property'=>'og:title')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('en_US', NULL, NULL, array('property'=>'og:locale')); ?>
 <?php Yii::app()->clientScript->registerMetaTag('Decision Making, Visual Engine, Decision Tool, Social Networking, Solving Decision Problems, Helping You Decide, Web-based Decision Support System, Decision-Making Made Easy', NULL, NULL, array('property'=>'og:description')); ?>
 <?php Yii::app()->clientScript->registerMetaTag(Common::getBaseURL(), NULL, NULL, array('property'=>'og:url')); ?>
@@ -14,7 +14,11 @@
 <?php Yii::app()->clientScript->registerLinkTag(NULL, NULL, 'https://plus.google.com/112275384094460979880/', NULL, array('rel'=>'publisher')); ?>
 
     <section class="content">
-        <h1><?php echo Yii::t('frontPage','Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?'); ?></h1>
+        <?php $Titles = array(
+            Yii::t('frontPage','Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?'),
+            Yii::t('frontPage','Did you know odesys is based on "Garbage input, Garbage output" method? Well, it is.'),
+            Yii::t('frontPage','Decision-making can be easier using our visual engine to better understand how your alternatives compare.')); $k = array_rand($Titles); $v = $Titles[$k]; ?>
+        <h1><?php echo $v; ?></h1>
         <div>
             <?php if(Yii::app()->user->isGuest) { ?>
                 <?php echo Yii::t('frontPage','<a href="{url}" title="begin your journey" class="decisionNew" rel="nofollow">begin your journey</a>', array('{url}' => '/project/create/')); ?>
@@ -72,6 +76,10 @@
                     <header>
                         <h2><?php echo Yii::t('frontPage','<a href="{url}" title="Blog | odesys">Our blog</a>', array('{url}' => '/blog/')); ?></h2>
                         <ul>
+                            <li>
+                                <span><b>22</b>MAR</span>
+                                <?php echo Yii::t('frontPage','<a href="{url}" title="Article | TITLE">TITLE</a> by AUTHOR', array('{url}' => '/blog/article3')); ?>
+                            </li>
                             <li>
                                 <span><b>6</b>MAR</span>
                                 <?php echo Yii::t('frontPage','<a href="{url}" title="Article | Learning from our mistakes">Learning from our mistakes</a> by Frenk T. Sedmak Nahtigal', array('{url}' => '/blog/learning-from-our-mistakes/')); ?>

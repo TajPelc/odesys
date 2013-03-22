@@ -48,6 +48,7 @@ section.content {
                 position: relative;
                 padding-left: 46px;
                 margin-bottom: 16px;
+                min-height: 36px;
             }
                 section.content ul li ul li span {
                     width: 36px;

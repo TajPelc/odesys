@@ -136,6 +136,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
 <?php } ?>
 <h2>Which one do I choose?</h2>
 <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison to see how they really compare.</p>
+<p>These results are product of using the weighted average method, please read our <a href="#">blog post</a> to learn what does that mean and how you should interpret your charts and numbers.</p>
 <?php if($this->Decision->isPublic()) { ?>
 <p>You may also share this decision to your friends or other social circles. This model will help other people get a sense of your decision problem. We strongly encourage you to write a description before sharing this decision. Sharing is easy, just copy the link in your browser or click on one of the icons above.</p>
 <?php } else { ?>

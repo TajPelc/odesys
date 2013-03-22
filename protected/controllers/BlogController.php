@@ -37,4 +37,14 @@ class BlogController extends Controller
         Yii::app()->createAbsoluteUrl('blog/learning-from-our-mistakes');
         $this->render('article2');
     }
+    /**
+     * Article3 "title" index
+     */
+    public function actionArticle3() {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/blog/article.css');
+
+        //Yii::app()->createAbsoluteUrl('blog/learning-from-our-mistakes');
+        $this->render('article3');
+    }
 }
