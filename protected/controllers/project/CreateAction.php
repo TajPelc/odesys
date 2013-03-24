@@ -9,6 +9,9 @@ class CreateAction extends Action
 {
     public function run()
     {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/login/index.css');
+
         if(Ajax::isAjax()) {
             // create a new decision
             if($this->post('action')) {

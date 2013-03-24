@@ -19,6 +19,9 @@ section.content {
     section.content p {
         margin-bottom: 16px;
     }
+        section.content p b {
+            font-weight: bold;
+        }
 
 section.content article {
     margin-bottom: 40px;
