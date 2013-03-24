@@ -366,12 +366,13 @@ body > footer {
                 width: 0;
             }
             #overlay div.error {
+                max-width: 300px;
                 background: none repeat scroll 0 0 #FFFFFF;
                 border: 1px solid #790E0E;
                 border-radius: 1px 1px 1px 1px;
                 color: #790E0E;
                 font-weight: normal !important;
-                height: 36px;
+                min-height: 36px;
                 line-height: 38px;
                 padding: 0 0 0 21px;
                 position: absolute;
@@ -384,6 +385,7 @@ body > footer {
                     line-height: 36px;
                     font-size: 16px;
                     padding-right: 26px;
+                    margin: 0;
                 }
 
 /* Ajax Block

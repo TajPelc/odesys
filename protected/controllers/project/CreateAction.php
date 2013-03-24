@@ -29,6 +29,9 @@ class CreateAction extends Action
                 // save or return errors
                 if($Decision->validate(array('title')))
                 {
+                    if(preg_match_all('/\b(kill|death|suicide|die)\b/i', $Decision->title, $matches)){
+                        Ajax::respondError(array('title' => 'Life is beautiful, surely you have a more positive decision to make?'));
+                    }
                     $Decision->save(false);
                     $Decision->createActiveDecisionModel();
 
