@@ -43,6 +43,7 @@
                             <?php echo CHtml::link('odesys // helping you decide', array('/site/index/'), array('title'=>'odesys // helping you decide')); ?>
                             <?php if(Yii::app()->user->isGuest) { ?>
                                 <ul>
+                                    <li><?php echo CHtml::link('new decision', array('/project/create'), array('title' => 'Create a new decision', 'class' => 'decisionNew')); ?> <span>/</span></li>
                                     <li><?php echo CHtml::link('login', array('/login/'), array('class'=>'loginNew', 'title'=>'login')); ?></li>
                                 </ul>
                             <?php } else { ?>
