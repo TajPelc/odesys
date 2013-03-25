@@ -35,7 +35,7 @@ class SiteController extends Controller
         $decisions = Decision::model()->with(array(
             'models' => array(
                 'joinType' => 'INNER JOIN',
-                'condition' => 'models.evaluation_complete = 1 AND t.view_privacy = 0',
+                'condition' => 'models.evaluation_complete = 1 AND t.view_privacy = 0 AND deleted = 0',
                 'order' => 't.created DESC'
             ),
         ))->findAll(array('limit' => 7, 'together' => true));
