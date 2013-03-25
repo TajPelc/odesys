@@ -16,14 +16,14 @@
     <section class="content">
         <?php $Titles = array(
             Yii::t('frontPage','Decision making is hard. We know. Why not let our system guide you through the process step by step until you have reached a decision?'),
-            Yii::t('frontPage','Did you know odesys is based on "Garbage input, Garbage output" method? Well, it is.'),
-            Yii::t('frontPage','Decision-making can be easier using our visual engine to better understand how your alternatives compare.')); $k = array_rand($Titles); $v = $Titles[$k]; ?>
+            Yii::t('frontPage','Our system empowers you, but not with magic. The results are completely based on your own input. You have the power to decide.'),
+            Yii::t('frontPage','With our visual engine you can easily model a decision and compare alternatives amongst themselves. Share it with your peers.')); $k = array_rand($Titles); $v = $Titles[$k]; ?>
         <h1><?php echo $v; ?></h1>
         <div>
             <?php if(Yii::app()->user->isGuest) { ?>
-                <?php echo Yii::t('frontPage','<a href="{url}" title="begin your journey" class="decisionNew" rel="nofollow">begin your journey</a>', array('{url}' => '/project/create/')); ?>
+                <?php echo Yii::t('frontPage','<a href="{url}" title="begin your journey" class="decisionNew" rel="nofollow">make a decision</a>', array('{url}' => '/project/create/')); ?>
             <?php } else { ?>
-                <?php echo Yii::t('frontPage','<a href="{url}" title="begin your journey" class="decisionNew">begin your journey</a>', array('{url}' => '/project/create/')); ?>
+                <?php echo Yii::t('frontPage','<a href="{url}" title="begin your journey" class="decisionNew">make a decision</a>', array('{url}' => '/project/create/')); ?>
             <?php } ?>
         </div>
         <iframe id="promoVideo" width="920" height="518" onload="floaded()" src="https://www.youtube.com/embed/31pLgeOdohg?rel=0&hd=1&vq=hd720&wmode=transparent&showinfo=0" frameborder="0" allowfullscreen></iframe>
