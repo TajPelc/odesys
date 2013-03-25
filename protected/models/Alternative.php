@@ -25,14 +25,14 @@ class Alternative extends DecisionElement
      * @var array
      */
     private static $colorPool = array(
-        "#c6dc0c",
-        "#2da7b9",
-        "#5c0369",
         "#6ac616",
-        "#eb8e94",
         "#b000b7",
+        "#2da7b9",
         "#18b3f7",
         "#bd3439",
+        "#c6dc0c",
+        "#5c0369",
+        "#eb8e94",
         "#00953f"
     );
 
