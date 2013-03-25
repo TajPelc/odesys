@@ -76,10 +76,10 @@
                     <header>
                         <h2><?php echo Yii::t('frontPage','<a href="{url}" title="Blog | odesys">Our blog</a>', array('{url}' => '/blog/')); ?></h2>
                         <ul>
-                            <li>
+                            <!--li>
                                 <span><b>22</b>MAR</span>
                                 <?php echo Yii::t('frontPage','<a href="{url}" title="Article | TITLE">TITLE</a> by AUTHOR', array('{url}' => '/blog/article3')); ?>
-                            </li>
+                            </li-->
                             <li>
                                 <span><b>6</b>MAR</span>
                                 <?php echo Yii::t('frontPage','<a href="{url}" title="Article | Learning from our mistakes">Learning from our mistakes</a> by Frenk T. Sedmak Nahtigal', array('{url}' => '/blog/learning-from-our-mistakes/')); ?>

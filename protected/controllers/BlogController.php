@@ -45,6 +45,6 @@ class BlogController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/blog/article.css');
 
         //Yii::app()->createAbsoluteUrl('blog/learning-from-our-mistakes');
-        $this->render('article3');
+        //$this->render('article3');
     }
 }

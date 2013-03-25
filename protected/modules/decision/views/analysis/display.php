@@ -12,6 +12,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div>
         <h1><b><?php echo Yii::app()->user->getFirstName(); ?></b>, here are results of your analysis</h1>
         <h2>― <?php echo CHtml::encode(ucfirst($this->Decision->title)); ?> ―</h2>
+        <?php if($decisionTitleNotice) { ?><div id="notice"><p>Sorry to hear you have to consider such a decision in your life. Regardless of your results, let us redirect you to <a href="http://www.helpguide.org/mental/suicide_help.htm">helpguide</a>.</p></div><?php } ?>
         <?php if(!$description) { ?>
         <form method="post" action="">
             <p>Please take a moment to write a few sentences about your decision. Why do you consider these alternatives? What factors did you consider and why? Have you changed your mind now that you have seen the results of the analysis?
@@ -134,11 +135,12 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     </ul>
 </div>
 <?php } ?>
+<h2>How to interpret the results?</h2>
+<p>These results are product of using the weighted average method. Please read our <a href="/blog/" title="Blog | odesys">blog</a> to learn what does that mean and how you should interpret your charts and numbers.</p>
 <h2>Which one do I choose?</h2>
 <p>This is the hard part. Although the first alternative is usually the best, it's not a general rule. Use the detailed comparison to see how they really compare.</p>
-<p>These results are product of using the weighted average method, please read our <a href="#">blog post</a> to learn what does that mean and how you should interpret your charts and numbers.</p>
 <?php if($this->Decision->isPublic()) { ?>
-<p>You may also share this decision to your friends or other social circles. This model will help other people get a sense of your decision problem. We strongly encourage you to write a description before sharing this decision. Sharing is easy, just copy the link in your browser or click on one of the icons above.</p>
+<p>You may also share this decision with your friends or other social circles. This model will help other people get a sense of your decision problem. We strongly encourage you to <b>write</b> a <b>description before sharing</b> this decision. Sharing is easy, just copy the link in your browser or click on one of the icons above.</p>
 <?php } else { ?>
 <p>If you change this decision's privacy to public, you will be able to share it with your friends and other circles, hence receive additional feedback about your decision model. Why not try it? It might make you decision making a lot easier.</p>
 <?php } ?>

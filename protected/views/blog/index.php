@@ -21,7 +21,7 @@
 
 <section class="content btcf">
     <div id="content">
-        <article>
+        <!--article>
             <header>
                 <h1><?php echo CHtml::link('TITLE', array('/blog/article3/'), array('title'=>'Article | TITLE')); ?></h1>
                 <p>Author: AUTHOR, 22th March 2013</p>
@@ -31,7 +31,7 @@
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia tempor commodo. Sed justo tellus, dapibus et dignissim eleifend, feugiat consequat erat. Aliquam sit amet arcu sit amet metus gravida dignissim. Vivamus sed nulla vel turpis egestas imperdiet non id leo. Vivamus pulvinar elementum erat. Vivamus tincidunt fringilla nisi, sed tempus arcu mattis sed. Suspendisse potenti. Curabitur vel ante nunc. Etiam at est quam, consectetur placerat lacus. Etiam ut semper lacus. Donec eu dui risus, luctus elementum purus. In quis justo quis erat convallis volutpat at nec tortor. Pellentesque a nibh at ligula egestas semper eget vel massa. Nunc sodales sagittis bibendum. Suspendisse turpis odio, aliquam nec luctus et, auctor non purus. Aenean ut nibh in dui egestas blandit quis ut tortor. </p>
             </div>
-        </article>
+        </article-->
 
         <article>
             <header>

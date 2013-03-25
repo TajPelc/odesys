@@ -6,6 +6,43 @@
 
 /* Layout
 ********************************************************/
+#notice:after {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #e1fea1;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 49%;
+    top: -10px;
+    width: 0;
+}
+
+#notice {
+    width: 880px;
+    min-height: 36px;
+    line-height: 38px;
+    padding: 0 20px;
+    margin-bottom: 24px;
+    position: relative;
+    top: -16px;
+    border: 1px solid #739d0b;
+    border-radius: 2px;
+    font-weight: normal !important;
+    background: #e1fea1; /* Old browsers */
+    background: -moz-linear-gradient(top, #e1fea1 0%, #8dbc39 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e1fea1), color-stop(100%,#8dbc39)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #e1fea1 0%,#8dbc39 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #e1fea1 0%,#8dbc39 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #e1fea1 0%,#8dbc39 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #e1fea1 0%,#8dbc39 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1fea1', endColorstr='#8dbc39',GradientType=0 ); /* IE6-9 */
+}
+    #notice p {
+        text-align: center;
+    }
+
+
 .content h1 {
     font-size: 30px;
     margin-bottom: 8px;

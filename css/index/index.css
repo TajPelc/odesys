@@ -186,7 +186,8 @@ section#public_decisions {
                 float: right;
                 font-style: italic;
                 overflow: hidden;
-                word-break: break-all;
+                word-break: keep-all;
+                height: 34px;
             }
                 section#public_decisions ul li header a {
                     line-height: 16px;

@@ -67,8 +67,15 @@ class AnalysisController extends DecisionController
         $firstAlternative = current($bestAlternatives);
         $secondAlternative = next($bestAlternatives);
 
+        // check for specific decision names
+        $decisionTitleNotice = false;
+        if(preg_match_all('/\b(kill myself|kill me|suicide|i die|be or not to be|end my existence|end my miserable existence)\b/i', CHtml::encode($this->Decision->title), $matches)){
+            $decisionTitleNotice = true;
+        }
+
         $this->render('display',array(
             'description'              => CHtml::encode($this->Decision->description),
+            'decisionTitleNotice'      => $decisionTitleNotice,
             'eval'                     => $eval,
             'bestAlternatives'         => $bestAlternatives,
             'Alternatives'	           => $this->DecisionModel->alternatives,
