@@ -19,10 +19,11 @@
 }
 
 #notice {
-    width: 880px;
+    width: 600px;
+    margin: 0 auto;
     min-height: 36px;
-    line-height: 38px;
-    padding: 0 20px;
+    line-height: 20px;
+    padding: 10px 20px;
     margin-bottom: 24px;
     position: relative;
     top: -16px;
@@ -38,8 +39,9 @@
     background: linear-gradient(to bottom, #e1fea1 0%,#8dbc39 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1fea1', endColorstr='#8dbc39',GradientType=0 ); /* IE6-9 */
 }
-    #notice p {
-        text-align: center;
+    #notice p:last-child {
+        padding-top: 8px;
+        /*text-align: center;*/
     }
 
 

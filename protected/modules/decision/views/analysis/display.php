@@ -12,7 +12,7 @@ Graph.Data = <?php echo json_encode($eval); ?>;
     <div>
         <h1><b><?php echo Yii::app()->user->getFirstName(); ?></b>, here are results of your analysis</h1>
         <h2>― <?php echo CHtml::encode(ucfirst($this->Decision->title)); ?> ―</h2>
-        <?php if($decisionTitleNotice) { ?><div id="notice"><p>Sorry to hear you have to consider such a decision in your life. Regardless of your results, let us redirect you to <a href="http://www.helpguide.org/mental/suicide_help.htm">helpguide</a>.</p></div><?php } ?>
+        <?php if($decisionTitleNotice) { ?><div id="notice"><p>We have all gone through a rough period at some point in our lives, but odesys is not the right tool to help you make such a decision. We firmly believe you will feel better again.</p><p>For now, please read <a href="http://www.helpguide.org/mental/suicide_help.htm" rel="external">how to deal with suicidal thoughts and feelings</a>. We are <a href="/site/contact/" title="contact us">here</a> if you need us.</p></div><?php } ?>
         <?php if(!$description) { ?>
         <form method="post" action="">
             <p>Please take a moment to write a few sentences about your decision. Why do you consider these alternatives? What factors did you consider and why? Have you changed your mind now that you have seen the results of the analysis?
