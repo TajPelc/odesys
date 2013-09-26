@@ -29,6 +29,8 @@ Score.Config = {
  * Create raphael container and draw grid
  */
 Score.init = function(){
+    Score.nrAlternatives = 0;
+
     // get container
     Score.Container = $('#score');
 

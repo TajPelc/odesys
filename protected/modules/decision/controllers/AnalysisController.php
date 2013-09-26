@@ -30,6 +30,7 @@ class AnalysisController extends DecisionController
                 $model->save();
                 Ajax::respondOk();
             }
+
             // save description
             if($this->post('description'))
             {
@@ -38,6 +39,17 @@ class AnalysisController extends DecisionController
 
                 // validate post
                 $this->Decision->save(false);
+            }
+
+            if($this->post('generateGraph'))
+            {
+                if ($this->post('disableWeights') === 'disable') {
+                    $rv = $this->DecisionModel->getEvaluationArray(1);
+                } else {
+                    $rv = $this->DecisionModel->getEvaluationArray();
+                }
+
+                Ajax::respondOk(array('data' => $rv, 'disableWeights' => $this->post('disableWeights')));
             }
 
             Ajax::respondOk(array('html'=>$this->renderPartial('display', array('description' => CHtml::encode($this->Decision->description)), true)));
@@ -73,7 +85,7 @@ class AnalysisController extends DecisionController
             $decisionTitleNotice = true;
         }
 
-        $this->render('display',array(
+        $this->render('display', array(
             'description'              => CHtml::encode($this->Decision->description),
             'decisionTitleNotice'      => $decisionTitleNotice,
             'eval'                     => $eval,

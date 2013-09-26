@@ -69,6 +69,7 @@
         <?php if(isset($eval)) { ?>
         <div>
             <p>This is <b>Detailed comparison graph</b> which shows alternative profiles based on your evaluation. By comparing the data points at each criteria you are able to see how each alternative compares to others. You can add or remove alternatives from the graph. Do you still think the first one is the best?</p>
+            <span><input type="checkbox" id="weights" value="disable"> <label for="weights">Disable internal weights (treat all criteria as equally important)</label></span>
             <div id="abacon-sidebar" class="sidebar">
                 <form method="post" action="">
                     <fieldset>

@@ -16,20 +16,41 @@ $(document).ready(function(){
         dataType: 'json'
     });
 
-    // init score
-    Score.init();
-
-    // init abacon
-    Abacon.init();
-
-    Abacon.Legend.rebuildDropdown();
-    // draw the two best alternatives
-    Abacon.Legend.LegendList.children().each(function(){
-        // get id
-        var id = Core.ExtractNumbers($(this).attr('id'));
-        // draw alternatives
-        Abacon.DrawAlternative(id);
+    $('#weights').click(function (e) {
+        $.ajax({
+            type: 'POST',
+            url: location.href,
+            data: {
+                "generateGraph" : true,
+                "disableWeights" : ($(this).is(':checked') ? 'disable' : 'enable')
+            },
+            success: function(data) {
+                Graph.Data = data.data;
+                $('svg').remove();
+                $('#score').removeAttr('style');
+                renderGraph();
+            }
+        });
     });
+
+    function renderGraph() {
+        // init score
+        Score.init();
+
+        // init abacon
+        Abacon.init();
+
+        Abacon.Legend.rebuildDropdown();
+        // draw the two best alternatives
+        Abacon.Legend.LegendList.children().each(function(){
+            // get id
+            var id = Core.ExtractNumbers($(this).attr('id'));
+            // draw alternatives
+            Abacon.DrawAlternative(id);
+        });
+    }
+
+    renderGraph();
 
     // check if guest and offer login
     if($('header.content section nav p').length == 0){

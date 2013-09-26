@@ -269,8 +269,8 @@ class DecisionModel extends CActiveRecord
     /**
      * Build an array of grades by alternatives and criteria
      *
-     * @param double $quotient
-     * @param string $sortBy
+     * @param float $quotient
+     * @return array
      */
     public function getEvaluationArray($quotient = 0.9)
     {

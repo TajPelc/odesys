@@ -47,6 +47,17 @@ class PublicAction extends Action
         $render = array();
         if($this->getController()->DecisionModel instanceof DecisionModel)
         {
+            if($this->post('generateGraph'))
+            {
+                if ($this->post('disableWeights') === 'disable') {
+                    $rv = $this->getController()->DecisionModel->getEvaluationArray(1);
+                } else {
+                    $rv = $this->getController()->DecisionModel->getEvaluationArray();
+                }
+
+                Ajax::respondOk(array('data' => $rv, 'disableWeights' => $this->post('disableWeights')));
+            }
+
             // get evaluation array
             $eval = $this->getController()->DecisionModel->getEvaluationArray();
 
