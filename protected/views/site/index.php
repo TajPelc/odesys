@@ -120,7 +120,7 @@
                         <h3><a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . Yii::t('frontPage', ' by ') . $d->User->getName(); ?>"><?php echo CHtml::encode($d->title); ?></a></h3>
                     </header>
                     <aside>
-                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . Yii::t('frontPage', ' by ') . $d->User->getName(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" title="<?php echo $d->User->getName();?>" alt="<?php echo $d->User->getName();?>" /></a>
+                        <a href="<?php echo $d->getPublicLink(); ?>" title="<?php echo CHtml::encode($d->title) . Yii::t('frontPage', ' by ') . $d->User->getName(); ?>"><img src="<?php echo $d->User->getProfileImage(); ?>" /></a>
                     </aside>
                 </article>
             </li>
