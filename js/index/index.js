@@ -6,4 +6,7 @@
 Index = {};
 
 $(document).ready(function() {
+    $('img').error(function() {
+        $(this).attr('src', "/images/gravatar_default.png");
+    });
 });
