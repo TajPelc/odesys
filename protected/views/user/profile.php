@@ -40,4 +40,4 @@
             <?php } ?>
         </table>
     </section>
-<? } ?>
+<?php } ?>

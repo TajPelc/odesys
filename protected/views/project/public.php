@@ -19,7 +19,7 @@
     var Graph = {};
     Graph.Data = <?php echo json_encode($eval); ?>;
 </script>
-<? } ?>
+<?php } ?>
 
 <section class="content">
     <div id="accordion" class="btcf">

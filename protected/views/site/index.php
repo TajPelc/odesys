@@ -124,7 +124,7 @@
                     </aside>
                 </article>
             </li>
-            <? } ?>
+            <?php } ?>
         </ul>
     </section>
     <?php } ?>
