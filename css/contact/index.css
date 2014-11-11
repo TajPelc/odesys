@@ -11,9 +11,10 @@ section.content h1 {
 }
 
 section.content .social {
-    margin: 0 auto;
-    margin-bottom: 24px;
     width: 184px;
+    margin: 0 auto;
+    margin-bottom: 48px;
+    clear: both;
 }
     section.content .social .facebook,
     section.content .social .twitter,

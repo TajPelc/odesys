@@ -44,6 +44,10 @@ section.content {
                     margin-bottom: 0;
                 }
 
+                section.content ul li form {
+                    padding-left: 60px;
+                }
+
             section.content ul li ul li {
                 position: relative;
                 padding-left: 46px;
