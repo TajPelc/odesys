@@ -26,7 +26,7 @@ class SiteController extends Controller
         Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index/index.css');
 
         // include scrips
-        Yii::app()->clientScript->registerScriptFile('http://www.youtube.com/player_api');
+        Yii::app()->clientScript->registerScriptFile('//www.youtube.com/player_api');
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index/index.js');
 
         /**
