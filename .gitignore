@@ -2,9 +2,7 @@
 .buildpath
 .project
 .settings/
-.htaccess
 .htpasswd
 /assets/
 protected/config/main.php
 protected/runtime/
-index.php
