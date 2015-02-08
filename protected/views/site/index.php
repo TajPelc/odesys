@@ -110,6 +110,8 @@
         </ul>
     </section>
 
+    <p>Hello world!</p>
+
     <?php if($latestDecisions) { ?>
     <section id="public_decisions">
         <header>
