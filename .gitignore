@@ -1,7 +1,9 @@
+.idea
 .buildpath
 .project
 .settings/
-assets/
+.htpasswd
+/assets/
 protected/config/main.php
 protected/runtime/
 index.php

@@ -1,0 +1,28 @@
+/*
+ --> Login css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+/* Content
+********************************************************/
+section.content {
+    margin-bottom: 24px;
+    line-height: 16px;
+}
+
+    section.content h1 {
+        font-size: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    section.content p {
+        margin-bottom: 16px;
+    }
+        section.content p b {
+            font-weight: bold;
+        }
+
+section.content article {
+    margin-bottom: 40px;
+}

@@ -1,0 +1,23 @@
+/*
+ --> Toolbox/delete css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+section.content h1 {
+    font-size: 24px;
+    padding: 12px 0 13px 50px;
+    margin-bottom: 16px;
+    background: url(../../images/logo.png) 0 -2px no-repeat;
+}
+
+section.content h2 {
+    font-size: 16px;
+    padding: 12px 0 13px 0;
+}
+
+section.content p {
+    margin-bottom: 24px;
+    font-size: 11px;
+    line-height: 16px;
+}

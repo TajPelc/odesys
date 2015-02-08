@@ -1,0 +1,257 @@
+/*
+ --> Criteria css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+#content {
+    width: 648px;
+    float: left;
+}
+
+#content h1 {
+    font-size: 30px;
+    margin-bottom: 24px;
+}
+
+#content > p {
+    padding-left: 20px;
+    margin-bottom: 16px;
+    color: #9d9fa3;
+    font-style: italic;
+    line-height: 16px;
+}
+
+#content > form {
+    width: 100%;
+    margin-bottom: 16px;
+    float: left;
+    position: relative;
+}
+
+    #content > form ol {
+        width: 628px;
+        margin-left: 20px;
+        list-style: decimal inside;
+        float: left;
+        position: relative;
+    }
+
+        #content > form ol li {
+            width: 100%; /*input width*/
+            height: 40px;
+            line-height: 38px;
+            margin-bottom: 16px;
+            float: left;
+            position: relative;
+            font-weight: bold;
+        }
+
+        #content > form ol li.placeholder {
+            /* b */
+            color: #FFD700;
+          }
+
+        #content > form ol li.placeholder div {
+            width: 585px; /*fake it*/
+            height: 38px; /*fake it*/
+            line-height: 38px;
+            font-size: 16px;
+            font-weight: normal;
+            float: right;
+            background-color: #fff;
+            border: 1px solid #dedfe3;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 2px;
+            color: #9D9FA3;
+            text-align: center;
+            
+        }
+
+        #content > form ol li.ui-sortable-helper {
+            list-style-type: none;
+        }
+
+            #content > form ol li.ui-sortable-helper input {
+                position: relative;
+            }
+
+    #content > form > div {
+        width: 628px;
+        padding: 0 0 24px 20px;
+        margin-bottom: 24px;
+        position: relative;
+        float: left;
+        border-bottom: 1px solid #dedfe3;
+    }
+
+    #content > form input[type="text"] {
+        width: 498px; /*628px*/
+        height: 38px;
+        line-height: 38px;
+        padding: 0 35px 0 53px;
+        font-size: 14px;
+        border: 1px solid #97999d;
+        float:right;
+        color: #444a56;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        background: #fdfefe; /* Old browsers */
+        background: -moz-linear-gradient(top, #fdfefe 0%, #f4f4f4 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfefe), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #fdfefe 0%,#f4f4f4 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfefe', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-9 */
+    }
+
+    #content > form div input[type="text"]{
+        width: 585px; /*650px*/
+        padding: 0 35px 0 8px;
+        background-position: 0 0;
+        float:left;
+    }
+    
+    #content > form input[type="text"]:focus {
+        font-weight: bold;
+    }
+
+        #content > form span:hover,
+        #content > form span:active { cursor: pointer }
+
+        #content > form span.add,
+        #content > form span.remove {
+            width: 40px;
+            height: 40px;
+            display: block;
+            position: absolute;
+        }
+
+        #content > form span.add,
+        #content > form span.remove,
+        #content > form span.drag {
+            width: 46px;
+            top: 0;
+            right: 0px;
+            line-height: 37px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            color: #596171 !important;
+            font-size: 16px;
+            border-left: 1px solid #97999d;
+        }
+
+        #content > form span.add {
+            right: -2px;
+            line-height: 40px;
+            background: #3d4a61; /* Old browsers */
+            background: -moz-linear-gradient(top, #3d4a61 14%, #1c2434 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(14%,#3d4a61), color-stop(100%,#1c2434)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #3d4a61 14%,#1c2434 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d4a61', endColorstr='#1c2434',GradientType=0 ); /* IE6-9 */
+            border: none;
+            color: #fff !important;
+        }
+
+        #content form .loading {
+            width: 24px;
+            height: 24px;
+            display: block;
+            position: absolute;
+            top: 7px;
+            right: 52px;
+            background: url(../../images/ajax-loader-circular.gif) no-repeat;
+        }
+
+        #content > form span.drag {
+            width: 46px;
+            height: 40px;
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 38px;
+            border: none;
+        }
+            #content > form span.drag span {
+                width: 40px;
+                height: 40px;
+                display: block;
+                background: url(../../images/bg/icons.png) 19px -1189px no-repeat;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+        #content > form span.drag:hover { background-position: -100px -200px }
+
+        #content form .loading {
+            width: 24px;
+            height: 24px;
+            display: block;
+            position: absolute;
+            top: 7px;
+            right: 52px;
+            background: url(../../images/ajax-loader-circular.gif) no-repeat;
+        }
+
+        #content > form div.error:after {
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #790E0E;
+            border-top: 10px solid transparent;
+            content: "";
+            height: 0;
+            position: absolute;
+            right: 100%;
+            top: 8px;
+            width: 0;
+        }
+        #content > form div.error {
+            background: none repeat scroll 0 0 #FFFFFF;
+            border: 1px solid #790E0E;
+            border-radius: 1px 1px 1px 1px;
+            color: #790E0E;
+            font-weight: normal !important;
+            height: 38px;
+            line-height: 38px;
+            padding: 0 0 0 21px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 10;
+        }
+
+        #content > form div.error p {
+            height: 100%;
+            line-height: 38px;
+            font-size: 16px;
+            padding-right: 26px;
+        }
+
+/* Sidebar
+********************************************************/
+#sidebar {
+    width: 234px; /*254px*/
+    padding: 0 10px 8px 10px;
+    line-height: 16px;
+    float: right;
+}
+#sidebar h2 {
+    font-size: 18px;
+    padding-top: 12px;
+    margin-bottom: 26px;
+}
+
+#sidebar p {
+    margin-bottom: 8px;
+    line-height: 16px;
+    color: #9d9fa3;
+    font-style: italic;
+}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Project controller
+ * Decision controller
  *
  * @author Taj
  *
@@ -8,9 +8,20 @@
 class ProjectController extends Controller
 {
     /**
-     * @var CActiveRecord the currently loaded data model instance.
+     * Decision
+     * @var Decision
      */
-    private $_model;
+    public $Decision;
+
+    /**
+     * DecisionModel
+     */
+    public $DecisionModel;
+
+    /**
+     * Owner
+     */
+    public $Owner;
 
     /**
      * @return array action filters
@@ -31,168 +42,20 @@ class ProjectController extends Controller
     {
         return array(
             array('allow',
-                'users'     => array('*'),
+                'users'     => array('@'),
             ),
         );
     }
 
     /**
-     * Create or update project
+     * Specify actions (non-PHPdoc)
+     * @see CController::actions()
      */
-    public function actionCreate()
+    public function actions()
     {
-        // ajax only
-        if(!Ajax::isAjax())
-        {
-            $this->redirect(array('site/index'));
-        }
-
-        // unset active project
-        if($this->post('forceNew') && $this->post('forceNew') == 'yes')
-        {
-            Project::unsetActiveProject();
-        }
-
-        // create or edit
-        if(false === $Project = Project::getActive())
-        {
-            $Project = new Project();
-        }
-
-        // what to do
-        if($request = $this->post('requesting'))
-        {
-            switch($request)
-            {
-                // post the form
-                case 'formPost':
-                    // save project
-                    if(isset($_POST['Project']))
-                    {
-                        $Project->attributes = $_POST['Project'];
-                    }
-
-                    // save or return errrors
-                    if($Project->save())
-                    {
-                        Ajax::respondOk($Project->getAttributes());
-                    }
-                    else
-                    {
-                        $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
-                        Ajax::respondError($rv);
-                    }
-                    break;
-                // render the form
-                case 'form':
-                    $rv['form'] = $this->renderPartial('_form', array('model' => $Project), true);
-                    $rv['edit'] = !$Project->getIsNewRecord();
-                    Ajax::respondOk($rv);
-            }
-        }
-    }
-
-    /**
-     * Project details
-     */
-    public function actionDetails()
-    {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project-details.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/project-details.css');
-
-        // get project
-        $Project = $this->loadActiveProject();
-
-        // redirect to evaluation if not yet complete
-        if(!$Project->checkEvaluationComplete())
-        {
-            $this->redirect(array('evaluation/evaluate'));
-        }
-
-        // render details
-        $this->render('details', array(
-            'Project' => $Project,
-            'Alternatives' => $Project->alternatives,
-            'Criteria' => $Project->criteria,
-            'eval' => $Project->getEvaluationArray(0.9, true),
-        ));
-    }
-
-    /**
-     * Deletes a particular model.
-     *
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     */
-    public function actionDelete()
-    {
-        if(Yii::app()->request->isPostRequest)
-        {
-            // we only allow deletion via POST request
-            $this->loadActiveProject()->delete();
-            $this->redirect(array('index'));
-        }
-        else
-        {
-            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-        }
-    }
-
-    /**
-     * Lists all user's projects.
-     */
-    public function actionIndex()
-    {
-        if($_GET['unset'])
-        {
-            Project::unsetActiveProject();
-        }
-
-        // redirect unauthenticated users
-        if(Yii::app()->user->isGuest)
-        {
-            $this->redirect(array('site/index'));
-        }
-
-        // add script files
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/jquery.color.js');
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/project.js');
-
-        // render index
-        $this->render('index', array(
-            'Project' => $this->loadActiveProject(false),
-            'Projects' => Project::model()->findAllByAttributes(array('rel_user_id' => Yii::app()->user->id)),
-        ));
-    }
-
-    /**
-     * Set a project as active by the unique ID given
-     */
-    public function actionSet()
-    {
-        if(isset($_GET['i']))
-        {
-            $Project = new Project();
-            $Project->unsetActiveProject();
-            $Project = $Project->findByAttributes(array('url' => $_GET['i']));
-            if($Project instanceof Project /*&& $Project->rel_user_id == User::ANONYMOUS*/) // @TODO SET PUBLIC/PRIVATE FLAG
-            {
-                $Project->setAsActiveProject();
-                $this->redirect(array('project/create'));
-            }
-        }
-        $this->redirect(array('site/index'));
-    }
-    /**
-     * Generate the project menu for ajax
-     */
-    public function actionMenu()
-    {
-        if(Ajax::isAjax())
-        {
-            $this->loadActiveProject();
-            $PM = new ProjectMenu;
-            $rv['menu'] = $PM->run();
-            Ajax::respondOk($rv);
-        }
+        return array(
+            'create'      => 'application.controllers.project.CreateAction',
+            'public'      => 'application.controllers.project.PublicAction',
+        );
     }
 }

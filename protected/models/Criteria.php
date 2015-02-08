@@ -1,167 +1,167 @@
 <?php
 
-class Criteria extends CActiveRecord
+/**
+ * This is the model class for table "criteria".
+ *
+ * Extends DecisionElement
+ *
+ * The followings are the available columns in table 'criteria':
+ * @property string $criteria_id
+ * @property string $rel_model_id
+ * @property integer $position
+ * @property string $title
+ *
+ * The followings are the available model relations:
+ * @property Model $relModel
+ * @property Alternative[] $alternatives
+ */
+class Criteria extends DecisionElement
 {
-    /**
-     *  Old title for uniqueness comparison
-     */
-    private $oldTitle;
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @return Criteria
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
 
-    /**
-     * The followings are the available columns in table 'criteria':
-     * @var double $criteria_id
-     * @var double $rel_project_id
-     * @var string $title
-     * @var string $best
-     * @var string $worst
-     * @var string $description
-     */
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'criteria';
+	}
 
-    /**
-     * Returns the static model of the specified AR class.
-     * @return CActiveRecord the static model class
-     */
-    public static function model($className=__CLASS__)
-    {
-        return parent::model($className);
-    }
-
-    /**
-     * @return string the associated database table name
-     */
-    public function tableName()
-    {
-        return 'criteria';
-    }
-
-    /**
-     * @return array validation rules for model attributes.
-     */
-    public function rules()
-    {
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
         return array(
-            array('title', 'isProjectUnique'),
-            array('title, worst, best', 'required'),
+            array('title', 'filter', 'filter' => 'trim'),
+            array('title', 'required'),
             array('title', 'length', 'max' => 60),
-            array('worst, best', 'length', 'max' => 30),
-            array('title, description', 'safe', 'on' => 'search'),
+            array('title', 'isDecisionModelUnique'),
+			array('title', 'safe', 'on'=>'search'),
         );
-    }
+	}
 
-    /**
-     * @return array relational rules.
-     */
-    public function relations()
-    {
-        return array(
-            'project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		return array(
+			'DecisionModel' => array(self::BELONGS_TO, 'DecisionModel', 'rel_model_id'),
             'evaluations' => array(self::HAS_MANY, 'Evaluation', 'rel_criteria_id'),
-        );
-    }
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'criteria_id' => 'Criteria',
+			'rel_model_id' => 'Rel Model',
+			'position' => 'Position',
+			'title' => 'Title',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->compare('title',$this->title,true);
+		return new CActiveDataProvider(get_class($this), array(
+			'criteria'=>$criteria,
+		));
+	}
 
     /**
-     * Check if title is unique for this project
+     * Before save
      *
-     * @param $attribute
-     * @param $params
-     */
-    public function isProjectUnique($attribute, $params)
-    {
-        // check for new records or if the title has been changed
-        if($this->getIsNewRecord() || $this->oldTitle !== $this->title)
-        {
-            // editing
-            if(!$this->getIsNewRecord() && mb_strtolower($this->title, mb_detect_encoding($this->title)) == mb_strtolower($this->oldTitle, mb_detect_encoding($this->oldTitle)) )
-            {
-                return true;
-            }
-
-            // record exists!
-            if(null !== $this->findByAttributes(array('rel_project_id' => $this->rel_project_id, $attribute => $this->{$attribute})))
-            {
-                $this->addError($attribute, ucfirst($attribute).' must be unique.');
-            }
-        }
-    }
-
-    /**
-     * Save the title value for later comparison
-     */
-    public function afterFind()
-    {
-        parent::afterFind();
-
-        // save old title
-        $this->oldTitle = $this->title;
-
-        return true;
-    }
-
-    /**
-     * Handle all the logic before saving
+     * Update decision model last edit
+     * Set position
+     * Increase decision model criteria counter
      */
     public function beforeSave()
     {
         if( parent::beforeSave() )
         {
-            if( $this->isNewRecord )
+            if(!$this->clone)
             {
-                $this->position = count(Criteria::model()->findAllByAttributes(array('rel_project_id' => $this->rel_project_id)));
+                // update decision model's last edit
+                $this->DecisionModel->updateLastEdit();
+
+                if($this->isNewRecord)
+                {
+                    // set initial position
+                    $this->position = $this->DecisionModel->no_criteria;
+
+                    // increase the number of criteria
+                    $this->DecisionModel->increase('no_criteria');
+                }
             }
             return true;
         }
-        else
+        return false;
+    }
+
+    /**
+     * After delete
+     *
+     * - Reorder criteria
+     */
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        // create query criteria
+        $dbCriteria= new CDbCriteria();
+        $dbCriteria->condition = 'rel_model_id = :rel_model_id';
+        $dbCriteria->order = 'position ASC';
+        $dbCriteria->params = array(':rel_model_id' => $this->_oldValues['rel_model_id']);
+
+        // query
+        $result = self::model()->findAll($dbCriteria);
+
+        // reorder and save
+        for($i = 0; $i < count($result); $i++)
         {
-            return false;
-        }
-    }
-
-    /**
-     * Delete criteria related stuff
-     */
-    public function beforeDelete()
-    {
-        parent::beforeDelete();
-
-        // delete criteria
-        foreach($this->evaluations as $e)
-        {
-            $e->delete();
+            $result[$i]->position = $i;
+            $result[$i]->save();
         }
 
-        return true;
+        // decrease the number of criteria
+        DecisionModel::model()->findByPk($this->_oldValues['rel_model_id'])->decrease('no_criteria');
     }
 
     /**
-     * @return array customized attribute labels (name=>label)
+     * Return criteria for the current decision model matching the position given
+     *
+     * @param int $position
      */
-    public function attributeLabels()
+    public static function getCriteriaByPosition($id, $position)
     {
-        return array(
-            'criteria_id' => 'Criteria',
-            'rel_project_id' => 'Rel Project',
-            'position' => 'Position',
-            'title' => 'Title',
-            'best' => 'Best',
-            'worst' => 'Worst',
-            'description' => 'Description',
-        );
+        return self::model()->findByAttributes(array('rel_model_id' => $id, 'position' => $position));
     }
 
     /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     * Check if this decision is evaluated by current criteria
+     *
+     * @param int $position
      */
-    public function search()
+    public function isDecisionEvaluated()
     {
-        $criteria=new CDbCriteria;
-
-        $criteria->compare('title',$this->title,true);
-
-        $criteria->compare('description',$this->description,true);
-
-        return new CActiveDataProvider('Criteria', array(
-            'criteria'=>$criteria,
-        ));
+        // if there are the same number of evaluations with this criteria and decision model id as there are alternatives, then this criteria has been evaluated
+        return ($this->DecisionModel->no_alternatives == Evaluation::model()->countByAttributes(array('rel_criteria_id' => $this->criteria_id)));
     }
 }

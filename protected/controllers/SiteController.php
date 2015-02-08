@@ -2,9 +2,6 @@
 
 class SiteController extends Controller
 {
-    // use the one column layout
-    public $layout='application.views.layouts.column1';
-
     /**
      * Declares class-based actions.
      */
@@ -25,9 +22,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index.css');
-        $this->render('index');
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/index/index.css');
+
+        // include scrips
+        Yii::app()->clientScript->registerScriptFile('//www.youtube.com/player_api');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index/index.js');
+
+        /**
+         * Load 8 latest evaluated public decisions
+         */
+        $decisions = Decision::model()->with(array(
+            'models' => array(
+                'joinType' => 'INNER JOIN',
+                'condition' => 'models.evaluation_complete = 1 AND t.view_privacy = 0 AND deleted = 0',
+                'order' => 't.created DESC'
+            ),
+        ))->findAll(array('limit' => 7, 'together' => true));
+
+        $this->render('index', array('latestDecisions' => $decisions));
     }
 
     /**
@@ -35,8 +48,8 @@ class SiteController extends Controller
      */
     public function actionError()
     {
-        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/index.js');
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/error.css');
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/toolbox/error.css');
         if($error = Yii::app()->errorHandler->error)
         {
             if(Yii::app()->request->isAjaxRequest)
@@ -48,6 +61,10 @@ class SiteController extends Controller
                 $e = new stdClass();
                 switch($error['code'])
                 {
+                    case 403:
+                        $e->title = 'Access restricted!';
+                        $e->message = (bool)$error['message'] ? $error['message'] : 'This page is restricted.';
+                        break;
                     case 404:
                         $e->title = 'Are you lost?';
                         $e->message = 'The requested page does not exist.';
@@ -64,46 +81,33 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays the login page
-     */
-    public function actionLogin()
-    {
-        $model=new LoginForm;
-
-        // if it is ajax validation request
-        if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-        {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-
-        // collect user input data
-        if(isset($_POST['LoginForm']))
-        {
-            $model->attributes=$_POST['LoginForm'];
-            // validate user input and redirect to the previous page if valid
-            if($model->validate() && $model->login())
-                $this->redirect(Yii::app()->user->returnUrl);
-        }
-        // display the login form
-        $this->render('login',array('model'=>$model));
-    }
-
-    /**
-     * Logs out the current user and redirect to homepage.
-     */
-    public function actionLogout()
-    {
-        Yii::app()->user->logout();
-        $this->redirect(Yii::app()->homeUrl);
-    }
-
-    /**
      * About page
      */
     public function actionAbout()
     {
-        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about.css');
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/about/index.css');
         $this->render('about');
     }
+
+    /**
+     * Terms of use page
+     */
+    public function actionTerms()
+    {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/terms/index.css');
+        $this->render('terms');
+    }
+
+    /**
+     * Contact page
+     */
+    public function actionContact()
+    {
+        // include styles
+        Yii::app()->clientScript->registerCSSFile(Yii::app()->baseUrl.'/css/contact/index.css');
+        $this->render('contact');
+    }
+
 }

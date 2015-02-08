@@ -1,142 +1,209 @@
 <?php
 
-class Alternative extends CActiveRecord
+/**
+ * This is the model class for table "alternative".
+ *
+ * Extends DecisionElement
+ *
+ * The followings are the available columns in table 'alternative':
+ * @property string $alternative_id
+ * @property string $rel_model_id
+ * @property string $title
+ * @property double $score
+ * @property double $weightedScore
+ * @property string $color
+ *
+ * The followings are the available model relations:
+ * @property Model $relModel
+ * @property Criteria[] $criterias
+ */
+class Alternative extends DecisionElement
 {
     /**
-     *  Old title for uniqueness comparison
+     * Color pool for plotting graphs
+     *
+     * @var array
      */
-    private $oldTitle;
+    private static $colorPool = array(
+        "#6ac616",
+        "#b000b7",
+        "#2da7b9",
+        "#18b3f7",
+        "#bd3439",
+        "#c6dc0c",
+        "#5c0369",
+        "#eb8e94",
+        "#00953f"
+    );
 
-    /**
-     * The followings are the available columns in table 'alternative':
-     * @var double $alternative_id
-     * @var double $rel_project_id
-     * @var string $title
-     * @var string $description
-     */
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @return Alternative
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
 
-    /**
-     * Returns the static model of the specified AR class.
-     * @return CActiveRecord the static model class
-     */
-    public static function model($className=__CLASS__)
-    {
-        return parent::model($className);
-    }
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'alternative';
+	}
 
-    /**
-     * @return string the associated database table name
-     */
-    public function tableName()
-    {
-        return 'alternative';
-    }
-
-    /**
-     * @return array validation rules for model attributes.
-     */
-    public function rules()
-    {
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
         return array(
-            array('title', 'isProjectUnique'),
+            array('title', 'filter', 'filter' => 'trim'),
             array('title', 'required'),
             array('title', 'length', 'max' => 60),
-            array('title, description', 'safe', 'on' => 'search'),
+            array('title', 'isDecisionModelUnique'),
+			array('title', 'safe', 'on'=>'search'),
         );
-    }
+	}
 
-    /**
-     * @return array relational rules.
-     */
-    public function relations()
-    {
-        return array(
-            'project' => array(self::BELONGS_TO, 'Project', 'rel_project_id'),
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		return array(
+			'DecisionModel' => array(self::BELONGS_TO, 'DecisionModel', 'rel_model_id'),
             'evaluations' => array(self::HAS_MANY, 'Evaluation', 'rel_alternative_id'),
-        );
-    }
+			// 'criterias' => array(self::MANY_MANY, 'Criteria', 'evaluation(rel_alternative_id, rel_criteria_id)'),
+		);
+	}
 
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'alternative_id' => 'Alternative',
+			'rel_model_id' => 'Rel Model',
+			'title' => 'Title',
+			'score' => 'Score',
+			'weightedScore' => 'Weighted Score',
+			'color' => 'Color',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		$criteria=new CDbCriteria;
+		$criteria->compare('title',$this->title,true);
+		return new CActiveDataProvider(get_class($this), array(
+			'criteria'=>$criteria,
+		));
+	}
     /**
-     * Check if title is unique for this project
+     * Before delete
      *
-     * @param $attribute
-     * @param $params
-     */
-    public function isProjectUnique($attribute, $params)
-    {
-        // check for new records or if the title has been changed
-        if($this->getIsNewRecord() || $this->oldTitle !== $this->title)
-        {
-            // editing
-            if(!$this->getIsNewRecord() && mb_strtolower($this->title, mb_detect_encoding($this->title)) == mb_strtolower($this->oldTitle, mb_detect_encoding($this->oldTitle)) )
-            {
-                return true;
-            }
-
-            // record exists!
-            if(null !== $this->findByAttributes(array('rel_project_id' => $this->rel_project_id, $attribute => $this->{$attribute})))
-            {
-                $this->addError($attribute, ucfirst($attribute).' must be unique.');
-            }
-        }
-    }
-
-    /**
-     * Save the title value for later comparison
-     */
-    public function afterFind()
-    {
-        parent::afterFind();
-
-        // save old title
-        $this->oldTitle = $this->title;
-
-        return true;
-    }
-
-    /**
-     * Delete alternative related stuff
+     * Update decision model's last edit date and delete all evaluation
      */
     public function beforeDelete()
     {
-        parent::beforeDelete();
-
-        // delete criteria
-        foreach($this->evaluations as $e)
+        if( parent::beforeDelete() )
         {
-            $e->delete();
+            // update prefered alternative
+            if($this->DecisionModel->preferred_alternative == $this->getPrimaryKey())
+            {
+                $this->DecisionModel->preferred_alternative = null;
+                $this->DecisionModel->save();
+            }
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     /**
-     * @return array customized attribute labels (name=>label)
+     * Reorder criteria
      */
-    public function attributeLabels()
+    public function afterDelete()
     {
-        return array(
-            'alternative_id' => 'Alternative',
-            'rel_project_id' => 'Rel Project',
-            'title' => 'Title',
-            'description' => 'Description',
-        );
+        parent::afterDelete();
+
+        // decrease the number of criteria
+        DecisionModel::model()->findByPk($this->_oldValues['rel_model_id'])->decrease('no_alternatives');
     }
 
     /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     * Handle all the logic before save
      */
-    public function search()
+    public function beforeSave()
     {
-        $criteria=new CDbCriteria;
+        if( parent::beforeSave() )
+        {
+            if(!$this->clone)
+            {
+                // update decision model's last edit
+                $this->DecisionModel->updateLastEdit();
 
-        $criteria->compare('title',$this->title,true);
+                // new record?
+                if($this->isNewRecord)
+                {
+                    // allocate a color
+                    $this->allocateColor();
 
-        $criteria->compare('description',$this->description,true);
+                    // increase the number of criteria
+                    $this->DecisionModel->increase('no_alternatives');
+                }
+            }
+            return true;
+        }
+        return false;
+    }
 
-        return new CActiveDataProvider('Alternative', array(
-            'criteria'=>$criteria,
-        ));
+    /**
+     * Gives the current alternative a color for graphical display
+     *
+     * @return string $this->color
+     */
+    public function allocateColor()
+    {
+        $DecisionModel = $this->DecisionModel;
+
+        // choose a color from the pool
+        if(count(self::$colorPool) > $noAlt = $DecisionModel->no_alternatives)
+        {
+            // find out what colors are beeing used
+            $usedColors = array();
+            foreach($DecisionModel->alternatives as $A)
+            {
+                $usedColors[] = $A->color;
+            }
+
+            // find a free color
+            foreach(self::$colorPool as $color)
+            {
+                if(!in_array($color, $usedColors))
+                {
+                    $this->color = $color;
+                }
+            }
+
+            return $this->color;
+        }
+
+        // generate random color using colorjizz library
+        Yii::import('application.vendors.color-jizz.*');
+        require_once('ColorJizz-0.2.php');
+
+        // get a random color by random hue
+        $color = new HSV(rand(0,360), 80, 75);
+        $this->color = '#' . str_pad($color->toHex()->toString(), 6, '0', STR_PAD_LEFT);
+
+        return $this->color;
     }
 }

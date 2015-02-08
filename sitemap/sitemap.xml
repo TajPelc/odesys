@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <url>
+        <loc>http://odesys.si/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+        <changefreq>always</changefreq>
+    </url>
+
+    <!-- STATIC -->
+    <url>
+        <loc>http://odesys.si/login/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/site/about/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/site/terms/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/site/contact/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+
+    <!-- BLOG & ARTICLES -->
+    <url>
+        <loc>http://odesys.si/blog/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/blog/different-approach-to-decision-making/</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/blog/learning-from-our-mistakes/</loc>
+        <lastmod>2013-03-06T09:34:19+00:00</lastmod>
+    </url>
+
+    <!-- DECISIONS -->
+    <url>
+        <loc>http://odesys.si/decision/165-what-to-cook.html</loc>
+        <lastmod>2013-03-18T09:00:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/153-should-i-get-a-ssd-hdd-or-hybrid-for-my-os.html</loc>
+        <lastmod>2013-03-18T09:00:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/113-which-guitar-amp-to-buy.html</loc>
+        <lastmod>2013-03-11T09:00:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/95-what-should-i-do-with-my-spare-time.html</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/91-lol-which-character-should-i-pick.html</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/87-buying-a-video-card.html</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+    <url>
+        <loc>http://odesys.si/decision/86-demo-buying-a-car.html</loc>
+        <lastmod>2013-03-02T09:34:19+00:00</lastmod>
+    </url>
+
+</urlset>

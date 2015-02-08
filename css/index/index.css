@@ -1,0 +1,198 @@
+/*
+ --> Index css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+/* Content
+********************************************************/
+section.content {
+    margin-bottom: 20px;
+}
+
+    section.content h1 {
+        font-size: 30px;
+        margin-bottom: 60px;
+        text-align: center;
+    }
+    
+    section.content ul {}
+        section.content > ul > li {
+            width: 306px;
+            margin-bottom: 32px;
+            float: left;
+        }
+            section.content ul li h2,
+            section.content ul li p,
+            section.content ul li ul {
+                padding-left: 60px;
+            }
+
+            section.content ul li h2 {
+                padding-bottom: 20px;
+                font-size: 30px;
+                position: relative;
+            }
+
+
+            section.content ul li p,
+            section.content ul li ul {
+                line-height: 18px;
+                margin-bottom: 16px;
+            }
+                section.content ul li p:last-child {
+                    margin-bottom: 0;
+                }
+
+                section.content ul li form {
+                    padding-left: 60px;
+                }
+
+            section.content ul li ul li {
+                position: relative;
+                padding-left: 46px;
+                margin-bottom: 16px;
+                min-height: 36px;
+            }
+                section.content ul li ul li span {
+                    width: 36px;
+                    height: 29px;
+                    padding-top: 7px;
+                    display: block;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    font-size: 11px;
+                    line-height: 12px;
+                    text-align: center;
+                    font-family: Arial,Helvetica,sans-serif;
+                    font-style: normal;
+                    background: url(../../images/icon/date.png) top left no-repeat;
+                }
+                section.content ul li ul li span b {
+                    display: block;
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+                
+            section.content ul li:nth-child(1) h2 {
+                 background: url(../../images/bg/icons.png) 23px 2px no-repeat;
+            }
+            section.content ul li:nth-child(3) h2 {
+                background: url(../../images/bg/icons.png) 10px -204px no-repeat;
+            }
+            section.content ul li:nth-child(2) h2 {
+                background: url(../../images/bg/icons.png) 16px -400px no-repeat;
+            }
+
+    section.content iframe {
+        margin-bottom: 40px;
+    }
+
+/* Button: begin your journey
+********************************************************/
+    section.content > div {
+        margin-bottom: 60px;
+        text-align: center;
+        background: url(../../images/bg/index_button.png) 0 0 no-repeat;
+    }
+        section.content > div a {
+            padding: 8px 30px;
+            background: #3d4a61; /* Old browsers */
+            color: #fff !important;
+            font-size: 16px;
+            background: -moz-linear-gradient(top, #3d4a61 14%, #1c2434 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(14%,#3d4a61), color-stop(100%,#1c2434)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #3d4a61 14%,#1c2434 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d4a61', endColorstr='#1c2434',GradientType=0 ); /* IE6-9 */
+            box-shadow: 2px 3px 1px #ecedee;
+            -moz-box-shadow: 2px 3px 1px #ecedee;
+            -webkit-box-shadow:  2px 3px 1px #ecedee;
+        }
+
+/* Public decisions
+********************************************************/
+section#public_decisions {
+    width: 100%;
+    padding: 20px 0;
+    background: #f8f9fb;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #eeeff1;
+    box-shadow: 0px -1px 0px #eeeff1;
+}
+    section#public_decisions > header {
+        width: 920px;
+        padding: 0 20px;
+        margin: 0 auto;
+        margin-bottom: 24px;
+    }
+        section#public_decisions > header h1 {
+            font-size: 30px;
+            text-align: center;
+        }
+
+    section#public_decisions ul {
+        width: 920px;
+        padding: 0 20px;
+        margin: 0 auto;
+    }
+        section#public_decisions ul li {
+            width: 193px;
+            height: 50px;
+            padding: 10px;
+            margin: 0 20px 20px 0;
+            float: left;
+            border: 1px solid #eeeff1;
+            background: #fff;
+        }
+
+            section#public_decisions ul li.featured {
+                position: relative;
+            }
+                section#public_decisions ul li.featured > span {
+                    position: absolute;
+                    top: -10px;;
+                    right: -10px;
+                    width: 24px;
+                    height: 24px;
+                    display: block;
+                    background: url(../../images/icon/featured.png) 0 0 no-repeat;
+                }
+
+        section#public_decisions ul li:nth-child(4n) {
+            margin-right: 0;
+        }
+        section#public_decisions ul li:nth-child(5n),
+        section#public_decisions ul li:nth-child(6n),
+        section#public_decisions ul li:nth-child(7n),
+        section#public_decisions ul li:nth-child(8n){
+            margin-bottom: 0;
+        }
+
+            section#public_decisions ul li aside {
+                width: 50px;
+                height: 50px;
+            }
+                section#public_decisions ul li aside img {
+                    background: url("../../images/gravatar_default.png") repeat scroll 0 0 transparent;
+                    display: block;
+                    height: 50px;
+                    text-indent: -9999px;
+                    width: 50px;
+                }
+
+            section#public_decisions ul li header {
+                width: 133px;
+                padding-top: 8px;
+                float: right;
+                font-style: italic;
+                overflow: hidden;
+                word-break: keep-all;
+                height: 34px;
+            }
+                section#public_decisions ul li header a {
+                    line-height: 16px;
+                }

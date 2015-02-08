@@ -1,0 +1,422 @@
+/*
+ --> Layout css
+ --> @author:     Frenk T. Sedmak Nahtigal
+ --> @version:    3.0
+*/
+
+html {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+noscript {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #FFD700;
+}
+    #noscript-warning {
+        width: 880px;
+        height: 54px;
+        line-height: 54px;
+        padding: 0 40px;
+        margin: 0 auto;
+        font-size: 24px;
+        background: #FFD700;
+        text-align: center;
+        font-family: Times, Helvetica, sans-serif;
+        font-style: italic;
+    }
+    html.no-js header.content {
+        padding-top: 40px;
+    }
+
+
+
+body {
+    height: 100%;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background: #fff;
+    color: #5e5e5e;
+}
+
+a {
+    text-decoration: none;
+    color: #000 !important;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+h1,
+h2,
+nav a {
+    font-family: Times, Helvetica, sans-serif;
+    font-style: italic;
+    color: #444a56;
+}
+
+textarea:focus, input:focus, select:focus{
+    outline: none;
+}
+
+/* GLOBAL CONTAINERS
+********************************************************/
+#wrapper {
+    min-height: 100%;
+}
+
+#main {
+    overflow: auto;
+    padding-bottom: 83px; /*must the the same as footer height*/
+    margin-bottom: 20px;
+}
+
+section.content,
+header.content section,
+body > footer nav {
+    width: 920px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+/*Opera Sticky Footer Fix*/
+body:before {
+    content:"";
+    height:100%;
+    float:left;
+    width:0;
+    margin-top:-32767px;
+}
+
+/* HEADER
+********************************************************/
+header.content {
+    width: 100%;
+    height: 79px; /*180px*/
+    padding-bottom: 101px;
+    margin-bottom: 40px;
+    position: relative;
+    background: url(../../images/bg/banner.png) bottom left repeat-x;
+    box-shadow: 0px 1px 6px #d4d4d4;
+}
+
+header.content #banner {
+        width: 100%;
+        height: 101px;
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+    }
+        header.content #banner div {
+            width: 870px;
+            height: 100%;
+            margin: 0 auto;
+            background: url(../../images/banner_img.png) 0 0 no-repeat;
+            overflow: auto;
+        }
+
+header.content nav {
+    padding-top: 30px;
+    font-size: 24px;
+}
+    header.content nav > a {
+        float: left;
+        padding: 15px 0 15px 50px;
+        background: url(../../images/logo.png) 0 0 no-repeat;
+    }
+    header.content nav > ul {
+        float: right;
+    }
+        header.content nav > ul li {
+            float: left;
+            margin-right: 6px;
+        }
+            header.content nav > ul a,
+            header.content nav > ul span {
+                padding: 15px 0;
+                float: left;
+            }
+            header.content nav > ul span {
+                margin-left: 5px;
+                font-family: Times;
+                font-style: italic;
+            }
+
+    header.content nav > p {
+        float: right;
+        clear: both;
+        font-style: italic;
+        font-size: 12px;
+        font-family: Times, sans-serif;
+    }
+
+/* CONTENT
+********************************************************/
+section.content {
+    /*overflow: auto; /*sticky footer*/
+}
+
+
+/* FOOTER
+********************************************************/
+body > footer {
+    width: 100%;
+    height: 82px;
+    position: relative;
+    margin-top: -83px; /*must be the negative value of height*/
+    clear: both;
+    background: #fafafa;
+    border-top: 1px solid #fff;
+    box-shadow: 0px -1px 0px #e2e2e2;
+}
+    body > footer nav ul {
+        padding-top: 26px;
+        font-size: 22px;
+        text-align: center;
+    }
+        body > footer nav ul li {
+            display: inline;
+        }
+
+
+/* OVERLAY
+********************************************************/
+#overlay_bg {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url(../../images/bg/overlay.png) repeat;
+}
+    #overlay {
+        width: 440px;
+        padding: 16px 40px;
+        position: fixed;
+        border: 5px solid #2394d2;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(top, #ffffff 0%, #f2f2f2 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f2f2f2)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #ffffff 0%,#f2f2f2 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #ffffff 0%,#f2f2f2 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #ffffff 0%,#f2f2f2 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #ffffff 0%,#f2f2f2 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 ); /* IE6-9 */
+        transform: scale(0,0);
+        -moz-transition: -moz-transform 0.2s;
+        -webkit-transition: -webkit-transform 0.2s;
+        -o-transition: -o-transform 0.2s;
+        transition: transform 0.2s;
+    }
+        #overlay a.close {
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            display: block;
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            background: #000;
+            -moz-border-radius: 12px;
+            font-family: Verdana;
+            border-radius: 15px;
+            text-align: center;
+            color: #2394d2 !important;
+            font-weight: bold;
+            font: size: 11px;
+            text-shadow: 1px 1px #1c2434;
+            box-shadow: 1px 1px 1px #1c2434;
+            border: 3px solid #2394d2;
+        }
+        #overlay a.close:hover {
+            text-decoration: none !important;
+        }
+
+        #overlay h1 {
+            font-size: 24px;
+            padding: 12px 0 13px 50px;
+            margin-bottom: 16px;
+            background: url(../../images/logo.png) 0 -2px no-repeat;
+        }
+
+        #overlay h2 {
+            font-size: 16px;
+            padding: 12px 0 13px 0;
+        }
+
+        #overlay p {
+            margin-bottom: 24px;
+            font-size: 12px;
+            line-height: 16px;
+        }
+            #overlay p em {
+                font-style: italic;
+                font-weight: bold;
+            }
+            #overlay p b {
+                font-weight: bold;
+            }
+
+        #overlay h2 + ul {
+            list-style: inside circle;
+            font-size: 11px;
+            line-height: 16px;
+            margin-bottom: 32px;
+            padding-left: 20px;
+        }
+
+        #overlay form {
+            position: relative;
+        }
+
+        #overlay #title {
+            width: 418px;
+            height: 28px;
+            padding: 4px 10px;
+            margin-bottom: 16px;
+            border: 1px solid #97999d;
+            color: #444a56;
+            background: #fdfefe; /* Old browsers */
+            background: -moz-linear-gradient(top, #fdfefe 0%, #f4f4f4 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfefe), color-stop(100%,#f4f4f4)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #fdfefe 0%,#f4f4f4 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #fdfefe 0%,#f4f4f4 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfefe', endColorstr='#f4f4f4',GradientType=0 ); /* IE6-9 */
+        }
+            #overlay #title:-moz-placeholder {
+                color: #97999d;
+            }
+        #overlay #privacy {
+            width: 256px;
+            padding: 5px;
+            background: transparent;
+            line-height: 1;
+            border: 0;
+            -webkit-appearance: none;
+        }
+            #overlay #prettySelectBox {
+                width: 234px;
+                height: 29px;
+                margin-right: 20px;
+                overflow: hidden;
+                float: left;
+                border: 1px solid #97999d;
+                background: url(../../images/bg/icons.png) 201px -1000px no-repeat;
+            }
+            #overlay #privacy option {
+                font-size: 13px;
+                margin: 2px 0;
+                padding-bottom: 2px;
+            }
+        #overlay #cancel,
+        #overlay #next,
+        #overlay #delete {
+            padding: 4px 0;
+            width: 200px;
+            float: left;
+            font-size: 16px;
+            border: none;
+            color: #fff !important;
+            background: #3d4a61; /* Old browsers */
+            background: -moz-linear-gradient(top, #3d4a61 14%, #1c2434 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(14%,#3d4a61), color-stop(100%,#1c2434)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #3d4a61 14%,#1c2434 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #3d4a61 14%,#1c2434 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d4a61', endColorstr='#1c2434',GradientType=0 ); /* IE6-9 */
+            box-shadow: 2px 3px 1px #ecedee;
+            -moz-box-shadow: 2px 3px 1px #ecedee;
+            -webkit-box-shadow:  2px 3px 1px #ecedee;
+            cursor: pointer;
+        }
+            #overlay #next,
+            #overlay #delete {
+                float: right;
+            }
+            #overlay #prettySelectBox + #cancel,
+            #overlay #prettySelectBox + #cancel + #next {
+                width: 84px;
+            }
+
+            #overlay #cancel:hover,
+            #overlay #next:hover,
+            #overlay #delete:hover {
+                text-decoration: underline;
+            }
+        #overlay label {
+            display: none;
+        }
+
+            #overlay div.error:after {
+                border-bottom: 10px solid transparent;
+                border-right: 10px solid #790E0E;
+                border-top: 10px solid transparent;
+                content: "";
+                height: 0;
+                position: absolute;
+                right: 100%;
+                top: 8px;
+                width: 0;
+            }
+            #overlay div.error {
+                max-width: 300px;
+                background: none repeat scroll 0 0 #FFFFFF;
+                border: 1px solid #790E0E;
+                border-radius: 1px 1px 1px 1px;
+                color: #790E0E;
+                font-weight: normal !important;
+                min-height: 36px;
+                line-height: 38px;
+                padding: 0 0 0 21px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 10;
+            }
+                #overlay div.error p {
+                    height: 100%;
+                    line-height: 36px;
+                    font-size: 16px;
+                    padding-right: 26px;
+                    margin: 0;
+                }
+
+/* Ajax Block
+********************************************************/
+.block {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #1c2434;
+    opacity: 0.7;
+    border: none !important;
+    z-index: 100;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+    .block img {
+        position: absolute;
+    }
+
+/* DEBUG MODE
+********************************************************/
+.debug {
+    width: 100%;
+    padding: 4px 0;
+    margin-top: 16px;
+    text-align: center;
+    background: #FFD700;
+    opacity: 0.5;
+    font-size: 16px;
+    font-weight: bold;
+}
