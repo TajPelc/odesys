@@ -110,7 +110,6 @@
         </ul>
     </section>
 
-    <h1>Test</h1>
     <?php if($latestDecisions) { ?>
     <section id="public_decisions">
         <header>
