@@ -153,7 +153,7 @@ Criteria.handleButtons = function(menu) {
  */
 Criteria.handleListFontSize = function(that) {
         $(that).not('.ui-sortable-helper').each(function(index, that){
-            var fontSizes = new Array(36, 31, 26, 22, 18, 15, 12, 11, 10, 9, 8);
+            var fontSizes = new Array(35, 31, 26, 22, 18, 15, 12, 11, 10, 9, 8);
             var fontRatio = (fontSizes[index]);
             var fontSizesMin = 8;
             
